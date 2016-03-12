@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ShopClock</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar-static-top/">How It Works</a></li>
+            <li><a href="./">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+    <div class="container">
+      <div class="row" style="margin-top:100px">
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <div class="card-header">
+              <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
+              <span class="num-purchased"><img style="position:absolute;right:25px;top:5px;" height="42px" src="../static/img/logos/gym-tank_logo.png"</img></span>
+
+              <br><br>
+              <div class="progress">
+                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40"
+                aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                  <span class="progress-text">50 Orders Needed!</span>
+                </div>
+              </div>
+            </div>
+            <img src="../static/img/s.jpg" alt="...">
+            <div class="caption">
+              <h3>Deadlift Gym Stringer <span class="money">$19.99</span></h3>
+              <p class="tip">(<strong>save $1.00</strong> if 51 more people order)</p>
+            </div>
+            <a href="#" id="customButton" class="btn btn-success btn-buynow" role="button">Buy Now!</a>
+            <script>
+    var handler = StripeCheckout.configure({
+      key: 'pk_test_loMuGvPxkyAer6FdjK1ykZVw',
+      image: '../static/img/logos/gym-tank_logo.png',
+      locale: 'auto',
+      token: function(token,args) {
+        // Use the token to create the charge with a server-side script.
+        // You can access the token ID with `token.id`
+        alert(args["shipping_address_line1"])
+      }
+    });
+
+    $('#customButton').on('click', function(e) {
+      // Open Checkout with further options
+      handler.open({
+        name: 'Deadlift Gym Stringer',
+        description: '$19.99',
+        zipCode: true,
+        billingAddress: true,
+        shippingAddress: true,
+        allowRememberMe: false,
+        panelLabel: "Pay",
+        amount: 1999
+      });
+      e.preventDefault();
+    });
+
+    // Close Checkout on page navigation
+    $(window).on('popstate', function() {
+      handler.close();
+    });
+  </script>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <div class="card-header">
+              <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
+              <span class="num-purchased"><img style="position:absolute;right:25px;top:5px;" height="42px" src="img/logos/gym-tank_logo.png"</img></span>
+
+              <br><br>
+              <div class="progress">
+                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40"
+                aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                  <span class="progress-text">50 Orders Needed!</span>
+                </div>
+              </div>
+            </div>
+            <img src="img/s.jpg" alt="...">
+            <div class="caption">
+              <h3>Deadlift Gym Stringer <span class="money">$19.99</span></h3>
+              <p class="tip">(<strong>save $1.00</strong> if 51 more people order)</p>
+            </div>
+            <a href="#" class="btn btn-success btn-buynow" role="button">Buy Now!</a>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <div class="card-header">
+              <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
+              <span class="num-purchased"><img style="position:absolute;right:25px;top:5px;" height="42px" src="img/logos/gym-tank_logo.png"</img></span>
+
+              <br><br>
+              <div class="progress">
+                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40"
+                aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                  <span class="progress-text">20 Orders Needed!</span>
+                </div>
+              </div>
+            </div>
+            <img src="img/tank.jpg" alt="...">
+            <div class="caption">
+              <h3>Deadlift Gym Stringer <span class="money">$19.99</span></h3>
+              <p class="tip">(<strong>save $1.00</strong> if 21 more people order)</p>
+            </div>
+            <a href="#" class="btn btn-success btn-buynow" role="button">Buy Now!</a>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+            <div class="card-header">
+              <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
+              <span class="num-purchased"><img style="position:absolute;right:25px;top:5px;" height="42px" src="img/logos/gym-tank_logo.png"</img></span>
+
+              <br><br>
+              <div class="progress">
+                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40"
+                aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                  <span class="progress-text">50 Orders Needed!</span>
+                </div>
+              </div>
+            </div>
+            <img src="img/s.jpg" alt="...">
+            <div class="caption">
+              <h3>Deadlift Gym Stringer <span class="money">$19.99</span></h3>
+              <p class="tip">(<strong>save $1.00</strong> if 51 more people order)</p>
+            </div>
+            <a href="#" class="btn btn-success btn-buynow" role="button">Buy Now!</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <!--FOOTER-->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <ul class="vertical-list">
+              <li>
+                <h4>Explore</h4>
+              </li>
+                        <li>
+                            <a href="/providers.php">For Providers</a>
+                        </li>
+              <li>
+                <a href="/about">About Us</a>
+              </li>
+              <li>
+                <a href="/faq">FAQ</a>
+              </li>
+              <li>
+                            <!--<a href="" data-toggle="modal" data-target="#contact-form">Contact Us</a>-->
+                            <a href="mailto:info@comparedcare.com">Contact</a>
+              </li>
+
+              <li>
+                <a href="/terms">Terms of Use</a>
+              </li>
+              <li>
+                <a href="http://blog.comparedcare.com">Blog</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2">
+            <ul class="vertical-list">
+                <li>
+                <h4>Featured</h4>
+              </li>
+                            <li>
+                                <a href="http://www.huffingtonpost.com/carol-j-carter/this-holiday-give-yoursel_b_6374280.html">The Huffington Post</a>
+                            </li>
+                <li>
+                  <a href="http://technical.ly/baltimore/2014/07/08/compared-care-beta-healthcare/">Technical.ly Baltimore</a>
+                </li>
+                <li>
+                  <a href="http://my.umbc.edu/groups/entrepreneurship/news/45280">UMBC</a>
+                </li>
+                <li>
+                  <a href="http://www.meetup.com/TechBreakfast/events/155512582/">Tech Breakfast</a>
+                </li>
+              </ul>
+          </div>
+          <div class="col-md-2">
+            <ul class="vertical-list">
+                <li>
+                <h4>Hello</h4>
+              </li>
+                <li>
+                  <a href="https://www.facebook.com/comparedcare" target="_blank"><i class="fa fa-facebook fa-fw"></i>Facebook</a>
+                </li>
+                <li>
+                  <a href="https://twitter.com/ComparedCare" target="_blank"><i class="fa fa-twitter fa-fw"></i>Twitter</a>
+                </li>
+                <li>
+                  <a href="https://angel.co/compared-care-1" target="_blank"><i class="fa fa-spotify fa-fw"></i>Angel List</a>
+                </li>
+                            <li>
+                                <a href="https://www.youtube.com/channel/UCxluuFzuL1_7SkXQ0wgli6A" target="_blank"><i class="fa fa-youtube fa-fw"></i>Youtube Channel</a>
+                            </li>
+                <li>
+                  <a href="https://www.linkedin.com/company/compared-care" target="_blank"><i class="fa fa-linkedin fa-fw"></i>Linkedin</a>
+                </li>
+    <!--						<li>
+                  <a href="https://google.com/+Comparedcarenow"><i class="fa fa-google fa-fw"></i>Google +</a>
+                </li>	-->
+              </ul>
+          </div>
+          <div class="col-md-2">
+            <ul class="vertical-list">
+              <li>
+                <h4>Popular Cities</h4>
+              </li>
+              <li>
+                <a href="/search.php?location=Baltimore,%20MD&procedure=Office/outpatient%20visit%20new">Baltimore, MD</a>
+              </li>
+              <li>
+                <a href="/search.php?location=Washington,%20DC&procedure=Office/outpatient%20Visit%20New">Washington DC</a>
+              </li>
+              <li>
+                <a href="/search.php?location=Nashville,%20TN&procedure=Office/outpatient%20Visit%20New">Nashville, TN</a>
+              </li>
+              <li>
+                <a href="/search.php?location=New%20York,%20NY&procedure=Office/outpatient%20Visit%20New">New York, NY</a>
+              </li>
+              <li>
+                <a href="/search.php?location=San%20Francisco,%20CA&procedure=Office/outpatient%20Visit%20New">San Francisco, CA</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>In a Nutshell</h4>
+              <p style="font-size:16px;">We give you access to limited edition products from your favorite Youtuber or Instagrammer.
+                                         The clock is ticking... Order yours before the deal is done!</p>
+                    <div class="form-inline" style="margin-top: 15px;">
+                        <form action="https://comparedcare.us3.list-manage.com/subscribe/post?u=0e334b7c98ef30ba279c4d471&amp;id=bd259ae780" method="post" id="textinput" name="textinput" type="text" placeholder="placeholder" class="input-medium" target="_blank">
+                            <input type="text" name="EMAIL"  value="" placeholder="Your Email" class="autoclear email-newsletter form-control" id="MERGE1" >
+                            <input type="submit" class="btn btn-primary"  value="Update Me">
+                        </form>
+                    </div>
+          </div>
+
+        </div>
+            <p class="copyright text-muted small">Copyright &copy; Compared Care Inc. 2016. All Rights Reserved. &nbsp; <strong>Patent Pending</strong></p>
+      </div>
+    </footer>
+
+
+  </body>
+</html>

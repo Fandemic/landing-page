@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fandemic</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet' type='text/css'>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Fandemic</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar-static-top/" data-toggle="modal" data-target=".bs-example-modal-lg">Try Beta</a></li>
+            <li><a href="./">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div id="main-content">
+
+      <div class="header-stuff">
+      <!--<img class="center" height="80px" src="../static/img/youtube.png"> -->
+      <h1 class="title">Shopping Platform for Youtubers + Instagrammers</h1>
+      <p style="color:#fff;">We will help you design a product and quickly sell it to your audience.</p>
+      <br><br>
+
+      <a class="btn btn-lg btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Start Now</a>
+
+      <img width="300px" class="card" id="sample1" src="../static/img/example.png">
+
+      <img width="300px" class="card" id="sample2" src="../static/img/example.png">
+
+      <img width="300px" class="card" id="sample3" src="../static/img/example.png">
+
+      </div>
+
+      <svg viewBox="0 0 1031 475" id="front-rainbow" preserveAspectRatio="none">
+      <defs>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="25%" id="front-rainbow-gradient">
+          <stop stop-color="#2084DF" offset="0%"></stop>
+          <!-- <stop stop-color="#2084DF" offset="50%"></stop> -->
+          <stop stop-color="#6441A5" offset="100%"></stop>
+        </linearGradient>
+      </defs>
+      <path d="M0 475h1031V0C630.46 33.34 270 208.52 0 475z" fill="url(#front-rainbow-gradient)" fill-opacity="0.65"></path>
+    </svg>
+
+      <svg viewBox="0 0 1280 110" preserveAspectRatio="none" id="header-curve-shadow" style="z-index:99999;">
+        <path d="M1280 3.9V110H0C194 71.33 662-19.9 1280 3.9z"></path>
+      </svg>
+
+      <svg viewBox="0 0 1280 110" preserveAspectRatio="none" id="header-curve" style="z-index:99999;">
+        <path d="M1280 3.9V110H0C194 71.33 662-19.9 1280 3.9z" fill="#fff"></path>
+      </svg>
+    </div>
+
+    <div class="main-content">
+    <div class="container">
+
+    <div class="row steps">
+      <div class="col-md-6">
+        <h2>1. Create</h2>
+        <p>We work with you to design a custom product for your audience.
+        Imagine a one of a kind apparel line with your Youtube channel's branding!</p>
+        <hr>
+        <h2>2. Sell</h2>
+        <p>Our unique online shopping platform allows your followers to pre-order your unique product.
+        If the minimum order requirement is met, we make and ship your order!</p>
+        <hr>
+        <h2>3. Profit</h2>
+        <p>Our content creators get 50% profit from all sales. Your only job is marketing the product to your audience.
+        Stop selling other peoples products, create your own!</p>
+
+      </div>
+
+      <div class="col-md-6">
+        <img class="logo" width="250px" src="../static/img/youtube.png"><br>
+        <img class="logo" width="250px" src="../static/img/instagram.png">
+
+
+      </div>
+
+      </div>
+
+
+    </div>
+    </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+
+  {% include 'footer.html' %}
+
+  </body>
+
+  <!-- MODAL -->
+  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Get Started!</h2>
+        <p>Fill out the form below and we will contact you within 24 hours</p>
+
+        <hr>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+              <input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
+              <input type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
+              <input type="text" class="form-control" placeholder="Phone" aria-describedby="sizing-addon1">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
+              <input type="text" class="form-control" placeholder="Youtube Channel URL" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
+              <input type="text" class="form-control" placeholder="Instagram Username" aria-describedby="sizing-addon1">
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-official"></i></span>
+              <input type="text" class="form-control" placeholder="Facebook Fan Page URL" aria-describedby="sizing-addon1">
+            </div>
+          </div>
+        </div>
+        <hr>
+        <button class="btn btn-primary center">Submit</button>
+
+    </div>
+  </div>
+
+
+
+</html>
