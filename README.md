@@ -6,5 +6,5 @@
 - use git clone to clone this repository
 - open your command prompt
 - cd to the landing-page folder
-- run with "python __init__.py"
+- run with "python __ __init__.py __"
 - navigate to the designated URL (http://127.0.0.1:5000/)
