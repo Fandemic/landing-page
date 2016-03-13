@@ -1,166 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Fandemic</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/css/style.css">
-  </head>
-  <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fandemic</title>
+
+
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+
+  <!-- Main Style -->
+  <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+
+  <!-- Responsive Style -->
+  <link rel="stylesheet" type="text/css" href="../static/css/responsive.css">
+
+  <!--Icon Fonts-->
+  <link rel="stylesheet" media="screen" href="../static/fonts/font-awesome/font-awesome.min.css" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" type="text/css" href="../static/css/bootstra-social.css">
+
+  <!-- Extras -->
+  <link rel="stylesheet" type="text/css" href="../static/extras/animate.css">
+  <link rel="stylesheet" type="text/css" href="../static/extras/lightbox.css">
+
+
+  <!-- jQuery Load -->
+  <script src="../static/js/jquery-min.js"></script>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+  <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+</head>
+
+<body data-spy="scroll" data-offset="20" data-target="#navbar">
+  <!-- Nav Menu Section -->
+  <div class="logo-menu">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-spy="affix" data-offset-top="50">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header col-md-3">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Fandemic</a>
+          <a class="navbar-brand" href="#home"><i class="fa fa-briefcase"></i> Fandemic</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <a href="../navbar-static-top/" class="btn btn-orange" data-toggle="modal" data-target=".bs-example-modal-lg">Activate</a>
-            <a href="./" class="btn btn-blue">Contact</a>
+
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav col-md-9 pull-right">
+            <li class="active"><a href="#hero-area"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#services"><i class="fa fa-cogs"></i> Services</a></li>
+            <li><a href="#about"><i class="fa fa-info"></i> Meet Us</a></li>
+            <!-- <li><a href="#pricing"><i class="fa fa-info"></i> Pricing</a></li> -->
+            <li><a href="#clients"><i class="fa fa-info"></i> Clients</a></li>
+            <li><a href="#contact"><i class="fa fa-home"></i> Contact</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
-
-    <div id="main-content">
-
-      <div class="header-stuff">
-      <!--<img class="center" height="80px" src="../static/img/youtube.png"> -->
-      <h1 class="title">Shopping Platform for Youtubers + Instagrammers</h1>
-      <p style="color:#fff;">We will help you design a product and quickly sell it to your audience.</p>
-
-      <a class="btn-action" data-toggle="modal" data-target=".bs-example-modal-lg">Activate Store!</a>
-
-      <img width="300px" class="card" id="sample1" src="../static/img/example.png">
-
-      <img width="300px" class="card" id="sample2" src="../static/img/example.png">
-
-      <img width="300px" class="card" id="sample3" src="../static/img/example.png">
-
-      </div>
-
-      <svg viewBox="0 0 1031 475" id="front-rainbow" preserveAspectRatio="none">
-      <defs>
-        <linearGradient x1="100%" y1="0%" x2="0%" y2="25%" id="front-rainbow-gradient">
-          <stop stop-color="#2084DF" offset="0%"></stop>
-          <!-- <stop stop-color="#2084DF" offset="50%"></stop> -->
-          <stop stop-color="#6441A5" offset="100%"></stop>
-        </linearGradient>
-      </defs>
-      <path d="M0 475h1031V0C630.46 33.34 270 208.52 0 475z" fill="url(#front-rainbow-gradient)" fill-opacity="0.65"></path>
-    </svg>
-
-      <svg viewBox="0 0 1280 110" preserveAspectRatio="none" id="header-curve-shadow" style="z-index:9;">
-        <path d="M1280 3.9V110H0C194 71.33 662-19.9 1280 3.9z"></path>
-      </svg>
-
-      <svg viewBox="0 0 1280 110" preserveAspectRatio="none" id="header-curve" style="z-index:9;">
-        <path d="M1280 3.9V110H0C194 71.33 662-19.9 1280 3.9z" fill="#F9F9F9"></path>
-      </svg>
-    </div>
-
-    <div class="main-content">
-    <div class="container">
-
-    <div class="row ">
-      <div class="col-md-6">
-          <iframe width="85%" height="300px" class="explainer-vid" src="https://www.youtube.com/embed/2A788hUGllM" frameborder="0" allowfullscreen></iframe>
-
-
-      </div>
-
-      <div class="col-md-6 steps">
-        <h2>1. Design</h2>
-        <p>We work with you to design a custom product for your audience.
-        Imagine a one of a kind apparel line with your Youtube channel's branding!</p>
-        <hr>
-        <h2>2. Sell</h2>
-        <p>Our unique online shopping platform allows your followers to pre-order your unique product.
-        If the minimum order requirement is met, we make and ship your order!</p>
-        <hr>
-        <h2>3. Profit</h2>
-        <p>Our content creators get 50% profit from all sales. Your only job is marketing the product to your audience.
-        Stop selling other peoples products, create your own!</p>
-      </div>
-
-      </div>
-
-
-    </div>
-    </div>
   </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br>
+  <!-- Nav Menu Section End -->
+
+  <!-- Hero Area Section -->
+
+  <section id="hero-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="title">Fandemic</h1>
+          <h2 class="subtitle">Give back to your followers today!</h2>
+
+          <div class="col-md-6">
+            <iframe width="100%" class="explainer-vid" src="https://www.youtube.com/embed/2A788hUGllM" frameborder="0" allowfullscreen></iframe>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInRight delay-0-5">
+            <p>Fandemic is a web platform that enables social media stars to create and manage a fundraising campaign for their own branded merchandise.
+            The team is now accepting users for private beta, signup today:</p>
+              <a href="#" class="btn btn-primary btn-lg">Invite Me!</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Area Section End-->
+
+
+
+  <!-- Service Section -->
+
+  <section id="services">
+    <div class="container text-center">
+      <div class="row">
+        <h1 class="title">What we do</h1>
+        <h2 class="subtitle">Lorem Ipsum is simply dummy text</h2>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="service-item">
+            <img src="../static/img/services/responsive.png" alt="">
+            <h3>1. Design</h3>
+            <p>We work with you to design a custom product for your audience. Imagine a one of a kind apparel line with your social media channel's branding!</p>
+          </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="service-item">
+            <img src="../static/img/services/bs3.png" alt="">
+            <h3>2. Promote</h3>
+            <p>Our unique online shopping platform allows your followers to pre-order your branded product. If the minimum order requirement is met, we make and ship your order!</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div class="service-item">
+            <img src="../static/img/services/free.png" alt="">
+            <h3>3. Profit</h3>
+            <p>Your only job is marketing the product to your audience. Stop selling other peoples products, create your own!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- Service Section End -->
+
+
+
+
+
+
+  <!-- Client Section -->
+  <section id="clients">
+    <div class="container">
+      <div class="row">
+
+        <h1 class="title">Clients</h1>
+        <h2 class="subtitle">Lorem Ipsum is simply dummy text</h2>
+
+        <div class="wow fadeInDown">
+          <img class="col-md-3 col-md-3 col-sm-3 col-xs-12" src="../static/img/clients/img1.png" alt="client-1">
+
+          <img class="col-md-3 col-md-3 col-sm-3 col-xs-12" src="../static/img/clients/img2.png" alt="client-2">
+
+          <img class="col-md-3 col-md-3 col-sm-3 col-xs-12" src="../static/img/clients/img3.png" alt="client-3">
+
+          <img class="col-md-3 col-md-3 col-sm-3 col-xs-12" src="../static/img/clients/img4.png" alt="client-4">
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Client Section End -->
+
+
+
+  <!-- About Section -->
+
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <h1 class="title">Meet us!</h1>
+        <h2 class="subtitle">Meet the team that runs Fandemic!</h2>
+
+        <div class="col-md-8 col-sm-12">
+          <p>
+            A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.
+            Duis vulputate commodo lectus, ac blandit elit. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.
+          </p>
+        </div>
+
+        <img class="col-md-4 col-md-4 col-sm-12 col-xs-12" src="../static/img/about/graph.png" alt="">
+
+      </div>
+    </div>
+  </section>
+  <!-- About Section End -->
+
+
+
+  <!-- Conatct Section -->
+  <section id="contact">
+    <div class="container text-center">
+      <div class="row">
+        <h1 class="title">Contact us</h1>
+
+        <h2 class="subtitle">Lorem Ipsum is simply dummy text</h2>
+
+
+        <form role="form" class="contact-form" method="post">
+          <div class="col-md-6 wow fadeInLeft" data-wow-delay=".5s">
+            <div class="form-group">
+              <div class="controls">
+                <input type="text" class="form-control" placeholder="Name" name="name">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="controls">
+                <input type="email" class="form-control email" placeholder="Email" name="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="controls">
+                <input type="text" class="form-control requiredField" placeholder="Subject" name="subject">
+              </div>
+            </div>
+
+            <div class="form-group">
+
+              <div class="controls">
+                <textarea rows="7" class="form-control" placeholder="Message" name="message"></textarea>
+              </div>
+            </div>
+            <button type="submit" id="submit" class="btn btn-lg btn-common">Send</button>
+            <div id="success" style="color:#34495e;"></div>
+
+          </div>
+        </form>
+
+        <div class="col-md-6 wow fadeInRight">
+          <div class="social-links">
+            <a class="social" href="#" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
+            <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+            <a class="social" href="#" target="_blank"><i class="fa fa-google-plus fa-2x"></i></a>
+            <a class="social" href="#" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a>
+          </div>
+          <div class="contact-info">
+            <p><i class="fa fa-map-marker"></i> Baltimore, MD</p>
+            <p><i class="fa fa-envelope"></i> something@something.com</p>
+          </div>
+
+          <p>
+            Hit us Up
+            <br>
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section End-->
+
+  <!-- Bootstrap JS -->
+  <script src="../static/js/bootstrap.min.js"></script>
+
+  <!-- Smooth Scroll -->
+  <!-- Smooth Scroll -->
+  <script src="../static/js/smooth-scroll.js"></script>
+  <script src="../static/js/lightbox.min.js"></script>
+
+  <!-- All JS plugin Triggers -->
+  <script src="../static/js/main.js"></script>
 
   {% include 'footer.html' %}
 
-  </body>
+</body>
 
-  <!-- MODAL -->
-  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title" id="myModalLabel">Get Started!</h2>
-        <p>Fill out the form below and we will contact you within 24 hours</p>
+<!-- MODAL -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 
-        <hr>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 class="modal-title" id="myModalLabel">Get Started!</h2>
+      <p>Fill out the form below and we will contact you within 24 hours</p>
 
-        <div class="row">
-          <div class="col-md-6">
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-              <input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon1">
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-              <input type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
-              <input type="text" class="form-control" placeholder="Phone" aria-describedby="sizing-addon1">
-            </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon1">
           </div>
-          <div class="col-md-6">
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
-              <input type="text" class="form-control" placeholder="Youtube Channel URL" aria-describedby="sizing-addon1">
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
-              <input type="text" class="form-control" placeholder="Instagram Username" aria-describedby="sizing-addon1">
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-official"></i></span>
-              <input type="text" class="form-control" placeholder="Facebook Fan Page URL" aria-describedby="sizing-addon1">
-            </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
+            <input type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
+            <input type="text" class="form-control" placeholder="Phone" aria-describedby="sizing-addon1">
           </div>
         </div>
-        <hr>
-        <button class="btn btn-primary center">Submit</button>
+        <div class="col-md-6">
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
+            <input type="text" class="form-control" placeholder="Youtube Channel URL" aria-describedby="sizing-addon1">
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
+            <input type="text" class="form-control" placeholder="Instagram Username" aria-describedby="sizing-addon1">
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-official"></i></span>
+            <input type="text" class="form-control" placeholder="Facebook Fan Page URL" aria-describedby="sizing-addon1">
+          </div>
+        </div>
+      </div>
+      <hr>
+      <button class="btn btn-primary center">Submit</button>
 
     </div>
   </div>
-
-
 
 </html>
