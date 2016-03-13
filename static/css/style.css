@@ -1,3 +1,24 @@
+
+.design-one {
+  height: auto;
+  width: 40%;
+  padding-bottom: 15px;
+}
+.design-two {
+  height: auto;
+  width: 40%;
+  padding-bottom: 15px;
+}
+.design-three {
+  height: auto;
+  width: 40%;
+  padding-bottom: 15px;
+}
+
+.explainer-vid{
+ height: 300px;
+}
+
 html, body{
   font-family: 'Andika', sans-serif;
   font-size: 16px;
