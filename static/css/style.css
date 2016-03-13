@@ -15,9 +15,7 @@
   padding-bottom: 15px;
 }
 
-.explainer-vid{
- height: 300px;
-}
+
 
 html, body{
   font-family: 'Andika', sans-serif;
@@ -149,8 +147,14 @@ box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
 
 .explainer-vid{
   margin: 0 auto;
-  display: block;
-  margin-top: 80px;
+  float:inherit;
+  margin-top: 2%;
+  height: 400px;
+  width: 59% !important;
+
+}
+.team-thumb {
+  width:50%
 }
 
 #header-curve-shadow {

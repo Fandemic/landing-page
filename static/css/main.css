@@ -22,9 +22,16 @@
   padding-bottom: 15px;
 }
 
-.explainer-vid{
- height: 300px;
+.explainer-vid {
+  float:inherit;
+  margin-top: 2%;
+  height: 300px;
 }
+
+.team-thumb {
+  width:50%
+}
+
 
 footer {
     padding: 40px 0 20px 0;
