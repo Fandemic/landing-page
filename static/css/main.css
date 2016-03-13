@@ -1,8 +1,27 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
-
+.activate {
+  background-color: #e74c3c;
+}
 
 /*   Add Custom CSS Here  */
+
+.design-one {
+  height: auto;
+  width: 40%;
+  padding-bottom: 15px;
+}
+.design-two {
+  height: auto;
+  width: 40%;
+  padding-bottom: 15px;
+}
+.design-three {
+  height: auto;
+  width: 40%;
+  padding-bottom: 15px;
+}
+
 .explainer-vid{
  height: 300px;
 }
@@ -21,7 +40,10 @@ p.copyright {
 
 }
 
-
+ul
+{
+    list-style-type: none;
+}
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -127,6 +149,7 @@ a:hover {
   /*background-image: url(../img/bg3.jpg);
   background-size:cover;*/
 }
+
 #hero-area .btn {
   margin-right: 20px;
 }
