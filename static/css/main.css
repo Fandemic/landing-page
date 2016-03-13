@@ -16,6 +16,11 @@ p.copyright {
     margin: 15px 0 0;
 }
 
+.modal-content{
+	padding: 20px;
+
+}
+
 
 
 body {
@@ -119,6 +124,8 @@ a:hover {
 #hero-area {
   background: #34495e;
   color: #fff;
+  /*background-image: url(../img/bg3.jpg);
+  background-size:cover;*/
 }
 #hero-area .btn {
   margin-right: 20px;
