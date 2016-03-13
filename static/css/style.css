@@ -3,6 +3,10 @@ html, body{
   font-size: 16px;
 }
 
+.subtitle {
+  text-align:center;
+}
+
 body{
 	background-color: #F9F9F9;
 }
