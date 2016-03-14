@@ -1,18 +1,21 @@
 
 .design-one {
   height: auto;
-  width: 40%;
+  width: 43%;
   padding-bottom: 15px;
+  border:1px solid #021a40;
 }
 .design-two {
   height: auto;
   width: 40%;
   padding-bottom: 15px;
+  border:1px solid #021a40;
 }
 .design-three {
   height: auto;
   width: 40%;
   padding-bottom: 15px;
+  border:1px solid #021a40;
 }
 
 
