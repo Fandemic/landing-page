@@ -131,6 +131,7 @@ h1,h2,h3,h4{
 }
 
 .item{
+  position: relative;
   background-color: #fff;
   padding: 4px;
   min-height: 90px;
@@ -141,7 +142,24 @@ h1,h2,h3,h4{
   float: left;
 }
 
+.item .delete{
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  color: #a8a8a8;
+  cursor: pointer;
+}
+
 .footer{
   position: absolute;
   bottom: 3px;
+}
+
+/*QUANTITY*/
+.spinner {
+  width: 40px;
+  font-size: 14px;
+}
+.spinner input {
+  text-align: right;
 }

@@ -19,18 +19,23 @@
 
     <div id="side-panel">
       <img class="profile-img" src="../static/img/clients/matt-ogus/profile.jpeg">
-      <h2>Matt Ogus's Store</h2>
+      <h2>Matt Ogus</h2>
 
       <hr>
 
-      <h3><i class="fa fa-shopping-cart"></i> Cart</h3>
+      <h3><i class="fa fa-shopping-cart"></i> Cart</h3> Total: $19.99
 
       <div class="well">
-        Add a product to the cart by clicking <span style="color:blue;">"Add to Cart"</span> on a product card.<br>
+        <!-- Add a product to the cart by clicking <span style="color:blue;">"Add to Cart"</span> on a product card.<br> -->
         <div class="item">
           <img width="80px" src="../static/img/sample1.jpg">
           <strong>Ironville Gym Sweatshirt(Large)</strong>
-          Quantity <i class="fa fa-times-circle"></i>
+          <!--<div class="spinner">
+            <button class="btn btn-default" type="button"><i class="fa fa-minus"></i></button>
+            <input type="text" class="form-control" value="42">
+              <button class="btn btn-default" type="button"><i class="fa fa-plus"></i></button>
+          </div>-->
+          <a class="delete"><i class="fa fa-times"></i></a>
         </div>
       </div>
 
@@ -326,3 +331,14 @@
 
   </body>
 </html>
+
+<script>
+(function ($) {
+  $('.spinner .btn:first-of-type').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
+  });
+  $('.spinner .btn:last-of-type').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
+  });
+})(jQuery);
+</script>
