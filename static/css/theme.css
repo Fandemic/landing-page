@@ -1175,3 +1175,24 @@ body.dark-page {
     background-position: 80% 100%
   }
 }
+
+.modal{
+  z-index:9999;
+}
+.modal-content {
+  padding:20px;
+}
+
+.input-group .form-control {
+  border:1px solid #ccc;
+}
+.row .tab {
+  margin-top: -30px;
+}
+.tab-pic {
+  margin-top: -39px;
+}
+.footer {
+  background: #111;
+  padding: 20px 0 40px;
+}
