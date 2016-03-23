@@ -1,202 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html>
 
+{% include 'header.html' %}
 
 <body>
 
-  {% include 'header.html' %}
+  <!--hero section-->
 
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Fandemic</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <a href="#home" class="btn btn-blue">Home</a>
-          <a href="#demo" class="btn btn-blue">Demo</a>
-          <a href="#services" class="btn btn-blue">Services</a>
-          <a href="#about" class="btn btn-blue">Meet Us</a>
-          <a href="../navbar-static-top/" class="btn btn-orange" data-toggle="modal" data-target=".bs-example-modal-lg">Activate</a>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
-    </div>
-  </nav>
+  <header class="hero-section">
 
+    <!--navigation-->
 
-  <section id="home">
-    <div id="main-content">
-
-      <div class="header-stuff">
-        <!--<img class="center" height="80px" src="../static/img/youtube.png"> -->
-        <h1 class="title">Shopping Platform for Social Media Stars</h1>
-        <p style="color:#fff;">Give something meaningful to your fans today!</p>
-
-        <a class="btn-action" data-toggle="modal" data-target=".bs-example-modal-lg">Activate Store!</a>
-
-        <img width="300px" class="card" id="sample1" src="../static/img/example.png">
-
-        <img width="300px" class="card" id="sample2" src="../static/img/example.png">
-
-        <img width="300px" class="card" id="sample3" src="../static/img/example.png">
-
-      </div>
-
-      <svg viewBox="0 0 1031 475" id="front-rainbow" preserveAspectRatio="none">
-        <defs>
-          <linearGradient x1="100%" y1="0%" x2="0%" y2="25%" id="front-rainbow-gradient">
-            <stop stop-color="#2084DF" offset="0%"></stop>
-            <!-- <stop stop-color="#2084DF" offset="50%"></stop> -->
-            <stop stop-color="#6441A5" offset="100%"></stop>
-          </linearGradient>
-        </defs>
-        <path d="M0 475h1031V0C630.46 33.34 270 208.52 0 475z" fill="url(#front-rainbow-gradient)" fill-opacity="0.65"></path>
-      </svg>
-
-      <svg viewBox="0 0 1280 110" preserveAspectRatio="none" id="header-curve-shadow" style="z-index:9;">
-        <path d="M1280 3.9V110H0C194 71.33 662-19.9 1280 3.9z"></path>
-      </svg>
-
-      <svg viewBox="0 0 1280 110" preserveAspectRatio="none" id="header-curve" style="z-index:9;">
-        <path d="M1280 3.9V110H0C194 71.33 662-19.9 1280 3.9z" fill="#F9F9F9"></path>
-      </svg>
-    </div>
-  </section>
-
-  <section id="demo">
-    <div class="container text-center">
-      <h1 class="subtitle" style="margin-top:6%;">Watch the platform in action</h2>
-        <div class="row" style="margin-bottom: 12%;">
-          <iframe width="100%" class="explainer-vid col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="https://www.youtube.com/embed/2A788hUGllM" frameborder="0" allowfullscreen></iframe>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#home">
+            <img class="logo-nav" alt="logo" src="../static/img/logo-nav.png">
+            <img class="logo-head" alt="logo" src="../static/img/logo_head_fullsize.png" style="width:25%">
+          </a>
         </div>
-    </div>
-  </section>
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+          <ul class="nav navbar-nav nav-left">
+            <li><a href="#works">How it Works</a></li>
+            <!-- <li><a href="#reviews">Reviews</a></li> -->
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#team">Team</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
+            <li><a href="#" class="btn">ACTIVATE STORE</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-  <section id="services">
-    <div class="container text-center">
+    <!--navigation end-->
 
+    <!--welcome message-->
+
+    <section class="container text-center welcome-message">
       <div class="row">
-        <h1 class="subtitle" style="margin-top:6%;">How exactly does it work?</h2>
-
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <div class="service-item">
-              <img class="design-one" src="../static/img/example.png" alt="">
-              <h3>1. Design</h3>
-              <p>We work with you to design a custom product for your audience. Imagine a one of a kind apparel line with your social media channel's branding!</p>
-            </div>
+        <div class="col-md-12" style="margin-top:-10%">
+          <h1>Give back to your fans today!</h1>
+          <h2>We work with you to create products for your fans</h2>
+          <div class="play-btn">
+            <a href="https://vimeo.com/109054393" class="play litebox-hero">
+              <img src="../static/img/play-btn.png" alt="play">
+            </a>
           </div>
-
-
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <div class="service-item">
-              <img class="design-two" src="../static/img/promote.png" alt="">
-              <h3>2. Promote</h3>
-              <p>Our unique online shopping platform allows your followers to pre-order your branded product. If the minimum order requirement is met, we make and ship your order!</p>
-            </div>
+          <div class="cta-btn"> <a href="#" class="btn">ACTIVATE STORE</a>
+            <p>
+              <span class="total-number-1">4</span>K Stores Already!</p>
           </div>
-
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <div class="service-item">
-              <img class="design-three" src="../static/img/profit.png" alt="">
-              <h3>3. Profit</h3>
-              <p>Your only job is marketing the product to your audience. Stop selling other peoples products, create your own!</p>
-            </div>
-          </div>
-
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="about">
+    <!--welcome message end-->
+
+  </header>
+
+  <!--hero section end-->
+
+
+
+
+  <!--benefits-->
+
+  <section class="benefits section-spacing text-center" id="works">
     <div class="container">
-      <div class="row" style="margin-top: 6%;">
-        <h1 class="subtitle">Meet the team that handles your orders!</h2>
-
-          <div class="col-lg-12">
-            <div class="col-lg-6" style="text-align:center">
-              <div class="teamalign">
-                <img class="team-thumb img-circle" src="../static/img/brandon.png" alt="">
-              </div>
-              <h3>Brandon</h3>
-            </div>
-            <div class="col-lg-6" style="text-align:center">
-              <div class="teamalign">
-                <img class="team-thumb img-circle" src="../static/img/ethan.png" alt="">
-              </div>
-              <h3>Ethan</h3>
-            </div>
-
-          </div>
+      <header class="section-header">
+        <h2>How Does Fandemic.co Work?</h2>
+        <h3>The fundraising epidemic in a nutshell:</h3>
+      </header>
+      <div class="row">
+        <div class="col-sm-4">
+          <img src="../static/img/benefits-2.png" alt="benefits of product">
+          <h4>Product Design</h4>
+          <p>We work together to create a logo, designs, and products that represent your channel and are instantly recognizable.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="../static/img/benefits-1.png" alt="benefits of product">
+          <h4>Product Listing</h4>
+          <p>List the designed products in your Fandemic.co campaign page and set a minimum order requirement.</p>
+        </div>
+        <div class="col-sm-4">
+          <img src="../static/img/benefits-3.png" alt="benefits of product">
+          <h4>Shipment</h4>
+          <p>Once the minimum order is met, the Fandemic team will begin shipping off to your eager fans.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!--benefits end-->
+
+  <!--Features-->
+  <section id="features">
+    <div class="features section-spacing">
+      <div class="container">
+
+        <!--feature 1-->
+
+        <div class="row" style="padding-right:15%">
+          <div class="col-md-7 col-md-push-5 text-center">
+            <img src="../static/img/feature-1.png" alt="feature"> </div>
+          <div class="col-md-5 col-md-pull-7">
+            <article>
+              <h2>Product Design Consultation</h2>
+              <p></p>
+              <ul>
+                <li>Pay initial deposit to get started</li>
+                <li>Schedule a call with our professionals</li>
+                <li>Select from our team's design options</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <!--feature 1 end-->
+
+        <!--feature 2-->
+        <div class="row" style="padding-left:25%">
+          <div class="col-md-7 text-center">
+            <img src="../static/img/feature-2.png" alt="feature"> </div>
+          <div class="col-md-5">
+            <article>
+              <h2>Product Store Interface</h2>
+              <p></p>
+              <ul>
+                <li>Add products to your store</li>
+                <li>Set a minimum order quantity</li>
+                <li>Share links to your campaign page</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+        <!--feature 2 end-->
+
+        <!--feature 3-->
+        <div class="row" style="padding-right:15%">
+          <div class="col-md-7 col-md-push-5 text-center">
+            <img src="../static/img/feature-3.png" alt="feature"> </div>
+          <div class="col-md-5 col-md-pull-7">
+            <article>
+              <h2>Campaign Dashboard Monitoring</h2>
+              <p></p>
+              <ul>
+                <li>Monitor fan traffic and watch progress</li>
+                <li>Promote, promote, promote!</li>
+                <li>If it succeeds, we will handle the rest</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+        <!--feature 3 end-->
+      </div>
+    </div>
+  </section>
+
+  <!--Features end-->
+
+
+  <!--Tour-->
+
+  <section class="tour section-spacing text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 center-block">
+          <h2>Try it for yourself <a href="" class="btn">ACTIVATE STORE <i class="fa fa-arrow-right"></i></a></h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Tour end-->
+
+  <!--reviews-->
+
+  <!--reviews end-->
+
+  <!--Pricing-->
+
+  <section class="pricing section-spacing text-center" id="pricing">
+    <div class="container">
+      <header class="section-header">
+        <h2>The different Fandemic.co Plans</h2>
+        <h3>Free signup. No credit card required.</h3>
+      </header>
+      <div class="row">
+        <div class="col-md-12">
+
+          <!--PRICE TABLE-->
+          <div class="plan">
+            <div class="plan-details">
+              <div class="header">
+                <h4>BASIC</h4>
+              </div>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="price-amount">0</span>
+              </div>
+              <ul class="plan-features">
+                <li>
+                  <span>Logo</span> Design<i class="fa fa-times"></i>
+                </li>
+                <li>
+                  <span>Free</span> Samples<i class="fa fa-times"></i>
+                </li>
+                <li>
+                  <span>Product</span> Consultation<i class="fa fa-check"></i>
+                </li>
+                <li>
+                  <span>24/7</span> Support<i class="fa fa-check"></i>
+                </li>
+                <li>
+                  <span>5%</span> Per Order<i class="fa fa-check"></i>
+                </li>
+              </ul>
+            </div>
+            <div class="buy-button"><a class="btn" href="#">SIGNUP</a>
+              <p>Great deal!</p>
+            </div>
+          </div>
+          <!--PRICE TABLE END-->
+
+          <!--PRICE TABLE-->
+          <div class="plan">
+            <div class="plan-details">
+              <div class="header">
+                <h4>SUPERSTAR</h4>
+              </div>
+              <div class="price">
+                <span class="currency">$</span>
+                <span class="price-amount">400</span>
+              </div>
+              <ul class="plan-features">
+                <li>
+                  <span>Logo</span> Design<i class="fa fa-check"></i>
+                </li>
+                <li>
+                  <span>Free</span> Samples<i class="fa fa-check"></i>
+                </li>
+                <li>
+                  <span>Product</span> Consultation<i class="fa fa-check"></i>
+                </li>
+                <li>
+                  <span>24/7</span> Support<i class="fa fa-check"></i>
+                </li>
+                <li>
+                  <span>2%</span> Per Order<i class="fa fa-check"></i>
+                </li>
+              </ul>
+            </div>
+            <div class="buy-button"><a class="btn" href="#">SIGNUP</a>
+              <p>Limited slots available!</p>
+            </div>
+          </div>
+          <!--PRICE TABLE END-->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Pricing end-->
+
+  <!--cta section-->
+
+  <section class="cta-section section-spacing text-center">
+    <div class="container">
+      <header class="section-header">
+        <h2>Try Fandemic Today!</h2>
+        <h3>Limited number of stores available.</h3>
+      </header>
+      <div class="row">
+        <div class="col-md-12"> <a href="" class="btn">ACTIVATE STORE</a>
+          <p>Have a question? <a href="mailto:ethan@fandemic.co"> Shoot us an email </a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--cta section end-->
+
+  <!--Team-->
+
+  <section class="team section-spacing text-center" id="team">
+    <div class="container">
+      <header class="section-header">
+        <h2>Meet The Team</h2>
+        <h3>Folks who created this awesome product</h3>
+      </header>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="team-details">
+            <figure>
+              <img src="../static/img/team-1.jpg" alt="Team Member">
+              <figcaption>
+                <div>
+                  <p>A full stack software engineer and fitness model, Brandon is well-versed in web development best practices in order to create a sleek fundraising platform for you!<p>
+
+                  <!--social-->
+
+                  <ul class="social">
+                    <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                  </ul>
+
+                  <!--social end-->
+
+                </div>
+              </figcaption>
+            </figure>
+            <div class="team-info">
+              <h4>Brandon Walsh</h4>
+              <h5>Software Guy</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="team-details">
+            <figure>
+              <img src="../static/img/team-2.jpg" alt="Team Member">
+              <figcaption>
+                <div>
+                  <p>A systems engineer and management consultant, Ethan is experienced in supply chain management in order to ensure top notch quality products for you!</p>
+
+                  <!--social-->
+
+                  <ul class="social">
+                    <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                  </ul>
+
+                  <!--social end-->
+
+                </div>
+              </figcaption>
+            </figure>
+            <div class="team-info">
+              <h4>Ethan Steininger</h4>
+              <h5>Business Guy</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Team end-->
+
+  <!--contact us end-->
+
+  <!--sub-form-->
+  <section class="sub-form section-spacing text-center">
+    <div class="container">
+      <header class="section-header">
+        <h2>Subscribe To Our Newsletter</h2>
+        <h3>Subscribe to get monthly products updates and exclusive offers </h3>
+      </header>
+      <div class="row">
+        <div class="col-md-6 center-block col-sm-11">
+          <form id="mc-form">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Email Address" required id="mc-email">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">SUBSCRIBE <i class="fa fa-envelope"></i> </button>
+              </span>
+            </div>
+            <label for="mc-email" id="mc-notification"></label>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--sub-form end-->
+
+  <!--Featured on-->
+
+  <section class="featured-on section-spacing text-center">
+    <div class="container">
+      <header class="section-header">
+        <h2>Seen in:</h2>
+      </header>
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="featured-sites">
+            <li>
+              <a href="" title="Site Name">
+                <img src="../static/img/site-1.png" alt="site">
+              </a>
+            </li>
+            <li>
+              <a href="" title="Site Name">
+                <img src="../static/img/site-2.png" alt="site">
+              </a>
+            </li>
+            <li>
+              <a href="" title="Site Name">
+                <img src="../static/img/site-3.png" alt="site">
+              </a>
+            </li>
+            <li>
+              <a href="" title="Site Name">
+                <img src="../static/img/site-4.png" alt="site">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
   {% include 'footer.html' %}
 
 </body>
 
-<!-- MODAL -->
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h2 class="modal-title" id="myModalLabel">Get Started!</h2>
-      <p>Fill out the form below and we will contact you within 24 hours</p>
-
-      <hr>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-            <input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon1">
-          </div>
-          <br>
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-            <input type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
-          </div>
-          <br>
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
-            <input type="text" class="form-control" placeholder="Phone" aria-describedby="sizing-addon1">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
-            <input type="text" class="form-control" placeholder="Youtube Channel URL" aria-describedby="sizing-addon1">
-          </div>
-          <br>
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
-            <input type="text" class="form-control" placeholder="Instagram Username" aria-describedby="sizing-addon1">
-          </div>
-          <br>
-          <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-official"></i></span>
-            <input type="text" class="form-control" placeholder="Facebook Fan Page URL" aria-describedby="sizing-addon1">
-          </div>
-        </div>
-      </div>
-      <hr>
-      <button class="btn btn-primary center">Submit</button>
-
-    </div>
-  </div>
-
-
-
 </html>
+
+<script>
+$("a[href='#home']").click(function() {
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  return false;
+});
+</script>
+
+<!-- Localized -->
