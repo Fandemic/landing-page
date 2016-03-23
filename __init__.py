@@ -6,6 +6,10 @@ import json
 app = Flask(__name__)
 db = MongoClient('localhost', 27017).fandemic
 
+app.config.update(dict(
+  PREFERRED_URL_SCHEME = 'https'
+))
+
 @app.before_request
 def before_request():
     if request.url.startswith('http://'):
