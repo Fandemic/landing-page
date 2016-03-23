@@ -94,9 +94,10 @@ strong { font-weight: 600; }
 .hero-section {
   background: url(../img/bg.jpg) center center no-repeat scroll;
   background-size: cover;
-  padding: 0 0 4.5em;
+  padding: 3em 0 2.75em;
   position: relative;
   color: #fff;
+  height:40em;
 }
 
 .hero-section::before,
