@@ -478,7 +478,7 @@ transform:translateY(0);
 }
 
 .price {
-  background-color: #43c5b8;
+  background-color: #4D9BD3;
   color: #fff;
 }
 
@@ -1067,4 +1067,15 @@ blockquote::before {
 
 .fa-times {
   color:red !important;
+}
+
+.modal{
+  z-index:9999;
+}
+.modal-content {
+  padding:20px;
+}
+
+.input-group .form-control {
+  border:1px solid #ccc;
 }
