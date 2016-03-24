@@ -571,6 +571,10 @@ blockquote cite {
 
 .cta-section { background-color: #4D9BD3; }
 
+.cta-section p a {
+  color:#7cdd88;
+}
+
 .cta-section .section-header { margin-bottom: 2.25em; }
 
 .cta-section h2 {
@@ -586,8 +590,8 @@ blockquote cite {
 }
 
 .cta-section .btn {
-  background-color: #fff;
-  color: #7BDC87;
+  background-color: #7cdd88 !important;
+  color: white;
   border: 1px solid transparent;
 }
 
@@ -649,7 +653,7 @@ blockquote cite {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(245, 99, 99, 0.95);
+  background-color: #4D9BD3;
   transition: -webkit-transform 0.35s;
   transition: transform 0.35s;
   -webkit-transform: translate3d(0, 100%, 0);
