@@ -92,12 +92,12 @@ strong { font-weight: 600; }
    ========================================================================== */
 
 .hero-section {
-  background: url(../img/bg.jpg) center center no-repeat scroll;
+  background: url(../img/bg6.jpg) center center no-repeat scroll;
   background-size: cover;
-  padding: 3em 0 2.75em;
+  padding: 0 0 4.5em;
   position: relative;
   color: #fff;
-  height:40em;
+  /*height:40em;*/
 }
 
 .hero-section::before,
@@ -141,7 +141,7 @@ strong { font-weight: 600; }
   line-height: 1.5;
   border: none;
   border-radius: 3px;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
 }
