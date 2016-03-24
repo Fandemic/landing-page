@@ -576,7 +576,9 @@ blockquote cite {
   color:#7cdd88;
 }
 
-.cta-section .section-header { margin-bottom: 2.25em; }
+.cta-section .section-header {
+  margin-bottom: 2.25em;
+}
 
 .cta-section h2 {
   font-size: 40px;
