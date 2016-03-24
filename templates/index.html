@@ -29,8 +29,8 @@
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav nav-left">
             <li><a href="#works">How it Works </a></li>
-            <!-- <li><a href="#reviews">Reviews</a></li> -->
             <li><a href="#features">Features</a></li>
+            <li><a href="#reviews">Our Work</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#team">Team</a></li>
           </ul>
@@ -194,7 +194,57 @@
 
   <!--reviews-->
 
+  <section class="reviews section-spacing" id="reviews">
+    <div class="container">
+      <header class="section-header text-center">
+        <h2>People that have used Fandemic</h2>
+        <!-- <h3>What our users are saying about the product</h3> -->
+      </header>
+      <div class="row">
+        <div class="col-sm-4">
 
+          <!--review 1-->
+
+          <figure class="text-center">
+            <img src="../static/img/review-1.jpg" alt="face" class="img-circle"> </figure>
+          <blockquote>
+            <p>The Fandemic team was professional and courteous throughout the product design process. They are affordable and convenient, we built an awesome product for six thousand of my followers. </p>
+            <cite>— Jen Seidel, CEO Jen Seidel Body Painting</cite>
+          </blockquote>
+
+          <!--review 1 end-->
+        </div>
+        <div class="col-sm-4">
+
+          <!--review 2-->
+
+          <figure class="text-center">
+            <img src="../static/img/review-2.jpg" alt="face" class="img-circle"> </figure>
+          <blockquote>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, repellat, voluptatem eveniet et illum itaque excepturi repudiandae officiis quibusdam deleniti. </p>
+            <cite>— John Doe, CEO Abc Organisation</cite>
+          </blockquote>
+
+          <!--review 2 end-->
+
+        </div>
+        <div class="col-sm-4">
+
+          <!--review 3-->
+
+          <figure class="text-center">
+            <img src="../static/img/review-3.jpg" alt="face" class="img-circle"> </figure>
+          <blockquote>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, repellat, voluptatem eveniet et illum itaque excepturi repudiandae officiis quibusdam deleniti. </p>
+            <cite>— Michael Doe, CEO Xyz Organisation</cite>
+          </blockquote>
+
+          <!--review 3 end-->
+
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!--reviews end-->
 
@@ -290,7 +340,9 @@
     <div class="container">
       <header class="section-header">
         <h2>Try Fandemic Today!</h2>
-        <h3>There is <strong>no inventory</strong> and <strong>no stocking</strong>. if your campaign fails, nothing happens. There is virtually no risk!</h3>
+        <h3>There is
+          <strong>no inventory</strong> and
+          <strong>no stocking</strong>. if your campaign fails, nothing happens. There is virtually no risk!</h3>
       </header>
       <div class="row">
         <div class="col-md-12"> <a href="" class="btn">ACTIVATE STORE</a>
@@ -431,10 +483,9 @@
       </div>
     </div>
   </section>
-
-  {% include 'footer.html' %}
-
 </body>
+
+{% include 'footer.html' %}
 
 </html>
 
@@ -448,3 +499,54 @@
 </script>
 
 <!-- Localized -->
+
+<!-- MODAL -->
+<!-- <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h2 class="modal-title" id="myModalLabel">Get Started!</h2>
+      <p>Fill out the form below and we will contact you within 24 hours</p>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon1">
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
+            <input type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
+            <input type="text" class="form-control" placeholder="Phone" aria-describedby="sizing-addon1">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
+            <input type="text" class="form-control" placeholder="Youtube Channel URL" aria-describedby="sizing-addon1">
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
+            <input type="text" class="form-control" placeholder="Instagram Username" aria-describedby="sizing-addon1">
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-official"></i></span>
+            <input type="text" class="form-control" placeholder="Facebook Fan Page URL" aria-describedby="sizing-addon1">
+          </div>
+        </div>
+      </div>
+      <hr>
+      <button class="btn btn-primary center">Submit</button>
+
+  </div>
+</div> -->
