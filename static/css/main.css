@@ -464,7 +464,7 @@ transform:translateY(0);
   display: inline-block;
   margin: 0 0 1.5em;
   max-width: 100%;
-}
+} 
 
 .plan:last-child { margin-bottom: 0; }
 
