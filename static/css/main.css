@@ -164,6 +164,7 @@ strong { font-weight: 600; }
   color: #fff;
   margin: .75em 0 0;
   font-size: 18px;
+  padding-bottom:5px;
 }
 
 /* ==========================================================================
@@ -479,7 +480,7 @@ transform:translateY(0);
   display: inline-block;
   margin: 0 0 1.5em;
   max-width: 100%;
-} 
+}
 
 .plan:last-child { margin-bottom: 0; }
 
