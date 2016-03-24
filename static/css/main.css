@@ -92,12 +92,12 @@ strong { font-weight: 600; }
    ========================================================================== */
 
 .hero-section {
-  background: url(../img/bg.jpg) center center no-repeat scroll;
+  background: url(../img/bg6.jpg) center center no-repeat scroll;
   background-size: cover;
-  padding: 3em 0 2.75em;
+  padding: 0 0 4.5em;
   position: relative;
   color: #fff;
-  height:40em;
+  /*height:40em;*/
 }
 
 .hero-section::before,
@@ -141,7 +141,7 @@ strong { font-weight: 600; }
   line-height: 1.5;
   border: none;
   border-radius: 3px;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
 }
@@ -320,8 +320,23 @@ transform:translateY(0);
 /* ==========================================================================
    6.Benefits
    ========================================================================== */
+.arrow-icon {
+   width: 110px;
+   height: 34px;
+   display: block;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-image: url(../img/arrow-icon.png);
+   position: absolute;
+   top: 50px;
+   right: -58px;
+}
 
-
+@media only screen and (max-width: 980px) {
+  .arrow-icon {
+    display:none;
+  }
+}
 
 .benefits img { margin-bottom: .75em; }
 
@@ -554,7 +569,11 @@ blockquote cite {
   12.cta section
    ========================================================================== */
 
-.cta-section { background-color: #7BDC87; }
+.cta-section { background-color: #4D9BD3; }
+
+.cta-section p a {
+  color:#7cdd88;
+}
 
 .cta-section .section-header { margin-bottom: 2.25em; }
 
@@ -571,8 +590,8 @@ blockquote cite {
 }
 
 .cta-section .btn {
-  background-color: #fff;
-  color: #7BDC87;
+  background-color: #7cdd88 !important;
+  color: white;
   border: 1px solid transparent;
 }
 
@@ -634,7 +653,7 @@ blockquote cite {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(245, 99, 99, 0.95);
+  background-color: #4D9BD3;
   transition: -webkit-transform 0.35s;
   transition: transform 0.35s;
   -webkit-transform: translate3d(0, 100%, 0);
