@@ -9,7 +9,7 @@ $(function() {
 
     $('#mc-form').ajaxChimp({
         language: 'cm',
-        url: 'http://fandemic.us13.list-manage.com/subscribe/post?u=55e39921c574af9d816b96e7a&amp;id=5593e970c2'
+        url: 'https://fandemic.us13.list-manage.com/subscribe/post?u=55e39921c574af9d816b96e7a&amp;id=5593e970c2'
     });
 
 
