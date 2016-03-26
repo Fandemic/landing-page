@@ -9,8 +9,7 @@ $(function() {
 
     $('#mc-form').ajaxChimp({
         language: 'cm',
-        url: 'http://csmthemes.us3.list-manage.com/subscribe/post?u=9666c25a337f497687875a388&id=5b881a50fb'
-            //http://xxx.xxx.list-manage.com/subscribe/post?u=xxx&id=xxx
+        url: 'http://fandemic.us13.list-manage.com/subscribe/post?u=55e39921c574af9d816b96e7a&amp;id=5593e970c2'
     });
 
 
@@ -132,7 +131,7 @@ $(function() {
          return false;
        }
      }
-   }); 
+   });
 
 
 
