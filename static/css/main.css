@@ -476,10 +476,11 @@ transform:translateY(0);
 
 .plan {
   background-color: #fff;
-  width: 350px;
+  width: 290px !important;
   display: inline-block;
   margin: 0 0 1.5em;
   max-width: 100%;
+  border-radius: 25px;
 }
 
 .plan:last-child { margin-bottom: 0; }
@@ -499,14 +500,14 @@ transform:translateY(0);
 }
 
 .price-amount {
-  font-size: 110px;
+  font-size: 80px;
   line-height: 1;
 }
 
 .period { font-size: 30px; }
 
 .currency {
-  font-size: 30px;
+  font-size: 20px;
   vertical-align: top;
   top: 30px;
 }
