@@ -386,6 +386,19 @@ transform:translateY(0);
 
 .features div[class="row"]:nth-child(3) .col-md-4 article { margin-bottom: 1.5em; }
 
+@media only screen and (max-width: 450px) {
+  .features .row {
+    text-align:center;
+    margin-right: -18%;
+    padding-left:0% !important;
+    padding-right:15%;
+  }
+
+  .features article {
+    padding-top:2px;
+  }
+}
+
 /* ==========================================================================
    8.video tour
    ========================================================================== */
