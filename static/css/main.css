@@ -386,7 +386,7 @@ transform:translateY(0);
 
 .features div[class="row"]:nth-child(3) .col-md-4 article { margin-bottom: 1.5em; }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 950px) {
   .features .row {
     text-align:center;
     margin-right: -18%;
@@ -494,6 +494,13 @@ transform:translateY(0);
   margin: 0 0 1.5em;
   max-width: 100%;
   border-radius: 25px;
+}
+
+@media only screen and (max-width: 550px) {
+  .plan {
+    margin-top:7px;
+    margin-left:25%;
+  }
 }
 
 .plan:last-child { margin-bottom: 0; }
