@@ -1100,7 +1100,8 @@ blockquote cite {
 #activate-store-notification {
   float: right;
   padding-top: 20px;
-  margin-right: 36em;
+  margin-right: 25%;
+  color: #4f9057;
 }
 
 @media (max-width: 900px) {
@@ -1108,6 +1109,6 @@ blockquote cite {
     float:none;
     padding-top: 20px;
     margin-right: 0;
-    margin-left:50%;
+    text-align:center;
   }
 }

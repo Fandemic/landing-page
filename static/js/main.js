@@ -29,16 +29,21 @@ $(function() {
 
    $(function() {
        $('#activate-store-button').click(function() {
-           var firstname = $('firstname').val();
+           var firstname = $('#activate_firstname').val();
+           var firstname = $('#activate_email').val();
+           var firstname = $('#activate_phone').val();
+           var firstname = $('#activate_youtube').val();
+           var firstname = $('#activate_instagram').val();
+           var firstname = $('#activate_facebook').val();
            $.ajax({
                url: '/activate',
                data: $('form').serialize(),
                type: 'POST',
                success: function(response) {
-                   console.log(response);
+                   $('#activate-store-notification').html('<i class="fa fa-envelope"></i> Thanks ' + firstname + ' , we will contact you within 24 hours!');
                },
                error: function(error) {
-                   console.log(error);
+                   console.log('fail');
                }
            });
        });

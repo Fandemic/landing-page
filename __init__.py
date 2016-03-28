@@ -26,12 +26,12 @@ def shop(creator):
 
 @app.route('/activate', methods = ['POST'])
 def activate():
-    firstname = request.form['firstname']
-    email = request.form['email']
-    phone = request.form['phone']
-    youtube = request.form['youtube']
-    instagram = request.form['instagram']
-    facebook = request.form['facebook']
+    # firstname = request.form['firstname']
+    # email = request.form['email']
+    # phone = request.form['phone']
+    # youtube = request.form['youtube']
+    # instagram = request.form['instagram']
+    # facebook = request.form['facebook']
     return redirect('')
 
 #================STATIC_PAGES==================
