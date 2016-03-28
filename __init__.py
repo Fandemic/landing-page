@@ -2,10 +2,11 @@ from flask import Flask, render_template, request, jsonify, redirect
 from pymongo import MongoClient, GEO2D
 from collections import Counter
 from jinja2 import Template
+from flask.ext.sendmail import Mail, Message
 import json
 app = Flask(__name__)
 db = MongoClient('localhost', 27017).fandemic
-
+mail = Mail(app)
 
 #================INDEX=====================
 @app.route('/')
@@ -32,7 +33,12 @@ def activate():
     # youtube = request.form['youtube']
     # instagram = request.form['instagram']
     # facebook = request.form['facebook']
-    return redirect('')
+    msg = Message("Hello",
+                  sender="sample@sample.com",
+                  recipients=['ethan@fandemic.co','brandon@fandemic.co'],
+                  body="test")
+    mail.send(msg)
+    return 'sent'
 
 #================STATIC_PAGES==================
 @app.route('/faq')

@@ -1112,3 +1112,8 @@ blockquote cite {
     text-align:center;
   }
 }
+
+input:required:invalid, input:focus:invalid {
+  /* insert your own styles for invalid form input */
+  -moz-box-shadow: none;
+}

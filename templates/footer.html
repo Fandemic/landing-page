@@ -47,36 +47,34 @@
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
       <h2 class="modal-title" id="myModalLabel">Get Started!</h2>
       <p>Fill out the form below and we will contact you within 24 hours</p>
-
       <hr>
-      <form action="/activate" method="post">
+      <form id="activate-store-modal-form" action="/activate" method="post">
         <div class="row">
           <div class="col-md-6">
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-              <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon1">
+              <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name" aria-describedby="sizing-addon1" required>
             </div>
             <br>
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-              <input id="activate_email" type="text" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+              <input id="activate_email" type="email" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" required>
             </div>
             <br>
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
-              <input id="activate_phone" type="text" class="form-control" placeholder="Phone" aria-describedby="sizing-addon1">
+              <input id="activate_phone" type="tel" class="form-control" placeholder="Phone" aria-describedby="sizing-addon1">
             </div>
           </div>
           <div class="col-md-6">
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
-              <input id="activate_youtube" type="text" class="form-control" placeholder="Youtube Channel URL" aria-describedby="sizing-addon1">
+              <input id="activate_youtube" type="text" class="form-control" placeholder="Youtube Channel URL" aria-describedby="sizing-addon1" required pattern="https?://.+">
             </div>
             <br>
             <div class="input-group input-group-lg">

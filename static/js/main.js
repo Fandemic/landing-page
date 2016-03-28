@@ -36,6 +36,11 @@ $(function() {
                type: 'POST',
                success: function(response) {
                    $('#activate-store-notification').html('<i class="fa fa-envelope"></i> Thanks ' + firstname + ' , we will contact you within 24 hours!');
+                   setTimeout(function(){
+                     $('#myModal').modal('hide')
+                     $('#activate-store-notification').empty()
+                     $('#activate-store-modal-form').trigger("reset")
+                   }, 2000);
                },
                error: function(error) {
                    console.log('fail');
