@@ -8,6 +8,13 @@ app = Flask(__name__)
 db = MongoClient('localhost', 27017).fandemic
 mail = Mail(app)
 
+MAIL_SERVER='smtp.gmail.com'
+MAIL_PORT=465
+MAIL_USE_TLS = False
+MAIL_USE_SSL= True
+MAIL_USERNAME = 'user@gmail.com'
+MAIL_PASSWORD = 'password'
+
 #================INDEX=====================
 @app.route('/')
 def home():
@@ -34,7 +41,6 @@ def activate():
     # instagram = request.form['instagram']
     # facebook = request.form['facebook']
     msg = Message("Hello",
-                  sender="sample@sample.com",
                   recipients=['ethan@fandemic.co','brandon@fandemic.co'],
                   body="test")
     mail.send(msg)
