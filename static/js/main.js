@@ -23,6 +23,26 @@ $(function() {
         5: '<i class="fa fa-exclamation-triangle"></i> This email address looks fake or invalid. Please enter a real email address'
     };
 
+    /* ==========================================================================
+   Activate Form
+   ========================================================================== */
+
+   $(function() {
+       $('#activate-store-button').click(function() {
+           var firstname = $('firstname').val();
+           $.ajax({
+               url: '/activate',
+               data: $('form').serialize(),
+               type: 'POST',
+               success: function(response) {
+                   console.log(response);
+               },
+               error: function(error) {
+                   console.log(error);
+               }
+           });
+       });
+   });
 
     /* ==========================================================================
    Tweet
