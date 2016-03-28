@@ -22,6 +22,17 @@ def shop(creator):
 
     return render_template('shop.html', doctor = doctor)
 #---------------------------------------------
+#================ACTIVATE_STORE_MODAL==================
+
+@app.route('/activate', methods = ['POST'])
+def activate():
+    firstname = request.form['firstname']
+    email = request.form['email']
+    phone = request.form['phone']
+    youtube = request.form['youtube']
+    instagram = request.form['instagram']
+    facebook = request.form['facebook']
+    return redirect('')
 
 #================STATIC_PAGES==================
 @app.route('/faq')
