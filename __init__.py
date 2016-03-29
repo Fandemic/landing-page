@@ -4,6 +4,9 @@ from collections import Counter
 from jinja2 import Template
 from flask.ext.sendmail import Mail, Message
 import json
+import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
 app = Flask(__name__)
 
 db = MongoClient('localhost', 27017).fandemic
@@ -31,18 +34,47 @@ def shop(creator):
 @app.route('/activate', methods = ['POST'])
 def activate():
     firstname = request.form['firstname']
-    # email = request.form['email']
-    # phone = request.form['phone']
-    # youtube = request.form['youtube']
-    # instagram = request.form['instagram']
-    # facebook = request.form['facebook']
+    email = request.form['email']
+    phone = request.form['phone']
+    youtube = request.form['youtube']
+    instagram = request.form['instagram']
+    facebook = request.form['facebook']
 
-    print (json.dumps(firstname))
-    msg = Message("Hello",
-                  recipients=['ethan@fandemic.co','brandon@fandemic.co'],
-                  sender="sarah@fandemic.co",
-                  body="test")
-    mail.send(msg)
+    s = ","
+    listadd = ['ethan@fandemic.co', 'brandon@fandemic.co']
+    toaddr = s.join(listadd)
+
+    fromaddr = "fandemicstore@gmail.com"
+
+    msg = MIMEMultipart()
+    msg['From'] = fromaddr
+    msg['To'] = toaddr
+    msg['Subject'] = "New Store Activation Request"
+
+    html = """
+            <html>
+              <head></head>
+              <body>
+                <p>
+                    Firstname: """ + firstname + """<br>
+                    Email: """ + email + """<br>
+                    Phone: """ + phone + """<br>
+                    Youtube: """ + youtube + """<br>
+                    Instagram: """ + instagram + """<br>
+                    Facebook: """ + facebook + """
+                </p>
+              </body>
+            </html>
+            """
+    msg.attach(MIMEText(html, 'html'))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(fromaddr, "Fandemic123")
+    text = msg.as_string()
+    server.sendmail(fromaddr, toaddr, text)
+    server.quit()
+
     return 'sent'
 
 #================STATIC_PAGES==================

@@ -1090,30 +1090,44 @@ blockquote cite {
 }
 @media (max-width: 900px) {
   .modal-content .btn-submit {
-    margin-left:30%;
+    margin-left: 30%;
   }
 }
 .input-group .form-control {
   border: 1px solid #ccc;
 }
-
 #activate-store-notification {
   float: right;
   padding-top: 20px;
   margin-right: 25%;
   color: #4f9057;
 }
-
 @media (max-width: 900px) {
   #activate-store-notification {
-    float:none;
+    float: none;
     padding-top: 20px;
     margin-right: 0;
-    text-align:center;
+    text-align: center;
   }
 }
 
-input:required:invalid, input:focus:invalid {
-  /* insert your own styles for invalid form input */
-  -moz-box-shadow: none;
+.glyphicon-refresh-animate {
+  -animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+}
+@-webkit-keyframes spin2 {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    transform: scale(1) rotate(0deg);
+  }
+  to {
+    transform: scale(1) rotate(360deg);
+  }
 }
