@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify, redirect
 from pymongo import MongoClient, GEO2D
 from collections import Counter
 from jinja2 import Template
-from flask.ext.sendmail import Mail, Message
 import json
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
@@ -10,9 +9,6 @@ from email.MIMEText import MIMEText
 app = Flask(__name__)
 
 db = MongoClient('localhost', 27017).fandemic
-mail = Mail(app)
-
-
 
 #================INDEX=====================
 @app.route('/')
@@ -50,7 +46,6 @@ def activate():
     msg['From'] = fromaddr
     msg['To'] = toaddr
     msg['Subject'] = "New Store Activation Request"
-
     html = """
             <html>
               <head></head>
