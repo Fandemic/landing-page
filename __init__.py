@@ -6,8 +6,7 @@ import json
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
-import logging
-from logging.handlers import RotatingFileHandler
+
 
 app = Flask(__name__)
 
@@ -79,7 +78,6 @@ def faq():
 #----------------------------------------------
 
 if __name__ == '__main__':
-    handler = RotatingFileHandler('activate.log', maxBytes=10000, backupCount=1)
-    handler.setLevel(logging.INFO)
-    app.logger.addHandler(handler)
+    import logging
+    logging.basicConfig(filename='error.txt',level=logging.DEBUG)
     app.run(debug=True)
