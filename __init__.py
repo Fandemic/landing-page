@@ -30,12 +30,14 @@ def shop(creator):
 
 @app.route('/activate', methods = ['POST'])
 def activate():
-    # firstname = request.form['firstname']
+    firstname = request.form['firstname']
     # email = request.form['email']
     # phone = request.form['phone']
     # youtube = request.form['youtube']
     # instagram = request.form['instagram']
     # facebook = request.form['facebook']
+
+    print (json.dumps(firstname))
     msg = Message("Hello",
                   recipients=['ethan@fandemic.co','brandon@fandemic.co'],
                   sender="sarah@fandemic.co",

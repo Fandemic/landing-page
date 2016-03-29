@@ -30,6 +30,7 @@ $(function() {
    $(function() {
        $('#activate-store-button').click(function() {
            var firstname = $('#activate_firstname').val();
+           var email = $('#activate_email').val();
            $.ajax({
                url: '/activate',
                data: $('form').serialize(),
