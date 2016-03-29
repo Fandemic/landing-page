@@ -36,7 +36,7 @@ $(function() {
 
       $('#activate-store-notification').html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Sending...');
       $.ajax({
-        url: '/activate',
+        url: '/activateStore',
         data: $('form').serialize(),
         type: 'POST',
         success: function(response) {
@@ -50,7 +50,7 @@ $(function() {
           console.log(response);
         },
         error: function(error) {
-          $('#activate-store-notification').html('<i class="fa fa-exclamation-triangle"></i> Error!');
+          $('#activate-store-notification').html('<p style="color:red"><i class="fa fa-exclamation-triangle"></i> Error!</p>');
           console.log(error);
         }
       });
