@@ -47,9 +47,11 @@ $(function() {
             $('#activate-store-notification').empty()
             $('#activate-store-modal-form').trigger("reset")
           }, 2000);
+          console.log(response);
         },
         error: function(error) {
           $('#activate-store-notification').html('<i class="fa fa-exclamation-triangle"></i> Error!');
+          console.log(error);
         }
       });
     });
