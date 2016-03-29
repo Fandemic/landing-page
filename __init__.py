@@ -6,6 +6,9 @@ import json
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
+import logging
+from logging.handlers import RotatingFileHandler
+
 app = Flask(__name__)
 
 db = MongoClient('localhost', 27017).fandemic
@@ -27,7 +30,7 @@ def shop(creator):
 #---------------------------------------------
 #================ACTIVATE_STORE_MODAL==================
 
-@app.route('/activateStore', methods = ['POST'])
+@app.route('/activateStore', methods = ['GET','POST'])
 def activate():
     firstname = request.form['firstname']
     email = request.form['email']
@@ -36,15 +39,12 @@ def activate():
     instagram = request.form['instagram']
     facebook = request.form['facebook']
 
-    s = ","
-    listadd = ['ethan@fandemic.co', 'brandon@fandemic.co']
-    toaddr = s.join(listadd)
-
-    fromaddr = "fandemicstore@gmail.com"
+    toaddr = ['ethan@fandemic.co', 'brandon@fandemic.co']
+    fromaddr = 'fandemicstore@gmail.com'
 
     msg = MIMEMultipart()
     msg['From'] = fromaddr
-    msg['To'] = toaddr
+    msg['To'] = ", ".join(toaddr)
     msg['Subject'] = "New Store Activation Request"
     html = """
             <html>
@@ -79,4 +79,7 @@ def faq():
 #----------------------------------------------
 
 if __name__ == '__main__':
+    handler = RotatingFileHandler('activate.log', maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.INFO)
+    app.logger.addHandler(handler)
     app.run(debug=True)

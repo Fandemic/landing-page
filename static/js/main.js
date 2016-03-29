@@ -32,7 +32,6 @@ $(function() {
       var firstname = $('#activate_firstname').val();
       var email = $('#activate_email').val();
       var phone = $('#activate_phone').val();
-      var youtube = $('#activate_youtube').val();
 
       $('#activate-store-notification').html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Sending...');
       $.ajax({
