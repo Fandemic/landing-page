@@ -9,7 +9,6 @@ from email.MIMEText import MIMEText
 
 
 app = Flask(__name__)
-
 db = MongoClient('localhost', 27017).fandemic
 
 #================INDEX=====================
@@ -29,7 +28,7 @@ def shop(creator):
 #---------------------------------------------
 #================ACTIVATE_STORE_MODAL==================
 
-@app.route('/activateStore', methods = ['GET','POST'])
+@app.route('/activateStore', methods = ['POST'])
 def activate():
     firstname = request.form['firstname']
     email = request.form['email']
@@ -78,6 +77,4 @@ def faq():
 #----------------------------------------------
 
 if __name__ == '__main__':
-    import logging
-    logging.basicConfig(filename='error.txt',level=logging.DEBUG)
     app.run(debug=True)

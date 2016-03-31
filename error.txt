@@ -379,3 +379,36 @@ INFO:werkzeug:127.0.0.1 - - [30/Mar/2016 19:49:09] "HEAD /static/img/feature-3@2
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2016 19:49:09] "HEAD /static/img/team-1@2x.jpg HTTP/1.1" 404 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2016 19:49:09] "HEAD /static/img/team-2@2x.jpg HTTP/1.1" 404 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2016 19:49:09] "HEAD /static/img/logo-nav_fullsize@2x.png HTTP/1.1" 404 -
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger pin code: 299-313-739
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:44:58] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:44:59] "GET /static/css/bootstrap.min.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:44:59] "GET /static/css/font-awesome.min.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:44:59] "GET /static/css/magnific-popup.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:44:59] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:44:59] "GET /static/js/jquery-1.12.2.min.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/js/bootstrap.min.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/js/waypoints.min.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/js/jquery.animateNumber.min.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/js/waypoints-sticky.min.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/js/retina.min.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/js/jquery.magnific-popup.min.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/js/jquery.ajaxchimp.min.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/js/main.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/logo-nav_fullsize.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/logo_head_fullsize.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/play-btn.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/benefits-2.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/hand.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/benefits-4.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/benefits-3.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/feature-1.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/feature-2.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/feature-3.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/team-1.jpg HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/team-2.jpg HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/bg6.jpg HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/arrow-icon.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:00] "GET /static/img/bg-pricing.jpg HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2016 08:45:02] "GET /static/img/favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/ethan/Desktop/Dev/fandemic/website/__init__.py', reloading
