@@ -28,7 +28,7 @@ def shop(creator):
 #---------------------------------------------
 #================ACTIVATE_STORE_MODAL==================
 
-@app.route('/activateStore', methods = ['POST'])
+@app.route('/activateStore', methods=['GET', 'POST'])
 def activate():
     firstname = request.form['firstname']
     email = request.form['email']
