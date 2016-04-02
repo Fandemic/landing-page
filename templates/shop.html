@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Fandemic</title>
+  <title>{{star.name}} Official Store</title>
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
 
   <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
@@ -11,8 +11,6 @@
   <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
-  <script src="https://checkout.stripe.com/checkout.js"></script>
-  <script src="../static/js/jquery-1.12.2.min.js"></script>
   <link href="../static/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" media="screen" href="../static/fonts/font-awesome/font-awesome.min.css" />
   <link rel="stylesheet" href="../static/css/shop.css">
@@ -46,7 +44,7 @@
 
       </div>
 
-      <button class="btn btn-success btn-checkout" id="customButton">Checkout</button>
+      <button class="btn btn-primary btn-checkout" id="customButton">Checkout</button>
 
       <div class="footer">
         <p class="copyright text-muted small">Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
@@ -55,13 +53,19 @@
     </div>
     <div id="center-panel" class="container-fluid">
 
-      <div class="row-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row-fluid">
 
-        <div class="alert alert-info alert-dismissible fade in" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <strong>Heads up!</strong> This store is inactive. If you are the Social Media Star who is associated with this store <a href="#">Active Now</a>
+            <div class="panel panel-activate fade in" role="alert">
+              <div class="alert-text"><strong>Heads up! This store is inactive.
+              If this yours activate it today!</strong>
+              <button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-activate" id="customButton">Activate Store</button>
+            </div>
 
+          </div>
         </div>
+      </div>
 
         <div class="col-sm-6 col-md-3">
           <div class="thumbnail">
@@ -158,6 +162,64 @@
   </body>
 
 </html>
+
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="../static/js/jquery-1.12.2.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+
+<!-- MODAL -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 class="modal-title" id="myModalLabel">Get Started!</h2>
+      <p>Fill out the form below and we will contact you within 24 hours</p>
+      <hr>
+      <form id="activate-store-modal-form" action="/activateStore" method="post">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+              <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name" required/>
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
+              <input id="activate_email" name="email" type="email" class="form-control" placeholder="Email" required/>
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
+              <input id="activate_phone" name="phone" type="tel" class="form-control" placeholder="Phone" />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
+              <input id="activate_youtube" name="youtube" type="url" class="form-control" placeholder="Youtube Channel URL" />
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
+              <input id="activate_instagram" name="instagram" type="text" class="form-control" placeholder="Instagram Username" />
+            </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-square"></i></span>
+              <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" />
+            </div>
+          </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary center btn-submit" id="activate-store-button">Submit</button>
+        <p id="activate-store-notification"></p>
+      </form>
+    </div>
+  </div>
 
 <script>
 (function ($) {
