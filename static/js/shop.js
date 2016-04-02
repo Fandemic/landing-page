@@ -19,12 +19,16 @@ $(document).ready(function(){
         var itemTitle = $(this).parent().find('.caption').find('h3').html();
         var itemPrice = $(this).parent().find('.caption').find('.money').html();
 
-        //TODO add to cart array
-
-
         //Create the DOM item and fade it in
         var item = $('<div class="item"><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong><br><span class="price">' + itemPrice + '</span><br>qty <span class="qty">1</span><a class="delete"><i class="fa fa-times"></i></a></div>');
         item.prependTo($("#cart")).hide().fadeIn(500);
+
+        //animation
+        var itemThumbnail = $(this).parent();
+        flyToElement($(itemThumbnail), $('.cart-and-total'));
+
+        //TODO add to cart array
+
     });
 
 
@@ -40,6 +44,7 @@ $(document).ready(function(){
       $("#total-cost").text(total_cost.formatMoney(2));
       $(this).parent(".item").fadeOut(300, function(){ $(this).remove();});
     });
+
 });
 
 //DOLLAR FORMATTING
@@ -53,3 +58,31 @@ var n = this,
     j = (j = i.length) > 3 ? j % 3 : 0;
    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
  };
+
+
+ function flyToElement(flyer, flyingTo) {
+    var $func = $(this);
+    var divider = 3;
+    var flyerClone = $(flyer).clone();
+    $(flyerClone).css({position: 'absolute', top: $(flyer).offset().top + "px", left: $(flyer).offset().left + "px", opacity: 1, 'z-index': 1000});
+    $('body').append($(flyerClone));
+    var gotoX = $(flyingTo).offset().left + ($(flyingTo).width() / 2) - ($(flyer).width()/divider)/2;
+    var gotoY = $(flyingTo).offset().top + ($(flyingTo).height() / 2) - ($(flyer).height()/divider)/2;
+
+    $(flyerClone).animate({
+        opacity: 0.4,
+        left: gotoX,
+        top: gotoY,
+        width: $(flyer).width()/divider,
+        height: $(flyer).height()/divider
+    }, 400,
+    function () {
+        $(flyingTo).fadeOut('fast', function () {
+            $(flyingTo).fadeIn('fast', function () {
+                $(flyerClone).fadeOut('fast', function () {
+                    $(flyerClone).remove();
+                });
+            });
+        });
+    });
+}
