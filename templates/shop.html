@@ -65,7 +65,7 @@
 
             <div class="panel panel-activate fade in" role="alert">
               <div class="alert-text"><strong>Heads up! This store is inactive.
-              If this yours activate it today!</strong>
+              If this is yours, activate it today!</strong>
               <button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-activate" id="customButton">Activate Store</button>
             </div>
 
@@ -189,34 +189,34 @@
           <div class="col-md-6">
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-              <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name" required/>
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-              <input id="activate_email" name="email" type="email" class="form-control" placeholder="Email" required/>
+              <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name"/>
             </div>
             <br>
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
               <input id="activate_phone" name="phone" type="tel" class="form-control" placeholder="Phone" />
             </div>
+            <br>
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
+              <input id="activate_email" name="email" type="email" class="form-control" placeholder="Email" value="{{star.email[0]}}"/>
+            </div>
           </div>
 
           <div class="col-md-6">
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
-              <input id="activate_youtube" name="youtube" type="url" class="form-control" placeholder="Youtube Channel URL" />
+              <input id="activate_youtube" name="youtube" type="url" class="form-control" placeholder="Youtube Channel URL" value="{{star.url.youtube}}"/>
             </div>
             <br>
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
-              <input id="activate_instagram" name="instagram" type="text" class="form-control" placeholder="Instagram Username" />
+              <input id="activate_instagram" name="instagram" type="text" class="form-control" placeholder="Instagram Username" value="{{star.url.instagram}}" />
             </div>
             <br>
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-square"></i></span>
-              <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" />
+              <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" value="{{star.url.facebook}}"/>
             </div>
           </div>
         </div>
