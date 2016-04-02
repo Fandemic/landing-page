@@ -69,13 +69,13 @@ var n = this,
     var gotoX = $(flyingTo).offset().left + ($(flyingTo).width() / 2) - ($(flyer).width()/divider)/2;
     var gotoY = $(flyingTo).offset().top + ($(flyingTo).height() / 2) - ($(flyer).height()/divider)/2;
 
-    $(flyerClone).animate({
+    $(flyerClone).velocity({
         opacity: 0.4,
         left: gotoX,
         top: gotoY,
         width: $(flyer).width()/divider,
         height: $(flyer).height()/divider
-    }, 400,
+    }, 700,
     function () {
         $(flyingTo).fadeOut('fast', function () {
             $(flyingTo).fadeIn('fast', function () {
