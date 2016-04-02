@@ -17,17 +17,16 @@ def home():
     return render_template('index.html')
 #-------------------------------------------
 
-#=================OBJECTS=====================
-@app.route('/<creator>')
-def shop(creator):
+#=================MOCK STORES=====================
+@app.route('/<star>')
+def store(star):
 
-    #doctor = db.doctors.find_one({'url':doctorsID})
-    doctor = 1
+    result = db.stars.find_one({'id':star})
 
-    return render_template('shop.html', doctor = doctor)
+    return render_template('shop.html', star = result)
 #---------------------------------------------
-#================ACTIVATE_STORE_MODAL==================
 
+#================ACTIVATE_STORE_MODAL==================
 @app.route('/activateStore', methods=['GET', 'POST'])
 def activate():
     firstname = request.form['firstname']
@@ -69,6 +68,7 @@ def activate():
     server.quit()
 
     return 'sent'
+#----------------------------------------------
 
 #================STATIC_PAGES==================
 @app.route('/faq')

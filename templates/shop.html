@@ -12,14 +12,26 @@
   <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
   <script src="https://checkout.stripe.com/checkout.js"></script>
-  <script src="../static/js/jquery-min.js"></script>
+  <script src="../static/js/jquery-1.12.2.min.js"></script>
   <link rel="stylesheet" media="screen" href="../static/fonts/font-awesome/font-awesome.min.css" />
   <link rel="stylesheet" href="../static/css/shop.css">
+  <style>
+  #center-panel:before {
+      background-image: url("{{star.image.banner}}");
+    }
+  </style>
 </head>
 
     <div id="side-panel">
-      <img class="profile-img" src="../static/img/clients/matt-ogus/profile.jpeg">
-      <h2>Matt Ogus</h2>
+      <img class="profile-img" src="{{star.image.profile}}">
+      <h2>{{star.name}}</h2>
+
+      <div id="social-media">
+        <a class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
+        <a class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
+        <a class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
+        <a class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
+      </div>
 
       <hr>
 

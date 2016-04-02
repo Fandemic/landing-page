@@ -18,7 +18,7 @@ h1,h2,h3,h4{
     position: fixed;
     float: left;
     width: 260px;
-    padding: 10px 0px 10px 0px;
+    padding: 0px 0px 10px 0px;
     height: 100%;
     background-color: #fff;
     border-right: 1px solid #dddddd;
@@ -57,7 +57,17 @@ h1,h2,h3,h4{
 /*SIDE BAR*/
 .profile-img{
   width: 100%;
-  
+  padding: 15px 15px 0px 15px;
+}
+
+#social-media{
+  font-size: 1.7em;
+}
+
+#social-media .link{
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #3f3f3f;
 }
 
 .banner-img{
