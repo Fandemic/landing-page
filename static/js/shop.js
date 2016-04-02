@@ -15,8 +15,12 @@ $(document).ready(function(){
         total_cost = total_cost + parseFloat(price);
         $("#total-cost").text(total_cost.formatMoney(2));
 
+        var itemSrc = $(this).parent().find('.product-picture').attr("src");
+        var itemTitle = $(this).parent().find('.caption').find('h3').html();
+        var itemPrice = $(this).parent().find('.caption').find('.money').html();
+
         //Create the DOM item and fade it in
-        var item = $('<div class="item"><img width="80px" src="../static/img/sample1.jpg"><strong>Ironville Gym Sweatshirt(Large)</strong><br>$<span class="price">19.99</span><br>qty <span class="qty">1</span><a class="delete"><i class="fa fa-times"></i></a></div>');
+        var item = $('<div class="item"><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong><br><span class="price">' + itemPrice + '</span><br>qty <span class="qty">1</span><a class="delete"><i class="fa fa-times"></i></a></div>');
         item.prependTo($("#cart")).hide().fadeIn(500);
     });
 
