@@ -25,7 +25,7 @@ $(document).ready(function(){
 
         //animation
         var itemThumbnail = $(this).parent();
-        flyToElement($(itemThumbnail), $('.cart-and-total'));
+        flyToElement($(itemThumbnail), $('#cart'));
 
         //TODO add to cart array
 
