@@ -102,7 +102,7 @@ var n = this,
     var gotoX = $(flyingTo).offset().left + ($(flyingTo).width() / 2) - ($(flyer).width()/divider)/2;
     var gotoY = $(flyingTo).offset().top + ($(flyingTo).height() / 2) - ($(flyer).height()/divider)/2;
 
-    $(flyerClone).velocity({
+    $(flyerClone).animate({
         opacity: 0.4,
         left: gotoX,
         top: gotoY,
