@@ -5,12 +5,13 @@
   <meta charset="utf-8">
   <title>Fandemic</title>
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
   <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
+<<<<<<< HEAD
   <script src="https://checkout.stripe.com/checkout.js"></script>
   <script src="../static/js/jquery-1.12.2.min.js"></script>
   <link rel="stylesheet" media="screen" href="../static/fonts/font-awesome/font-awesome.min.css" />
@@ -20,6 +21,15 @@
       background-image: url("{{star.image.banner}}");
     }
   </style>
+=======
+
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/shop.css">
+
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script src="../static/js/jquery-1.12.2.min.js"></script>
+>>>>>>> b277bd95193e82344b93d4b6712e38e847fbe39a
 </head>
 
     <div id="side-panel">
@@ -154,6 +164,7 @@
 
 
   </body>
+
 </html>
 
 <script>
@@ -172,7 +183,7 @@
 <script>
 var handler = StripeCheckout.configure({
 key: 'pk_test_loMuGvPxkyAer6FdjK1ykZVw',
-image: '../static/img/logos/gym-tank_logo.png',
+image: '../static/img/logos/fandemic_icon.png',
 locale: 'auto',
 token: function(token,args) {
 // Use the token to create the charge with a server-side script.
