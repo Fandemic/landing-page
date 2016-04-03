@@ -35,6 +35,7 @@ def activate():
     youtube = request.form['youtube']
     instagram = request.form['instagram']
     facebook = request.form['facebook']
+    current_ip = request.environ['REMOTE_ADDR']
 
     toaddr = ['ethan@fandemic.co', 'brandon@fandemic.co']
     fromaddr = 'fandemicstore@gmail.com'
@@ -53,7 +54,8 @@ def activate():
                     Phone: """ + phone + """<br>
                     Youtube: """ + youtube + """<br>
                     Instagram: """ + instagram + """<br>
-                    Facebook: """ + facebook + """
+                    Facebook: """ + facebook + """<br>
+                    IP Address: """ + current_ip + """
                 </p>
               </body>
             </html>
