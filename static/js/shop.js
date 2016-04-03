@@ -128,7 +128,9 @@ var n = this,
 $(document).ready(function () {
   $('[data-toggle=offcanvas]').click(function () {
 
-    $('.row-offcanvas').toggleClass('active');
+    $('.side-panel').toggleClass('visible');
+
+    $('[data-toggle=offcanvas]').toggleClass('btn-danger');
 
   });
 });

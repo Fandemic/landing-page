@@ -58,10 +58,35 @@ h1,h2,h3,h4{
 #center-panel .row-fluid {overflow: auto;}
 #center-panel .large {height: 400px; padding: 10px; background-color: #f17f49}
 
+.btn-toggle{
+  display: none;
+}
+
 /*Mobile side panel*/
 @media screen and (max-width: 768px) {
   #center-panel{
     margin-left: 0px;
+  }
+  #side-panel{
+    left: -260px;
+    -webkit-transition: all .25s ease-out;
+       -moz-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
+  .btn-toggle{
+    display:inline-block;
+    padding-right: 15px;
+    position: absolute;
+    right: -108px;
+    font-weight: 600;
+  }
+
+  #side-panel.visible{
+    left: 0px;
+    -webkit-transition: all .25s ease-out;
+       -moz-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+
   }
 }
 
