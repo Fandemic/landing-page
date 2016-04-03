@@ -67,7 +67,7 @@ def activate():
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
 
-    return 'sent'
+    return ''
 #----------------------------------------------
 
 #================STATIC_PAGES==================
