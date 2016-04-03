@@ -16,7 +16,7 @@ $(document).ready(function(){
         $("#total-cost").text(total_cost.formatMoney(2));
 
         var itemSrc = $(this).parent().find('.product-picture').attr("src");
-        var itemTitle = $(this).parent().find('.caption').find('h3').html();
+        var itemTitle = $(this).parent().find('.caption').find('.thumbnail-item-title').html();
         var itemPrice = $(this).parent().find('.caption').find('.money').html();
 
         //Create the DOM item and fade it in
@@ -92,6 +92,9 @@ var n = this,
    });
  });
 
+ /* ==========================================================================
+  Animation shop
+  ========================================================================== */
 
  function flyToElement(flyer, flyingTo) {
     var $func = $(this);
@@ -121,6 +124,7 @@ var n = this,
 }
 
 
+
 $(document).ready(function () {
   $('[data-toggle=offcanvas]').click(function () {
 
@@ -128,3 +132,16 @@ $(document).ready(function () {
 
   });
 });
+
+/* ==========================================================================
+ Caption mouseover
+ ========================================================================== */
+
+$('.caption .item-info-icon').hover(
+    function(){
+      $(this).parent().parent().parent().find('.mouseoverCaption').slideDown(250);
+    },
+    function(){
+      $(this).parent().parent().parent().find('.mouseoverCaption').slideUp(250);
+    }
+);
