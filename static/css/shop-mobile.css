@@ -1,0 +1,104 @@
+/*Mobile Shop*/
+@media screen and (max-width: 768px) {
+
+  html, body{
+    background-color: #fff;
+    height: 100%;
+  }
+
+  #desktop{
+    display: none;
+  }
+
+  #mobile{
+    display: inherit;
+    height: inherit;
+  }
+
+  #panel{
+    height: inherit;
+    z-index: 10;
+  }
+
+  #menu {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 0;
+      width: 256px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      display: none;
+      background-color: #3d3d3d;
+
+    }
+
+    .slideout-open #menu {
+      display: block;
+    }
+
+    #cart {
+        position: fixed;
+
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 0;
+        width: 256px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        display: none;
+        background-color: #3d3d3d;
+
+      }
+
+      .slideout-open #cart {
+        display: block;
+      }
+
+  .nav{
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    background-color: #F2F2F2;
+    color: #3d3d3d;
+  }
+
+  .star-btn{
+    position: absolute;
+    left:20px;
+    top: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index:10;
+  }
+
+  .name{
+    position: absolute;
+    width: 100%;
+    top: 12px;
+    text-align: center;
+    font-family: 'Bangers', cursive;
+    font-size: 2em;
+  }
+
+  .cart-btn{
+    position: absolute;
+    right:20px;
+    top: 5px;
+    font-size: 34px;
+    cursor: pointer;
+    z-index: 10px;
+  }
+
+  .content{
+    height: inherit;
+    width: 100%;
+    background-color: #fff;
+  }
+
+}

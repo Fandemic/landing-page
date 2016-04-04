@@ -16,10 +16,12 @@
   <script src="https://checkout.stripe.com/checkout.js"></script>
   <script src="../static/js/velocity.js"></script>
   <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/slideout.min.js"></script>
 
   <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" media="screen" href="../static/fonts/font-awesome/font-awesome.min.css" />
   <link rel="stylesheet" href="../static/css/shop.css">
+  <link rel="stylesheet" href="../static/css/shop-mobile.css">
+  <link rel="stylesheet" media="screen" href="../static/fonts/font-awesome/font-awesome.min.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -31,6 +33,9 @@
 
 </head>
 
+
+<!-- DESKTOP -->
+<div id="desktop">
     <div id="side-panel" class="side-panel">
 
       <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
@@ -178,6 +183,81 @@
 
       </div>
     </div>
+
+  </div>
+
+
+  <!-- MOBILE HTML -->
+  <div id="mobile">
+
+    <nav id="menu">
+      <h2>Menu</h2>
+    </nav>
+
+
+    <div id="cart">
+      <h2>Cart</h2>
+    </div>
+
+
+
+
+  <main id="panel">
+
+    <div class="nav">
+
+        <img class="star-btn" width="50px" src="{{star.image.profile}}">
+
+      <div class="name">
+        {{star.name}}
+      </div>
+
+      <div class="cart-btn">
+        <i class="fa fa-shopping-cart"></i>
+      </div>
+
+    </div>
+
+    <div class="content">
+
+    </div>
+
+
+    </main>
+
+
+    <script>
+      var menu = new Slideout({
+        'panel': document.getElementById('panel'),
+        'menu': document.getElementById('menu'),
+        'padding': 256,
+        'tolerance': 70
+      });
+
+      var cart = new Slideout({
+        'panel': document.getElementById('panel'),
+        'menu': document.getElementById('cart'),
+        'padding': 256,
+        'tolerance': 70,
+        'side': 'right'
+      });
+
+      //menu toggle
+      document.querySelector('.star-btn').addEventListener('click', function() {
+        menu.toggle();
+      });
+
+      //cart toggle
+      // Toggle button
+      document.querySelector('.cart-btn').addEventListener('click', function() {
+
+        cart.toggle();
+      });
+
+    </script>
+
+
+  </div>
 
 
 
