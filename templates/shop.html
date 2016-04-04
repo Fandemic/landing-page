@@ -245,6 +245,7 @@
       //menu toggle
       document.querySelector('.star-btn').addEventListener('click', function() {
         menu.toggle();
+        cart.close();
       });
 
       //cart toggle
@@ -252,6 +253,7 @@
       document.querySelector('.cart-btn').addEventListener('click', function() {
 
         cart.toggle();
+        menu.close();
       });
 
     </script>
