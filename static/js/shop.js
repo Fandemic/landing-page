@@ -3,9 +3,16 @@ $(document).ready(function(){
     //Initial Variables
     var total_cost = 0.00;
     var cart = []
+    var num_items = 0;
 
     //Add a product to the cart
     $(".add-to-cart").click(function(){
+
+      //increment
+      num_items++;
+      $(".num-items").text("("+num_items+")");
+
+        $( ".cart-btn" ).effect( "shake",{times:2}, 300 );
 
         //Hide cart alert
         $("#alert-cart-empty").hide();
@@ -24,16 +31,21 @@ $(document).ready(function(){
         item.prependTo($(".cart")).hide().fadeIn(500);
 
         //animation
-        var itemThumbnail = $(this).parent();
-        flyToElement($(itemThumbnail), $('.cart'));
+        //var itemThumbnail = $(this).parent();
+        //flyToElement($(itemThumbnail), $('.cart'));
 
-        //TODO add to cart array
+
+
 
     });
 
 
     //Delete from cart
     $(".cart").on('click', '.delete', function() {
+
+      //increment
+      num_items--;
+      $(".num-items").text("("+num_items+")");
 
       //hide x button
       $(this).hide();
@@ -95,7 +107,7 @@ var n = this,
  /* ==========================================================================
   Animation shop
   ========================================================================== */
-
+/*
  function flyToElement(flyer, flyingTo) {
     var $func = $(this);
     var divider = 3;
@@ -122,7 +134,7 @@ var n = this,
         });
     });
 }
-
+*/
 
 
 $(document).ready(function () {
@@ -138,7 +150,7 @@ $(document).ready(function () {
 /* ==========================================================================
  Caption mouseover
  ========================================================================== */
-
+/*
 $('.caption .item-info-icon').hover(
     function(){
       $(this).parent().parent().parent().find('.mouseoverCaption').slideDown(250);
@@ -147,3 +159,4 @@ $('.caption .item-info-icon').hover(
       $(this).parent().parent().parent().find('.mouseoverCaption').slideUp(250);
     }
 );
+*/
