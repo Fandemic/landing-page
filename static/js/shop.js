@@ -21,11 +21,11 @@ $(document).ready(function(){
 
         //Create the DOM item and fade it in
         var item = $('<div class="item"><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong><br><span class="price">' + itemPrice + '</span><br>qty <span class="qty">1</span><a class="delete"><i class="fa fa-times"></i></a></div>');
-        item.prependTo($("#cart")).hide().fadeIn(500);
+        item.prependTo($(".cart")).hide().fadeIn(500);
 
         //animation
         var itemThumbnail = $(this).parent();
-        flyToElement($(itemThumbnail), $('#cart'));
+        flyToElement($(itemThumbnail), $('.cart'));
 
         //TODO add to cart array
 
@@ -33,7 +33,7 @@ $(document).ready(function(){
 
 
     //Delete from cart
-    $("#cart").on('click', '.delete', function() {
+    $(".cart").on('click', '.delete', function() {
 
       //hide x button
       $(this).hide();
@@ -41,7 +41,7 @@ $(document).ready(function(){
       //Remove the item
       var price = $(this).parent().find(".price").text();
       total_cost = total_cost - parseFloat(price);
-      $("#total-cost").text(total_cost.formatMoney(2));
+      $(".total-cost").text(total_cost.formatMoney(2));
       $(this).parent(".item").fadeOut(300, function(){ $(this).remove();});
     });
 
