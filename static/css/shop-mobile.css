@@ -4,7 +4,6 @@
   html, body{
     background-color: #fff;
     height: 100%;
-    overflow-x: hidden;
   }
 
   #desktop{
@@ -13,11 +12,11 @@
 
   #mobile{
     display: inherit;
-    height: inherit;
+
   }
 
   #panel{
-    height: inherit;
+
     z-index: 100;
     background-color: #fff;
     -webkit-box-shadow: 3px 10px 29px 5px rgba(0,0,0,0.75);
@@ -109,9 +108,9 @@
   .content{
     padding: 2%;
     padding-top: 80px;
-    height: inherit;
     width: 100%;
     background-color: #fff;
+      overflow-x: hidden;
   }
 
   .cart-and-total{
