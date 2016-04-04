@@ -190,7 +190,7 @@
   <!-- MOBILE HTML -->
   <div id="mobile">
 
-    <nav id="menu">
+    <div id="menu">
 
       <img class="profile-img" src="{{star.image.profile}}">
       <h2 class="title">{{star.name}}</h2>
@@ -203,7 +203,7 @@
       </div>
       <br><br>
       <button style="width:100%;border-radius:0px;"data-toggle="modal" data-target="#myModal" class="btn btn-success btn-activate" id="customButton">Activate Store</button>
-    </nav>
+    </div>
 
 
     <div id="cart-menu">
@@ -224,9 +224,6 @@
 
 
 
-
-  <main id="panel">
-
     <div class="nav">
         <img class="star-btn" width="50px" src="{{star.image.profile}}">
       <div class="name">
@@ -236,6 +233,10 @@
         <i class="fa fa-shopping-cart"></i>
       </div>
     </div>
+
+  <main id="panel">
+
+
 
 
     <div class="content">
@@ -353,7 +354,9 @@
         'panel': document.getElementById('panel'),
         'menu': document.getElementById('menu'),
         'padding': 256,
-        'tolerance': 70
+        'tolerance': 70,
+        'side': 'left',
+        'touch': false
       });
 
       var cart = new Slideout({
@@ -368,6 +371,8 @@
       //menu toggle
       document.querySelector('.star-btn').addEventListener('click', function() {
         menu.toggle();
+        $('#cart-menu').css('z-index', -1);
+        $('#menu').css('z-index', 0);
       });
 
       //cart toggle
@@ -375,6 +380,8 @@
       document.querySelector('.cart-btn').addEventListener('click', function() {
 
         cart.toggle();
+        $('#menu').css('z-index', -1);
+        $('#cart-menu').css('z-index', 0);
 
       });
 
