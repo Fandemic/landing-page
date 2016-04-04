@@ -17,6 +17,13 @@ h3{
   font-size: 1.4em;
 }
 
+#desktop{
+ display: inherit;
+}
+
+#mobile{
+  display: none;
+}
 
 #side-panel {
     position: fixed;
@@ -64,35 +71,6 @@ h3{
 
 .btn-toggle{
   display: none;
-}
-
-/*Mobile side panel*/
-@media screen and (max-width: 768px) {
-  #center-panel{
-    margin-left: 0px;
-  }
-  #side-panel{
-    left: -260px;
-    -webkit-transition: all .25s ease-out;
-       -moz-transition: all .25s ease-out;
-            transition: all .25s ease-out;
-  }
-  .btn-toggle{
-    display:inline-block;
-    padding-right: 15px;
-    position: absolute;
-    right: -106px;
-    top: 30px;
-    font-weight: 600;
-  }
-
-  #side-panel.visible{
-    left: 0px;
-    -webkit-transition: all .25s ease-out;
-       -moz-transition: all .25s ease-out;
-            transition: all .25s ease-out;
-
-  }
 }
 
 
