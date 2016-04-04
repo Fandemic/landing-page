@@ -4,6 +4,7 @@
   html, body{
     background-color: #fff;
     height: 100%;
+    overflow-x: hidden;
   }
 
   #desktop{
