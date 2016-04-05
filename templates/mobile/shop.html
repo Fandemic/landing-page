@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{star.name}} Official Store</title>
+  <meta http-equiv="cleartype" content="on">
+  <meta name="MobileOptimized" content="320">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
+
+  <script src="../static/js/jquery-1.12.2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script src="../static/js/velocity.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/slideout.min.js"></script>
+
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/shop.css">
+  <link rel="stylesheet" href="../static/css/shop-mobile.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+
+
+
+<!-- MOBILE HTML -->
+<body id="mobile">
+
+  <div id="menu">
+
+    <img class="profile-img" src="{{star.image.profile}}">
+    <h2 class="title">{{star.name}}</h2>
+    <br>
+    <div id="social-media">
+      <a class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
+      <a class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
+      <a class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
+      <a class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
+    </div>
+    <br><br>
+    <button style="width:100%;border-radius:0px;"data-toggle="modal" data-target="#myModal" class="btn btn-success btn-activate" id="customButton"><i class="fa fa-power-off"></i> Activate Store</button>
+  </div>
+
+
+  <div id="cart-menu">
+
+    <div class="cart-and-total">
+          <h2 class="title">Cart</h2>
+
+           <span class="money" style="font-size:16px;">Total: $<span id="total-cost">0.00</span></span>
+    </div>
+
+    <div id="cart" class="cart" class="well" style="max-height:160px;overflow:auto;padding:5px;">
+      <span id="alert-cart-empty"><br><br>The cart is empty!<br>Add a product to the cart by clicking <br>
+
+                                        <button class="btn btn-primary btn-add demo" role="button"><i class="fa fa-cart-plus"></i></button>
+                                        <br>
+                                      on a product card.</span>
+
+
+    </div>
+
+    <button class="btn btn-primary btn-checkout customButton" id="customButton"><i class="fa fa-check-circle-o"></i> Checkout</button>
+  </div>
+
+
+
+  <div class="nav">
+      <img class="star-btn" width="50px" src="{{star.image.profile}}">
+    <div class="name">
+      {{star.name}}
+    </div>
+    <div class="cart-btn">
+      <i class="fa fa-shopping-cart"></i><span class="num-items"></span>
+    </div>
+  </div>
+
+<main id="panel">
+
+
+
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row-fluid">
+
+          <div class="panel panel-activate fade in" role="alert">
+            <div class="alert-text"><strong>Heads up!</strong> If you are {{star.name}} activate your store today!
+            <br><br>
+            <button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-activate" id="customButton">Activate Store</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+      <div class="col-md-12">
+        <div class="thumbnail">
+          <div class="card-header">
+            <span class="hours-remaining"><i class="fa fa-clock-o"></i> 2:23:12</span>
+            <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
+            <div class="progress">
+              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40"
+              aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                <span class="progress-text">50 Orders Needed!</span>
+              </div>
+            </div>
+          </div>
+          <img class="product-picture" src="../static/img/store_items/store_items/male_tank.png" alt="...">
+          <div class="caption">
+            <h3 class="title">Male Fitness Tank</h3>
+            <span class="money">$<span class="price">19.99</span></span>
+          </div>
+          <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
+
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <div class="thumbnail">
+          <div class="card-header">
+            <span class="hours-remaining"><i class="fa fa-clock-o"></i> 4:12:44</span>
+            <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
+            <div class="progress">
+              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="74"
+              aria-valuemin="0" aria-valuemax="100" style="width:74%">
+                <span class="progress-text">26 Orders Needed!</span>
+              </div>
+            </div>
+          </div>
+          <img class="product-picture" src="../static/img/store_items/store_items/female_tank.png" alt="...">
+          <div class="caption">
+            <h3 class="title">Female Fitness Tank</h3>
+            <span class="money">$<span class="price">19.99</span></span>
+          </div>
+          <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <div class="thumbnail">
+          <div class="card-header">
+            <span class="hours-remaining"><i class="fa fa-clock-o"></i> 5:45:12</span>
+            <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
+            <div class="progress">
+              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="89"
+              aria-valuemin="0" aria-valuemax="100" style="width:89%">
+                <span class="progress-text">11 Orders Needed!</span>
+              </div>
+            </div>
+          </div>
+          <img class="product-picture" src="../static/img/store_items/store_items/unisex_sweatpants.png" alt="...">
+          <div class="caption">
+            <h3 class="title">Unisex Fitness Sweatpants</h3>
+            <span class="money">$<span class="price">39.99</span></span>
+          </div>
+          <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <div class="thumbnail">
+          <div class="card-header">
+            <span class="hours-remaining"><i class="fa fa-clock-o"></i> 6:13:18</span>
+            <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
+            <div class="progress">
+              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="44"
+              aria-valuemin="0" aria-valuemax="100" style="width:66%">
+                <span class="progress-text">44 Orders Needed!</span>
+              </div>
+            </div>
+          </div>
+          <img class="product-picture" src="../static/img/store_items/store_items/create_own_item.png" alt="...">
+          <div class="caption">
+            <h3 class="title">Create Your Own Products</h3>
+            <span class="money">$<span class="price">49.99</span></span>
+          </div>
+          <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
+        </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+    </main>
+
+
+
+
+
+
+  <script>
+    var menu = new Slideout({
+      'panel': document.getElementById('panel'),
+      'menu': document.getElementById('menu'),
+      'padding': 256,
+      'tolerance': 70,
+      'side': 'left',
+      'touch': false
+    });
+
+    var cart = new Slideout({
+      'panel': document.getElementById('panel'),
+      'menu': document.getElementById('cart-menu'),
+      'padding': 256,
+      'tolerance': 70,
+      'side': 'right',
+      'touch': false
+    });
+
+    //menu toggle
+    document.querySelector('.star-btn').addEventListener('click', function() {
+      menu.toggle();
+      $('#cart-menu').css('z-index', -1);
+      $('#menu').css('z-index', 0);
+    });
+
+    //cart toggle
+    // Toggle button
+    document.querySelector('.cart-btn').addEventListener('click', function() {
+
+      cart.toggle();
+      $('#menu').css('z-index', -1);
+      $('#cart-menu').css('z-index', 0);
+
+    });
+
+  </script>
+
+
+</div>
+
+
+
+</body>
+
+</html>
+
+<!-- MODAL -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h2 class="modal-title" id="myModalLabel">Get Started!</h2>
+    <p>Fill out the form below and we will contact you within 24 hours</p>
+    <hr>
+    <form id="activate-store-modal-form" action="/activateStore" method="post">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+            <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name"/>
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
+            <input id="activate_phone" name="phone" type="tel" class="form-control" placeholder="Phone" />
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
+            <input id="activate_email" name="email" type="email" class="form-control" placeholder="Email" value="{{star.email[0]}}"/>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
+            <input id="activate_youtube" name="youtube" type="url" class="form-control" placeholder="Youtube Channel URL" value="{{star.url.youtube}}"/>
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
+            <input id="activate_instagram" name="instagram" type="text" class="form-control" placeholder="Instagram Username" value="{{star.url.instagram}}" />
+          </div>
+          <br>
+          <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-square"></i></span>
+            <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" value="{{star.url.facebook}}"/>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <button type="submit" class="btn btn-primary center btn-submit" id="activate-store-button">Submit</button>
+      <p id="activate-store-notification"></p>
+    </form>
+  </div>
+</body>
+
+<script>
+(function ($) {
+$('.spinner .btn:first-of-type').on('click', function() {
+  $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
+});
+$('.spinner .btn:last-of-type').on('click', function() {
+  $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
+});
+})(jQuery);
+</script>
+
+<script src="../static/js/shop.js"></script>
+
+<script>
+var handler = StripeCheckout.configure({
+key: 'pk_test_loMuGvPxkyAer6FdjK1ykZVw',
+image: '{{star.image.profile}}',
+locale: 'auto',
+token: function(token,args) {
+// Use the token to create the charge with a server-side script.
+// You can access the token ID with `token.id`
+alert(args["shipping_address_line1"])
+}
+});
+
+$('.customButton').on('click', function(e) {
+// Open Checkout with further options
+handler.open({
+name: 'ORDER TOTAL',
+description: '$19.99',
+zipCode: true,
+billingAddress: true,
+shippingAddress: true,
+allowRememberMe: false,
+panelLabel: "Pay",
+amount: 1999
+});
+e.preventDefault();
+});
+
+// Close Checkout on page navigation
+$(window).on('popstate', function() {
+handler.close();
+});
+</script>
+
+{% include 'analytics.html' %}

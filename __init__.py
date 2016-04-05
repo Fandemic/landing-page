@@ -6,9 +6,13 @@ import json
 import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
+from flask.ext.mobility import Mobility
+from flask.ext.mobility.decorators import mobile_template
+
 
 
 app = Flask(__name__)
+Mobility(app)
 db = MongoClient('localhost', 27017).fandemic
 
 #================INDEX=====================
@@ -19,11 +23,12 @@ def home():
 
 #=================MOCK STORES=====================
 @app.route('/<star>')
-def store(star):
+@mobile_template('{mobile/}shop.html')
+def store(template,star):
 
     result = db.stars.find_one({'id':star})
 
-    return render_template('shop.html', star = result)
+    return render_template(template, star = result)
 #---------------------------------------------
 
 #================ACTIVATE_STORE_MODAL==================
