@@ -354,6 +354,7 @@ handler.close();
 
 //bootstrap autofocus modal
 $('.modal').on('shown.bs.modal', function() {
+  menu.close();
   $(this).find('[autofocus]').focus();
 });
 
