@@ -351,6 +351,12 @@ e.preventDefault();
 $(window).on('popstate', function() {
 handler.close();
 });
+
+//bootstrap autofocus modal
+$('.modal').on('shown.bs.modal', function() {
+  $(this).find('[autofocus]').focus();
+});
+
 </script>
 
 {% include 'analytics.html' %}
