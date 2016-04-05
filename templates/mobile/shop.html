@@ -96,7 +96,8 @@
         <div class="row-fluid">
 
           <div class="panel panel-activate fade in" role="alert">
-            <div class="alert-text"><strong>Heads up!</strong><br>If you are {{star.name}} activate your store!
+            <div class="alert-text"><strong>Heads up {{star.name}}!</strong>
+              <br>Click below to activate your store
             <br><br>
             <button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-activate" id="customButton">Activate Store Now</button>
           </div>
@@ -336,7 +337,7 @@ $('.customButton').on('click', function(e) {
 // Open Checkout with further options
 handler.open({
 name: 'ORDER TOTAL',
-description: '$19.99',
+description: '$' + total_cost,
 zipCode: true,
 billingAddress: true,
 shippingAddress: true,

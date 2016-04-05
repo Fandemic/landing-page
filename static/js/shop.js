@@ -1,7 +1,9 @@
+//Initial Variables
+var total_cost = 0.00;
+
 $(document).ready(function(){
 
-    //Initial Variables
-    var total_cost = 0.00;
+
     var cart = []
     var num_items = 0;
 
@@ -12,22 +14,22 @@ $(document).ready(function(){
       num_items++;
       $(".num-items").text("("+num_items+")");
 
+        //cart icon animation
         $( ".cart-btn" ).effect( "shake",{times:2}, 300 );
 
         //Hide cart alert
         $("#alert-cart-empty").hide();
 
         //Get the product Variables
-        var price = $(this).parent().find(".price").text();
+        var price = $(this).parent().find('.caption').find(".price").text();
         total_cost = total_cost + parseFloat(price);
         $("#total-cost").text(total_cost.formatMoney(2));
 
         var itemSrc = $(this).parent().find('.product-picture').attr("src");
-        var itemTitle = $(this).parent().find('.caption').find('.thumbnail-item-title').html();
-        var itemPrice = $(this).parent().find('.caption').find('.money').html();
+        var itemTitle = $(this).parent().find('.caption').find('.title').text();
 
         //Create the DOM item and fade it in
-        var item = $('<div class="item"><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong><br><span class="price">' + itemPrice + '</span><br>qty <span class="qty">1</span><a class="delete"><i class="fa fa-times"></i></a></div>');
+        var item = $('<div class="item"><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong><br>$<span class="price">' + price + '</span><br>qty <span class="qty">1</span><a class="delete"><i class="fa fa-times"></i></a></div>');
         item.prependTo($(".cart")).hide().fadeIn(500);
 
         //animation
@@ -53,7 +55,7 @@ $(document).ready(function(){
       //Remove the item
       var price = $(this).parent().find(".price").text();
       total_cost = total_cost - parseFloat(price);
-      $(".total-cost").text(total_cost.formatMoney(2));
+      $("#total-cost").text(total_cost.formatMoney(2));
       $(this).parent(".item").fadeOut(300, function(){ $(this).remove();});
     });
 
