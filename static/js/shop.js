@@ -101,6 +101,7 @@ var n = this,
          console.log(error);
        }
      });
+     return false;
    });
  });
 
