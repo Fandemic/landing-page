@@ -3,6 +3,7 @@ html, body {
   height: 100%;
   font-family: "Helvetica Neue","Helvetica",Arial,sans-serif;
   background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 body{
@@ -61,8 +62,7 @@ h3{
   padding-top: 90px;
   text-align: center;
   background-color: #F5F5F5;
-  left: 260px;
-  position: absolute;
+  margin-left: 260px;
   -webkit-transition:200ms linear;
 	-moz-transition:200ms linear;
 	-o-transition:200ms linear;
@@ -165,7 +165,7 @@ h3{
 	padding: 0px;
   border-radius: 1px;
   position:relative;
-  background-color: #F5F5F5;
+  background-color: #FFF;
 }
 
 .caption{
@@ -338,6 +338,15 @@ h3{
   padding-left: .3em;
   float: right;
   margin-top: -1.9em;
+}
+
+.btn:focus {
+  outline: 0 !important;
+}
+
+.filtr-search{
+  float:right;
+  width: 200px;
 }
 
 

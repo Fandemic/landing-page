@@ -154,7 +154,7 @@ $(document).ready(function () {
 /* ==========================================================================
  Caption mouseover
  ========================================================================== */
- 
+
 $('.caption .item-info-icon').hover(
     function(){
       $(this).parent().parent().parent().find('.mouseoverCaption').slideDown(250);
@@ -163,3 +163,25 @@ $('.caption .item-info-icon').hover(
       $(this).parent().parent().parent().find('.mouseoverCaption').slideUp(250);
     }
 );
+
+/*DATA FILTERS*/
+$(function() {
+    //Simple filter controls
+    $('.btn-filter').click(function() {
+        $('.btn-filter').removeClass('active');
+        $(this).addClass('active');
+    });
+    //Multifilter controls
+    $('.multifilter li').click(function() {
+        $(this).toggleClass('active');
+    });
+    //Shuffle control
+    $('.shuffle-btn').click(function() {
+        $('.sort-btn').removeClass('active');
+    });
+    //Sort controls
+    $('.sort-btn').click(function() {
+        $('.sort-btn').removeClass('active');
+        $(this).addClass('active');
+    });
+});
