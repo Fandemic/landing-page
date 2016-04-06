@@ -14,27 +14,50 @@
   <link href='https://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>
 
   <script src="../static/js/jquery-1.12.2.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="https://checkout.stripe.com/checkout.js"></script>
   <script src="../static/js/velocity.js"></script>
   <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/slideout.min.js"></script>
 
   <link href="../static/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/shop.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
-
-  <style>
-  #center-panel:before {
-      background-image: url("{{star.image.banner}}");
-    }
-  </style>
-
 </head>
 
+<div id="cart-menu">
 
-<!-- DESKTOP -->
-<div id="desktop">
+  <div class="cart-and-total">
+        <h2 class="title">Cart</h2>
+
+         <span class="money" style="font-size:16px;">Total: $<span class="total-cost">0.00</span></span>
+  </div>
+
+  <div id="cart" class="cart" class="well" style="max-height:70%;overflow:auto;padding:5px;margin-top:20px;">
+    <span id="alert-cart-empty"><br><br>The cart is empty!<br>Add a product to the cart by clicking
+                                    on a product card.</span>
+
+
+  </div>
+
+  <button class="btn btn-primary btn-checkout customButton" id="customButton"><i class="fa fa-check-circle-o"></i> Checkout</button>
+</div>
+
+
+
+    <div id="top-panel">
+
+      <div style="margin-top:20px;">
+        <strong>Heads up! This store is inactive.
+        If this is yours, <a href="#" data-toggle="modal" data-target="#activateStoreModal"> activate it today</a> for free!</strong>
+      </div>
+      <div class="cart-btn">
+        <i class="fa fa-shopping-cart"></i><span class="num-items"></span>
+      </div>
+
+    </div>
+
     <div id="side-panel" class="side-panel">
 
       <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
@@ -50,44 +73,31 @@
       </div>
 
       <hr>
-      <div class="cart-and-total">
-        <h3><i class="fa fa-shopping-cart"></i> Cart</h3>
-             <span class="money" style="font-size:16px;">Total: $<span id="total-cost">0.00</span></span>
+      <div style="padding:15px;">
+      Welcome to {{star.name}}'s Official Fandemic store. If activated this store will allow {{star.name}}
+      to sell custom branded products! If you are {{star.name}} click the "activate store" button below!
       </div>
 
-      <div id="cart" class="well" style="max-height:160px;overflow:auto;padding:5px;">
-        <span id="alert-cart-empty"><br>Add a product to the cart by clicking <span style="color:blue;">"Add to Cart"</span> on a product card.<br><br></span>
+      <button href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate"><i class="fa fa-power-off"></i> Activate Store</button>
 
-      </div>
-
-      <button class="btn btn-primary btn-checkout customButton">Checkout</button>
-
-      <!-- <div class="footer">
+      <div class="footer">
         <p class="copyright text-muted small">Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
           <strong>Patent Pending</strong>
-      </div> -->
+      </div>
     </div>
+
+
+
+
 
 
 
     <div id="center-panel" class="container-fluid">
 
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="row-fluid">
-
-            <div class="panel panel-activate fade in" role="alert">
-              <div class="alert-text"><strong>Heads up! This store is inactive.
-              If this is yours, activate it today!</strong>
-              <button data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate customButton">Activate Store</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-6 col-lg-3">
+      <div class="col-xs-6 col-sm-4 col-lg-3">
         <div class="thumbnail">
+          <span class="product-id">11</span>
           <div class="card-header">
             <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
             <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
@@ -100,14 +110,15 @@
           </div>
           <img class="product-picture" src="../static/img/store_items/store_items/create_own_item.png" alt="...">
           <div class="caption">
-            <h3>Create Your Own Products</h3>
+            <h3 class="title">Create Your Own Products</h3>
             <span class="money">$<span class="price">49.99</span></span>
           </div>
-          <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-plus"></i> Add to Cart</button>
+          <button class="add-to-cart btn btn-default btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
         </div>
       </div>
-        <div class="col-xs-6 col-lg-3">
+        <div class="col-xs-6 col-sm-4 col-lg-3">
           <div class="thumbnail">
+            <span class="product-id">12</span>
             <div class="card-header">
               <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
               <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
@@ -120,10 +131,10 @@
             </div>
             <img class="product-picture" src="../static/img/store_items/store_items/male_tank.png" alt="...">
             <div class="caption">
-              <h3>Male Fitness Tank </h3><!-- <h4><span class="item-info-icon glyphicon glyphicon-info-sign"></span></h4> -->
+              <h3 class="title">Male Fitness Tank </h3><!-- <h4><span class="item-info-icon glyphicon glyphicon-info-sign"></span></h4> -->
               <span class="money">$<span class="price">19.99</span></span>
             </div>
-            <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-plus"></i> Add to Cart</button>
+            <button class="add-to-cart btn btn-default btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
             <div class="mouseoverCaption">
               <h4>Male Fitness Tank Description</h4>
               <p>Material: </p>
@@ -133,8 +144,9 @@
           </div>
         </div>
 
-        <div class="col-xs-6 col-lg-3">
+        <div class="col-xs-6 col-sm-4 col-lg-3">
           <div class="thumbnail">
+            <span class="product-id">13</span>
             <div class="card-header">
               <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
               <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
@@ -147,15 +159,16 @@
             </div>
             <img class="product-picture" src="../static/img/store_items/store_items/female_tank.png" alt="...">
             <div class="caption">
-              <h3>Female Fitness Tank</h3>
+              <h3 class="title">Female Fitness Tank</h3>
               <span class="money">$<span class="price">19.99</span></span>
             </div>
-            <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-plus"></i> Add to Cart</button>
+            <button class="add-to-cart btn btn-default btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
           </div>
         </div>
 
-        <div class="col-xs-6 col-lg-3">
+        <div class="col-xs-6 col-sm-4 col-lg-3">
           <div class="thumbnail">
+            <span class="product-id">14</span>
             <div class="card-header">
               <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
               <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
@@ -168,56 +181,14 @@
             </div>
             <img class="product-picture" src="../static/img/store_items/store_items/unisex_sweatpants.png" alt="...">
             <div class="caption">
-              <h3>Unisex Fitness Sweatpants</h3>
+              <h3 class="title">Unisex Fitness Sweatpants</h3>
               <span class="money">$<span class="price">39.99</span></span>
             </div>
-            <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-plus"></i> Add to Cart</button>
+            <button class="add-to-cart btn btn-default btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
           </div>
         </div>
       </div>
     </div>
-
-  </div>
-
-
-    <script>
-      var menu = new Slideout({
-        'panel': document.getElementById('panel'),
-        'menu': document.getElementById('menu'),
-        'padding': 256,
-        'tolerance': 70,
-        'side': 'left',
-        'touch': false
-      });
-
-      var cart = new Slideout({
-        'panel': document.getElementById('panel'),
-        'menu': document.getElementById('cart-menu'),
-        'padding': 256,
-        'tolerance': 70,
-        'side': 'right',
-        'touch': false
-      });
-
-      //menu toggle
-      document.querySelector('.star-btn').addEventListener('click', function() {
-        menu.toggle();
-        $('#cart-menu').css('z-index', -1);
-        $('#menu').css('z-index', 0);
-      });
-
-      //cart toggle
-      // Toggle button
-      document.querySelector('.cart-btn').addEventListener('click', function() {
-
-        cart.toggle();
-        $('#menu').css('z-index', -1);
-        $('#cart-menu').css('z-index', 0);
-
-      });
-
-    </script>
-
 
   </div>
 
@@ -279,6 +250,51 @@
       </form>
     </div>
   </div>
+
+
+  <script>
+
+    var cart = new Slideout({
+      'panel': document.getElementById('center-panel'),
+      'menu': document.getElementById('cart-menu'),
+      'padding': 300,
+      'tolerance': 70,
+      'side': 'right',
+      'touch': false
+    });
+
+    //cart toggle
+    // Toggle button
+    document.querySelector('.cart-btn').addEventListener('click', function() {
+
+      if (cart.isOpen() == false){
+
+      $( "#center-panel" ).velocity({
+          left: "+=300"
+        }, 1, function() {
+          // Animation complete.
+        });
+
+      }
+
+      else{
+      $( "#center-panel" ).velocity({
+          left: "-=300"
+        }, 1, function() {
+          // Animation complete.
+        });
+
+      }
+      cart.toggle();
+
+      });
+
+
+
+
+  </script>
+
+
 
 <script>
 (function ($) {

@@ -15,36 +15,32 @@ $(document).ready(function(){
       $(".num-items").text("("+num_items+")");
 
         //cart icon animation
-        //$( ".cart-btn" ).effect( "shake",{times:2}, 300 );
+        $( ".cart-btn" ).effect( "shake",{times:2}, 300 );
 
         //Hide cart alert
         $("#alert-cart-empty").hide();
 
         //Get the product Variables
-        var price = $(this).parent().find(".price").text();
+        var price = $(this).parent().find('.caption').find(".price").text();
         total_cost = total_cost + parseFloat(price);
-        $(".total-cost").text(total_cost.formatMoney(2));
+        $("#total-cost").text(total_cost.formatMoney(2));
 
-        var itemSrc = $(this).parent().parent().find('.product-picture').attr("src");
-        var itemTitle = $(this).parent().find('.title').text();
-        var itemID = $(this).parent().parent().find('.product-id').text();
+        var itemSrc = $(this).parent().find('.product-picture').attr("src");
+        var itemTitle = $(this).parent().find('.caption').find('.title').text();
 
         //Create the DOM item and fade it in
-        var item = $('<div class="item"><span class="product-id">'+itemID+'</span><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong><br>$<span class="price">' + price + '</span><br>qty <span class="qty">1</span><a class="delete"><i class="fa fa-times"></i></a></div>');
-        item.prependTo($("#cart")).hide().fadeIn(500);
+        var item = $('<div class="item"><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong><br>$<span class="price">' + price + '</span><br>qty <span class="qty">1</span><a class="delete"><i class="fa fa-times"></i></a></div>');
+        item.prependTo($(".cart")).hide().fadeIn(500);
 
         //animation
         //var itemThumbnail = $(this).parent();
         //flyToElement($(itemThumbnail), $('.cart'));
 
-
-
-
     });
 
 
     //Delete from cart
-    $("#cart").on('click', '.delete', function() {
+    $(".cart").on('click', '.delete', function() {
 
       //increment
       num_items--;
@@ -56,7 +52,7 @@ $(document).ready(function(){
       //Remove the item
       var price = $(this).parent().find(".price").text();
       total_cost = total_cost - parseFloat(price);
-      $(".total-cost").text(total_cost.formatMoney(2));
+      $("#total-cost").text(total_cost.formatMoney(2));
       $(this).parent(".item").fadeOut(300, function(){ $(this).remove();});
     });
 
@@ -108,38 +104,6 @@ var n = this,
    });
  });
 
- /* ==========================================================================
-  Animation shop
-  ========================================================================== */
-/*
- function flyToElement(flyer, flyingTo) {
-    var $func = $(this);
-    var divider = 3;
-    var flyerClone = $(flyer).clone();
-    $(flyerClone).css({position: 'absolute', top: $(flyer).offset().top + "px", left: $(flyer).offset().left + "px", opacity: 1, 'z-index': 1000});
-    $('body').append($(flyerClone));
-    var gotoX = $(flyingTo).offset().left + ($(flyingTo).width() / 2) - ($(flyer).width()/divider)/2;
-    var gotoY = $(flyingTo).offset().top + ($(flyingTo).height() / 2) - ($(flyer).height()/divider)/2;
-
-    $(flyerClone).velocity({
-        opacity: 0.4,
-        left: gotoX,
-        top: gotoY,
-        width: $(flyer).width()/divider,
-        height: $(flyer).height()/divider
-    }, 700,
-    function () {
-        $(flyingTo).fadeOut('fast', function () {
-            $(flyingTo).fadeIn('fast', function () {
-                $(flyerClone).fadeOut('fast', function () {
-                    $(flyerClone).remove();
-                });
-            });
-        });
-    });
-}
-*/
-
 
 $(document).ready(function () {
   $('[data-toggle=offcanvas]').click(function () {
@@ -150,17 +114,3 @@ $(document).ready(function () {
 
   });
 });
-
-/* ==========================================================================
- Caption mouseover
- ========================================================================== */
-/*
-$('.caption .item-info-icon').hover(
-    function(){
-      $(this).parent().parent().parent().find('.mouseoverCaption').slideDown(250);
-    },
-    function(){
-      $(this).parent().parent().parent().find('.mouseoverCaption').slideUp(250);
-    }
-);
-*/
