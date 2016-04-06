@@ -61,8 +61,9 @@
     <div id="side-panel" class="side-panel">
 
       <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
-
-      <img class="profile-img" src="{{star.image.profile}}">
+      <div class="profile-img-container">
+        <img class="profile-img" src="{{star.image.profile}}">
+      </div>  
       <h2>{{star.name}}</h2>
 
       <div id="social-media">
@@ -74,8 +75,9 @@
 
       <hr>
       <div style="padding:15px;">
-      Welcome to {{star.name}}'s Official Fandemic store. If activated this store will allow {{star.name}}
-      to sell custom branded products! If you are {{star.name}} click the "activate store" button below!
+      Welcome to {{star.name}}'s Official Fandemic store. If activated, {{star.name}}
+      can sell <strong>custom</strong> designed products!
+      If you are {{star.name}} click the "activate store" button below!
       </div>
 
       <button href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate"><i class="fa fa-power-off"></i> Activate Store</button>
@@ -153,7 +155,7 @@
                 </div>
               </div>
             </div>
-            <img class="product-picture" src="../static/img/store_items/store_items/male_tank.png" alt="...">
+            <img class="product-picture" src="../static/img/store_items/store_items/male_tank_ORIG.png" alt="...">
             <div class="caption">
               <h3 class="title">Male Fitness Tank </h3><h4><span class="item-info-icon glyphicon glyphicon-info-sign"></span></h4>
               <span class="money">$<span class="price">19.99</span></span>
