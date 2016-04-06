@@ -154,7 +154,7 @@ $(document).ready(function () {
 /* ==========================================================================
  Caption mouseover
  ========================================================================== */
-
+ 
 $('.caption .item-info-icon').hover(
     function(){
       $(this).parent().parent().parent().find('.mouseoverCaption').slideDown(250);
