@@ -106,11 +106,17 @@ h3{
 }
 
 /*SIDE BAR*/
-.profile-img{
+.profile-img {
   width: 100%;
-  padding: 15px 15px 0px 15px;
+  padding: 60px 15px 0px 15px;
 }
-
+.profile-img-container {
+  position: relative;
+  height: auto;
+  width: 12em;
+  overflow: hidden;
+  margin-left: 3.4em;
+}
 #social-media{
   font-size: 1.7em;
 }
@@ -341,10 +347,10 @@ h3{
 }
 
 
-/*.thumbnail .product-logo {
+.thumbnail .product-logo {
   font-size: 1em;
   position: absolute;
   top: 27%;
   left: 36%;
   color: white;
-}*/
+}

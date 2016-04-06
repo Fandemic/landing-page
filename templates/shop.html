@@ -61,8 +61,9 @@
     <div id="side-panel" class="side-panel">
 
       <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
-
-      <img class="profile-img" src="{{star.image.profile}}">
+      <div class="profile-img-container">
+        <img class="profile-img" src="{{star.image.profile}}">
+      </div>  
       <h2>{{star.name}}</h2>
 
       <div id="social-media">
@@ -74,8 +75,8 @@
 
       <hr>
       <div style="padding:15px;">
-      Welcome to {{star.name}}'s Official Fandemic store. When activated, {{star.name}}
-      can sell <strong>custom</strong> designed products! 
+      Welcome to {{star.name}}'s Official Fandemic store. If activated, {{star.name}}
+      can sell <strong>custom</strong> designed products!
       If you are {{star.name}} click the "activate store" button below!
       </div>
 
