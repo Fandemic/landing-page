@@ -154,7 +154,7 @@ $(document).ready(function () {
 /* ==========================================================================
  Caption mouseover
  ========================================================================== */
-/*
+
 $('.caption .item-info-icon').hover(
     function(){
       $(this).parent().parent().parent().find('.mouseoverCaption').slideDown(250);
@@ -163,4 +163,3 @@ $('.caption .item-info-icon').hover(
       $(this).parent().parent().parent().find('.mouseoverCaption').slideUp(250);
     }
 );
-*/
