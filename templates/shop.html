@@ -110,7 +110,7 @@
     <span>Filter:</span>
     <button class="active btn btn-filter" data-filter="all">All Products</button>
 
-    {% for cat, id in cat.subcat.iteritems() %}
+    {% for cat, id in cat.iteritems() %}
     <button class="btn btn-filter" data-filter="{{id}}">{{cat}}</button>
     {% endfor %}
 
@@ -125,7 +125,7 @@
 
   {% for p in products %}
   <div class="col-sm-6 col-lg-3 filtr-item"
-       data-category="{% for cat, id in p.subcat.iteritems() %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
+       data-category="{% for id in p.subcatID %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
        data-sort="Create Your Own">
 
     <div class="thumbnail">

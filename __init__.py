@@ -36,11 +36,25 @@ def store(template,starID):
     else:
         products = db.sample_products.find({'category': star['category']})
 
-    #get the category index
-    cat = db.categories.find_one({'category': star['category']});
+    #loop products and index the categories on the fly
+    catIndex = {}
+    productsFiltered = []
+    counter = 1
+    for p in products:
+        p["subcatID"] = [] #list of ID's for each product
+        for c in p["subcat"]:
 
+            if c in catIndex:
+                p["subcatID"].append(catIndex[c])
 
-    return render_template(template, star = star,products = products, cat=cat)
+            else:
+                catIndex[c] = counter
+                counter += 1
+                p["subcatID"].append(catIndex[c])
+
+        productsFiltered.append(p)
+
+    return render_template(template, star = star,products = productsFiltered, cat=catIndex)
 #---------------------------------------------
 
 #================PROCESS AN ORDER====================#
