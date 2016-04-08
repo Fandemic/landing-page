@@ -8,8 +8,10 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
+import stripe
 
-
+SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
 
 app = Flask(__name__)
 Mobility(app)
@@ -22,14 +24,56 @@ def home():
 #-------------------------------------------
 
 #=================MOCK STORES=====================
-@app.route('/<star>')
+@app.route('/<starID>')
 @mobile_template('{mobile/}shop.html')
-def store(template,star):
+def store(template,starID):
 
-    result = db.stars.find_one({'id':star})
+    star = db.stars.find_one({'id':starID}) #find the star
 
-    return render_template(template, star = result)
+    #get the stars products
+    if star['active']:
+        products = db.products.find({'star_id': star['id']})
+    else:
+        products = db.sample_products.find({'category': star['category']})
+
+    #get the category index
+    cat = db.categories.find_one({'category': star['category']});
+
+
+    return render_template(template, star = star,products = products, cat=cat)
 #---------------------------------------------
+
+#================PROCESS AN ORDER====================#
+@app.route('/charge', methods=['GET', 'POST'])
+def charge():
+
+    #initialize the stripe data
+    stripe_keys = {
+        'secret_key': SECRET_KEY,
+        'publishable_key': PUBLISHABLE_KEY
+    }
+    stripe.api_key = stripe_keys['secret_key']
+
+    #get the ajaxed info
+    if request.method == "POST":
+        info = request.get_json()
+
+        customer = stripe.Customer.create(
+            email=info['email'],
+            card=info['id']
+        )
+
+        charge = stripe.Charge.create(
+            customer=customer.id,
+            amount=info['amount'],
+            currency='usd',
+            description= info['billing_name'] + ' ordered products from ' + info['star'],
+            receipt_email=info['email']
+        )
+
+        print info['cart']
+
+    return '';
 
 #================ACTIVATE_STORE_MODAL==================
 @app.route('/activateStore', methods=['GET', 'POST'])

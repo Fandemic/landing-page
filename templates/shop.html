@@ -26,226 +26,143 @@
 
 </head>
 
+<body>
+
+
+<!-- CART MENU -->
 <div id="cart-menu">
 
   <div class="cart-and-total">
-        <h2 class="title">Cart</h2>
-
-         <span class="money" style="font-size:16px;">Total: $<span class="total-cost">0.00</span></span>
+      <h2 class="title">Cart</h2>
+       <span class="money" style="font-size:16px;">Total: $<span class="total-cost">0.00</span></span>
   </div>
 
   <div id="cart" class="cart" class="well" style="max-height:70%;overflow:auto;padding:5px;margin-top:20px;">
-    <span id="alert-cart-empty"><br><br>The cart is empty!<br>Add a product to the cart by clicking
+      <span id="alert-cart-empty"><br><br>The cart is empty!<br>Add a product to the cart by clicking
                                     on a product card.</span>
-
-
   </div>
 
   <button class="btn btn-primary btn-checkout customButton" id="customButton"><i class="fa fa-check-circle-o"></i> Checkout</button>
+
+</div>
+
+
+<!-- TOP PANEL -->
+<div id="top-panel">
+
+  <a href="/"><img class="logo" height="40px" src="../static/img/fandemic-icon-white.png"></a>
+
+  <div style="margin-top:20px;">
+    <strong>Heads up! This store is <span style="color:#FFCC00;">inactive</span>.
+    If this is yours, <a href="#" data-toggle="modal" data-target="#activateStoreModal"> activate it today</a> for free!</strong>
+  </div>
+  <div class="cart-btn">
+    <i class="fa fa-shopping-cart"></i><span class="num-items"></span>
+  </div>
+
+</div>
+
+
+<!-- SIDE PANEL -->
+<div id="side-panel" class="side-panel">
+
+  <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
+  <div class="profile-img-container">
+    <img class="profile-img" src="{{star.image.profile}}">
+  </div>
+  <h2>{{star.name}}</h2>
+
+  <div id="social-media">
+    <a class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
+    <a class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
+    <a class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
+    <a class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
+  </div>
+
+  <hr>
+  <div style="padding:15px;">
+  Welcome to {{star.name}}'s Official Fandemic store. If activated, {{star.name}}
+  can sell <strong>custom</strong> designed products!
+  If you are {{star.name}} click the "activate store" button below!
+  <br><br><br><br>
+  <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span>
+  </div>
+
+  <button href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate"><i class="fa fa-power-off"></i> Activate Store</button>
+
+  <div class="footer">
+    <p class="copyright text-muted small">Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
+      <strong>Patent Pending</strong>
+  </div>
 </div>
 
 
 
-    <div id="top-panel">
-
-      <a href="/"><img class="logo" height="40px" src="../static/img/fandemic-icon-white.png"></a>
-
-      <div style="margin-top:20px;">
-        <strong>Heads up! This store is <span style="color:#FFCC00;">inactive</span>.
-        If this is yours, <a href="#" data-toggle="modal" data-target="#activateStoreModal"> activate it today</a> for free!</strong>
-      </div>
-      <div class="cart-btn">
-        <i class="fa fa-shopping-cart"></i><span class="num-items"></span>
-      </div>
-
-    </div>
-
-    <div id="side-panel" class="side-panel">
-
-      <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
-      <div class="profile-img-container">
-        <img class="profile-img" src="{{star.image.profile}}">
-      </div>
-      <h2>{{star.name}}</h2>
-
-      <div id="social-media">
-        <a class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
-        <a class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
-        <a class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
-        <a class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
-      </div>
-
-      <hr>
-      <div style="padding:15px;">
-      Welcome to {{star.name}}'s Official Fandemic store. If activated, {{star.name}}
-      can sell <strong>custom</strong> designed products!
-      If you are {{star.name}} click the "activate store" button below!
-      <br><br><br><br>
-      <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span>
-      </div>
-
-      <button href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate"><i class="fa fa-power-off"></i> Activate Store</button>
-
-      <div class="footer">
-        <p class="copyright text-muted small">Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
-          <strong>Patent Pending</strong>
-      </div>
-    </div>
 
 
 
+<!-- CENTER PANEL -->
+<div id="center-panel" class="container-fluid">
 
+  <div style="height:40px;">
+  <div style="color:#1d1d1d;font-size:12px;display:inline-block;float:left;">
 
+    <span>Filter:</span>
+    <button class="active btn btn-filter" data-filter="all">All Products</button>
 
-
-    <div id="center-panel" class="container-fluid">
-
-      <div style="height:40px;">
-      <div style="color:#1d1d1d;font-size:12px;display:inline-block;float:left;">
-        <span>Filter:</span>
-        <button class="active btn btn-filter" data-filter="all">All Products</button>
-        <button class="btn btn-filter" data-filter="1">Men</button>
-        <button class="btn btn-filter" data-filter="2">Women</button>
-        <button class="btn btn-filter" data-filter="3">Tanks</button>
-        <button class="btn btn-filter" data-filter="4">Custom</button>
-
-      </div>
-      <input type="text" class="form-control filtr-search" name="filtr-search" placeholder="product search" data-search>
-    </div>
-
-      <hr>
-
-      <div class="row">
-      <div class="filtr-container">
-      <div class="col-sm-6 col-lg-3 filtr-item" data-category="4" data-sort="Create Your Own">
-        <div class="thumbnail">
-          <span class="product-id">11</span>
-          <div class="card-header">
-            <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
-            <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
-            <div class="progress">
-              <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="44"
-              aria-valuemin="0" aria-valuemax="100" style="width:66%">
-                <span class="progress-text">44 Orders Needed!</span>
-              </div>
-            </div>
-          </div>
-          <img class="product-picture" src="../static/img/store_items/store_items/create_own_item.png" alt="...">
-          <div class="caption">
-            <h3 class="title">Create Your Own</h3>
-            <span class="money">$<span class="price">49.99</span></span>
-
-            <a href="#" class="btn-description">More Info <i class="fa fa-share-square-o"></i></i></a>
-          </div>
-          <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
-          <div class="mouseoverCaption">
-            <h4>Create Your Own Products!</h4>
-            <p><strong>Items:</strong> We can make anything, but some examples include: Blender Bottles, Gym Bags, Hats, Fitness Gloves, Weight Belts, Chucks (For Squatting!), etc.</p>
-            <p><strong>Weight:</strong> 100 grams </p>
-            <p><strong>Design:</strong> Logo imposed on front or back</p>
-            <p><strong>Size:</strong> XS, S, M, L, XL</p>
-            <p><strong>Delivery:</strong> 7 days via UPS or FedEx</p>
-          </div>
-        </div>
-      </div>
-        <div class="col-sm-6 col-lg-3 filtr-item" data-category="1, 3" data-sort="Male Fitness Tank">
-          <div class="thumbnail">
-            <span class="product-id">12</span>
-            <div class="card-header">
-              <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
-              <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
-              <div class="progress">
-                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40"
-                aria-valuemin="0" aria-valuemax="100" style="width:50%">
-                  <span class="progress-text">50 Orders Needed!</span>
-                </div>
-              </div>
-            </div>
-            <img class="product-picture" src="../static/img/store_items/store_items/male_tank_ORIG.png" alt="...">
-            <div class="caption">
-                <h3 class="title">Male Fitness Tank </h3>
-              <span class="money">$<span class="price">19.99</span></span>
-            </div>
-            <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
-            <div class="mouseoverCaption">
-              <h4>Male Fitness Tank Description</h4>
-              <p><strong>Material:</strong>	100% cotton</p>
-              <p><strong>Weight:</strong> 100 grams </p>
-              <p><strong>Design:</strong> Logo imposed on front or back </p>
-              <p><strong>Size:</strong> XS, S, M, L, XL</p>
-              <p><strong>Delivery:</strong> 7 days via UPS or FedEx</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-3 filtr-item" data-category="2, 3" data-sort="Female Fitness Tank">
-          <div class="thumbnail">
-            <span class="product-id">13</span>
-            <div class="card-header">
-              <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
-              <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
-              <div class="progress">
-                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="74"
-                aria-valuemin="0" aria-valuemax="100" style="width:74%">
-                  <span class="progress-text">26 Orders Needed!</span>
-                </div>
-              </div>
-            </div>
-            <img class="product-picture" src="../static/img/store_items/store_items/female_tank.png" alt="...">
-            <div class="caption">
-              <h3 class="title">Female Fitness Tank</h3>
-              <span class="money">$<span class="price">19.99</span></span>
-            </div>
-            <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
-            <div class="mouseoverCaption">
-              <h4>Female Fitness Tank</h4>
-              <p><strong>Material:</strong>	80% Polyester 20% Cotton</p>
-              <p><strong>Weight:</strong> 100 grams </p>
-              <p><strong>Design:</strong> Logo imposed on front or back </p>
-              <p><strong>Size:</strong> XS, S, M, L, XL</p>
-              <p><strong>Delivery:</strong> 7 days via UPS or FedEx</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-3 filtr-item" data-category="1, 2" data-sort="Fitness Sweatpants">
-          <div class="thumbnail">
-            <span class="product-id">14</span>
-            <div class="card-header">
-              <span class="hours-remaining"><i class="fa fa-clock-o"></i> 24 Hours</span>
-              <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
-              <div class="progress">
-                <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="89"
-                aria-valuemin="0" aria-valuemax="100" style="width:89%">
-                  <span class="progress-text">11 Orders Needed!</span>
-                </div>
-              </div>
-            </div>
-            <img class="product-picture" src="../static/img/store_items/store_items/unisex_sweatpants.png" alt="...">
-            <div class="caption">
-              <h3 class="title">Fitness Sweatpants</h3>
-              <span class="money">$<span class="price">39.99</span></span>
-            </div>
-            <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
-            <div class="mouseoverCaption">
-              <h4>Fitness Sweatpants</h4>
-              <p><strong>Material:</strong>	40% Polyester 60% Cotton</p>
-              <p><strong>Weight:</strong> 400 grams </p>
-              <p><strong>Design:</strong> Logo can be place on back, text on waistband or down leg </p>
-              <p><strong>Size:</strong> XS, S, M, L, XL</p>
-              <p><strong>Delivery:</strong> 7 days via UPS or FedEx</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      </div>
-    </div>
-    </div>
+    {% for cat, id in cat.subcat.iteritems() %}
+    <button class="btn btn-filter" data-filter="{{id}}">{{cat}}</button>
+    {% endfor %}
 
   </div>
+  <input type="text" class="form-control filtr-search" name="filtr-search" placeholder="product search" data-search>
+</div>
 
+  <hr>
+
+  <div class="row">
+  <div class="filtr-container">
+
+  {% for p in products %}
+  <div class="col-sm-6 col-lg-3 filtr-item"
+       data-category="{% for cat, id in p.subcat.iteritems() %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
+       data-sort="Create Your Own">
+
+    <div class="thumbnail">
+      <span class="product-id">{{p.sku}}</span>
+      <div class="card-header">
+        <span class="hours-remaining"><i class="fa fa-clock-o"></i> 14 days</span>
+        <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
+        <div class="progress">
+          <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="44"
+          aria-valuemin="0" aria-valuemax="{{p.description.minOrderQty}}" style="width:50%">
+            <span class="progress-text">{{(p.description.minOrderQty / 2)|round|int}} Orders Needed!</span>
+          </div>
+        </div>
+      </div>
+      <img class="product-picture" src="../static/img/store_items/store_items/create_own_item.png" alt="...">
+      <div class="caption">
+        <h3 class="title">{{p.name}}</h3>
+        <span class="money">$<span class="price">{{p.price}}</span></span>
+
+        <a href="#" class="btn-description">More Info <i class="fa fa-share-square-o"></i></i></a>
+      </div>
+      <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
+      <div class="mouseoverCaption">
+        <h4>Create Your Own Products!</h4>
+        <p><strong>Items:</strong> We can make anything, but some examples include: Blender Bottles, Gym Bags, Hats, Fitness Gloves, Weight Belts, Chucks (For Squatting!), etc.</p>
+        <p><strong>Weight:</strong> 100 grams </p>
+        <p><strong>Design:</strong> Logo imposed on front or back</p>
+        <p><strong>Size:</strong> XS, S, M, L, XL</p>
+        <p><strong>Delivery:</strong> 7 days via UPS or FedEx</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+</div>
+</div>
 
 
   </body>
@@ -304,6 +221,26 @@
       </form>
     </div>
   </div>
+</div>
+
+
+<!-- Payment Success Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="paymentSuccessModal">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 class="modal-title" id="myModalLabel">Order Successful!</h2>
+      <p>You should receive a receipt shortly</p>
+      <hr>
+      <p>If the product(s) you ordered do not reach a minimum order you get a full refund.</p>
+      <br>
+      <p>Questions or concerns? Email us at <strong>support@fandemic.co</strong> and we will respond within 24 hours. Thanks!</p>
+    </div>
+  </div>
+</div>
+
 
 
   <!-- Kick off Filterizr -->
@@ -316,86 +253,57 @@
   </script>
 
 
-  <script>
-
-    var cart = new Slideout({
-      'panel': document.getElementById('center-panel'),
-      'menu': document.getElementById('cart-menu'),
-      'padding': 300,
-      'tolerance': 70,
-      'side': 'right',
-      'touch': false
-    });
-
-    //cart toggle
-    // Toggle button
-    document.querySelector('.cart-btn').addEventListener('click', function() {
-
-      if (cart.isOpen() == false){
-
-      $( "#center-panel" ).velocity({
-          left: "+=300"
-        }, 1, function() {
-          // Animation complete.
-        });
-
-      }
-
-      else{
-      $( "#center-panel" ).velocity({
-          left: "-=300"
-        }, 1, function() {
-          // Animation complete.
-        });
-
-      }
-      cart.toggle();
-
-      });
-
-
-
-
-  </script>
-
-
-
-<script>
-(function ($) {
-  $('.spinner .btn:first-of-type').on('click', function() {
-    $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
-  });
-  $('.spinner .btn:last-of-type').on('click', function() {
-    $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
-  });
-})(jQuery);
-</script>
-
 <script src="../static/js/shop.js"></script>
 
 <script>
 var handler = StripeCheckout.configure({
-key: 'pk_test_loMuGvPxkyAer6FdjK1ykZVw',
+key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
 image: '{{star.image.profile}}',
 locale: 'auto',
 token: function(token,args) {
-// Use the token to create the charge with a server-side script.
-// You can access the token ID with `token.id`
-alert(args["shipping_address_line1"])
+
+  //gather info from the order
+  var info = {};
+  info['star'] = "{{star.name}}";
+  info['amount'] = Math.round(total_cost * 100);
+  info['cart'] = cart;
+
+  //combine all info into one object
+  var result={};
+  $.extend(result, args, token);
+  $.extend(result, result, info);
+
+  $.ajax({
+    type: 'POST',
+    url: '/charge',
+    data: JSON.stringify(result, null, '\t'),
+    contentType: 'application/json;charset=UTF-8',
+    success: function(response) {
+      $("#paymentSuccessModal").modal()
+      resetCart();
+    },
+    error: function(error) {
+      alert("payment error");
+    }
+  });
+
 }
 });
+
+
+
 
 $('.customButton').on('click', function(e) {
 // Open Checkout with further options
 handler.open({
 name: 'ORDER TOTAL',
-description: '$19.99',
+description: '$' + total_cost.formatMoney(2),
 zipCode: true,
 billingAddress: true,
 shippingAddress: true,
-allowRememberMe: false,
+allowRememberMe: true,
 panelLabel: "Pay",
-amount: 1999
+amount: Math.round(total_cost * 100)
 });
 e.preventDefault();
 });
