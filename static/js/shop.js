@@ -6,6 +6,9 @@ var cart = {}
 
 $(document).ready(function(){
 
+    $('.btn-checkout').prop('disabled', true);
+    $('#loading').hide();
+
     //Add a product to the cart
     $(".add-to-cart").click(function(){
 
@@ -19,6 +22,7 @@ $(document).ready(function(){
 
         //Hide cart alert
         $("#alert-cart-empty").hide();
+        $('.btn-checkout').prop('disabled', false);
 
         //Get the product Variables
         var price = $(this).parent().find(".price").text();
@@ -81,6 +85,8 @@ function resetCart(){
   $(".total-cost").text("0.00");
   $(".num-items").text("");
   $('#cart').html("");
+  $('.btn-checkout').prop('disabled', true);
+  $("#alert-cart-empty").show();
 }
 
 //DOLLAR FORMATTING
