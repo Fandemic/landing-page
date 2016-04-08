@@ -63,8 +63,6 @@ def store(template,starID):
         except IndexError:
             print 'no image found'
 
-
-
         productsFiltered.append(p)
 
     return render_template(template, star = star,products = productsFiltered, cat=catIndex)
@@ -98,7 +96,23 @@ def charge():
             receipt_email=info['email']
         )
 
-        print info['cart']
+        #build the string to be saved
+        order = {}
+        order['name'] = info['billing_name']
+        order['email'] = info['email']
+        order['address'] = {}
+        order['address']['street1'] = info['shipping_address_line1']
+        order['address']['city'] = info['shipping_address_line1']
+        order['address']['state'] = info['shipping_address_line1']
+        order['address']['zip'] = info['shipping_address_zip']
+        order['stripe'] = {}
+        order['stripe']['id'] = charge['id']
+        order['stripe']['customer'] = charge['customer']
+        order['cart'] = info['cart']
+        order['total'] = charge['amount']
+        order['ip'] = info['client_ip']
+
+        db.orders.insert_one(order)
 
     return '';
 

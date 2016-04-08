@@ -1,4 +1,3 @@
-  $('#loading').hide();
 //Initial Variables
 var total_cost = 0.00;
 var num_items = 0;
