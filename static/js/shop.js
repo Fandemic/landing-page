@@ -59,6 +59,10 @@ $(document).ready(function(){
       num_items--;
       $(".num-items").text("("+num_items+")");
 
+      if (num_items == 0){
+        $("#alert-cart-empty").show();
+      }
+
       key = $(this).parent().find(".product-id").text();
 
       //delete in array

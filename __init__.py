@@ -9,6 +9,7 @@ from email.MIMEText import MIMEText
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
 import stripe
+import os
 
 SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
 PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
@@ -51,6 +52,18 @@ def store(template,starID):
                 catIndex[c] = counter
                 counter += 1
                 p["subcatID"].append(catIndex[c])
+
+
+        #generate a url for each variation
+        rootURL = 'static/img/product_images/' + p['sku'] + '/'
+
+        try:
+            print os.listdir(rootURL)[0]
+            p['img'] = os.listdir(rootURL)[0]
+        except IndexError:
+            print 'no image found'
+
+
 
         productsFiltered.append(p)
 
