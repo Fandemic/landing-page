@@ -1,3 +1,4 @@
+  $('#loading').hide();
 //Initial Variables
 var total_cost = 0.00;
 var num_items = 0;
@@ -7,7 +8,6 @@ var cart = {}
 $(document).ready(function(){
 
     $('.btn-checkout').prop('disabled', true);
-    $('#loading').hide();
 
     //Add a product to the cart
     $(".add-to-cart").click(function(){
