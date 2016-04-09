@@ -29,7 +29,7 @@
 <body>
 
 <div id="loading"></div>
-
+<script> $('#loading').hide();</script>
 
 <!-- CART MENU -->
 <div id="cart-menu">
@@ -55,8 +55,11 @@
   <a href="/"><img class="logo" height="40px" src="../static/img/fandemic-icon-white.png"></a>
 
   <div style="margin-top:20px;">
+
+    {% if star.active == false %}
     <strong>Heads up! This store is <span style="color:#FFCC00;">inactive</span>.
     If this is yours, <a href="#" data-toggle="modal" data-target="#activateStoreModal"> activate it today</a> for free!</strong>
+    {% endif %}
   </div>
   <div class="cart-btn">
     <i class="fa fa-shopping-cart"></i><span class="num-items"></span>
