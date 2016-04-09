@@ -78,9 +78,12 @@ def charge():
 
         info = request.get_json()
 
-        
-        SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
-        PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+        if info['active'] == 'False':
+            SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+            PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+        else:
+            SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+            PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
 
         #initialize the stripe data
         stripe_keys = {
@@ -120,6 +123,7 @@ def charge():
         order['cart'] = info['cart']
         order['total'] = charge['amount']
         order['ip'] = info['client_ip']
+        order['active'] = True if info['active'] == 'True' else False
 
         db.orders.insert_one(order)
 
