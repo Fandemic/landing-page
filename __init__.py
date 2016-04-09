@@ -102,9 +102,10 @@ def charge():
         order['email'] = info['email']
         order['address'] = {}
         order['address']['street1'] = info['shipping_address_line1']
-        order['address']['city'] = info['shipping_address_line1']
-        order['address']['state'] = info['shipping_address_line1']
+        order['address']['city'] = info['shipping_address_city']
+        order['address']['state'] = info['shipping_address_state']
         order['address']['zip'] = info['shipping_address_zip']
+        order['address']['country'] = info['shipping_address_country']
         order['stripe'] = {}
         order['stripe']['id'] = charge['id']
         order['stripe']['customer'] = charge['customer']
