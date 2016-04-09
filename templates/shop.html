@@ -59,6 +59,8 @@
     {% if star.active == false %}
     <strong>Heads up! This store is <span style="color:#FFCC00;">inactive</span>.
     If this is yours, <a href="#" data-toggle="modal" data-target="#activateStoreModal"> activate it today</a> for free!</strong>
+    {% else %}
+    <strong>Welcome to {{star.name}}'s official store!</strong>
     {% endif %}
   </div>
   <div class="cart-btn">
@@ -85,6 +87,8 @@
   </div>
 
   <hr>
+
+  {% if star.active == false %}
   <div style="padding:15px;">
   Welcome to {{star.name}}'s Official Fandemic store. If activated, {{star.name}}
   can sell <strong>custom</strong> designed products!
@@ -92,8 +96,19 @@
   <br><br><br><br>
   <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span>
   </div>
-
   <button href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate"><i class="fa fa-power-off"></i> Activate Store</button>
+
+  {% else %}
+  <div style="padding:15px;">
+  Welcome to {{star.name}}'s <br>Official Fandemic store!
+  <hr><br>
+  If you need any help with your purchase click the "Customer Service" button below and the
+  fandemic team will help you right away!
+  <br><br><br><br>
+  <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span>
+  </div>
+  <button href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-info btn-activate"><i class="fa fa-question-circle"></i> Customer Service</button>
+  {% endif %}
 
   <div class="footer">
     <p class="copyright text-muted small">Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
@@ -262,7 +277,11 @@
 
 <script>
 var handler = StripeCheckout.configure({
+{% if star.active == false %}
 key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
+{% else %}
+key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
+{% endif %}
 image: '{{star.image.profile}}',
 locale: 'auto',
 token: function(token,args) {

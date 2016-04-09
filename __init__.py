@@ -33,7 +33,7 @@ def store(template,starID):
 
     #get the stars products
     if star['active']:
-        products = db.products.find({'star_id': star['id']})
+        products = star['products']
     else:
         products = db.sample_products.find({'category': star['category']})
 
@@ -58,8 +58,12 @@ def store(template,starID):
         rootURL = 'static/img/product_images/' + p['sku'] + '/'
 
         try:
-            print os.listdir(rootURL)[0]
-            p['img'] = os.listdir(rootURL)[0]
+
+            for f in os.listdir(rootURL):
+                if os.path.splitext(f)[1].lower() in ('.jpg', '.jpeg','.png'):
+                    p['img'] = f
+                    break
+
         except IndexError:
             print 'no image found'
 
