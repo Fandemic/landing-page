@@ -11,9 +11,6 @@ from flask.ext.mobility.decorators import mobile_template
 import stripe
 import os
 
-SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
-PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
-
 app = Flask(__name__)
 Mobility(app)
 db = MongoClient('localhost', 27017).fandemic
@@ -76,16 +73,23 @@ def store(template,starID):
 @app.route('/charge', methods=['GET', 'POST'])
 def charge():
 
-    #initialize the stripe data
-    stripe_keys = {
-        'secret_key': SECRET_KEY,
-        'publishable_key': PUBLISHABLE_KEY
-    }
-    stripe.api_key = stripe_keys['secret_key']
-
     #get the ajaxed info
     if request.method == "POST":
+
         info = request.get_json()
+
+        
+        SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+        PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+
+        #initialize the stripe data
+        stripe_keys = {
+            'secret_key': SECRET_KEY,
+            'publishable_key': PUBLISHABLE_KEY
+        }
+
+        stripe.api_key = stripe_keys['secret_key']
+
 
         customer = stripe.Customer.create(
             email=info['email'],
