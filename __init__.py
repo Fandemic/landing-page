@@ -54,16 +54,17 @@ def store(template,starID):
         #generate a url for each variation
         rootURL = 'static/img/product_images/' + p['sku'] + '/'
 
-        #try:
+        try:
 
-            #for f in os.listdir(rootURL):
-                #if os.path.splitext(f)[1].lower() in ('.jpg', '.jpeg','.png'):
-                    #p['img'] = f
-                    #break
+            for f in os.listdir(rootURL):
+                if os.path.splitext(f)[1].lower() in ('.jpg', '.jpeg','.png'):
+                    p['img'] = f
+                    break
 
-        #except IndexError:
-        p['img'] = ""
-        print 'no image found'
+        except IndexError:
+            print 'no image found'
+        except (err):
+            p['img'] = err
 
         productsFiltered.append(p)
 
