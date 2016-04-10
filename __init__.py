@@ -8,8 +8,8 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
-
-
+import stripe
+import os
 
 app = Flask(__name__)
 Mobility(app)
@@ -22,14 +22,112 @@ def home():
 #-------------------------------------------
 
 #=================MOCK STORES=====================
-@app.route('/<star>')
+@app.route('/<starID>')
 @mobile_template('{mobile/}shop.html')
-def store(template,star):
+def store(template,starID):
 
-    result = db.stars.find_one({'id':star})
+    star = db.stars.find_one({'id':starID}) #find the star
 
-    return render_template(template, star = result)
+    #get the stars products
+    if star['active']:
+        products = star['products']
+    else:
+        products = db.sample_products.find({'category': star['category']})
+
+    #loop products and index the categories on the fly
+    catIndex = {}
+    productsFiltered = []
+    counter = 1
+    for p in products:
+        p["subcatID"] = [] #list of ID's for each product
+        for c in p["subcat"]:
+
+            if c in catIndex:
+                p["subcatID"].append(catIndex[c])
+
+            else:
+                catIndex[c] = counter
+                counter += 1
+                p["subcatID"].append(catIndex[c])
+
+
+        #generate a url for each variation
+        rootURL = 'static/img/product_images/' + p['sku'] + '/'
+
+        try:
+
+            for f in os.listdir(rootURL):
+                if os.path.splitext(f)[1].lower() in ('.jpg', '.jpeg','.png'):
+                    p['img'] = f
+                    break
+
+        except IndexError:
+            print 'no image found'
+
+        productsFiltered.append(p)
+
+    return render_template(template, star = star,products = productsFiltered, cat=catIndex)
 #---------------------------------------------
+
+#================PROCESS AN ORDER====================#
+@app.route('/charge', methods=['GET', 'POST'])
+def charge():
+
+    #get the ajaxed info
+    if request.method == "POST":
+
+        info = request.get_json()
+
+        if info['active'] == 'False':
+            SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+            PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+        else:
+            SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
+            PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
+
+        #initialize the stripe data
+        stripe_keys = {
+            'secret_key': SECRET_KEY,
+            'publishable_key': PUBLISHABLE_KEY
+        }
+
+        stripe.api_key = stripe_keys['secret_key']
+
+
+        customer = stripe.Customer.create(
+            email=info['email'],
+            card=info['id']
+        )
+
+        charge = stripe.Charge.create(
+            customer=customer.id,
+            amount=info['amount'],
+            currency='usd',
+            description= info['billing_name'] + ' ordered products from ' + info['star'],
+            receipt_email=info['email']
+        )
+
+        #build the string to be saved
+        order = {}
+        order['name'] = info['billing_name']
+        order['email'] = info['email']
+        order['address'] = {}
+        order['address']['street1'] = info['shipping_address_line1']
+        order['address']['city'] = info['shipping_address_city']
+        order['address']['state'] = info['shipping_address_state']
+        order['address']['zip'] = info['shipping_address_zip']
+        order['address']['country'] = info['shipping_address_country']
+        order['stripe'] = {}
+        order['stripe']['id'] = charge['id']
+        order['stripe']['customer'] = charge['customer']
+        order['cart'] = info['cart']
+        order['total'] = charge['amount']
+        order['ip'] = info['client_ip']
+        order['active'] = True if info['active'] == 'True' else False
+
+        db.orders.insert_one(order)
+
+    return '';
 
 #================ACTIVATE_STORE_MODAL==================
 @app.route('/activateStore', methods=['GET', 'POST'])
