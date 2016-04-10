@@ -192,15 +192,6 @@
           </div>
         </div>
         <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
-        <div class="mouseoverCaption">
-          <h4>Create Your Own Products!</h4>
-          <p><strong>Items:</strong> We can make anything, but some examples include: Blender Bottles, Gym Bags, Hats, Fitness Gloves, Weight Belts, Chucks (For Squatting!), etc.</p>
-          <p><strong>Weight:</strong> 100 grams </p>
-          <p><strong>Design:</strong> Logo imposed on front or back</p>
-          <p><strong>Size:</strong> XS, S, M, L, XL</p>
-          <p><strong>Delivery:</strong> 7 days via UPS or FedEx</p>
-        </div>
-
     </div>
   </div>
 
@@ -212,14 +203,24 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h2 class="modal-title" id="myModalLabel">{{p.name}}</h2>
+        <h2 class="modal-title" id="myModalLabel">{{p.name}} Description</h2>
         <hr>
         <div class="row">
         <div class="col-md-8">
           <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/product_images/{{p.sku}}/{{p.img}}" alt="...">
         </div>
         <div class="col-md-4">
-          {{p.description}}
+          <div class="product-description">
+              <h2>Order Requirement</h2>
+                <p>Your campaign needs atleast <span class="emphasize">{{p.description.minOrderQty}}</span> preorders in order for {{p.name}} to be shipped to your fans.</p>
+              <h2>Composition</h2>
+                <p><strong>Material:</strong> {{p.description.material}}</p>
+                <p><strong>Fabric:</strong>  {{p.description.fabric}}</p>
+                <p><strong>Weight:</strong>  {{p.description.weight}}</p>
+                <p><strong>Fabric:</strong>  {{p.description.design}}</p>
+              <h2>Specialty</h2>
+                <p><strong>Special:</strong>  {{p.description.special}}</p>
+          </div>
         </div>
       </div>
       </div>

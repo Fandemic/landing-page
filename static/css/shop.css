@@ -434,6 +434,16 @@ h3{
   color:white;
 }
 
+.btn-filter:hover {
+  background-color: #1A4163;
+  color:white;
+}
+
+.btn-filter.active {
+  background-color: #1A4163;
+  color:white;
+}
+
 #customerServiceModal{
   font-size: 16px;
 }
@@ -466,4 +476,20 @@ h3{
 
 .filteredOut{
   z-index:-1;
+}
+
+.product-description{
+  text-align:left;
+
+}
+.product-description h2 {
+  font-weight: 600;
+  color: #4c4c4c;
+  font-size: 24px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.product-description .emphasize {
+  color: green;
+  font-weight: 800;
 }
