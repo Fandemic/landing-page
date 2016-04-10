@@ -413,6 +413,7 @@ h3{
   color: white;
 }
 
+<<<<<<< HEAD
 
 #loading{
     display : block;
@@ -560,4 +561,10 @@ h3{
 #customerServiceModal .modal-content {
    width: 900px;
    height: 750px;
+ }
+
+.btn-filter {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  color: white;
 }
