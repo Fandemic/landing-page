@@ -63,8 +63,8 @@ def store(template,starID):
 
         except IndexError:
             print 'no image found'
-        except (err):
-            p['img'] = err
+        except:
+            p['img'] = os.getcwd()
 
         productsFiltered.append(p)
 
