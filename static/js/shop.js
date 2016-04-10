@@ -6,6 +6,7 @@ var cart = {}
 
 $(document).ready(function(){
 
+
     $('.btn-checkout').prop('disabled', true);
 
     //Add a product to the cart
@@ -31,17 +32,31 @@ $(document).ready(function(){
         var itemSrc = $(this).parent().parent().find('.product-picture').attr("src");
         var itemTitle = $(this).parent().find('.title').text();
         var itemID = $(this).parent().parent().find('.product-id').text();
-
+        var varName1 = $(this).parent().find( ".variation1 .name" ).text();
+        var varName2 = $(this).parent().find( ".variation2 .name" ).text();
+        var var1 = $(this).parent().find( ".variation1 option:selected" ).text();
+        var var2 = $(this).parent().find( ".variation2 option:selected" ).text();
+        var id = itemID+var1+var2;
+        var variation = var1+'_'+var2;
 
         //store in an array
-        if (cart.hasOwnProperty(itemID)){
-          cart[itemID]['qty']++;
-          $('.'+itemID).find('.qty').text(cart[itemID]['qty']);
-        }else{
-          cart[itemID] = {'qty':1};
-          var item = $('<div class="item '+itemID+'"><span class="product-id">'+itemID+'</span><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong><br>$<span class="price">' + price + '</span><br>qty <span class="qty">1</span><a class="delete"><i class="fa fa-times"></i></a></div>');
+        try{
+            cart[itemID][variation]['qty']++;
+
+            $('.'+id).find('.qty').text(cart[itemID][variation]['qty']);
+        }
+        catch(KeyError){
+          if (!cart.hasOwnProperty(itemID)){
+            cart[itemID] = {};
+          }
+          cart[itemID][variation]={};
+          cart[itemID][variation]['qty'] = 1;
+          var item = $('<div class="item '+id+'"><span class="product-id">'+itemID+'</span><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong> (x<span class="qty">1</span>)<br>$<span class="price">' + price + '</span><br><strong>'+varName1+':</strong> '+var1+' <strong>'+varName2+':</strong> '+var2+'<a class="delete"><i class="fa fa-times"></i></a></div>');
           item.prependTo($("#cart")).hide().fadeIn(500);
         }
+
+
+
 
 
         //Create the DOM item and fade it in

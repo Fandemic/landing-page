@@ -190,6 +190,8 @@ h3{
 
 .product-picture{
   width: 90%;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 .caption{
@@ -400,6 +402,7 @@ h3{
 
 .progress{
   opacity: .7;
+  position: relative;
 }
 
 .thumbnail .product-logo {
@@ -429,4 +432,38 @@ h3{
 .btn-filter {
   background-color:#337ab7;
   color:white;
+}
+
+#customerServiceModal{
+  font-size: 16px;
+}
+
+.tab-content{
+  margin-top: 20px;
+}
+
+.variations{
+  position:absolute;
+  bottom: 50px;
+  right: 5px;
+  font-size: 14px;
+  font-weight:600;
+}
+
+.variations .form-control{
+  width:auto;
+  cursor: pointer;
+}
+
+.variation1{
+  float:left;
+  margin-right: 5px;
+}
+
+.variation2{
+  float:right;
+}
+
+.filteredOut{
+  z-index:-1;
 }
