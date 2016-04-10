@@ -561,3 +561,9 @@ h3{
    width: 900px;
    height: 750px;
 }
+#product-sample-views {
+  float:left;
+  bottom:0;
+  border:solid 1px;
+  cursor:pointer;
+}
