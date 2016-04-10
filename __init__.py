@@ -58,13 +58,13 @@ def store(template,starID):
 
             for f in os.listdir(rootURL):
                 if os.path.splitext(f)[1].lower() in ('.jpg', '.jpeg','.png'):
-                    p['img'] = f
+                    p['img'] = p['sku']+'/'+f
                     break
 
         except IndexError:
             print 'no image found'
         except:
-            p['img'] = 'hoodie-2.jpg'
+            p['img'] = p['sku']+'/'+p['sku']+'.jpg'
 
         productsFiltered.append(p)
 
