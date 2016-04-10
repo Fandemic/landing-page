@@ -108,8 +108,8 @@
   <div style="padding:15px;">
   Welcome to {{star.name}}'s <br>Official Fandemic store!
   <hr><br>
-  If you need any help with your purchase click the "Customer Service" button below and the
-  fandemic team will help you right away!
+  If you need any help click the "Customer Service" button below and the
+  Fandemic team will help you right away!
   <br><br><br><br>
   <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span>
   </div>
@@ -130,7 +130,7 @@
 <!-- CENTER PANEL -->
 <div id="center-panel" class="container-fluid">
 
-  <div style="height:40px;">
+  <div class="filter-header" style="height:40px;">
   <div style="color:#1d1d1d;font-size:12px;display:inline-block;float:left;">
 
     <!-- <span>Filter:</span> -->
@@ -141,7 +141,7 @@
     {% endfor %}
 
   </div>
-  <input type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>
+  <input style="float:right" type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>
 </div>
 
   <hr>
@@ -294,6 +294,8 @@
 <!-- Customer Service Modal -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="customerServiceModal">
   <div class="modal-dialog modal-lg">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center">
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -338,14 +340,6 @@
                   <a href="#" class="btn-description">More Info <i class="fa fa-share-square-o"></i></a>
                 </div>
                 <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
-                <div class="mouseoverCaption">
-                  <h4>Create Your Own Products!</h4>
-                  <p><strong>Items:</strong> We can make anything, but some examples include: Blender Bottles, Gym Bags, Hats, Fitness Gloves, Weight Belts, Chucks (For Squatting!), etc.</p>
-                  <p><strong>Weight:</strong> 100 grams </p>
-                  <p><strong>Design:</strong> Logo imposed on front or back</p>
-                  <p><strong>Size:</strong> XS, S, M, L, XL</p>
-                  <p><strong>Delivery:</strong> 7 days via UPS or FedEx</p>
-                </div>
               </div>
             </div>
 
@@ -376,13 +370,85 @@
         </div>
 
         <div role="tabpanel" class="tab-pane fade" id="faq">
-
+                    <!-- Tab panes -->
+                    <div class="tab-content faq-cat-content">
+                        <div class="tab-pane active in fade" id="faq-cat-1">
+                            <div class="panel-group" id="accordion-cat-1">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
+                                            <h4 class="panel-title">
+                                                What happens if the minimum preorders are not met?
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-2">
+                                            <h4 class="panel-title">
+                                                FAQ Item Category #1
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="faq-cat-2">
+                            <div class="panel-group" id="accordion-cat-2">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-1">
+                                            <h4 class="panel-title">
+                                                FAQ Item Category #2
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-2-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-2">
+                                            <h4 class="panel-title">
+                                                FAQ Item Category #2
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-2-sub-2" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane fade" id="contact">Contact</div>
-
+        <div role="tabpanel" class="tab-pane fade" id="contact">
+          <p><a href="mailto:support@fandemic.co">support@fandemic.co</a></p>
+        </div>
       </div>
-
+    </div>
+</div>
   </div>
 </div>
 </div>
