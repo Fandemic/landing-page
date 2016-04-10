@@ -52,7 +52,7 @@ def store(template,starID):
 
 
         #generate a url for each variation
-        rootURL = 'static/img/product_images/' + p['sku'] + '/'
+        rootURL = '/static/img/product_images/' + p['sku'] + '/'
 
         try:
 
