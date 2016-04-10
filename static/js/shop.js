@@ -227,3 +227,10 @@ $(function() {
         $(this).addClass('active');
     });
 });
+
+/* customer service accordion */
+$('.collapse').on('show.bs.collapse', function() {
+    var id = $(this).attr('id');
+    $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
+    $('a[href="#' + id + '"] .panel-title span').html('<i class="glyphicon glyphicon-minus"></i>');
+});
