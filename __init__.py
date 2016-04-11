@@ -13,7 +13,7 @@ import os
 
 app = Flask(__name__)
 Mobility(app)
-db = MongoClient('localhost', 27017).fandemic
+db = MongoClient('45.79.159.210', 27017).fandemic
 
 #================INDEX=====================
 @app.route('/')
