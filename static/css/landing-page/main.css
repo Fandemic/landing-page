@@ -305,7 +305,7 @@ b, strong {
   display: block;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url(../img/arrow-icon.png);
+  background-image: url(../../img/arrow-icon.png);
   position: absolute;
   top: 50px;
   right: -58px;
