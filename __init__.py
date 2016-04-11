@@ -27,6 +27,9 @@ def home():
 def store(template,starID):
 
     star = db.stars.find_one({'id':starID.lower()}) #find the star
+    print star
+
+    if star == None: return render_template("404.html")
 
     #get the stars products
     if star['active']:
@@ -202,11 +205,9 @@ def support():
     return ''
 #----------------------------------------------
 
-#================STATIC_PAGES==================
-@app.route('/faq')
-def faq():
-    return render_template('faq.html')
-#----------------------------------------------
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
