@@ -566,9 +566,10 @@ h3{
   border-color: #2e6da4;
   color: white;
 }
-#product-sample-views {
+.product-sample-view {
   float:left;
   bottom:0;
   border:solid 1px;
   cursor:pointer;
+  margin-right: 10px;
 }

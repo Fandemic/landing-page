@@ -51,21 +51,6 @@ def store(template,starID):
                 p["subcatID"].append(catIndex[c])
 
 
-        #generate a url for each variation
-        rootURL = 'static/img/product_images/' + p['sku'] + '/'
-
-        try:
-
-            for f in os.listdir(rootURL):
-                if os.path.splitext(f)[1].lower() in ('.jpg', '.jpeg','.png'):
-                    p['img'] = p['sku']+'/'+f
-                    break
-
-        except IndexError:
-            print 'no image found'
-        except:
-            p['img'] = p['sku']+'/'+p['sku']+'.jpg'
-
         productsFiltered.append(p)
 
     return render_template(template, star = star,products = productsFiltered, cat=catIndex)
