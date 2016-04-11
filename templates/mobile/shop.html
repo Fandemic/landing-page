@@ -36,6 +36,9 @@
 <!-- MOBILE HTML -->
 <body id="mobile">
 
+  <div id="loading"> Please Wait.. Order Processing...</div>
+  <script> $('#loading').hide();</script>
+
   <div id="menu">
 
     <img class="profile-img" src="{{star.image.profile}}">
@@ -48,7 +51,12 @@
       <a class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
     </div>
     <br><br>
+
+    {% if star.active == false %}
     <button style="width:100%;border-radius:0px;"data-toggle="modal" data-target="#myModal" class="btn btn-success btn-activate" id="customButton"><i class="fa fa-power-off"></i> Activate Store</button>
+    {% else %}
+    <button style="width:100%;border-radius:0px;"data-toggle="modal" data-target="#customerServiceModal" class="btn btn-info btn-activate" id="customButton"><i class="fa fa-question-circle"></i> Customer Service</button>
+    {% endif %}
   </div>
 
 
@@ -89,6 +97,8 @@
 
   <div class="content">
     <div class="row">
+
+      {% if star.active == false %}
       <div class="col-md-12">
         <div class="row-fluid">
 
@@ -102,6 +112,7 @@
         </div>
       </div>
     </div>
+    {% endif %}
 
       {% for p in products %}
       <div class="col-xs-12">
@@ -195,7 +206,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    <!--<h2 class="modal-title" id="myModalLabel">Activate Store</h2>-->
+
     <p>
       Fill out the form below
       <br>
@@ -243,7 +254,85 @@
 
     </form>
   </div>
-</body>
+</div>
+</div>
+
+  <!-- MODAL -->
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="customerServiceModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <!--<h2 class="modal-title" id="myModalLabel">Activate Store</h2>-->
+      <p>
+        Fill out the form below
+        <br>
+        We will contact you within 24 hours
+      </p>
+
+      <form id="activate-store-modal-form" action="/activateStore" method="post">
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+              <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name" autofocus/>
+            </div>
+            <br>
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
+              <input id="activate_phone" name="phone" type="tel" class="form-control" placeholder="Phone" />
+            </div>
+            <br>
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
+              <input id="activate_email" name="email" type="email" class="form-control" placeholder="Email" value="{{star.email[0]}}"/>
+            </div>
+          </div>
+
+          <div class="col-xs-6">
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
+              <input id="activate_youtube" name="youtube" type="url" class="form-control" placeholder="Youtube Channel URL" value="{{star.url.youtube}}"/>
+            </div>
+            <br>
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
+              <input id="activate_instagram" name="instagram" type="text" class="form-control" placeholder="Instagram Username" value="{{star.url.instagram}}" />
+            </div>
+            <br>
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-square"></i></span>
+              <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" value="{{star.url.facebook}}"/>
+            </div>
+          </div>
+        </div>
+        <p id="activate-store-notification"></p>
+        <button type="submit" class="btn btn-primary center btn-submit" id="activate-store-button">Submit</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Payment Success Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="paymentSuccessModal">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 class="modal-title" id="myModalLabel">Order Successful!</h2>
+      <p>You should receive a receipt shortly</p>
+      <hr>
+      <p>If the product(s) you ordered do not reach a minimum order you get a full refund.</p>
+      <br>
+      <p>Questions or concerns? Email us at <strong>support@fandemic.co</strong> and we will respond within 24 hours. Thanks!</p>
+    </div>
+  </div>
+</div>
+
 
 <script>
 (function ($) {
@@ -261,27 +350,67 @@ $('.spinner .btn:last-of-type').on('click', function() {
 
 <script>
 var handler = StripeCheckout.configure({
-key: 'pk_test_loMuGvPxkyAer6FdjK1ykZVw',
+{% if star.active == false %}
+key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
+{% else %}
+key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
+{% endif %}
 image: '{{star.image.profile}}',
 locale: 'auto',
 token: function(token,args) {
-// Use the token to create the charge with a server-side script.
-// You can access the token ID with `token.id`
-alert(args["shipping_address_line1"])
+
+  //gather info from the order
+  var info = {};
+  info['star'] = "{{star.name}}";
+  info['active'] = "{{star.active}}";
+  info['amount'] = Math.round(total_cost * 100);
+  info['cart'] = cart;
+
+  //combine all info into one object
+  var result={};
+  $.extend(result, args, token);
+  $.extend(result, result, info);
+
+  $.ajax({
+    type: 'POST',
+    url: '/charge',
+    data: JSON.stringify(result, null, '\t'),
+    contentType: 'application/json;charset=UTF-8',
+    success: function(response) {
+      $("#paymentSuccessModal").modal()
+      resetCart();
+    },
+    error: function(error) {
+      alert("payment error");
+    }
+  });
+
 }
 });
+
+
+$( document ).ajaxStart(function () {
+  $('#loading').show();  // show loading indicator
+});
+
+$( document ).ajaxStop(function()
+{
+    $('#loading').hide();  // hide loading indicator
+});
+
+
 
 $('.customButton').on('click', function(e) {
 // Open Checkout with further options
 handler.open({
 name: 'ORDER TOTAL',
-description: '$' + total_cost,
+description: '$' + total_cost.formatMoney(2),
 zipCode: true,
 billingAddress: true,
 shippingAddress: true,
-allowRememberMe: false,
+allowRememberMe: true,
 panelLabel: "Pay",
-amount: 1999
+amount: Math.round(total_cost * 100)
 });
 e.preventDefault();
 });
