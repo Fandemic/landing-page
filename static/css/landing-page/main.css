@@ -78,7 +78,7 @@ b, strong {
    ========================================================================== */
 
 .hero-section {
-  background: url(../img/bg6.jpg) center center no-repeat scroll;
+  background: url(../../img/bg6.jpg) center center no-repeat scroll;
   background-size: cover;
   padding: 0 0 4.5em;
   position: relative;

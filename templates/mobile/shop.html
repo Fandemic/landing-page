@@ -23,7 +23,7 @@
   <script src="../static/js/bootstrap.min.js"></script>
   <script src="../static/js/slideout.min.js"></script>
 
-  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/shop.css">
   <link rel="stylesheet" href="../static/css/shop-mobile.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -57,7 +57,7 @@
     <div class="cart-and-total">
           <h2 class="title">Cart</h2>
 
-           <span class="money" style="font-size:16px;">Total: $<span id="total-cost">0.00</span></span>
+           <span class="money" style="font-size:16px;">Total: $<span class="total-cost">0.00</span></span>
     </div>
 
     <div id="cart" class="cart" class="well" style="max-height:160px;overflow:auto;padding:5px;">
@@ -151,7 +151,7 @@
       'touch': false
     });
 
-    var cart = new Slideout({
+    var cartMenu = new Slideout({
       'panel': document.getElementById('panel'),
       'menu': document.getElementById('cart-menu'),
       'padding': 256,
@@ -171,7 +171,7 @@
     // Toggle button
     document.querySelector('.cart-btn').addEventListener('click', function() {
 
-      cart.toggle();
+      cartMenu.toggle();
       $('#menu').css('z-index', -1);
       $('#cart-menu').css('z-index', 0);
 
@@ -256,7 +256,8 @@ $('.spinner .btn:last-of-type').on('click', function() {
 })(jQuery);
 </script>
 
-<script src="../static/js/shop-mobile.js"></script>
+<script src="../static/js/shop.js"></script>
+<script src="../static/js/mobile.js"></script>
 
 <script>
 var handler = StripeCheckout.configure({
