@@ -147,6 +147,9 @@
   <div class="row">
   <div class="filtr-container">
 
+
+{% if star.active == false %}
+ <!-- SAMPLE PRODUCTS VERSION -->
   {% for p in products %}
   <div class="col-md-6 col-lg-4 filtr-item"
        data-category="{% for id in p.subcatID %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
@@ -166,7 +169,7 @@
             </div>
           </div>
         </div>
-        <img width="500px" height="500px" data-toggle="modal" data-target="#modal-{{p.sku}}" class="product-picture" src="../static/img/product_images/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+        <img width="500px" height="500px" data-toggle="modal" data-target="#modal-{{p.sku}}" class="product-picture" src="../static/img/sample_products/{{p.sku}}/{{p.default_img[0]}}" alt="...">
         <div class="caption">
           <h3 class="title">{{p.name}}</h3>
           <span class="money">$<span class="price">{{p.price}}</span></span>
@@ -207,7 +210,7 @@
         <hr>
         <div class="row">
         <div class="col-md-8">
-          <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/product_images/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+          <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/sample_products/{{p.sku}}/{{p.default_img[0]}}" alt="...">
         </div>
         <div class="col-md-4">
           <div class="product-description">
@@ -225,7 +228,7 @@
           </div>
           {% for img in p.default_img %}
           <div class="product-sample-view">
-            <img width="50px" height="50px" src="../static/img/product_images/{{p.sku}}/{{img}}">
+            <img width="50px" height="50px" src="../static/img/sample_products/{{p.sku}}/{{img}}">
           </div>
           {% endfor %}
         </div>
@@ -234,6 +237,97 @@
     </div>
   </div>
   {% endfor %}
+
+{% else %}
+ <!-- ACTIVE STORE PRODUCTS VERSION -->
+  {% for p in products %}
+  <div class="col-md-6 col-lg-4 filtr-item"
+       data-category="{% for id in p.subcatID %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
+       data-sort="Create Your Own" style="padding: 25px;padding-top:10px;padding-bottom:10px;">
+
+    <div class="thumbnail">
+
+
+        <span class="product-id">{{p.sku}}</span>
+        <div class="card-header">
+          <span class="hours-remaining"><i class="fa fa-clock-o"></i> 14 days</span>
+          <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
+          <div class="progress">
+            <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="44"
+            aria-valuemin="0" aria-valuemax="{{p.description.minOrderQty}}" style="width:50%">
+              <span class="progress-text">{{(p.description.minOrderQty / 2)|round|int}} Orders Needed!</span>
+            </div>
+          </div>
+        </div>
+        <img width="500px" height="500px" data-toggle="modal" data-target="#modal-{{p.sku}}" class="product-picture" src="../static/img/products/{{p.id}}/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+        <div class="caption">
+          <h3 class="title">{{p.name}}</h3>
+          <span class="money">$<span class="price">{{p.price}}</span></span>
+        </div>
+        <div class="variations">
+          <div class="variation1">
+            <span class="name">size</span>
+            <select class="form-control">
+              {% for s in p.variations.size %}
+              <option>{{s}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% if p.variations.color[0].name is defined %}
+          <div class="variation2">
+            <span class="name">color</span>
+            <select class="form-control">
+                {% for c in p.variations.color %}
+                <option>{{c.name}}</option>
+                {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+        </div>
+        <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
+    </div>
+  </div>
+
+
+  <!-- Product Description Modal -->
+  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="z-index:99999;" id="modal-{{p.sku}}">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="modal-title" id="myModalLabel">{{p.name}} Description</h2>
+        <hr>
+        <div class="row">
+        <div class="col-md-8">
+          <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/products/{{p.id}}/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+        </div>
+        <div class="col-md-4">
+          <div class="product-description">
+              <h2>Order Requirement</h2>
+                <p>This campaign needs atleast <span class="emphasize">{{p.description.minOrderQty}}</span> preorders in order for {{p.name}} to be shipped.</p>
+              <h2>Composition</h2>
+                <p><strong>Material:</strong> {{p.description.material}}</p>
+                <p><strong>Fabric:</strong>  {{p.description.fabric}}</p>
+                <p><strong>Weight:</strong>  {{p.description.weight}}</p>
+                <p><strong>Fabric:</strong>  {{p.description.design}}</p>
+              <h2>Specialty</h2>
+                <p><strong>Special:</strong>  {{p.description.special}}</p>
+                <p><strong>Design:</strong>  Custom designs, logos, colors, and any modifications can be made, just ask!</p>
+
+          </div>
+          {% for img in p.default_img %}
+          <div class="product-sample-view">
+            <img width="50px" height="50px" src="../static/img/products/{{p.id}}/{{p.sku}}/{{img}}">
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endif %}
 
 </div>
 </div>
@@ -475,8 +569,8 @@
                     </div>
                   </div>
                   <hr>
-                  <button type="submit" style="float:left" class="btn btn-primary center btn-submit" id="contact-form-button">Submit</button>
-                  <p id="contact-form-notification"></p>
+                  <button type="submit" style="float:left" class="btn btn-primary center btn-submit" id="support-form-button">Submit</button>
+                  <p id="support-form-notification"></p>
                 </form>
         </div>
       </div>

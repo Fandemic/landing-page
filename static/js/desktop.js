@@ -51,6 +51,40 @@
  });
 
 
+ /* ==========================================================================
+  Activate Form
+  ========================================================================== */
+ $(function() {
+   $('#support-form-button').on('click', function() {
+     var firstname = $('#support_firstname').val();
+     var email = $('#support_email').val();
+     var phone = $('#support_phone').val();
+
+     $('#support-form-notification').html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Sending...');
+     $.ajax({
+       url: '/supportContactForm',
+       data: $('form').serialize(),
+       type: 'POST',
+       success: function(response) {
+         $('#support-form-notification').empty()
+         $('#support-form-notification').html('<i class="fa fa-envelope"></i> Thanks ' + firstname + ' , we will contact you within 24 hours!');
+         setTimeout(function() {
+           //$('#myModal').modal('hide')
+           $('#support-form-notification').empty()
+           $('#support-contact-form').trigger("reset")
+         }, 2000);
+         console.log(response);
+       },
+       error: function(error) {
+         $('#support-form-notification').html('<p style="color:red"><i class="fa fa-exclamation-triangle"></i> Error!</p>');
+         console.log(error);
+       }
+     });
+     return false;
+   });
+ });
+
+
 (function ($) {
   $('.spinner .btn:first-of-type').on('click', function() {
     $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
