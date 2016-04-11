@@ -259,7 +259,7 @@
             </div>
           </div>
         </div>
-        <img width="500px" height="500px" data-toggle="modal" data-target="#modal-{{p.sku}}" class="product-picture" src="../static/img/products/{{p.id}}/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+        <img width="500px" height="500px" data-toggle="modal" data-target="#modal-{{p.sku}}" class="product-picture" src="../static/img/products/{{name.id}}/{{p.sku}}/{{p.default_img[0]}}" alt="...">
         <div class="caption">
           <h3 class="title">{{p.name}}</h3>
           <span class="money">$<span class="price">{{p.price}}</span></span>
@@ -300,7 +300,7 @@
         <hr>
         <div class="row">
         <div class="col-md-8">
-          <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/products/{{p.id}}/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+          <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/products/{{name.id}}/{{p.sku}}/{{p.default_img[0]}}" alt="...">
         </div>
         <div class="col-md-4">
           <div class="product-description">
@@ -318,7 +318,7 @@
           </div>
           {% for img in p.default_img %}
           <div class="product-sample-view">
-            <img width="50px" height="50px" src="../static/img/products/{{p.id}}/{{p.sku}}/{{img}}">
+            <img width="50px" height="50px" src="../static/img/products/{{name.id}}/{{p.sku}}/{{img}}">
           </div>
           {% endfor %}
         </div>
