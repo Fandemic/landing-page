@@ -163,43 +163,43 @@ def activate():
 #----------------------------------------------
 
 #================CONTACT_FORM_MODAL==================
-@app.route('/supportContactForm', methods=['GET', 'POST'])
-def activate():
-    firstname = request.form['name']
-    email = request.form['email']
-    message = request.form['message']
-    current_ip = request.environ['REMOTE_ADDR']
-
-    toaddr = ['ethan@fandemic.co', 'brandon@fandemic.co']
-    fromaddr = 'fandemicstore@gmail.com'
-
-    msg = MIMEMultipart()
-    msg['From'] = fromaddr
-    msg['To'] = ", ".join(toaddr)
-    msg['Subject'] = "Support Email"
-    html = """
-            <html>
-              <head></head>
-              <body>
-                <p>
-                    Firstname: """ + firstname + """<br>
-                    Email: """ + email + """<br>
-                    Message: """ + phone + """<br>
-                    IP Address: """ + current_ip + """
-                </p>
-              </body>
-            </html>
-            """
-    msg.attach(MIMEText(html, 'html'))
-
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(fromaddr, "Fandemic123")
-    text = msg.as_string()
-    server.sendmail(fromaddr, toaddr, text)
-    server.quit()
-
-    return ''
+# @app.route('/supportContactForm', methods=['GET', 'POST'])
+# def activate():
+#     firstname = request.form['name']
+#     email = request.form['email']
+#     message = request.form['message']
+#     current_ip = request.environ['REMOTE_ADDR']
+#
+#     toaddr = ['ethan@fandemic.co', 'brandon@fandemic.co']
+#     fromaddr = 'fandemicstore@gmail.com'
+#
+#     msg = MIMEMultipart()
+#     msg['From'] = fromaddr
+#     msg['To'] = ", ".join(toaddr)
+#     msg['Subject'] = "Support Email"
+#     html = """
+#             <html>
+#               <head></head>
+#               <body>
+#                 <p>
+#                     Firstname: """ + firstname + """<br>
+#                     Email: """ + email + """<br>
+#                     Message: """ + phone + """<br>
+#                     IP Address: """ + current_ip + """
+#                 </p>
+#               </body>
+#             </html>
+#             """
+#     msg.attach(MIMEText(html, 'html'))
+#
+#     server = smtplib.SMTP('smtp.gmail.com', 587)
+#     server.starttls()
+#     server.login(fromaddr, "Fandemic123")
+#     text = msg.as_string()
+#     server.sendmail(fromaddr, toaddr, text)
+#     server.quit()
+#
+#     return ''
 #----------------------------------------------
 
 #================STATIC_PAGES==================
