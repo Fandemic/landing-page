@@ -113,6 +113,7 @@ def charge():
         order['cart'] = info['cart']
         order['total'] = charge['amount']
         order['ip'] = info['client_ip']
+        order['star_id'] = info['star_id']
         order['active'] = True if info['active'] == 'True' else False
 
         db.orders.insert_one(order)

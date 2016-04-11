@@ -59,7 +59,9 @@ $(document).ready(function(){
     $("#cart").on('click', '.delete', function() {
 
       //increment
-      num_items--;
+      var qty = $(this).parent().find(".qty").text();
+      num_items = num_items - qty;
+
       $(".num-items").text("("+num_items+")");
 
       if (num_items == 0){
