@@ -108,3 +108,33 @@ var n = this,
     j = (j = i.length) > 3 ? j % 3 : 0;
    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
  };
+
+ /* ==========================================================================
+  Contact Form Support
+  ========================================================================== */
+
+ $(function() {
+   $('#contact-form-button').on('click', function() {
+     var firstname = $('#support_firstname').val();
+     var email = $('#support_email').val();
+
+     $('#contact-form-notification').html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Sending...');
+     $.ajax({
+       url: '/supportContactForm',
+       data: $('form').serialize(),
+       type: 'POST',
+       success: function(response) {
+         $('#contact-form-notification').empty()
+         $('#contact-form-notification').html('<i class="fa fa-envelope"></i> Thanks ' + firstname + ' , we will contact you within 24 hours!');
+         console.log(response);
+       },
+       error: function(error) {
+         $('#contact-form-notification').html('<p style="color:red"><i class="fa fa-exclamation-triangle"></i> Error!</p>');
+         console.log(error);
+       }
+     });
+   });
+ });
+
+ /* ==========================================================================
+  ========================================================================== */
