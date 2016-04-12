@@ -10,7 +10,7 @@
 
  //cart toggle
  // Toggle button
- document.querySelector('.cart-btn').addEventListener('click', function() {
+ document.querySelector('.cart-button').addEventListener('click', function() {
 
    cartMenu.toggle();
 

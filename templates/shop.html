@@ -6,12 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{star.name}} Official Store</title>
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-  <link href='https://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>
 
   <script src="../static/js/jquery-1.12.2.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -49,27 +45,6 @@
 </div>
 
 
-<!-- TOP PANEL -->
-<div id="top-panel">
-
-  <a href="/"><img class="logo" height="40px" src="../static/img/fandemic-icon-white.png"></a>
-
-  <div style="margin-top:20px;">
-
-    {% if star.active == false %}
-    <strong>Heads up! This store is <span style="color:#FFCC00;">inactive</span>.
-    If this is yours, <a href="#" data-toggle="modal" data-target="#activateStoreModal"> activate it today</a> for free!</strong>
-    {% else %}
-    <strong>Welcome to {{star.name}}'s official store!</strong>
-    {% endif %}
-  </div>
-  <div class="cart-btn">
-    <i class="fa fa-shopping-cart"></i><span class="num-items"></span>
-  </div>
-
-</div>
-
-
 <!-- SIDE PANEL -->
 <div id="side-panel" class="side-panel">
 
@@ -95,20 +70,22 @@
 
   {% if star.active == false %}
   <div style="padding:15px;">
-  Welcome to {{star.name}}'s Official Fandemic store. If activated, {{star.name}}
-  can sell <strong>custom</strong> designed products!
+    <strong>1. We Design</strong><br><br>
+    <strong>2. You Pick</strong><br><br>
+    <strong>3. You Promote</strong><br><br>
+    <strong>4. We Ship</strong><br><br><br>
   If you are {{star.name}} click the "activate store" button below!
-  <br><br><br><br>
+
   </div>
   <button data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate"><i class="fa fa-power-off"></i> Activate Store</button>
 
   {% else %}
   <div style="padding: 0px 10px 0px 10px;">
-  Welcome to {{star.name}}'s <br>Official Fandemic store!
-  <hr><br>
+  <strong>Welcome to {{star.name}}'s <br>Official Fandemic store!</strong>
+  <hr>
   If you need any help click the "Customer Service" button below and the
   Fandemic team will help you right away!
-  <br><br><br><br>
+
   <!-- <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span> -->
   </div>
   <button href="#" data-toggle="modal" data-target="#customerServiceModal" class="btn btn-info btn-activate"><i class="fa fa-question-circle"></i> Customer Service</button>
@@ -128,8 +105,17 @@
 <!-- CENTER PANEL -->
 <div id="center-panel" class="container-fluid">
 
+<div class="controls">
+  <!--<input style="float:left" type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>-->
+
+  <div class="cart-btn">
+    <a href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
+    <a data-toggle="modal" data-target="#customerServiceModal"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+    <i class="fa fa-shopping-cart cart-button"></i><span class="num-items"></span>
+  </div>
+
   <div class="filter-header" style="height:40px;">
-  <div style="color:#1d1d1d;font-size:12px;display:inline-block;float:left;">
+  <div style="color:#1d1d1d;font-size:12px;display:inline-block;float:left;margin-top: 0px;">
 
     <!-- <span>Filter:</span> -->
     <button class="active btn btn-filter" data-filter="all">All Products</button>
@@ -139,10 +125,10 @@
     {% endfor %}
 
   </div>
-  <input style="float:right" type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>
-</div>
 
-  <hr>
+  </div>
+
+</div>
 
   <div class="row">
   <div class="filtr-container">
@@ -173,7 +159,9 @@
         <div class="caption">
           <h3 class="title">{{p.name}}</h3>
           <span class="money">$<span class="price">{{p.price}}</span></span>
+          <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
         </div>
+        <!-- GET THIS TO POPUP IN A WIZARD
         <div class="variations">
           <div class="variation1">
             <span class="name">size</span>
@@ -194,7 +182,7 @@
           </div>
           {% endif %}
         </div>
-        <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
+        -->
     </div>
   </div>
 
@@ -284,7 +272,7 @@
           </div>
           {% endif %}
         </div>
-        <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
+        <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
     </div>
   </div>
 
@@ -443,9 +431,8 @@
                   <h3 class="title">Fitness Hoodie</h3>
                   <span class="money">$<span class="price">39.99</span></span>
 
-                  <a href="#" class="btn-description">More Info <i class="fa fa-share-square-o"></i></a>
                 </div>
-                <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i> Add to Cart</button>
+                <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
               </div>
             </div>
 
