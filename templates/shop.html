@@ -158,7 +158,13 @@
         <img width="500px" height="500px" data-toggle="modal" data-target="#modal-{{p.sku}}" class="product-picture" src="../static/img/sample_products/{{p.sku}}/{{p.default_img[0]}}" alt="...">
 
         <div class="row variations">
-            <div class="col-md-6 variation1">
+            <div
+              class="{% if p.variations.color[0].name is defined %}
+                        col-md-6
+                     {% else %}
+                        col-md-12
+                     {% endif %}
+                        variation1">
               <div class="name"><span>size</span></div>
               <select class="form-control">
                 {% for s in p.variations.size %}
@@ -273,7 +279,7 @@
         <img width="500px" height="500px" data-toggle="modal" data-target="#modal-{{p.sku}}" class="product-picture" src="../static/img/products/{{star.id}}/{{p.sku}}/{{p.default_img[0]}}" alt="...">
 
         <div class="row variations">
-            <div class="col-md-6 variation1">
+            <div class="col-lg-6 variation1">
               <div class="name"><span>size</span></div>
               <select class="form-control">
                 {% for s in p.variations.size %}
@@ -282,7 +288,7 @@
               </select>
             </div>
             {% if p.variations.color[0].name is defined %}
-            <div class="col-md-6 variation2">
+            <div class="col-lg-6 variation2">
               <div class="name"><span>color</span></div>
               <select class="form-control">
                   {% for c in p.variations.color %}
