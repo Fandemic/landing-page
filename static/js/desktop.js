@@ -109,20 +109,14 @@ $(document).ready(function () {
     $(this).parent().parent().find('.product-picture').attr("src", src);
   });
 
+  //Filter
+  $(function() {
+      //Initialize filterizr with default options
+      $('.filtr-container').filterizr();
+  });
+
 });
 
-/* ==========================================================================
- Caption mouseover
- ========================================================================== */
-
-$('.caption .item-info-icon').hover(
-    function(){
-      $(this).parent().parent().parent().find('.mouseoverCaption').slideDown(250);
-    },
-    function(){
-      $(this).parent().parent().parent().find('.mouseoverCaption').slideUp(250);
-    }
-);
 
 /*DATA FILTERS*/
 $(function() {

@@ -29,10 +29,10 @@ $(document).ready(function(){
         var itemSrc = $(this).parent().parent().find('.product-picture').attr("src");
         var itemTitle = $(this).parent().find('.title').text();
         var itemID = $(this).parent().parent().find('.product-id').text();
-        var varName1 = $(this).parent().find( ".variation1 .name" ).text();
-        var varName2 = $(this).parent().find( ".variation2 .name" ).text();
-        var var1 = $(this).parent().find( ".variation1 option:selected" ).text();
-        var var2 = $(this).parent().find( ".variation2 option:selected" ).text();
+        var varName1 = $(this).parent().parent().find( ".variation1 .name span" ).text();
+        var varName2 = $(this).parent().parent().find( ".variation2 .name span" ).text();
+        var var1 = $(this).parent().parent().find( ".variation1 option:selected" ).text();
+        var var2 = $(this).parent().parent().find( ".variation2 option:selected" ).text();
         var id = itemID+var1+var2;
         var variation = var1+'_'+var2;
 
