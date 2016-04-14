@@ -4,7 +4,8 @@
   html, body{
     background-color: #fff;
     height: 100%;
-    overflow-x:hidden;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
   }
 
   #desktop{
