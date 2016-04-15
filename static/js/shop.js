@@ -3,6 +3,19 @@ var total_cost = 0.00;
 var num_items = 0;
 var cart = {}
 
+//timer
+$('.time').countdown(1462147199*1000, function(event) {
+   var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+   $(this).html(event.strftime(totalHours + ':%M:%S'));
+ });
+
+ //Change product image on select
+ $('.variation2 .form-control').change(function () {
+    //var val = parseInt($(this).val());
+    var src = $(this).find("option:selected").data('src');
+    $(this).parent().parent().parent().find(".product-picture").attr("src",src);
+});
+
 $(document).ready(function(){
 
     $('.btn-checkout').prop('disabled', true);

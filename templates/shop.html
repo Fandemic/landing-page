@@ -267,12 +267,16 @@
 
         <span class="product-id">{{p.sku}}</span>
         <div class="card-header">
-          <span class="hours-remaining"><i class="fa fa-clock-o"></i> 14 days</span>
-          <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
+          <span class="hours-remaining">
+            <i class="fa fa-clock-o"></i>
+            <span class="time">{{p.endTime}}</span>
+          </span>
+          <img width="30px" class="shipping-icon" style="opacity:.5;" src="../static/img/shipping-icon.png">
           <div class="progress">
-            <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="44"
-            aria-valuemin="0" aria-valuemax="{{p.description.minOrderQty}}" style="width:50%">
-              <span class="progress-text">{{(p.description.minOrderQty / 2)|round|int}} Orders Needed!</span>
+            <span class="progress-text" style="color:#9d9d9d;">{{(p.minQty - p.currentQty)|round|int}} Orders Needed!</span>
+            <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="{{p.currentQty}}"
+            aria-valuemin="0" aria-valuemax="{{p.minQty}}" style="width:{{p.currentQty + 1}}%">
+
             </div>
           </div>
         </div>
@@ -292,7 +296,10 @@
               <div class="name"><span>color</span></div>
               <select class="form-control">
                   {% for c in p.variations.color %}
-                  <option>{{c.name}}</option>
+                  <option
+                    data-src="../static/img/products/{{star.id}}/{{p.sku}}/{{c.img[0]}}">
+                    {{c.name}}
+                  </option>
                   {% endfor %}
               </select>
             </div>
@@ -336,15 +343,12 @@
                 <p><strong>Design:</strong>  Custom designs, logos, colors, and any modifications can be made, just ask!</p>
 
           </div>
-          {% for img in p.default_img %}
+          {% for v in p.variations.color %}
+          {% for i in v.img %}
           <div class="product-sample-view">
-            <img width="50px" height="50px" src="../static/img/products/{{star.id}}/{{p.sku}}/{{img}}">
+            <img width="50px" height="50px" src="../static/img/products/{{star.id}}/{{p.sku}}/{{i}}">
           </div>
           {% endfor %}
-          {% for v in p.variations.color %}
-          <div class="product-sample-view">
-            <img width="50px" height="50px" src="../static/img/products/{{star.id}}/{{p.sku}}/{{v.img[0]}}">
-          </div>
           {% endfor %}
         </div>
       </div>
@@ -642,6 +646,7 @@
 
   <!-- Kick off Filterizr -->
 <script src="../static/js/jquery.filterizr.min.js"></script>
+<script src="../static/js/countdown.min.js"></script>
 <script src="../static/js/shop.js"></script>
 <script src="../static/js/desktop.js"></script>
 
