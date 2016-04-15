@@ -4,6 +4,7 @@
 
 {% include 'header.html' %}
 
+
 <body>
 
   <!--hero section-->
@@ -193,6 +194,43 @@
       </div>
     </div>
   </section>
+
+  <!--slider-->
+  <!-- <section id="activestores">
+    <div class="activestores section-spacing">
+      <div class="container">
+        <header class="section-header" style="text-align:center">
+                <h2>Active Store Items</h2>
+                <h3>Check out some active store items:</h3>
+              </header>
+          <div class="demo">
+                <div class="item">
+                    <ul id="content-slider" class="content-slider">
+                        <li>
+                          <img src="../static/img/products/xtremefitness/shexbro-mens-tank-1/shexbro-mens-tank-1.png">
+                        </li>
+                        <li>
+                          <img src="../static/img/products/xtremefitness/shexbro-mens-tank-1/shexbro-mens-tank-1.png">
+                        </li>
+                        <li>
+                          <img src="../static/img/products/xtremefitness/shexbro-mens-tank-1/shexbro-mens-tank-1.png">
+                        </li>
+                        <li>
+                          <img src="../static/img/products/xtremefitness/shexbro-mens-tank-1/shexbro-mens-tank-1.png">
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </section> -->
 
   <!--Features end-->
 
@@ -526,12 +564,22 @@
     }, "slow");
     return false;
   });
-</script>
 
-<script>
 $(document).ready(function() {
     if (window.location.href.indexOf("#video") != -1){
        $('.litebox-hero').click()
      }
+
+var autoplaySlider = $('#content-slider').lightSlider({
+    auto:true,
+    loop:true,
+    pauseOnHover: true,
+    onBeforeSlide: function (el) {
+        $('#current').text(el.getCurrentSlideCount());
+    }
 });
+});
+
+
+
 </script>
