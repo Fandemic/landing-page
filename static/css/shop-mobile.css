@@ -226,23 +226,6 @@ padding-right: 20px;
 
   }
 
-  .demo{
-    width:auto;
-    float:none;
-    text-align: center;
-    margin: 0 auto;
-    display: inline-block;
-    font-size: 1.7em;
-    border-radius: 50%;
-    border-color: #f1f1f1;
-    background-color: transparent;
-    color:#f1f1f1;
-    margin-right: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position: initial;
-  }
-
 
   /*cart*/
    #cart-menu .title{

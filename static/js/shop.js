@@ -93,7 +93,7 @@ $(document).ready(function(){
       //Remove the item
       var price = $(this).parent().find(".price").text();
       var qty = $(this).parent().find(".qty").text();
-      total_cost = total_cost - (parseFloat(price)*qty);
+      total_cost = total_cost - (parseFloat(price)*parseFloat(qty));
       $(".total-cost").text(total_cost.formatMoney(2));
       $(this).parent(".item").fadeOut(300, function(){ $(this).remove();});
     });

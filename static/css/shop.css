@@ -82,31 +82,46 @@ h3{
   top: 10px;
 }
 
-#center-panel .cart-btn{
-  position:absolute;
-  right: 20px;
-  top: 10px;
-  font-size: 30px;
-  cursor: pointer;
+.btn:focus{
+  background-color: #fff;
+  color: #515151;
+  border-color: #DDDDDD;
 }
 
-#center-panel .cart-btn i{
-  margin-right:10px;
-  color: #515151;
+.btn:hover{
+  color:#fff;
+  background-color: #68A0D4;
 }
 
 .controls{
   position: fixed;
-z-index: 100;
-background-color: #fff;
-top: 0px;
-left: 262px;
-right: 0px;
-height: 70px;
-padding: 20px;
-webkit-box-shadow: 0px 2px 4px rgba(100, 100, 100, 0.49);
- -moz-box-shadow:    0px 2px 4px rgba(100, 100, 100, 0.49);
- box-shadow:         0px 2px 4px rgba(100, 100, 100, 0.49);
+  z-index: 100;
+  background-color: #fff;
+  top: 0px;
+  left: 262px;
+  right: 0px;
+  height: 70px;
+  padding: 20px;
+  webkit-box-shadow: 0px 2px 4px rgba(100, 100, 100, 0.49);
+  -moz-box-shadow:    0px 2px 4px rgba(100, 100, 100, 0.49);
+  box-shadow:         0px 2px 4px rgba(100, 100, 100, 0.49);`
+}
+
+.controls .btns{
+  position:absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 30px;
+}
+
+.controls .button{
+  margin-right:10px;
+  color: #515151;
+  cursor: pointer;
+}
+
+.controls .button:hover{
+  color: #68A0D4;
 }
 
 
@@ -177,7 +192,7 @@ webkit-box-shadow: 0px 2px 4px rgba(100, 100, 100, 0.49);
     display: none;
     background-color: #1d1d1d;
     text-align: center;
-    padding-top: 60px;
+    padding-top: 100px;
     color: #f9f9f9;
 
   }
@@ -660,4 +675,21 @@ webkit-box-shadow: 0px 2px 4px rgba(100, 100, 100, 0.49);
 .side-panel hr {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.demo{
+  width:auto;
+  float:none;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+  font-size: 1.7em;
+  border-radius: 50%;
+  border-color: #f1f1f1;
+  background-color: transparent;
+  color:#f1f1f1;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: initial;
 }

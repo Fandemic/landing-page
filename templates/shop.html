@@ -37,6 +37,8 @@
 
   <div id="cart" class="cart" class="well" style="max-height:70%;overflow:auto;padding:5px;margin-top:20px;">
       <span id="alert-cart-empty"><br><br>The cart is empty!<br>Add a product to the cart by clicking
+        <button class="btn btn-primary btn-add demo" role="button"><i class="fa fa-cart-plus"></i></button>
+        <br>
                                     on a product card.</span>
   </div>
 
@@ -99,20 +101,14 @@
 
 
 
-
-
-
-<!-- CENTER PANEL -->
-<div id="center-panel" class="container-fluid">
-
 <div class="controls">
   <!--<input style="float:left" type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>-->
 
-  <div class="cart-btn">
-    <a href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
-    <a data-toggle="modal" data-target="#customerServiceModal"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-    <i class="fa fa-shopping-cart cart-button"></i><span class="num-items"></span>
-  </div>
+    <div class="btns">
+      <a href="/" class="button"><i class="fa fa-home" aria-hidden="true"></i></a>
+      <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-info-circle button" aria-hidden="true"></i>
+      <i class="fa fa-shopping-cart cart-button button"></i><span class="num-items"></span>
+    </div>
 
   <div class="filter-header" style="height:40px;">
   <div style="color:#1d1d1d;font-size:12px;display:inline-block;float:left;margin-top: 0px;">
@@ -129,6 +125,10 @@
   </div>
 
 </div>
+
+
+<!-- CENTER PANEL -->
+<div id="center-panel" class="container-fluid">
 
   <div class="row">
   <div class="filtr-container">
@@ -190,28 +190,6 @@
           <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
           <button class="btn btn-primary btn-view" role="button" data-toggle="modal" data-target="#modal-{{p.sku}}"><i class="fa fa-eye" aria-hidden="true"></i></button>
         </div>
-        <!-- GET THIS TO POPUP IN A WIZARD
-        <div class="variations">
-          <div class="variation1">
-            <span class="name">size</span>
-            <select class="form-control">
-              {% for s in p.variations.size %}
-              <option>{{s}}</option>
-              {% endfor %}
-            </select>
-          </div>
-          {% if p.variations.color[0].name is defined %}
-          <div class="variation2">
-            <span class="name">color</span>
-            <select class="form-control">
-                {% for c in p.variations.color %}
-                <option>{{c.name}}</option>
-                {% endfor %}
-            </select>
-          </div>
-          {% endif %}
-        </div>
-        -->
     </div>
   </div>
 
