@@ -52,7 +52,7 @@
 
   <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
   <div class="profile-img-container">
-    <img class="profile-img" src="{{star.image.profile}}">
+    <img class="profile-img" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="{{star.image.profile}}">
   </div>
 
   {% if star.name != "Fandemic" %}
@@ -147,7 +147,7 @@
         <span class="product-id">{{p.sku}}</span>
         <div class="card-header">
           <span class="hours-remaining"><i class="fa fa-clock-o"></i> 14 days</span>
-          <img width="30px" class="shipping-icon" src="../static/img/shipping-icon.png">
+          <img width="30px" class="shipping-icon" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/shipping-icon.png">
           <div class="progress">
             <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="44"
             aria-valuemin="0" aria-valuemax="{{p.description.minOrderQty}}" style="width:50%">
@@ -210,7 +210,10 @@
         <hr>
         <div class="row">
         <div class="col-md-8">
-          <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/sample_products/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+          <img width="500px" height="500px"
+               class="product-picture img-responsive"
+               src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+               data-src="../static/img/sample_products/{{p.sku}}/{{p.default_img[0]}}">
         </div>
         <div class="col-md-4">
           <div class="product-description">
@@ -228,7 +231,7 @@
           </div>
           {% for img in p.default_img %}
           <div class="product-sample-view">
-            <img width="50px" height="50px" src="../static/img/sample_products/{{p.sku}}/{{img}}">
+            <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/sample_products/{{p.sku}}/{{img}}">
           </div>
           {% endfor %}
         </div>
@@ -254,7 +257,7 @@
             <i class="fa fa-clock-o"></i>
             <span class="time">{{p.endTime}}</span>
           </span>
-          <img width="30px" class="shipping-icon" style="opacity:.5;" src="../static/img/shipping-icon.png">
+          <img width="30px" class="shipping-icon" style="opacity:.5;" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/shipping-icon.png">
           <div class="progress">
             <span class="progress-text" style="color:#9d9d9d;">{{(p.minQty - p.currentQty)|round|int}} Orders Needed!</span>
             <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="{{p.currentQty}}"
@@ -263,7 +266,11 @@
             </div>
           </div>
         </div>
-        <img width="500px" height="500px" data-toggle="modal" data-target="#modal-{{p.sku}}" class="product-picture" src="../static/img/products/{{star.id}}/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+        <img width="500px" height="500px"
+             data-toggle="modal" data-target="#modal-{{p.sku}}"
+             class="product-picture"
+             src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+             data-src="../static/img/products/{{star.id}}/{{p.sku}}/{{p.default_img[0]}}">
 
         <div class="row variations">
             <div class="col-lg-6 variation1">
@@ -310,7 +317,11 @@
         <hr>
         <div class="row">
         <div class="col-md-8">
-          <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/products/{{star.id}}/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+          <img width="500px" height="500px"
+               class="product-picture img-responsive"
+               src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+               data-src="../static/img/products/{{star.id}}/{{p.sku}}/{{p.default_img[0]}}"
+               >
         </div>
         <div class="col-md-4">
           <div class="product-description">
@@ -329,7 +340,10 @@
           {% for v in p.variations.color %}
           {% for i in v.img %}
           <div class="product-sample-view">
-            <img width="50px" height="50px" src="../static/img/products/{{star.id}}/{{p.sku}}/{{i}}">
+            <img width="50px" height="50px"
+                 src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                 data-src="../static/img/products/{{star.id}}/{{p.sku}}/{{i}}"
+                 >
           </div>
           {% endfor %}
           {% endfor %}
@@ -348,7 +362,7 @@
   <!-- Deferred Image Loading for Products -->
   <script>
   function init() {
-  var imgDefer = document.getElementsByClassName('product-picture');
+  var imgDefer = document.getElementsByTagName('img');
   for (var i=0; i<imgDefer.length; i++) {
   if(imgDefer[i].getAttribute('data-src')) {
   imgDefer[i].setAttribute('src',imgDefer[i].getAttribute('data-src'));
