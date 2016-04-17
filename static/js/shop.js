@@ -46,13 +46,12 @@ $(document).ready(function(){
         var varName2 = $(this).parent().parent().find( ".variation2 .name span" ).text();
         var var1 = $(this).parent().parent().find( ".variation1 option:selected" ).text();
         var var2 = $(this).parent().parent().find( ".variation2 option:selected" ).text();
-        var id = itemID+var1+var2;
-        var variation = var1+'_'+var2;
+        var id = (itemID+var1+var2).replace(/ /g,'').replace(/(\r\n|\n|\r)/gm,"");
+        var variation = var1+var2;
 
         //store in an array
         try{
             cart[itemID][variation]['qty']++;
-
             $('.'+id).find('.qty').text(cart[itemID][variation]['qty']);
         }
         catch(KeyError){
