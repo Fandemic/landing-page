@@ -35,7 +35,7 @@ def store(template,starID):
     if star['active']:
         products = star['products']
     else:
-        products = db.sample_products.find({'category': star['category']})
+        products = db.sample_products.find({'category': star['category']}).sort("sort",-1)
 
     #loop products and index the categories on the fly
     catIndex = {}

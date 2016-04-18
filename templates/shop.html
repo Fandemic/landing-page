@@ -9,16 +9,15 @@
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
-  <script src="../static/js/jquery-1.12.2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="https://checkout.stripe.com/checkout.js"></script>
-  <script src="../static/js/velocity.js"></script>
-  <script src="../static/js/bootstrap.min.js"></script>
-  <script src="../static/js/slideout.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.min.js"></script>
 
-  <link href="../static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../static/css/shop.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/shop.css">
 
 </head>
 
@@ -107,7 +106,7 @@
     <div class="btns">
       <a href="/" class="button"><i class="fa fa-home" aria-hidden="true"></i></a>
       <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-info-circle button" aria-hidden="true"></i>
-      <i class="fa fa-shopping-cart cart-button button"></i><span class="num-items"></span>
+      <i class="fa fa-shopping-cart cart-button button"><span class="num-items"></span></i>
     </div>
 
   <div class="filter-header" style="height:40px;">
@@ -139,7 +138,7 @@
   {% for p in products %}
   <div class="col-md-6 col-lg-4 filtr-item"
        data-category="{% for id in p.subcatID %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
-       data-sort="Create Your Own" style="padding: 25px;padding-top:10px;padding-bottom:10px;">
+       data-sort="" style="padding: 25px;padding-top:10px;padding-bottom:10px;">
 
     <div class="thumbnail">
 
