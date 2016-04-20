@@ -127,12 +127,54 @@
             </div>
           </div>
           <img class="product-picture" src="../static/img/sample_products/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+
+
+
           <div class="caption">
             <h3 class="title">{{p.name}}</h3>
             <span class="money">$<span class="price">{{p.price}}</span></span>
+            <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
+            <button class="btn btn-primary btn-view" role="button" data-toggle="modal" data-target="#modal-{{p.sku}}"><i class="fa fa-eye" aria-hidden="true"></i></button>
           </div>
-          <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
 
+        </div>
+      </div>
+
+      <!-- Product Description Modal -->
+      <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="z-index:99999;" id="modal-{{p.sku}}">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h2 class="modal-title" id="myModalLabel">{{p.name}} Description</h2>
+            <hr>
+            <div class="row">
+            <div class="col-md-8">
+              <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/sample_products/{{p.sku}}/{{p.default_img[0]}}" alt="...">
+            </div>
+            <div class="col-md-4">
+              <div class="product-description">
+                  <h2>Order Requirement</h2>
+                    <p>This campaign needs atleast <span class="emphasize">{{p.description.minOrderQty}}</span> preorders in order for {{p.name}} to be shipped.</p>
+                  <h2>Composition</h2>
+                    <p><strong>Material:</strong> {{p.description.material}}</p>
+                    <p><strong>Fabric:</strong>  {{p.description.fabric}}</p>
+                    <p><strong>Weight:</strong>  {{p.description.weight}}</p>
+                    <p><strong>Fabric:</strong>  {{p.description.design}}</p>
+                  <h2>Specialty</h2>
+                    <p><strong>Special:</strong>  {{p.description.special}}</p>
+                    <p><strong>Design:</strong>  Custom designs, logos, colors, and any modifications can be made, just ask!</p>
+
+              </div>
+              {% for img in p.default_img %}
+              <div class="product-sample-view">
+                <img width="50px" height="50px" src="../static/img/sample_products/{{p.sku}}/{{img}}">
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          </div>
         </div>
       </div>
       {% endfor %}
