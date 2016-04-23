@@ -159,7 +159,7 @@
              data-target="#modal-{{p.sku}}"
              class="product-picture"
              src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-             data-src="../static/img/sample_products/{{p.sku}}/{{p.default_img[0]}}">
+             data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}">
 
         <div class="row variations">
             <div
@@ -212,7 +212,7 @@
           <img width="500px" height="500px"
                class="product-picture img-responsive"
                src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-               data-src="../static/img/sample_products/{{p.sku}}/{{p.default_img[0]}}">
+               data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}">
         </div>
         <div class="col-md-4">
           <div class="product-description">
@@ -228,7 +228,7 @@
           </div>
           {% for img in p.default_img %}
           <div class="product-sample-view">
-            <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/sample_products/{{p.sku}}/{{img}}">
+            <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/sample_products/{{p.category}}/{{img}}">
           </div>
           {% endfor %}
         </div>
