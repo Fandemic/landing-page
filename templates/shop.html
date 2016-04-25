@@ -159,7 +159,13 @@
              data-target="#modal-{{p.sku}}"
              class="product-picture"
              src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-             data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}">
+             {% if star.samplesUploaded is defined %}
+             data-src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
+             {% else %}
+             data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
+             {% endif %}
+             >
+
 
         <div class="row variations">
             <div
