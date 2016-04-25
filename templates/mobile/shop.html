@@ -126,7 +126,13 @@
               </div>
             </div>
           </div>
-          <img class="product-picture" src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}" alt="...">
+          <img class="product-picture"
+               {% if star.samplesUploaded is defined %}
+               src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
+               {% else %}
+               src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
+               {% endif %}
+               alt="...">
 
 
 
@@ -141,7 +147,7 @@
       </div>
 
       <!-- Product Description Modal -->
-      <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="z-index:99999;" id="modal-{{p.sku}}">
+      <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="z-index:99999;" id="modal-{{p.sku}}">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
