@@ -32,13 +32,13 @@ def terms():
 #-------------------------------------------
 
 @app.route('/faq')
-def faq():
+def faq(): 
     return render_template('faq.html')
 #-------------------------------------------
 
 @app.route('/privacy')
 def privacy():
-    return render_template('privacy.html')       
+    return render_template('privacy.html')
 
 #=================MOCK STORES=====================
 @app.route('/<starID>')
