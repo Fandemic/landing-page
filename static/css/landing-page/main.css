@@ -149,6 +149,9 @@ b, strong {
 .navbar-brand .logo-head {
   width:25%;
 }
+.navbar-brand .logo-nav {
+  cursor:pointer;
+}
 .navbar-default {
   background-color: rgba(255, 255, 255, 0.97);
   border: none;
