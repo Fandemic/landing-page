@@ -20,10 +20,26 @@ db = MongoClient('45.79.159.210', 27017).fandemic
 def home():
     return render_template('index.html')
 #-------------------------------------------
-
 @app.route('/blog')
-def blog():
-    return render_template('blog/blog.html')
+def blogHome():
+    posts = db.blog.find({})
+    return render_template('blog.html', posts = posts)
+ 
+@app.route('/blog/<title>')
+def blogPost(title):
+    #print title
+    content = ''
+    post = db.blog.find({'title':title})
+    if post == None: return render_template("404.html")
+    print post.explain()
+    for posts in post:
+        content = posts['content']
+        author = posts['author']
+        date = posts['date']
+    #content = post.content
+    #print post['content']
+
+    return render_template('blog-posts.html', content = content, title = title, author = author, date = date)
 #-------------------------------------------
 
 @app.route('/terms')
@@ -32,7 +48,7 @@ def terms():
 #-------------------------------------------
 
 @app.route('/faq')
-def faq(): 
+def faq():
     return render_template('faq.html')
 #-------------------------------------------
 
