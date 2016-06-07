@@ -242,3 +242,11 @@ body {
 .panel-title {
   color: #4c4c4c;
 }
+
+h3.preview.post-subtitle {
+  white-space: nowrap;
+   width: 100%;                   /* IE6 needs any width */
+   overflow: hidden;              /* "overflow" value must be different from  visible"*/
+   -o-text-overflow: ellipsis;    /* Opera < 11*/
+   text-overflow: ellipsis;
+}
