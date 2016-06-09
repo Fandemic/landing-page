@@ -14,6 +14,7 @@
   <script src="https://checkout.stripe.com/checkout.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.min.js"></script>
+  <script src="../static/js/vibrant.min.js"></script>
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -23,11 +24,46 @@
 
 <body>
 
+<script>
+var img = document.createElement('img');
+img.crossOrigin = "Anonymous";
+img.setAttribute('src', '{{star.image.profile}}')
+
+img.addEventListener('load', function() {
+  var vibrant = new Vibrant(img);
+  var swatches = vibrant.swatches();
+  console.log('Vibrant', swatches['Vibrant'].getHex());
+  var btn = document.getElementById('activate-store');
+
+  $("#activate-store").css("background-color", swatches['DarkVibrant'].getHex());
+  $("#pay").css("background-color", swatches['DarkVibrant'].getHex());
+  $(".rangeslider__fill").css("background", swatches['DarkVibrant'].getHex());
+
+$("a").mouseover(function() {
+    $(this).css("color",swatches['DarkMuted'].getHex())
+}).mouseout(function() {
+    $(this).css("color",'#858585')
+});
+$(".btn-view").mouseover(function() {
+    $(this).css("background-color",swatches['LightVibrant'].getHex())
+}).mouseout(function() {
+    $(this).css("background-color",'transparent')
+});
+$(".btn-add").mouseover(function() {
+    $(this).css("background-color",swatches['LightVibrant'].getHex())
+}).mouseout(function() {
+    $(this).css("background-color",'transparent')
+});
+
+});
+</script>
+
 <div id="loading"> Please Wait.. Order Processing...</div>
 <script> $('#loading').hide();</script>
 
 <!-- CART MENU -->
 <div id="cart-menu">
+
 
   <div class="cart-and-total">
       <h2 class="title">Cart</h2>
@@ -67,18 +103,17 @@
     <a class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
   </div>
 
-  <hr>
+
 
   {% if star.active == false %}
   <div style="padding:1px;">
-    <strong>1. We Design</strong><br>
-    <strong>2. You Pick</strong><br>
-    <strong>3. You Promote</strong><br>
-    <strong>4. We Ship</strong><br>
-  <p style="padding-top:10px"> Click below for help!</p>
+    <hr>
+    <p style="padding:10px;">Your Customized Fandemic store lets you sell custom fan boxes.</p>
+    <h5>Charity Contributions <i class="fa fa-question-circle" aria-hidden="true"></i></h5>
+    <h4>$0.00</h4>
 
   </div>
-  <button href="#" data-toggle="modal" data-target="#customerServiceModal" class="btn btn-info btn-activate"><i class="fa fa-question-circle"></i> Help</button>
+  <button id="activate-store" href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate">Stock Store</button>
 
   {% else %}
   <div style="padding: 0px 10px 0px 10px;">
@@ -103,25 +138,16 @@
 <div class="controls">
   <!--<input style="float:left" type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>-->
 
+
+    <!--<img style="position:absolute;height:60px;top:5px;" src="http://www.flaviliciousfitness.com/blog/wp-content/uploads/2016/06/Logo-r4.png">-->
+    <span style="position:absolute;height:60px;top:15px;font-size:25px;color:#c7c7c7;"> {{star.name}} Logo </span>
+
     <div class="btns">
       <a href="/" class="button"><i class="fa fa-home" aria-hidden="true"></i></a>
       <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-info-circle button" aria-hidden="true"></i>
       <i class="fa fa-shopping-cart cart-button button"><span class="num-items"></span></i>
     </div>
 
-  <div class="filter-header" style="height:40px;">
-  <div style="color:#1d1d1d;font-size:12px;display:inline-block;float:left;margin-top: 0px;">
-
-    <!-- <span>Filter:</span> -->
-    <button class="active btn btn-filter" data-filter="all">All Products</button>
-
-    {% for cat, id in cat.iteritems() %}
-    <button class="btn btn-filter" data-filter="{{id}}">{{cat}}</button>
-    {% endfor %}
-
-  </div>
-
-  </div>
 
 </div>
 
@@ -129,14 +155,16 @@
 <!-- CENTER PANEL -->
 <div id="center-panel" class="container-fluid">
 
-  <div class="row">
-  <div class="filtr-container">
+  <!--<div class="row">-->
 
 
 {% if star.active == false %}
  <!-- SAMPLE PRODUCTS VERSION -->
+  {% set count = 1 %}
   {% for p in products %}
-  <div class="col-md-6 col-lg-4 filtr-item"
+  {% if count == 1 %}<div class="row">
+    {% endif %}
+  <div class="col-md-6 col-lg-4"
        data-category="{% for id in p.subcatID %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
        data-sort="" style="padding: 25px;padding-top:10px;padding-bottom:10px;">
 
@@ -145,14 +173,14 @@
 
         <span class="product-id">{{p.sku}}</span>
         <div class="card-header">
-          <span class="hours-remaining"><i class="fa fa-clock-o"></i> 14 days</span>
+        <!--  <span class="hours-remaining"><i class="fa fa-clock-o"></i> 14 days</span>
           <img width="30px" class="shipping-icon" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/shipping-icon.png">
           <div class="progress">
             <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="44"
             aria-valuemin="0" aria-valuemax="{{p.description.minOrderQty}}" style="width:50%">
               <span class="progress-text">{{(p.description.minOrderQty / 2)|round|int}} Orders Needed!</span>
             </div>
-          </div>
+          </div>-->
         </div>
         <img width="500px" height="500px"
              data-toggle="modal"
@@ -242,12 +270,15 @@
       </div>
     </div>
   </div>
+  {% if count % 3 == 0 %}</div><div class="row">
+  {% endif %}
+  {% set count = count + 1 %}
   {% endfor %}
 
 {% else %}
  <!-- ACTIVE STORE PRODUCTS VERSION -->
   {% for p in products %}
-  <div class="col-md-6 col-lg-4 filtr-item"
+  <div class="col-md-6 col-lg-4"
        data-category="{% for id in p.subcatID %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
        data-sort="Create Your Own" style="padding: 25px;padding-top:10px;padding-bottom:10px;">
 
@@ -256,13 +287,10 @@
 
         <span class="product-id">{{p.sku}}</span>
         <div class="card-header">
-          <span class="hours-remaining">
-            <i class="fa fa-clock-o"></i>
-            <span class="time">{{p.endTime}}</span>
-          </span>
+
           <img width="30px" class="shipping-icon" style="opacity:.5;" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/shipping-icon.png">
           <div class="progress">
-            <span class="progress-text" style="color:#9d9d9d;">{{(p.minQty - p.currentQty)|round|int}} Orders Needed!</span>
+            <span class="progress-text" style="color:#9d9d9d;">{{(p.minQty - p.currentQty)|round|int}} Boxes Remaining!</span>
             <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="{{p.currentQty}}"
             aria-valuemin="0" aria-valuemax="{{p.minQty}}" style="width:{{p.currentQty + 1}}%">
 
@@ -276,27 +304,14 @@
              data-src="../static/img/products/{{star.id}}/{{p.default_img[0]}}">
 
         <div class="row variations">
-            <div class="col-lg-6 variation1">
-              <div class="name"><span>size</span></div>
+            <div class="col-lg-12 variation1">
+              <div class="name"><span>Shirt Size</span></div>
               <select class="form-control">
                 {% for s in p.variations.size %}
                 <option>{{s}}</option>
                 {% endfor %}
               </select>
             </div>
-            {% if p.variations.color[0].name is defined %}
-            <div class="col-lg-6 variation2">
-              <div class="name"><span>color</span></div>
-              <select class="form-control">
-                  {% for c in p.variations.color %}
-                  <option
-                    data-src="../static/img/products/{{star.id}}/{{c.img[0]}}">
-                    {{c.name}}
-                  </option>
-                  {% endfor %}
-              </select>
-            </div>
-            {% endif %}
         </div>
 
         <div class="caption">
@@ -358,7 +373,6 @@
 
 </div>
 </div>
-</div>
 
   <!-- Deferred Image Loading for Products -->
   <script>
@@ -375,56 +389,153 @@
 
 </html>
 
-<!-- MODAL -->
+<!-- STORE STOCKER MODAL -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="activateStoreModal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h2 class="modal-title" id="myModalLabel">Get Started!</h2>
-      <p>Fill out the form below and we will contact you within 24 hours</p>
-      <hr>
-      <form id="activate-store-modal-form" action="/activateStore" method="post">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-              <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name"/>
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
-              <input id="activate_phone" name="phone" type="tel" class="form-control" placeholder="Phone" />
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-              <input id="activate_email" name="email" type="email" class="form-control" placeholder="Email" value="{{star.email[0]}}"/>
-            </div>
+
+      <div class="modal-header">
+      <h3 class="modal-title" id="myModalLabel">Stock Store Wizard</h3>
+      <p>Virtually stock your store with fan boxes! We handle the hard part!</p>
+    </div>
+
+      <div class="row" style="padding:20px;">
+
+        <div class="col-md-3">
+
+          <h4>Box Items <i class="fa fa-question-circle" aria-hidden="true"></i></h4>
+          <div class="checkbox">
+            <label><input type="checkbox" value="">T-Shirt</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Drawstring</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Wristband</label>
+          </div>
+          <div class="checkbox disabled">
+            <label><input type="checkbox" value="" disabled>Gift Card</label>
           </div>
 
-          <div class="col-md-6">
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
-              <input id="activate_youtube" name="youtube" type="url" class="form-control" placeholder="Youtube Channel URL" value="{{star.url.youtube}}"/>
+
+        <hr>
+
+        <h4>Gender <i class="fa fa-question-circle" aria-hidden="true"></i></h4>
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Male</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Female</label>
+          </div>
+
+         <hr>
+
+         <div class="price-table" style="width:100%;">
+                 <table style="width:100%;">
+                   <thead>
+                     <tr>
+                       <th>Quantity</th>
+                       <th>Stocking Fee</th>
+                     </tr>
+                   </thead>
+
+                   <tbody>
+
+                       <tr>
+                         <td>10</td>
+                         <td>$200</td>
+                       </tr>
+
+                       <tr>
+                         <td>25</td>
+                         <td>$400</td>
+                       </tr>
+
+                       <tr class="selected">
+                         <td>50</td>
+                         <td>$750</td>
+                       </tr>
+
+                       <tr>
+                         <td>100</td>
+                         <td>$1,300</td>
+                       </tr>
+
+                       <tr>
+                         <td>150</td>
+                         <td>$1,800</td>
+                       </tr>
+
+                       <tr>
+                         <td>250</td>
+                         <td>$2,500</td>
+                       </tr>
+
+                       <tr>
+                         <td>500</td>
+                         <td>$4,500</td>
+                       </tr>
+
+                       <tr>
+                         <td>1000</td>
+                         <td>$8,500</td>
+                       </tr>
+
+                   </tbody>
+                 </table>
+               </div>
+
+        </div>
+
+        <div class="col-md-9">
+
+          <h4>Quantity <i class="fa fa-question-circle" aria-hidden="true"></i></h4>
+          <br>
+          <input type="range" min="10" max="1000" step="1" value="100" data-rangeslider>
+
+
+          <br><br>
+          <div class="row" style="text-align:center;">
+            <div class="col-md-6" style="padding:15px;">
+              <div class="well">
+                <h5>Stocking Fee <i class="fa fa-question-circle" aria-hidden="true"></i></h5>
+                <span id="stocking-fee">$15.00 per box</span>
+              </div>
             </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
-              <input id="activate_instagram" name="instagram" type="text" class="form-control" placeholder="Instagram Username" value="{{star.url.instagram}}" />
+            <div class="col-md-6" style="padding:15px;">
+              <div class="well">
+                <h5>Retail Price <i class="fa fa-question-circle" aria-hidden="true"></i></h5>
+                <span id="retail-price">$39.99 per box</span>
+              </div>
             </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-square"></i></span>
-              <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" value="{{star.url.facebook}}"/>
+          </div>
+          <div class="row" style="text-align:center;">
+            <div class="col-md-6" style="padding:15px;">
+              <div class="well">
+                <h5>Fandemic Fee <i class="fa fa-question-circle" aria-hidden="true"></i></h5>
+                <span id="fandemic-fee">$5.00 per box</span>
+              </div>
+            </div>
+            <div class="col-md-6" style="padding:15px;">
+              <div class="well">
+                <h5>Your Profit <i class="fa fa-question-circle" aria-hidden="true"></i></h5>
+                <span id="profit-per-item">$20.00 per box</span>
+              </div>
             </div>
           </div>
         </div>
-        <hr>
-        <button type="submit" class="btn btn-primary center btn-submit" id="activate-store-button">Submit</button>
-        <p id="activate-store-notification"></p>
-      </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <p style="float:left;">Questions? Call 443-536-4110 for Customer Service.</p>
+        <button id="pay" class="btn btn-primary">Pay Stocking Fee</button>
+      </div>
+
+
     </div>
   </div>
 </div>
@@ -657,10 +768,38 @@
 
 
   <!-- Kick off Filterizr -->
-<script src="../static/js/jquery.filterizr.min.js"></script>
 <script src="../static/js/countdown.min.js"></script>
 <script src="../static/js/shop.js"></script>
 <script src="../static/js/desktop.js"></script>
+<link rel="stylesheet" href="../static/css/rangeslider.css">
+<script src="../static/js/rangeslider.min.js"></script>
+
+<script>
+    $(function() {
+        var $document = $(document);
+        var selector = '[data-rangeslider]';
+        var $element = $(selector);
+
+        $element.rangeslider({
+            // Deactivate the feature detection
+            polyfill: false,
+            // Callback function
+            onInit: function() {
+
+            },
+            // Callback function
+            onSlide: function(position, value) {
+                console.log('onSlide');
+                console.log('position: ' + position, 'value: ' + value);
+            },
+            // Callback function
+            onSlideEnd: function(position, value) {
+                console.log('onSlideEnd');
+                console.log('position: ' + position, 'value: ' + value);
+            }
+        });
+    });
+    </script>
 
 <script>
 var handler = StripeCheckout.configure({
