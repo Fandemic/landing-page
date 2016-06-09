@@ -153,6 +153,10 @@ h3{
   }
 }
 
+.popover{
+  width: 400px;
+}
+
 /*SIDE BAR*/
 .profile-img {
   width: 100%;

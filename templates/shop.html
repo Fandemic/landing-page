@@ -406,7 +406,12 @@ $(".btn-add").mouseover(function() {
 
         <div class="col-md-3">
 
-          <h4>Box Items <i class="fa fa-question-circle" aria-hidden="true"></i></h4>
+          <h4>Box Items
+              <i class="fa fa-question-circle" aria-hidden="true"
+              data-toggle="popover"
+              data-content="These are the products you can add to your box.
+                         Check off the ones the you want!"></i>
+          </h4>
           <div class="checkbox">
             <label><input type="checkbox" value="">T-Shirt</label>
           </div>
@@ -423,7 +428,11 @@ $(".btn-add").mouseover(function() {
 
         <hr>
 
-        <h4>Gender <i class="fa fa-question-circle" aria-hidden="true"></i></h4>
+        <h4>Gender
+            <i class="fa fa-question-circle" aria-hidden="true"
+            data-toggle="popover"
+            data-content="Are your boxes for men, women, or both?"></i>
+        </h4>
           <div class="checkbox">
             <label><input type="checkbox" value="">Male</label>
           </div>
@@ -490,49 +499,82 @@ $(".btn-add").mouseover(function() {
 
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-9" style="padding-left:40px;">
 
-          <h4>Quantity <i class="fa fa-question-circle" aria-hidden="true"></i></h4>
+          <h4>Quantity
+              <i class="fa fa-question-circle" aria-hidden="true"
+              data-toggle="popover"
+              data-content="Move the slider to change the number of custom boxes
+                            you want to stock in this store. The more boxes you stock,
+                            the more money you can make!"></i>
+          </h4>
           <br>
-          <input type="range" min="10" max="1000" step="1" value="100" data-rangeslider>
+          <input type="range" min="10" max="1000" step="5" value="100" data-rangeslider>
+
+          <span id="quantity"></span>
 
 
-          <br><br>
+          <br><br><br><br>
           <div class="row" style="text-align:center;">
-            <div class="col-md-6" style="padding:15px;">
-              <div class="well">
-                <h5>Stocking Fee <i class="fa fa-question-circle" aria-hidden="true"></i></h5>
-                <span id="stocking-fee">$15.00 per box</span>
+            <div class="col-md-6" >
+              <div class="well" style="padding:15px;">
+                <h5>Stocking Fee
+                    <i class="fa fa-question-circle" aria-hidden="true"
+                    data-toggle="popover"
+                    data-content="An initial fee to stock your store. This covers manufacturing.
+                                  No worries, you get it back when the boxes sell!"></i>
+                </h5>
+                <span id="box-stocking-fee">$15.00 per box</span>
               </div>
             </div>
-            <div class="col-md-6" style="padding:15px;">
-              <div class="well">
-                <h5>Retail Price <i class="fa fa-question-circle" aria-hidden="true"></i></h5>
-                <span id="retail-price">$39.99 per box</span>
+            <div class="col-md-6" >
+              <div class="well" style="padding:15px;">
+                <h5>Retail Price
+                    <i class="fa fa-question-circle" aria-hidden="true"
+                    data-toggle="popover"
+                    data-content="How much your customers will pay for this box."></i>
+                </h5>
+                <span id="box-retail-price">$39.99 per box</span>
               </div>
             </div>
           </div>
           <div class="row" style="text-align:center;">
-            <div class="col-md-6" style="padding:15px;">
-              <div class="well">
-                <h5>Fandemic Fee <i class="fa fa-question-circle" aria-hidden="true"></i></h5>
-                <span id="fandemic-fee">$5.00 per box</span>
+            <div class="col-md-6" >
+              <div class="well" style="padding:15px;">
+                <h5>Fandemic Fee
+                    <i class="fa fa-question-circle" aria-hidden="true"
+                    data-toggle="popover"
+                    data-content="A small fee for the Fandemic team so we can keep
+                                  the lights on and keep providing you with beautiful products!
+                                  We only take this when a box sells."></i>
+                </h5>
+                <span id="box-fandemic-fee">$5.00 per box</span>
               </div>
             </div>
-            <div class="col-md-6" style="padding:15px;">
-              <div class="well">
-                <h5>Your Profit <i class="fa fa-question-circle" aria-hidden="true"></i></h5>
-                <span id="profit-per-item">$20.00 per box</span>
+            <div class="col-md-6" >
+              <div class="well" style="padding:15px;">
+                <h5>Your Profit
+                    <i class="fa fa-question-circle" aria-hidden="true"
+                    data-toggle="popover"
+                    data-content="This is how much money you will make from each sale
+                                (this does not include the reimursable stocking fee)."></i>
+                </h5>
+                <span id="box-profit-per-item">$20.00 per box</span>
               </div>
             </div>
           </div>
+
+            <div class="row" style="text-align:center;">
+              <br>
+              <h4>You will make $<span id="stocking-fee">2,000.00</span> total profit if you sell these boxes</h4>
+            </div>
         </div>
 
       </div>
 
       <div class="modal-footer">
         <p style="float:left;">Questions? Call 443-536-4110 for Customer Service.</p>
-        <button id="pay" class="btn btn-primary">Pay Stocking Fee</button>
+        <button id="pay" data-dismiss="modal" class="btn btn-primary payStockingButton">Next</button>
       </div>
 
 
@@ -775,6 +817,13 @@ $(".btn-add").mouseover(function() {
 <script src="../static/js/rangeslider.min.js"></script>
 
 <script>
+$('i').popover({'trigger':'hover'});
+</script>
+
+<script>
+    var box_quantity = 0;
+    var box_stockingFee = 0;
+    var stockingFee = 0;
     $(function() {
         var $document = $(document);
         var selector = '[data-rangeslider]';
@@ -785,12 +834,29 @@ $(".btn-add").mouseover(function() {
             polyfill: false,
             // Callback function
             onInit: function() {
-
+              box_quantity = 100;
+              box_stockingFee = 15.00;
+              box_fandemicFee = 5.00;
+              box_retail = 39.99
+              retail = box_quantity * box_retail;
+              stockingFee = box_quantity * box_stockingFee;
+              fandemicFee = box_quantity * box_fandemicFee;
+              totalProfit = retail - (stockingFee + fandemicFee);
+              $('#quantity').text(100);
+              $('#stocking-fee').text(totalProfit.formatMoney(2));
             },
             // Callback function
             onSlide: function(position, value) {
-                console.log('onSlide');
-                console.log('position: ' + position, 'value: ' + value);
+              box_quantity = value;
+              box_stockingFee = 15.00;
+              box_fandemicFee = 5.00;
+              box_retail = 39.99
+              retail = box_quantity * box_retail;
+              stockingFee = box_quantity * box_stockingFee;
+              fandemicFee = box_quantity * box_fandemicFee;
+              totalProfit = retail - (stockingFee + fandemicFee);
+              $('#quantity').text(value);
+              $('#stocking-fee').text(totalProfit.formatMoney(2));
             },
             // Callback function
             onSlideEnd: function(position, value) {
@@ -842,6 +908,45 @@ token: function(token,args) {
 }
 });
 
+var handler2 = StripeCheckout.configure({
+{% if star.active == false %}
+key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
+{% else %}
+key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
+{% endif %}
+image: '{{star.image.profile}}',
+locale: 'auto',
+token: function(token,args) {
+
+  //gather info from the order
+  var info = {};
+  info['star'] = "{{star.name}}";
+  info['star_id'] = "{{star.id}}";
+  info['active'] = "{{star.active}}";
+  info['amount'] = Math.round(total_cost * 100);
+  info['cart'] = cart;
+
+  //combine all info into one object
+  var result={};
+  $.extend(result, args, token);
+  $.extend(result, result, info);
+
+  $.ajax({
+    type: 'POST',
+    url: '/charge',
+    data: JSON.stringify(result, null, '\t'),
+    contentType: 'application/json;charset=UTF-8',
+    success: function(response) {
+      $("#paymentSuccessModal").modal()
+      resetCart();
+    },
+    error: function(error) {
+      alert("payment error");
+    }
+  });
+
+}
+});
 
 $( document ).ajaxStart(function () {
   $('#loading').show();  // show loading indicator
@@ -852,6 +957,21 @@ $( document ).ajaxStop(function()
     $('#loading').hide();  // hide loading indicator
 });
 
+
+$('.payStockingButton').on('click', function(e) {
+// Open Checkout with further options
+handler2.open({
+name: 'Stocking Fee',
+description: box_quantity +
+             ' boxes X $'+ box_stockingFee.formatMoney(2) +
+             ' = $' + stockingFee.formatMoney(2),
+allowRememberMe: true,
+panelLabel: "Pay",
+email: '{{star.email.0}}',
+amount: Math.round(stockingFee * 100)
+});
+e.preventDefault();
+});
 
 
 $('.customButton').on('click', function(e) {
