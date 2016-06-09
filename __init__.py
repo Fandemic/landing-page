@@ -24,14 +24,14 @@ def home():
 def blogHome():
     posts = db.blog.find({})
     return render_template('blog.html', posts = posts)
- 
+
 @app.route('/blog/<title>')
 def blogPost(title):
     #print title
     content = ''
     post = db.blog.find({'title':title})
     if post == None: return render_template("404.html")
-    print post.explain()
+    #print post.explain()
     for posts in post:
         content = posts['content']
         author = posts['author']
