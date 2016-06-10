@@ -72,6 +72,9 @@ ul, li {
 b, strong {
   font-weight: 600;
 }
+.testimonial.img-circle{
+  max-width: 10em;
+}
 
 /* ==========================================================================
    2.Hero section
