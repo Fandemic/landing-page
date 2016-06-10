@@ -24,7 +24,7 @@ def home():
 def blogHome():
     posts = db.blog.find({})
     return render_template('blog.html', posts = posts)
- 
+
 @app.route('/blog/<title>')
 def blogPost(title):
     #print title
@@ -72,6 +72,10 @@ def store(template,starID):
     else:
         products = db.sample_products.find({'category': star['category']}).sort("sort",-1).limit(30)
 
+    #extract pricing for the wizard
+    pricing = db.product_pricing.find({'category': star['category']},{'_id': False})
+    pricingjs = db.product_pricing.find({'category': star['category']},{'_id': False})
+
     #loop products and index the categories on the fly
     catIndex = {}
     productsFiltered = []
@@ -91,7 +95,9 @@ def store(template,starID):
 
         productsFiltered.append(p)
 
-    return render_template(template, star = star,products = productsFiltered, cat=catIndex)
+    return render_template(template, star = star,products = productsFiltered,
+                                     cat=catIndex, pricing = pricing,
+                                     pricingjs=map(json.dumps, pricingjs))
 #---------------------------------------------
 
 #================PROCESS AN ORDER====================#

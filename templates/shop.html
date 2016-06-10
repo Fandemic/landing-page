@@ -139,8 +139,13 @@ $(".btn-add").mouseover(function() {
   <!--<input style="float:left" type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>-->
 
 
-    <!--<img style="position:absolute;height:60px;top:5px;" src="http://www.flaviliciousfitness.com/blog/wp-content/uploads/2016/06/Logo-r4.png">-->
+    {% if star.image.logo is defined %}
+    <img style="position:absolute;height:60px;top:5px;" src="{{star.image.logo}}">
+    {% else %}
     <span style="position:absolute;height:60px;top:15px;font-size:25px;color:#c7c7c7;"> {{star.name}} Logo </span>
+    {% endif %}
+
+    <span style="margin-left:500px;color:#b7b7b7;">Questions on how to activate your store? Call 443-536-4110 to speak to a representative!</span>
 
     <div class="btns">
       <a href="/" class="button"><i class="fa fa-home" aria-hidden="true"></i></a>
@@ -197,7 +202,7 @@ $(".btn-add").mouseover(function() {
 
         <div class="row variations">
             <div
-              class="{% if p.variations.color[0].name is defined %}
+              class="{% if p.variations.color is defined %}
                         col-md-6
                      {% else %}
                         col-md-12
@@ -210,7 +215,7 @@ $(".btn-add").mouseover(function() {
                 {% endfor %}
               </select>
             </div>
-            {% if p.variations.color[0].name is defined %}
+            {% if p.variations.color is defined %}
             <div class="col-md-6 variation2">
               <div class="name"><span>color</span></div>
               <select class="form-control">
@@ -412,18 +417,18 @@ $(".btn-add").mouseover(function() {
               data-content="These are the products you can add to your box.
                          Check off the ones the you want!"></i>
           </h4>
+
+
+          <!-- Generate item checklists and give attributes -->
+          {% for p in pricing %}
+          {% if p.name != 'Box' %}
           <div class="checkbox">
-            <label><input type="checkbox" value="">T-Shirt</label>
+            <label>
+              <input type="checkbox" class="box-item"
+                     value="{{p.name}}">{{p.name}}</label>
           </div>
-          <div class="checkbox">
-            <label><input type="checkbox" value="">Drawstring</label>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox" value="">Wristband</label>
-          </div>
-          <div class="checkbox disabled">
-            <label><input type="checkbox" value="" disabled>Gift Card</label>
-          </div>
+          {% endif %}
+          {% endfor %}
 
 
         <hr>
@@ -515,7 +520,7 @@ $(".btn-add").mouseover(function() {
 
 
           <br><br><br><br>
-          <div class="row" style="text-align:center;">
+          <div class="row" style="text-align:center;font-size:20px;">
             <div class="col-md-6" >
               <div class="well" style="padding:15px;">
                 <h5>Stocking Fee
@@ -524,7 +529,7 @@ $(".btn-add").mouseover(function() {
                     data-content="An initial fee to stock your store. This covers manufacturing.
                                   No worries, you get it back when the boxes sell!"></i>
                 </h5>
-                <span id="box-stocking-fee">$15.00 per box</span>
+                $<span id="box-stocking-fee">15.00</span> per box
               </div>
             </div>
             <div class="col-md-6" >
@@ -534,11 +539,11 @@ $(".btn-add").mouseover(function() {
                     data-toggle="popover"
                     data-content="How much your customers will pay for this box."></i>
                 </h5>
-                <span id="box-retail-price">$39.99 per box</span>
+                $<span id="box-retail-price">39.99</span> per box
               </div>
             </div>
           </div>
-          <div class="row" style="text-align:center;">
+          <div class="row" style="text-align:center;font-size:20px;">
             <div class="col-md-6" >
               <div class="well" style="padding:15px;">
                 <h5>Fandemic Fee
@@ -548,7 +553,7 @@ $(".btn-add").mouseover(function() {
                                   the lights on and keep providing you with beautiful products!
                                   We only take this when a box sells."></i>
                 </h5>
-                <span id="box-fandemic-fee">$5.00 per box</span>
+                $<span id="box-fandemic-fee">5.00</span> per box
               </div>
             </div>
             <div class="col-md-6" >
@@ -559,7 +564,7 @@ $(".btn-add").mouseover(function() {
                     data-content="This is how much money you will make from each sale
                                 (this does not include the reimursable stocking fee)."></i>
                 </h5>
-                <span id="box-profit-per-item">$20.00 per box</span>
+                $<span id="box-profit-per-item">20.00</span> per box
               </div>
             </div>
           </div>
@@ -821,9 +826,17 @@ $('i').popover({'trigger':'hover'});
 </script>
 
 <script>
+      var pricing_index = {};
+    {% for p in pricingjs %}
+      var temp = {{p|safe}};
+      pricing_index[temp.name] = {};
+      pricing_index[temp.name]['mfc'] = temp.pricing;
+      pricing_index[temp.name]['retail'] = temp.retail;
+    {% endfor %}
     var box_quantity = 0;
     var box_stockingFee = 0;
     var stockingFee = 0;
+    var itemsInBox = [];
     $(function() {
         var $document = $(document);
         var selector = '[data-rangeslider]';
@@ -834,29 +847,11 @@ $('i').popover({'trigger':'hover'});
             polyfill: false,
             // Callback function
             onInit: function() {
-              box_quantity = 100;
-              box_stockingFee = 15.00;
-              box_fandemicFee = 5.00;
-              box_retail = 39.99
-              retail = box_quantity * box_retail;
-              stockingFee = box_quantity * box_stockingFee;
-              fandemicFee = box_quantity * box_fandemicFee;
-              totalProfit = retail - (stockingFee + fandemicFee);
-              $('#quantity').text(100);
-              $('#stocking-fee').text(totalProfit.formatMoney(2));
+              updateBox(100);
             },
             // Callback function
             onSlide: function(position, value) {
-              box_quantity = value;
-              box_stockingFee = 15.00;
-              box_fandemicFee = 5.00;
-              box_retail = 39.99
-              retail = box_quantity * box_retail;
-              stockingFee = box_quantity * box_stockingFee;
-              fandemicFee = box_quantity * box_fandemicFee;
-              totalProfit = retail - (stockingFee + fandemicFee);
-              $('#quantity').text(value);
-              $('#stocking-fee').text(totalProfit.formatMoney(2));
+              updateBox(value);
             },
             // Callback function
             onSlideEnd: function(position, value) {
@@ -865,6 +860,91 @@ $('i').popover({'trigger':'hover'});
             }
         });
     });
+    </script>
+
+    <!-- Change wizard state based on check boxes -->
+    <script>
+    $('.box-item').on('change', function(){ // on change of state
+       if(this.checked) // if changed state is "CHECKED"
+        {
+          addBoxItem(this);
+          updateBoxx();
+        }
+       else{
+          removeBoxItem(this);
+          updateBoxx();
+        }
+      });
+
+      function addBoxItem(item){
+        itemsInBox.push(item.value);
+      }
+
+      function removeBoxItem(item){
+        var index = itemsInBox.indexOf(item.value);
+        itemsInBox.splice(index, 1);
+      }
+
+      function updateBoxx(){
+
+        box_stockingFee = 0;
+        box_retail = 0;
+
+        for (i in itemsInBox){
+          item = itemsInBox[i];
+          box_stockingFee = box_stockingFee + pricing_index[item]['mfc'][0];
+          box_retail = box_retail + pricing_index[item]['retail'];
+        }
+
+        box_fandemicFee = 5.00;
+        retail = box_quantity * box_retail;
+        stockingFee = box_quantity * box_stockingFee;
+        fandemicFee = box_quantity * box_fandemicFee;
+        profitPerItem = box_retail - (box_stockingFee + box_fandemicFee);
+        totalProfit = retail - (stockingFee + fandemicFee);
+
+        $('#stocking-fee').text(totalProfit.formatMoney(2));
+        $('#box-stocking-fee').text(box_stockingFee.formatMoney(2));
+        $('#box-retail-price').text(box_retail.formatMoney(2));
+        $('#box-profit-per-item').text(profitPerItem.formatMoney(2));
+
+      }
+
+      function updateBox(qty){
+
+        box_quantity = qty;
+        var level = 0;
+        if (10 <= box_quantity && box_quantity <= 24) level = 0
+        else if (25 <= box_quantity && box_quantity <= 49) level = 1
+        else if (50 <= box_quantity && box_quantity <= 99) level = 2
+        else if (100 <= box_quantity && box_quantity <= 149) level = 3
+        else if (150 <= box_quantity && box_quantity <= 249) level = 4
+        else if (250 <= box_quantity && box_quantity <= 499) level = 5
+        else if (500 <= box_quantity && box_quantity <= 999) level = 6
+        else if (1000 <= box_quantity && box_quantity <= 10000) level = 7
+
+        box_stockingFee = 0;
+        box_retail = 0;
+
+        for (i in itemsInBox){
+          item = itemsInBox[i];
+          box_stockingFee = box_stockingFee + pricing_index[item]['mfc'][level];
+          box_retail = box_retail + pricing_index[item]['retail'];
+        }
+
+        box_fandemicFee = 5.00;
+        retail = box_quantity * box_retail;
+        stockingFee = box_quantity * box_stockingFee;
+        fandemicFee = box_quantity * box_fandemicFee;
+        profitPerItem = box_retail - (box_stockingFee + box_fandemicFee);
+        totalProfit = retail - (stockingFee + fandemicFee);
+
+        $('#quantity').text(qty);
+        $('#stocking-fee').text(totalProfit.formatMoney(2));
+        $('#box-stocking-fee').text(box_stockingFee.formatMoney(2));
+        $('#box-retail-price').text(box_retail.formatMoney(2));
+        $('#box-profit-per-item').text(profitPerItem.formatMoney(2));
+      }
     </script>
 
 <script>
