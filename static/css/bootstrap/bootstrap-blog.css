@@ -250,3 +250,7 @@ h3.preview.post-subtitle {
    -o-text-overflow: ellipsis;    /* Opera < 11*/
    text-overflow: ellipsis;
 }
+.post-content.a {
+  color: #337ab7;
+  text-decoration: underline;
+}

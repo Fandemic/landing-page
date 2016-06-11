@@ -35,9 +35,9 @@ img.addEventListener('load', function() {
   console.log('Vibrant', swatches['Vibrant'].getHex());
   var btn = document.getElementById('activate-store');
 
-  $("#activate-store").css("background-color", swatches['DarkVibrant'].getHex());
-  $("#pay").css("background-color", swatches['DarkVibrant'].getHex());
-  $(".rangeslider__fill").css("background", swatches['DarkVibrant'].getHex());
+  //$("#activate-store").css("background-color", swatches['DarkVibrant'].getHex());
+  //$("#pay").css("background-color", swatches['DarkVibrant'].getHex());
+  //$(".rangeslider__fill").css("background", swatches['DarkVibrant'].getHex());
 
 $("a").mouseover(function() {
     $(this).css("color",swatches['DarkMuted'].getHex())
@@ -581,7 +581,7 @@ $(".btn-add").mouseover(function() {
 
       <div class="modal-footer">
         <p style="float:left;">Questions? Call 443-536-4110 for Customer Service.</p>
-        <button id="pay" data-dismiss="modal" class="btn btn-primary payStockingButton">Next</button>
+        <button id="pay" data-dismiss="modal" class="btn btn-success payStockingButton">Next</button>
       </div>
 
 
