@@ -337,6 +337,8 @@ h3{
   border-radius: 2px;
 }
 
+
+
 #side-panel .btn-activate{
   border-radius: 6px;
 	font-weight: 600;
@@ -346,7 +348,7 @@ h3{
   left: 5%;
   padding: 20px;
   border: 0px;
-  background-color: transparent;
+  
 }
 
 .card-header{
