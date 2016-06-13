@@ -420,7 +420,7 @@ img.addEventListener('load', function() {
       </button>
 
       <div class="modal-header">
-      <h3 class="modal-title" id="myModalLabel">Stock Store Wizard</h3>
+      <h3 class="modal-title" id="myModalLabel">Stock Your Store!</h3>
       <p>Virtually stock your store with fan boxes! We handle the hard part!</p>
     </div>
 
@@ -456,10 +456,10 @@ img.addEventListener('load', function() {
             data-content="Are your boxes for men, women, or both?"></i>
         </h4>
           <div class="checkbox">
-            <label><input type="checkbox" value="">Male</label>
+            <label><input type="checkbox" id="male" value="">Male</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" value="">Female</label>
+            <label><input type="checkbox" id="female" value="">Female</label>
           </div>
 
          <hr>
@@ -528,7 +528,7 @@ img.addEventListener('load', function() {
               data-toggle="popover"
               data-content="Move the slider to change the number of custom boxes
                             you want to stock in this store. The more boxes you stock,
-                            the more money you can make!"></i>
+                            the better your profit margins!"></i>
           </h4>
           <br>
           <input type="range" min="10" max="1000" step="5" value="100" data-rangeslider>
@@ -1013,6 +1013,23 @@ img.addEventListener('load', function() {
   </div>
 </div>
 
+<!-- Payment Success Modal - stocking fee version -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="stockingSuccessModal">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 class="modal-title" id="myModalLabel">Stocking Order Successful!</h2>
+      <p>You should receive an email/receipt shortly</p>
+      <hr>
+      <p>You have successfully stocked your store! The item(s) will be ready for sale in about 14 days.</p>
+      <br>
+      <p>Questions or concerns? Email us at <strong>support@fandemic.co</strong> and we will respond within a few hours. Thanks!</p>
+    </div>
+  </div>
+</div>
+
 
 
   <!-- Kick off Filterizr -->
@@ -1132,7 +1149,7 @@ $('i').popover({'trigger':'hover'});
 
         box_quantity = qty;
         var level = 0;
-        if (10 <= box_quantity && box_quantity <= 24) level = 0
+        if      (10 <= box_quantity && box_quantity <= 24) level = 0
         else if (25 <= box_quantity && box_quantity <= 49) level = 1
         else if (50 <= box_quantity && box_quantity <= 99) level = 2
         else if (100 <= box_quantity && box_quantity <= 149) level = 3
@@ -1221,8 +1238,12 @@ token: function(token,args) {
   info['star'] = "{{star.name}}";
   info['star_id'] = "{{star.id}}";
   info['active'] = "{{star.active}}";
-  info['amount'] = Math.round(total_cost * 100);
-  info['cart'] = cart;
+  info['quantity'] = box_quantity.toString();
+  info['items'] = itemsInBox;
+  info['male'] = document.getElementById('male').checked;
+  info['female'] = document.getElementById('female').checked;
+
+  info['amount'] = Math.round(stockingFee * 100);
 
   //combine all info into one object
   var result={};
@@ -1231,12 +1252,11 @@ token: function(token,args) {
 
   $.ajax({
     type: 'POST',
-    url: '/charge',
+    url: '/charge-stocking-fee',
     data: JSON.stringify(result, null, '\t'),
     contentType: 'application/json;charset=UTF-8',
     success: function(response) {
-      $("#paymentSuccessModal").modal()
-      resetCart();
+      $("#stockingSuccessModal").modal();
     },
     error: function(error) {
       alert("payment error");

@@ -161,7 +161,107 @@ def charge():
 
     return '';
 
+#================PROCESS A STOCKING FEE====================#
+@app.route('/charge-stocking-fee', methods=['GET', 'POST'])
+def chargeStockingFee():
 
+    #get the ajaxed info
+    if request.method == "POST":
+
+        info = request.get_json()
+
+        if info['active'] == 'False':
+            SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+            PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+        else:
+            SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
+            PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
+
+        #initialize the stripe data
+        stripe_keys = {
+            'secret_key': SECRET_KEY,
+            'publishable_key': PUBLISHABLE_KEY
+        }
+
+        stripe.api_key = stripe_keys['secret_key']
+
+
+        customer = stripe.Customer.create(
+            email=info['email'],
+            card=info['id']
+        )
+
+        charge = stripe.Charge.create(
+            customer=customer.id,
+            amount=info['amount'],
+            currency='usd',
+            description= info['star'] + ' stocked their store!',
+            metadata={'star_id': info['star_id'],
+                      'quantity': str(info['quantity']),
+                      'items': ', '.join(info['items'])},
+            receipt_email=info['email']
+        )
+
+        #build the string to be saved
+        order = {}
+        order['name'] = info['star']
+        order['email'] = info['email']
+        order['address'] = {}
+        order['stripe'] = {}
+        order['stripe']['id'] = charge['id']
+        order['stripe']['customer'] = charge['customer']
+        order['total'] = charge['amount']
+        order['ip'] = info['client_ip']
+        order['star_id'] = info['star_id']
+        order['active'] = True if info['active'] == 'True' else False
+
+        #check for male and female
+        gender = ''
+        if info['male'] == True and info['female'] == False:
+            gender = 'male only'
+        elif info['male'] == False and info['female'] == True:
+            gender = 'female only'
+        else: gender = 'both'
+
+        #send the emaul
+        toaddr = ['ethan@fandemic.co', 'brandon@fandemic.co']
+        fromaddr = 'fandemicstore@gmail.com'
+
+        msg = MIMEMultipart()
+        msg['From'] = fromaddr
+        msg['To'] = ", ".join(toaddr)
+        msg['Subject'] = "Stocking Order - " +  info['star']
+        html = """
+                <html>
+                  <head></head>
+                  <body>
+                    <div>
+                        <h2>Congrats, Fandemic received a stocking order!</h2>
+                        <h3>Star Info</h3>
+                        Name: """ +  info['star_id'] + """<br>
+                        Star ID: """ + info['star_id'] + """<br>
+                        Email: """ + order['email'] + """<br>
+                        <hr>
+                        <h3>Order Details</h3>
+                        Item - Box <br>
+                        Quantity - """ + info['quantity'] + """<br>
+                        Box Items - """ + ', '.join(info['items']) + """<br>
+                        Gender - """ + gender + """<br>
+                        Charge ID - """ + charge['id'] + """
+                    </div>
+                  </body>
+                </html>
+                """
+        msg.attach(MIMEText(html, 'html'))
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(fromaddr, "Fandemic123")
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
+
+    return '';
 
 #================ACTIVATE_STORE_MODAL==================
 @app.route('/activateStore', methods=['GET', 'POST'])
