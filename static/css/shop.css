@@ -352,10 +352,10 @@ h3{
   left: 5%;
   padding: 20px;
   border: 0px;
-<<<<<<< HEAD
+}
 
-=======
->>>>>>> bacef2bd63a5bfedda90af8871176a782f1155e2
+.variations .form-control {
+    border-right: 0px solid #DDDDDD !important;
 }
 
 .card-header{

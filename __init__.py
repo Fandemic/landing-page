@@ -161,6 +161,8 @@ def charge():
 
     return '';
 
+
+
 #================ACTIVATE_STORE_MODAL==================
 @app.route('/activateStore', methods=['GET', 'POST'])
 def activate():
