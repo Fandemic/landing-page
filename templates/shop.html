@@ -365,15 +365,8 @@ img.addEventListener('load', function() {
         </div>
         <div class="col-md-4">
           <div class="product-description">
-              <h2>Order Requirement</h2>
-
-              <h2>Composition</h2>
-                <p><strong>Material:</strong> {{p.description.material}}</p>
-                <p><strong>Fabric:</strong>  {{p.description.fabric}}</p>
-              <h2>Specialty</h2>
-                <p><strong>Special:</strong>  {{p.description.special}}</p>
-                <p><strong>Design:</strong>  Custom designs, logos, colors, and any modifications can be made, just ask!</p>
-
+              <h2>Description:</h2>
+                <p>{{p.description.special | safe}}</p>
           </div>
           {% for v in p.variations.color %}
           {% for i in v.img %}
@@ -1006,8 +999,8 @@ img.addEventListener('load', function() {
       <h2 class="modal-title" id="myModalLabel">Order Successful!</h2>
       <p>You should receive a receipt shortly</p>
       <hr>
-      <p>If the product(s) you ordered do not reach a minimum order you get a full refund.</p>
-      <br>
+      <!-- <p>If the product(s) you ordered do not reach a minimum order you get a full refund.</p>
+      <br> -->
       <p>Questions or concerns? Email us at <strong>support@fandemic.co</strong> and we will respond within 24 hours. Thanks!</p>
     </div>
   </div>
