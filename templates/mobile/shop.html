@@ -374,15 +374,15 @@
 
 
           <!-- Generate item checklists and give attributes -->
+           <div class="btn-group btn-group" data-toggle="buttons">
           {% for p in pricing %}
           {% if p.name != 'Box' %}
-          <div class="checkbox">
-            <label>
+            <label class="btn active">
               <input type="checkbox" class="box-item"
-                     value="{{p.name}}" checked>{{p.name}}</label>
-          </div>
+                     value="{{p.name}}" checked><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> <span>{{p.name}}</span></label>
           {% endif %}
           {% endfor %}
+          </div>
 
 
         <hr>
@@ -392,11 +392,9 @@
             data-toggle="popover"
             data-content="Are your boxes for men, women, or both?"></i>
         </h4>
-          <div class="checkbox">
-            <label><input type="checkbox" id="male" value="">Male</label>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox" id="female" value="">Female</label>
+        <div class="btn-group btn-group" data-toggle="buttons">
+            <label class="btn active"><input type="checkbox" id="male" checked><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> <span>Male</span></label>
+            <label class="btn active"><input type="checkbox" id="female" checked><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> <span>Female</span></label>
           </div>
 
          <hr>
