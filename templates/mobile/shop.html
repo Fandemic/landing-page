@@ -51,7 +51,7 @@
     <br><br>
 
     {% if star.active == false %}
-    <button style="width:100%;border-radius:0px;"data-toggle="modal" data-target="#myModal" class="btn btn-success btn-activate" id="customButton"><i class="fa fa-power-off"></i> Activate Store</button>
+    <button style="width:100%;border-radius:0px;" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate" id="customButton">Stock Store</button>
     {% else %}
     <button style="width:100%;border-radius:0px;"data-toggle="modal" data-target="#customerServiceModal" class="btn btn-info btn-activate" id="customButton"><i class="fa fa-question-circle"></i> Customer Service</button>
     {% endif %}
@@ -102,9 +102,9 @@
 
           <div class="panel panel-activate fade in" role="alert">
             <div class="alert-text"><strong>Heads up {{star.name}}!</strong>
-              <br>Click below to activate your store
+              <br>Click below to stock your store!
             <br><br>
-            <button data-toggle="modal" data-target="#myModal" class="btn btn-success btn-activate" id="customButton">Activate Store Now</button>
+            <button data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate" id="customButton">Stock My Store</button>
           </div>
 
         </div>
@@ -348,62 +348,150 @@
 
 </html>
 
-<!-- MODAL -->
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal">
-<div class="modal-dialog modal-sm">
-  <div class="modal-content">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+<!-- STORE STOCKER MODAL -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="activateStoreModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
 
-    <p>
-      Fill out the form below
-      <br>
-      We will contact you within 24 hours
-    </p>
+      <div class="modal-header">
+      <h3 class="modal-title" id="myModalLabel">Stock Your Store!</h3>
+      <p>Virtually stock your store with fan boxes! We handle the hard part!</p>
+    </div>
 
-    <form id="activate-store-modal-form" action="/activateStore" method="post">
-      <div class="row">
-        <div class="col-xs-6">
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-            <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name" autofocus/>
+      <div class="row" style="padding:20px;">
+
+        <div class="col-md-3">
+
+          <h4>Box Items
+              <i class="fa fa-question-circle" aria-hidden="true"
+              data-toggle="popover"
+              data-content="These are the products you can add to your box.
+                         Check off the ones the you want!"></i>
+          </h4>
+
+
+          <!-- Generate item checklists and give attributes -->
+          {% for p in pricing %}
+          {% if p.name != 'Box' %}
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" class="box-item"
+                     value="{{p.name}}" checked>{{p.name}}</label>
           </div>
-          <br>
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
-            <input id="activate_phone" name="phone" type="tel" class="form-control" placeholder="Phone" />
+          {% endif %}
+          {% endfor %}
+
+
+        <hr>
+
+        <h4>Gender
+            <i class="fa fa-question-circle" aria-hidden="true"
+            data-toggle="popover"
+            data-content="Are your boxes for men, women, or both?"></i>
+        </h4>
+          <div class="checkbox">
+            <label><input type="checkbox" id="male" value="">Male</label>
           </div>
-          <br>
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-            <input id="activate_email" name="email" type="email" class="form-control" placeholder="Email" value="{{star.email[0]}}"/>
+          <div class="checkbox">
+            <label><input type="checkbox" id="female" value="">Female</label>
           </div>
+
+         <hr>
+
+
+
         </div>
 
-        <div class="col-xs-6">
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
-            <input id="activate_youtube" name="youtube" type="url" class="form-control" placeholder="Youtube Channel URL" value="{{star.url.youtube}}"/>
-          </div>
+        <div class="col-md-9">
+
+          <h4>Quantity x<span id="quantity"></span>
+              <i class="fa fa-question-circle" aria-hidden="true"
+              data-toggle="popover"
+              data-content="Move the slider to change the number of custom boxes
+                            you want to stock in this store. The more boxes you stock,
+                            the better your profit margins!"></i>
+          </h4>
           <br>
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
-            <input id="activate_instagram" name="instagram" type="text" class="form-control" placeholder="Instagram Username" value="{{star.url.instagram}}" />
-          </div>
+          <input type="range" min="10" max="1000" step="5" value="100" data-rangeslider>
+
+          <br><br>
+
+
           <br>
-          <div class="input-group input-group-sm">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-square"></i></span>
-            <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" value="{{star.url.facebook}}"/>
+          <div class="row" style="text-align:center;font-size:20px;">
+            <div class="col-md-6" >
+              <div class="well" style="padding:15px;">
+                <h5>Your Profit
+                    <i class="fa fa-question-circle" aria-hidden="true"
+                    data-toggle="popover"
+                    data-content="This is how much money you will make from each sale
+                                (this does not include the reimbursable stocking fee)."></i>
+                </h5>
+                <span style="color:green;">$<span id="box-profit-per-item">20.00</span></span> per box
+              </div>
+            </div>
+            <div class="col-md-6" >
+              <div class="well" style="padding:15px;">
+                <h5>Retail Price
+                    <i class="fa fa-question-circle" aria-hidden="true"
+                    data-toggle="popover"
+                    data-content="How much your customers will pay for this box."></i>
+                </h5>
+                $<span id="box-retail-price">39.99</span> per box
+              </div>
+            </div>
+            <div class="col-md-6" >
+              <div class="well" style="padding:15px;">
+                <h5>Stocking Fee
+                    <i class="fa fa-question-circle" aria-hidden="true"
+                    data-toggle="popover"
+                    data-content="An initial fee to stock your store. This covers manufacturing.
+                                  No worries, you get it back when the boxes sell!"></i>
+                </h5>
+                $<span id="box-stocking-fee">15.00</span> per box
+              </div>
+            </div>
+
           </div>
+          <div class="row" style="text-align:center;font-size:20px;">
+            <div class="col-md-6" >
+              <div class="well" style="padding:15px;">
+                <h5>Fandemic Fee
+                    <i class="fa fa-question-circle" aria-hidden="true"
+                    data-toggle="popover"
+                    data-content="A small fee for the Fandemic team so we can keep
+                                  the lights on and keep providing you with beautiful products!
+                                  We only take this when a box sells."></i>
+                </h5>
+                $<span id="box-fandemic-fee">5.00</span> per box
+              </div>
+            </div>
+
+          </div>
+
+            <div class="row" style="text-align:center;">
+              <div class="col-md-12" >
+              <div class="well" style="padding:15px;">
+                <h5>You will make <span style="color:green;">$<span id="stocking-fee">2,000.00</span></span> total profit if you sell these boxes</h5>
+              </div>
+            </div>
+
+            </div>
         </div>
+
       </div>
-      <p id="activate-store-notification"></p>
-      <button type="submit" class="btn btn-primary center btn-submit" id="activate-store-button">Submit</button>
 
-    </form>
+      <div class="modal-footer">
+        <button href="tel:4435364110" class="btn btn-default btn-lg" style="float:left;" >Call Us</button>
+        <button id="pay" data-dismiss="modal" class="btn btn-success btn-lg payStockingButton">Next</button>
+      </div>
+
+
+    </div>
   </div>
-</div>
 </div>
 
   <!-- MODAL -->
@@ -482,6 +570,22 @@
   </div>
 </div>
 
+<!-- Payment Success Modal - stocking fee version -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="stockingSuccessModal">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h2 class="modal-title" id="myModalLabel">Stocking Order Successful!</h2>
+      <p>You should receive an email/receipt shortly</p>
+      <hr>
+      <p>You have successfully stocked your store! The item(s) will be ready for sale in about 14 days.</p>
+      <br>
+      <p>Questions or concerns? Email us at <strong>support@fandemic.co</strong> and we will respond within a few hours. Thanks!</p>
+    </div>
+  </div>
+</div>
 
 <script>
 (function ($) {
@@ -494,9 +598,23 @@ $('.spinner .btn:last-of-type').on('click', function() {
 })(jQuery);
 </script>
 
+<script>
+var pricing_index = {};
+{% for p in pricingjs %}
+  var temp = {{p|safe}};
+  pricing_index[temp.name] = {};
+  pricing_index[temp.name]['mfc'] = temp.pricing;
+  pricing_index[temp.name]['retail'] = temp.retail;
+{% endfor %}
+</script>
+
+
+<link rel="stylesheet" href="../static/css/rangeslider.css">
+<script src="../static/js/rangeslider.min.js"></script>
 <script src="../static/js/countdown.min.js"></script>
 <script src="../static/js/shop.js"></script>
 <script src="../static/js/mobile.js"></script>
+
 
 <script>
 var handler = StripeCheckout.configure({
@@ -538,6 +656,49 @@ token: function(token,args) {
 }
 });
 
+var handler2 = StripeCheckout.configure({
+{% if star.active == false %}
+key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
+{% else %}
+key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
+{% endif %}
+image: '{{star.image.profile}}',
+locale: 'auto',
+token: function(token,args) {
+
+  //gather info from the order
+  var info = {};
+  info['star'] = "{{star.name}}";
+  info['star_id'] = "{{star.id}}";
+  info['active'] = "{{star.active}}";
+  info['quantity'] = box_quantity.toString();
+  info['items'] = itemsInBox;
+  info['male'] = document.getElementById('male').checked;
+  info['female'] = document.getElementById('female').checked;
+
+  info['amount'] = Math.round(stockingFee * 100);
+
+  //combine all info into one object
+  var result={};
+  $.extend(result, args, token);
+  $.extend(result, result, info);
+
+  $.ajax({
+    type: 'POST',
+    url: '/charge-stocking-fee',
+    data: JSON.stringify(result, null, '\t'),
+    contentType: 'application/json;charset=UTF-8',
+    success: function(response) {
+      $("#stockingSuccessModal").modal();
+    },
+    error: function(error) {
+      alert("payment error");
+    }
+  });
+
+}
+});
+
 
 $( document ).ajaxStart(function () {
   $('#loading').show();  // show loading indicator
@@ -546,6 +707,21 @@ $( document ).ajaxStart(function () {
 $( document ).ajaxStop(function()
 {
     $('#loading').hide();  // hide loading indicator
+});
+
+$('.payStockingButton').on('click', function(e) {
+// Open Checkout with further options
+handler2.open({
+name: 'Stocking Fee',
+description: box_quantity +
+             ' boxes X $'+ box_stockingFee.formatMoney(2) +
+             ' = $' + stockingFee.formatMoney(2),
+allowRememberMe: true,
+panelLabel: "Pay",
+email: '{{star.email.0}}',
+amount: Math.round(stockingFee * 100)
+});
+e.preventDefault();
 });
 
 

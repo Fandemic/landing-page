@@ -152,3 +152,141 @@ var n = this,
 
  /* ==========================================================================
   ========================================================================== */
+
+  /*STOCKING BOX WIZARD*/
+var box_quantity = 0;
+var box_stockingFee = 0;
+var stockingFee = 0;
+var itemsInBox = [];
+$(function() {
+    var $document = $(document);
+    var selector = '[data-rangeslider]';
+    var $element = $(selector);
+
+    $element.rangeslider({
+        // Deactivate the feature detection
+        polyfill: false,
+        // Callback function
+        onInit: function() {
+          updateBox(100);
+        },
+        // Callback function
+        onSlide: function(position, value) {
+          updateBox(value);
+        },
+        // Callback function
+        onSlideEnd: function(position, value) {
+            console.log('onSlideEnd');
+            console.log('position: ' + position, 'value: ' + value);
+        }
+    });
+});
+
+$('.box-item').each(function() {
+  addBoxItem(this);
+  updateBoxx();
+});
+
+$('.box-item').on('change', function(){ // on change of state
+   if(this.checked) // if changed state is "CHECKED"
+    {
+      addBoxItem(this);
+      updateBoxx();
+    }
+   else{
+      removeBoxItem(this);
+      updateBoxx();
+    }
+  });
+
+  function addBoxItem(item){
+    itemsInBox.push(item.value);
+  }
+
+  function removeBoxItem(item){
+    var index = itemsInBox.indexOf(item.value);
+    itemsInBox.splice(index, 1);
+  }
+
+  function updateBoxx(){
+
+    var level = 0;
+    if (10 <= box_quantity && box_quantity <= 24) level = 0
+    else if (25 <= box_quantity && box_quantity <= 49) level = 1
+    else if (50 <= box_quantity && box_quantity <= 99) level = 2
+    else if (100 <= box_quantity && box_quantity <= 149) level = 3
+    else if (150 <= box_quantity && box_quantity <= 249) level = 4
+    else if (250 <= box_quantity && box_quantity <= 499) level = 5
+    else if (500 <= box_quantity && box_quantity <= 999) level = 6
+    else if (1000 <= box_quantity && box_quantity <= 10000) level = 7
+
+    box_stockingFee = 0;
+    box_retail = 0;
+
+    for (i in itemsInBox){
+      item = itemsInBox[i];
+      box_stockingFee = box_stockingFee + pricing_index[item]['mfc'][level];
+      box_retail = box_retail + pricing_index[item]['retail'];
+    }
+
+    //retail and stocking
+    retail = box_quantity * box_retail;
+    stockingFee = box_quantity * box_stockingFee;
+
+    //Fandemic fee
+    box_fandemicFee = (box_retail - box_stockingFee) * .25;
+    fandemicFee = box_quantity * box_fandemicFee;
+
+    //Star profit
+    profitPerItem = (box_retail - box_stockingFee) * .75;
+    totalProfit = box_quantity * profitPerItem;
+
+    $('#stocking-fee').text(totalProfit.formatMoney(2));
+    $('#box-stocking-fee').text(box_stockingFee.formatMoney(2));
+    $('#box-retail-price').text(box_retail.formatMoney(2));
+    $('#box-fandemic-fee').text(box_fandemicFee.formatMoney(2));
+    $('#box-profit-per-item').text(profitPerItem.formatMoney(2));
+
+  }
+
+  function updateBox(qty){
+
+    box_quantity = qty;
+    var level = 0;
+    if      (10 <= box_quantity && box_quantity <= 24) level = 0
+    else if (25 <= box_quantity && box_quantity <= 49) level = 1
+    else if (50 <= box_quantity && box_quantity <= 99) level = 2
+    else if (100 <= box_quantity && box_quantity <= 149) level = 3
+    else if (150 <= box_quantity && box_quantity <= 249) level = 4
+    else if (250 <= box_quantity && box_quantity <= 499) level = 5
+    else if (500 <= box_quantity && box_quantity <= 999) level = 6
+    else if (1000 <= box_quantity && box_quantity <= 10000) level = 7
+
+    box_stockingFee = 0;
+    box_retail = 0;
+
+    for (i in itemsInBox){
+      item = itemsInBox[i];
+      box_stockingFee = box_stockingFee + pricing_index[item]['mfc'][level];
+      box_retail = box_retail + pricing_index[item]['retail'];
+    }
+
+    //retail and stocking
+    retail = box_quantity * box_retail;
+    stockingFee = box_quantity * box_stockingFee;
+
+    //Fandemic fee
+    box_fandemicFee = (box_retail - box_stockingFee) * .25;
+    fandemicFee = box_quantity * box_fandemicFee;
+
+    //Star profit
+    profitPerItem = (box_retail - box_stockingFee) * .75;
+    totalProfit = box_quantity * profitPerItem;
+
+    $('#quantity').text(qty);
+    $('#stocking-fee').text(totalProfit.formatMoney(2));
+    $('#box-stocking-fee').text(box_stockingFee.formatMoney(2));
+    $('#box-retail-price').text(box_retail.formatMoney(2));
+    $('#box-fandemic-fee').text(box_fandemicFee.formatMoney(2));
+    $('#box-profit-per-item').text(profitPerItem.formatMoney(2));
+  }
