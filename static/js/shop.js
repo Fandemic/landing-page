@@ -234,11 +234,11 @@ $('.box-item').on('change', function(){ // on change of state
     stockingFee = box_quantity * box_stockingFee;
 
     //Fandemic fee
-    box_fandemicFee = (box_retail - box_stockingFee) * .25;
+    box_fandemicFee = 5.00;
     fandemicFee = box_quantity * box_fandemicFee;
 
     //Star profit
-    profitPerItem = (box_retail - box_stockingFee) * .75;
+    profitPerItem = box_retail - (box_stockingFee + box_fandemicFee);
     totalProfit = box_quantity * profitPerItem;
 
     $('#stocking-fee').text(totalProfit.formatMoney(2));
@@ -276,11 +276,11 @@ $('.box-item').on('change', function(){ // on change of state
     stockingFee = box_quantity * box_stockingFee;
 
     //Fandemic fee
-    box_fandemicFee = (box_retail - box_stockingFee) * .25;
+    box_fandemicFee = 5.00;
     fandemicFee = box_quantity * box_fandemicFee;
 
     //Star profit
-    profitPerItem = (box_retail - box_stockingFee) * .75;
+    profitPerItem = box_retail - (box_stockingFee + box_fandemicFee);
     totalProfit = box_quantity * profitPerItem;
 
     $('#quantity').text(qty);

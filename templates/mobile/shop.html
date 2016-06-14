@@ -406,84 +406,67 @@
         <div class="col-md-9">
 
           <h4>Quantity x<span id="quantity"></span>
-              <i class="fa fa-question-circle" aria-hidden="true"
-              data-toggle="popover"
-              data-content="Move the slider to change the number of custom boxes
-                            you want to stock in this store. The more boxes you stock,
-                            the better your profit margins!"></i>
+
           </h4>
           <br>
           <input type="range" min="10" max="1000" step="5" value="100" data-rangeslider>
 
+
           <br><br>
+          <div class="row" style="text-align:center;font-size:16px;">
+
+                <div class="col-xs-6">
+                  <div class="well">
+                  <h5>Your Profit
+                  </h5>
+                  <span style="color:green;">$<span id="box-profit-per-item">20.00</span></span><br>per box
+                </div>
+                </div>
+
+                <div class="col-xs-6">
+                  <div class="well">
+                  <h5>Retail Price
+
+                  </h5>
+                  $<span id="box-retail-price">39.99</span><br>per box
+                </div>
+              </div>
 
 
-          <br>
-          <div class="row" style="text-align:center;font-size:20px;">
-            <div class="col-md-6" >
-              <div class="well" style="padding:15px;">
-                <h5>Your Profit
-                    <i class="fa fa-question-circle" aria-hidden="true"
-                    data-toggle="popover"
-                    data-content="This is how much money you will make from each sale
-                                (this does not include the reimbursable stocking fee)."></i>
-                </h5>
-                <span style="color:green;">$<span id="box-profit-per-item">20.00</span></span> per box
-              </div>
-            </div>
-            <div class="col-md-6" >
-              <div class="well" style="padding:15px;">
-                <h5>Retail Price
-                    <i class="fa fa-question-circle" aria-hidden="true"
-                    data-toggle="popover"
-                    data-content="How much your customers will pay for this box."></i>
-                </h5>
-                $<span id="box-retail-price">39.99</span> per box
-              </div>
-            </div>
-            <div class="col-md-6" >
-              <div class="well" style="padding:15px;">
+
+                <div class="col-xs-6">
+                  <div class="well">
                 <h5>Stocking Fee
-                    <i class="fa fa-question-circle" aria-hidden="true"
-                    data-toggle="popover"
-                    data-content="An initial fee to stock your store. This covers manufacturing.
-                                  No worries, you get it back when the boxes sell!"></i>
-                </h5>
-                $<span id="box-stocking-fee">15.00</span> per box
-              </div>
-            </div>
 
-          </div>
-          <div class="row" style="text-align:center;font-size:20px;">
-            <div class="col-md-6" >
-              <div class="well" style="padding:15px;">
+                </h5>
+                $<span id="box-stocking-fee">15.00</span><br>per box
+                </div>
+              </div>
+
+
+            <div class="col-xs-6">
+              <div class="well">
+
                 <h5>Fandemic Fee
-                    <i class="fa fa-question-circle" aria-hidden="true"
-                    data-toggle="popover"
-                    data-content="A small fee for the Fandemic team so we can keep
-                                  the lights on and keep providing you with beautiful products!
-                                  We only take this when a box sells."></i>
+
                 </h5>
-                $<span id="box-fandemic-fee">5.00</span> per box
+                $<span id="box-fandemic-fee">5.00</span><br>per box
+
+                  </div>
               </div>
-            </div>
 
-          </div>
 
-            <div class="row" style="text-align:center;">
-              <div class="col-md-12" >
-              <div class="well" style="padding:15px;">
-                <h5>You will make <span style="color:green;">$<span id="stocking-fee">2,000.00</span></span> total profit if you sell these boxes</h5>
               </div>
-            </div>
 
-            </div>
+              <br>
+
+               <h5>You will make <span style="color:green;">$<span id="stocking-fee">2,000.00</span></span> total profit if you sell these boxes</h5>
         </div>
 
       </div>
 
       <div class="modal-footer">
-        <button href="tel:4435364110" class="btn btn-default btn-lg" style="float:left;" >Call Us</button>
+        <a href="tel:4435364110" class="btn btn-default btn-lg" style="float:left;" >Call Us</a>
         <button id="pay" data-dismiss="modal" class="btn btn-success btn-lg payStockingButton">Next</button>
       </div>
 

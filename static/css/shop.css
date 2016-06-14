@@ -83,7 +83,7 @@ h3{
 }
 
 .btn:focus{
-  
+
 }
 
 .btn:hover{
@@ -710,4 +710,9 @@ h3{
   margin-top: 10px;
   margin-bottom: 10px;
   position: initial;
+}
+
+.rangeslider__fill {
+    background: #7AA3CC !important;
+    position: absolute;
 }

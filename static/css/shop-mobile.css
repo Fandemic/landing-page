@@ -343,3 +343,17 @@ div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active
 -webkit-box-shadow: none;
 box-shadow: none;
 }
+
+.rangeslider__fill {
+    background: #7AA3CC !important;
+    position: absolute;
+}
+
+.col-xs-6{
+padding-right: 5px;
+padding-left: 5px;
+}
+
+.col-xs-6 .well{
+  margin-bottom: 10px;
+}
