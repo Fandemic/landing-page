@@ -307,13 +307,20 @@ img.addEventListener('load', function() {
         </div>
         <div class="col-md-4">
           <div class="product-description">
+            {% if p.type != 'box' %}
               <h2>Composition</h2>
                 <p><strong>Material:</strong> {{p.description.material}}</p>
                 <p><strong>Fabric:</strong>  {{p.description.fabric}}</p>
               <h2>Specialty</h2>
                 <p><strong>Special:</strong>  {{p.description.special}}</p>
                 <p><strong>Design:</strong>  {{p.description.design}}</p>
+            {% endif %}
 
+            {% if p.type == 'box'%}
+              <p>
+                {{p.description.special | safe}}
+              </p>
+            {% endif %}
           </div>
 
           {% if p.type != 'box' %}
