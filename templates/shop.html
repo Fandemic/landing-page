@@ -202,8 +202,16 @@ img.addEventListener('load', function() {
              src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
              {% if star.samplesUploaded is defined %}
              data-src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
-             {% else %}
-             data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
+             {% elif p.type == 'box' %}
+               {% if p.gender == 'male' %}
+                data-src="../static/img/stars/{{star.id}}/box-male.png"
+                  {% endif %}
+                  {% if p.gender == 'female' %}
+                   data-src="../static/img/stars/{{star.id}}/box-female.png"
+                     {% endif %}
+
+              {% else %}
+              data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
              {% endif %}
              >
 
@@ -261,8 +269,16 @@ img.addEventListener('load', function() {
                src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                {% if star.samplesUploaded is defined %}
                data-src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
-               {% else %}
-               data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
+               {% elif p.type == 'box' %}
+                 {% if p.gender == 'male' %}
+                  data-src="../static/img/stars/{{star.id}}/box-male.png"
+                    {% endif %}
+                    {% if p.gender == 'female' %}
+                     data-src="../static/img/stars/{{star.id}}/box-female.png"
+                       {% endif %}
+
+                {% else %}
+                data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
                {% endif %}>
         </div>
         <div class="col-md-4">
@@ -277,7 +293,13 @@ img.addEventListener('load', function() {
           </div>
           {% for img in p.default_img %}
           <div class="product-sample-view">
-            <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/sample_products/{{p.category}}/{{img}}"
+            <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+
+
+
+            data-src="../static/img/sample_products/{{p.category}}/{{img}}"
+
+
             {% if star.samplesUploaded is defined %}
             data-src="../static/img/sample_products/stars/{{star.id}}/{{img}}"
             {% else %}
@@ -286,6 +308,27 @@ img.addEventListener('load', function() {
             >
           </div>
           {% endfor %}
+
+          {% if star.samplesUploaded is not defined %}
+            {% if p.type == 'box' %}
+            <div class="product-sample-view">
+              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                              data-src="../static/img/stars/{{star.id}}/box.png">
+            </div>
+            <div class="product-sample-view">
+              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                              data-src="../static/img/sample_products/fitness/shirt-1.png">
+            </div>
+            <div class="product-sample-view">
+              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                              data-src="../static/img/stars/{{star.id}}/bag.png">
+            </div>
+            <div class="product-sample-view">
+              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                              data-src="../static/img/stars/{{star.id}}/box.png">
+            </div>
+             {% endif %}
+          {% endif %}
         </div>
       </div>
       <button class="btn btn-lg btn-success" style="float:right;" data-toggle="modal" data-target="#activateStoreModal"  data-dismiss="modal">Stock This Item</button>
