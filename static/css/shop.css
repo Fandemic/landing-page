@@ -682,13 +682,14 @@ h3{
    height: 750px;
  }
 
-.product-sample-view {
-  float:left;
-  bottom:0;
-  border:solid 1px;
-  cursor:pointer;
-  margin-right: 10px;
-}
+ .product-sample-view {
+     float: left;
+     bottom: 0;
+     border: solid 1px;
+     cursor: pointer;
+     margin-right: 10px;
+     margin-bottom: 10px;
+ }
 
 .side-panel hr {
   margin-top: 10px;

@@ -127,12 +127,19 @@
             </div>
           </div>
           <img class="product-picture"
-               {% if star.samplesUploaded is defined %}
-               src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
-               {% else %}
-               src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
+          {% if star.samplesUploaded is defined %}
+          src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
+          {% elif p.type == 'box' %}
+            {% if p.gender == 'male' %}
+             src="../static/img/stars/{{star.id}}/box-male.png"
                {% endif %}
-               alt="...">
+               {% if p.gender == 'female' %}
+                src="../static/img/stars/{{star.id}}/box-female.png"
+                  {% endif %}
+
+           {% else %}
+           src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
+          {% endif %}>
 
 
 
@@ -157,8 +164,79 @@
             <hr>
             <div class="row">
             <div class="col-md-8">
-              <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}" alt="...">
+
+
+              <img width="500px" height="500px" class="product-picture img-responsive"
+
+              {% if star.samplesUploaded is defined %}
+              src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
+              {% elif p.type == 'box' %}
+                {% if p.gender == 'male' %}
+                 src="../static/img/stars/{{star.id}}/box-male.png"
+                   {% endif %}
+                   {% if p.gender == 'female' %}
+                    src="../static/img/stars/{{star.id}}/box-female.png"
+                      {% endif %}
+
+               {% else %}
+               src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
+              {% endif %}>
+
+
+              <!-- thumbnails -->
+              {% if p.type != 'box' %}
+              {% for img in p.default_img %}
+              <div class="product-sample-view">
+                <img width="50px" height="50px" src="../static/img/sample_products/{{p.category}}/{{img}}"
+
+
+                {% if star.samplesUploaded is defined %}
+                src="../static/img/sample_products/stars/{{star.id}}/{{img}}"
+                {% else %}
+                src="../static/img/sample_products/{{p.category}}/{{img}}"
+                {% endif %}
+                >
+              </div>
+
+              {% endfor %}
+              {% endif %}
+
+
+              <div style="height:120px;">
+              {% if star.samplesUploaded is not defined %}
+                {% if p.type == 'box' %}
+                <div class="product-sample-view">
+                  <img width="50px" height="50px" src="../static/img/stars/{{star.id}}/box-male.png">
+                </div>
+                <div class="product-sample-view">
+                  <img width="50px" height="50px" src="../static/img/stars/{{star.id}}/box.png">
+                </div>
+                {% if p.gender == 'male' %}
+                <div class="product-sample-view">
+                  <img width="50px" height="50px" src="../static/img/sample_products/fitness/shirt-male.png">
+                </div>
+                {% else %}
+                <div class="product-sample-view">
+                  <img width="50px" height="50px" src="../static/img/sample_products/fitness/shirt-female.png">
+                  </div>
+                {% endif %}
+                <div class="product-sample-view">
+                  <img width="50px" height="50px" src="../static/img/sample_products/fitness/bag.png">
+                </div>
+                <div class="product-sample-view">
+                  <img width="50px" height="50px" src="../static/img/sample_products/fitness/bracelet.png">
+                </div>
+                 {% endif %}
+              {% endif %}
             </div>
+
+
+
+            </div>
+
+
+
+
             <div class="col-md-4">
               <div class="product-description">
                   <h2>Order Requirement</h2>
@@ -173,11 +251,8 @@
                     <p><strong>Design:</strong>  Custom designs, logos, colors, and any modifications can be made, just ask!</p>
 
               </div>
-              {% for img in p.default_img %}
-              <div class="product-sample-view">
-                <img width="50px" height="50px" src="../static/img/sample_products/{{p.category}}/{{img}}">
-              </div>
-              {% endfor %}
+
+
             </div>
           </div>
           </div>

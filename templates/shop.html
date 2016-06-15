@@ -291,6 +291,8 @@ img.addEventListener('load', function() {
                 <p><strong>Design:</strong>  {{p.description.design}}</p>
 
           </div>
+
+          {% if p.type != 'box' %}
           {% for img in p.default_img %}
           <div class="product-sample-view">
             <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
@@ -308,24 +310,35 @@ img.addEventListener('load', function() {
             >
           </div>
           {% endfor %}
+          {% endif %}
 
           {% if star.samplesUploaded is not defined %}
             {% if p.type == 'box' %}
             <div class="product-sample-view">
               <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                              data-src="../static/img/stars/{{star.id}}/box.png">
-            </div>
-            <div class="product-sample-view">
-              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                              data-src="../static/img/sample_products/fitness/shirt-1.png">
-            </div>
-            <div class="product-sample-view">
-              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                              data-src="../static/img/stars/{{star.id}}/bag.png">
+                                              data-src="../static/img/stars/{{star.id}}/box-male.png">
             </div>
             <div class="product-sample-view">
               <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
                                               data-src="../static/img/stars/{{star.id}}/box.png">
+            </div>
+            {% if p.gender == 'male' %}
+            <div class="product-sample-view">
+              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                              data-src="../static/img/sample_products/fitness/shirt-male.png">
+            {% else %}
+            <div class="product-sample-view">
+              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                              data-src="../static/img/sample_products/fitness/shirt-female.png">
+            {% endif %}
+            </div>
+            <div class="product-sample-view">
+              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                              data-src="../static/img/sample_products/fitness/bag.png">
+            </div>
+            <div class="product-sample-view">
+              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                                              data-src="../static/img/sample_products/fitness/bracelet.png">
             </div>
              {% endif %}
           {% endif %}
