@@ -717,3 +717,7 @@ h3{
     background: #7AA3CC !important;
     position: absolute;
 }
+ul.list-group {
+  list-style-type: none;
+
+}

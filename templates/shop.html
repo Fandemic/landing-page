@@ -58,6 +58,27 @@ img.addEventListener('load', function() {
 });
 </script>
 
+<style>
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+</style>
+
 <div id="loading"> Please Wait.. Order Processing...</div>
 <script> $('#loading').hide();</script>
 
@@ -148,10 +169,13 @@ img.addEventListener('load', function() {
     <span style="position:absolute;height:60px;top:15px;font-size:25px;color:#c7c7c7;"> {{star.name}} Logo </span>
     {% endif %}
 
+    {% if star.active == false %}
     <div style="text-align:center">
       <span style="text-align:center;color:#b7b7b7;">Questions on how to stock your store? Call 443-536-4110 to speak to a representative!</span>
     </div>
-
+    {% else %}
+    <div></div>
+    {% endif %}
     <div class="btns">
       <a href="/" class="button"><i class="fa fa-home" aria-hidden="true"></i></a>
       <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-info-circle button" aria-hidden="true"></i>
@@ -283,13 +307,20 @@ img.addEventListener('load', function() {
         </div>
         <div class="col-md-4">
           <div class="product-description">
+            {% if p.type != 'box' %}
               <h2>Composition</h2>
                 <p><strong>Material:</strong> {{p.description.material}}</p>
                 <p><strong>Fabric:</strong>  {{p.description.fabric}}</p>
               <h2>Specialty</h2>
                 <p><strong>Special:</strong>  {{p.description.special}}</p>
                 <p><strong>Design:</strong>  {{p.description.design}}</p>
+            {% endif %}
 
+            {% if p.type == 'box'%}
+              <p>
+                {{p.description.special | safe}}
+              </p>
+            {% endif %}
           </div>
 
           {% if p.type != 'box' %}
@@ -658,7 +689,7 @@ img.addEventListener('load', function() {
       </div>
 
       <div class="modal-footer">
-        <p style="float:left;">Questions? Call 443-536-4110 for Customer Service.</p>
+        <p style="float:left;"><strong>Questions?</strong> Check out the <a href="../faq">FAQ</a> or Call <a href="tel:443-536-4110">443-536-4110</a> for Customer Service.</p>
         <button id="pay" data-dismiss="modal" class="btn btn-success payStockingButton">Next</button>
       </div>
 
@@ -748,273 +779,325 @@ img.addEventListener('load', function() {
         <div role="tabpanel" class="tab-pane fade in active" id="faq">
                     <!-- Tab panes -->
                     <div class="tab-content faq-cat-content">
-                        <hr>
-                        <h2>Store</h2>
-                              <div class="panel-group" id="accordion-cat-1">
-                                  <div class="panel panel-default panel-faq">
-                                      <div class="panel-heading">
-                                          <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
-                                              <h4 class="panel-title">
-                                                  What products are available for my box?
-                                                  <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                              </h4>
-                                          </a>
-                                      </div>
-                                      <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
-                                          <div class="panel-body">
-                                            You may add any of the products on your store to your customized Fandemic Box.
-                                          </div>
-                                  </div>
-                              </div>
+                      <hr>
+                      <h2>Store</h2>
+                            <div class="panel-group" id="accordion-cat-1">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
+                                            <h4 class="panel-title">
+                                                What products are available for my box?
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-1-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                          You may add any of the products on your store to your customized Fandemic Box.
+                                        </div>
+                                </div>
                             </div>
-                              <div class="panel-group" id="accordion-cat-2">
-                                  <div class="panel panel-default panel-faq">
-                                      <div class="panel-heading">
-                                          <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-1">
-                                              <h4 class="panel-title">
-                                                What if I already have a store?
-                                                  <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                              </h4>
-                                          </a>
-                                      </div>
-                                      <div id="faq-cat-2-sub-1" class="panel-collapse collapse">
-                                          <div class="panel-body">
-                                            Contact our <a href="mailto:sarah@fandemic.co">support staff</a> and we will work on integrating your current store with your Fandemic store!
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="panel-group" id="accordion-cat-3">
-                                  <div class="panel panel-default panel-faq">
-                                      <div class="panel-heading">
-                                          <a data-toggle="collapse" data-parent="#accordion-cat-3" href="#faq-cat-3-sub-1">
-                                              <h4 class="panel-title">
-                                                How do I know you all are not a scam?
-                                                  <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                              </h4>
-                                          </a>
-                                      </div>
-                                      <div id="faq-cat-3-sub-1" class="panel-collapse collapse">
-                                          <div class="panel-body">
-                                            We are a legally incorporated company in the state of Maryland. Check out our incorporation document <a href="#">here</a>.
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="panel-group" id="accordion-cat-4">
-                                  <div class="panel panel-default panel-faq">
-                                      <div class="panel-heading">
-                                          <a data-toggle="collapse" data-parent="#accordion-cat-4" href="#faq-cat-4-sub-1">
-                                              <h4 class="panel-title">
-                                                I want to see the items for myself, how do I do this?
-                                                  <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                              </h4>
-                                          </a>
-                                      </div>
-                                      <div id="faq-cat-4-sub-1" class="panel-collapse collapse">
-                                          <div class="panel-body">
-                                            Our team will send one custom box to you, free of charge when you order so that you can show off and promote the box yourself.
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="panel-group" id="accordion-cat-5">
-                                  <div class="panel panel-default panel-faq">
-                                      <div class="panel-heading">
-                                          <a data-toggle="collapse" data-parent="#accordion-cat-5" href="#faq-cat-5-sub-1">
-                                              <h4 class="panel-title">
-                                                Where do you get your products from?
-                                                  <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                              </h4>
-                                          </a>
-                                      </div>
-                                      <div id="faq-cat-5-sub-1" class="panel-collapse collapse">
-                                          <div class="panel-body">
-                                            Our team has interviewed and visited a number of manufacturers across the entire world and have found a handful to partner with.
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="panel-group" id="accordion-cat-13">
-                                  <div class="panel panel-default panel-faq">
-                                      <div class="panel-heading">
-                                          <a data-toggle="collapse" data-parent="#accordion-cat-13" href="#faq-cat-13-sub-1">
-                                              <h4 class="panel-title">
-                                                Who have you worked with in the past?
-                                                  <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                              </h4>
-                                          </a>
-                                      </div>
-                                      <div id="faq-cat-13-sub-1" class="panel-collapse collapse">
-                                          <div class="panel-body">
-                                            Check out our <a href="/blog">blog</a> to read some case studies on other stars that we have worked with in the past.
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          <hr>
-                          <h2>Shipping</h2>
-                          <div class="panel-group" id="accordion-cat-6">
+                          </div>
+                          <div class="panel-group" id="accordion-cat-15">
                               <div class="panel panel-default panel-faq">
                                   <div class="panel-heading">
-                                      <a data-toggle="collapse" data-parent="#accordion-cat-6" href="#faq-cat-6-sub-1">
+                                      <a data-toggle="collapse" data-parent="#accordion-cat-15" href="#faq-cat-15-sub-1">
                                           <h4 class="panel-title">
-                                            How long does shipping take?
+                                              What if I only want one item in the store?
                                               <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
                                           </h4>
                                       </a>
                                   </div>
-                                  <div id="faq-cat-6-sub-1" class="panel-collapse collapse">
+                                  <div id="faq-cat-15-sub-1" class="panel-collapse collapse">
                                       <div class="panel-body">
-                                        It really varies on your location, but shipping could range from 5-7 business days.
+                                        That is absolutely fine! you can select any items you want in the "Stock Store" wizard.
                                       </div>
-                                  </div>
                               </div>
                           </div>
-                          <div class="panel-group" id="accordion-cat-7">
-                              <div class="panel panel-default panel-faq">
-                                  <div class="panel-heading">
-                                      <a data-toggle="collapse" data-parent="#accordion-cat-7" href="#faq-cat-7-sub-1">
-                                          <h4 class="panel-title">
-                                            Where do you ship to?
-                                              <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                          </h4>
-                                      </a>
-                                  </div>
-                                  <div id="faq-cat-7-sub-1" class="panel-collapse collapse">
-                                      <div class="panel-body">
-                                        We can ship anywhere! However, shipping cost will vary based on location, to be determined at time of checkout.
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <hr>
-                          <h2>Profits</h2>
-                          <div class="panel-group" id="accordion-cat-8">
-                              <div class="panel panel-default panel-faq">
-                                  <div class="panel-heading">
-                                      <a data-toggle="collapse" data-parent="#accordion-cat-8" href="#faq-cat-8-sub-1">
-                                          <h4 class="panel-title">
-                                            What are your profit rates? How about mine?
-                                              <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                          </h4>
-                                      </a>
-                                  </div>
-                                  <div id="faq-cat-8-sub-1" class="panel-collapse collapse">
-                                      <div class="panel-body">
-                                        We want to be as transparent as possible, and are happy to share this information with you!
-                                        <br>
-                                        The Fandemic team orders the items that you select for your box from our trusted suppliers all over the world.
-                                        <br>
-                                        The price of these items varies based on how many boxes you want (the more you order the higher your profit - this is reflected in your box creation wizard in the store).
-                                        <br>
-                                        We then divide the retail cost (what your fans pay) in half, where you get half, and the cost of the products is subtracted from our half.
-                                        <br>
-                                        For example, if your box is $30 and all of the products cost $10, then you get $15 and we get $5 ($15-$10).
-                                        Happy to answer any other questions regarding this, please <a href="mailto:sarah@fandemic.co">email us.</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="panel-group" id="accordion-cat-9">
-                              <div class="panel panel-default panel-faq">
-                                  <div class="panel-heading">
-                                      <a data-toggle="collapse" data-parent="#accordion-cat-9" href="#faq-cat-9-sub-1">
-                                          <h4 class="panel-title">
-                                            Does this cost any money?
-                                              <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                          </h4>
-                                      </a>
-                                  </div>
-                                  <div id="faq-cat-9-sub-1" class="panel-collapse collapse">
-                                      <div class="panel-body">
-                                        In order to allow your fans to receive the items instantly, we are working with
-                                        a distribution center to ship the items immediately as they are ordered.
-                                        In order to do this, we request a <strong>reimbursable</strong> stocking fee.
-                                        This stocking fee is determined based on the quantity and products,
-                                        which is determined when you create the box in your store wizard.
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="panel-group" id="accordion-cat-10">
-                              <div class="panel panel-default panel-faq">
-                                  <div class="panel-heading">
-                                      <a data-toggle="collapse" data-parent="#accordion-cat-10" href="#faq-cat-10-sub-1">
-                                          <h4 class="panel-title">
-                                            How do I get paid?
-                                              <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                          </h4>
-                                      </a>
-                                  </div>
-                                  <div id="faq-cat-10-sub-1" class="panel-collapse collapse">
-                                      <div class="panel-body">
-                                        We will send you a payment of your total weekly revenue every week <strong>in addition to</strong>
-                                        a calculated percentage of your reimbursable stocking fee based on the number of products sold.
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <hr>
-                          <h2>Customer Service</h2>
-                          <div class="panel-group" id="accordion-cat-11">
-                              <div class="panel panel-default panel-faq">
-                                  <div class="panel-heading">
-                                      <a data-toggle="collapse" data-parent="#accordion-cat-11" href="#faq-cat-11-sub-1">
-                                          <h4 class="panel-title">
-                                            What if my fans have questions? I don't want to get bombardded with emails!
-                                              <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                          </h4>
-                                      </a>
-                                  </div>
-                                  <div id="faq-cat-11-sub-1" class="panel-collapse collapse">
-                                      <div class="panel-body">
-                                        We have a professional support staff and have contractors that speak all of the most popular languages that will handle all support questions.
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <hr>
-                          <h2>Refund and Returns</h2>
-                          <div class="panel-group" id="accordion-cat-12">
-                              <div class="panel panel-default panel-faq">
-                                  <div class="panel-heading">
-                                      <a data-toggle="collapse" data-parent="#accordion-cat-12" href="#faq-cat-12-sub-1">
-                                          <h4 class="panel-title">
-                                            How do you handle refund and return requests?
-                                              <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                          </h4>
-                                      </a>
-                                  </div>
-                                  <div id="faq-cat-12-sub-1" class="panel-collapse collapse">
-                                      <div class="panel-body">
-                                        You have 24 hours to inspect your purchase and to determine if it does not meet the expectations laid forth.
-                                        In the event that you wish to receive a refund, Fandemic will issue you a refund and ask you to specify how the product failed to live up to expectations.
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <hr>
-                          <h2>Misc</h2>
-                          <div class="panel-group" id="accordion-cat-14">
-                              <div class="panel panel-default panel-faq">
-                                  <div class="panel-heading">
-                                      <a data-toggle="collapse" data-parent="#accordion-cat-14" href="#faq-cat-14-sub-1">
-                                          <h4 class="panel-title">
-                                            Do you have a flyer or something I can share in person?
-                                              <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
-                                          </h4>
-                                      </a>
-                                  </div>
-                                  <div id="faq-cat-14-sub-1" class="panel-collapse collapse">
-                                      <div class="panel-body">
-                                        We actually made a <a href="../static/misc/Fandemic_Box_Progress.pdf">flyer</a> for this exact reason.
-                                        Feel free to share with anyone.
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                        </div>
+                            <div class="panel-group" id="accordion-cat-2">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-1">
+                                            <h4 class="panel-title">
+                                              What if I already have a store?
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-2-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                          Contact our <a href="mailto:sarah@fandemic.co">support staff</a> and we will work on integrating your Fandemic store and items with your current store seamlessly!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-group" id="accordion-cat-3">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-3" href="#faq-cat-3-sub-1">
+                                            <h4 class="panel-title">
+                                              How do I know you are not a scam?
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-3-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                          Check out our <a href="/blog">Blog</a> to see what previous customers that we have worked with have to say about us!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-group" id="accordion-cat-4">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-4" href="#faq-cat-4-sub-1">
+                                            <h4 class="panel-title">
+                                              I want to see the items for myself, how do I do this?
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-4-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                          Our team will send one custom box to you, free of charge when you order so that you can show off and promote the box yourself.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-group" id="accordion-cat-5">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-5" href="#faq-cat-5-sub-1">
+                                            <h4 class="panel-title">
+                                              Where do you get your products from?
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-5-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                          Our team has interviewed and visited a number of manufacturers across the entire world and have found a handful high quality factories to partner with.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-group" id="accordion-cat-13">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-13" href="#faq-cat-13-sub-1">
+                                            <h4 class="panel-title">
+                                              Who have you worked with in the past?
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-13-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                          Check out our <a href="/blog">blog</a> to read some case studies on other stars that we have worked with in the past.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-group" id="accordion-cat-17">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-17" href="#faq-cat-17-sub-1">
+                                            <h4 class="panel-title">
+                                              This seems too easy, what do I have to do ??
+                                                <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="faq-cat-17-sub-1" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                          All you do is continue producing great content for your fans! We handle the design, production, shipping, customer service, and technology!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <hr>
+                        <h2>Shipping</h2>
+                        <div class="panel-group" id="accordion-cat-6">
+                            <div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-6" href="#faq-cat-6-sub-1">
+                                        <h4 class="panel-title">
+                                          How long does shipping take?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-6-sub-1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      It really varies on your location, but shipping could range anywhere from 5-7 business days.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-group" id="accordion-cat-7">
+                            <div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-7" href="#faq-cat-7-sub-1">
+                                        <h4 class="panel-title">
+                                          Where do you ship to?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-7-sub-1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      We can ship anywhere! However, shipping cost will vary based on location, to be determined at time of checkout.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2>Profits</h2>
+                        <div class="panel-group" id="accordion-cat-8">
+                            <div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-8" href="#faq-cat-8-sub-1">
+                                        <h4 class="panel-title">
+                                          What are your profit rates? How about mine?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-8-sub-1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      We want to be as transparent as possible, and are happy to share this information with you!
+                                      <br>
+                                      The Fandemic team orders the items that you select for your box from our trusted suppliers all over the world.
+                                      <br>
+                                      The price of these items varies based on how many boxes you want (the more you order the higher your profit - this is reflected in your box creation wizard in the store).
+                                      <br>
+                                      Our team then takes $5 from each order, a fixed fee that allows us to continue providing great service to you!
+                                      <br>
+                                      Happy to answer any other questions regarding this, please <a href="mailto:sarah@fandemic.co">email us.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-group" id="accordion-cat-9">
+                            <div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-9" href="#faq-cat-9-sub-1">
+                                        <h4 class="panel-title">
+                                          Does this cost any money?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-9-sub-1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      In order to allow your fans to receive the items instantly, we are working with
+                                      a distribution center to ship the items immediately as they are ordered.
+                                      In order to do this, we request a <strong>reimbursable</strong> stocking fee.
+                                      This means you get the amount back with each box order.
+                                      This stocking fee is determined based on the quantity and products,
+                                      which is determined when you create the box in your store wizard.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-group" id="accordion-cat-10">
+                            <div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-10" href="#faq-cat-10-sub-1">
+                                        <h4 class="panel-title">
+                                          How do I get paid?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-10-sub-1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      We will send you a payment of your total weekly revenue every week <strong>in addition to</strong>
+                                      a calculated percentage of your reimbursable stocking fee based on the number of products sold.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2>Customer Service</h2>
+                        <div class="panel-group" id="accordion-cat-11">
+                            <div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-11" href="#faq-cat-11-sub-1">
+                                        <h4 class="panel-title">
+                                          What if my fans have questions? I don't want to get bombardded with emails!
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-11-sub-1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      We have a professional support staff and have contractors that speak all of the most popular languages that will handle all support questions.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2>Refund and Returns</h2>
+                        <div class="panel-group" id="accordion-cat-12">
+                            <div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-12" href="#faq-cat-12-sub-1">
+                                        <h4 class="panel-title">
+                                          How do you handle refund and return requests?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-12-sub-1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      You have 24 hours to inspect your purchase and to determine if it does not meet the expectations laid forth.
+                                      In the event that you wish to receive a refund, Fandemic will issue you a refund and ask you to specify how the product failed to live up to expectations.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2>Misc</h2>
+                        <div class="panel-group" id="accordion-cat-16">
+                            <div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-16" href="#faq-cat-16-sub-1">
+                                        <h4 class="panel-title">
+                                          I want a cool design for my box, shirts, wristbands etc.
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-16-sub-1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      Wonderful! We have expert designers on staff that are ready to hear your requests.
+                                      They work with you for free after you pay the <strong>reimbursable</strong> stocking fee!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-group" id="accordion-cat-14">
+                            <div class="panel panel-default panel-faq">
+                                <div class="panel-heading">
+                                    <a data-toggle="collapse" data-parent="#accordion-cat-14" href="#faq-cat-14-sub-1">
+                                        <h4 class="panel-title">
+                                          Do you have a flyer or something I can share in person?
+                                            <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                                        </h4>
+                                    </a>
+                                </div>
+                                <div id="faq-cat-14-sub-1" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                      We actually made a <a href="../static/misc/Fandemic_Box_Progress.pdf">flyer</a> for this exact reason.
+                                      Feel free to share with anyone.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="contact">
           <form id="support-contact-form" action="/supportContactForm" method="post">
