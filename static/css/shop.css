@@ -90,6 +90,32 @@ h3{
   color:#fff;
 }
 
+.btn-add:active{
+  color: #515151 !important;
+  background-color: #dddddd !important;
+  border-color: #dddddd !important;
+}
+
+.btn-view:active{
+  color: #515151 !important;
+  background-color: #dddddd !important;
+  border-color: #dddddd !important;
+}
+
+
+.btn-add:focus{
+    border-color: #DDDDDD;
+    background-color: transparent;
+    color: #515151;
+}
+
+.btn-view:focus{
+    border-color: #DDDDDD;
+    background-color: transparent;
+    color: #515151;
+}
+
+
 .controls{
   position: fixed;
   z-index: 100;

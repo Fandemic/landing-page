@@ -103,12 +103,6 @@ $(document).ready(function () {
     $('[data-toggle=offcanvas]').toggleClass('btn-danger');
   });
 
-  //change the product image on click
-  $('.product-sample-view').on('click', function() {
-    var src = $(this).find('img').attr("src");
-    $(this).parent().parent().find('.product-picture').attr("src", src);
-  });
-
 
 
 });
