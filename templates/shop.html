@@ -91,12 +91,17 @@ img.addEventListener('load', function() {
        <span class="money" style="font-size:16px;">Total: $<span class="total-cost">0.00</span></span>
   </div>
 
+  {% if star.active == true %}
   <div id="cart" class="cart" class="well" style="max-height:70%;overflow:auto;padding:5px;margin-top:20px;">
       <span id="alert-cart-empty"><br><br>The cart is empty!<br>Add a product to the cart by clicking
         <button class="btn btn-primary btn-add demo" role="button"><i class="fa fa-cart-plus"></i></button>
         <br>
                                     on a product card.</span>
   </div>
+  {% else %}
+  <br><br>
+  This is a mock store. <br>The cart is currently inactive.
+  {% endif %}
 
   <button class="btn btn-primary btn-checkout customButton" id="customButton"><i class="fa fa-check-circle-o"></i> Checkout</button>
 
@@ -270,8 +275,10 @@ img.addEventListener('load', function() {
         <div class="caption">
           <h3 class="title">{{p.name}}</h3>
           <span class="money">$<span class="price">{{p.price}}</span></span>
-          <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-primary btn-view" role="button" data-toggle="modal" data-target="#modal-{{p.sku}}"><i class="fa fa-eye" aria-hidden="true"></i></button>
+          <!--<button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>-->
+          <button class="btn btn-primary btn-view" role="button"
+                  data-toggle="modal" data-target="#modal-{{p.sku}}"
+                  style="right:20px;"><i class="fa fa-eye" aria-hidden="true"></i></button>
         </div>
     </div>
   </div>
@@ -1237,11 +1244,7 @@ token: function(token,args) {
 });
 
 var handler2 = StripeCheckout.configure({
-{% if star.active == false %}
-key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
-{% else %}
 key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
-{% endif %}
 image: '{{star.image.profile}}',
 locale: 'auto',
 token: function(token,args) {
