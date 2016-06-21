@@ -174,7 +174,7 @@ $(function() {
         polyfill: false,
         // Callback function
         onInit: function() {
-          updateBox(100);
+          updateBox(1000);
         },
         // Callback function
         onSlide: function(position, value) {
