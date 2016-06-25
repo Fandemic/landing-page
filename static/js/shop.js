@@ -164,6 +164,7 @@ var box_quantity = 0;
 var box_stockingFee = 0;
 var stockingFee = 0;
 var itemsInBox = [];
+itemsInBox.push('Box');
 $(function() {
     var $document = $(document);
     var selector = '[data-rangeslider]';
@@ -217,14 +218,14 @@ $('.box-item').on('change', function(){ // on change of state
   function updateBoxx(){
 
     var level = 0;
-    if (10 <= box_quantity && box_quantity <= 24) level = 0
-    else if (25 <= box_quantity && box_quantity <= 49) level = 1
-    else if (50 <= box_quantity && box_quantity <= 99) level = 2
-    else if (100 <= box_quantity && box_quantity <= 149) level = 3
-    else if (150 <= box_quantity && box_quantity <= 249) level = 4
-    else if (250 <= box_quantity && box_quantity <= 499) level = 5
-    else if (500 <= box_quantity && box_quantity <= 999) level = 6
-    else if (1000 <= box_quantity && box_quantity <= 10000) level = 7
+    if (50 <= box_quantity && box_quantity <= 99) level = 0
+    else if (100 <= box_quantity && box_quantity <= 149) level = 1
+    else if (150 <= box_quantity && box_quantity <= 249) level = 2
+    else if (250 <= box_quantity && box_quantity <= 499) level = 3
+    else if (500 <= box_quantity && box_quantity <= 749) level = 4
+    else if (750 <= box_quantity && box_quantity <= 999) level = 5
+    else if (1000 <= box_quantity && box_quantity <= 1999) level = 6
+    else if (2000 <= box_quantity && box_quantity <= 10000) level = 7
 
     box_stockingFee = 0;
     box_retail = 0;
@@ -234,6 +235,10 @@ $('.box-item').on('change', function(){ // on change of state
       box_stockingFee = box_stockingFee + pricing_index[item]['mfc'][level];
       box_retail = box_retail + pricing_index[item]['retail'];
     }
+
+    //stripe
+    box_stockingFee = box_stockingFee + (box_stockingFee * .029);
+
 
     //retail and stocking
     retail = box_quantity * box_retail;
@@ -259,14 +264,14 @@ $('.box-item').on('change', function(){ // on change of state
 
     box_quantity = qty;
     var level = 0;
-    if      (10 <= box_quantity && box_quantity <= 24) level = 0
-    else if (25 <= box_quantity && box_quantity <= 49) level = 1
-    else if (50 <= box_quantity && box_quantity <= 99) level = 2
-    else if (100 <= box_quantity && box_quantity <= 149) level = 3
-    else if (150 <= box_quantity && box_quantity <= 249) level = 4
-    else if (250 <= box_quantity && box_quantity <= 499) level = 5
-    else if (500 <= box_quantity && box_quantity <= 999) level = 6
-    else if (1000 <= box_quantity && box_quantity <= 10000) level = 7
+    if (50 <= box_quantity && box_quantity <= 99) level = 0
+    else if (100 <= box_quantity && box_quantity <= 149) level = 1
+    else if (150 <= box_quantity && box_quantity <= 249) level = 2
+    else if (250 <= box_quantity && box_quantity <= 499) level = 3
+    else if (500 <= box_quantity && box_quantity <= 749) level = 4
+    else if (750 <= box_quantity && box_quantity <= 999) level = 5
+    else if (1000 <= box_quantity && box_quantity <= 1999) level = 6
+    else if (2000 <= box_quantity && box_quantity <= 10000) level = 7
 
     box_stockingFee = 0;
     box_retail = 0;
@@ -276,6 +281,9 @@ $('.box-item').on('change', function(){ // on change of state
       box_stockingFee = box_stockingFee + pricing_index[item]['mfc'][level];
       box_retail = box_retail + pricing_index[item]['retail'];
     }
+
+    //stripe
+    box_stockingFee = box_stockingFee + (box_stockingFee * .029);
 
     //retail and stocking
     retail = box_quantity * box_retail;
