@@ -11,6 +11,9 @@
   .post-preview>a {
     color: #337ab7;
   }
+  blockquote{
+    padding-left:5em;
+  }
 </style>
 
 <body>
@@ -73,9 +76,7 @@
           <h2 class="post-title" style="text-align: center;">
             {{title}}
           </h2>
-          <p class="post-content">
             {{content|safe}}
-          </p>
           <!-- <h3 class="post-subtitle"></h3> -->
           <br>
           <p class="post-meta">Posted by {{author}} on {{date}}</p>
