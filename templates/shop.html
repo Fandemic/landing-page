@@ -150,12 +150,19 @@ img.addEventListener('load', function() {
   <div style="padding: 0px 10px 0px 10px;">
   <strong>Welcome to {{star.name}}'s <br>Official Fandemic store!</strong>
   <hr>
-  If you need any help click the "Customer Service" button below and the
+  If you need help, click the "help" button at the top and the
   Fandemic team will help you right away!
 
+{% if stars.video_url == true %}
+{{star.name}} decided to make a video for you all! Check it out below:
   <!-- <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span> -->
   </div>
-  <button href="#" data-toggle="modal" data-target="#customerServiceModal" class="btn btn-info btn-activate"><i class="fa fa-question-circle"></i> Help</button>
+  <a href="{{star.video_url}}">
+    <i class="fa fa-play-circle button" aria-hidden="true" style="color:#7d7d7d; font-size: 3.5em; padding-top:.3em"></i>
+  </a>
+
+{% endif}
+
   {% endif %}
 
   <div class="footer">
@@ -185,7 +192,7 @@ img.addEventListener('load', function() {
     {% endif %}
     <div class="btns">
       <a href="/" class="button"><i class="fa fa-home" aria-hidden="true"></i></a>
-      <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-info-circle button" aria-hidden="true"></i>
+      <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-question button" aria-hidden="true"></i>
       <i class="fa fa-shopping-cart cart-button button"><span class="num-items"></span></i>
     </div>
 
