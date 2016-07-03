@@ -72,7 +72,7 @@ def store(template,starID):
     if star['active']:
         products = star['products'][:3]
     else:
-        products = db.sample_products.find({'category': star['category']}).sort("sort",-1).limit(3)
+        products = db.sample_products.find({'category': star['category']}).sort("sort",-1).limit(6)
 
     #extract pricing for the wizard
     pricing = db.product_pricing.find({'category': star['category']},{'_id': False})

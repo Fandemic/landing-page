@@ -93,7 +93,7 @@ img.addEventListener('load', function() {
        <span class="money" style="font-size:16px;">Total: $<span class="total-cost">0.00</span></span>
   </div>
 
-  {% if star.active == true %}
+  {% if star.stage == 'live' %}
   <div id="cart" class="cart" class="well" style="max-height:70%;overflow:auto;padding:5px;margin-top:20px;">
       <span id="alert-cart-empty"><br><br>The cart is empty!<br>Add a product to the cart by clicking
         <button class="btn btn-primary btn-add demo" role="button"><i class="fa fa-cart-plus"></i></button>
@@ -133,7 +133,7 @@ img.addEventListener('load', function() {
 
 
 
-  {% if star.active == false %}
+  {% if star.stage != 'live' %}
   <div style="padding:1px;">
     <hr>
     <p style="padding:10px;">Your Customized Fandemic store lets you sell custom fan boxes.</p>
@@ -153,7 +153,7 @@ img.addEventListener('load', function() {
   If you need help, click the "help" button at the top and the
   Fandemic team will help you right away!
 
-{% if stars.video_url == true %}
+{% if star.video_url != '' %}
 {{star.name}} decided to make a video for you all! Check it out below:
   <!-- <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span> -->
   </div>
@@ -161,7 +161,7 @@ img.addEventListener('load', function() {
     <i class="fa fa-play-circle button" aria-hidden="true" style="color:#7d7d7d; font-size: 3.5em; padding-top:.3em"></i>
   </a>
 
-{% endif}
+{% endif %}
 
   {% endif %}
 
@@ -178,12 +178,12 @@ img.addEventListener('load', function() {
 
 
     {% if star.image.logo is defined %}
-    <img style="position:absolute;height:60px;top:5px;" src="{{star.image.logo}}">
+    <img style="position:absolute;height:60px;top:5px;" src="../static/img/{{star.stage}}/{{star.id}}/logo.png">
     {% else %}
     <span style="position:absolute;height:60px;top:15px;font-size:25px;color:#c7c7c7;"> {{star.name}} Logo </span>
     {% endif %}
 
-    {% if star.active == false %}
+    {% if star.stage != 'live' %}
     <div style="text-align:center">
       <span style="text-align:center;color:#b7b7b7;">Questions on how to stock your store? Call 443-536-4110 to speak to a representative!</span>
     </div>
@@ -206,7 +206,7 @@ img.addEventListener('load', function() {
   <!--<div class="row">-->
 
 
-{% if star.active == false %}
+{% if star.stage != 'live' %}
  <!-- SAMPLE PRODUCTS VERSION INACTIVE -->
   {% set count = 1 %}
   {% for p in products %}
@@ -225,7 +225,7 @@ img.addEventListener('load', function() {
 
           <img width="30px" class="shipping-icon" style="opacity:.5;" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/shipping-icon.png">
           <div class="progress">
-            <span class="progress-text" style="color:#9d9d9d;">0 Items Remaining! - <a href="#" data-toggle="modal" data-target="#activateStoreModal">Restock</a></span>
+            <span class="progress-text" style="color:#9d9d9d;">0 Items Remaining! - <a href="#" data-toggle="modal" data-target="#activateStoreModal">Create Your Box</a></span>
             <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0"
             aria-valuemin="0" aria-valuemax="100" style="100%">
 
@@ -238,20 +238,8 @@ img.addEventListener('load', function() {
              data-target="#modal-{{p.sku}}"
              class="product-picture"
              src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-             {% if star.samplesUploaded is defined %}
-             data-src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
-             {% elif p.type == 'box' %}
-               {% if p.gender == 'male' %}
-                data-src="../static/img/stars/{{star.id}}/box-male.png"
-                  {% endif %}
-                  {% if p.gender == 'female' %}
-                   data-src="../static/img/stars/{{star.id}}/box-female.png"
-                     {% endif %}
-
-              {% else %}
-              data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
-             {% endif %}
-             >
+             data-src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}"
+         >
 
 
         <div class="row variations">
@@ -307,88 +295,26 @@ img.addEventListener('load', function() {
           <img width="500px" height="500px"
                class="product-picture img-responsive"
                src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-               {% if star.samplesUploaded is defined %}
-               data-src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
-               {% elif p.type == 'box' %}
-                 {% if p.gender == 'male' %}
-                  data-src="../static/img/stars/{{star.id}}/box-male.png"
-                    {% endif %}
-                    {% if p.gender == 'female' %}
-                     data-src="../static/img/stars/{{star.id}}/box-female.png"
-                       {% endif %}
-
-                {% else %}
-                data-src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
-               {% endif %}>
+               data-src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}"
+               >
         </div>
         <div class="col-md-4">
           <div class="product-description">
-            {% if p.type != 'box' %}
-              <h2>Composition</h2>
-                <p><strong>Material:</strong> {{p.description.material}}</p>
-                <p><strong>Fabric:</strong>  {{p.description.fabric}}</p>
-              <h2>Specialty</h2>
-                <p><strong>Special:</strong>  {{p.description.special}}</p>
-                <p><strong>Design:</strong>  {{p.description.design}}</p>
-            {% endif %}
-
-            {% if p.type == 'box'%}
               <p>
                 {{p.description.special | safe}}
               </p>
-            {% endif %}
           </div>
 
-          {% if p.type != 'box' %}
+
           {% for img in p.default_img %}
           <div class="product-sample-view">
-            <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-
-
-
-            data-src="../static/img/sample_products/{{p.category}}/{{img}}"
-
-
-            {% if star.samplesUploaded is defined %}
-            data-src="../static/img/sample_products/stars/{{star.id}}/{{img}}"
-            {% else %}
-            data-src="../static/img/sample_products/{{p.category}}/{{img}}"
-            {% endif %}
+            <img width="50px" height="50px"
+                 src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                 data-src="../static/img/{{star.stage}}/{{star.id}}/{{img}}"
             >
           </div>
           {% endfor %}
-          {% endif %}
 
-          {% if star.samplesUploaded is not defined %}
-            {% if p.type == 'box' %}
-            <div class="product-sample-view">
-              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                              data-src="../static/img/stars/{{star.id}}/box-male.png">
-            </div>
-            <div class="product-sample-view">
-              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                              data-src="../static/img/stars/{{star.id}}/box.png">
-            </div>
-            {% if p.gender == 'male' %}
-            <div class="product-sample-view">
-              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                              data-src="../static/img/sample_products/fitness/shirt-male.png">
-            {% else %}
-            <div class="product-sample-view">
-              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                              data-src="../static/img/sample_products/fitness/shirt-female.png">
-            {% endif %}
-            </div>
-            <div class="product-sample-view">
-              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                              data-src="../static/img/sample_products/fitness/bag.png">
-            </div>
-            <div class="product-sample-view">
-              <img width="50px" height="50px" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                                              data-src="../static/img/sample_products/fitness/bracelet.png">
-            </div>
-             {% endif %}
-          {% endif %}
         </div>
       </div>
       <button class="btn btn-lg btn-success" style="float:right;" data-toggle="modal" data-target="#activateStoreModal"  data-dismiss="modal">Stock This Item</button>
@@ -426,7 +352,7 @@ img.addEventListener('load', function() {
              data-toggle="modal" data-target="#modal-{{p.sku}}"
              class="product-picture"
              src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-             data-src="../static/img/products/{{star.id}}/{{p.default_img[0]}}">
+             data-src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}">
 
         <div class="row variations">
             <div class="col-lg-12 variation1">
@@ -463,7 +389,7 @@ img.addEventListener('load', function() {
           <img width="500px" height="500px"
                class="product-picture img-responsive"
                src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-               data-src="../static/img/products/{{star.id}}/{{p.default_img[0]}}"
+               data-src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}"
                >
         </div>
         <div class="col-md-4">
@@ -476,7 +402,7 @@ img.addEventListener('load', function() {
           <div class="product-sample-view">
             <img width="50px" height="50px"
                  src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                 data-src="../static/img/products/{{star.id}}/{{i}}"
+                 data-src="../static/img/{{star.stage}}/{{star.id}}/{{i}}"
                  >
           </div>
           {% endfor %}
