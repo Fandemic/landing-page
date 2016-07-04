@@ -50,7 +50,7 @@
     </div>
     <br><br>
 
-    {% if star.active == false %}
+    {% if star.stage != 'live' %}
     <button style="width:100%;border-radius:0px;" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate" id="customButton">Stock Store</button>
     {% else %}
     <button style="width:100%;border-radius:0px;"data-toggle="modal" data-target="#customerServiceModal" class="btn btn-info btn-activate" id="customButton"><i class="fa fa-question-circle"></i> Customer Service</button>
@@ -96,7 +96,7 @@
   <div class="content">
     <div class="row">
 
-      {% if star.active == false %}
+      {% if star.stage != 'live' %}
       <div class="col-md-12">
         <div class="row-fluid">
 
@@ -112,7 +112,7 @@
     </div>
     {% endif %}
 
-{% if star.active == false %}
+      {% if star.stage != 'live' %}
       {% for p in products %}
       <div class="col-xs-12">
         <div class="thumbnail">
@@ -128,19 +128,8 @@
             </div>
           </div>
           <img class="product-picture"
-          {% if star.samplesUploaded is defined %}
-          src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
-          {% elif p.type == 'box' %}
-            {% if p.gender == 'male' %}
-             src="../static/img/stars/{{star.id}}/box-male.png"
-               {% endif %}
-               {% if p.gender == 'female' %}
-                src="../static/img/stars/{{star.id}}/box-female.png"
-                  {% endif %}
-
-           {% else %}
-           src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
-          {% endif %}>
+          src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}"
+          >
 
 
           <div class="row variations" style="margin-bottom:15px;">
@@ -194,73 +183,21 @@
             <h2 class="modal-title" id="myModalLabel">{{p.name}}</h2>
             <hr>
             <div class="row">
-            <div class="col-md-8">
+            <div class="col-lg-8">
 
 
               <img width="500px" height="500px" class="product-picture img-responsive"
-
-              {% if star.samplesUploaded is defined %}
-              src="../static/img/sample_products/stars/{{star.id}}/{{p.default_img[0]}}"
-              {% elif p.type == 'box' %}
-                {% if p.gender == 'male' %}
-                 src="../static/img/stars/{{star.id}}/box-male.png"
-                   {% endif %}
-                   {% if p.gender == 'female' %}
-                    src="../static/img/stars/{{star.id}}/box-female.png"
-                      {% endif %}
-
-               {% else %}
-               src="../static/img/sample_products/{{p.category}}/{{p.default_img[0]}}"
-              {% endif %}>
+              src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}"
+              >
 
 
               <!-- thumbnails -->
-              {% if p.type != 'box' %}
               {% for img in p.default_img %}
-              <div class="product-sample-view">
-                <img width="50px" height="50px" src="../static/img/sample_products/{{p.category}}/{{img}}"
-
-
-                {% if star.samplesUploaded is defined %}
-                src="../static/img/sample_products/stars/{{star.id}}/{{img}}"
-                {% else %}
-                src="../static/img/sample_products/{{p.category}}/{{img}}"
-                {% endif %}
+              <div class="product-sample-view" >
+                <img width="50px" height="50px" src="../static/img/{{star.stage}}/{{star.id}}//{{img}}"
                 >
               </div>
-
               {% endfor %}
-              {% endif %}
-
-
-              <div style="height:120px;">
-              {% if star.samplesUploaded is not defined %}
-                {% if p.type == 'box' %}
-                <div class="product-sample-view">
-                  <img width="50px" height="50px" src="../static/img/stars/{{star.id}}/box-male.png">
-                </div>
-                <div class="product-sample-view">
-                  <img width="50px" height="50px" src="../static/img/stars/{{star.id}}/box.png">
-                </div>
-                {% if p.gender == 'male' %}
-                <div class="product-sample-view">
-                  <img width="50px" height="50px" src="../static/img/sample_products/fitness/shirt-male.png">
-                </div>
-                {% else %}
-                <div class="product-sample-view">
-                  <img width="50px" height="50px" src="../static/img/sample_products/fitness/shirt-female.png">
-                  </div>
-                {% endif %}
-                <div class="product-sample-view">
-                  <img width="50px" height="50px" src="../static/img/sample_products/fitness/bag.png">
-                </div>
-                <div class="product-sample-view">
-                  <img width="50px" height="50px" src="../static/img/sample_products/fitness/bracelet.png">
-                </div>
-                 {% endif %}
-              {% endif %}
-            </div>
-
 
 
             </div>
@@ -268,13 +205,11 @@
 
 
 
-            <div class="col-md-4">
+            <div class="col-lg-4">
               <div class="product-description">
-
-                    <p>{{star.name}} {{p.description.material}}</p>
-                  <hr>
+                  <br><br><br>
                   <h2>What's Included?</h2>
-                    {{p.description.special|safe}}
+                    {{p.description|safe}}
                     <hr>
                     <p><strong>Design:</strong>  Custom designs, logos, colors, and any modifications can be made, just ask!</p>
 
@@ -324,7 +259,9 @@
            </div>
          </div>
        </div>
-       <img width="500px" height="500px" data-toggle="modal" data-target="#modal-{{p.sku}}" class="product-picture" src="../static/img/products/{{star.id}}/{{p.default_img[0]}}" alt="...">
+       <img width="500px" height="500px" data-toggle="modal"
+            data-target="#modal-{{p.sku}}" class="product-picture"
+            src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}" alt="...">
 
        <div class="row variations">
            <div class="col-lg-6 variation1">
@@ -341,7 +278,7 @@
              <select class="form-control">
                  {% for c in p.variations.color %}
                  <option
-                   data-src="../static/img/products/{{star.id}}/{{c.img[0]}}">
+                   data-src="../static/img/{{star.stage}}/{{star.id}}/{{c.img[0]}}">
                    {{c.name}}
                  </option>
                  {% endfor %}
@@ -371,26 +308,18 @@
        <hr>
        <div class="row">
        <div class="col-md-8">
-         <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/products/{{star.id}}/{{p.default_img[0]}}" alt="...">
+         <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}" alt="...">
        </div>
        <div class="col-md-4">
          <div class="product-description">
              <h2>Order Requirement</h2>
-               <p>This campaign needs atleast <span class="emphasize">{{p.description.minOrderQty}}</span> preorders in order for {{p.name}} to be shipped.</p>
-             <h2>Composition</h2>
-               <p><strong>Material:</strong> {{p.description.material}}</p>
-               <p><strong>Fabric:</strong>  {{p.description.fabric}}</p>
-               <p><strong>Weight:</strong>  {{p.description.weight}}</p>
-               <p><strong>Fabric:</strong>  {{p.description.design}}</p>
-             <h2>Specialty</h2>
-               <p><strong>Special:</strong>  {{p.description.special}}</p>
-               <p><strong>Design:</strong>  Custom designs, logos, colors, and any modifications can be made, just ask!</p>
+
 
          </div>
          {% for v in p.variations.color %}
          {% for i in v.img %}
          <div class="product-sample-view">
-           <img width="50px" height="50px" src="../static/img/products/{{star.id}}/{{i}}">
+           <img width="50px" height="50px" src="../static/img/{{star.stage}}/{{star.id}}/{{i}}">
          </div>
          {% endfor %}
          {% endfor %}

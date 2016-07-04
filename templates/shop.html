@@ -301,7 +301,7 @@ img.addEventListener('load', function() {
         <div class="col-md-4">
           <div class="product-description">
               <p>
-                {{p.description.special | safe}}
+                {{p.description | safe}}
               </p>
           </div>
 
@@ -395,7 +395,7 @@ img.addEventListener('load', function() {
         <div class="col-md-4">
           <div class="product-description">
               <h2>Description:</h2>
-                <p>{{p.description.special | safe}}</p>
+                <p>{{p.description | safe}}</p>
           </div>
           {% for v in p.variations.color %}
           {% for i in v.img %}
