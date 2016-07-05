@@ -317,7 +317,7 @@ img.addEventListener('load', function() {
 
         </div>
       </div>
-      <button class="btn btn-lg btn-success" style="float:right;" data-toggle="modal" data-target="#activateStoreModal"  data-dismiss="modal">Stock This Item</button>
+      <button class="btn btn-lg btn-success" style="float:right;" data-toggle="modal" data-target="#activateStoreModal"  data-dismiss="modal">Create Your Box</button>
       </div>
     </div>
   </div>
@@ -450,12 +450,7 @@ img.addEventListener('load', function() {
 
         <div class="col-md-4">
 
-          <h4>Box Items
-              <i class="fa fa-question-circle" aria-hidden="true"
-              data-toggle="popover"
-              data-content="These are the products you can add to your box.
-                         Check off the ones the you want!"></i>
-          </h4>
+          <h4>Box Items</h4>
 
 
           <!-- Generate item checklists and give attributes -->
@@ -472,7 +467,13 @@ img.addEventListener('load', function() {
          <hr>
 
          <img class="img-responsive" src="../static/img/custom/zac-smith-fitness/box-male.png">
-         <span class="money">$<span id="box-retail-price">39.99</span> Retail</span>
+         <span class="money"
+         style="font-size:15px; cursor:pointer;"
+         aria-hidden="true"
+         data-toggle="popover"
+         data-html="true"
+         data-content="Our suggested retail price for this specific box."
+         >$<span id="box-retail-price">39.99</span> Retail Price</span>
 
         </div>
 
@@ -488,13 +489,8 @@ img.addEventListener('load', function() {
           </div>
           <br>
           <h4>Quantity</span>
-              <i class="fa fa-question-circle" aria-hidden="true"
-              data-toggle="popover"
-              data-content="Move the slider to change the number of custom boxes
-                            you want to stock in this store. The more boxes you stock,
-                            the better your profit margins!"></i>
 
-          <span style="float:right;">x<span id="quantity"></span>
+          <span>x<span id="quantity"></span>
           </h4>
           <br>
           <input type="range" min="50" max="2000" step="50" value="1000" data-rangeslider>
@@ -513,7 +509,7 @@ img.addEventListener('load', function() {
                                    $<span id="box-stocking-fee">15.00</span></span> per box
             </h3> <br>
 
-            <h2 style="margin:0px"><i class="fa fa-arrow-down" aria-hidden="true"></i></h2> <br>
+            <h3 style="margin:0px;color:#e6e6e6;"><i class="fa fa-arrow-down" aria-hidden="true"></i></h3> <br>
 
             <h3 style="margin:0px">Get Paid <span class="money"
             style=" border-bottom: 1px dashed #999;text-decoration: none;cursor:pointer"
@@ -521,19 +517,23 @@ img.addEventListener('load', function() {
             data-toggle="popover"
             data-html="true"
             data-content="How much money you will make from each and every box sale!<br>
-                          Fandemic takes a $5 fee from every box, this helps us keep the lights on!">
-            $<span id="box-profit-per-item">20.00</span></span> per box sale!</h3>
+                          Fandemic takes only takes a $5 fee from every box, this helps us keep the lights on!">
+            $<span id="box-revenue-per-item">20.00</span></span> per sale</h3>
+
+            <br>
+
+            <h3 style="margin:0px;color:#e6e6e6;"><i class="fa fa-arrow-down" aria-hidden="true"></i></h3> <br>
+
+            <h3 style="margin:0px">Make <span class="money"
+            style=" border-bottom: 1px dashed #999;text-decoration: none;cursor:pointer"
+            aria-hidden="true"
+            data-toggle="popover"
+            data-html="true"
+            data-content="Total profit once all boxes are sold. The profit does not include the reimursed stocking fee.">
+            $<span id="stocking-fee">20.00</span></span> in total profit!</h3>
 
           </div>
-            <br><br>
-            <div class="row" style="text-align:center;">
-              <div class="col-md-12" >
-              <div class="well" style="padding:15px;">
-                <h5>You will make <span style="color:green;">$<span id="stocking-fee">2,000.00</span></span> total profit if you sell these boxes</h5>
-              </div>
-            </div>
 
-            </div>
 
         </div>
 
@@ -1091,6 +1091,9 @@ var handler2 = StripeCheckout.configure({
 key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
 image: '{{star.image.profile}}',
 locale: 'auto',
+closed: function() {
+      $('#activateStoreModal').modal('show');
+    },
 token: function(token,args) {
 
   //gather info from the order

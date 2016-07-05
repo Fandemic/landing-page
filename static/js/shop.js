@@ -252,11 +252,14 @@ $('.box-item').on('change', function(){ // on change of state
     profitPerItem = box_retail - (box_stockingFee + box_fandemicFee);
     totalProfit = box_quantity * profitPerItem;
 
-    $('#stocking-fee').text(totalProfit.formatMoney(2));
+    revenue = profitPerItem + box_stockingFee;
+
+    $('#stocking-fee').text(totalProfit.formatMoney(0));
     $('#box-stocking-fee').text(box_stockingFee.formatMoney(2));
     $('#box-retail-price').text(box_retail.formatMoney(2));
     $('#box-fandemic-fee').text(box_fandemicFee.formatMoney(2));
     $('#box-profit-per-item').text(profitPerItem.formatMoney(2));
+    $('#box-revenue-per-item').text(revenue.formatMoney(2));
 
   }
 
@@ -297,10 +300,13 @@ $('.box-item').on('change', function(){ // on change of state
     profitPerItem = box_retail - (box_stockingFee + box_fandemicFee);
     totalProfit = box_quantity * profitPerItem;
 
+    revenue = profitPerItem + box_stockingFee;
+
     $('#quantity').text(qty);
-    $('#stocking-fee').text(totalProfit.formatMoney(2));
+    $('#stocking-fee').text(totalProfit.formatMoney(0));
     $('#box-stocking-fee').text(box_stockingFee.formatMoney(2));
     $('#box-retail-price').text(box_retail.formatMoney(2));
     $('#box-fandemic-fee').text(box_fandemicFee.formatMoney(2));
     $('#box-profit-per-item').text(profitPerItem.formatMoney(2));
+    $('#box-revenue-per-item').text(revenue.formatMoney(2));
   }
