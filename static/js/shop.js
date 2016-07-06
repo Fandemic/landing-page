@@ -310,3 +310,21 @@ $('.box-item').on('change', function(){ // on change of state
     $('#box-profit-per-item').text(profitPerItem.formatMoney(2));
     $('#box-revenue-per-item').text(revenue.formatMoney(2));
   }
+
+    //hide and unhide pictures based on checkbox
+
+// var friendlyItemsInBox = []
+//
+// $.each(itemsInBox, function (key, val) {
+//   friendlyItemsInBox[key] = val.replace(' ', '-');
+// })
+
+$.each( itemsInBox, function( i, val ) {
+  console.log(val);
+  $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/wizard/" + val + ".png'>");
+
+  $("label[id='" + val + "-wizard-checkbox']").click(function() {
+    $("[id='" + val + "-example-product-image']").toggle()
+  });
+
+});
