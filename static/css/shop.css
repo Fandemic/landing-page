@@ -813,3 +813,7 @@ box-shadow: none;
     -webkit-transition: none;
     transition: none;
 }
+
+.wizard-box-results .fa.fa-arrow-down{
+  color:#bbbbbb;
+}
