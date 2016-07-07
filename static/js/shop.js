@@ -311,20 +311,37 @@ $('.box-item').on('change', function(){ // on change of state
     $('#box-revenue-per-item').text(revenue.formatMoney(2));
   }
 
-    //hide and unhide pictures based on checkbox
+    //get starID from URL
+    var starID = window.location.href.split('/')[3];
 
-// var friendlyItemsInBox = []
-//
-// $.each(itemsInBox, function (key, val) {
-//   friendlyItemsInBox[key] = val.replace(' ', '-');
-// })
+    //remove whitespace from product names
+    var friendlyItemsInBox = [];
 
-$.each( itemsInBox, function( i, val ) {
-  console.log(val);
-  $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/wizard/" + val + ".png'>");
+    $.each( itemsInBox, function( i, val ) {
+      var q = val.replace(' ', '-');
+      friendlyItemsInBox.push(q);
+    });
 
-  $("label[id='" + val + "-wizard-checkbox']").click(function() {
-    $("[id='" + val + "-example-product-image']").toggle()
-  });
+    //add toggle functionality to checkbox-product image pairs
 
-});
+    if (starStage == 'mock') {
+
+      $.each(friendlyItemsInBox, function(i, val) {
+        $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/mock/" + starID + "/" + val + ".png'>");
+
+        $("label[id='" + val + "-wizard-checkbox']").click(function() {
+          $("[id='" + val + "-example-product-image']").toggle()
+        });
+      });
+     }
+
+
+    else if (starStage == 'custom'){
+      $.each(friendlyItemsInBox, function(i, val) {
+        $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/custom/" + starID + "/" + val + ".png'>");
+
+        $("label[id='" + val + "-wizard-checkbox']").click(function() {
+          $("[id='" + val + "-example-product-image']").toggle()
+        });
+      });
+    }

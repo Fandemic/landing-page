@@ -817,3 +817,9 @@ box-shadow: none;
 .wizard-box-results .fa.fa-arrow-down{
   color:#bbbbbb;
 }
+
+@media (max-width: 998px) {
+  #wizard-sample-toggle {
+    display: none;
+  }
+}
