@@ -324,6 +324,15 @@ $('.box-item').on('change', function(){ // on change of state
 
     //add toggle functionality to checkbox-product image pairs
 
+    $.each(friendlyItemsInBox, function(i, val) {
+      $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/wizard/" + val + ".png'>");
+
+      $("label[id='" + val + "-wizard-checkbox']").click(function() {
+        $("[id='" + val + "-example-product-image']").toggle()
+      });
+    });
+
+/*
     if (starStage == 'mock') {
 
       $.each(friendlyItemsInBox, function(i, val) {
@@ -345,3 +354,4 @@ $('.box-item').on('change', function(){ // on change of state
         });
       });
     }
+*/
