@@ -246,13 +246,9 @@
 
        <span class="product-id">{{p.sku}}</span>
        <div class="card-header">
-         <span class="hours-remaining">
-           <i class="fa fa-clock-o"></i>
-           <span class="time">{{p.endTime}}</span>
-         </span>
          <img width="30px" class="shipping-icon" style="opacity:.5;" src="../static/img/shipping-icon.png">
          <div class="progress">
-           <span class="progress-text" style="color:#9d9d9d;">{{(p.minQty - p.currentQty)|round|int}} Orders Needed!</span>
+           <span class="progress-text" style="color:#9d9d9d;">50 boxes remaining!</span>
            <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="{{p.currentQty}}"
            aria-valuemin="0" aria-valuemax="{{p.minQty}}" style="width:{{p.currentQty + 1}}%">
 
@@ -264,6 +260,7 @@
             src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}" alt="...">
 
        <div class="row variations">
+         {% if p.variations.size is defined %}
            <div class="col-lg-6 variation1">
              <div class="name"><span>size</span></div>
              <select class="form-control">
@@ -272,7 +269,8 @@
                {% endfor %}
              </select>
            </div>
-           {% if p.variations.color[0].name is defined %}
+           {% endif %}
+           {% if p.variations.color is defined %}
            <div class="col-lg-6 variation2">
              <div class="name"><span>color</span></div>
              <select class="form-control">
