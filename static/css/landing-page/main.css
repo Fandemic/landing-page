@@ -74,7 +74,7 @@ b, strong {
 }
 .testimonial.img-circle{
   max-width: 10em;
-} 
+}
 
 /* ==========================================================================
    2.Hero section
@@ -1133,4 +1133,11 @@ blockquote cite {
 @keyframes spin {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
+}
+
+.slider-sample {
+  width:80% !important;
+}
+.content-slider h3 {
+  text-align:center;
 }

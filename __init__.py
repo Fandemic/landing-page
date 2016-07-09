@@ -19,9 +19,10 @@ db = MongoClient('45.79.159.210', 27017).fandemic
 @app.route('/')
 def home():
     storeCount = db.stars.count()
-    print storeCount
+    stars = db.stars.find({'stage': 'custom'}) #find stars with custom and pull just name and id
+    print stars
 
-    return render_template('index.html', storeCount = storeCount)
+    return render_template('index.html', stars=stars, storeCount = storeCount)
 #-------------------------------------------
 @app.route('/blog')
 def blogHome():
