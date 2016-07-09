@@ -324,27 +324,21 @@ $('.box-item').on('change', function(){ // on change of state
 
     //add toggle functionality to checkbox-product image pairs
 
-    $.each(friendlyItemsInBox, function(i, val) {
-      $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/wizard/" + val + ".png'>");
+      //if star is mock then use default wizard items
 
-      $("label[id='" + val + "-wizard-checkbox']").click(function() {
-        $("[id='" + val + "-example-product-image']").toggle()
-      });
-    });
-
-/*
     if (starStage == 'mock') {
 
       $.each(friendlyItemsInBox, function(i, val) {
-        $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/mock/" + starID + "/" + val + ".png'>");
+        $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/wizard/" + val + ".png'>");
 
         $("label[id='" + val + "-wizard-checkbox']").click(function() {
           $("[id='" + val + "-example-product-image']").toggle()
         });
       });
+
      }
 
-
+     //if star is custom use their custom items, make sure they are layered
     else if (starStage == 'custom'){
       $.each(friendlyItemsInBox, function(i, val) {
         $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/custom/" + starID + "/" + val + ".png'>");
@@ -354,4 +348,3 @@ $('.box-item').on('change', function(){ // on change of state
         });
       });
     }
-*/

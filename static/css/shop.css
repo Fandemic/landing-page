@@ -183,12 +183,13 @@ h3{
 
 /*SIDE BAR*/
 .profile-img {
-  width: 100%;
+  width: 90%;
 }
 .profile-img-container {
   position: relative;
   height: auto;
   overflow: hidden;
+  padding-top:.5em;
 
 }
 #social-media{
