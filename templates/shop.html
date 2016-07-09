@@ -151,11 +151,11 @@ img.addEventListener('load', function() {
   <div style="padding: 0px 10px 0px 10px;">
   <strong>Welcome to {{star.name}}'s <br>Official Fandemic store!</strong>
   <hr>
-  If you need help, click the "help" button at the top and the
-  Fandemic team will help you right away!
+  If you need help, click the <strong>"?"</strong> button above.
+  <br>
 
 {% if star.video_url != '' %}
-{{star.name}} decided to make a video for you all! Check it out below:
+{{star.name}} decided to make a video for you all! Check it out here:
   <!-- <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span> -->
   </div>
   <a href="{{star.video_url}}">
@@ -251,7 +251,7 @@ img.addEventListener('load', function() {
                         col-md-12
                      {% endif %}
                         variation1">
-              <div class="name"><span>Shirt Size</span></div>
+              <div class="name"><span>Size</span></div>
               <select class="form-control">
                 {% for s in p.variations.size %}
                 <option>{{s}}</option>
@@ -263,19 +263,18 @@ img.addEventListener('load', function() {
               <div class="name"><span>color</span></div>
               <select class="form-control">
                   {% for c in p.variations.color %}
-                  <option>{{c.name}}</option>
+                  <option>{{c}}</option>
                   {% endfor %}
               </select>
             </div>
             {% endif %}
         </div>
 
-        <div class="caption">
+        <div data-toggle="modal" data-target="#modal-{{p.sku}}" class="caption">
           <h3 class="title">{{p.name}}</h3>
           <span class="money">$<span class="price">{{p.price}}</span></span>
           <!--<button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>-->
           <button class="btn btn-primary btn-view" role="button"
-                  data-toggle="modal" data-target="#modal-{{p.sku}}"
                   style="right:20px;"><i class="fa fa-eye" aria-hidden="true"></i></button>
         </div>
     </div>
@@ -357,7 +356,7 @@ img.addEventListener('load', function() {
 
         <div class="row variations">
             <div class="col-lg-12 variation1">
-              <div class="name"><span>Shirt Size</span></div>
+              <div class="name"><span>Size</span></div>
               <select class="form-control">
                 {% for s in p.variations.size %}
                 <option>{{s}}</option>
@@ -366,11 +365,11 @@ img.addEventListener('load', function() {
             </div>
         </div>
 
-        <div class="caption">
+        <div class="caption" data-toggle="modal" data-target="#modal-{{p.sku}}">
           <h3 class="title">{{p.name}}</h3>
           <span class="money">$<span class="price">{{p.price}}</span></span>
           <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-primary btn-view" role="button" data-toggle="modal" data-target="#modal-{{p.sku}}"><i class="fa fa-eye" aria-hidden="true"></i></button>
+          <button class="btn btn-primary btn-view" role="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
         </div>
     </div>
   </div>

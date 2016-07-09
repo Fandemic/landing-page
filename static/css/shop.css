@@ -271,6 +271,7 @@ h3{
   position: relative;
 	text-align: left;
   width: 100%;
+  cursor:pointer;
 }
 
 .caption .title{
@@ -627,6 +628,7 @@ h3{
 
 .product-description{
   text-align:left;
+  overflow:auto;
 
 }
 .product-description h2 {
