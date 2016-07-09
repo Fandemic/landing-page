@@ -70,7 +70,7 @@ def store(template,starID):
 
     #get the stars products
     if star['active']:
-        products = star['products'][:3]
+        products = star['products'][:6]
     else:
         products = db.sample_products.find({'category': star['category']}).sort("sort",-1).limit(6)
 
