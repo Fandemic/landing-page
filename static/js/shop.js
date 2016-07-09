@@ -319,8 +319,7 @@ $('.box-item').on('change', function(){ // on change of state
 
     $.each( itemsInBox, function( i, val ) {
       var rep = val.replace(' ', '-');
-      var low = rep.toLowerCase();
-      friendlyItemsInBox.push(low);
+      friendlyItemsInBox.push(rep);
     });
 
     //add toggle functionality to checkbox-product image pairs
