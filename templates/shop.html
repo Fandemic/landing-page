@@ -16,9 +16,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.min.js"></script>
   <script src="../static/js/vibrant.min.js"></script>
 
+
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../static/css/shop.css">
+
 
   <meta property="og:image" content="{{star.image.profile}}">
 
@@ -459,7 +461,9 @@ img.addEventListener('load', function() {
          {% if p.name != 'Box' %}
            <label class="btn active" id='{{p.name.replace(' ', '-')}}-wizard-checkbox'>
              <input type="checkbox" class="box-item"
-                    value="{{p.name}}" checked><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> <span>{{p.name}}</span></label>
+                    value="{{p.name}}" checked><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
+                    <span data-content="{{p.description}}">{{p.name}}</span>
+          </label>
          {% endif %}
          {% endfor %}
           </div>
@@ -500,7 +504,7 @@ img.addEventListener('load', function() {
 
           <div style="text-align:center;color:#5d5d5d;">
             <h3 style="margin:0px">
-              Pay <span class="money"
+              Deposit <span class="money"
                         style=" border-bottom: 1px dashed #999;text-decoration: none;cursor:pointer"
                         aria-hidden="true"
                         data-toggle="popover"
@@ -525,7 +529,7 @@ img.addEventListener('load', function() {
 
             <h3 style="margin:0px;color:#e6e6e6;"><i class="fa fa-arrow-down" aria-hidden="true"></i></h3> <br>
 
-            <h3 style="margin:0px">Make <span class="money"
+            <h3 style="margin:0px">Earn <span class="money"
             style=" border-bottom: 1px dashed #999;text-decoration: none;cursor:pointer"
             aria-hidden="true"
             data-toggle="popover"
@@ -541,7 +545,11 @@ img.addEventListener('load', function() {
       </div>
 
       <div class="modal-footer" style="margin-top:4em">
-        <p style="float:left;"><strong>Questions?</strong> Check out the <a href="../faq">FAQ</a> or Call <a href="tel:443-536-4110">443-536-4110</a> for Customer Service.</p>
+        <p style="float:left;">
+          <strong>Questions?</strong>
+          Check out the <a href="../faq">FAQ</a>,
+          call <a href="tel:443-536-4110">443-536-4110</a>,
+          or email <a href="mailto:sarah@fandemic.co?subject=Question regarding {{star.name}} Fandemic store">Customer Service.</a></p>
         <button id="pay" data-dismiss="modal" class="btn btn-success payStockingButton">Next</button>
       </div>
 
@@ -1050,6 +1058,7 @@ $('span').popover({'trigger':'hover'});
 </script>
 
 <script>
+
 var handler = StripeCheckout.configure({
 {% if star.active == false %}
 key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',

@@ -48,7 +48,7 @@
       <div class="row">
         <div class="col-md-12">
           <h1>Give Back to Your Fans Today!</h1>
-          <h2>We create products for your fans, and you get paid. </h2>
+          <h2>We create beautiful box experiences for your fans while you get paid. </h2>
           <!-- <div class="play-btn">
             <a href="https://vimeo.com/160944827" class="play litebox-hero">
               <img src="../static/img/play-btn.png" alt="play">
@@ -84,25 +84,25 @@
         <div class="col-sm-3">
           <img src="../static/img/benefits-2.png" alt="benefits of product">
           <h4>We Design</h4>
-          <p>We design products that represent your brand and are instantly recognizable for free.</p>
+          <p>We work with you to design products that represent your brand and look great for free.</p>
           <span class="arrow-icon">&nbsp;</span>
         </div>
         <div class="col-sm-3">
           <img src="../static/img/hand.png" alt="benefits of product">
           <h4>You Pick</h4>
-          <p>Pick the products from your Fandemic.co store to place in your boxes.</p>
+          <p>Pick the products from your <strong>free</strong> Fandemic store to place in your customized boxes.</p>
           <span class="arrow-icon">&nbsp;</span>
         </div>
         <div class="col-sm-3">
           <img src="../static/img/benefits-4.png" alt="benefits of product">
           <h4>You Promote</h4>
-          <p>Promote your Fandemic campaign to fans and followers. <a href="/fandemic">Example Store</a> </p>
+          <p>Promote your Fandemic store to fans and followers. View an <a href="/fandemic">Example Store</a> </p>
           <span class="arrow-icon">&nbsp;</span>
         </div>
         <div class="col-sm-3">
           <img src="../static/img/benefits-3.png" alt="benefits of product">
           <h4>We Ship</h4>
-          <p>We create and ship the products to your eager fans, and you get paid! </p>
+          <p>We create and ship the boxes to your eager fans, they share with their friends, and you get paid! </p>
         </div>
       </div>
     </div>
@@ -113,10 +113,10 @@
   <section class="cta-section section-spacing text-center">
     <div class="container">
       <header class="section-header">
-        <h2>Try Fandemic Today!</h2>
-        <h3>There is
-          <strong>no inventory</strong> and
-          <strong>no stocking</strong>. There is virtually no risk!</h3>
+        <h2>Request your own Fandemic store today!</h2>
+        <h3>We design custom products for you,
+          <strong>for free free</strong> and we have the <strong>best products</strong> for you to customize.
+          Give your fans exactly what they have been waiting for, today!</h3>
       </header>
       <div class="row">
         <div class="col-md-12"> <a data-toggle="modal" data-target="#myModal" class="btn">Request Store</a>
@@ -527,6 +527,25 @@
 
 
 <script>
+
+/* ==========================================================================
+   Number animation
+   ========================================================================== */
+
+$('.welcome-message').waypoint(function() {
+
+  var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
+
+  $('.total-number-1').animateNumber({
+    number: {{storeCount}}, //change value here
+    numberStep: comma_separator_number_step
+  }, 6000);
+
+}, {
+  offset: '80%'
+
+});
+
   $("a[href='#home']").click(function() {
     $("html, body").animate({
       scrollTop: 0

@@ -96,26 +96,6 @@ $(function() {
   });
 
 
-  /* ==========================================================================
-     Number animation
-     ========================================================================== */
-
-
-  $('.welcome-message').waypoint(function() {
-
-    var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
-
-    $('.total-number-1').animateNumber({
-      number: 61392, //change value here
-      numberStep: comma_separator_number_step
-    }, 6000);
-
-  }, {
-    offset: '80%'
-
-  });
-
-
 
 
   /* ==========================================================================
