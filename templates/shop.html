@@ -185,12 +185,19 @@ img.addEventListener('load', function() {
     {% endif %}
 
     {% if star.stage != 'live' %}
-    <div style="text-align:center">
-      <span style="text-align:center;color:#b7b7b7;">Questions on how to stock your store? Call 443-536-4110 to speak to a representative!</span>
-    </div>
-    {% else %}
+      {% if star.stage == 'mock' %}
+      <div style="text-align:center">
+        <span style="text-align:center;color:#b7b7b7;">This store has <strong>mock items</strong> , to request custom designs <a href="mailto:sarah@fandemic.co?Subject={{star.name}} needs a design">email</a> us or <a href="#" data-toggle="modal" data-target="#activateStoreModal">create a box</a></span>
+      </div>
+      {% endif %}
+      {% if star.stage == 'custom' %}
+      <div style="text-align:center">
+        <span style="text-align:center;color:#b7b7b7;">Questions on how to stock your store? Call 443-536-4110 to speak to a representative!</span>
+      </div>
+      {% endif %}
     <div></div>
     {% endif %}
+
     <div class="btns">
       <a href="/" class="button"><i class="fa fa-home" aria-hidden="true"></i></a>
       <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-question button" aria-hidden="true"></i>
