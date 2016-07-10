@@ -1138,6 +1138,6 @@ blockquote cite {
 .slider-sample {
   width:80% !important;
 }
-.content-slider h3 {
+.content-slider li h3 {
   text-align:center;
 }
