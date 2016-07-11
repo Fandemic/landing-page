@@ -361,6 +361,7 @@ img.addEventListener('load', function() {
              src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
              data-src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}">
 
+        {% if p.variations is defined %}
         <div class="row variations">
             <div class="col-lg-12 variation1">
               <div class="name"><span>Size</span></div>
@@ -371,6 +372,9 @@ img.addEventListener('load', function() {
               </select>
             </div>
         </div>
+        {% else %}
+        <div style="height:50px;width:100%"></div>
+        {% endif %}
 
         <div class="caption" data-toggle="modal" data-target="#modal-{{p.sku}}">
           <h3 class="title">{{p.name}}</h3>
@@ -404,16 +408,21 @@ img.addEventListener('load', function() {
               <h2>Description:</h2>
                 <p>{{p.description | safe}}</p>
           </div>
-          {% for v in p.variations.color %}
-          {% for i in v.img %}
-          <div class="product-sample-view">
-            <img width="50px" height="50px"
-                 src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                 data-src="../static/img/{{star.stage}}/{{star.id}}/{{i}}"
-                 >
-          </div>
-          {% endfor %}
-          {% endfor %}
+
+          {% if p.variations is defined %}
+            {% for v in p.variations.color %}
+              {% for i in v.img %}
+              <div class="product-sample-view">
+                <img width="50px" height="50px"
+                     src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                     data-src="../static/img/{{star.stage}}/{{star.id}}/{{i}}"
+                     >
+              </div>
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+
+
         </div>
       </div>
       </div>

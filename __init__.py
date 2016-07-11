@@ -73,8 +73,8 @@ def store(template,starID):
     if star == None: return render_template("404.html")
 
     #get the stars products
-    if star['active']:
-        products = star['products'][:3]
+    if star['stage'] == 'live':
+        products = star['products']
     else:
         products = db.sample_products.find({'category': star['category']}).sort("sort",-1).limit(6)
 
