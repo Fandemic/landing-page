@@ -114,6 +114,9 @@
     {% endif %}
 
       {% if star.stage != 'live' %}
+
+
+
       {% for p in products %}
       <div class="col-xs-12">
         <div class="thumbnail">
@@ -133,6 +136,7 @@
           >
 
 
+          {% if p.variations is defined %}
           <div class="row variations" style="margin-bottom:15px;">
               <div
                 class="{% if p.variations.color is defined %}
@@ -159,6 +163,7 @@
               </div>
               {% endif %}
           </div>
+          {% endif %}
 
 
 
@@ -235,6 +240,41 @@
       </div>
 
 {% else %}
+
+<!-- INFO BANNER GOES HERE -->
+{% if star.id == 'jen-seidel' %}
+<div class="panel-group" id="accordion">
+<div class="panel panel-default" style="margin-left:15px;margin-right:15px;">
+   <div class="panel-heading">
+     <h4 class="panel-title" style="text-align:center;">
+       <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+       Tap Here to Learn More</a>
+     </h4>
+   </div>
+   <div id="collapse1" class="collapse">
+     <div class="panel-body"><div>
+       <img width="100%" src="../static/img/live/jen-seidel/pif.png">
+     </div>
+     <br>
+     <div style="font-size:16px;color:#676767;">
+       The Paint it Forward Project is the moniker given to Artist
+       Jen Seidel's personal charitable efforts. Through various
+       partnerships with multiple Non-Profits, Jen Seidel uses her
+       talents in the Art of Body Painting to raise awareness for Art
+       and for Life. Proceeds from her box/book sales are donated to
+       the <a href="http://caseycares.org/" target="_blank">Casey Cares Foundation</a>.
+       <br><br>
+       <i style="color:#878787">"When I began this journey I recognized that I was given a
+       very unique gift and I knew very early on that I would one day
+       be able to use it to put back into the world, gifts to those that
+       lack the ability to fight for themselves."
+       -Jen Seidel</i>
+     </div></div>
+   </div>
+ </div>
+</div>
+{% endif %}
+
 <!-- ACTIVE STORE PRODUCTS VERSION -->
  {% for p in products %}
  <div class="col-md-6 col-lg-4 filtr-item"
@@ -245,20 +285,21 @@
 
 
        <span class="product-id">{{p.sku}}</span>
-       <div class="card-header">
+       <!--<div class="card-header">
          <img width="30px" class="shipping-icon" style="opacity:.5;" src="../static/img/shipping-icon.png">
          <div class="progress">
-           <span class="progress-text" style="color:#9d9d9d;">50 boxes remaining!</span>
+            <span class="progress-text" style="color:#9d9d9d;">50 boxes remaining!</span>
            <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="{{p.currentQty}}"
            aria-valuemin="0" aria-valuemax="{{p.minQty}}" style="width:{{p.currentQty + 1}}%">
 
            </div>
          </div>
-       </div>
+       </div>--><br>
        <img width="500px" height="500px" data-toggle="modal"
             data-target="#modal-{{p.sku}}" class="product-picture"
             src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}" alt="...">
 
+      {% if p.variations is defined %}
        <div class="row variations">
          {% if p.variations.size is defined %}
            <div class="col-lg-6 variation1">
@@ -284,6 +325,7 @@
            </div>
            {% endif %}
        </div>
+       {% endif %}
 
        <div class="caption">
          <h3 class="title">{{p.name}}</h3>
@@ -314,6 +356,7 @@
 
 
          </div>
+         {% if p.variations is defined %}
          {% for v in p.variations.color %}
          {% for i in v.img %}
          <div class="product-sample-view">
@@ -321,6 +364,7 @@
          </div>
          {% endfor %}
          {% endfor %}
+         {% endif %}
        </div>
      </div>
      </div>

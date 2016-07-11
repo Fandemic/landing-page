@@ -211,7 +211,30 @@ img.addEventListener('load', function() {
 <!-- CENTER PANEL -->
 <div id="center-panel" class="container-fluid">
 
-  <!--<div class="row">-->
+
+
+  <!-- INFO BANNER GOES HERE -->
+  {% if star.id == 'jen-seidel' %}
+  <div style="padding: 0px 60px 30px 60px;" class="row">
+    <div class="col-md-4">
+      <img width="100%" src="../static/img/live/jen-seidel/pif.png">
+    </div>
+    <div class="col-md-8" style="font-size:16px;color:#676767;">
+      The Paint it Forward Project is the moniker given to Artist
+      Jen Seidel's personal charitable efforts. Through various
+      partnerships with multiple Non-Profits, Jen Seidel uses her
+      talents in the Art of Body Painting to raise awareness for Art
+      and for Life. Proceeds from her box/book sales are donated to
+      the <a href="http://caseycares.org/" target="_blank">Casey Cares Foundation</a>.
+      <br>
+      <i style="color:#878787">"When I began this journey I recognized that I was given a
+      very unique gift and I knew very early on that I would one day
+      be able to use it to put back into the world, gifts to those that
+      lack the ability to fight for themselves."
+      -Jen Seidel</i>
+    </div>
+  </div>
+  {% endif %}
 
 
 {% if star.stage != 'live' %}
@@ -335,6 +358,8 @@ img.addEventListener('load', function() {
 
 {% else %}
  <!-- ACTIVE STORE PRODUCTS VERSION -->
+
+
   {% for p in products %}
   <div class="col-md-6 col-lg-4"
        data-category="{% for id in p.subcatID %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
@@ -344,17 +369,17 @@ img.addEventListener('load', function() {
 
 
         <span class="product-id">{{p.sku}}</span>
-        <div class="card-header">
+          <!--<div class="card-header">
 
           <img width="30px" class="shipping-icon" style="opacity:.5;" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/shipping-icon.png">
           <div class="progress">
-            <span class="progress-text" style="color:#9d9d9d;">{{(p.minQty - p.currentQty)|round|int}} Boxes Remaining!</span>
+          <span class="progress-text" style="color:#9d9d9d;">{{(p.minQty - p.currentQty)|round|int}} Boxes Remaining!</span>
             <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="{{p.currentQty}}"
             aria-valuemin="0" aria-valuemax="{{p.minQty}}" style="width:{{p.currentQty + 1}}%">
 
             </div>
           </div>
-        </div>
+        </div>--><br>
         <img width="500px" height="500px"
              data-toggle="modal" data-target="#modal-{{p.sku}}"
              class="product-picture"
