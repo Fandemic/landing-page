@@ -15,11 +15,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.min.js"></script>
   <script src="../static/js/vibrant.min.js"></script>
-
+  <script src="../static/js/landing-page/jquery.magnific-popup.min.js"></script>
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../static/css/shop.css">
+  <link rel="stylesheet" href="../static/css/landing-page/magnific-popup.css">
+
 
 
   <meta property="og:image" content="{{star.image.profile}}">
@@ -158,7 +160,7 @@ img.addEventListener('load', function() {
 {{star.name}} decided to make a video for you all! Check it out here:
   <!-- <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span> -->
   </div>
-  <a href="{{star.video_url}}">
+  <a href="{{star.url.video_url}}" class="play litebox-hero">
     <i class="fa fa-play-circle button" aria-hidden="true" style="color:#7d7d7d; font-size: 3.5em; padding-top:.3em"></i>
   </a>
 
@@ -1225,6 +1227,10 @@ e.preventDefault();
 // Close Checkout on page navigation
 $(window).on('popstate', function() {
 handler.close();
+});
+
+$('.litebox-hero, .litebox-tour').magnificPopup({
+  type: 'iframe'
 });
 </script>
 
