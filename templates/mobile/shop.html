@@ -40,21 +40,35 @@
 
   <div id="menu">
 
-    <img class="profile-img" src="{{star.image.profile}}">
-    <h2 class="title">{{star.name}}</h2>
-    <br>
-    <div id="social-media">
-      <a class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
-      <a class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
-      <a class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
-      <a class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
-    </div>
-    <br><br>
-
     {% if star.stage != 'live' %}
-    <button style="width:100%;border-radius:0px;" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate" id="customButton">Stock Store</button>
+    <div style="padding:1px;">
+      <hr>
+      <p style="padding:10px;">This store has mock items. Create your own unique box below.</p>
+      <span style="cursor:pointer" data-content="A publicly visible indicator of how much of your profit has gone to Fandemic partnered charities." data-original-title="" title="">
+        <h5>Charity Donation</h5>
+        <h4>$0.00</h4>
+      </span>
+
+    </div>
+    <button style="width:100%" id="activate-store" href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate">Create My Box</button>
+
     {% else %}
-    <button style="width:100%;border-radius:0px;"data-toggle="modal" data-target="#customerServiceModal" class="btn btn-info btn-activate" id="customButton"><i class="fa fa-question-circle"></i> Customer Service</button>
+    <div style="padding: 0px 10px 0px 10px;">
+    <strong>Welcome to {{star.name}}'s <br>Official Fandemic store!</strong>
+    <hr>
+    If you need help, click the <strong>"?"</strong> button above.
+    <br>
+
+  {% if star.video_url != '' %}
+  {{star.name}} decided to make a video for you all! Check it out here:
+    <!-- <span style="font-size:35px;color:#adadad;"><i class="fa fa-arrow-down"></i></span> -->
+    </div>
+    <a href="{{star.url.video_url}}" class="play litebox-hero">
+      <i class="fa fa-play-circle button" aria-hidden="true" style="color:#7d7d7d; font-size: 3.5em; padding-top:.3em"></i>
+    </a>
+
+  {% endif %}
+
     {% endif %}
   </div>
 
