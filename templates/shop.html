@@ -202,7 +202,7 @@ img.addEventListener('load', function() {
 
     <div class="btns">
       <a href="/" class="button"><i class="fa fa-home" aria-hidden="true"></i></a>
-      <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-question button" aria-hidden="true"></i>
+      <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-question-circle button" aria-hidden="true"></i>
       <i class="fa fa-shopping-cart cart-button button"><span class="num-items"></span></i>
     </div>
 
@@ -400,11 +400,11 @@ ability to fight for themselves.”
         <div style="height:50px;width:100%"></div>
         {% endif %}
 
-        <div class="caption" data-toggle="modal" data-target="#modal-{{p.sku}}">
+        <div class="caption">
           <h3 class="title">{{p.name}}</h3>
           <span class="money">$<span class="price">{{p.price}}</span></span>
           <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
-          <button class="btn btn-primary btn-view" role="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
+          <button data-toggle="modal" data-target="#modal-{{p.sku}}" class="btn btn-primary btn-view" role="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
         </div>
     </div>
   </div>
@@ -452,6 +452,7 @@ ability to fight for themselves.”
       </div>
     </div>
   </div>
+  <script>$('#modal-{{p.sku}}').appendTo("html")</script>
   {% endfor %}
 {% endif %}
 
@@ -1099,11 +1100,8 @@ $('span').popover({'trigger':'hover'});
 <script>
 
 var handler = StripeCheckout.configure({
-{% if star.active == false %}
 key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
-{% else %}
-key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
-{% endif %}
+//key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
 image: '{{star.image.profile}}',
 locale: 'auto',
 token: function(token,args) {

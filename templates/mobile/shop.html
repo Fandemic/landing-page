@@ -678,11 +678,8 @@ var pricing_index = {};
 
 <script>
 var handler = StripeCheckout.configure({
-{% if star.active == false %}
 key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
-{% else %}
-key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
-{% endif %}
+//key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
 image: '{{star.image.profile}}',
 locale: 'auto',
 token: function(token,args) {
@@ -690,6 +687,7 @@ token: function(token,args) {
   //gather info from the order
   var info = {};
   info['star'] = "{{star.name}}";
+    info['star_id'] = "{{star.id}}";
   info['active'] = "{{star.active}}";
   info['amount'] = Math.round(total_cost * 100);
   info['cart'] = cart;

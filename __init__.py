@@ -10,6 +10,7 @@ from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
 import stripe
 import os
+from slack import Slack
 
 app = Flask(__name__)
 Mobility(app)
@@ -110,17 +111,19 @@ def store(template,starID):
 @app.route('/charge', methods=['GET', 'POST'])
 def charge():
 
+    sarah = Slack()
+
     #get the ajaxed info
     if request.method == "POST":
 
         info = request.get_json()
 
-        if info['active'] == 'False':
-            SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
-            PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
-        else:
-            SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
-            PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
+        #if info['active'] == 'False':
+        SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+        PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+        #else:
+        #SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
+        #PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
 
         #initialize the stripe data
         stripe_keys = {
@@ -149,21 +152,37 @@ def charge():
         order['name'] = info['billing_name']
         order['email'] = info['email']
         order['address'] = {}
-        order['address']['street1'] = info['shipping_address_line1']
-        order['address']['city'] = info['shipping_address_city']
-        order['address']['state'] = info['shipping_address_state']
-        order['address']['zip'] = info['shipping_address_zip']
-        order['address']['country'] = info['shipping_address_country']
+        street1 = order['address']['street1'] = info['shipping_address_line1']
+        city = order['address']['city'] = info['shipping_address_city']
+        state = order['address']['state'] = info['shipping_address_state']
+        zipcode = order['address']['zip'] = info['shipping_address_zip']
+        country = order['address']['country'] = info['shipping_address_country']
         order['stripe'] = {}
         order['stripe']['id'] = charge['id']
         order['stripe']['customer'] = charge['customer']
-        order['cart'] = info['cart']
+        cart = order['cart'] = info['cart']
         order['total'] = charge['amount']
         order['ip'] = info['client_ip']
         order['star_id'] = info['star_id']
         order['active'] = True if info['active'] == 'True' else False
 
+        #insert into database
         db.orders.insert_one(order)
+
+        #Get sarah to send a notification
+        msg = '*Name:* ' + order['name'] + '\n*Email:* ' + order['email']
+        msg += '\n*Address*\n' + street1
+        msg += '\n' + city + ' ' + state + ', ' + zipcode
+        msg += '\n' + country
+        msg += '\n*Cart*\n'
+        for sku, v in cart.iteritems():
+            msg += '`' + sku + '` '
+            for v2, qty in v.iteritems():
+                msg += v2
+                for qty2, value in qty.iteritems():
+                    msg += '(' + str(value) + ') '
+            msg += '\n'
+        sarah.send("order placed","Order #1234",msg)
 
     return '';
 

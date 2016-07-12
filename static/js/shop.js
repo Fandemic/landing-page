@@ -60,7 +60,7 @@ $(document).ready(function(){
           }
           cart[itemID][variation]={};
           cart[itemID][variation]['qty'] = 1;
-          var item = $('<div class="item '+id+'"><span class="product-id">'+itemID+'</span><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong> (x<span class="qty">1</span>)<br>$<span class="price">' + price + '</span><br><strong>'+varName1+':</strong> '+var1+' <strong>'+varName2+':</strong> '+var2+'<a class="delete"><i class="fa fa-times"></i></a></div>');
+          var item = $('<div class="item '+id+'"><span class="product-id">'+itemID+'</span><img width="80px" src="' + itemSrc + '"><strong>' + itemTitle + '</strong> (x<span class="qty">1</span>)<br>$<span class="price">' + price + '</span><br><strong>'+varName1+'</strong> '+var1+' <strong>'+varName2+'</strong> '+var2+'<a class="delete"><i class="fa fa-times"></i></a></div>');
           item.prependTo($("#cart")).hide().fadeIn(500);
         }
 
