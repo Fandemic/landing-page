@@ -20,12 +20,16 @@
   <script src="../static/js/velocity.js"></script>
   <script src="../static/js/bootstrap.min.js"></script>
   <script src="../static/js/slideout.min.js"></script>
+  <script src="../static/js/landing-page/jquery.magnific-popup.min.js"></script>
+
 
   <link href="../static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/shop.css">
   <link rel="stylesheet" href="../static/css/shop-mobile.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/landing-page/magnific-popup.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 </head>
 
 
@@ -54,7 +58,13 @@
     {% if star.stage != 'live' %}
     <button style="width:100%;border-radius:0px;" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate" id="customButton">Stock Store</button>
     {% else %}
-    <button style="width:100%;border-radius:0px;"data-toggle="modal" data-target="#customerServiceModal" class="btn btn-info btn-activate" id="customButton"><i class="fa fa-question-circle"></i> Customer Service</button>
+
+    {% if star.video_url != '' %}
+      <p style="color:white">{{star.name}} decided to make a video for you all! Check it out here:<p>
+      <a href="{{star.url.video_url}}" class="play litebox-hero">
+        <i class="fa fa-play-circle button" aria-hidden="true" style="color:#7d7d7d; font-size: 3.5em; padding-top:.3em"></i>
+      </a>
+    {% endif %}
     {% endif %}
   </div>
 
@@ -804,6 +814,10 @@ handler.close();
 $('.modal').on('shown.bs.modal', function() {
   menu.close();
   $(this).find('[autofocus]').focus();
+});
+
+$('.litebox-hero, .litebox-tour').magnificPopup({
+  type: 'iframe'
 });
 
 </script>
