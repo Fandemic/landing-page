@@ -22,7 +22,6 @@ def home():
     storeCount = db.stars.count()
     stars = db.stars.find({'stage': 'custom'}) #find stars with custom and pull just name and id
     categories = db.stars.distinct("category")
-    print categories
 
     return render_template('index.html', categories = categories, stars=stars, storeCount = storeCount)
 #-------------------------------------------
