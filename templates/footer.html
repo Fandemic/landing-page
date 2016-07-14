@@ -138,8 +138,14 @@
             </div>
             <br>
             <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-official"></i></span>
-              <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" />
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-industry"></i></span>
+              <select id="categories" name="categories" type="text" class="form-control" placeholder="Select your Industry">
+                <option value="" selected disabled>Select your Industry</option>
+                {% for c in categories %}
+                <option value="{{c}}">{{c.title()}}</option>
+                {% endfor %}
+                <option value="other">Other</option>
+              </select>
             </div>
           </div>
         </div>
