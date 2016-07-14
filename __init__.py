@@ -17,7 +17,7 @@ Mobility(app)
 db = MongoClient('45.79.159.210', 27017).fandemic
 
 #================INDEX=====================
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
     storeCount = db.stars.count()
     stars = db.stars.find({'stage': 'custom'}) #find stars with custom and pull just name and id
