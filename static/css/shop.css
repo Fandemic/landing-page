@@ -844,3 +844,9 @@ box-shadow: none;
   text-align: left;
   vertical-align: middle;
 }
+
+.modal-footer .btn-secondary {
+  color: #373a3c;
+  background-color: #fff;
+  border-color: #ccc;
+}
