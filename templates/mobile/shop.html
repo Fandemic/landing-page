@@ -669,6 +669,9 @@ $('.spinner .btn:last-of-type').on('click', function() {
 </script>
 
 <script>
+//define star's stage
+var starStage = '{{star.stage}}';
+
 var pricing_index = {};
 {% for p in pricingjs %}
   var temp = {{p|safe}};
@@ -819,5 +822,7 @@ $('.modal').on('shown.bs.modal', function() {
 $('.litebox-hero, .litebox-tour').magnificPopup({
   type: 'iframe'
 });
+
+
 
 </script>
