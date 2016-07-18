@@ -11,6 +11,7 @@ from flask.ext.mobility.decorators import mobile_template
 import stripe
 import os
 from slack import Slack
+from star import Star
 
 app = Flask(__name__)
 Mobility(app)
