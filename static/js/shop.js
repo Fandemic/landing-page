@@ -313,6 +313,7 @@ $('.box-item').on('change', function(){ // on change of state
 
     //get starID from URL
     var starID = window.location.href.split('/')[3];
+    starID = starID.replace('#createbox','');
 
     //remove whitespace from product names
     var friendlyItemsInBox = [];
@@ -338,13 +339,18 @@ $('.box-item').on('change', function(){ // on change of state
 
      }
 
-     //if star is custom use their custom items, make sure they are layered
-    else if (starStage == 'custom'){
-      $.each(friendlyItemsInBox, function(i, val) {
-        $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/custom/" + starID + "/" + val + ".png'>");
+       //if star is custom use their custom items, make sure they are layered
+      else if (starStage == 'custom'){
+        $.each(friendlyItemsInBox, function(i, val) {
+          $('#wizard-sample-toggle').append("<img id = '" + val + "-example-product-image' class='img-responsive' style='position:absolute' src='../static/img/custom/" + starID + "/" + val + ".png'>");
 
-        $("label[id='" + val + "-wizard-checkbox']").click(function() {
-          $("[id='" + val + "-example-product-image']").toggle()
+          $("label[id='" + val + "-wizard-checkbox']").click(function() {
+            $("[id='" + val + "-example-product-image']").toggle()
+          });
         });
-      });
+      }
+ 
+        //if url contanis createbox open modal
+    if (window.location.href.indexOf("#createbox") != -1) {
+    	$('#activateStoreModal').modal('toggle');
     }

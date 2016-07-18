@@ -108,7 +108,7 @@
       <h2 class="modal-title" id="myModalLabel">Request a store!</h2>
       <p>Fill out the form below and we will generate a mock store where you can add your own products!</p>
       <hr>
-      <form id="activate-store-modal-form" action="/activate" method="post">
+      <form id="activate-store-modal-form" action="/activateStore" method="post">
         <div class="row">
           <div class="col-md-6">
             <div class="input-group input-group-lg">
@@ -129,7 +129,7 @@
           <div class="col-md-6">
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
-              <input id="activate_youtube" name="youtube" type="url" class="form-control" placeholder="Youtube Channel URL" />
+              <input id="activate_youtube" name="youtube" type="text" class="form-control" placeholder="Youtube Channel" />
             </div>
             <br>
             <div class="input-group input-group-lg">
@@ -138,13 +138,19 @@
             </div>
             <br>
             <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-official"></i></span>
-              <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" />
+              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-industry"></i></span>
+              <select id="categories" name="categories" type="text" class="form-control" placeholder="Select your Industry">
+                <option value="" selected disabled>Select your Industry</option>
+                {% for c in categories %}
+                <option value="{{c}}">{{c.title()}}</option>
+                {% endfor %}
+                <option value="other">Other</option>
+              </select>
             </div>
           </div>
         </div>
         <hr>
-        <button type="submit" class="btn btn-primary center btn-submit" id="activate-store-button">Submit</button>
+        <button type="submit" class="btn btn-primary center btn-submit" id="activate-store-button">Request Store</button>
         <p id="activate-store-notification"></p>
       </form>
     </div>

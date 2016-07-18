@@ -18,13 +18,13 @@ Mobility(app)
 db = MongoClient('45.79.159.210', 27017).fandemic
 
 #================INDEX=====================
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
     storeCount = db.stars.count()
     stars = db.stars.find({'stage': 'custom'}) #find stars with custom and pull just name and id
-    print stars
+    categories = db.stars.distinct("category")
 
-    return render_template('index.html', stars=stars, storeCount = storeCount)
+    return render_template('index.html', categories = categories, stars=stars, storeCount = storeCount)
 #-------------------------------------------
 @app.route('/blog')
 def blogHome():
@@ -293,7 +293,7 @@ def activate():
     phone = request.form['phone']
     youtube = request.form['youtube']
     instagram = request.form['instagram']
-    facebook = request.form['facebook']
+    categories = request.form['categories']
     current_ip = request.environ['REMOTE_ADDR']
 
     toaddr = ['ethan@fandemic.co', 'brandon@fandemic.co']
@@ -313,7 +313,7 @@ def activate():
                     Phone: """ + phone + """<br>
                     Youtube: """ + youtube + """<br>
                     Instagram: """ + instagram + """<br>
-                    Facebook: """ + facebook + """<br>
+                    Category: """ + categories + """<br>
                     IP Address: """ + current_ip + """
                 </p>
               </body>
