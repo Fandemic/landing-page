@@ -24,10 +24,15 @@ def home():
 
     return render_template('index.html', categories = categories, stars=stars, storeCount = storeCount)
 #-------------------------------------------
+
 @app.route('/blog')
 def blogHome():
     posts = db.blog.find({})
     return render_template('blog.html', posts = posts)
+
+@app.route('/catalog')
+def catalog():
+    return render_template('catalog.html')
 
 @app.route('/blog/<url>')
 def blogPost(url):
