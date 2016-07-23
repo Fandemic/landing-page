@@ -30,7 +30,7 @@ def blogHome():
     posts = db.blog.find({})
     return render_template('blog.html', posts = posts)
 
-@app.route('/catalog')
+@app.route('/builder')
 def catalog():
     return render_template('catalog.html')
 

@@ -8,10 +8,6 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
 .portfolio-item {
     margin-bottom: 25px;
 }
@@ -29,10 +25,17 @@ footer {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Fandemic Catalog</title>
+    <title>Fandemic Box Builder</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="../static/css/rangeslider.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/3.1.1/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,43 +48,34 @@ footer {
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><img style="margin-top:-10px;" src="../static/img/logo-head.png"></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Shirts</a>
-                    </li>
-                    <li>
-                        <a href="#">Tanks</a>
-                    </li>
-                    <li>
-                        <a href="#">Bags</a>
-                    </li>
-                    <li>
-                        <a href="#">Bottles</a>
-                    </li>
-                    <li>
-                        <a href="#">Gaming</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+  <!--navigation-->
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#home" style="margin-top:-15px">
+          <img class="logo-nav" alt="logo" src="../static/img/logo-nav_fullsize_wordart.png" style="padding-top:5px" width="124" height="45">
+          <img class="logo-head" width="200px" alt="logo" src="../static/img/logo_head_fullsize.png">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a data-toggle="modal" data-target="#myModal" class="btn">Home</a></li>
+          <li><a data-toggle="modal" data-target="#myModal" class="btn">FAQ</a></li>
+          <li><a data-toggle="modal" data-target="#myModal" class="btn">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--navigation end-->
+
 
     <!-- Page Content -->
     <div class="container">
@@ -89,159 +83,212 @@ footer {
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Category:
-                    <small>Hats</small>
-                </h1>
+                <h2 class="page-header">Box Builder <small></small>
+                  <button class="btn btn-md btn-success pull-right">Submit for Design</button>
+                </h2>
+
             </div>
         </div>
         <!-- /.row -->
 
-        <!-- Projects Row -->
         <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="https://www.alphabroder.com/images/alp/prodDetail/atb100_51_p.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="#">Flexfit Wooly 6-Panel Cap</a>
-                </h3>
-                <p>
-Features:
-63% polyester, 34% cotton, 3% spandex combed twill
-6-panel, structured, mid-profile
-wool-like texture
-3½" crown
+
+          <!--left panel -->
+          <div class="col-md-3">
+
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">Set Retail Price</h3>
+              </div>
+              <div class="panel-body">
+
+              <form class="form-horizontal pull-center" role="form" style="width:80%;margin: 0 auto;">
+                <div class="form-group">
+                  <input id="demo2" type="text" value="0" name="demo2" class="col-md-8 form-control">
+                </div>
+                <i>Suggested Price: $35.00</i>
+              </form>
+
+
+
+              <script>
+                  $("input[name='demo2']").TouchSpin({
+                      min: 20.00,
+                      max: 100.00,
+                      stepinterval: 1,
+                      decimals: 2,
+                      maxboostedstep: 10,
+                      prefix: '$'
+                  });
+              </script>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+            <div class="panel-heading">Pricing Breakdown</div>
+            <div class="panel-body">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Qty</th>
+                    <th>Cost</th>
+                    <th>Profit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>10</td>
+                    <td>$20</td>
+                    <td>$10</td>
+                  </tr>
+                  <tr>
+                    <td>25</td>
+                    <td>$21</td>
+                    <td>$11</td>
+                  </tr>
+                  <tr>
+                    <td>50</td>
+                    <td>$20</td>
+                    <td>$12</td>
+                  </tr>
+                  <tr>
+                    <td>100</td>
+                    <td>$19</td>
+                    <td>$13</td>
+                  </tr>
+                  <tr>
+                    <td>150</td>
+                    <td>$18</td>
+                    <td>$14</td>
+                  </tr>
+                  <tr>
+                    <td>250</td>
+                    <td>$17</td>
+                    <td>$15</td>
+                  </tr>
+                  <tr>
+                    <td>500</td>
+                    <td>$16</td>
+                    <td>$16</td>
+                  </tr>
+                  <tr>
+                    <td>1000</td>
+                    <td>$15</td>
+                    <td>$17</td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--end of table-->
+            </div>
+          </div>
+
+          </div>
+
+          <div class="col-md-6">
+            <!-- Projects Row -->
+
+            <!-- category dropdown -->
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Product Category
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+              </ul>
+            </div>
+
+            <i class="pull-right" style="margin-top:-20px;">Click a product to add to box -></i>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#" data-toggle="popover" title="<strong>Premium Style Hat</strong>" data-content="63% polyester, 34% cotton, 3% spandex combed twill
+6-panel, structured, mid-profile wool-like texture 3½ crown
 hard buckram backed front panels
 sewn eyelets; eight-row stitching on bill
 spandex sweatband retains shape; Silver underbill
 
-Sizes: S/M-L/XL </p>
+Sizes: S/M-L/XL <br> <strong style='color:green'>Cost: $12.00</strong>">
+                        <img class="img-responsive" src="https://www.alphabroder.com/images/alp/prodDetail/atb100_51_p.jpg" alt="">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#">
+                        <img class="img-responsive" src="https://www.alphabroder.com/images/alp/prodDetail/6089_51_p.jpg" alt="">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#">
+                        <img class="img-responsive" src="https://www.alphabroder.com/images/alp/prodDetail/6572_54_p.jpg" alt="">
+                    </a>
+                    <h3>
+                </div>
             </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="https://www.alphabroder.com/images/alp/prodDetail/6089_51_p.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="#">Flexfit Cool & Dry® Tricot Cap</a>
-                </h3>
-                <p>Features:
-97% polyester, 3% spandex
-6-panel, structured, mid-profile
-3½" crown
-Cool & Dry® fabric keeps perspiration away, lets air in
-eight-row stitching on bill
-hard buckram backed front panels
-sewn eyelets; spandex sweatband retains shape; Silver underbill</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="https://www.alphabroder.com/images/alp/prodDetail/6572_54_p.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-        <!-- /.row -->
+            <!-- /.row -->
 
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
+            <!-- Projects Row -->
+            <div class="row">
+              <div class="col-md-4">
+                  <a href="#">
+                      <img class="img-responsive" src="https://www.alphabroder.com/images/alp/prodDetail/bx005_60_p.jpg" alt="">
+                  </a>
+              </div>
+              <div class="col-md-4">
+                  <a href="#">
+                      <img class="img-responsive" src="https://www.alphabroder.com/images/alp/prodDetail/bx025_51_p.jpg" alt="">
+                  </a>
+              </div>
+              <div class="col-md-4">
+                  <a href="#">
+                      <img class="img-responsive" src="https://www.alphabroder.com/images/alp/prodDetail/6777_73_p.jpg" alt="">
+                  </a>
+                  <h3>
+              </div>
             </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
 
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="#">Project Name</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
+          <br><br>
+          </div>
+
+          <!-- right panel -->
+          <div class="col-md-3">
+
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                  <h3 class="panel-title"><img height="25px" style="margin-right:10px;" src="../static/img/box.png">My Box</h3>
+                </div>
+                <div class="panel-body">
+                  your box is empty. Click a product to add to box.
+                </div>
+              </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  Upload any image files (png,jpg,ai,psd,pdf)<br><br>
+                  <form class="box" method="post" action="" enctype="multipart/form-data">
+                    <div class="box__input">
+                      <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+                    </div>
+                  </form>
+
+                  <hr>
+
+                  <div class="form-group">
+                    <label for="comment">Additional Design Info:</label>
+                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                  </div>
+
+                </div>
+              </div>
+
+
+          </div>
+
+
+
         <!-- /.row -->
 
         <hr>
-
-        <!-- Pagination -->
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
         <!-- Footer -->
         <footer>
             <div class="row">
@@ -264,3 +311,7 @@ sewn eyelets; spandex sweatband retains shape; Silver underbill</p>
 </body>
 
 </html>
+
+<script>
+$('a').popover({'trigger':'hover','container':'body','html':true});
+</script>
