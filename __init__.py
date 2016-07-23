@@ -32,7 +32,10 @@ def blogHome():
 
 @app.route('/builder')
 def catalog():
-    return render_template('catalog.html')
+
+    items = db.items.find() #find the star
+
+    return render_template('catalog.html', items=items)
 
 @app.route('/blog/<url>')
 def blogPost(url):
