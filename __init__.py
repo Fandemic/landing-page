@@ -30,12 +30,21 @@ def blogHome():
     posts = db.blog.find({})
     return render_template('blog.html', posts = posts)
 
-@app.route('/builder')
-def catalog():
 
-    items = db.items.find() #find the star
+@app.route('/builder')
+@app.route('/builder/<cat>')
+def catalog(cat=None):
+
+    if cat is None:
+
+        items = db.items.find() #find the star
+
+    else:
+
+        items = db.items.find({"category":cat}) #find the star
 
     return render_template('catalog.html', items=items)
+
 
 @app.route('/blog/<url>')
 def blogPost(url):
