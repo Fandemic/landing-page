@@ -139,10 +139,10 @@ def catalogSubmit():
 
 
     #UPLOAD THE FILE
-    files = request.files.getlist('file[]')
-    url = ''
-    for file in files:
-        url = handle_file(file,name)
+    #files = request.files.getlist('file[]')
+    #url = ''
+    #for file in files:
+        #url = handle_file(file,name)
 
 
     msg = 'a new box was created! \n'
@@ -504,4 +504,8 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
+
+    import logging
+    logging.basicConfig(filename='error.log',level=logging.DEBUG)
+
     app.run(debug=True)
