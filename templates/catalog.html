@@ -38,7 +38,7 @@ footer {
 
     <link rel="stylesheet" href="../static/css/rangeslider.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/3.1.1/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
     <link rel="stylesheet" href="../static/css/normalize.css">
     <link rel="stylesheet" href="../static/css/slider.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -94,7 +94,8 @@ footer {
                                                                                   <span style="color:#4d4d4d"><strong>Step 1:</strong> select contents of box</span> -
                                                                                   <strong>Step 2:</strong> get a free design -
                                                                                   <strong>Step 3:</strong> launch campaign</small>
-                  <button class="btn btn-md btn-success pull-right">Submit for Design</button>
+                  <button data-toggle="modal" data-target="#info-modal" class="btn btn-lg btn-success pull-right"
+                          style="margin-top:-15px;">I'm Finished</button>
                 </h2>
 
             </div>
@@ -156,7 +157,7 @@ footer {
             <!-- /.row -->
           </div>
 
-
+          <form action="/builder/submit" id="form" method="post" enctype="multipart/form-data">
           <!-- right panel -->
           <div class="col-md-3">
 
@@ -193,25 +194,25 @@ footer {
 
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Retail Price</h3>
+                <h3 class="panel-title">Name Your Price</h3>
               </div>
               <div class="panel-body">
 
-              <form class="form-horizontal pull-center" role="form" style="text-align:center" >
+              <div class="form-horizontal pull-center" role="form" style="text-align:center" >
                 <div class="form-group" style="width:60%;margin: 0 auto;">
-                  <input style="font-size:18px;" id="demo2" type="text"  name="demo2" class="col-md-8 form-control">
+                  <input style="font-size:18px;" id="demo2" type="text"  name="price" class="col-md-8 form-control">
                 </div>
                 <br>
-                <i style="color:#8d8d8d">Suggested Price: ${{(box_items|sum(attribute='cost')*2)}}</i>
+                <i style="color:#8d8d8d">Our Cost: ${{(box_items|sum(attribute='cost'))}}</i>
                 <br>
                 <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Price Breakdown</a>
 
-              </form>
+              </div>
 
 
 
               <script>
-                  $("input[name='demo2']").TouchSpin({
+                  $("input[name='price']").TouchSpin({
                       min: {{(box_items|sum(attribute='cost'))}},
                       max: 100.00,
                       initval: {{(box_items|sum(attribute='cost')*2)}},
@@ -253,17 +254,17 @@ footer {
 
 
                   Upload any image files (png,jpg,ai,psd,pdf)<br><br>
-                  <form class="box" method="post" action="" enctype="multipart/form-data">
+                  <div class="box">
                     <div class="box__input">
-                      <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+                      <input class="box__file" type="file" name="file[]" id="file" data-multiple-caption="{count} files selected" multiple="" />
                     </div>
-                  </form>
+                  </div>
 
                   <hr>
 
                   <div class="form-group">
                     <label for="comment">Additional Design Info:</label>
-                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                    <textarea class="form-control" rows="5" id="comment" name="info"></textarea>
                   </div>
 
                 </div>
@@ -271,6 +272,45 @@ footer {
 
 
           </div>
+
+          <!--information modal -->
+          <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="info-modal">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content" style="padding:30px">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="myModalLabel">Just One More Thing!</h3>
+                <hr>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="sizing-addon1">Name</span>
+                  <input type="text" class="form-control" placeholder="Name" name="name" aria-describedby="sizing-addon1">
+                </div>
+                <br>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="sizing-addon1">Email</span>
+                  <input type="text" class="form-control" placeholder="Email" name="email" aria-describedby="sizing-addon1">
+                </div>
+
+                <hr>
+                <p>A custom design and free store will be sent to the email provided within 24 hours!</p>
+                <br>
+                <p>Questions or concerns? Email us at <strong>support@fandemic.co</strong> and we will respond within a few hours. Thanks!</p>
+
+                <hr>
+                <button onclick="form_submit()" type="submit" value="Send" class="btn btn-lg btn-success center-block">Submit for Design!</button>
+              </div>
+
+              <script type="text/javascript">
+              function form_submit() {
+                document.getElementById("form").submit();
+               }
+              </script>
+
+            </div>
+          </div>
+
+
 
 
           <br><br>

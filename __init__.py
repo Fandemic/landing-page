@@ -10,8 +10,14 @@ from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
 import stripe
 import os
+from slack import Slack
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = 'static/img/test/'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd'])
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
 db = MongoClient('45.79.159.210', 27017).fandemic
 
@@ -89,6 +95,68 @@ def catalogRemove(cat,sku):
     resp.set_cookie('box', items)
 
     return resp
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+def handle_file(f,name):
+
+    name = name.replace(' ','_')
+
+    directory = 'static/img/box_builder/'+name+'/'
+
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    if not allowed_file(f.filename):
+        return
+
+    filename = secure_filename(f.filename)
+    f.save(os.path.join(directory, filename))
+    return 'https://fandemic.co/'+directory
+
+
+@app.route('/builder/submit', methods=['GET', 'POST'])
+def catalogSubmit():
+
+    items = ''
+
+    #get items in box
+    if request.cookies.get('box') is not None:
+        items = request.cookies.get('box')
+        items = items.replace(',','\n')
+
+    sarah = Slack()
+
+    name = request.form['name']
+    email = request.form['email']
+    price = request.form['price']
+    info = request.form['info']
+    price = request.form['price']
+
+
+    #UPLOAD THE FILE
+    files = request.files.getlist('file[]')
+    url = ''
+    for file in files:
+        url = handle_file(file,name)
+
+
+    msg = 'a new box was created! \n'
+    msg += '*Name:* ' + name + '\n'
+    msg += '*Email:* ' + email + '\n'
+    msg += '*Price:* $' + price + '\n'
+    msg += '*Items:* \n' + items + '\n'
+    msg += '*Design Instructions:*\n' + info + '\n'
+    msg += '*Design Files URL:* ' + url
+
+
+    sarah.notify(msg)
+
+    return render_template('success.html')
 
 
 @app.route('/blog/<url>')
