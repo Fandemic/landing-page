@@ -90,12 +90,10 @@ footer {
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Box Builder <small style="font-size:12px;color:#adadad">
-                                                                                  <span style="color:#4d4d4d"><strong>Step 1:</strong> select contents of box</span> -
-                                                                                  <strong>Step 2:</strong> get a free design -
-                                                                                  <strong>Step 3:</strong> launch campaign</small>
+                <h2 class="page-header">Create Box
+
                   <button data-toggle="modal" data-target="#info-modal" class="btn btn-lg btn-success pull-right"
-                          style="margin-top:-15px;">I'm Finished</button>
+                          style="margin-top:-15px;">Build Box</button>
                 </h2>
 
             </div>
@@ -121,7 +119,7 @@ footer {
               <li {% if cat == 'tank' %}class="active"{% endif %}><a href="/builder/tank">Tanks</a></li>
               <li {% if cat == 'hat' %}class="active"{% endif %}><a href="/builder/hat">Hats</a></li>
               <li {% if cat == 'bag' %}class="active"{% endif %}><a href="/builder/bag">Bags</a></li>
-              <li {% if cat == 'fitness' %}class="active"{% endif %}><a href="/builder/fitness">Fitness</a></li>
+              <li {% if cat == 'gaming' %}class="active"{% endif %}><a href="/builder/gaming">Gaming</a></li>
               <li {% if cat == 'beauty' %}class="active"{% endif %}><a href="/builder/beauty">Beauty</a></li>
             </ul>
 
@@ -164,7 +162,7 @@ footer {
 
             <div class="panel panel-info">
               <div class="panel-heading">
-                  <h3 class="panel-title"><img height="25px" style="margin-right:10px;" src="../static/img/box.png">My Box</h3>
+                  <h3 class="panel-title">1. Build Box <img height="25px" style="margin-top: -5px;float:right" src="../static/img/box.png"></h3>
                 </div>
                 <div class="panel-body">
 
@@ -194,7 +192,7 @@ footer {
 
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Name Your Price</h3>
+                <h3 class="panel-title">2. Set Retail Price</h3>
               </div>
               <div class="panel-body">
 
@@ -203,9 +201,9 @@ footer {
                   <input style="font-size:18px;" id="demo2" type="text"  name="price" class="col-md-8 form-control">
                 </div>
                 <br>
-                <i style="color:#8d8d8d">Our Cost: ${{(box_items|sum(attribute='cost'))}}</i>
+                <i style="color:#8d8d8d">Your Profit: ${{(box_items|sum(attribute='cost'))}}</i>
                 <br>
-                <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Price Breakdown</a>
+                <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Profit Margins Chart</a>
 
               </div>
 
@@ -248,12 +246,15 @@ footer {
 
 
             <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">3. Upload Design</h3>
+              </div>
 
                 <div class="panel-body">
 
 
 
-                  Upload any image files (png,jpg,ai,psd,pdf)<br><br>
+                  Upload any relevant images (png,jpg,ai,psd,pdf)<br><br>
                   <div class="box">
                     <div class="box__input">
                       <input class="box__file" type="file" name="file[]" id="file" data-multiple-caption="{count} files selected" multiple="" />
