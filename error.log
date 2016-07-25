@@ -24,3 +24,4 @@ INFO:werkzeug:127.0.0.1 - - [25/Jul/2016 02:47:34] "GET /static/img/logo-nav_ful
 INFO:werkzeug:127.0.0.1 - - [25/Jul/2016 02:47:34] "GET /static/img/box.png HTTP/1.1" 304 -
 INFO:werkzeug:127.0.0.1 - - [25/Jul/2016 02:47:34] "GET /static/img/sample_products/makeup-bag.png HTTP/1.1" 404 -
 INFO:werkzeug:127.0.0.1 - - [25/Jul/2016 02:47:34] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/brandon/Desktop/fandemic/website/__init__.py', reloading
