@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import Flask, render_template, request, jsonify, redirect, make_response
 from pymongo import MongoClient, GEO2D
 from collections import Counter
 from jinja2 import Template
@@ -31,9 +31,24 @@ def blogHome():
     return render_template('blog.html', posts = posts)
 
 
+
+def toList(s):
+    return [str(x) for x in s.split(',') if x]
+
+def toString(l):
+    l = list(set(l))
+    return ",".join(l)
+
+
 @app.route('/builder')
 @app.route('/builder/<cat>')
 def catalog(cat=None):
+
+    box_items = []
+
+    if request.cookies.get('box') is not None:
+        box = toList(request.cookies.get('box'))
+        box_items = db.items.find({"sku":{ "$in": box }})
 
     if cat is None:
 
@@ -43,7 +58,37 @@ def catalog(cat=None):
 
         items = db.items.find({"category":cat}) #find the star
 
-    return render_template('catalog.html', items=items)
+    return render_template('catalog.html', items=items, box_items=list(box_items),cat=cat)
+
+
+@app.route('/builder/<cat>/add/<sku>')
+def catalogAdd(cat,sku):
+
+    items = []
+
+    if request.cookies.get('box') is not None:
+        items = toList(request.cookies.get('box'))
+        items.append(sku)
+    items = toString(items)
+
+    resp = make_response(redirect('/builder/'+cat))
+    resp.set_cookie('box', items)
+
+    return resp
+
+
+@app.route('/builder/<cat>/remove/<sku>')
+def catalogRemove(cat,sku):
+
+    items = toList(request.cookies.get('box'))
+    items.remove(sku)
+
+    items = toString(items)
+
+    resp = make_response(redirect('/builder/'+cat))
+    resp.set_cookie('box', items)
+
+    return resp
 
 
 @app.route('/blog/<url>')

@@ -39,7 +39,9 @@ footer {
     <link rel="stylesheet" href="../static/css/rangeslider.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/3.1.1/jquery.bootstrap-touchspin.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="../static/css/normalize.css">
+    <link rel="stylesheet" href="../static/css/slider.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -106,18 +108,20 @@ footer {
 
             <!-- category dropdown -->
             <ul class="nav nav-pills">
-              <li class="dropdown active">
+              <!--<li class="dropdown active">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apparel
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#" class="active">Shirts</a></li>
-                  <li><a href="#">Tanks</a></li>
+                  <li><a href="/builder/t-shirt" class="active">Shirts</a></li>
+                  <li><a href="/builder/tank">Tanks</a></li>
                 </ul>
-              </li>
-              <li><a href="#">Hats</a></li>
-              <li><a href="#">Bags</a></li>
-              <li><a href="#">Fitness</a></li>
-              <li><a href="#">Beauty</a></li>
+              </li>-->
+              <li {% if cat == 'shirt' %}class="active"{% endif %}><a href="/builder/shirt">Shirts</a></li>
+              <li {% if cat == 'tank' %}class="active"{% endif %}><a href="/builder/tank">Tanks</a></li>
+              <li {% if cat == 'hat' %}class="active"{% endif %}><a href="/builder/hat">Hats</a></li>
+              <li {% if cat == 'bag' %}class="active"{% endif %}><a href="/builder/bag">Bags</a></li>
+              <li {% if cat == 'fitness' %}class="active"{% endif %}><a href="/builder/fitness">Fitness</a></li>
+              <li {% if cat == 'beauty' %}class="active"{% endif %}><a href="/builder/beauty">Beauty</a></li>
             </ul>
 
             <br>
@@ -135,7 +139,7 @@ footer {
 
 
                 <div class="col-md-4 product">
-                    <a href="#" data-toggle="popover" title="<strong>{{item.name}}</strong>" data-content="{{item.category}}<br>{{item.description}}<hr><strong style='color:green'>Cost: {{item.cost}}</strong>">
+                    <a href="/builder/{{cat}}/add/{{item.sku}}" data-toggle="popover" title="<strong>{{item.name}}</strong>" data-content="{{item.sku}}<br>{{item.description}}<hr><strong style='color:green'>Cost: {{item.cost}}</strong>">
                         <img class="img-responsive" src="{{item.img_url}}" alt="">
                     </a>
                 </div>
@@ -162,7 +166,28 @@ footer {
                   <h3 class="panel-title"><img height="25px" style="margin-right:10px;" src="../static/img/box.png">My Box</h3>
                 </div>
                 <div class="panel-body">
-                  your box is empty. Click a product to add to box.
+
+
+                 {% if box_items|length == 0 %}
+                    your box is empty. Click a product to add to box.
+
+                 {% else %}
+                    {% for item in box_items %}
+
+                      <img height="40px" src="{{item.img_url}}">
+                      <span style="display: inline-block;
+                      width: 70%;
+                      overflow: hidden;
+                      white-space: nowrap;
+                      text-overflow: ellipsis;">
+                      {{item.name}}</span>
+                      <a href="/builder/{{cat}}/remove/{{item.sku}}"<i class="fa fa-trash" aria-hidden="true"></i></a>
+
+
+                      <br>
+                    {% endfor %}
+                  {% endif %}
+
                 </div>
               </div>
 
@@ -174,10 +199,10 @@ footer {
 
               <form class="form-horizontal pull-center" role="form" style="text-align:center" >
                 <div class="form-group" style="width:60%;margin: 0 auto;">
-                  <input id="demo2" type="text" value="0" name="demo2" class="col-md-8 form-control">
+                  <input style="font-size:18px;" id="demo2" type="text"  name="demo2" class="col-md-8 form-control">
                 </div>
                 <br>
-                <i style="color:#8d8d8d">Suggested Price: $35.00</i>
+                <i style="color:#8d8d8d">Suggested Price: ${{(box_items|sum(attribute='cost')*2)}}</i>
                 <br>
                 <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Price Breakdown</a>
 
@@ -187,11 +212,12 @@ footer {
 
               <script>
                   $("input[name='demo2']").TouchSpin({
-                      min: 20.00,
+                      min: {{(box_items|sum(attribute='cost'))}},
                       max: 100.00,
+                      initval: {{(box_items|sum(attribute='cost')*2)}},
                       stepinterval: 1,
                       decimals: 2,
-                      maxboostedstep: 10
+                      maxboostedstep: 1
                       //prefix: '$'
                   });
               </script>
@@ -221,7 +247,11 @@ footer {
 
 
             <div class="panel panel-default">
+
                 <div class="panel-body">
+
+
+
                   Upload any image files (png,jpg,ai,psd,pdf)<br><br>
                   <form class="box" method="post" action="" enctype="multipart/form-data">
                     <div class="box__input">
@@ -250,6 +280,9 @@ footer {
 
 
 
+
+
+
         <!-- /.row -->
 
         <hr>
@@ -270,11 +303,49 @@ footer {
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <script src="/static/js/slider.js"></script>
 
 </body>
 
 </html>
+
+<!-- Pricing Slider -->
+<!--<div style="width:100%;position:fixed;bottom:0px;background-color:#f1f1f1;">
+<div class="range-holder">
+
+        <div id="pr-slider" class="dragdealer">
+                <div class="stripe">
+
+                <div id="green-highlight"></div>
+                <div id="orange-highlight"></div>
+                <div id="blue-highlight"></div>
+
+                <div class="handle">
+                  <div class="infobox">
+                    <div class="titlebar"><span id="plan-holder"></span> <span id="device-holder"></span></div>
+                    <div class="innerbox">
+
+                        <div class="info-price"></div>
+                        <div class="annual-label">Total Profit:</div>
+                        <div class="annual-price"></div>
+
+
+                    </div>
+                  </div>
+            <div class="square">
+              <span class="value"></span>
+              <span class="menu-line"></span>
+              <span class="menu-line"></span>
+              <span class="menu-line"></span>
+            </div>
+          </div>
+
+              </div>
+        </div>
+      </div>
+    </div>-->
 
 <script>
 $('a').popover({'trigger':'hover','container':'body','html':true});
