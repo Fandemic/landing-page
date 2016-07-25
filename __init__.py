@@ -115,7 +115,7 @@ def handle_file(f,name):
         return
 
     filename = secure_filename(f.filename)
-    f.save(os.path.join(directory, filename))
+    f.save(os.path.join(app.root_path, directory, filename))
     return 'https://fandemic.co/'+directory
 
 
@@ -139,10 +139,10 @@ def catalogSubmit():
 
 
     #UPLOAD THE FILE
-    #files = request.files.getlist('file[]')
-    #url = ''
-    #for file in files:
-        #url = handle_file(file,name)
+    files = request.files.getlist('file[]')
+    url = ''
+    for file in files:
+        url = handle_file(file,name)
 
 
     msg = 'a new box was created! \n'
