@@ -1141,3 +1141,16 @@ blockquote cite {
 .content-slider li h3 {
   text-align:center;
 }
+
+#updates {
+    background: url(../../img/updates-bg.png) center center no-repeat scroll;
+    background-size: cover;
+    padding: 2em;
+    position: relative;
+    color: #fff;
+    background-position: 0 53%;
+}
+
+#updates h2, h3  {
+  color:white;
+}
