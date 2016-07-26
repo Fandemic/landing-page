@@ -219,8 +219,10 @@ footer {
 
 
               <script>
+              var boxCost = 2.50;
+
                   $("input[name='price']").TouchSpin({
-                      min: 0,
+                      min: {{(box_items|sum(attribute='cost'))}}+5+boxCost,
                       max: 100.00,
                       initval: {{(box_items|sum(attribute='cost')*2)}},
                       stepinterval: 1,
@@ -229,27 +231,23 @@ footer {
                       //prefix: '$'
                   });
 
-                  var boxCost = 2.50;
 
                   function precise_round(num,decimals){
                     return Math.round(num*Math.pow(10,decimals))/Math.pow(10,decimals);
                   }
-
-                  //build profit on slider click
-                  $( ".bootstrap-touchspin" ).click(function() {
+                  function retailPricing(){
                     var retailVal = parseInt($('#demo2').val());
                     var newProfit = precise_round(retailVal - (boxCost + {{(box_items|sum(attribute='cost'))}} + 5 ),2);
                     $('#newProfit').html(newProfit);
-                  });
-
+                  };
+                  //build profit on slider click
+                    $( ".bootstrap-touchspin" ).click(function() {
+                        retailPricing();
+                    });
                   //build profit on page load
                   $(document).ready(function(){
-                    var retailVal = parseInt($('#demo2').val());
-                    var newProfit = precise_round(retailVal - (boxCost + {{(box_items|sum(attribute='cost'))}} + 5 ),2);
-                    $('#newProfit').html(newProfit);
+                    retailPricing();
                   })
-
-
 
               </script>
               </div>
