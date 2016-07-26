@@ -113,10 +113,10 @@ def handle_file(f,name):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    if not allowed_file(f.filename):
-        return
+    #if not allowed_file(f.filename):
+        #return
 
-    filename = secure_filename(f.filename)
+    #filename = secure_filename(f.filename)
     #f.save(os.path.join(app.root_path, directory, filename))
     return 'https://fandemic.co/'+directory
 

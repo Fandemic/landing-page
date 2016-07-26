@@ -408,3 +408,8 @@ INFO:werkzeug:127.0.0.1 - - [26/Jul/2016 18:53:39] "GET /static/img/sample_produ
 INFO:werkzeug:127.0.0.1 - - [26/Jul/2016 18:53:40] "GET /favicon.ico HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [26/Jul/2016 18:54:06] "POST /builder/submit HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [26/Jul/2016 18:54:08] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Jul/2016 18:57:20] "GET /builder HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [26/Jul/2016 18:57:21] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [26/Jul/2016 18:57:22] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/brandon/Desktop/fandemic/website/__init__.py', reloading
+INFO:werkzeug: * Restarting with stat
