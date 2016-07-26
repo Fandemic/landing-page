@@ -206,9 +206,9 @@ footer {
                   <input style="font-size:18px;" id="demo2" type="text"  name="price" class="col-md-8 form-control">
                 </div>
                 <br>
-                <i style="color:#8d8d8d">Your Profit: <span class="money" id="newProfit"></span></i>
+                <i style="color:#8d8d8d">Your Profit: <span class="money" id="newProfit"></span> each!</i>
                 <br>
-                <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Profit Margins Chart</a>
+                <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <strong>If I sell...</strong><thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Sample Profit Chart</a>
 
               </div>
 
@@ -216,7 +216,7 @@ footer {
 
               <script>
                   $("input[name='price']").TouchSpin({
-                      min: {{(box_items|sum(attribute='cost'))}},
+                      min: 0,
                       max: 100.00,
                       initval: {{(box_items|sum(attribute='cost')*2)}},
                       stepinterval: 1,
@@ -236,6 +236,13 @@ footer {
                     var newProfit = precise_round(retailVal - (boxCost + {{(box_items|sum(attribute='cost'))}} + 5 ),2);
                     $('#newProfit').html(newProfit);
                   });
+
+                  $(document).ready(function(){
+                    var retailVal = parseInt($('#demo2').val());
+                    var newProfit = precise_round(retailVal - (boxCost + {{(box_items|sum(attribute='cost'))}} + 5 ),2);
+                    $('#newProfit').html(newProfit);
+                  })
+
 
 
               </script>
