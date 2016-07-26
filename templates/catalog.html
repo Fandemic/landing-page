@@ -77,9 +77,9 @@ footer {
       </div>
       <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a data-toggle="modal" data-target="#myModal" class="btn">Home</a></li>
-          <li><a data-toggle="modal" data-target="#myModal" class="btn">FAQ</a></li>
-          <li><a data-toggle="modal" data-target="#myModal" class="btn">Contact</a></li>
+          <li><a href="../" class="btn">Home</a></li>
+          <li><a href="../faq" class="btn">FAQ</a></li>
+          <li><a href="mailto:sarah@fandemic.co" class="btn">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -126,6 +126,8 @@ footer {
               <li {% if cat == 'accessories' %}class="active"{% endif %}><a href="/builder/accessories">Accessories</a></li>
               <li {% if cat == 'gaming' %}class="active"{% endif %}><a href="/builder/gaming">Gaming</a></li>
               <li {% if cat == 'beauty' %}class="active"{% endif %}><a href="/builder/beauty">Beauty</a></li>
+              <li {% if cat == 'promo' %}class="active"{% endif %}><a href="/builder/promo">Promo</a></li>
+              <li {% if cat == 'charity' %}class="active"{% endif %}><a href="/builder/charity">Charity</a></li>
             </ul>
 
             <br>
@@ -206,9 +208,11 @@ footer {
                   <input style="font-size:18px;" id="demo2" type="text"  name="price" class="col-md-8 form-control">
                 </div>
                 <br>
-                <i style="color:#8d8d8d">Your Profit: <span class="money" id="newProfit"></span> each!</i>
+                <i style="font-size:15px; color:#8d8d8d">Your profit is <span class="money" id="newProfit"></span> each!</i>
                 <br>
-                <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <strong>If I sell...</strong><thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Sample Profit Chart</a>
+                <i style="font-size:12px; color:#8d8d8d">*Margins increase as more boxes are sold</i>
+                <br>
+                 <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <strong>If I sell...</strong><thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Sample Profit Margins</a>
 
               </div>
 
@@ -231,12 +235,14 @@ footer {
                     return Math.round(num*Math.pow(10,decimals))/Math.pow(10,decimals);
                   }
 
+                  //build profit on slider click
                   $( ".bootstrap-touchspin" ).click(function() {
                     var retailVal = parseInt($('#demo2').val());
                     var newProfit = precise_round(retailVal - (boxCost + {{(box_items|sum(attribute='cost'))}} + 5 ),2);
                     $('#newProfit').html(newProfit);
                   });
 
+                  //build profit on page load
                   $(document).ready(function(){
                     var retailVal = parseInt($('#demo2').val());
                     var newProfit = precise_round(retailVal - (boxCost + {{(box_items|sum(attribute='cost'))}} + 5 ),2);
@@ -291,7 +297,7 @@ footer {
 
                   <div class="form-group">
                     <label for="comment">Additional Design Info:</label>
-                    <textarea class="form-control" rows="5" id="comment" name="info"></textarea>
+                    <textarea placeholder ="Tell us about designs you like, products you want to see, logos you have, etc" class="form-control" rows="5" id="comment" name="info"></textarea>
                   </div>
 
                 </div>
