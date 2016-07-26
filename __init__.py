@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from flask import Flask, render_template, request, jsonify, redirect, make_response
 from pymongo import MongoClient, GEO2D
 from collections import Counter
@@ -115,7 +117,7 @@ def handle_file(f,name):
         return
 
     filename = secure_filename(f.filename)
-    f.save(os.path.join(app.root_path, directory, filename))
+    #f.save(os.path.join(app.root_path, directory, filename))
     return 'https://fandemic.co/'+directory
 
 

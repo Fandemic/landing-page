@@ -100,11 +100,11 @@ footer {
 
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" style="margin-top:50px;">
 
         <!-- Page Header -->
 
-        <!-- /.row -->
+        <!-- row -->
 
         <div class="row">
 
@@ -200,9 +200,11 @@ footer {
               </div>
 
             <div class="panel panel-default">
-              <div class="panel-heading">
+              <div class="panel-heading" data-toggle="collapse" href="#collapse2" style="cursor:pointer;">
                 <h3 class="panel-title">2. Set Retail Price</h3>
               </div>
+
+              <div id="collapse2" class="panel-collapse collapse">
               <div class="panel-body">
 
               <div class="form-horizontal pull-center" role="form" style="text-align:center" >
@@ -280,6 +282,7 @@ footer {
               </script>
               </div>
             </div>
+            </div>
 
             <!--
             <div class="panel panel-default">
@@ -304,10 +307,11 @@ footer {
 
 
             <div class="panel panel-default">
-              <div class="panel-heading">
+              <div class="panel-heading" data-toggle="collapse" href="#collapse3" style="cursor:pointer;">
                 <h3 class="panel-title">3. Upload Design</h3>
               </div>
 
+              <div id="collapse3" class="panel-collapse collapse">
                 <div class="panel-body">
 
 
@@ -328,9 +332,10 @@ footer {
 
                 </div>
               </div>
-              <button data-toggle="modal" data-target="#info-modal" class="btn btn-lg btn-success pull-right"
-                      style="margin-top:-15px;">Build Box</button>
+              </div>
 
+              <a data-toggle="modal" data-target="#info-modal" class="btn btn-lg btn-success"
+                      style="width:100%">Finish Box</a>
 
           </div>
 
