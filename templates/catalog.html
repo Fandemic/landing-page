@@ -118,7 +118,8 @@ footer {
               <li {% if cat == 'shirt' %}class="active"{% endif %}><a href="/builder/shirt">Shirts</a></li>
               <li {% if cat == 'tank' %}class="active"{% endif %}><a href="/builder/tank">Tanks</a></li>
               <li {% if cat == 'hat' %}class="active"{% endif %}><a href="/builder/hat">Hats</a></li>
-              <li {% if cat == 'bag' %}class="active"{% endif %}><a href="/builder/bag">Bags</a></li>
+              <li {% if cat == 'bags' %}class="active"{% endif %}><a href="/builder/bags">Bags</a></li>
+              <li {% if cat == 'accessories' %}class="active"{% endif %}><a href="/builder/accessories">Accessories</a></li>
               <li {% if cat == 'gaming' %}class="active"{% endif %}><a href="/builder/gaming">Gaming</a></li>
               <li {% if cat == 'beauty' %}class="active"{% endif %}><a href="/builder/beauty">Beauty</a></li>
             </ul>
@@ -168,7 +169,7 @@ footer {
 
 
                  {% if box_items|length == 0 %}
-                    your box is empty. Click a product to add to box.
+                    Your box is empty. Click a product to add to box.
 
                  {% else %}
                     {% for item in box_items %}
@@ -201,7 +202,7 @@ footer {
                   <input style="font-size:18px;" id="demo2" type="text"  name="price" class="col-md-8 form-control">
                 </div>
                 <br>
-                <i style="color:#8d8d8d">Your Profit: ${{(box_items|sum(attribute='cost'))}}</i>
+                <i style="color:#8d8d8d">Your Profit: <span id="newProfit"></span></i>
                 <br>
                 <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Profit Margins Chart</a>
 
@@ -219,6 +220,16 @@ footer {
                       maxboostedstep: 1
                       //prefix: '$'
                   });
+
+                  var boxCost = 2.50;
+
+                  $( ".bootstrap-touchspin" ).click(function() {
+                    var retailVal = parseInt($('#demo2').val());
+                    var newProfit = retailVal - (boxCost + {{(box_items|sum(attribute='cost'))}} + 5 );
+                    $('#newProfit').html(newProfit);
+                  });
+
+
               </script>
               </div>
             </div>
