@@ -24,6 +24,17 @@ footer {
   color: green;
   font-weight: bold;
 }
+.gallery {
+  margin-top: 60px;
+  white-space: nowrap;
+  overflow-x: auto;
+  font-size: 0;
+  border-top: 1px solid #d5d5d5;
+}
+.product-photo {
+  height: 350px;
+  display: inline-block;
+}
 </style>
 
 <head>
@@ -70,7 +81,7 @@ footer {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#home" style="margin-top:-15px">
+        <a class="navbar-brand" href="../" style="margin-top:-15px">
           <img class="logo-nav" alt="logo" src="../static/img/logo-nav_fullsize_wordart.png" style="padding-top:5px" width="124" height="45">
 
         </a>
@@ -92,16 +103,7 @@ footer {
     <div class="container">
 
         <!-- Page Header -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Create Box
 
-                  <button data-toggle="modal" data-target="#info-modal" class="btn btn-lg btn-success pull-right"
-                          style="margin-top:-15px;">Build Box</button>
-                </h2>
-
-            </div>
-        </div>
         <!-- /.row -->
 
         <div class="row">
@@ -249,6 +251,32 @@ footer {
                     retailPricing();
                   })
 
+                  $(document).keydown(function(e) {
+                    switch(e.which) {
+                        case 37: // left
+                        retailPricing();
+                        break;
+
+                        case 38: // up
+                        retailPricing();
+                        break;
+
+                        case 39: // right
+                        retailPricing();
+                        break;
+
+                        case 40: // down
+                        retailPricing();
+                        break;
+
+                        case 55: // down
+                        retailPricing();
+                        break;
+
+                        default: return; // exit this handler for other keys
+                    }
+                });
+
               </script>
               </div>
             </div>
@@ -300,6 +328,8 @@ footer {
 
                 </div>
               </div>
+              <button data-toggle="modal" data-target="#info-modal" class="btn btn-lg btn-success pull-right"
+                      style="margin-top:-15px;">Build Box</button>
 
 
           </div>
@@ -353,7 +383,6 @@ footer {
 
 
 
-
         <!-- /.row -->
 
         <hr>
@@ -371,7 +400,7 @@ footer {
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="/static/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
@@ -379,6 +408,7 @@ footer {
     <script src="/static/js/slider.js"></script>
 
 </body>
+
 
 </html>
 
