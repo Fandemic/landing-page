@@ -108,7 +108,7 @@ def handle_file(f,name):
 
     name = name.replace(' ','_')
 
-    directory = '/var/www/fandemic.co/app/static/img/box_builder/'+name+'/'
+    directory = 'static/img/box_builder/'+name+'/'
 
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -507,4 +507,4 @@ def page_not_found(e):
 
 if __name__ == '__main__':
 
-    app.run(debug=True)
+    app.run(debug=False)
