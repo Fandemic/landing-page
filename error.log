@@ -1398,3 +1398,67 @@ INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:23:58] "GET /favicon.ico HTTP/1.1" 2
 INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:24:38] "GET /builder/tank HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:24:40] "GET /static/js/jquery.js HTTP/1.1" 404 -
 INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:24:42] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:13] "GET /builder/tank HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/css/bootstrap/bootstrap.min.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/css/rangeslider.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/css/normalize.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/css/slider.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/css/builder.css HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/logo-nav_fullsize_wordart.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/js/bootstrap.min.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/js/slider.js HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/box.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/sample_products/controller-skin.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/showcase_stores/rain-banner.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/showcase_stores/temperrr-banner.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/showcase_stores/adapt-banner.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/sample_products/promo-1.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/showcase_stores/danielle-marie.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/showcase_stores/ZSF-banner.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:15] "GET /static/img/logo-nav_fullsize.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:26:17] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:34:43] "GET /builder/shirt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:34:45] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 08:34:47] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:12:54] "GET /builder/tank HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:12:55] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:12:56] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:24] "GET /builder/hat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:25] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:26] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:27] "GET /builder/bags HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:28] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:28] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:30] "GET /builder/accessories HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:30] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:31] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:33] "GET /builder/shirt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:33] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:13:33] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:14:09] "GET /builder/beauty HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:14:10] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:14:11] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:14:31] "GET /builder/gaming HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:14:31] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:14:32] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:18:12] "POST /builder/submit HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:18:13] "GET /static/img/mailer.png HTTP/1.1" 304 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:18:14] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:18:18] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/brandon/Desktop/fandemic/website/__init__.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:14] "GET /builder/gaming HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:14] "GET /static/js/jquery.js HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:15] "GET /favicon.ico HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:22] "POST /builder/submit HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:22] "GET /builder/submit?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:22] "GET /builder/submit?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:22] "GET /builder/submit?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:23] "GET /builder/submit?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:23] "GET /builder/submit?__debugger__=yes&cmd=resource&f=source.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [27/Jul/2016 09:24:23] "GET /builder/submit?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/brandon/Desktop/fandemic/website/__init__.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Detected change in '/home/brandon/Desktop/fandemic/website/__init__.py', reloading
+INFO:werkzeug: * Restarting with stat
