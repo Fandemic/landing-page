@@ -1,0 +1,40 @@
+/*!
+* Start Bootstrap - 3 Col Portfolio (http://startbootstrap.com/)
+* Copyright 2013-2016 Start Bootstrap
+* Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+*/
+
+.product {
+  margin-bottom: 25px;
+}
+
+footer {
+  margin: 50px 0;
+}
+
+.col-md-4 {
+  padding-right: 40px !important;
+  padding-left: 40px !important;
+}
+
+.money {
+  color: green;
+  font-weight: bold;
+}
+
+.gallery {
+  margin-top: 60px;
+  white-space: nowrap;
+  overflow-x: auto;
+  font-size: 0;
+  border-top: 1px solid #d5d5d5;
+  height:410px;
+}
+
+.product-photo {
+  height: 400px;
+  display: inline-block;
+}
+.product-photo img{
+  height:400px;
+}
