@@ -179,17 +179,9 @@
                   var boxCost = 2.50;
 
                   $("input[name='price']").TouchSpin({
-                    min: {
-                      {
-                        (box_items | sum(attribute = 'cost'))
-                      }
-                    } + 5 + boxCost,
+                    min: {{(box_items | sum(attribute = 'cost'))}} + 5 + boxCost,
                     max: 100.00,
-                    initval: {
-                      {
-                        (box_items | sum(attribute = 'cost') * 2)
-                      }
-                    },
+                    initval: {{(box_items | sum(attribute = 'cost') * 2)}},
                     stepinterval: 1,
                     decimals: 2,
                     maxboostedstep: 1
@@ -203,11 +195,7 @@
 
                   function retailPricing() {
                     var retailVal = parseInt($('#demo2').val());
-                    var newProfit = precise_round(retailVal - (boxCost + {
-                      {
-                        (box_items | sum(attribute = 'cost'))
-                      }
-                    } + 5), 2);
+                    var newProfit = precise_round(retailVal - (boxCost + {{(box_items | sum(attribute = 'cost'))}} + 5), 2);
                     $('#newProfit').html(newProfit);
                   };
                   //build profit on slider click
