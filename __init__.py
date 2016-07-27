@@ -108,16 +108,18 @@ def handle_file(f,name):
 
     name = name.replace(' ','_')
 
-    directory = '/var/www/fandemic.co/app/static/img/box_builder/'+name+'/'
+    directory = app.root_path + '/static/img/box_builder/'+name+'/'
+
+    print app.root_path
 
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-    #if not allowed_file(f.filename):
-        #return
+    if not allowed_file(f.filename):
+        return
 
-    #filename = secure_filename(f.filename)
-    #f.save(os.path.join(app.root_path, directory, filename))
+    filename = secure_filename(f.filename)
+    f.save(os.path.join(directory, filename))
     return 'https://fandemic.co/'+directory
 
 
@@ -153,7 +155,7 @@ def catalogSubmit():
     msg += '*Price:* $' + price + '\n'
     msg += '*Items:* \n' + items + '\n'
     msg += '*Design Instructions:*\n' + info + '\n'
-    #msg += '*Design Files URL:* ' + url
+    msg += '*Design Files URL:* ' + url
 
 
     sarah.notify(msg)
