@@ -108,7 +108,7 @@ def handle_file(f,name):
 
     name = name.replace(' ','_')
 
-    directory = 'static/img/box_builder/'+name+'/'
+    directory = '/var/www/fandemic.co/app/static/img/box_builder/'+name+'/'
 
     if not os.path.exists(directory):
         os.makedirs(directory)
