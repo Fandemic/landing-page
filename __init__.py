@@ -120,7 +120,7 @@ def handle_file(f,name):
 
     filename = secure_filename(f.filename)
     f.save(os.path.join(directory, filename))
-    return 'https://fandemic.co/'+directory
+    return 'https://fandemic.co/'+'static/img/box_builder/'+name
 
 
 @app.route('/builder/submit', methods=['GET', 'POST'])
