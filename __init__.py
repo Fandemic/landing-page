@@ -60,7 +60,8 @@ def catalog(cat=None):
 
     if cat is None:
 
-        items = db.items.find() #find the star
+        #items = db.items.find() #find the
+        return redirect("/builder/shirt", code=302)
 
     else:
 

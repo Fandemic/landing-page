@@ -169,7 +169,7 @@
                   <br>
                   <i style="font-size:15px; color:#8d8d8d">Your profit is <span class="money" id="newProfit"></span> each!</i>
                   <br>
-                  <i style="font-size:12px; color:#8d8d8d">*Your margins increase as more boxes are pre-sold</i>
+                  <i style="font-size:10px; color:#8d8d8d">*Your margins increase as more boxes are pre-sold</i>
                   <br>
                   <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <strong>If I sell...</strong><thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Sample Profit Margins</a>
 
@@ -239,6 +239,8 @@
               </div>
             </div>
           </div>
+
+
 
           <!--
             <div class="panel panel-default">
@@ -492,4 +494,19 @@
     'container': 'body',
     'html': true
   });
+
+  $(".bootstrap-touchspin").click(function() {
+    setTimeout(
+  function()
+  {
+    $('#collapse3').collapse("show")
+  }, 2000);
+
+  });
 </script>
+
+{% if box_items|length != 0 %}
+  <script>
+  $('#collapse2').collapse("show")
+  </script>
+{% endif %}
