@@ -67,7 +67,7 @@
 
 
   <!-- Page Content -->
-  <div class="container" style="margin-top:50px;">
+  <div class="container" style="margin-top:70px;">
 
     <!-- Page Header -->
 
@@ -114,7 +114,7 @@
 
             {% if loop.index % 3 == 0 %}
           </div>
-          {% endif %} {% if loop.index == items.count() %}
+          {% elif loop.index == items.count() %}
         </div>
         {% endif %} {% endfor %}
         <!-- /.row -->
@@ -136,15 +136,17 @@
 
               {% if box_items|length == 0 %} Your box is empty. Click a product to add to box. {% else %} {% for item in box_items %}
 
-              <img height="40px" src="{{item.img_url}}">
-              <span style="display: inline-block;
-                      width: 70%;
-                      overflow: hidden;
-                      white-space: nowrap;
-                      text-overflow: ellipsis;">
-                {{item.name}}</span>
-              <a href="/builder/{{cat}}/remove/{{item.sku}}" <i class="fa fa-trash" aria-hidden="true"></i>
-              </a>
+              <div style="width:inherit;height:35px">
+                <img width="40px" height="40px" src="{{item.img_url}}">
+                <span style="display: inline-block;
+                        width: 70%;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;vertical-align:middle">
+                  {{item.name}}</span>
+                <a href="/builder/{{cat}}/remove/{{item.sku}}" <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </div>
 
 
               <br> {% endfor %} {% endif %}
@@ -290,7 +292,7 @@
             </div>
           </div>
 
-          <a data-toggle="modal" data-target="#info-modal" class="btn btn-lg btn-success" style="width:100%">Finish Box</a>
+          <a data-toggle="modal" data-target="#info-modal" class="btn btn-submit btn-lg btn-success" style="width:100%">Finish Box</a>
 
         </div>
 
@@ -320,7 +322,7 @@
                 <strong>support@fandemic.co</strong> and we will respond within a few hours. Thanks!</p>
 
               <hr>
-              <button onclick="form_submit()" type="submit" value="Send" class="btn btn-lg btn-success center-block">Submit for Design!</button>
+              <button onclick="form_submit()" type="submit" value="Send" class="btn btn-submit btn-lg btn-success center-block">Submit for Design!</button>
             </div>
 
             <script type="text/javascript">
@@ -348,96 +350,92 @@
     <!-- /.row -->
 
 
-    <div class="gallery">
-      <div class="product-photo">
-        <img src="../static/img/showcase_stores/rain-banner.png">
-      </div>
-      <div class="product-photo">
-        <img src="../static/img/showcase_stores/temperrr-banner.png">
-      </div>
-      <div class="product-photo">
-        <img src="../static/img/showcase_stores/adapt-banner.png">
-      </div>
-      <div class="product-photo">
-        <img src="../static/img/showcase_stores/danielle-marie.png">
-      </div>
-      <div class="product-photo">
-        <img src="../static/img/showcase_stores/ZSF-banner.png">
-      </div>
+
+  </div>
+  <!-- /.container -->
+
+  <div class="gallery">
+    <div class="product-photo">
+      <img src="../static/img/showcase_stores/rain-banner.png">
     </div>
-    <p class="store-disclaimer" style="text-align: center; margin-top: 10px;font-size: 12px;">Logos are each star's trademark and property.</p>
-    <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright © Fandemic Inc 2016</p>
-                    </div>
-                </div>
-                <!-- /.row -->
-    </footer>
-    <!-- Footer -->
-    <!-- <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="copyright">
-              <a href="#home" class="ft-logo" title="Fandemic - Modern Start Up Landing Page">
-                <img src="../static/img/logo-nav_fullsize.png" width="160px" alt="Fandemic">
-              </a>
-              <div class=""> <a href="mailto:sarah@fandemic.co" title="Contact Us">Contact Us</a> - Baltimore, MD
-                <br>
+    <div class="product-photo">
+      <img src="../static/img/showcase_stores/temperrr-banner.png">
+    </div>
+    <div class="product-photo">
+      <img src="../static/img/showcase_stores/adapt-banner.png">
+    </div>
+    <div class="product-photo">
+      <img src="../static/img/showcase_stores/danielle-marie.png">
+    </div>
+    <div class="product-photo">
+      <img src="../static/img/showcase_stores/ZSF-banner.png">
+    </div>
+  </div>
+  <p class="store-disclaimer" style="text-align: center; margin-top: 10px;font-size: 10px;opacity:.4;">Logos are each star's trademark and property.</p>
 
-                <small>© 2016 Fandemic Inc. | All Rights Reserved</small>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="copyright">
+            <a href="#home" class="ft-logo" title="Fandemic - Modern Start Up Landing Page">
+              <img src="../static/img/logo-nav_fullsize.png" width="160px" alt="Fandemic">
+            </a>
+            <div class=""> <a href="mailto:sarah@fandemic.co" title="Contact Us">Contact Us</a> - Baltimore, MD
+              <br>
 
-              </div>
+              <small>© 2016 Fandemic Inc. | All Rights Reserved</small>
+
             </div>
           </div>
-          <div class="col-md-3">
-            <h2 style="font-size:20px">Read This</h2>
-            <ul>
-              <li><a href="/blog">Blog</a></li>
-            </ul>
-            <ul>
-              <li><a href="/faq">FAQ</a></li>
-            </ul>
-            <ul>
-              <li><a href="/terms">Terms and Conditions</a></li>
-            </ul>
-            <ul>
-              <li><a href="/privacy">Privacy Policy</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h2 style="font-size:20px">Example Stores</h2>
-            <ul>
-              <li><a href="/zac-smith-fitness">Zac Smith Fitness</a></li>
-            </ul>
-            <ul>
-              <li><a href="/team-dna-fitness">Team DNA Fitness</a></li>
-            </ul>
-            <ul>
-              <li><a href="/jen-seidel">Jen Seidel: Paint it Forward</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <div class="ft-social">
-              <div class="social">
-                <ul>
-                  <li><a class="tip" data-toggle="tooltip" href="https://twitter.com/The_Fandemic" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                  <li><a class="tip" data-toggle="tooltip" href="https://instagram.com/Fandemic" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                  <li><a class="tip" data-toggle="tooltip" href="https://www.linkedin.com/company/10566554" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                  <li><a class="tip" data-toggle="tooltip" href="https://angel.co/fandemic-1" title="Angel List"><i class="fa fa-angellist"></i></a></li>
-                  <li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                  <li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
-                </ul>
-              </div>
+        </div>
+        <div class="col-md-3">
+          <h2 style="font-size:20px">Read This</h2>
+          <ul>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <ul>
+            <li><a href="/faq">FAQ</a></li>
+          </ul>
+          <ul>
+            <li><a href="/terms">Terms and Conditions</a></li>
+          </ul>
+          <ul>
+            <li><a href="/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h2 style="font-size:20px">Example Stores</h2>
+          <ul>
+            <li><a href="/zac-smith-fitness">Zac Smith Fitness</a></li>
+          </ul>
+          <ul>
+            <li><a href="/team-dna-fitness">Team DNA Fitness</a></li>
+          </ul>
+          <ul>
+            <li><a href="/jen-seidel">Jen Seidel: Paint it Forward</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <div class="ft-social">
+            <div class="social">
+              <ul>
+                <li><a class="tip" data-toggle="tooltip" href="https://twitter.com/The_Fandemic" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a class="tip" data-toggle="tooltip" href="https://instagram.com/Fandemic" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                <li><a class="tip" data-toggle="tooltip" href="https://www.linkedin.com/company/10566554" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                <li><a class="tip" data-toggle="tooltip" href="https://angel.co/fandemic-1" title="Angel List"><i class="fa fa-angellist"></i></a></li>
+                <li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    </footer> -->
+    </div>
+  </footer>
 
-  </div>
-  <!-- /.container -->
+
 
   <!-- jQuery -->
   <script src="/static/js/jquery.js"></script>
