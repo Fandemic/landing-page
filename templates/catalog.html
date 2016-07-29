@@ -95,6 +95,7 @@
           <li {% if cat=='accessories' %}class="active" {% endif %}><a href="/builder/accessories">Accessories</a></li>
           <li {% if cat=='gaming' %}class="active" {% endif %}><a href="/builder/gaming">Gaming</a></li>
           <li {% if cat=='beauty' %}class="active" {% endif %}><a href="/builder/beauty">Beauty</a></li>
+          <li {% if cat=='cooking' %}class="active" {% endif %}><a href="/builder/cooking">Cooking</a></li>
           <li {% if cat=='promo' %}class="active" {% endif %}><a href="/builder/promo">Promo</a></li>
           <li {% if cat=='charity' %}class="active" {% endif %}><a href="/builder/charity">Charity</a></li>
         </ul>
@@ -106,7 +107,7 @@
             {% endif %}
 
 
-            <div class="col-md-4 product">
+            <div class="col-xs-4 product">
               <a href="/builder/{{cat}}/add/{{item.sku}}" data-toggle="popover" title="<strong>{{item.name}}</strong>" data-content="{{item.sku}}<br>{{item.description}}<hr><strong style='color:green'>Cost: {{item.cost}}</strong>">
                 <img style="max-width: 15em;overflow: hidden;" class="img-responsive" src="{{item.img_url}}" alt="">
               </a>
@@ -122,7 +123,7 @@
 
       <form action="/builder/submit" id="form" method="post" enctype="multipart/form-data">
         <!-- right panel -->
-        <div class="col-md-3">
+        <div class="col-xs-3">
 
 
           <div class="panel panel-info">
@@ -156,7 +157,7 @@
 
           <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" href="#collapse2" style="cursor:pointer;">
-              <h3 class="panel-title">2. Set Retail Price</h3>
+              <h3 class="panel-title">2. Set Your Price</h3>
             </div>
 
             <div id="collapse2" class="panel-collapse collapse">
@@ -167,12 +168,12 @@
                     <input style="font-size:18px;" id="demo2" type="text" name="price" class="col-md-8 form-control">
                   </div>
                   <br>
-                  <i style="font-size:15px; color:#8d8d8d">Your profit is <span class="money" id="newProfit"></span> each!</i>
+                  <i style="font-size:15px; color:#8d8d8d">You make <span class="money" >$<span id="newProfit"></span></span> per sale!
                   <br>
-                  <i style="font-size:10px; color:#8d8d8d">*Your margins increase as more boxes are pre-sold</i>
-                  <br>
-                  <a href="#" data-toggle="popover" title="Pricing Breakdown" data-content='<table class="table table-condensed"> <strong>If I sell...</strong><thead> <tr> <th>Qty</th> <th>Cost</th> <th>Profit</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>$20</td> <td>$10</td> </tr> <tr> <td>25</td> <td>$21</td> <td>$11</td> </tr> <tr> <td>50</td> <td>$20</td> <td>$12</td> </tr> <tr> <td>100</td> <td>$19</td> <td>$13</td> </tr> <tr> <td>150</td> <td>$18</td> <td>$14</td> </tr> <tr> <td>250</td> <td>$17</td> <td>$15</td> </tr> <tr> <td>500</td> <td>$16</td> <td>$16</td> </tr> <tr> <td>1000</td> <td>$15</td> <td>$17</td> </tr> </tbody> </table> <!--end of table-->'>Sample Profit Margins</a>
-
+                  Get a
+                  <a href="#" data-toggle="popover" title="Bonus Breakdown" data-content='<table class="table"> <thead> <tr> <th>Qty Sold</th> <th>$ Bonus</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>+$0</td> </tr> <tr> <td>25</td> <td>+$25</td> </tr> <tr> <td>50</td> <td>+$100</td> </tr> <tr> <td>100</td> <td>+$250</td> </tr> <tr> <td>150</td> <td>+$400</td> </tr> <tr> <td>250</td> <td>+$600</td> </tr> <tr> <td>500</td> <td>+$1,200</td> </tr> <tr> <td>1000</td> <td>+$2,000</td> </tr> </tbody></table><!--end of table-->'>Bonus</a>
+                  for selling more!
+                  </i>
                 </div>
 
 
@@ -309,12 +310,12 @@
               <hr>
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1">Name</span>
-                <input type="text" class="form-control" placeholder="Name" name="name" aria-describedby="sizing-addon1">
+                <input type="text" class="form-control" placeholder="Name" name="name" aria-describedby="sizing-addon1" maxlength="50" required>
               </div>
               <br>
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1">Email</span>
-                <input type="text" class="form-control" placeholder="Email" name="email" aria-describedby="sizing-addon1">
+                <input type="emmail" class="form-control" placeholder="Email" name="email" aria-describedby="sizing-addon1" required>
               </div>
 
               <hr>
