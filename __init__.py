@@ -67,7 +67,7 @@ def catalog(cat=None):
 
         items = db.items.find({"category":cat}) #find the star
 
-    return render_template('catalog.html', items=items, box_items=list(box_items),cat=cat)
+    return render_template('builder.html', items=items, box_items=list(box_items),cat=cat)
 
 
 @app.route('/builder/<cat>/add/<sku>')
@@ -149,7 +149,6 @@ def catalogSubmit():
     for file in files:
         url = handle_file(file,name)
 
-
     msg = 'a new box was created! \n'
     msg += '*Name:* ' + name + '\n'
     msg += '*Email:* ' + email + '\n'
@@ -158,10 +157,9 @@ def catalogSubmit():
     msg += '*Design Instructions:*\n' + info + '\n'
     msg += '*Design Files URL:* ' + url
 
-
     sarah.notify(msg)
 
-    return render_template('success.html')
+    return render_template('builder/success.html')
 
 
 @app.route('/blog/<url>')
@@ -510,4 +508,4 @@ def page_not_found(e):
 
 if __name__ == '__main__':
 
-    app.run(debug=False)
+    app.run(debug=True)

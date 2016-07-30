@@ -58,7 +58,9 @@
           <li><a href="../" class="btn">Home</a></li>
           <li><a href="../faq" class="btn">FAQ</a></li>
           <li><a href="mailto:sarah@fandemic.co" class="btn">Contact</a></li>
+          <li><button data-toggle="modal" data-target="#how-fandemic-works" style="margin-top:10px;padding:5px 10px;font-size:15px;background-color:transparent;color:#4E9CD4;border: 1px solid #4E9CD4;" class="btn">How Fandemic Works</button></li>
         </ul>
+
       </div>
     </div>
   </nav>
@@ -488,6 +490,8 @@
         </div>
       </div>
     </div>-->
+
+{% include 'howfandemicworks-modal.html' %}
 
 <script>
   $('a').popover({
