@@ -310,14 +310,24 @@
               </button>
               <h3 class="modal-title" id="myModalLabel">Just One More Thing!</h3>
               <hr>
+
+              <div id="errorMessageDiv" style="display:none;" class="alert alert-danger">
+                <strong>Heads Up</strong> You are missing an email address or name!
+              </div>
+
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1">Name</span>
-                <input type="text" class="form-control" placeholder="Name" name="name" aria-describedby="sizing-addon1" maxlength="50" required>
+                <input type="text" class="form-control" placeholder="Name" name="name" aria-describedby="sizing-addon1" maxlength="50" required = "true">
               </div>
               <br>
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1">Email</span>
-                <input type="emmail" class="form-control" placeholder="Email" name="email" aria-describedby="sizing-addon1" required>
+                <input type="emmail" class="form-control" placeholder="Email" name="email" aria-describedby="sizing-addon1" required = "true">
+              </div>
+              <br>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1">Phone</span>
+                <input type="text" class="form-control" placeholder="Phone" name="phone" aria-describedby="sizing-addon1" maxlength="15">
               </div>
 
               <hr>
@@ -327,13 +337,35 @@
                 <strong>sarah@fandemic.co</strong> and she will respond within a few hours. Thanks!</p>
 
               <hr>
-              <button onclick="form_submit()" type="submit" value="Send" class="btn btn-submit btn-lg btn-success center-block">Submit for Design!</button>
+              <button  type="submit" value="Send" class="btn btn-submit btn-lg btn-success center-block">Submit for Design!</button>
             </div>
 
             <script type="text/javascript">
-              function form_submit() {
-                document.getElementById("form").submit();
-              }
+
+            function validateEmail(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
+
+            var form = document.getElementById('form');
+            form.noValidate = true;
+            form.addEventListener('submit', function(event) { // listen for form submitting
+                    var email = validateEmail($("input[name=email]").val());
+
+                    if (!event.target.checkValidity()) {
+                        event.preventDefault(); // dismiss the default functionality
+                        document.getElementById('errorMessageDiv').innerHTML = '<strong>Name</strong> and <strong>email</strong> are required fields!'
+                        document.getElementById('errorMessageDiv').style.display = 'block'; //error message
+                    }
+                    else if (email == false){
+                        event.preventDefault(); // dismiss the default functionality
+                        document.getElementById('errorMessageDiv').innerHTML = 'That is not a valid email! Please try again :)'
+                        document.getElementById('errorMessageDiv').style.display = 'block'; //error message
+                    }
+                    else{
+                      document.getElementById("form").submit();
+                    }
+                }, false);
             </script>
 
           </div>
