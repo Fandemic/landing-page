@@ -156,7 +156,7 @@ def catalogSubmit():
     msg += '*Price:* $' + price + '\n'
     msg += '*Items:* \n' + items + '\n'
     msg += '*Design Instructions:*\n' + info + '\n'
-    msg += '*Design Files URL:* ' + url
+    msg += '*Design Files URL:* ' + str(url)
 
     sarah.notify(msg)
 
