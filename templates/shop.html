@@ -16,6 +16,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.min.js"></script>
   <script src="../static/js/vibrant.min.js"></script>
   <script src="../static/js/landing-page/jquery.magnific-popup.min.js"></script>
+  <script src="../static/js/countdown.min.js"></script>
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -29,40 +30,6 @@
 </head>
 
 <body>
-
-<script>
-var img = document.createElement('img');
-img.crossOrigin = "Anonymous";
-img.setAttribute('src', '{{star.image.profile}}')
-
-img.addEventListener('load', function() {
-  var vibrant = new Vibrant(img);
-  var swatches = vibrant.swatches();
-  console.log('Vibrant', swatches['Vibrant'].getHex());
-  var btn = document.getElementById('activate-store');
-
-  //$("#activate-store").css("background-color", swatches['DarkVibrant'].getHex());
-  //$("#pay").css("background-color", swatches['DarkVibrant'].getHex());
-  //$(".rangeslider__fill").css("background", swatches['DarkVibrant'].getHex());
-
-//$("a").mouseover(function() {
-//    $(this).css("color",swatches['DarkMuted'].getHex())
-//}).mouseout(function() {
-//    $(this).css("color",'#858585')
-//});
-//$(".btn-view").mouseover(function() {
-//    $(this).css("background-color",swatches['LightVibrant'].getHex())
-//}).mouseout(function() {
-//    $(this).css("background-color",'transparent')
-//});
-//$(".btn-add").mouseover(function() {
-//    $(this).css("background-color",swatches['LightVibrant'].getHex())
-//}).mouseout(function() {
- //   $(this).css("background-color",'transparent')
-//});
-
-});
-</script>
 
 <style>
 .modal {
@@ -83,6 +50,70 @@ img.addEventListener('load', function() {
   text-align: left;
   vertical-align: middle;
 }
+
+.btn {
+  padding: 1em 3em;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #7BDC87;
+  line-height: 1.5;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+.btn:hover {
+  color: #fff;
+  background-color: #4D9BD3;
+}
+.btn:active, .btn:focus, .btn:active:hover, .btn:active:focus {
+  color: #fff;
+  outline: none;
+  background-color: #4D9BD3;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+  overflow-x: hidden;
+  background-color: #fff;
+}
+p {
+  font-weight: 400;
+  color: #4c4c4c;
+  font-size: 17px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: #4c4c4c;
+}
+h4 {
+  font-size: 20px;
+  margin: 12px 0;
+}
+a {
+  transition: all 0.3s ease-in-out;
+}
+a:hover, a:focus {
+  text-decoration: none;
+}
+a:focus {
+  outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+
+   opacity: 1;
+   padding:5px;
+
+}
+
 </style>
 
 <div id="loading"> Please Wait.. Order Processing...</div>
@@ -147,7 +178,7 @@ img.addEventListener('load', function() {
     </span>
 
   </div>
-  <button id="activate-store" href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate">Create My Box</button>
+  <button id="activate-store" href="#" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate">Create A Box</button>
 
   {% else %}
   <div style="padding: 0px 10px 0px 10px;">
@@ -176,12 +207,13 @@ img.addEventListener('load', function() {
 
 
 
-<div class="controls">
+<div class="controls" style="height:60px;padding:0px;padding-left:20px;background-color:#f8f8f8;">
   <!--<input style="float:left" type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>-->
 
 
     {% if star.image.logo is defined %}
-    <img style="position:absolute;height:60px;top:5px;" src="../static/img/{{star.stage}}/{{star.id}}/logo.png">
+    <img class="logo-nav" alt="logo" src="../static/img/logo-nav_fullsize_wordart.png" style="margin-top:10px" height="40">
+
     {% else %}
     <span style="position:absolute;height:60px;top:15px;font-size:25px;color:#c7c7c7;"> {{star.name}} Logo </span>
     {% endif %}
@@ -193,25 +225,36 @@ img.addEventListener('load', function() {
       </div>
       {% endif %}
       {% if star.stage == 'custom' %}
-      <div style="text-align:center">
-        <span style="text-align:center;color:#b7b7b7;">Questions on how to stock your store? Call 443-536-4110 to speak to a representative!</span>
-      </div>
+
       {% endif %}
     <div></div>
     {% endif %}
 
+
+    {% if star.id == 'jen-seidel' %}
     <div class="btns">
       <a href="/" class="button"><i class="fa fa-home" aria-hidden="true"></i></a>
       <i data-toggle="modal" data-target="#customerServiceModal" class="fa fa-question-circle button" aria-hidden="true"></i>
       <i class="fa fa-shopping-cart cart-button button"><span class="num-items"></span></i>
     </div>
+    {% else %}
+    <div style="position:absolute; right:220px;top:3px;font-size:16px;">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="../" class="">Home</a></li>
+        <li><a href="../faq" class="">FAQ</a></li>
+        <li><a href="mailto:sarah@fandemic.co" class="">Contact</a></li>
+      </ul>
+    </div>
+    <button style="position:absolute; right:20px;top:13px;padding:5px 10px;font-size:15px;background-color:transparent;color:#4E9CD4;border: 1px solid #4E9CD4;" class="btn">How Fandemic Works</button>
 
+
+    {% endif %}
 
 </div>
 
 
 <!-- CENTER PANEL -->
-<div id="center-panel" class="container-fluid">
+<div id="center-panel" class="container-fluid" style="background-color:#fff;">
 
 
 
@@ -238,122 +281,91 @@ ability to fight for themselves.”
 
 {% if star.stage != 'live' %}
  <!-- SAMPLE PRODUCTS VERSION INACTIVE -->
-  {% set count = 1 %}
-  {% for p in products %}
-  {% if count == 1 %}<div class="row">
-    {% endif %}
-  <div class="col-md-6 col-lg-4"
-       data-category="{% for id in p.subcatID %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
-       data-sort="" style="padding: 25px;padding-top:10px;padding-bottom:10px;">
 
-    <div class="thumbnail">
+  <div class="container">
 
-
-        <span class="product-id">{{p.sku}}</span>
-
-        <div class="card-header">
-
-          <img width="30px" class="shipping-icon" style="opacity:.5;" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/shipping-icon.png">
-          <div class="progress">
-            <span class="progress-text" style="color:#9d9d9d;">0 Items Remaining! - <a href="#" data-toggle="modal" data-target="#activateStoreModal">Create My Box</a></span>
-            <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0"
-            aria-valuemin="0" aria-valuemax="100" style="100%">
-
-            </div>
-          </div>
+    <div class="row" style="margin-bottom:80px;height:420px;">
+      <div class="col-md-7">
+        <img class="img-responsive" src="../static/img/showcase_stores/rain-banner.png">
+      </div>
+      <div class="col-md-5" style="height:inherit">
+        <h2>Official Faze Rain Box</h2>
+        <div style="font-size:18px;">
+          Time Remaining: <span id="clock"></span>
+          <script>
+            $('#clock').countdown('2016/08/05', function(event) {
+            $(this).html(event.strftime('%D days %H:%M:%S'));
+            });
+          </script>
         </div>
-
-        <img width="500px" height="500px"
-             data-toggle="modal"
-             data-target="#modal-{{p.sku}}"
-             class="product-picture"
-             src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-             data-src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}"
-         >
-
-
-        <div class="row variations">
-            <div
-              class="{% if p.variations.color is defined %}
-                        col-md-6
-                     {% else %}
-                        col-md-12
-                     {% endif %}
-                        variation1">
-              <div class="name"><span>Size</span></div>
-              <select class="form-control">
-                {% for s in p.variations.size %}
-                <option>{{s}}</option>
-                {% endfor %}
-              </select>
-            </div>
-            {% if p.variations.color is defined %}
-            <div class="col-md-6 variation2">
-              <div class="name"><span>color</span></div>
-              <select class="form-control">
-                  {% for c in p.variations.color %}
-                  <option>{{c}}</option>
-                  {% endfor %}
-              </select>
-            </div>
-            {% endif %}
-        </div>
-
-        <div data-toggle="modal" data-target="#modal-{{p.sku}}" class="caption">
-          <h3 class="title">{{p.name}}</h3>
-          <span class="money">$<span class="price">{{p.price}}</span></span>
-          <!--<button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>-->
-          <button class="btn btn-primary btn-view" role="button"
-                  style="right:20px;"><i class="fa fa-eye" aria-hidden="true"></i></button>
-        </div>
-    </div>
-  </div>
-
-
-  <!-- Product Description Modal -->
-  <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="z-index:99999;" id="modal-{{p.sku}}">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h2 class="modal-title" id="myModalLabel">{{p.name}} Description</h2>
-        <hr>
-        <div class="row">
-        <div class="col-md-8">
-          <img width="500px" height="500px"
-               class="product-picture img-responsive"
-               src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-               data-src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}"
-               >
-        </div>
-        <div class="col-md-4">
-          <div class="product-description">
-              <p>
-                {{p.description | safe}}
-              </p>
-          </div>
-
-
-          {% for img in p.default_img %}
-          <div class="product-sample-view">
-            <img width="50px" height="50px"
-                 src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                 data-src="../static/img/{{star.stage}}/{{star.id}}/{{img}}"
-            >
-          </div>
-          {% endfor %}
-
+        <img src="../static/img/play-btn-live.png" alt="play" style="opacity:.5;margin-top:80px;">
+        <div class="pull-bottom" style="margin-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;">
+          <input type="number" value="1" style="font-size: 30px;width: 70px;line-height:55px;border-radius:4px;border: 1px solid #cccccc;padding-left:10px;">
+          <button class="btn customButton" style="margin-top:-12px;">Pre-Order Box</button>
         </div>
       </div>
-      <button class="btn btn-lg btn-success" style="float:right;" data-toggle="modal" data-target="#activateStoreModal"  data-dismiss="modal">Create My Box</button>
-      </div>
+    </div>
+
+    <div class="row">
+
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+          <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">About</a></li>
+          <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">How It Works</a></li>
+          <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Questions/Comments</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content" style="text-align:left !important;">
+          <div role="tabpanel" class="tab-pane active" id="home">...</div>
+          <div role="tabpanel" class="tab-pane" id="profile">
+            <div style="padding:25px">
+                <section><form action="http://www.famousbirthdays.com/edits/" method="post">
+                <section>
+                <section>
+                <aside><strong><label>ABOUT</label></strong></aside>
+                <aside>Born Nordan Shat, he is a professional gamer who posts video game related content to his YouTube channels TrickShotting and OMFGRain. He is a member of the FaZe Clan, a Call of Duty sniping clan owned by iiTeMpeR.</aside>
+                <aside></aside>
+                <aside></aside>
+                <aside><strong><label>BEFORE FAME</label></strong></aside>
+                <aside>He deleted several of his oldest videos since joining the YouTube world in December of 2010.</aside>
+                <aside></aside>
+                <aside></aside>
+                <aside><strong><label>TRIVIA</label></strong></aside>
+                <aside>He surpassed 3.8 million subscribers on his TrickShotting channel in July 2016.</aside>
+                <aside></aside>
+                <aside></aside>
+                <aside><strong><label>FAMILY LIFE</label></strong></aside>
+                <aside>He was born in Toronto and raised with a sister. He featured his girlfriend Taylor in a video titled "MEET MY GIRLFRIEND!" in December 2014. The two broke up in early 2016.</aside>
+                <aside></aside>
+                <aside></aside>
+                <aside><strong><label>ASSOCIATED WITH</label></strong></aside>
+                <aside>He has played games on his channel with fellow FaZe Clan member <a href="http://www.famousbirthdays.com/people/thomas-oliveira.html">Thomas Oliveira</a>.</aside>
+                </section>
+                </section>
+                </form></section>
+                <section>
+                <section></section>
+                </section>
+            </div>
+
+          </div>
+          <div role="tabpanel" class="tab-pane" id="messages">...</div>
+          <div role="tabpanel" class="tab-pane" id="settings">...</div>
+        </div>
+
+
     </div>
   </div>
-  {% if count % 3 == 0 %}</div><div class="row">
-  {% endif %}
-  {% set count = count + 1 %}
-  {% endfor %}
 
 {% else %}
  <!-- ACTIVE STORE PRODUCTS VERSION -->
