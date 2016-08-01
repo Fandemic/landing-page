@@ -217,6 +217,18 @@ a:focus {
   left: 10px;
 }
 
+
+.navbar-collapse{
+
+
+    width: inherit;
+    text-align:center;
+    z-index: 99999999 !important;
+    background-color: rgba(255, 255, 255, 0.97);
+
+
+}
+
 .navbar-nav .btn {
   padding: .65em 1.5em;
   color: #fff;
