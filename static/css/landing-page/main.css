@@ -204,6 +204,7 @@ b, strong {
   background: #7BDC87;
   color: #fff;
   border: 1px solid #7BDC87;
+  background-color:transparent;border-color:#4D9BD3;color:#4D9BD3;
 }
 .navbar-default.stuck .navbar-nav .btn:hover, .navbar-default.stuck .navbar-nav .btn:focus {
   background: #4D9BD3!important;

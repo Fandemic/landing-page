@@ -50,8 +50,7 @@ def toString(l):
 
 @app.route('/builder')
 @app.route('/builder/<cat>')
-@mobile_template('{mobile/}builder.html')
-def catalog(template,cat=None):
+def catalog(cat=None):
 
     box_items = []
 
@@ -68,7 +67,7 @@ def catalog(template,cat=None):
 
         items = db.items.find({"category":cat}) #find the star
 
-    return render_template(template, items=items, box_items=list(box_items),cat=cat)
+    return render_template('builder.html', items=items, box_items=list(box_items),cat=cat)
 
 
 @app.route('/builder/<cat>/add/<sku>')

@@ -23,7 +23,7 @@ footer {
 }
 
 .gallery {
-  margin-top: 200px !important;
+  margin-top: 100px !important;
   white-space: nowrap;
   overflow-x: auto;
   font-size: 0;
@@ -108,11 +108,12 @@ ul, li {
 }
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif !important;
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
   overflow-x: hidden;
+  background-color: #F5F5F5;
 }
 p {
   font-weight: 400;
@@ -135,6 +136,11 @@ a:hover, a:focus {
 }
 a:focus {
   outline: none;
+}
+
+.navbar{
+  height: 74px;
+  background-color: #fff;
 }
 
 .social li {
@@ -190,3 +196,70 @@ a:focus {
     color: #fff;
     background-color: #4D9BD3;
 }
+
+.panel-title{
+
+}
+
+.bootstrap-touchspin-down, .bootstrap-touchspin-up{
+  height:60px;
+
+}
+
+.bootstrap-touchspin-down{
+  border-right:none;
+}
+
+.dollar-sign{
+  font-size: 25px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.navbar-nav .btn {
+  padding: .65em 1.5em;
+  color: #fff;
+  font-size: 16px !important;
+  text-align: center;
+  text-decoration: none;
+  background-color: #7BDC87;
+  line-height: 1.5;
+  border: none;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+    display: inline-block;
+    background: #7BDC87;
+    color: #fff;
+    border: 1px solid #7BDC87;
+    background-color: transparent;
+    border-color: #4D9BD3;
+    color: #4D9BD3 !important;
+    border-radius: 3px;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    margin-top: 10px;
+}
+
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.money{
+  color:#46B29D;
+}
+
+.navbar-toggle {
+    margin-top: 18px;
+  }
