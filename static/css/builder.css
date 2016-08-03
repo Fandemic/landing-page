@@ -4,6 +4,7 @@
 * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
 */
 
+
 .product {
   margin-bottom: 25px;
 }
@@ -13,8 +14,7 @@ footer {
 }
 
 .col-md-4 {
-  padding-right: 40px !important;
-  padding-left: 40px !important;
+
 }
 
 .money {
@@ -275,3 +275,50 @@ a:focus {
 .navbar-toggle {
     margin-top: 18px;
   }
+
+.thumbnail{
+	border: 0px;
+	padding: 0px;
+  border-radius: 4px;
+  position:relative;
+  background-color: #F9F9F9;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.24);
+  transition: all 0.2s ease-in-out;
+
+}
+
+.thumbnail img{
+  width: 90%;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.thumbnail .group{
+  border-top: 1px solid rgba(0,0,0,.12);
+  text-align:center;
+  font-size:16px;
+}
+
+.thumbnail .btn{
+  font-weight: 700 !important;
+  color: #7d7d7d;
+}
+
+.thumbnail .btn:hover{
+  font-weight: 700 !important;
+  color: #7d7d7d;
+  background-color: #ededed;
+}
+
+.thumbnail .cost{
+  position: absolute;
+  top:5px;
+  right: 10px;
+  font-weight: 700;
+  color: #4D9BD3;
+  opacity: .5;
+}
+
+.selectpicker{
+  font-size:18px !important;
+}
