@@ -176,6 +176,10 @@ border-top: 0px;
 	background-image: url(../img/cheeks.svg);
 }
 
+.cs-skin-elastic .cs-options li.flag-bags span {
+	background-image: url(../img/bags.svg);
+}
+
 @-webkit-keyframes expand {
 	0% { -webkit-transform: scale3d(1,0,1); }
 	25% { -webkit-transform: scale3d(1,1.2,1); }

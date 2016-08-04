@@ -145,6 +145,7 @@
                 <option value="france" data-class="flag-lips">Makeup</option>
                 <option value="brazil" data-class="flag-skincare">Skincare</option>
                 <option value="argentina" data-class="flag-brushes">Brushes</option>
+                <option value="brazil" data-class="flag-bags">Bags</option>
               </select>
             </div>
 
@@ -183,7 +184,7 @@
                       <div class="card-header">
                         </div>
 
-                          <img style="max-width: 15em;overflow: hidden;" class="img-responsive" src="{{item.img_url}}" alt="">
+                          <img data-toggle="modal" data-target="#{{item.sku}}" style="max-width: 15em;overflow: hidden;" class="img-responsive" src="{{item.img_url}}" alt="">
 
                         <span class="cost">${{item.cost}}</span>
                         <div class="group">
@@ -197,6 +198,7 @@
 
                 <!--DETAILS MODAL-->
                 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{item.sku}}">
+
                   <div class="modal-dialog modal-md">
                     <div class="modal-content" style="padding:30px">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -219,15 +221,13 @@
 
 
           <div class="col-md-3">
-            <div class="panel panel-info">
-              <div class="panel-heading">
+
+
+
                 <h3 class="panel-title">Your Box
                   <img height="25px" style="margin-top: -5px;float:right" src="../static/img/box.png">
                 </h3>
-              </div>
-              <div class="panel-body">
-
-
+                <hr>
               {% if box_items|length == 0 %} Your box is empty. Click a product to add to box. {% else %} {% for item in box_items %}
 
               <div style="width:100%;height:35px">
@@ -245,8 +245,8 @@
 
               <br> {% endfor %} {% endif %}
 
-            </div>
-          </div>
+
+
           </div>
           </div>
         </div>
@@ -326,9 +326,11 @@
                   </div>
                 </div>
                   </div>
-                  <div style="text-align:center;">
-                    <i class="light">Money is sent to you via bank transfer when your campaign is complete</i>
-                  </div>
+
+                </div>
+
+                <div style="text-align:center;">
+                  <i class="light">Money is sent to you via bank transfer when your campaign is complete</i>
                 </div>
 
 
