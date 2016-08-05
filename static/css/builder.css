@@ -113,7 +113,7 @@ body {
   font-weight: 400;
   font-size: 16px;
   overflow-x: hidden;
-  background-color: #F5F5F5;
+  background-color: #fff;
 }
 p {
   font-weight: 400;
@@ -327,3 +327,72 @@ a:focus {
   font-size: 20px;
   padding: 10px 0px;
 }
+
+/*progress bar*/
+#crumbs {
+	text-align: center;
+  width: 100%;
+}
+
+	#crumbs ul {
+		list-style: none;
+
+	}
+		#crumbs ul li {
+			display: inline;
+		}
+
+		#crumbs ul li a {
+			display: block;
+			float: left;
+			height: 60px;
+			background: #A6CCE8;
+			text-align: center;
+			padding: 20px 40px 0 80px;
+			position: relative;
+			margin: 0 .5% 0 0;
+
+			font-size: 18px;
+			text-decoration: none;
+			color: #fff;
+      transition:none;
+      width: 24.5%;
+		}
+			#crumbs ul li a:after {
+				content: "";
+				border-top: 30px solid transparent;
+	 			border-bottom: 30px solid transparent;
+	  			border-left: 40px solid #A6CCE8;
+				position: absolute; right: -40px; top: 0;
+				z-index: 1;
+			}
+
+			#crumbs ul li a:before {
+				content: "";
+				border-top: 30px solid transparent;
+	  			border-bottom: 30px solid transparent;
+	  			border-left: 40px solid #fff;
+				position: absolute; left: 0; top: 0;
+			}
+
+				#crumbs ul li:first-child a {
+					border-top-left-radius: 0px; border-bottom-left-radius: 0px;
+				}
+				#crumbs ul li:first-child a:before {
+					display: none;
+				}
+
+				#crumbs ul li:last-child a {
+					padding-right: 80px;
+					border-top-right-radius: 0px; border-bottom-right-radius: 0px;
+				}
+				#crumbs ul li:last-child a:after {
+					display: none;
+				}
+
+			#crumbs ul li a:hover {
+				background: #FFC63F;
+			}
+				#crumbs ul li a:hover:after {
+					border-left-color: #FFC63F;
+				}

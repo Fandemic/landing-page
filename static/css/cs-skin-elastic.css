@@ -16,6 +16,7 @@ div.cs-skin-elastic {
 	color: #8d8d8d;
 	border-radius: 2px;
 	border: 1px solid #dddddd;
+	font-size: 22px;
 }
 
 @media screen and (max-width: 30em) {
