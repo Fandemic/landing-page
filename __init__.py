@@ -63,20 +63,20 @@ def catalog(cat=None,cat2=None,cat3=None):
     if cat is None:
 
         #items = db.items.find() #find the
-        return redirect("/builder/shirt", code=302)
+        return redirect("/builder/beauty", code=302)
 
     else:
 
         if cat2 is None:
-            items = db.items.find({"category":cat}).limit(6) #find the star
+            items = db.items.find({"category":cat}) #find the star
 
         else:
 
             if cat3 is None:
-                items = db.items.find({"category":cat,"sub-category":cat2}).limit(6) #find the star
+                items = db.items.find({"category":cat,"sub-category":cat2}) #find the star
 
             else:
-                items = db.items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3}).limit(6) #find the star
+                items = db.items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3}) #find the star
 
     return render_template('builder.html', items=items, box_items=list(box_items),cat=cat,cat2=cat2,cat3=cat3)
 

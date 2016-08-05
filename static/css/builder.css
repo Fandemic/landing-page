@@ -315,7 +315,7 @@ a:focus {
   top:5px;
   right: 10px;
   font-weight: 700;
-  color: #4D9BD3;
+  color: green;
   opacity: .5;
 }
 
@@ -351,7 +351,7 @@ a:focus {
 			padding: 20px 40px 0 80px;
 			position: relative;
 			margin: 0 .5% 0 0;
-
+      cursor: pointer;
 			font-size: 18px;
 			text-decoration: none;
 			color: #fff;
@@ -396,3 +396,5 @@ a:focus {
 				#crumbs ul li a:hover:after {
 					border-left-color: #FFC63F;
 				}
+
+/*file upload*/
