@@ -50,7 +50,9 @@ def toString(l):
 
 @app.route('/builder')
 @app.route('/builder/<cat>')
-def catalog(cat=None):
+@app.route('/builder/<cat>/<cat2>')
+@app.route('/builder/<cat>/<cat2>/<cat3>')
+def catalog(cat=None,cat2=None,cat3=None):
 
     box_items = []
 
@@ -65,13 +67,22 @@ def catalog(cat=None):
 
     else:
 
-        items = db.items.find({"category":cat}) #find the star
+        if cat2 is None:
+            items = db.items.find({"category":cat}).limit(6) #find the star
 
-    return render_template('builder.html', items=items, box_items=list(box_items),cat=cat)
+        else:
+
+            if cat3 is None:
+                items = db.items.find({"category":cat,"sub-category":cat2}).limit(6) #find the star
+
+            else:
+                items = db.items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3}).limit(6) #find the star
+
+    return render_template('builder.html', items=items, box_items=list(box_items),cat=cat,cat2=cat2,cat3=cat3)
 
 
-@app.route('/builder/<cat>/add/<sku>')
-def catalogAdd(cat,sku):
+@app.route('/builder/add/<sku>')
+def catalogAdd(sku):
 
     items = []
 
@@ -80,19 +91,24 @@ def catalogAdd(cat,sku):
         items.append(sku)
     items = toString(items)
 
+    cat = db.items.find_one({"sku":sku})['category']
+
     resp = make_response(redirect('/builder/'+cat))
+
     resp.set_cookie('box', items)
 
     return resp
 
 
-@app.route('/builder/<cat>/remove/<sku>')
-def catalogRemove(cat,sku):
+@app.route('/builder/remove/<sku>')
+def catalogRemove(sku):
 
     items = toList(request.cookies.get('box'))
     items.remove(sku)
 
     items = toString(items)
+
+    cat = db.items.find_one({"sku":sku})['category']
 
     resp = make_response(redirect('/builder/'+cat))
     resp.set_cookie('box', items)

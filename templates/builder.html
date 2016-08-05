@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 
 <head>
 
@@ -12,26 +12,27 @@
   <title>Fandemic Box Builder</title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="../static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="../static/css/rangeslider.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/3.1.1/jquery.bootstrap-touchspin.min.js"></script>
   <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
-  <link rel="stylesheet" href="../static/css/normalize.css">
-  <link rel="stylesheet" href="../static/css/slider.css">
-  <link rel="stylesheet" href="../static/css/builder.css">
+  <link rel="stylesheet" href="/static/css/normalize.css">
+  <link rel="stylesheet" href="/static/css/slider.css">
+  <link rel="stylesheet" href="/static/css/builder.css">
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="../static/css/cs-select.css" />
-  <link rel="stylesheet" type="text/css" href="../static/css/cs-skin-elastic.css" />
+
+  <link rel="stylesheet" type="text/css" href="/static/css/cs-select.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/cs-skin-elastic.css" />
 
 
 
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
+
+  <script src="/app/builder.js"></script>
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,7 +44,7 @@
 
 </head>
 
-<body>
+<body ng-controller="builderController">
 
   <!--navigation-->
 
@@ -57,7 +58,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#home">
-          <img class="logo-nav" alt="logo" src="../static/img/logo-nav_fullsize_wordart.png" style="" height="45">
+          <img class="logo-nav" alt="logo" src="/static/img/logo-nav_fullsize_wordart.png" style="" height="45">
         </a>
       </div>
       <div class="collapse navbar-collapse" id="bs-navbar-collapse-1" style="z-index:999999;">
@@ -81,7 +82,8 @@
   <div class="container" style="margin-top:20px;">
 
     <!-- Page Header -->
-    <h1>Build Your Box</h1>
+    <h1 style="margin-bottom:2px;">Build Your Box</h1>
+    <i class="light">All items and the mailer box will be printed with your custom branding</i>
     <hr>
 
 
@@ -100,39 +102,13 @@
 
               <div class="col-md-3">
 
-              <!--  <select class="selectpicker">
-                  <optgroup label="Picnic" disabled>
-                    <option>Mustard</option>
-                    <option>Ketchup</option>
-                    <option>Relish</option>
-                  </optgroup>
-                  <optgroup label="Camping">
-                    <option>Tent</option>
-                    <option>Flashlight</option>
-                    <option>Toilet Paper</option>
-                  </optgroup>
-                </select> -->
-              <!-- category dropdown -->
-              <!--<ul class="nav nav-pills">
-
-                <li {% if cat=='shirt' %}class="active" {% endif %}><a href="/builder/shirt">Shirts</a></li>
-                <li {% if cat=='tank' %}class="active" {% endif %}><a href="/builder/tank">Tanks</a></li>
-                <li {% if cat=='hat' %}class="active" {% endif %}><a href="/builder/hat">Hats</a></li>
-                <li {% if cat=='bags' %}class="active" {% endif %}><a href="/builder/bags">Bags</a></li>
-                <li {% if cat=='accessories' %}class="active" {% endif %}><a href="/builder/accessories">Accessories</a></li>
-                <li {% if cat=='gaming' %}class="active" {% endif %}><a href="/builder/gaming">Gaming</a></li>
-                <li {% if cat=='beauty' %}class="active" {% endif %}><a href="/builder/beauty">Beauty</a></li>
-                <li {% if cat=='cooking' %}class="active" {% endif %}><a href="/builder/cooking">Cooking</a></li>
-                <li {% if cat=='promo' %}class="active" {% endif %}><a href="/builder/promo">Promo</a></li>
-                <li {% if cat=='charity' %}class="active" {% endif %}><a href="/builder/charity">Charity</a></li>
-              </ul>-->
 
 
-        				<select class="cs-select cs-skin-elastic">
-        					<option value="" disabled selected>Select a primary category</option>
-        					<option value="france" data-class="flag-beauty">Beauty</option>
-        					<option value="brazil" data-class="flag-fitness">Fitness</option>
-        					<option value="argentina" data-class="flag-gaming">Gaming</option>
+        				<select id="cat-primary" class="cs-select cs-skin-elastic">
+        					<option disabled >Select a primary category</option>
+        					<option data-class="flag-beauty" {% if cat == 'beauty' %}selected{% endif %}>Beauty</option>
+        					<option data-class="flag-fitness" {% if cat == 'fitness' %}selected{% endif %}>Fitness</option>
+        					<option data-class="flag-gaming" {% if cat == 'gaming' %}selected{% endif %}>Gaming</option>
         				</select>
 
 
@@ -140,22 +116,30 @@
             </div>
 
             <div class="col-md-3">
-              <select class="cs-select cs-skin-elastic">
-                <option value="" disabled selected>Select a beauty category</option>
-                <option value="france" data-class="flag-lips">Makeup</option>
-                <option value="brazil" data-class="flag-skincare">Skincare</option>
-                <option value="argentina" data-class="flag-brushes">Brushes</option>
-                <option value="brazil" data-class="flag-bags">Bags</option>
-              </select>
+
+              <div id="cat-beauty" {% if cat != 'beauty' %}style="display:none;"{% endif %}>
+                <select class="cs-select cs-skin-elastic">
+                  <option disabled {% if cat2 == None %}selected{% endif %}>Select a beauty category</option>
+                  <option value="beauty/makeup" data-class="flag-lips" {% if cat2 == 'makeup' %}selected{% endif %}>Makeup</option>
+                  <option value="beauty/skincare" data-class="flag-skincare" {% if cat2 == 'skincare' %}selected{% endif %}>Skincare</option>
+                  <option value="beauty/brushes" data-class="flag-brushes" {% if cat2 == 'brushes' %}selected{% endif %}>Brushes</option>
+                  <option value="beauty/bags" data-class="flag-bags" {% if cat2 == 'bags' %}selected{% endif %}>Bags</option>
+                </select>
+              </div>
+
             </div>
 
             <div class="col-md-3">
+
+              <div id="cat-makeup" {% if cat2 != 'makeup' %}style="display:none;"{% endif %}>
               <select class="cs-select cs-skin-elastic">
-                <option value="" disabled selected>Select a makeup category</option>
-                <option value="argentina" data-class="flag-lips">Lips</option>
-                <option value="france" data-class="flag-eyes">Brows & Eyes</option>
-                <option value="brazil" data-class="flag-cheeks">Cheeks</option>
+                <option disabled {% if cat3 == None %}selected{% endif %}>Select a makeup category</option>
+                <option value="beauty/makeup/lips" data-class="flag-lips" {% if cat3 == 'lips' %}selected{% endif %}>Lips</option>
+                <option value="beauty/makeup/eyes" data-class="flag-eyes" {% if cat3 == 'eyes' %}selected{% endif %}>Brows & Eyes</option>
+                <option value="beauty/makeup/cheeks" data-class="flag-cheeks" {% if cat3 == 'cheeks' %}selected{% endif %}>Cheeks</option>
               </select>
+            </div>
+
             </div>
 
           </div>
@@ -169,9 +153,11 @@
           <div class="col-md-9">
             <!-- Projects Row -->
 
+            <i class="light">displaying the top 6 products in this category</i><hr>
 
 
-            <div style="max-height:730px;overflow-y:auto;overflow-x:hidden;padding:2px;">
+
+            <div style="overflow-x:hidden;padding:2px;">
             {% for item in items %} {% if loop.index == 0 %}
             <div class="row">
               {% endif %} {% if loop.index % 3 == 1 %}
@@ -180,16 +166,16 @@
 
 
                 <div class="col-md-4 product">
-                  <div class="thumbnail">
+                  <div class="thumbnail" style="height:250px;">
                       <div class="card-header">
                         </div>
 
-                          <img data-toggle="modal" data-target="#{{item.sku}}" style="max-width: 15em;overflow: hidden;" class="img-responsive" src="{{item.img_url}}" alt="">
+                          <img data-toggle="modal" data-target="#{{item.sku}}" style="overflow: hidden;max-height:200px;width:auto;padding:10px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
 
                         <span class="cost">${{item.cost}}</span>
-                        <div class="group">
+                        <div class="group" style="width: 100%; position: absolute;bottom:0px;">
                           <a class="btn" style="width:50%;border-radius:0px;border-bottom-left-radius: 4px;" data-toggle="modal" data-target="#{{item.sku}}">DETAILS</a>
-                          <a href="/builder/{{cat}}/add/{{item.sku}}" class="btn" style="float:right;width:50%;border-left: 1px solid rgba(0,0,0,.12);
+                          <a href="/builder/add/{{item.sku}}" class="btn" style="float:right;width:50%;border-left: 1px solid rgba(0,0,0,.12);
                                                                                          border-radius:0px;border-bottom-right-radius: 4px;
                                                                                          ">ADD <i class="fa fa-plus" aria-hidden="true"></i></a>
                         </div>
@@ -225,7 +211,7 @@
 
 
                 <h3 class="panel-title">Your Box
-                  <img height="25px" style="margin-top: -5px;float:right" src="../static/img/box.png">
+                  <img height="25px" style="margin-top: -5px;float:right" src="/static/img/box.png">
                 </h3>
                 <hr>
               {% if box_items|length == 0 %} Your box is empty. Click a product to add to box. {% else %} {% for item in box_items %}
@@ -238,7 +224,7 @@
                         white-space: nowrap;
                         text-overflow: ellipsis;vertical-align:middle">
                   {{item.name}}</span>
-                <a href="/builder/{{cat}}/remove/{{item.sku}}" <i class="fa fa-trash" aria-hidden="true"></i>
+                <a href="/builder/remove/{{item.sku}}" <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>
               </div>
 
@@ -264,7 +250,7 @@
                   <div class="col-md-4">
                     <div class="form-horizontal pull-center" role="form" style="text-align:center;margin-top:20%;">
                       <div class="form-group" style="width:160px;margin: 0 auto;">
-                        <img width="70px;" src="../static/img/price.svg">
+                        <img width="70px;" src="/static/img/price.svg">
                         <h3>Sell this box for</h3>
                         <input style="font-size:25px;height:60px;text-align:center;" id="demo2" type="text" name="price" >
                         <p>USD</p>
@@ -555,19 +541,19 @@
 
   <!--<div class="gallery">
     <div class="product-photo">
-      <img src="../static/img/showcase_stores/rain-banner.png">
+      <img src="/static/img/showcase_stores/rain-banner.png">
     </div>
     <div class="product-photo">
-      <img src="../static/img/showcase_stores/temperrr-banner.png">
+      <img src="/static/img/showcase_stores/temperrr-banner.png">
     </div>
     <div class="product-photo">
-      <img src="../static/img/showcase_stores/adapt-banner.png">
+      <img src="/static/img/showcase_stores/adapt-banner.png">
     </div>
     <div class="product-photo">
-      <img src="../static/img/showcase_stores/danielle-marie.png">
+      <img src="/static/img/showcase_stores/danielle-marie.png">
     </div>
     <div class="product-photo">
-      <img src="../static/img/showcase_stores/ZSF-banner.png">
+      <img src="/static/img/showcase_stores/ZSF-banner.png">
     </div>
   </div>
   <p class="store-disclaimer" style="text-align: center; margin-top: 10px;font-size: 10px;opacity:.4;">Logos are each star's trademark and property.</p>-->
@@ -579,7 +565,7 @@
         <div class="col-md-3">
           <div class="copyright">
             <a href="#home" class="ft-logo" title="Fandemic - Modern Start Up Landing Page">
-              <img src="../static/img/logo-nav_fullsize.png" width="160px" alt="Fandemic">
+              <img src="/static/img/logo-nav_fullsize.png" width="160px" alt="Fandemic">
             </a>
             <div class=""> <a href="mailto:sarah@fandemic.co" title="Contact Us">Contact Us</a> - Baltimore, MD
               <br>
@@ -710,12 +696,18 @@
   </script>
 {% endif %}
 
-<script src="../static/js/classie.js"></script>
-<script src="../static/js/selectFx.js"></script>
+<script src="/static/js/classie.js"></script>
+<script src="/static/js/selectFx.js"></script>
 <script>
   (function() {
     [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
-      new SelectFx(el);
+      new SelectFx(el, {
+  onChange: function(val) {
+    window.location.href = "/builder/" + val.toLowerCase();
+  }
+});
     } );
   })();
+
+
 </script>
