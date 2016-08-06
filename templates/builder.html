@@ -35,7 +35,8 @@
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.15/jquery.zoom.min.js"></script>
+
 
 
   <script src="/app/builder.js"></script>
@@ -160,6 +161,10 @@
 
             </div>
 
+            <div class="col-md-2">
+              <button class="btn btn-default btn-lg">Next Step</button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -211,15 +216,36 @@
                 <!--DETAILS MODAL-->
                 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{item.sku}}">
 
-                  <div class="modal-dialog modal-md">
+                  <div class="modal-dialog modal-lg">
                     <div class="modal-content" style="padding:30px">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                      <h3 class="modal-title" id="myModalLabel">{{item.name}}</h3>
-                      {{item.description}}
 
-                      <a class="btn" href="/builder/add/{{item.sku}}">Add Item to Box</a>
+                      <div class="row">
+
+                        <div class="col-md-5">
+                          <div class="zoomable">
+                            {% if item.img_url[0] == "h" and  item.img_url[1] == "t" %}
+                            <img class="img-responsive" src="{{item.img_url}}" alt="">
+                            {% else %}
+                            <img class="img-responsive" src="/static/img/sample_products/{{item.img_url}}" alt="">
+                            {% endif %}
+                          </div>
+                        </div>
+
+                        <div class="col-md-7">
+                          <h3 class="modal-title" id="myModalLabel">{{item.name}}</h3>
+
+                          <p>{{item.description}}</p>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+                        <a class="btn btn-submit pull-right" href="/builder/add/{{item.sku}}">Add Item to Box</a>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -436,12 +462,8 @@
 
                 <div class="box__input">
                 <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
-                <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
-                <button class="box__button" type="submit">Upload</button>
+
               </div>
-              <div class="box__uploading">Uploading&hellip;</div>
-              <div class="box__success">Done!</div>
-              <div class="box__error">Error! <span></span>.</div>
 
                 <hr>
 
@@ -734,5 +756,8 @@ $("#crumbs").on('click', 'a', function() {
     $('#'+step).show( "slow" );
 });
 
+$(document).ready(function(){
+  $('div.zoomable').zoom({url: this.src});
+});
 
 </script>
