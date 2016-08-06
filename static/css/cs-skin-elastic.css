@@ -181,6 +181,10 @@ border-top: 0px;
 	background-image: url(../img/bags.svg);
 }
 
+.cs-skin-elastic .cs-options li.flag-misc span {
+	background-image: url(../img/misc.png);
+}
+
 @-webkit-keyframes expand {
 	0% { -webkit-transform: scale3d(1,0,1); }
 	25% { -webkit-transform: scale3d(1,1.2,1); }

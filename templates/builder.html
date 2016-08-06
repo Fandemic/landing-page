@@ -124,10 +124,10 @@
         					<option data-class="flag-beauty" {% if cat == 'beauty' %}selected{% endif %}>Beauty</option>
         					<option data-class="flag-fitness" {% if cat == 'fitness' %}selected{% endif %}>Fitness</option>
         					<option data-class="flag-gaming" {% if cat == 'gaming' %}selected{% endif %}>Gaming</option>
-                  <option data-class="flag-charity" {% if cat == 'charity' %}selected{% endif %}>Charity</option>
-                  <option data-class="flag-apparel" {% if cat == 'apparel' %}selected{% endif %}>Apparel</option>
                   <option data-class="flag-misc" {% if cat == 'misc' %}selected{% endif %}>Misc</option>
         				</select>
+
+
 
 
 
@@ -188,14 +188,15 @@
 
 
                 <div class="col-md-4 product">
-                  <div class="thumbnail" style="height:250px;">
+                  <div class="thumbnail" style="height:300px;">
                       <div class="card-header">
                         </div>
-                        {% if ("http" in item.img_url  or "/static/img/sample_products/" in item.img_url) %}
-                        <img data-toggle="modal" data-target="#{{item.sku}}" style="overflow: hidden;max-height:200px;width:auto;padding:10px;"  src="{{item.img_url}}" alt="">
-                        {% else %}
-                        <img data-toggle="modal" data-target="#{{item.sku}}" style="overflow: hidden;max-height:200px;width:auto;padding:10px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
-                        {% endif %}
+
+                          {% if item.img_url[0] == "h" and  item.img_url[1] == "t" %}
+                          <img data-toggle="modal" data-target="#{{item.sku}}" style="overflow: hidden;max-height:260px;width:auto;padding:2px;"  src="{{item.img_url}}" alt="">
+                          {% else %}
+                          <img data-toggle="modal" data-target="#{{item.sku}}" style="overflow: hidden;max-height:260px;width:auto;padding:2px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
+                          {% endif %}
 
                         <span class="cost">${{item.cost}}</span>
                         <div class="group" style="width: 100%; position: absolute;bottom:0px;">
