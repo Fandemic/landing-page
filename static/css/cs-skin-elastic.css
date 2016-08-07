@@ -145,6 +145,10 @@ border-top: 0px;
 	background-image: url(../img/beauty.svg);
 }
 
+.cs-skin-elastic .cs-options li.flag-clothing span {
+	background-image: url(../img/clothing.svg);
+}
+
 .cs-skin-elastic .cs-options li.flag-fitness span {
 	background-image: url(../img/fitness.svg);
 }
