@@ -104,15 +104,15 @@
               <div id="crumbs"
                    class="{% if cat == 'beauty' %}beauty{% endif %}">
               	<ul>
-                  <li><a style="border-right: 1px solid #fff;" data-step="0">Build A Box</a></li>
-              		<li><a class="crumb current" data-step="step1">1. Choose Box Items</a></li>
-              		<li><a class="crumb" data-step="step2">2. Set Sale Price</a></li>
-              		<li><a class="crumb" data-step="step3">3. Additional Details</a></li>
+                  <li><a style="border-right: 1px solid #fff;" data-step="0">BUILD A BOX</a></li>
+              		<li><a class="crumb current" id="crumb1" data-step="step1">1. Choose Box Items</a></li>
+              		<li><a class="crumb" id="crumb2" data-step="step2">2. Set Sale Price</a></li>
+              		<li><a class="crumb" id="crumb3" data-step="step3">3. Additional Details</a></li>
               	</ul>
               </div>
         </div>
 
-        <div style="min-height:600px;">
+        <div style="min-height:800px;">
 
           <div class="panel-body" style="background-color:#f0f0f0;">
 
@@ -273,7 +273,7 @@
           <div class="col-md-3">
 
 
-
+          <div style="min-height: 250px;">
                 <h3 class="panel-title" style="margin-top:5px;">Your Box
                   <img height="25px" style="margin-top: -5px;float:right" src="/static/img/box.png">
                 </h3>
@@ -298,10 +298,21 @@
 
 
               <br> {% endfor %} {% endif %}
+            </div>
+
+              <hr>
+
 
 
           </div>
+
+          <button class="btn btn-primary btn-lg btn-nav
+                          {% if cat == 'beauty' %}btn-beauty{% endif %}
+                          next">
+            Go To Step 2 <i style="font-size:23px;" class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+
           </div>
+
         </div>
 
 
@@ -309,7 +320,7 @@
           <div id="step2" class="steps container" style="padding-top:60px;display:none;">
 
 
-            <div id="collapse2" class="panel-collapse collapse">
+
               <div class="panel-body">
 
                 <div class="row">
@@ -377,6 +388,9 @@
                     </table>
                   </div>
                 </div>
+
+
+
                   </div>
 
                 </div>
@@ -454,7 +468,13 @@
                   });
                 </script>
               </div>
-            </div>
+
+              <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i style="font-size:23px;" class="fa fa-angle-double-left" aria-hidden="true"></i> Go Back</button>
+
+              <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} next">Go To Step 3 <i style="font-size:23px;" class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+
           </div>
 
 
@@ -485,10 +505,14 @@
                   <textarea placeholder="Tell us about design examples you like, products you want to see that we don't have, logos you have, etc" class="form-control" rows="5" id="comment" name="info"></textarea>
                 </div>
 
-                <a data-toggle="modal" data-target="#info-modal" class="btn btn-submit btn-lg btn-primary" style="width:100%;background-color:#4E9CD4;">Finish Box</a>
+                
 
               </div>
 
+              <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i style="font-size:23px;" class="fa fa-angle-double-left" aria-hidden="true"></i> Go Back</button>
+              <button data-toggle="modal" data-target="#info-modal" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %}">Finish Box</button>
 
           </div>
 
@@ -608,65 +632,8 @@
   <p class="store-disclaimer" style="text-align: center; margin-top: 10px;font-size: 10px;opacity:.4;">Logos are each star's trademark and property.</p>-->
 
   <!-- Footer -->
-  <footer class="footer" style="margin-top:40px;">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="copyright">
-            <a href="#home" class="ft-logo" title="Fandemic - Modern Start Up Landing Page">
-              <img src="/static/img/logo-nav_fullsize.png" width="160px" alt="Fandemic">
-            </a>
-            <div class=""> <a href="mailto:sarah@fandemic.co" title="Contact Us">Contact Us</a> - Baltimore, MD
-              <br>
-
-              <small>© 2016 Fandemic Inc. | All Rights Reserved</small>
-
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <h2 style="font-size:20px">Read This</h2>
-          <ul>
-            <li><a href="/blog">Blog</a></li>
-          </ul>
-          <ul>
-            <li><a href="/faq">FAQ</a></li>
-          </ul>
-          <ul>
-            <li><a href="/terms">Terms and Conditions</a></li>
-          </ul>
-          <ul>
-            <li><a href="/privacy">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h2 style="font-size:20px">Example Stores</h2>
-          <ul>
-            <li><a href="/zac-smith-fitness">Zac Smith Fitness</a></li>
-          </ul>
-          <ul>
-            <li><a href="/team-dna-fitness">Team DNA Fitness</a></li>
-          </ul>
-          <ul>
-            <li><a href="/jen-seidel">Jen Seidel: Paint it Forward</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <div class="ft-social">
-            <div class="social">
-              <ul>
-                <li><a class="tip" data-toggle="tooltip" href="https://twitter.com/The_Fandemic" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                <li><a class="tip" data-toggle="tooltip" href="https://instagram.com/Fandemic" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                <li><a class="tip" data-toggle="tooltip" href="https://www.linkedin.com/company/10566554" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                <li><a class="tip" data-toggle="tooltip" href="https://angel.co/fandemic-1" title="Angel List"><i class="fa fa-angellist"></i></a></li>
-                <li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                <li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <footer class="footer">
+    <p style="text-align:center;color:#4d4d4d"><small>© 2016 Fandemic Inc. | All Rights Reserved</small></p>
   </footer>
 
 
@@ -763,6 +730,38 @@
 
 <script>
 
+$("#step1").on('click', '.next', function() {
+  $('.steps').hide( "fast"  );
+  $('#step2').show( "slow" );
+  $('.crumb').removeClass('current');
+  $('#crumb2').addClass('current');
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+});
+
+$("#step2").on('click', '.next', function() {
+  $('.steps').hide( "fast"  );
+  $('#step3').show( "slow" );
+  $('.crumb').removeClass('current');
+  $('#crumb3').addClass('current');
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+});
+
+$("#step2").on('click', '.prev', function() {
+  $('.steps').hide( "fast"  );
+  $('#step1').show( "slow" );
+  $('.crumb').removeClass('current');
+  $('#crumb1').addClass('current');
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+});
+
+$("#step3").on('click', '.prev', function() {
+  $('.steps').hide( "fast"  );
+  $('#step2').show( "slow" );
+  $('.crumb').removeClass('current');
+  $('#crumb2').addClass('current');
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+});
+
 $("#crumbs").on('click', '.crumb', function() {
     var step = $(this).attr('data-step');
     $('.steps').hide( "fast"  );
@@ -821,4 +820,30 @@ $('.sample-order').on('click', function(e) {
   });
   e.preventDefault();
 });
+
+var windw = this;
+
+/*$.fn.followTo = function ( pos ) {
+    var $this = this,
+        $window = $(windw);
+
+    $window.scroll(function(e){
+       var scrollBottom = $(document).height() - $(window).height() - $(document).scrollTop();;
+       console.log(scrollBottom);
+       console.log(pos);
+        if ( scrollBottom < pos) {
+            $this.css({
+                position: 'absolute',
+                bottom: 0
+            });
+        } else {
+            $this.css({
+              position: 'absolute',
+              bottom: 0
+            });
+        }
+    });
+};
+
+$('.btn-nav').followTo(300);*/
 </script>

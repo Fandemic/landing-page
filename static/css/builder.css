@@ -10,7 +10,10 @@
 }
 
 footer {
-  margin: 50px 0;
+  background-color: rgba(0, 0, 0, 0.03);
+    padding: 20px 0 10px !important;
+    margin: -36px;
+    margin-top: 40px;
 }
 
 .col-md-4 {
@@ -444,6 +447,47 @@ a:focus {
         .beautify{
           color: #7F3960 !important;
           border-color: #7F3960 !important;
+        }
+
+        .btn-nav{
+          padding: 1em;
+          color: #fff;
+          font-size: 18px;
+          text-align: center;
+          text-decoration: none;
+          background-color: #7BDC87;
+          line-height: 1.5;
+          border: none;
+          border-radius: 4px;
+          font-weight: 600;
+          text-transform: uppercase;
+          background-color: #A6CCE8 !important;
+          border: none;
+          border-radius: 2px;
+          width: 230px;
+          font-size: 18px;
+
+          position: fixed;
+
+          bottom: 15px;
+          right: 30px;
+        }
+
+        .btn-beauty{
+          background-color: #D2AFC9 !important;
+        }
+
+        .btn-nav:hover{
+          background-color: #4E9CD4 !important;
+        }
+
+        .btn-beauty:hover{
+          background-color: #ba82aa !important;
+        }
+
+        .prev{
+          left: 30px;
+          width: 170px;
         }
 
 /*file upload*/
