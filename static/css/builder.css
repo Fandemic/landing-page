@@ -248,7 +248,7 @@ a:focus {
     border: 1px solid #7BDC87;
     background-color: transparent;
     border-color: #4D9BD3;
-    color: #4D9BD3 !important;
+    color: #4D9BD3 ;
     border-radius: 3px;
     font-weight: 600 !important;
     text-transform: uppercase;
@@ -359,9 +359,17 @@ a:focus {
       width: 28%;
 		}
 
+    .beauty ul li a {
+			background: #D2AFC9 !important;
+		}
+
     #crumbs .current{
       background: #4E9CD4;
     }
+
+    .beauty .current{
+			background: #ba82aa !important;
+		}
 
 
 			#crumbs ul li a:after {
@@ -372,6 +380,14 @@ a:focus {
 				position: absolute; right: -40px; top: 0;
 				z-index: 1;
 			}
+
+      .beauty ul li a:after{
+  			border-left: 40px solid #D2AFC9 !important;
+  		}
+
+      .beauty .current:after{
+  			border-left: 40px solid #ba82aa !important;
+  		}
 
       #crumbs .current:after{
         border-left: 40px solid #4E9CD4;
@@ -417,5 +433,17 @@ a:focus {
 				#crumbs ul li a:hover:after {
 					border-left-color: #FFC63F;
 				}
+
+        .beauty ul li a:hover{
+          background: #FFA6BB !important;
+        }
+        .beauty ul li a:hover:after {
+					border-left-color: #FFA6BB !important;
+				}
+
+        .beautify{
+          color: #7F3960 !important;
+          border-color: #7F3960 !important;
+        }
 
 /*file upload*/
