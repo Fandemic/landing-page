@@ -332,6 +332,10 @@ a:focus {
 }
 
 /*progress bar*/
+.nav-container{
+  width:100%;height:60px;
+}
+
 #crumbs {
 	text-align: center;
   width: 100%;
@@ -385,15 +389,15 @@ a:focus {
 			}
 
       .beauty ul li a:after{
-  			border-left: 40px solid #D2AFC9 !important;
+  			border-left-color: #D2AFC9 !important;
   		}
 
       .beauty .current:after{
-  			border-left: 40px solid #ba82aa !important;
+  			border-left-color: #ba82aa !important;
   		}
 
       #crumbs .current:after{
-        border-left: 40px solid #4E9CD4;
+        border-left-color: #4E9CD4;
       }
 
 			#crumbs ul li a:before {
@@ -423,7 +427,7 @@ a:focus {
 				}
 
 				#crumbs ul li:last-child a {
-					padding-right: 80px;
+
 					border-top-right-radius: 0px; border-bottom-right-radius: 0px;
 				}
 				#crumbs ul li:last-child a:after {
@@ -490,4 +494,77 @@ a:focus {
           width: 170px;
         }
 
-/*file upload*/
+        .arrow{
+          font-size: 23px;
+        }
+
+/*mobile fixes*/
+@media only screen and (max-device-width : 768px) {
+
+  .nav-container{
+    height:30px;
+  }
+
+  #crumbs ul li a {
+    display: block;
+    float: left;
+    height: 30px;
+    background: #A6CCE8;
+    text-align: center;
+    padding: 10px 10px 0 20px;
+    position: relative;
+    margin: 0 0 0 0;
+    cursor: pointer;
+    font-size: 2vw;
+    text-decoration: none;
+    color: #fff;
+    transition:none;
+    width: 28%;
+  }
+
+  #crumbs ul li a:after {
+    content: "";
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+      border-left: 15px solid #A6CCE8;
+    position: absolute; right: -15px; top: 0;
+    z-index: 1;
+  }
+
+  #crumbs ul li a:before {
+    content: "";
+    border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-left: 15px solid #fff;
+    position: absolute; left: 0; top: 0;
+  }
+
+  .prev{
+    font-size: 1em;
+    width:50%;
+    bottom: 0px;
+    left: 0px;
+    border-radius:0px;
+    -webkit-box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
+-moz-box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
+box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
+
+  }
+
+  .next{
+    font-size: 1em;
+    width:50%;
+    bottom: 0px;
+    right: 0px;
+    border-radius:0px;
+    -webkit-box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
+-moz-box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
+box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
+
+  }
+
+  .arrow{
+    font-size: 1em;
+  }
+
+}
