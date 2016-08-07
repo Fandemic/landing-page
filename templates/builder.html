@@ -36,7 +36,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.15/jquery.zoom.min.js"></script>
-
+  <script src="https://checkout.stripe.com/checkout.js"></script>
 
 
   <script src="/app/builder.js"></script>
@@ -93,14 +93,14 @@
 
         <div style="width:100%;height:60px;">
 
-            <h2 class="panel-title" style="color:#fff;">
+            <h2 class="panel-title" style="color:#A6CCE8;">
 
               <div id="crumbs">
               	<ul>
-                  <li><a data-step="0">Build A Box</a></li>
-              		<li><a data-step="step1">1. Choose Box Items</a></li>
-              		<li><a data-step="step2">2. Set Sale Price</a></li>
-              		<li><a data-step="step3">3. Upload Design</a></li>
+                  <li><a style="border-right: 1px solid #fff;" data-step="0">Build A Box</a></li>
+              		<li><a class="crumb current" data-step="step1">1. Choose Box Items</a></li>
+              		<li><a class="crumb" data-step="step2">2. Set Sale Price</a></li>
+              		<li><a class="crumb" data-step="step3">3. Additional Details</a></li>
               	</ul>
               </div>
         </div>
@@ -161,9 +161,7 @@
 
             </div>
 
-            <div class="col-md-2">
-              <button class="btn btn-default btn-lg">Next Step</button>
-            </div>
+
 
           </div>
         </div>
@@ -217,12 +215,12 @@
                 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{item.sku}}">
 
                   <div class="modal-dialog modal-lg">
-                    <div class="modal-content" style="padding:30px">
+                    <div class="modal-content" style="padding:30px;padding-bottom:16px;">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
 
-                      <div class="row">
+                      <div class="row" style="min-height:300px;">
 
                         <div class="col-md-5">
                           <div class="zoomable">
@@ -235,15 +233,19 @@
                         </div>
 
                         <div class="col-md-7">
-                          <h3 class="modal-title" id="myModalLabel">{{item.name}}</h3>
+                          <h2 class="modal-title" id="myModalLabel">{{item.name}}</h2>
+                          <hr>
 
                           <p>{{item.description}}</p>
+                          <br>
+                          <i><strong>Important:</strong> Don't worry about colors/variations, our designers will take care of this for you!</i>
                         </div>
 
                       </div>
 
-                      <div class="row">
-                        <a class="btn btn-submit pull-right" href="/builder/add/{{item.sku}}">Add Item to Box</a>
+                      <div class="row" style="margin-top:30px;">
+                        <a  data-dismiss="modal" href="#" class="sample-order" style="position: absolute;bottom: 16px;">Order a blank sample of the {{item.name}}</a>
+                        <a  data-dismiss="modal" class="btn btn-submit pull-right" href="/builder/add/{{item.sku}}">Add Item to Box</a>
                       </div>
 
                     </div>
@@ -750,14 +752,62 @@
 
 <script>
 
-$("#crumbs").on('click', 'a', function() {
+$("#crumbs").on('click', '.crumb', function() {
     var step = $(this).attr('data-step');
     $('.steps').hide( "fast"  );
     $('#'+step).show( "slow" );
+    $('.crumb').removeClass('current');
+    $(this).addClass('current');
 });
 
 $(document).ready(function(){
   $('div.zoomable').zoom({url: this.src});
 });
 
+
+//STRIPE SAMPLE
+var handler = StripeCheckout.configure({
+//key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
+key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
+locale: 'auto',
+token: function(token,args) {
+
+
+
+  //combine all info into one object
+  var result={};
+  $.extend(result, args, token);
+  $.extend(result, result, info);
+
+  $.ajax({
+    type: 'POST',
+    url: '/charge',
+    data: JSON.stringify(result, null, '\t'),
+    contentType: 'application/json;charset=UTF-8',
+    success: function(response) {
+      $("#paymentSuccessModal").modal()
+      resetCart();
+    },
+    error: function(error) {
+      alert("payment error");
+    }
+  });
+
+}
+});
+
+$('.sample-order').on('click', function(e) {
+  // Open Checkout with further options
+  handler.open({
+  name: 'SAMPLE COST',
+  description: '$30 for the headband',
+  zipCode: true,
+  billingAddress: true,
+  shippingAddress: true,
+  allowRememberMe: true,
+  panelLabel: "Pay",
+  amount: 3000
+  });
+  e.preventDefault();
+});
 </script>

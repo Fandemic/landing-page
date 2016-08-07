@@ -350,14 +350,20 @@ a:focus {
 			text-align: center;
 			padding: 20px 40px 0 80px;
 			position: relative;
-			margin: 0 .5% 0 0;
+			margin: 0 0 0 0;
       cursor: pointer;
 			font-size: 18px;
 			text-decoration: none;
 			color: #fff;
       transition:none;
-      width: 24.5%;
+      width: 28%;
 		}
+
+    #crumbs .current{
+      background: #4E9CD4;
+    }
+
+
 			#crumbs ul li a:after {
 				content: "";
 				border-top: 30px solid transparent;
@@ -366,6 +372,10 @@ a:focus {
 				position: absolute; right: -40px; top: 0;
 				z-index: 1;
 			}
+
+      #crumbs .current:after{
+        border-left: 40px solid #4E9CD4;
+      }
 
 			#crumbs ul li a:before {
 				content: "";
@@ -377,8 +387,19 @@ a:focus {
 
 				#crumbs ul li:first-child a {
 					border-top-left-radius: 0px; border-bottom-left-radius: 0px;
+          width: 16%;
 				}
 				#crumbs ul li:first-child a:before {
+					display: none;
+				}
+
+        #crumbs ul li:nth-child(2) a {
+					border-top-left-radius: 0px; border-bottom-left-radius: 0px;
+				}
+				#crumbs ul li:nth-child(2) a:before {
+					display: none;
+				}
+        #crumbs ul li:first-child a:after {
 					display: none;
 				}
 
