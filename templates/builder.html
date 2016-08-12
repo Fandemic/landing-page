@@ -64,7 +64,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#home">
+        <a class="navbar-brand" href="/">
 
           {% if cat == 'beauty' %}
           <img class="logo-nav" alt="logo" src="/static/img/logo-pink.png" style="" height="45">
@@ -78,8 +78,8 @@
         <ul class="nav navbar-nav nav-left" style="margin-top:3px;">
           <li><a href="/">Home </a></li>
           <li><a href="/faq">FAQ</a></li>
-          <li><a href="/zac-smith-fitness">Examples</a></li>
-          <li><a href="sarah@fandemic.co">Contact Us</a></li>
+          <li><a href="/faze-rain">Examples</a></li>
+          <li><a href="mailto:sarah@fandemic.co">Contact Us</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right" style="z-index:999999;">
 
@@ -130,7 +130,7 @@
 
 
         				<select id="cat-primary" class="cs-select cs-skin-elastic">
-        					<option disabled >Select a primary category</option>
+        					<option disabled >Primary categories</option>
         					<option data-class="flag-beauty" {% if cat == 'beauty' %}selected{% endif %}>Beauty</option>
         					<option data-class="flag-fitness" {% if cat == 'fitness' %}selected{% endif %}>Fitness</option>
         					<option data-class="flag-gaming" {% if cat == 'gaming' %}selected{% endif %}>Gaming</option>
@@ -148,7 +148,7 @@
 
               <div id="cat-beauty" {% if cat != 'beauty' %}style="display:none;"{% endif %}>
                 <select class="cs-select cs-skin-elastic">
-                  <option disabled {% if cat2 == None %}selected{% endif %}>Select a beauty category</option>
+                  <option disabled {% if cat2 == None %}selected{% endif %}>Beauty categories</option>
                   <option value="beauty/makeup" data-class="flag-lips" {% if cat2 == 'makeup' %}selected{% endif %}>Makeup</option>
                   <option value="beauty/skincare" data-class="flag-skincare" {% if cat2 == 'skincare' %}selected{% endif %}>Skincare</option>
                   <option value="beauty/brushes" data-class="flag-brushes" {% if cat2 == 'brushes' %}selected{% endif %}>Brushes</option>
@@ -162,7 +162,7 @@
 
               <div id="cat-makeup" {% if cat2 != 'makeup' %}style="display:none;"{% endif %}>
               <select class="cs-select cs-skin-elastic">
-                <option disabled {% if cat3 == None %}selected{% endif %}>Select a makeup category</option>
+                <option disabled {% if cat3 == None %}selected{% endif %}>Makeup categories</option>
                 <option value="beauty/makeup/lips" data-class="flag-lips" {% if cat3 == 'lips' %}selected{% endif %}>Lips</option>
                 <option value="beauty/makeup/eyes" data-class="flag-eyes" {% if cat3 == 'eyes' %}selected{% endif %}>Brows & Eyes</option>
                 <option value="beauty/makeup/cheeks" data-class="flag-cheeks" {% if cat3 == 'cheeks' %}selected{% endif %}>Cheeks</option>
@@ -611,7 +611,7 @@
               <p>A custom design and free store will be sent to the email provided within 24 hours!</p>
               <br>
               <p>Questions or concerns? Email our customer service lead at
-                <strong>sarah@fandemic.co</strong> and she will respond within a few hours. Thanks!</p>
+                <strong><a href="mailto:sarah@fandemic.co">sarah@fandemic.co</a></strong> and she will respond within a few hours. Thanks!</p>
 
               <hr>
               <button  type="submit" value="Send" class="btn btn-submit btn-lg btn-success center-block">Submit for Design!</button>
