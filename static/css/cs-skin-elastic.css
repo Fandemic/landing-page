@@ -153,6 +153,10 @@ border-top: 0px;
 	background-image: url(../img/fitness.svg);
 }
 
+.cs-skin-elastic .cs-options li.flag-charity span {
+	background-image: url(../img/charity.svg);
+}
+
 .cs-skin-elastic .cs-options li.flag-gaming span {
 	background-image: url(../img/gaming.svg);
 }
