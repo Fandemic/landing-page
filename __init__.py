@@ -16,7 +16,7 @@ from slack import Slack
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'static/img/test/'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd','svg'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -114,6 +114,16 @@ def catalogRemove(sku):
     resp.set_cookie('box', items)
 
     return resp
+
+@app.route("/builder-alert", methods=['GET'])
+def getData():
+
+    ID = request.args.get('id')
+
+    sarah = Slack()
+    sarah.notify('Hey guys, the user *'+str(ID)+'* just visited the builder page.')
+
+    return ''
 
 
 def allowed_file(filename):

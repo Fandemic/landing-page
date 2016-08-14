@@ -132,7 +132,7 @@
         				<select id="cat-primary" class="cs-select cs-skin-elastic">
         					<option disabled >Primary categories</option>
         					<option data-class="flag-beauty" {% if cat == 'beauty' %}selected{% endif %}>Beauty</option>
-                  <option data-class="flag-charity" {% if cat == 'charity' %}selected{% endif %}>Charity</option>                  
+                  <option data-class="flag-charity" {% if cat == 'charity' %}selected{% endif %}>Charity</option>
         					<option data-class="flag-fitness" {% if cat == 'fitness' %}selected{% endif %}>Fitness</option>
         					<option data-class="flag-gaming" {% if cat == 'gaming' %}selected{% endif %}>Gaming</option>
                   <option data-class="flag-clothing" {% if cat == 'apparel' %}selected{% endif %}>Apparel</option>
@@ -907,8 +907,29 @@ var windw = this;
 $('.btn-nav').followTo(300);*/
 
 $(document).ready(function() {
+
     if (window.location.href.indexOf("#how-fandemic-works") != -1){
       $('#how-fandemic-works').modal('show');
      }
-   })
+
+     if(window.location.hash) {
+         var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+
+         $.ajax({
+            url: '/builder-alert',
+            data: {id: hash},
+            type: 'GET',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+
+     } else {
+         // No hash found
+     }
+
+   });
 </script>
