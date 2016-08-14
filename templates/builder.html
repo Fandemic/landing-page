@@ -915,17 +915,22 @@ $(document).ready(function() {
      if(window.location.hash) {
          var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
 
-         $.ajax({
-            url: '/builder-alert',
-            data: {id: hash},
-            type: 'GET',
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
+         if(hash == 'how-fandemic-works'){
+           // Do nothing
+         }
+         else {
+             $.ajax({
+                url: '/builder-alert',
+                data: {id: hash},
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+          }
 
      } else {
          // No hash found
