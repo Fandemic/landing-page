@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{star.name}} Official Store</title>
+  <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.12/slideout.min.js"></script>
+  <script src="../static/js/vibrant.min.js"></script>
+  <script src="../static/js/landing-page/jquery.magnific-popup.min.js"></script>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/shop.css">
+  <link rel="stylesheet" href="../static/css/landing-page/magnific-popup.css">
+
+
+
+  <meta property="og:image" content="{{star.image.profile}}">
+
+</head>
+
+<body>
+<br><br><br><br><br><br>
+<div style="text-align:center;">
+<h1 class="success" style="display:none;">Your payment was processed succesfully! You should receive your sample shortly!</h1>
+<h1 class="error" style="display:none;">Your payment was not processed due to an error. Please contact customer support.</h1>
+</div>
+
+</body>
+
+
+
+  <!-- Kick off Filterizr -->
+<link rel="stylesheet" href="../static/css/rangeslider.css">
+<script src="../static/js/rangeslider.min.js"></script>
+<script src="../static/js/countdown.min.js"></script>
+<script src="../static/js/shop.js"></script>
+<script src="../static/js/desktop.js"></script>
+
+
+<script>
+var handler = StripeCheckout.configure({
+//key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
+key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
+image: '{{star.image.profile}}',
+locale: 'auto',
+token: function(token,args) {
+
+  //gather info from the order
+  var info = {};
+  info['star'] = "{{star.name}}";
+  info['star_id'] = "{{star.id}}";
+  info['amount'] = Math.round({{star.sample_cost * 100}});
+
+  //combine all info into one object
+  var result={};
+  $.extend(result, args, token);
+  $.extend(result, result, info);
+
+  $.ajax({
+    type: 'POST',
+    url: '/charge-sample-request',
+    data: JSON.stringify(result, null, '\t'),
+    contentType: 'application/json;charset=UTF-8',
+    success: function(response) {
+      $('.success').show();
+    },
+    error: function(error) {
+      $('.error').show();
+    }
+  });
+
+}
+});
+
+var cost = {{star.sample_cost}};
+
+handler.open({
+name: 'SAMPLE REQUEST',
+description: '$' + cost.formatMoney(2),
+email: '{{star.email.0}}',
+zipCode: true,
+billingAddress: true,
+shippingAddress: true,
+allowRememberMe: true,
+panelLabel: "Pay",
+amount: Math.round({{star.sample_cost}}*100)
+});
+
+</script>
