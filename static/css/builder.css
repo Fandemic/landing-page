@@ -147,7 +147,7 @@ a:focus {
   position: fixed;
   z-index: 999 !important;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .social li {
@@ -384,12 +384,18 @@ a:focus {
 			text-decoration: none;
 			color: #fff;
       transition:none;
-      width: 28%;
+      width: 16.66%;
 		}
 
-    .beauty ul li a {
-			background: #D2AFC9 !important;
+    .beauty ul li a{
+			background: #e1e1e1 !important;
+      pointer-events: none;
+      cursor: default;
 		}
+
+    .beauty ul li .active{
+      background: #D2AFC9 !important;
+    }
 
     #crumbs .current{
       background: #4E9CD4;
@@ -410,6 +416,10 @@ a:focus {
 			}
 
       .beauty ul li a:after{
+  			border-left-color: #e1e1e1 !important;
+  		}
+
+      .beauty ul li .active:after{
   			border-left-color: #D2AFC9 !important;
   		}
 
@@ -430,8 +440,8 @@ a:focus {
 			}
 
 				#crumbs ul li:first-child a {
-					border-top-left-radius: 0px; border-bottom-left-radius: 0px;
-          width: 16%;
+					/*border-top-left-radius: 0px; border-bottom-left-radius: 0px;
+          width: 16%;*/
 				}
 				#crumbs ul li:first-child a:before {
 					display: none;
@@ -444,7 +454,7 @@ a:focus {
 					display: none;
 				}
         #crumbs ul li:first-child a:after {
-					display: none;
+					/*display: none;*/
 				}
 
 				#crumbs ul li:last-child a {
@@ -523,6 +533,73 @@ a:focus {
           font-size: 15px;
         }
 
+       .subtitle{
+         text-align: center;
+         color: purple;
+         margin-bottom: 60px;
+         margin-top: 0px;
+       }
+
+       .option{
+         background-color: #fff;
+
+         text-align: center;
+          border-radius: 10px;
+          padding: 20px;
+          border: 2px solid #bcbdc0;
+          margin: 0 30px;
+          cursor: pointer;
+       }
+
+       .active.option{
+            background: #e7e7e8;
+       }
+
+
+
+       .option img{
+         width: 50%;
+         margin-top: 10px;
+         margin-bottom: 40px;
+       }
+
+       .option .selectmark{
+         display: none;
+         position: absolute;
+         width:40%;
+         margin: 0 auto;
+         top: 25%;
+       left: 0;
+       right: 0;
+
+       }
+
+       .active.option .selectmark {
+    display: block;
+}
+
+       .or strong{
+         display: inline-block;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    background: #fff;
+    text-transform: uppercase;
+    margin-top: 90px;
+    color: #8d8d8d;
+       }
+
+.next{
+  display: none;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.on{
+  display: block;
+}
 /*mobile fixes*/
 @media only screen and (max-device-width : 1000px) {
 
@@ -585,6 +662,7 @@ box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
     -webkit-box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
 -moz-box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
 box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
+
 
   }
 

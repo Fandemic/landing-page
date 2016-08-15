@@ -97,7 +97,7 @@
   <div >
 
 
-      <form action="/builder/submit" id="form" method="post" enctype="multipart/form-data">
+      <form action="/builder/submit" id="form" method="post" enctype="multipart/form-data" style="background-color:#f5f3f2;">
 
         <div class="nav-container">
 
@@ -106,91 +106,55 @@
               <div id="crumbs"
                    class="{% if cat == 'beauty' %}beauty{% endif %}">
               	<ul>
-                  <li><a style="border-right: 1px solid #fff;" data-step="0">BOX BUILDER</a></li>
-              		<li><a class="crumb current" id="crumb1" data-step="step1">1. Add Items to Box</a></li>
-              		<li><a class="crumb" id="crumb2" data-step="step2">2. Set Sale Price</a></li>
-              		<li><a class="crumb" id="crumb3" data-step="step3">3. Additional Information</a></li>
+              		<li><a class="crumb current" id="crumb1" data-step="step1">Premade/Custom</a></li>
+              		<li><a class="crumb" id="crumb2" data-step="step2">Items</a></li>
+              		<li><a class="crumb" id="crumb3" data-step="step3">Design</a></li>
+                  <li><a class="crumb" id="crumb4" data-step="step4">Details</a></li>
+                  <li><a class="crumb" id="crumb5" data-step="step5">Confirm</a></li>
+                  <li><a class="crumb" id="crumb6" data-step="step6">Submit</a></li>
               	</ul>
               </div>
         </div>
 
         <div style="min-height:800px;">
 
-          <div class="panel-body" style="background-color:#f0f0f0;">
+        <h1 style="text-align:center;margin-top:50px;">Build Your Own Beauty Box</h1>
+        <hr>
 
-            <div class="container">
-            <div class="row" >
 
-              <div class="col-md-1">
-                <h4 class="light">Select Category:</h4>
+        <div id="step1" class="steps container" style="text-align:center;">
+          <h3 class="subtitle">Do you want to customize your own box or choose a premade one?</h3>
+          <div class="row">
+            <div class="col-xs-5">
+              <div id="custom" class="option">
+                <h2>CUSTOM BOX</h2>
+                 <img src="../static/img/custom.svg">
+                 <p class="light">Build a beautiful beauty box, it's super easy :)</p>
+                 <img src="../static/img/selectmark.svg" class="selectmark"></span>
               </div>
-
-              <div class="col-md-3">
-
-
-
-        				<select id="cat-primary" class="cs-select cs-skin-elastic">
-        					<option disabled >Primary categories</option>
-        					<option data-class="flag-beauty" {% if cat == 'beauty' %}selected{% endif %}>Beauty</option>
-                  <option data-class="flag-charity" {% if cat == 'charity' %}selected{% endif %}>Charity</option>
-        					<option data-class="flag-fitness" {% if cat == 'fitness' %}selected{% endif %}>Fitness</option>
-        					<option data-class="flag-gaming" {% if cat == 'gaming' %}selected{% endif %}>Gaming</option>
-                  <option data-class="flag-clothing" {% if cat == 'apparel' %}selected{% endif %}>Apparel</option>
-                  <option data-class="flag-misc" {% if cat == 'misc' %}selected{% endif %}>Misc</option>
-        				</select>
-
-
-
-
-
             </div>
-
-            <div class="col-md-3">
-
-              <div id="cat-beauty" {% if cat != 'beauty' %}style="display:none;"{% endif %}>
-                <select class="cs-select cs-skin-elastic">
-                  <option disabled {% if cat2 == None %}selected{% endif %}>Beauty categories</option>
-                  <option value="beauty/makeup" data-class="flag-lips" {% if cat2 == 'makeup' %}selected{% endif %}>Makeup</option>
-                  <option value="beauty/skincare" data-class="flag-skincare" {% if cat2 == 'skincare' %}selected{% endif %}>Skincare</option>
-                  <option value="beauty/brushes" data-class="flag-brushes" {% if cat2 == 'brushes' %}selected{% endif %}>Brushes</option>
-                  <option value="beauty/bags" data-class="flag-bags" {% if cat2 == 'bags' %}selected{% endif %}>Bags</option>
-                </select>
+            <div class="col-xs-2 or">
+              <strong>or</strong>
+            </div>
+            <div class="col-xs-5">
+              <div id="premade" class="option">
+                <h2>PREMADE BOX</h2>
+                 <img src="../static/img/gift.svg">
+                 <p class="light">Designed by our beauty experts</p>
+                 <img src="../static/img/selectmark.svg" class="selectmark"></span>
               </div>
-
             </div>
-
-            <div class="col-md-3">
-
-              <div id="cat-makeup" {% if cat2 != 'makeup' %}style="display:none;"{% endif %}>
-              <select class="cs-select cs-skin-elastic">
-                <option disabled {% if cat3 == None %}selected{% endif %}>Makeup categories</option>
-                <option value="beauty/makeup/lips" data-class="flag-lips" {% if cat3 == 'lips' %}selected{% endif %}>Lips</option>
-                <option value="beauty/makeup/eyes" data-class="flag-eyes" {% if cat3 == 'eyes' %}selected{% endif %}>Brows & Eyes</option>
-                <option value="beauty/makeup/cheeks" data-class="flag-cheeks" {% if cat3 == 'cheeks' %}selected{% endif %}>Cheeks</option>
-              </select>
-            </div>
-
-            </div>
-
-            <div class="col-md-2">
-              <button class="btn" data-toggle="modal" data-target="#box-contents-modal" style="height: 55px;
-    background-color: #fff;
-    border-radius: 2px;
-    border: #5d5d5d solid 1px;
-    font-weight: 700;width:100%;"><i class="fa fa-cube" aria-hidden="true"></i> Your Box ({{box_items|length}} items)</button>
-            </div>
-
-
-
-
           </div>
+
+          <button id="next2" class="btn btn-primary btn-lg btn-nav
+                          {% if cat == 'beauty' %}btn-beauty{% endif %}
+                          next">
+            NEXT STEP <i class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+
         </div>
-      </div>
 
 
-        <!-- right panel -->
-
-        <div id="step1" class="steps container">
+        <div id="step2" class="steps container" style="display:none">
         <div class="row" style="padding-top:20px;">
 
 
@@ -338,7 +302,7 @@
 
 
 
-          <div id="step2" class="steps container" style="padding-top:60px;display:none;">
+          <div id="step7" class="steps container" style="padding-top:60px;display:none;">
 
 
 
@@ -538,6 +502,30 @@
 
           </div>
 
+
+          <!--STEP 4 - Details -->
+          <div id="step4" class="steps container" style="margin-top:60px;display:none;">
+
+            details
+
+          </div>
+
+          <!--STEP 5 - confrim -->
+          <div id="step5" class="steps container" style="margin-top:60px;display:none;">
+
+            confirm
+
+          </div>
+
+
+          <!--STEP 6 - submit -->
+          <div id="step6" class="steps container" style="margin-top:60px;display:none;">
+
+            Submit
+
+          </div>
+
+
         </div>
 
         </div>
@@ -704,6 +692,8 @@
   <script src="/static/js/bootstrap.min.js"></script>
 
   <script src="/static/js/slider.js"></script>
+
+  <script src="/static/js/builder.js"></script>
 
 </body>
 
@@ -915,22 +905,17 @@ $(document).ready(function() {
      if(window.location.hash) {
          var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
 
-         if(hash == 'how-fandemic-works'){
-           // Do nothing
-         }
-         else {
-             $.ajax({
-                url: '/builder-alert',
-                data: {id: hash},
-                type: 'GET',
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-          }
+         $.ajax({
+            url: '/builder-alert',
+            data: {id: hash},
+            type: 'GET',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
 
      } else {
          // No hash found
@@ -938,5 +923,3 @@ $(document).ready(function() {
 
    });
 </script>
-
-{% include 'analytics.html' %}
