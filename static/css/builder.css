@@ -297,6 +297,7 @@ a:focus {
   .thumbnail img{
     width: 90%;
     margin: 0 auto;
+    margin-bottom: 15px;
     cursor: pointer;
   }
 
@@ -327,18 +328,8 @@ a:focus {
   }
 
 .thumbnail .title{
-  position: absolute;
-  bottom:5px;
-  left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-  font-size: 20px;
-  font-weight: 700;
-  color: #1d1d1d;
-  opacity: .8;
   text-align: center;
-  cursor: pointer;
+  color: #5d5d5d;
 }
 
 .dropdown-toggle{
@@ -540,6 +531,17 @@ a:focus {
          margin-top: 0px;
        }
 
+       .subtitle2{
+         text-align: center;
+         color: purple;
+         margin-bottom: 30px;
+         margin-top: 60px;
+       }
+
+       .line{
+         border-top: 1px solid #d9d9d9;
+       }
+
        .option{
          background-color: #fff;
 
@@ -670,4 +672,9 @@ box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
     font-size: 1em;
   }
 
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #777;
+    font-weight: 600;
 }
