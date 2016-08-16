@@ -78,7 +78,7 @@ def catalog(cat=None,cat2=None,cat3=None):
             else:
                 items = db.items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3}) #find the star
 
-    return render_template('builder.html', items=items, box_items=list(box_items),cat=cat,cat2=cat2,cat3=cat3)
+    return render_template('builder.html', items=list(items), box_items=list(box_items),cat=cat,cat2=cat2,cat3=cat3)
 
 
 @app.route('/builder/add/<sku>')
@@ -141,9 +141,6 @@ def handle_file(f,name):
 
     if not os.path.exists(directory):
         os.makedirs(directory)
-
-    if not allowed_file(f.filename):
-        return
 
     filename = secure_filename(f.filename)
     f.save(os.path.join(directory, filename))

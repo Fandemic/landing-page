@@ -5,9 +5,7 @@
 */
 
 
-.product {
-  margin-bottom: 25px;
-}
+
 
 footer {
   background-color: rgba(0, 0, 0, 0.03);
@@ -291,6 +289,7 @@ a:focus {
     background-color: #fff;
     box-shadow: 0px 0px 3px rgba(0,0,0,0.24);
     transition: all 0.2s ease-in-out;
+    margin-bottom: 0px;
 
   }
 
@@ -330,6 +329,11 @@ a:focus {
 .thumbnail .title{
   text-align: center;
   color: #5d5d5d;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 50px;
 }
 
 .dropdown-toggle{
