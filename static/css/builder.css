@@ -293,11 +293,10 @@ a:focus {
 
   }
 
-  .thumbnail img{
+  .thumbnail .product-img{
     width: 90%;
     margin: 0 auto;
     margin-bottom: 15px;
-    cursor: pointer;
   }
 
   .thumbnail .group{
@@ -392,11 +391,22 @@ a:focus {
       background: #D2AFC9 !important;
     }
 
-    #crumbs .current{
-      background: #4E9CD4;
+    .beauty ul li .touched{
+
+      pointer-events: all;
+      cursor: pointer;
+      background: #D2AFC9 !important ;
     }
 
-    .beauty .current{
+    .beauty ul li .touched:after{
+      border-left-color: #D2AFC9 !important ;
+    }
+
+    #crumbs .current{
+      background: #4E9CD4 ;
+    }
+
+    .beauty .current {
 			background: #ba82aa !important;
 		}
 
@@ -405,18 +415,16 @@ a:focus {
 				content: "";
 				border-top: 30px solid transparent;
 	 			border-bottom: 30px solid transparent;
-	  			border-left: 40px solid #A6CCE8;
+	  			border-left: 40px solid #e1e1e1;
 				position: absolute; right: -40px; top: 0;
 				z-index: 1;
 			}
 
       .beauty ul li a:after{
-  			border-left-color: #e1e1e1 !important;
+  			border-left-color: #e1e1e1;
   		}
 
-      .beauty ul li .active:after{
-  			border-left-color: #D2AFC9 !important;
-  		}
+
 
       .beauty .current:after{
   			border-left-color: #ba82aa !important;
@@ -569,7 +577,7 @@ a:focus {
          margin-bottom: 40px;
        }
 
-       .option .selectmark{
+       .selectmark{
          display: none;
          position: absolute;
          width:40%;
@@ -577,12 +585,13 @@ a:focus {
          top: 25%;
        left: 0;
        right: 0;
+       opacity: .7;
 
        }
 
-       .active.option .selectmark {
-    display: block;
-}
+       .active .selectmark {
+         display: block !important;
+      }
 
        .or strong{
          display: inline-block;
@@ -596,12 +605,12 @@ a:focus {
     color: #8d8d8d;
        }
 
-.next{
+/*.next{
   display: none;
   margin: 0 auto;
   left: 0;
   right: 0;
-}
+}*/
 
 .on{
   display: block;
@@ -681,4 +690,78 @@ box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
 .navbar-default .navbar-nav>li>a {
     color: #777;
     font-weight: 600;
+}
+
+/*SLIDERS*/
+.slick-next:before, .slick-prev:before {
+    font-size: 60px;
+    line-height: 1;
+    opacity: .75;
+    color: #cdcdcd;
+
+}
+
+.slick-prev {
+    left: -85px;
+}
+.slick-next {
+    right: -45px;
+}
+
+
+.carousel-cell {
+  width: 300px;
+  height: 300px;
+  margin-right: 10px;
+  border-radius: 5px;
+  counter-increment: carousel-cell;
+}
+
+
+/* position dots up a bit */
+.flickity-page-dots {
+  bottom: -22px !important;
+}
+/* dots are lines */
+.flickity-page-dots .dot {
+  height: 4px !important;
+  width: 40px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* big buttons, no circle */
+.flickity-prev-next-button {
+  width: 70px !important;
+  height: 70px !important;
+  background: transparent !important;
+}
+.flickity-prev-next-button:hover {
+  background: transparent !important;
+}
+/* arrow color */
+.flickity-prev-next-button .arrow {
+  fill: #d1d1d1 !important;
+}
+.flickity-prev-next-button.no-svg {
+  color: #d1d1d1 !important;
+}
+/* hide disabled button */
+.flickity-prev-next-button:disabled {
+  display: none !important;
+}
+
+.builder-input{
+  padding: 10px;
+  width:300px;
+  font-size:25px;
+  color:purple;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+.builder-input:focus{
+  outline:none !important;
+  border: solid 1px #ba82aa;
+  box-shadow: 0 0 5px 1px #ba82aa;
 }

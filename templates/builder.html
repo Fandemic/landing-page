@@ -19,7 +19,7 @@
   <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
   <link rel="stylesheet" href="/static/css/normalize.css">
   <link rel="stylesheet" href="/static/css/slider.css">
-  <link rel="stylesheet" href="/static/css/builder.css">
+
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -30,7 +30,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 
 
 
@@ -41,7 +41,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.15/jquery.zoom.min.js"></script>
   <script src="https://checkout.stripe.com/checkout.js"></script>
+  <link rel="stylesheet" href="/static/css/builder.css">
 
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2.0/dist/flickity.css" media="screen">
+  <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
 
   <script src="/app/builder.js"></script>
 
@@ -112,7 +115,7 @@
               	<ul>
               		<li><a class="crumb current" id="crumb1" data-step="step1">Premade/Custom</a></li>
               		<li><a class="crumb" id="crumb2" data-step="step2">Items</a></li>
-              		<li><a class="crumb" id="crumb3" data-step="step3">Design</a></li>
+              		<li><a class="crumb" id="crumb3" data-step="step3">Theme</a></li>
                   <li><a class="crumb" id="crumb4" data-step="step4">Details</a></li>
                   <li><a class="crumb" id="crumb5" data-step="step5">Confirm</a></li>
                   <li><a class="crumb" id="crumb6" data-step="step6">Submit</a></li>
@@ -151,10 +154,10 @@
             </div>
           </div>
 
-          <button id="next2" class="btn btn-primary btn-lg btn-nav
+          <button id="next-btn2" class="btn btn-primary btn-lg btn-nav
                           {% if cat == 'beauty' %}btn-beauty{% endif %}
-                          next">
-            NEXT STEP <i class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+                          next-btn">
+            next-btn STEP <i class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
 
         </div>
 
@@ -181,24 +184,26 @@
 
 
 
-                <div style="height:340px;width:300px;padding:20px;">
+                <div style="height:340px;width:300px;padding:20px;outline: 0 !important;">
                   <div class="thumbnail" style="height:100%;width:100%">
-                      <div class="card-header">
-                        </div>
 
+
+                    <div class="content" style="cursor:pointer;width:100%;height:100%;">
 
                           {% if item.img_url[0] == "h" and  item.img_url[1] == "t" %}
-                          <img data-toggle="modal" data-target="#{{ item.sku|replace(' ', '-') }}" style="max-height:220px;width:auto;padding:10px;"  src="{{item.img_url}}" alt="">
+                          <img class="product-img" style="width:100%;padding:10px;"  src="{{item.img_url}}" alt="">
                           {% else %}
-                          <img data-toggle="modal" data-target="#{{ item.sku|replace(' ', '-') }}" style="max-height:220px;width:auto;padding:10px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
+                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
                           {% endif %}
-
+                          <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
                         <h5 class="title">{{item.name}}</h5>
 
+                      </div>
+
                         <span class="cost">+${{item.cost}}</span>
                         <div class="group" style="width: 100%; position: absolute;bottom:0px;">
-                          <a class="btn btn-details" style="background:#BA82AA;color:#fff;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{{ item.sku|replace(' ', '-') }}">VIEW DETAILS</a>
+                          <a class="btn btn-details" style="background:#ddd;color:#fff;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{{ item.sku|replace(' ', '-') }}">VIEW DETAILS</a>
 
                         </div>
                     </div>
@@ -249,7 +254,7 @@
 
                   <div class="row" style="margin-top:30px;">
                     <a  data-dismiss="modal" href="#" class="sample-order" style="position: absolute;bottom: 16px;">Order a blank sample of the {{item.name}}</a>
-                    <a class="btn btn-submit pull-right" href="/builder/add/{{item.sku}}">Add Item to Box</a>
+                    <!--<a class="btn btn-submit pull-right" href="/builder/add/{{item.sku}}">Add Item to Box</a>-->
                   </div>
 
                 </div>
@@ -264,29 +269,280 @@
             <!-- /.row -->
 
 
-          <button class="btn btn-primary btn-lg btn-nav
-                          {% if cat == 'beauty' %}btn-beauty{% endif %}
-                          next">
-            Go To Step 2 <i class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+            <button id="next-btn3" class="btn btn-primary btn-lg btn-nav
+                            {% if cat == 'beauty' %}btn-beauty{% endif %}
+                            next-btn">
+              next-btn STEP <i class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
 
+              <script type="text/javascript">
+                  $(document).ready(function(){
+                    $('.products').slick({infinite: false,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                adaptiveHeight: true,
+                centerMode: true,
+                variableWidth: true});
+                  });
+                </script>
 
 
         </div>
 
-        <script type="text/javascript">
-            $(document).ready(function(){
-              $('.products').slick({infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        adaptiveHeight: true,
-        centerMode: true,
-    variableWidth: true});
-            });
-          </script>
 
 
 
-          <div id="step7" class="steps container" style="padding-top:60px;display:none;">
+          <div id="step3" class="steps container" style="margin-top:60px;display:none;">
+
+              <h3 class="subtitle">Create a design theme for your beauty box!</h3>
+
+              <!-- Choose your box design -->
+              <h3 style="color:#8d8d8d;">1. Select a <strong>box style</strong></h3>
+              <hr class="line">
+
+              <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
+
+              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
+                <div class="thumbnail" style="height:100%;width:100%">
+
+
+                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+
+                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+
+                    </div>
+
+                      <span class="cost">+$5</span>
+
+                  </div>
+              </div>
+
+              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
+                <div class="thumbnail" style="height:100%;width:100%">
+
+
+                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+
+                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+
+                    </div>
+
+                      <span class="cost">+$5</span>
+
+                  </div>
+              </div>
+
+              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
+                <div class="thumbnail" style="height:100%;width:100%">
+
+
+                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+
+                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+
+                    </div>
+
+                      <span class="cost">+$5</span>
+
+                  </div>
+              </div>
+
+              </div>
+              <!-- end of box design -->
+
+              <br><br><br>
+
+
+              <!-- Choose your box packaging -->
+              <h3 style="color:#8d8d8d;">2. Select your <strong>packaging material</strong></h3>
+              <hr class="line">
+
+              <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
+
+              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
+                <div class="thumbnail" style="height:100%;width:100%">
+
+
+                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+
+                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+
+                    </div>
+
+                      <span class="cost">+$5</span>
+
+                  </div>
+              </div>
+
+              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
+                <div class="thumbnail" style="height:100%;width:100%">
+
+
+                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+
+                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+
+                    </div>
+
+                      <span class="cost">+$5</span>
+
+                  </div>
+              </div>
+
+              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
+                <div class="thumbnail" style="height:100%;width:100%">
+
+
+                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+
+                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+
+                    </div>
+
+                      <span class="cost">+$5</span>
+
+                  </div>
+              </div>
+
+              </div>
+              <!-- end of box packaging -->
+
+              <br><br><br>
+
+
+              <!-- Choose your label design -->
+              <h3 style="color:#8d8d8d;">3. Select your <strong>label design</strong></h3>
+              <hr class="line">
+
+              <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
+
+              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
+                <div class="thumbnail" style="height:100%;width:100%">
+
+
+                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/label1.jpg" alt="">
+
+                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Rose Gold Foil</h5>
+
+                    </div>
+
+                      <span class="cost">+$5</span>
+
+                  </div>
+              </div>
+
+              </div>
+
+              <br><br><br><br>
+
+              <!--<button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i  class="fa fa-angle-double-left arrow" aria-hidden="true"></i> Go Back</button>-->
+              <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">next-btn Step<i  class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+
+          </div>
+
+
+
+
+          <div id="step4" class="steps container" style="padding-top:60px;display:none;">
+
+            <h3 class="subtitle">Provide Some Information About Your Box!</h3>
+
+            <section class="row" style="text-align:center;">
+
+              <div class="col-md-8">
+
+                <section class="row" style="text-align:center;">
+
+                  <div class="col-md-6">
+            				<h3 style="color:#8d8d8d;">1. Give Your Box a name!</h3>
+            				<input class="builder-input" type="text" />
+                  </div>
+
+                  <div class="col-md-6">
+                    <h3 style="color:#8d8d8d;">2. What is your brand called?</h3>
+                    <input class="builder-input" type="text" />
+                  </div>
+
+                </section>
+
+                <br><br>
+                <div class="form-group" style="padding:30px;">
+                  <textarea placeholder="provide a description of your box!" class="form-control" rows="5" id="comment" name="info"></textarea>
+                </div>
+
+              </div>
+
+
+              <div class="col-md-4">
+              <h3 style="color:#8d8d8d;">3. Do you have a logo?</h3>
+
+                 <input name="radio" type='hidden' value="Yes"/>
+                 <div class="btn-group" data-toggle="buttons">
+                    <button type="button" class="btn btn-default active" data-radio-name="radio"
+                            style="font-size: 25px;font-weight: 600;width: 100px;">Yes</button>
+
+                    <button type="button" class="btn btn-default" data-radio-name="radio"
+                            style="font-size: 25px;font-weight: 600;width: 100px;">No</button>
+                 </div>
+
+                <br><br><br><br>
+
+                 <div class="box">
+                   <div class="box__input">
+                     <input class="box__file" type="file" name="file[]" id="file" data-multiple-caption="{count} files selected" multiple="" />
+                   </div>
+                 </div>
+
+               </div>
+              </section>
+
+                 <script>
+                 $('.btn[data-radio-name]').click(function() {
+                      $('.btn').removeClass('active');
+                      $('.btn[data-radio-name="'+$(this).data('radioName')+'"]').addClass('active');
+                      $('input[name="'+$(this).data('radioName')+'"]').val(
+                          $(this).text()
+                      );
+                  });
+                 </script>
+
+      			</section>
 
 
 
@@ -438,67 +694,24 @@
                 </script>
               </div>
 
-              <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                              {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i  class="fa fa-angle-double-left arrow" aria-hidden="true"></i> Go Back</button>
+              <!--<button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i  class="fa fa-angle-double-left arrow" aria-hidden="true"></i> Go Back</button>-->
 
-              <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                              {% if cat == 'beauty' %}btn-beauty{% endif %} next">Go To Step 3 <i  class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+              <button id="next-btn5" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">next-btn Step<i  class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+
+
 
           </div>
 
-
-
-
-
-          <div id="step3" class="steps container" style="margin-top:60px;display:none;">
-
-
-
-              <div class="panel-body">
-
-
-
-                Upload some designs you had in mind for your custom box! Picture files would be best (png, jpg, psd, ai, pdf)
-                <br>
-                <br>
-
-                <div class="box">
-                  <div class="box__input">
-                    <input class="box__file" type="file" name="file[]" id="file" data-multiple-caption="{count} files selected" multiple="" />
-                  </div>
-                </div>
-
-                <hr>
-
-                <div class="form-group">
-                  <label for="comment">Give us some more details!</label>
-                  <textarea placeholder="Tell us about design examples you like from the internet (URLs), products you want to see that we don't have, logos you have, really anything! You're the star and we're all ears!" class="form-control" rows="5" id="comment" name="info"></textarea>
-                </div>
-
-
-
-              </div>
-
-              <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                              {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i  class="fa fa-angle-double-left arrow" aria-hidden="true"></i> Go Back</button>
-              <button data-toggle="modal" data-target="#info-modal" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav next
-                              {% if cat == 'beauty' %}btn-beauty{% endif %}">Finish Box</button>
-
-          </div>
-
-
-          <!--STEP 4 - Details -->
-          <div id="step4" class="steps container" style="margin-top:60px;display:none;">
-
-            details
-
-          </div>
 
           <!--STEP 5 - confrim -->
           <div id="step5" class="steps container" style="margin-top:60px;display:none;">
 
             confirm
 
+            <button id="next-btn6" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                            {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">next-btn Step<i  class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
           </div>
 
 
@@ -506,6 +719,7 @@
           <div id="step6" class="steps container" style="margin-top:60px;display:none;">
 
             Submit
+
 
           </div>
 
@@ -765,45 +979,6 @@
 
 <script>
 
-$("#step1").on('click', '.next', function() {
-  $('.steps').hide( "fast"  );
-  $('#step2').show( "slow" );
-  $('.crumb').removeClass('current');
-  $('#crumb2').addClass('current');
-  $("html, body").animate({ scrollTop: 0 }, "slow");
-});
-
-$("#step2").on('click', '.next', function() {
-  $('.steps').hide( "fast"  );
-  $('#step3').show( "slow" );
-  $('.crumb').removeClass('current');
-  $('#crumb3').addClass('current');
-  $("html, body").animate({ scrollTop: 0 }, "slow");
-});
-
-$("#step2").on('click', '.prev', function() {
-  $('.steps').hide( "fast"  );
-  $('#step1').show( "slow" );
-  $('.crumb').removeClass('current');
-  $('#crumb1').addClass('current');
-  $("html, body").animate({ scrollTop: 0 }, "slow");
-});
-
-$("#step3").on('click', '.prev', function() {
-  $('.steps').hide( "fast"  );
-  $('#step2').show( "slow" );
-  $('.crumb').removeClass('current');
-  $('#crumb2').addClass('current');
-  $("html, body").animate({ scrollTop: 0 }, "slow");
-});
-
-$("#crumbs").on('click', '.crumb', function() {
-    var step = $(this).attr('data-step');
-    $('.steps').hide( "fast"  );
-    $('#'+step).show( "slow" );
-    $('.crumb').removeClass('current');
-    $(this).addClass('current');
-});
 
 $(document).ready(function(){
   $('div.zoomable').zoom({url: this.src});
