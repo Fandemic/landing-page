@@ -367,14 +367,14 @@ a:focus {
 		#crumbs ul li a {
 			display: block;
 			float: left;
-			height: 60px;
+			height: 40px;
 			background: #A6CCE8;
 			text-align: center;
-			padding: 20px 40px 0 80px;
+			padding: 10px 20px 0 40px;
 			position: relative;
 			margin: 0 0 0 0;
       cursor: pointer;
-			font-size: 18px;
+			font-size: 16px;
 			text-decoration: none;
 			color: #fff;
       transition:none;
@@ -413,8 +413,8 @@ a:focus {
 
 			#crumbs ul li a:after {
 				content: "";
-				border-top: 30px solid transparent;
-	 			border-bottom: 30px solid transparent;
+				border-top: 20px solid transparent;
+	 			border-bottom: 20px solid transparent;
 	  			border-left: 40px solid #e1e1e1;
 				position: absolute; right: -40px; top: 0;
 				z-index: 1;
@@ -436,8 +436,8 @@ a:focus {
 
 			#crumbs ul li a:before {
 				content: "";
-				border-top: 30px solid transparent;
-	  			border-bottom: 30px solid transparent;
+				border-top: 20px solid transparent;
+	  			border-bottom: 20px solid transparent;
 	  			border-left: 40px solid #fff;
 				position: absolute; left: 0; top: 0;
 			}
@@ -537,7 +537,7 @@ a:focus {
         }
 
        .subtitle{
-         text-align: center;
+         text-align: left;
          color: purple;
          margin-bottom: 60px;
          margin-top: 0px;
@@ -555,13 +555,14 @@ a:focus {
        }
 
        .option{
-         background-color: #fff;
-
-         text-align: center;
+          width: 70%;
+          height: auto;
+          margin: 0 auto;
+          background-color: #fff;
+          text-align: center;
           border-radius: 10px;
-          padding: 20px;
+          padding: 40px;
           border: 2px solid #bcbdc0;
-          margin: 0 30px;
           cursor: pointer;
        }
 
@@ -572,7 +573,7 @@ a:focus {
 
 
        .option img{
-         width: 50%;
+         width: 40%;
          margin-top: 10px;
          margin-bottom: 40px;
        }
@@ -583,13 +584,13 @@ a:focus {
          width:40%;
          margin: 0 auto;
          top: 25%;
-       left: 0;
-       right: 0;
-       opacity: .7;
+         left: 0;
+         right: 0;
+         opacity: .7;
 
        }
 
-       .active .selectmark {
+       .checked .selectmark {
          display: block !important;
       }
 
@@ -764,4 +765,24 @@ box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
   outline:none !important;
   border: solid 1px #ba82aa;
   box-shadow: 0 0 5px 1px #ba82aa;
+}
+
+.item-box{
+  height:250px;width:230px;padding:10px;outline: 0 !important;
+}
+
+.panel-summary{
+  width: 100%;
+}
+
+.box-cost{
+  padding: 20px 30px;
+    display: block;
+    border: 2px solid #939598;
+    margin: 0px 0;
+    text-align: center;
+    line-height: 40px;
+    font-size: 30px;
+    color: #000;
+    position: relative;
 }

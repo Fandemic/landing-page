@@ -1,7 +1,9 @@
 //NAVIGATION
 $("#step1").on('click', '.next-btn', function() {
   $('.steps').hide( "fast"  );
-  $('#step2').show( "slow" );
+  $('#step2').fadeIn('fast', function() {
+    $(".carousel").flickity('resize');
+});
   $('#crumb1').removeClass( "current");
   $('#crumb1').addClass( "touched");
   $('#crumb2').addClass('current');
@@ -97,5 +99,5 @@ $(".thumbnail .content").click(function(){
 
   $("#next3").addClass("on")
 
-  $(this).toggleClass("active");
+  $(this).toggleClass("checked");
 });

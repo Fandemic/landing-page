@@ -63,7 +63,7 @@
   <!--navigation-->
 
   <nav class="navbar navbar-default" style="z-index:10;margin-bottom:0px;">
-    <div class="container">
+    <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
@@ -74,7 +74,7 @@
         <a class="navbar-brand" href="/">
 
           {% if cat == 'beauty' %}
-          <img class="logo-nav" alt="logo" src="/static/img/logo-pink.png" style="" height="45">
+          <img class="logo-nav" alt="logo" src="/static/img/logo-pink.png" style="" height="40">
           {% else %}
           <img class="logo-nav" alt="logo" src="/static/img/logo-nav_fullsize_wordart.png" style="" height="45">
           {% endif %}
@@ -111,11 +111,12 @@
             <h2 class="panel-title" style="color:#A6CCE8;">
 
               <div id="crumbs"
-                   class="{% if cat == 'beauty' %}beauty{% endif %}">
+                   class="{% if cat == 'beauty' %}beauty{% endif %} affix"
+                   style="z-index:99;">
               	<ul>
               		<li><a class="crumb current" id="crumb1" data-step="step1">Premade/Custom</a></li>
               		<li><a class="crumb" id="crumb2" data-step="step2">Items</a></li>
-              		<li><a class="crumb" id="crumb3" data-step="step3">Theme</a></li>
+              		<li><a class="crumb" id="crumb3" data-step="step3">Packaging</a></li>
                   <li><a class="crumb" id="crumb4" data-step="step4">Details</a></li>
                   <li><a class="crumb" id="crumb5" data-step="step5">Confirm</a></li>
                   <li><a class="crumb" id="crumb6" data-step="step6">Submit</a></li>
@@ -131,14 +132,14 @@
         <div id="step1" class="steps container" style="text-align:center;">
           <h1 style="text-align:center;margin-top:50px;">Sell Your Own Beauty Box</h1>
           <hr>
-          <h3 class="subtitle">Do you want to customize your box or choose a premade one?</h3>
+          <h3 class="subtitle2">Do you want to customize your box or choose a premade one?</h3>
           <div class="row">
             <div class="col-xs-5">
               <div id="custom" class="option">
-                <h2>CUSTOM BOX</h2>
+                <h3>CUSTOM BOX</h3>
                  <img src="../static/img/custom.svg">
-                 <p class="light">Build a beautiful beauty box, it's super easy :)</p>
-                 <img src="../static/img/selectmark.svg" class="selectmark"></span>
+                 <p class="light">Build a beautiful beauty box</p>
+                 <img src="../static/img/selectmark.svg" class="selectmark" style="width:30% !important;"></span>
               </div>
             </div>
             <div class="col-xs-2 or">
@@ -146,10 +147,10 @@
             </div>
             <div class="col-xs-5">
               <div id="premade" class="option">
-                <h2>PREMADE BOX</h2>
+                <h3>PREMADE BOX</h3>
                  <img src="../static/img/gift.svg">
                  <p class="light">Designed by our beauty experts</p>
-                 <img src="../static/img/selectmark.svg" class="selectmark"></span>
+                 <img src="../static/img/selectmark.svg" class="selectmark" style="width:30% !important;"></span>
               </div>
             </div>
           </div>
@@ -164,36 +165,36 @@
 
         <div id="step2" class="steps container" style="display:none">
 
-          <h3 class="subtitle2">Choose the items you want in your box by clicking them</h3>
+          <br><br>
+          <h3 class="subtitle">Choose the items you want in your box by <strong>clicking them</strong></h3>
 
+          <div class="row">
 
+            <div class="col-md-9">
 
+              <ul class="nav nav-tabs">
+                {% for group in items | groupby('sub-category') | reverse %}
+                <li {% if group.grouper == 'makeup' %}class="active"{% endif %}><a data-toggle="tab" href="#{{group.grouper}}">{{group.grouper | upper}}</a></li>
+                {% endfor %}
+              </ul>
+
+            <div class="tab-content">
             {% for group in items | groupby('sub-category') | reverse %}
-            <div class="row" style="padding-top:20px;">
-
-              <div class="col-md-12">
+            <div id="{{group.grouper}}" class="tab-pane fade in {% if group.grouper == 'makeup' %}active{% endif %}">
 
 
-                <!-- Projects Row -->
-            <h3>{{group.grouper}}</h3>
-            <hr class="line">
-              <div class="products" >
             {% for item in group.list %}
 
-
-
-
-
-                <div style="height:340px;width:300px;padding:20px;outline: 0 !important;">
+            <div class="item-box" style="float:left;width:250px;height:260px;margin:15px;">
                   <div class="thumbnail" style="height:100%;width:100%">
 
 
                     <div class="content" style="cursor:pointer;width:100%;height:100%;">
 
                           {% if item.img_url[0] == "h" and  item.img_url[1] == "t" %}
-                          <img class="product-img" style="width:100%;padding:10px;"  src="{{item.img_url}}" alt="">
+                          <img class="product-img" style="height:170px;padding:10px;"  src="{{item.img_url}}" alt="">
                           {% else %}
-                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
+                          <img class="product-img" style="height:170px;padding:10px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
                           {% endif %}
                           <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
@@ -263,10 +264,29 @@
             {% endfor %}
 
 
-          </div>
-  </div>
+
+
               {% endfor %}
             <!-- /.row -->
+        </div></div>
+
+        <div class="col-md-3">
+          <div class="panel panel-default panel-summary affix" style="width:400px;border-radius: 0px;margin-top:-80px;">
+           <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
+           <div class="panel-body" style="min-height:450px;">
+             <h3 class="box-cost"> Starting At*<br>
+                $20</h3><br>
+              <h4>ITEMS</h4>
+              <hr>
+             Lipstick<br>Blush
+             <br><br>
+             <h4>Packaging</h4>
+             <hr><br>
+           </div>
+          </div>
+        </div>
+
+      </div>
 
 
             <button id="next-btn3" class="btn btn-primary btn-lg btn-nav
@@ -293,186 +313,212 @@
 
           <div id="step3" class="steps container" style="margin-top:60px;display:none;">
 
-              <h3 class="subtitle">Create a design theme for your beauty box!</h3>
+              <h3 class="subtitle">Create a packaging theme for your beauty box!</h3>
 
-              <!-- Choose your box design -->
-              <h3 style="color:#8d8d8d;">1. Select a <strong>box style</strong></h3>
-              <hr class="line">
+              <div class="row">
+              <div class="col-md-9">
+                <!-- Choose your box design -->
+                <h3 style="color:#8d8d8d;">1. Select a <strong>box style</strong></h3>
+                <hr class="line">
 
-              <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
+                <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
 
-              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
-                <div class="thumbnail" style="height:100%;width:100%">
-
-
-                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
-
-
-                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
-
-                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
-
-                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
-
-                    </div>
-
-                      <span class="cost">+$5</span>
-
-                  </div>
-              </div>
-
-              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
-                <div class="thumbnail" style="height:100%;width:100%">
+                <div class="carousel-cell item-box">
+                  <div class="thumbnail" style="height:100%;width:100%">
 
 
-                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+                    <div class="content" style="cursor:pointer;width:100%;height:100%;">
 
 
-                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
 
-                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+                          <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
-                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+                        <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+
+                      </div>
+
+                        <span class="cost">+$5</span>
 
                     </div>
+                </div>
 
-                      <span class="cost">+$5</span>
-
-                  </div>
-              </div>
-
-              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
-                <div class="thumbnail" style="height:100%;width:100%">
+                <div class="carousel-cell item-box">
+                  <div class="thumbnail" style="height:100%;width:100%">
 
 
-                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+                    <div class="content" style="cursor:pointer;width:100%;height:100%;">
 
 
-                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box-multi.png" alt="">
 
-                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+                          <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
-                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+                        <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Multi Color</h5>
 
-                    </div>
+                      </div>
 
-                      <span class="cost">+$5</span>
-
-                  </div>
-              </div>
-
-              </div>
-              <!-- end of box design -->
-
-              <br><br><br>
-
-
-              <!-- Choose your box packaging -->
-              <h3 style="color:#8d8d8d;">2. Select your <strong>packaging material</strong></h3>
-              <hr class="line">
-
-              <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
-
-              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
-                <div class="thumbnail" style="height:100%;width:100%">
-
-
-                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
-
-
-                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
-
-                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
-
-                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+                        <span class="cost">+$5</span>
 
                     </div>
+                </div>
 
-                      <span class="cost">+$5</span>
-
-                  </div>
-              </div>
-
-              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
-                <div class="thumbnail" style="height:100%;width:100%">
+                <div class="carousel-cell item-box">
+                  <div class="thumbnail" style="height:100%;width:100%">
 
 
-                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+                    <div class="content" style="cursor:pointer;width:100%;height:100%;">
 
 
-                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box-patterned.png" alt="">
 
-                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+                          <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
-                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+                        <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Patterned</h5>
 
-                    </div>
+                      </div>
 
-                      <span class="cost">+$5</span>
-
-                  </div>
-              </div>
-
-              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
-                <div class="thumbnail" style="height:100%;width:100%">
-
-
-                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
-
-
-                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
-
-                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
-
-                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+                        <span class="cost">+$5</span>
 
                     </div>
+                </div>
 
-                      <span class="cost">+$5</span>
+                </div>
+                <!-- end of box design -->
 
-                  </div>
-              </div>
-
-              </div>
-              <!-- end of box packaging -->
-
-              <br><br><br>
+                <br><br><br>
 
 
-              <!-- Choose your label design -->
-              <h3 style="color:#8d8d8d;">3. Select your <strong>label design</strong></h3>
-              <hr class="line">
+                <!-- Choose your box packaging -->
+                <h3 style="color:#8d8d8d;">2. Select your <strong>packaging material</strong></h3>
+                <hr class="line">
 
-              <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
+                <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
 
-              <div class="carousel-cell" style="height:320px;width:300px;padding:20px;outline: 0 !important;">
-                <div class="thumbnail" style="height:100%;width:100%">
-
-
-                  <div class="content" style="cursor:pointer;width:100%;height:100%;">
+                <div class="carousel-cell item-box">
+                  <div class="thumbnail" style="height:100%;width:100%">
 
 
-                        <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/label1.jpg" alt="">
+                    <div class="content" style="cursor:pointer;width:100%;height:100%;">
 
-                        <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
-                      <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Rose Gold Foil</h5>
+                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+
+                          <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                        <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+
+                      </div>
+
+                        <span class="cost">+$5</span>
 
                     </div>
+                </div>
 
-                      <span class="cost">+$5</span>
+                <div class="carousel-cell item-box">
+                  <div class="thumbnail" style="height:100%;width:100%">
 
-                  </div>
+
+                    <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+
+                          <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                        <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Multi Color</h5>
+
+                      </div>
+
+                        <span class="cost">+$5</span>
+
+                    </div>
+                </div>
+
+                <div class="carousel-cell item-box">
+                  <div class="thumbnail" style="height:100%;width:100%">
+
+
+                    <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+
+                          <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                        <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Patterned</h5>
+
+                      </div>
+
+                        <span class="cost">+$5</span>
+
+                    </div>
+                </div>
+
+                </div>
+                <!-- end of box packaging -->
+
+                <br><br><br>
+
+
+                <!-- Choose your label design -->
+                <h3 style="color:#8d8d8d;">3. Select your <strong>label design</strong></h3>
+                <hr class="line">
+
+                <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
+
+                <div class="carousel-cell item-box">
+                  <div class="thumbnail" style="height:100%;width:100%">
+
+
+                    <div class="content" style="cursor:pointer;width:100%;height:100%;">
+
+
+                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/label1.jpg" alt="">
+
+                          <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+
+                        <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Rose Gold Foil</h5>
+
+                      </div>
+
+                        <span class="cost">+$5</span>
+
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3" style="padding:30px;">
+              <div class="affix">
+                <div class="panel panel-default panel-summary" style="width:400px;border-radius: 0px;">
+                 <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
+                 <div class="panel-body" style="min-height:450px;">
+                   <h3 class="box-cost"> Starting At*<br>
+                      $20</h3><br>
+                    <h4>ITEMS</h4>
+                    <hr>
+                   Lipstick<br>Blush
+                   <br><br>
+                   <h4>Packaging</h4>
+                   <hr><br>
+                 </div>
+                </div>
               </div>
+            </div>
 
-              </div>
+          </div>
+
+
 
               <br><br><br><br>
 
               <!--<button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                               {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i  class="fa fa-angle-double-left arrow" aria-hidden="true"></i> Go Back</button>-->
               <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                              {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">next-btn Step<i  class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">Next Step</button>
 
           </div>
 
