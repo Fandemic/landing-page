@@ -318,16 +318,23 @@ a:focus {
 
   .thumbnail .cost{
     position: absolute;
-    top:5px;
-    right: 10px;
+    top:-15px;
+    right: -15px;
     font-weight: 700;
-    color: green;
-    opacity: .5;
+    color: #fff;
+    opacity: .3;
+    width: 40px;
+   height: 40px;
+   background: green;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px;
+   border-radius: 20px;
+   padding:6px;
   }
 
 .thumbnail .title{
   text-align: center;
-  color: #5d5d5d;
+  color: #7d7d7d;
   position: absolute;
   margin: 0 auto;
   left: 0;
@@ -489,6 +496,8 @@ a:focus {
 
         .btn-nav{
           padding: 1em;
+          padding-left: 2em;
+          padding-right: 2em;
           color: #fff;
           font-size: 18px;
           text-align: center;
@@ -498,17 +507,13 @@ a:focus {
           border: none;
           border-radius: 4px;
           font-weight: 600;
-          text-transform: uppercase;
+
           background-color: #A6CCE8 !important;
           border: none;
           border-radius: 2px;
-          width: 230px;
+
           font-size: 18px;
-
-          position: fixed;
-
-          bottom: 15px;
-          right: 30px;
+          width: 100%;
         }
 
         .btn-beauty{
@@ -785,4 +790,8 @@ box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
     font-size: 30px;
     color: #000;
     position: relative;
+}
+
+.nav-tabs {
+    border-bottom: 0px;
 }

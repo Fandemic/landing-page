@@ -100,4 +100,6 @@ $(".thumbnail .content").click(function(){
   $("#next3").addClass("on")
 
   $(this).toggleClass("checked");
+
+  $.notify("Product Added To Box", { position:"right bottom",className:"success" });
 });

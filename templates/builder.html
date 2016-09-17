@@ -46,6 +46,20 @@
   <link rel="stylesheet" href="https://unpkg.com/flickity@2.0/dist/flickity.css" media="screen">
   <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
 
+
+
+   <script src="/static/js/bootstrap-checkbox.min.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Oregano" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Condiment|Kaushan+Script|Knewave|Oregano|Petit+Formal+Script|Sarina" rel="stylesheet">
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.min.js"></script>
+
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.min.css" rel="stylesheet">
+
+
+
   <script src="/app/builder.js"></script>
 
 
@@ -117,7 +131,7 @@
               		<li><a class="crumb current" id="crumb1" data-step="step1">Premade/Custom</a></li>
               		<li><a class="crumb" id="crumb2" data-step="step2">Items</a></li>
               		<li><a class="crumb" id="crumb3" data-step="step3">Packaging</a></li>
-                  <li><a class="crumb" id="crumb4" data-step="step4">Details</a></li>
+                  <li><a class="crumb" id="crumb4" data-step="step4">Pricing</a></li>
                   <li><a class="crumb" id="crumb5" data-step="step5">Confirm</a></li>
                   <li><a class="crumb" id="crumb6" data-step="step6">Submit</a></li>
               	</ul>
@@ -157,20 +171,21 @@
 
           <button id="next-btn2" class="btn btn-primary btn-lg btn-nav
                           {% if cat == 'beauty' %}btn-beauty{% endif %}
-                          next-btn">
-            next-btn STEP <i class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+                          next-btn" style="width: 300px;margin-top: 30px;">
+            <strong>NEXT STEP</button>
 
         </div>
 
 
-        <div id="step2" class="steps container" style="display:none">
+        <div id="step2" class="steps container" style="display:none;">
 
           <br><br>
-          <h3 class="subtitle">Choose the items you want in your box by <strong>clicking them</strong></h3>
 
           <div class="row">
 
-            <div class="col-md-9">
+            <div class="col-md-8">
+
+                <h3 class="subtitle">Choose the items you want in your box by <strong>clicking them</strong></h3>
 
               <ul class="nav nav-tabs">
                 {% for group in items | groupby('sub-category') | reverse %}
@@ -185,26 +200,26 @@
 
             {% for item in group.list %}
 
-            <div class="item-box" style="float:left;width:250px;height:260px;margin:15px;">
+            <div class="item-box" style="float:left;width:330px;height:340px;margin:15px;">
                   <div class="thumbnail" style="height:100%;width:100%">
 
 
                     <div class="content" style="cursor:pointer;width:100%;height:100%;">
 
                           {% if item.img_url[0] == "h" and  item.img_url[1] == "t" %}
-                          <img class="product-img" style="height:170px;padding:10px;"  src="{{item.img_url}}" alt="">
+                          <img class="product-img" style="height:200px;padding:10px;"  src="{{item.img_url}}" alt="">
                           {% else %}
-                          <img class="product-img" style="height:170px;padding:10px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
+                          <img class="product-img" style="height:200px;padding:10px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
                           {% endif %}
                           <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
-                        <h5 class="title">{{item.name}}</h5>
+                        <h4 class="title">{{item.name}}</h4>
 
                       </div>
 
                         <span class="cost">+${{item.cost}}</span>
                         <div class="group" style="width: 100%; position: absolute;bottom:0px;">
-                          <a class="btn btn-details" style="background:#ddd;color:#fff;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{{ item.sku|replace(' ', '-') }}">VIEW DETAILS</a>
+                          <a class="btn btn-details" style="background:#ddd;color:#9d9d9d;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{{ item.sku|replace(' ', '-') }}">VIEW DETAILS</a>
 
                         </div>
                     </div>
@@ -270,29 +285,73 @@
             <!-- /.row -->
         </div></div>
 
-        <div class="col-md-3">
-          <div class="panel panel-default panel-summary affix" style="width:400px;border-radius: 0px;margin-top:-80px;">
+        <div class="col-md-4">
+
+          <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;">
            <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
            <div class="panel-body" style="min-height:450px;">
-             <h3 class="box-cost"> Starting At*<br>
+             <h3 class="box-cost"> Cost to Make<br>
                 $20</h3><br>
-              <h4>ITEMS</h4>
+              <h4>Products</h4>
               <hr>
-             Lipstick<br>Blush
-             <br><br>
+
+              <div class="row">
+                <div class="col-xs-4" style="text-align:center;">
+
+                     <img width="100%" src="../static/img/sample_products/fake-eyelashes.png">
+                     <p class="light" style="margin-top:5px;"><strong>Eyelashes</strong> <br> <span style="font-size:.8em">Party Girl</span></p>
+
+                </div>
+                <div class="col-xs-4" style="display:table;height:130px;text-align:center;">
+                  <img width="100%" src="http://www.ladyburd.com/packaging/Spring-blush-per-pkg.jpg">
+                  <p class="light" style="margin-top:5px;"><strong>Blush</strong> <br> <span style="font-size:.8em">Opal of my Eye</span></p>
+                </div>
+                <div class="col-xs-4" style="text-align:center;">
+                  <img width="100%" src="http://www.ladyburd.com/packaging/36bbpkgmn.jpg">
+                  <p class="light" style="margin-top:5px;"><strong>Lipstick</strong> <br> <span style="font-size:.8em">Crimson Red</span></p>
+                </div>
+              </div>
+
+
              <h4>Packaging</h4>
-             <hr><br>
+             <hr>
+
+             <div class="row">
+               <div class="col-xs-5" style="text-align:center;">
+
+                    <img width="100%" src="../static/img/question-mark.svg">
+                    <p class="light" style="margin-top:5px;">Box Style</p>
+
+               </div>
+               <div class="col-xs-2" style="display:table;height:130px;">
+                 <strong style="font-size:1.8em;display: table-cell; vertical-align: middle;color:#ebebeb;"><i class="fa fa-plus-circle" aria-hidden="true"></i></strong>
+               </div>
+               <div class="col-xs-5" style="text-align:center;">
+
+                    <img  width="100%" src="../static/img/question-mark.svg">
+                    <p class="light" style="margin-top:5px;">Packaging</p>
+
+               </div>
+             </div>
+
            </div>
           </div>
+
+          <button id="next-btn3" class="btn btn-primary btn-lg btn-nav
+                          {% if cat == 'beauty' %}btn-beauty{% endif %}
+                          next-btn">
+            NEXT STEP: packaging</i>
+          </button>
+
+
+
         </div>
+
 
       </div>
 
 
-            <button id="next-btn3" class="btn btn-primary btn-lg btn-nav
-                            {% if cat == 'beauty' %}btn-beauty{% endif %}
-                            next-btn">
-              next-btn STEP <i class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+
 
               <script type="text/javascript">
                   $(document).ready(function(){
@@ -313,12 +372,53 @@
 
           <div id="step3" class="steps container" style="margin-top:60px;display:none;">
 
-              <h3 class="subtitle">Create a packaging theme for your beauty box!</h3>
+
 
               <div class="row">
-              <div class="col-md-9">
+              <div class="col-md-8">
+
+                <h3 class="subtitle">Create a packaging theme for your beauty box!</h3>
+
+                <!--Do You have a Logo?-->
+                <h3 style="color:#8d8d8d;">1. Custom Branding Options</h3>
+                <hr class="line">
+
+                  <div class="row" style="font-size:22px;color:#adadad;font-weight:300;">
+                    <div class="col-md-6">
+                      <label class="light" >Name of Your Brand</label>
+                      <input type="text" class="form-control" style="font-size:22px;height:50px;font-weight:400;">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="light" >Name Your Box</label>
+                      <input type="text" class="form-control" style="font-size:22px;height:50px;font-weight:400;">
+                    </div>
+                  </div>
+                  <br>
+                    <div class="row" style="font-size:22px;color:#adadad;font-weight:300;">
+                      <div class="col-md-6">
+                        <label class="light" >Choose a font</label>
+                        <select name="cars" class="form-control" style="font-size:22px;height:50px;font-weight:400;">
+                          <option value="volvo" style="font-family: 'Oregano', cursive;">Beauty & The Blondie</option>
+                          <option value="saab" style="font-family: 'Kaushan Script', cursive;">Beauty & The Blondie</option>
+                          <option value="fiat" style="font-family: 'Petit Formal Script', cursive;">Beauty & The Blondie</option>
+                          <option value="audi">Audi</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="light" >Upload a Logo (optional)</label>
+
+                        <div class="box" style="margin-top:10px;">
+                          <div class="box__input">
+                            <input class="box__file" type="file" name="file[]" id="file" data-multiple-caption="{count} files selected" multiple="" />
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+                <br><br>
+
                 <!-- Choose your box design -->
-                <h3 style="color:#8d8d8d;">1. Select a <strong>box style</strong></h3>
+                <h3 style="color:#8d8d8d;">2. Select a <strong>box style</strong></h3>
                 <hr class="line">
 
                 <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
@@ -338,7 +438,7 @@
 
                       </div>
 
-                        <span class="cost">+$5</span>
+
 
                     </div>
                 </div>
@@ -358,7 +458,7 @@
 
                       </div>
 
-                        <span class="cost">+$5</span>
+
 
                     </div>
                 </div>
@@ -378,7 +478,7 @@
 
                       </div>
 
-                        <span class="cost">+$5</span>
+
 
                     </div>
                 </div>
@@ -390,8 +490,9 @@
 
 
                 <!-- Choose your box packaging -->
-                <h3 style="color:#8d8d8d;">2. Select your <strong>packaging material</strong></h3>
+                <h3 style="color:#8d8d8d;">3. Select your <strong>packaging material</strong></h3>
                 <hr class="line">
+
 
                 <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
 
@@ -410,7 +511,7 @@
 
                       </div>
 
-                        <span class="cost">+$5</span>
+
 
                     </div>
                 </div>
@@ -430,7 +531,7 @@
 
                       </div>
 
-                        <span class="cost">+$5</span>
+
 
                     </div>
                 </div>
@@ -450,7 +551,7 @@
 
                       </div>
 
-                        <span class="cost">+$5</span>
+
 
                     </div>
                 </div>
@@ -460,65 +561,72 @@
 
                 <br><br><br>
 
-
-                <!-- Choose your label design -->
-                <h3 style="color:#8d8d8d;">3. Select your <strong>label design</strong></h3>
-                <hr class="line">
-
-                <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
-
-                <div class="carousel-cell item-box">
-                  <div class="thumbnail" style="height:100%;width:100%">
-
-
-                    <div class="content" style="cursor:pointer;width:100%;height:100%;">
-
-
-                          <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/label1.jpg" alt="">
-
-                          <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
-
-                        <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Rose Gold Foil</h5>
-
-                      </div>
-
-                        <span class="cost">+$5</span>
-
-                    </div>
-                </div>
-
-                </div>
-
             </div>
 
-            <div class="col-md-3" style="padding:30px;">
-              <div class="affix">
-                <div class="panel panel-default panel-summary" style="width:400px;border-radius: 0px;">
-                 <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
-                 <div class="panel-body" style="min-height:450px;">
-                   <h3 class="box-cost"> Starting At*<br>
-                      $20</h3><br>
-                    <h4>ITEMS</h4>
-                    <hr>
-                   Lipstick<br>Blush
-                   <br><br>
-                   <h4>Packaging</h4>
-                   <hr><br>
+            <div class="col-md-4">
+
+              <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;">
+               <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
+               <div class="panel-body" style="min-height:450px;">
+                 <h3 class="box-cost"> Cost to Make<br>
+                    $20</h3><br>
+                  <h4>Products</h4>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-xs-4" style="text-align:center;">
+
+                         <img width="100%" src="../static/img/sample_products/fake-eyelashes.png">
+                         <p class="light" style="margin-top:5px;"><strong>Eyelashes</strong> <br> <span style="font-size:.8em">Party Girl</span></p>
+
+                    </div>
+                    <div class="col-xs-4" style="display:table;height:130px;text-align:center;">
+                      <img width="100%" src="http://www.ladyburd.com/packaging/Spring-blush-per-pkg.jpg">
+                      <p class="light" style="margin-top:5px;"><strong>Blush</strong> <br> <span style="font-size:.8em">Opal of my Eye</span></p>
+                    </div>
+                    <div class="col-xs-4" style="text-align:center;">
+                      <img width="100%" src="http://www.ladyburd.com/packaging/36bbpkgmn.jpg">
+                      <p class="light" style="margin-top:5px;"><strong>Lipstick</strong> <br> <span style="font-size:.8em">Crimson Red</span></p>
+                    </div>
+                  </div>
+
+
+                 <h4>Packaging</h4>
+                 <hr>
+
+                 <div class="row">
+                   <div class="col-xs-5" style="text-align:center;">
+
+                        <img width="100%" src="../static/img/packaging/box.png">
+                        <p class="light" style="margin-top:5px;">Box Style</p>
+
+                   </div>
+                   <div class="col-xs-2" style="display:table;height:130px;">
+                     <strong style="font-size:1.8em;display: table-cell; vertical-align: middle;color:#ebebeb;"><i class="fa fa-plus-circle" aria-hidden="true"></i></strong>
+                   </div>
+                   <div class="col-xs-5" style="text-align:center;">
+
+                        <img  width="100%" src="../static/img/question-mark.svg">
+                        <p class="light" style="margin-top:5px;">Packaging</p>
+
+                   </div>
                  </div>
-                </div>
+
+               </div>
               </div>
+
+              <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">Next Step: details</button>
+
             </div>
 
           </div>
 
 
 
-              <br><br><br><br>
-
               <!--<button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                               {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i  class="fa fa-angle-double-left arrow" aria-hidden="true"></i> Go Back</button>-->
-              <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                              {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">Next Step</button>
+
 
           </div>
 
@@ -527,237 +635,301 @@
 
           <div id="step4" class="steps container" style="padding-top:60px;display:none;">
 
-            <h3 class="subtitle">Provide Some Information About Your Box!</h3>
-
-            <section class="row" style="text-align:center;">
+            <section class="row">
 
               <div class="col-md-8">
 
-                <section class="row" style="text-align:center;">
+                <h3 class="subtitle">Set the <strong>pre-order price</strong> for your beauty box!</h3>
 
-                  <div class="col-md-6">
-            				<h3 style="color:#8d8d8d;">1. Give Your Box a name!</h3>
-            				<input class="builder-input" type="text" />
+                <!--<div class="form-horizontal pull-center" role="form" style="text-align:center;">
+                  <div class="form-group" style="width:160px;margin: 0 auto;">
+                    <h3>Sell this box for</h3>
+                    <input style="font-size:25px;height:60px;text-align:center;" id="demo2" type="text" name="price" >
+                    <p>USD</p>
+                  </div>
+                </div>-->
+
+                  <div class="row">
+
+                    <div>
+                    <div class="col-md-12" style="margin-bottom:30px;">
+
+                      <div class="row" style="text-align:center;">
+                        <div class="col-md-3">
+                          <p style="font-size:35px;color:#6d6d6d;line-height: 20px;"><span style="font-weight:700"> $29.99</span><br><span class="light">pre-order price</span></p>
+                        </div>
+                        <div class="col-md-1">
+                          <span style="font-size:35px">-</span>
+                        </div>
+                        <div class="col-md-3">
+                          <p style="font-size:35px;color:#6d6d6d;line-height: 20px;"><span style="font-weight:700">$20.00</span><br><span class="light">manufacturing cost</span></p>
+                        </div>
+                        <div class="col-md-1">
+                          <span style="font-size:35px">=</span>
+                        </div>
+                        <div class="col-md-3">
+                          <p style="font-size:35px;color:#6d6d6d;line-height: 20px;"><span style="font-weight:700" class="money" >$9.99</span><br><span class="light">your profit per box</span></p>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-12" style="padding-left: 25%;padding-right: 25%;">
+                      <div class="panel panel-default">
+
+                          <div class="panel-body">
+
+                      <table style="width:100%;font-size:20px;">
+                        <tr>
+                          <th>Sell (boxes)</th>
+                          <th>You Make</th>
+                        </tr>
+                        <tr>
+                          <td>25</td>
+                          <td class="money">$50</td>
+                        </tr>
+                        <tr>
+                          <td>50</td>
+                          <td class="money">$100</td>
+                        </tr>
+                        <tr>
+                          <td>100</td>
+                          <td class="money">$200</td>
+                        </tr>
+                        <tr>
+                          <td>250</td>
+                          <td class="money">$500</td>
+                        </tr>
+                        <tr>
+                          <td>500</td>
+                          <td class="money">$1000</td>
+                        </tr>
+                        <tr>
+                          <td>750</td>
+                          <td class="money">$1500</td>
+                        </tr>
+                        <tr>
+                          <td>1000</td>
+                          <td class="money">$2000</td>
+                        </tr>
+                      </table>
+                    </div>
                   </div>
 
-                  <div class="col-md-6">
-                    <h3 style="color:#8d8d8d;">2. What is your brand called?</h3>
-                    <input class="builder-input" type="text" />
+
+
+                    </div>
+
                   </div>
 
-                </section>
+                  <hr>
 
-                <br><br>
-                <div class="form-group" style="padding:30px;">
-                  <textarea placeholder="provide a description of your box!" class="form-control" rows="5" id="comment" name="info"></textarea>
+                  <div style="text-align:center;">
+                    <i class="light">Money is sent to you via bank transfer when your campaign is complete</i>
+                  </div>
+
+
+
+                  <script>
+                    var boxCost = 2.50;
+
+                    $("input[name='price']").TouchSpin({
+                      min: {{(box_items | sum(attribute = 'cost'))}} + 5 + boxCost,
+                      max: 100.00,
+                      initval: {{(box_items | sum(attribute = 'cost') * 2)}},
+                      stepinterval: 1,
+                      decimals: 2,
+                      maxboostedstep: 1
+                        //prefix: '$'
+                    });
+
+
+                    function precise_round(num, decimals) {
+                      return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
+                    }
+
+                    function retailPricing() {
+                      var retailVal = parseInt($('#demo2').val());
+                      var totalCost = (boxCost + {{(box_items | sum(attribute = 'cost'))}})
+                      var serviceFee = 5
+                      var newProfit = precise_round(retailVal - totalCost - serviceFee, 2);
+                      $('#retailVal').html(retailVal.toFixed(2));
+                      $('#serviceFee').html(serviceFee.toFixed(2));
+                      $('#boxCost').html(totalCost.toFixed(2));
+                      $('#newProfit').html(newProfit);
+                    };
+                    //build profit on slider click
+                    $(".bootstrap-touchspin").click(function() {
+                      retailPricing();
+                    });
+                    //build profit on page load
+                    $(document).ready(function() {
+                      retailPricing();
+                    })
+
+                    $(document).keydown(function(e) {
+                      switch (e.which) {
+                        case 37: // left
+                          retailPricing();
+                          break;
+
+                        case 38: // up
+                          retailPricing();
+                          break;
+
+                        case 39: // right
+                          retailPricing();
+                          break;
+
+                        case 40: // down
+                          retailPricing();
+                          break;
+
+                        case 55: // down
+                          retailPricing();
+                          break;
+
+                        default:
+                          return; // exit this handler for other keys
+                      }
+                    });
+                  </script>
                 </div>
 
               </div>
 
 
               <div class="col-md-4">
-              <h3 style="color:#8d8d8d;">3. Do you have a logo?</h3>
 
-                 <input name="radio" type='hidden' value="Yes"/>
-                 <div class="btn-group" data-toggle="buttons">
-                    <button type="button" class="btn btn-default active" data-radio-name="radio"
-                            style="font-size: 25px;font-weight: 600;width: 100px;">Yes</button>
+                <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;">
+                 <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
+                 <div class="panel-body" style="min-height:450px;">
+                   <h3 class="box-cost"> Cost to Make<br>
+                      $20</h3><br>
+                    <h4>Products</h4>
+                    <hr>
 
-                    <button type="button" class="btn btn-default" data-radio-name="radio"
-                            style="font-size: 25px;font-weight: 600;width: 100px;">No</button>
-                 </div>
+                    <div class="row">
+                      <div class="col-xs-4" style="text-align:center;">
 
-                <br><br><br><br>
+                           <img width="100%" src="../static/img/sample_products/fake-eyelashes.png">
+                           <p class="light" style="margin-top:5px;"><strong>Eyelashes</strong> <br> <span style="font-size:.8em">Party Girl</span></p>
 
-                 <div class="box">
-                   <div class="box__input">
-                     <input class="box__file" type="file" name="file[]" id="file" data-multiple-caption="{count} files selected" multiple="" />
-                   </div>
-                 </div>
-
-               </div>
-              </section>
-
-                 <script>
-                 $('.btn[data-radio-name]').click(function() {
-                      $('.btn').removeClass('active');
-                      $('.btn[data-radio-name="'+$(this).data('radioName')+'"]').addClass('active');
-                      $('input[name="'+$(this).data('radioName')+'"]').val(
-                          $(this).text()
-                      );
-                  });
-                 </script>
-
-      			</section>
-
-
-
-              <div class="panel-body">
-
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="form-horizontal pull-center" role="form" style="text-align:center;margin-top:20%;">
-                      <div class="form-group" style="width:160px;margin: 0 auto;">
-                        <img width="70px;" src="/static/img/price.svg">
-                        <h3>Sell this box for</h3>
-                        <input style="font-size:25px;height:60px;text-align:center;" id="demo2" type="text" name="price" >
-                        <p>USD</p>
+                      </div>
+                      <div class="col-xs-4" style="display:table;height:130px;text-align:center;">
+                        <img width="100%" src="http://www.ladyburd.com/packaging/Spring-blush-per-pkg.jpg">
+                        <p class="light" style="margin-top:5px;"><strong>Blush</strong> <br> <span style="font-size:.8em">Opal of my Eye</span></p>
+                      </div>
+                      <div class="col-xs-4" style="text-align:center;">
+                        <img width="100%" src="http://www.ladyburd.com/packaging/36bbpkgmn.jpg">
+                        <p class="light" style="margin-top:5px;"><strong>Lipstick</strong> <br> <span style="font-size:.8em">Crimson Red</span></p>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="col-md-5" style="padding:50px;">
-                    <p style="font-size:20px;color:#6d6d6d;">You will sell each box for <span style="font-weight:600">$<span id="retailVal"></span></span></p>
-                    <br>
-                    <p style="font-size:20px;color:#6d6d6d;">It costs us <span style="font-weight:600">$<span id="boxCost"></span></span> to make each box</p>
-                    <br>
-                    <p style="font-size:20px;color:#6d6d6d;">We require a <span style="font-weight:600">$<span id="serviceFee"></span></span> service fee</p>
-                    <hr>
-                    <p style="font-size:20px;color:#6d6d6d;">You will make <span class="money" >$<span id="newProfit"></span></span> per box</p>
-                  </div>
 
-                  <div class="col-md-4">
-                    <div class="panel panel-default">
+                   <h4>Packaging</h4>
+                   <hr>
 
-                        <div class="panel-body">
-                    <h3 style="margin-bottom:0px;">Cash Bonuses</h3>
-                    <i class="light">Get additional reward for selling more boxes</i>
-                    <hr>
-                    <table style="width:100%">
-                      <tr>
-                        <th>Sell (boxes)</th>
-                        <th>Your Bonus</th>
-                      </tr>
-                      <tr>
-                        <td>25</td>
-                        <td class="money">$50</td>
-                      </tr>
-                      <tr>
-                        <td>50</td>
-                        <td class="money">$100</td>
-                      </tr>
-                      <tr>
-                        <td>100</td>
-                        <td class="money">$200</td>
-                      </tr>
-                      <tr>
-                        <td>250</td>
-                        <td class="money">$500</td>
-                      </tr>
-                      <tr>
-                        <td>500</td>
-                        <td class="money">$1000</td>
-                      </tr>
-                      <tr>
-                        <td>750</td>
-                        <td class="money">$1500</td>
-                      </tr>
-                      <tr>
-                        <td>1000</td>
-                        <td class="money">$2000</td>
-                      </tr>
-                    </table>
-                  </div>
+                   <div class="row">
+                     <div class="col-xs-5" style="text-align:center;">
+
+                          <img width="100%" src="../static/img/packaging/box.png">
+                          <p class="light" style="margin-top:5px;">Box Style</p>
+
+                     </div>
+                     <div class="col-xs-2" style="display:table;height:130px;">
+                       <strong style="font-size:1.8em;display: table-cell; vertical-align: middle;color:#ebebeb;"><i class="fa fa-plus-circle" aria-hidden="true"></i></strong>
+                     </div>
+                     <div class="col-xs-5" style="text-align:center;">
+
+                          <img  width="100%" src="../static/img/question-mark.svg">
+                          <p class="light" style="margin-top:5px;">Packaging</p>
+
+                     </div>
+                   </div>
+
+                 </div>
                 </div>
 
 
-
-                  </div>
-
-                </div>
-
-                <hr>
-
-                <div style="text-align:center;">
-                  <i class="light">Money is sent to you via bank transfer when your campaign is complete</i>
-                </div>
+              <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">Next Step</button>
 
 
 
-                <script>
-                  var boxCost = 2.50;
-
-                  $("input[name='price']").TouchSpin({
-                    min: {{(box_items | sum(attribute = 'cost'))}} + 5 + boxCost,
-                    max: 100.00,
-                    initval: {{(box_items | sum(attribute = 'cost') * 2)}},
-                    stepinterval: 1,
-                    decimals: 2,
-                    maxboostedstep: 1
-                      //prefix: '$'
-                  });
-
-
-                  function precise_round(num, decimals) {
-                    return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
-                  }
-
-                  function retailPricing() {
-                    var retailVal = parseInt($('#demo2').val());
-                    var totalCost = (boxCost + {{(box_items | sum(attribute = 'cost'))}})
-                    var serviceFee = 5
-                    var newProfit = precise_round(retailVal - totalCost - serviceFee, 2);
-                    $('#retailVal').html(retailVal.toFixed(2));
-                    $('#serviceFee').html(serviceFee.toFixed(2));
-                    $('#boxCost').html(totalCost.toFixed(2));
-                    $('#newProfit').html(newProfit);
-                  };
-                  //build profit on slider click
-                  $(".bootstrap-touchspin").click(function() {
-                    retailPricing();
-                  });
-                  //build profit on page load
-                  $(document).ready(function() {
-                    retailPricing();
-                  })
-
-                  $(document).keydown(function(e) {
-                    switch (e.which) {
-                      case 37: // left
-                        retailPricing();
-                        break;
-
-                      case 38: // up
-                        retailPricing();
-                        break;
-
-                      case 39: // right
-                        retailPricing();
-                        break;
-
-                      case 40: // down
-                        retailPricing();
-                        break;
-
-                      case 55: // down
-                        retailPricing();
-                        break;
-
-                      default:
-                        return; // exit this handler for other keys
-                    }
-                  });
-                </script>
-              </div>
-
-              <!--<button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                              {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i  class="fa fa-angle-double-left arrow" aria-hidden="true"></i> Go Back</button>-->
-
-              <button id="next-btn5" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                              {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">next-btn Step<i  class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
-
-
-
-          </div>
+               </div>
+             </div>
 
 
           <!--STEP 5 - confrim -->
           <div id="step5" class="steps container" style="margin-top:60px;display:none;">
 
-            confirm
+            <div class="col-md-8">
+              <h3 class="subtitle"><strong>Write a story</strong> about your beauty box!</h3>
+            </div>
 
-            <button id="next-btn6" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                            {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">next-btn Step<i  class="fa fa-angle-double-right arrow" aria-hidden="true"></i></button>
+            <div class="col-md-4">
+
+              <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;">
+               <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
+               <div class="panel-body" style="min-height:450px;">
+                 <h3 class="box-cost"> Cost to Make<br>
+                    $20</h3><br>
+                  <h4>Products</h4>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-xs-4" style="text-align:center;">
+
+                         <img width="100%" src="../static/img/sample_products/fake-eyelashes.png">
+                         <p class="light" style="margin-top:5px;"><strong>Eyelashes</strong> <br> <span style="font-size:.8em">Party Girl</span></p>
+
+                    </div>
+                    <div class="col-xs-4" style="display:table;height:130px;text-align:center;">
+                      <img width="100%" src="http://www.ladyburd.com/packaging/Spring-blush-per-pkg.jpg">
+                      <p class="light" style="margin-top:5px;"><strong>Blush</strong> <br> <span style="font-size:.8em">Opal of my Eye</span></p>
+                    </div>
+                    <div class="col-xs-4" style="text-align:center;">
+                      <img width="100%" src="http://www.ladyburd.com/packaging/36bbpkgmn.jpg">
+                      <p class="light" style="margin-top:5px;"><strong>Lipstick</strong> <br> <span style="font-size:.8em">Crimson Red</span></p>
+                    </div>
+                  </div>
+
+
+                 <h4>Packaging</h4>
+                 <hr>
+
+                 <div class="row">
+                   <div class="col-xs-5" style="text-align:center;">
+
+                        <img width="100%" src="../static/img/packaging/box.png">
+                        <p class="light" style="margin-top:5px;">Box Style</p>
+
+                   </div>
+                   <div class="col-xs-2" style="display:table;height:130px;">
+                     <strong style="font-size:1.8em;display: table-cell; vertical-align: middle;color:#ebebeb;"><i class="fa fa-plus-circle" aria-hidden="true"></i></strong>
+                   </div>
+                   <div class="col-xs-5" style="text-align:center;">
+
+                        <img  width="100%" src="../static/img/question-mark.svg">
+                        <p class="light" style="margin-top:5px;">Packaging</p>
+
+                   </div>
+                 </div>
+
+               </div>
+              </div>
+
+
+              <button id="next-btn6" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                              {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">Next Step</button>
+
+
+             </div>
+
+
+
+
           </div>
 
 
@@ -1109,8 +1281,11 @@ $(document).ready(function() {
       $('#how-fandemic-works').modal('show');
      }
 
+     //extract the id of the user from the URL
      if(window.location.hash) {
          var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+
+         alert(hash);
 
          $.ajax({
             url: '/builder-alert',
@@ -1127,6 +1302,8 @@ $(document).ready(function() {
      } else {
          // No hash found
      }
+
+
 
    });
 </script>
