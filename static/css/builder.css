@@ -318,14 +318,13 @@ a:focus {
 
   .thumbnail .cost{
     position: absolute;
-    top:-15px;
-    right: -15px;
+    top:0px;
+    right: 0px;
     font-weight: 700;
-    color: #fff;
+    color: green;
     opacity: .3;
     width: 40px;
    height: 40px;
-   background: green;
    -moz-border-radius: 20px;
    -webkit-border-radius: 20px;
    border-radius: 20px;
@@ -495,7 +494,7 @@ a:focus {
         }
 
         .btn-nav{
-          padding: 1em;
+          padding: .6em;
           padding-left: 2em;
           padding-right: 2em;
           color: #fff;
@@ -512,7 +511,7 @@ a:focus {
           border: none;
           border-radius: 2px;
 
-          font-size: 18px;
+          font-size: 22px;
           width: 100%;
         }
 

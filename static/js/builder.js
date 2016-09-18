@@ -101,7 +101,7 @@ $(".thumbnail .content").click(function(){
 
   $(this).toggleClass("checked");
 
-  $.notify("Product Added To Box", { position:"right bottom",className:"success" });
+  $.notify("Product Added To Box", { position:"bottom center",className:"success" });
 });
 
 //story wsywig editor
