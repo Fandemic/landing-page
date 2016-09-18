@@ -142,7 +142,6 @@ a:focus {
 .navbar{
   height: 74px;
   width: 100%;
-  position: fixed;
   z-index: 999 !important;
   top: 0;
   background-color: rgba(255, 255, 255, 1);
@@ -354,7 +353,6 @@ a:focus {
 .nav-container{
   width:100%;
   height:60px;
-  margin-top: 74px;
 }
 
 #crumbs {
@@ -551,7 +549,7 @@ a:focus {
          text-align: center;
          color: purple;
          margin-bottom: 30px;
-         margin-top: 60px;
+         margin-top: 20px;
        }
 
        .line{

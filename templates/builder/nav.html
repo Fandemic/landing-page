@@ -1,0 +1,38 @@
+<nav class="navbar navbar-default" style="z-index:10;margin-bottom:0px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+
+        {% if cat == 'beauty' %}
+        <img class="logo-nav" alt="logo" src="/static/img/logo-pink.png" style="" height="40">
+        {% else %}
+        <img class="logo-nav" alt="logo" src="/static/img/logo-nav_fullsize_wordart.png" style="" height="45">
+        {% endif %}
+
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1" style="z-index:999999;">
+
+      <!--
+      <ul class="nav navbar-nav nav-left" style="margin-top:3px;">
+        <li><a href="/">Home </a></li>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/faze-rain">Examples</a></li>
+        <li><a href="mailto:sarah@fandemic.co">Contact Us</a></li>
+      </ul>
+      -->
+
+      <ul class="nav navbar-nav navbar-right" style="z-index:999999;">
+
+        <li style="z-index:999999;"><a style="z-index:999999;" href="#" data-toggle="modal" data-target="#how-fandemic-works" class="btn {% if cat == 'beauty' %}beautify{% endif %}">How Does Fandemic Work?</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
