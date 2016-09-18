@@ -514,7 +514,7 @@ a:focus {
         }
 
         .btn-beauty{
-          background-color: #D2AFC9 !important;
+          background-color: #7BDC87 !important;
         }
 
         .btn-nav:hover{
@@ -522,7 +522,7 @@ a:focus {
         }
 
         .btn-beauty:hover{
-          background-color: #ba82aa !important;
+          background-color: #4ac559 !important;
         }
 
         .prev{
@@ -566,6 +566,10 @@ a:focus {
           padding: 40px;
           border: 2px solid #bcbdc0;
           cursor: pointer;
+       }
+
+       .option:hover{
+         background-color: #e7e7e8;
        }
 
        .active.option{
