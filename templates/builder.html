@@ -37,7 +37,7 @@
    <link href="https://fonts.googleapis.com/css?family=Condiment|Kaushan+Script|Knewave|Oregano|Petit+Formal+Script|Sarina" rel="stylesheet">
    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.4.3/tinymce.min.js"></script>
-   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -52,7 +52,7 @@
   {% include('builder/nav.html') %}
 
 
-  {% include('builder/footer-nav.html') %}
+
 
 
       <form action="/builder/submit" id="form" method="post" enctype="multipart/form-data" style="background-color:#f5f3f2;">
@@ -91,7 +91,7 @@
 
 {% if box_items|length != 0 %}
   <script>
-  $('#collapse2').collapse("show")
+  $('#collapse2').collapse("show");
   </script>
 {% endif %}
 

@@ -50,7 +50,7 @@ $("#step4").on('click', '.next-btn', function() {
 $("#step5").on('click', '.next-btn', function() {
   $('.steps').hide();
   $('#step6').fadeIn('fast', function() {
-    
+
 });
   $('#crumb5').removeClass( "current");
   $('#crumb5').addClass( "touched");
@@ -92,6 +92,8 @@ $("#premade").click(function(){
   $("#next2").addClass("on")
  $("#premade").addClass("active");
   $("#custom").removeClass("active");
+  $('#custom').removeClass("checked");
+  $(this).addClass("checked");
 });
 
 $("#custom").click(function(){
@@ -99,6 +101,9 @@ $("#custom").click(function(){
   $("#next2").addClass("on")
  $("#premade").removeClass("active");
   $("#custom").addClass("active");
+  $('#premade').removeClass("checked");
+  $(this).addClass("checked");
+
 });
 
 $(".thumbnail .content").click(function(){

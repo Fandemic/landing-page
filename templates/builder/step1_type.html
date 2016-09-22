@@ -15,7 +15,7 @@
       <strong>or</strong>
     </div>
     <div class="col-xs-5">
-      <div id="premade" class="option">
+      <div id="premade" class="option" data-toggle="modal" data-target="#premade-selector">
         <h3>PREMADE BOX</h3>
          <img src="../static/img/gift.svg">
          <p class="light">Designed by our beauty experts</p>
@@ -29,4 +29,42 @@
                   next-btn" style="width: 300px;margin-top: 30px;">
     <strong>NEXT STEP</button>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="premade-selector" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header" style="background:#BA82AA;">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+
+                    </button>
+                     <h4 class="modal-title" id="myModalLabel" style="text-align:center;color:#fff;">Which Box Do You Like Most?</h4>
+
+                </div>
+                <div class="modal-body" style="text-align:center;">
+
+                    <!-- <h4 style="color:#9d9d9d;">Products</h4><br> -->
+                    <br>
+                    <img width="20%" style="margin-right:30px;" src="/static/img/sample_products/tanning-powder.jpg">
+                    <span class="plus"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>
+                    <img width="20%" src="/static/img/sample_products/liquid-lips.jpg">
+                    <span class="plus"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>
+                    <img width="20%" style="margin-left:30px;" src="/static/img/sample_products/fake-eyelashes.png">
+
+                    <br><hr>
+                    <!-- <h4 style="color:#9d9d9d;">Packaging</h4><br> -->
+                    <img width="30%" src="/static/img/packaging/box.png">
+                    <span class="plus"><i class="fa fa-plus-circle" aria-hidden="true"></i></span>
+                    <img width="20%" style="margin-left:30px;" src="/static/img/packaging/white.jpg">
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn">Use This Recipe</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
