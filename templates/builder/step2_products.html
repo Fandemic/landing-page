@@ -21,11 +21,14 @@
 
     {% for item in group.list %}
 
-    <div class="item-box" style="float:left;width:220px;height:285px;margin:5px;">
+    <div class="item-box"
+         style="float:left;width:220px;height:285px;margin:5px;">
+
           <div class="thumbnail" style="height:100%;width:100%">
 
 
-            <div class="content" style="cursor:pointer;width:100%;height:100%;">
+            <div class="content" style="cursor:pointer;width:100%;height:100%;"
+                 ng-click="toggle_product({name:'{{item.name}}',img_url:'{{item.img_url}}',cost:'{{item.cost}}' })">
 
                   {% if item.img_url[0] == "h" and  item.img_url[1] == "t" %}
                   <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="{{item.img_url}}" alt="">
@@ -108,15 +111,7 @@
 
 <div class="col-md-4">
 
-  <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;">
-   <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
-   <div class="panel-body" style="min-height:350px;text-align:center;">
-     <br><br>
-     <img width="40%" src="../static/img/empty-box.svg">
-     <h3 style="color:#adadad !important;">Your Box is Empty!<h3>
-     <h4 style="color:#adadad !important;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Try clicking a product</h4>
-   </div>
-  </div>
+  {% include('builder/summary.html') %}
 
   <button id="next-btn3" class="btn btn-primary btn-lg btn-nav
                   {% if cat == 'beauty' %}btn-beauty{% endif %}

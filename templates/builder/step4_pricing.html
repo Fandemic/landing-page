@@ -14,166 +14,101 @@
         </div>
       </div>-->
 
-       <input style="margin-top:60px;margin-bottom:60px;" type="range">
+       <input ng-model="box.price" ng-value="box.price" step="1" min="{a box.cost a}" max="{a box.cost+50 a}" style="margin-top:60px;margin-bottom:60px;" type="range">
 
 
 
         <div class="row" >
 
           <div>
-          <div class="col-md-5" style="margin-bottom:30px;">
+          <div class="col-md-12" style="margin-bottom:30px;">
+            <div class="row">
 
-            <div class="row" style="text-align:center;">
+            <div class="col-md-4" style="text-align:center;">
               <div class="panel panel-default">
 
                   <div class="panel-body">
-                <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:31px;"><span style="font-weight:700"> $29.99</span><br><span class="light">pre-order price</span></p>
+                <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:31px;"><span style="font-weight:700"> $<span ng-bind="box.price">29.99</span></span><br><span class="light">pre-order price</span></p>
               </div>
             </div>
           </div>
 
-          <div class="row" style="text-align:center;">
+          <div class="col-md-4" style="text-align:center;">
             <div class="panel panel-default">
 
                 <div class="panel-body">
-              <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:31px;"><span style="font-weight:700">$20.00</span><br><span class="light">manufacturing cost</span></p>
+              <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:31px;"><span style="font-weight:700">
+                $<span ng-bind="box.cost">20.00</span></span><br><span class="light">manufacturing cost</span>
+              </p>
             </div>
           </div>
         </div>
 
-        <div class="row" style="text-align:center;">
+        <div class="col-md-4" style="text-align:center;">
           <div class="panel panel-default">
 
               <div class="panel-body">
-            <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:31px;"><span style="font-weight:700" class="money" >$9.99</span><br><span class="light">your profit per box</span></p>
+            <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:31px;"><span style="font-weight:700" class="money" >$<span ng-bind="box.price-box.cost">9</span></span><br><span class="light">your profit per box</span></p>
           </div>
         </div>
       </div>
 
 
-
+    </div>
           </div>
 
-          <div class="col-md-7">
+          <!-- <div class="col-md-12">
 
             <table class="pure-table pure-table-horizontal" style="width:100%;font-size:25px;background:#fff;">
                <thead style="background:#fff;">
               <tr>
-                <th>Sell (boxes)</th>
-                <th>You Make</th>
+                <th>Sell</th>
+                <th>Make</th>
               </tr>
             </thead>
              <tbody>
               <tr>
                 <td>25</td>
-                <td class="money">$50</td>
+                <td class="money">$<span ng-bind="25*(box.price-box.cost)"></span></td>
               </tr>
               <tr>
                 <td>50</td>
-                <td class="money">$100</td>
+                <td class="money">$<span ng-bind="50*(box.price-box.cost)"></td>
               </tr>
               <tr>
                 <td>100</td>
-                <td class="money">$200</td>
+                <td class="money">$<span ng-bind="100*(box.price-box.cost)"></td>
               </tr>
               <tr>
                 <td>250</td>
-                <td class="money">$500</td>
+                <td class="money">$<span ng-bind="250*(box.price-box.cost)"></td>
               </tr>
               <tr>
                 <td>500</td>
-                <td class="money">$1000</td>
+                <td class="money">$<span ng-bind="500*(box.price-box.cost)"></td>
               </tr>
               <tr>
                 <td>750</td>
-                <td class="money">$1500</td>
+                <td class="money">$<span ng-bind="750*(box.price-box.cost)"></td>
               </tr>
               <tr>
                 <td>1000</td>
-                <td class="money">$2000</td>
+                <td class="money">$<span ng-bind="1000*(box.price-box.cost)"></td>
               </tr>
             </tbody>
             </table>
 
 
 
-          </div>
+          </div> -->
 
         </div>
 
         <hr>
 
-
-
-
-        <script>
-          var boxCost = 2.50;
-
-          $("input[name='price']").TouchSpin({
-            min: {{(box_items | sum(attribute = 'cost'))}} + 5 + boxCost,
-            max: 100.00,
-            initval: {{(box_items | sum(attribute = 'cost') * 2)}},
-            stepinterval: 1,
-            decimals: 2,
-            maxboostedstep: 1
-              //prefix: '$'
-          });
-
-
-          function precise_round(num, decimals) {
-            return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
-          }
-
-          function retailPricing() {
-            var retailVal = parseInt($('#demo2').val());
-            var totalCost = (boxCost + {{(box_items | sum(attribute = 'cost'))}})
-            var serviceFee = 5
-            var newProfit = precise_round(retailVal - totalCost - serviceFee, 2);
-            $('#retailVal').html(retailVal.toFixed(2));
-            $('#serviceFee').html(serviceFee.toFixed(2));
-            $('#boxCost').html(totalCost.toFixed(2));
-            $('#newProfit').html(newProfit);
-          };
-          //build profit on slider click
-          $(".bootstrap-touchspin").click(function() {
-            retailPricing();
-          });
-          //build profit on page load
-          $(document).ready(function() {
-            retailPricing();
-          })
-
-          $(document).keydown(function(e) {
-            switch (e.which) {
-              case 37: // left
-                retailPricing();
-                break;
-
-              case 38: // up
-                retailPricing();
-                break;
-
-              case 39: // right
-                retailPricing();
-                break;
-
-              case 40: // down
-                retailPricing();
-                break;
-
-              case 55: // down
-                retailPricing();
-                break;
-
-              default:
-                return; // exit this handler for other keys
-            }
-          });
-        </script>
-
       </div>
 
-
+        <h5 class="light">Based on previous campaigns "Beauty & The Blondie" could make up to $20,000 selling this box!</h5>
         <i class="light" style="text-align:center;margin-top:-15px;">Money is sent to you via bank transfer when your campaign is complete</i>
     </div>
 

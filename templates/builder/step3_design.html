@@ -14,18 +14,18 @@
         <div class="row" style="font-size:22px;color:#adadad;font-weight:300;">
           <div class="col-md-6">
             <label class="light" >Name of Your Brand</label>
-            <input type="text" class="form-control" style="font-size:22px;height:50px;font-weight:400;">
+            <input ng-value="box.brand_name" ng-modal="box.brand_name" type="text" class="form-control" style="font-size:22px;height:50px;font-weight:400;background-color: #F5F3F2;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
           </div>
           <div class="col-md-6">
             <label class="light" >Name Your Box</label>
-            <input type="text" class="form-control" style="font-size:22px;height:50px;font-weight:400;">
+            <input ng-value="box.box_name" ng-modal="box.box_name" type="text" class="form-control" style="font-size:22px;height:50px;font-weight:400;background-color: #F5F3F2;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
           </div>
         </div>
         <br>
           <div class="row" style="font-size:22px;color:#adadad;font-weight:300;">
             <div class="col-md-6">
               <label class="light" >Choose a font</label>
-              <select name="cars" class="form-control" style="font-size:22px;height:50px;font-weight:400;">
+              <select name="cars" class="form-control" style="font-size:22px;height:50px;font-weight:400;background-color: #F5F3F2;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
                 <option value="volvo" style="font-family: 'Oregano', cursive;">Beauty & The Blondie</option>
                 <option value="saab" style="font-family: 'Kaushan Script', cursive;">Beauty & The Blondie</option>
                 <option value="fiat" style="font-family: 'Petit Formal Script', cursive;">Beauty & The Blondie</option>
@@ -193,54 +193,7 @@
 
   <div class="col-md-4">
 
-    <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;">
-     <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
-     <div class="panel-body" style="min-height:450px;">
-
-        <h4>Products</h4>
-        <hr>
-
-        <div class="row">
-          <div class="col-xs-4" style="text-align:center;">
-
-               <img width="100%" src="../static/img/sample_products/fake-eyelashes.png">
-               <p class="light" style="margin-top:5px;"><strong>Eyelashes</strong> <br> <span style="font-size:.8em">Party Girl</span></p>
-
-          </div>
-          <div class="col-xs-4" style="display:table;height:130px;text-align:center;">
-            <img width="100%" src="http://www.ladyburd.com/packaging/Spring-blush-per-pkg.jpg">
-            <p class="light" style="margin-top:5px;"><strong>Blush</strong> <br> <span style="font-size:.8em">Opal of my Eye</span></p>
-          </div>
-          <div class="col-xs-4" style="text-align:center;">
-            <img width="100%" src="http://www.ladyburd.com/packaging/36bbpkgmn.jpg">
-            <p class="light" style="margin-top:5px;"><strong>Lipstick</strong> <br> <span style="font-size:.8em">Crimson Red</span></p>
-          </div>
-        </div>
-
-
-       <h4>Packaging</h4>
-       <hr>
-
-       <div class="row">
-         <div class="col-xs-5" style="text-align:center;">
-
-              <img width="100%" src="../static/img/packaging/box.png">
-              <p class="light" style="margin-top:5px;">Box Style</p>
-
-         </div>
-         <div class="col-xs-2" style="display:table;height:130px;">
-           <strong style="font-size:1.8em;display: table-cell; vertical-align: middle;color:#ebebeb;"><i class="fa fa-plus-circle" aria-hidden="true"></i></strong>
-         </div>
-         <div class="col-xs-5" style="text-align:center;">
-
-              <img  width="100%" src="../static/img/question-mark.svg">
-              <p class="light" style="margin-top:5px;">Packaging</p>
-
-         </div>
-       </div>
-
-     </div>
-    </div>
+    {% include('builder/summary.html') %}
 
     <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                     {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">Next Step: details</button>

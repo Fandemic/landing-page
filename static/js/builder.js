@@ -1,3 +1,68 @@
+var app = angular.module("app", []);
+
+app.config(['$interpolateProvider', function($interpolateProvider) {
+  $interpolateProvider.startSymbol('{a');
+  $interpolateProvider.endSymbol('a}');
+}]);
+
+app.controller("builder", function($scope) {
+
+    //box template
+    $scope.box = {
+      brand_name: 'Brandon',
+      box_name: 'Opal of my Eye',
+      description: null,
+      cost: 0,
+      price: 20,
+      products: [],
+      packaging: []
+    }
+
+    //Takes a product object and adds it to the box
+    $scope.toggle_product = function(product){
+
+      index = -1;
+
+      for (i in $scope.box.products){
+        if ($scope.box.products[i].name == product.name){
+          index = i;
+        }
+      }
+
+      if (index >= 0){
+         $scope.box.products.splice(index, 1);
+         $scope.box.cost -= parseInt(product.cost);
+         $scope.box.price = $scope.box.cost * 2;
+      }
+
+      else if ($scope.box.products.length >= 6){
+        alert('We only allow 6 items total per box!');
+      }
+
+      else{
+        $scope.box.products.push(product);
+        $scope.box.cost += parseInt(product.cost);
+        $scope.box.price = $scope.box.cost * 2;
+      }
+
+    }
+
+    //Toggles the packaging color or material depending
+    //on the packaging dictionary variable
+    $scope.togglePackaging = function(packaging){
+
+    }
+
+});
+
+
+
+
+
+
+
+
+
 //NAVIGATION
 $("#step1").on('click', '.next-btn', function() {
   $('.steps').hide();
@@ -112,7 +177,7 @@ $(".thumbnail .content").click(function(){
 
   $(this).toggleClass("checked");
 
-  $.notify("Product Added To Box", { position:"bottom center",className:"success" });
+  $.notify("Product Added To Box", { position:"top right",className:"success" });
 });
 
 //story wsywig editor

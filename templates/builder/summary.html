@@ -1,0 +1,53 @@
+<div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;">
+ <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
+ <div class="panel-body" style="min-height:350px;text-align:center;">
+
+   <div ng-if="box.products.length == 0">
+           <br><br>
+           <img width="40%" src="../static/img/empty-box.svg">
+           <h3 style="color:#adadad !important;">Your Box is Empty!<h3>
+           <h4 style="color:#adadad !important;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Try clicking a product</h4>
+   </div>
+
+   <div ng-if="box.products.length > 0">
+           <h4>Products</h4>
+           <hr>
+
+           <div class="row">
+             <div class="col-xs-4" style="text-align:center;" ng-repeat="product in box.products">
+
+                  <img width="100%" src="/static/img/sample_products/{a product.img_url a}">
+                  <p class="light" style="margin-top:5px;"><strong>{a product.name a}</strong> <br> <span style="font-size:.8em">Party Girl</span></p>
+
+             </div>
+
+           </div>
+   </div>
+
+   <div ng-if="box.packaging.length > 0">
+           <h4>Packaging</h4>
+           <hr>
+
+           <div class="row">
+             <div class="col-xs-5" style="text-align:center;">
+
+                  <img width="100%" src="../static/img/packaging/box.png">
+                  <p class="light" style="margin-top:5px;">Box Style</p>
+
+             </div>
+             <div class="col-xs-2" style="display:table;height:130px;">
+               <strong style="font-size:1.8em;display: table-cell; vertical-align: middle;color:#ebebeb;">
+                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
+               </strong>
+             </div>
+             <div class="col-xs-5" style="text-align:center;">
+
+                  <img  width="100%" src="../static/img/question-mark.svg">
+                  <p class="light" style="margin-top:5px;">Packaging</p>
+
+             </div>
+           </div>
+         </div>
+
+ </div>
+</div>
