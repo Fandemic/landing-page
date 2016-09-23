@@ -910,3 +910,46 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #59beaa;
 }
+
+.sticker {
+        width: 60%;
+        height: 60%;
+        margin: 0 auto;
+        float:center;
+    }
+
+
+    .example-1 .sticker-img {
+        background-image: url(heroes-2.png);
+    }
+
+
+    .example-2 .sticker-img {
+        background-color: rgba(0 , 0, 0, 0.8);;
+    }
+
+
+    .example-2 .sticker-shadow {
+        opacity: 0.6;
+    }
+
+.label{
+  position:relative;
+  text-align: center;
+  margin: 0 auto;
+  color: #1d1d1d;
+  font-size: 1.8em;
+  font-weight: 300;
+}
+.box-brand{
+  text-align: center;
+  display:block;
+  margin-bottom: 15px;
+
+}
+
+.box-name{
+  text-align:center;
+  display:block;
+  font-size:.6em !important;
+}

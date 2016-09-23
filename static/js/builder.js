@@ -9,14 +9,17 @@ app.controller("builder", function($scope) {
 
     //box template
     $scope.box = {
-      brand_name: 'Brandon',
-      box_name: 'Opal of my Eye',
+      brand_name: 'Beauty & The Blondie',
+      box_name: 'GLOW FROM THE GODS',
       description: null,
       cost: 0,
       price: 20,
       products: [],
       packaging: []
     }
+
+    //checks if a product is in the users box
+
 
     //Takes a product object and adds it to the box
     $scope.toggle_product = function(product){
@@ -33,6 +36,7 @@ app.controller("builder", function($scope) {
          $scope.box.products.splice(index, 1);
          $scope.box.cost -= parseInt(product.cost);
          $scope.box.price = $scope.box.cost * 2;
+         $.notify(product.name + " Successfully Removed From Box", { position:"top right",className:"success" });
       }
 
       else if ($scope.box.products.length >= 6){
@@ -43,6 +47,7 @@ app.controller("builder", function($scope) {
         $scope.box.products.push(product);
         $scope.box.cost += parseInt(product.cost);
         $scope.box.price = $scope.box.cost * 2;
+        $.notify(product.name + " Successfully Added to Box", { position:"top right",className:"success" });
       }
 
     }
@@ -85,6 +90,7 @@ $("#step2").on('click', '.next-btn', function() {
   $('#crumb3').addClass('current');
   $("#next4").addClass("on");
   $("html, body").animate({ scrollTop: 76 }, "slow");
+  Sticker.init('.sticker');
 });
 
 $("#step3").on('click', '.next-btn', function() {
@@ -177,7 +183,6 @@ $(".thumbnail .content").click(function(){
 
   $(this).toggleClass("checked");
 
-  $.notify("Product Added To Box", { position:"top right",className:"success" });
 });
 
 //story wsywig editor

@@ -1,0 +1,72 @@
+<div id="step4" class="steps container" style="margin-top:60px;display:none;">
+
+
+
+    <div class="row">
+    <div class="col-md-8">
+
+      <h3 class="subtitle">Design your label</h3>
+
+        <div class="row" style="font-size:22px;color:#adadad;font-weight:300;">
+          <div class="col-md-4">
+            <label class="light" >Brand Name</label>
+            <input ng-value="box.brand_name" ng-model="box.brand_name" type="text" class="form-control" style="font-size:20px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+
+
+            <label class="light" >Box Name</label>
+            <input ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control" style="font-size:20px;height:40px;font-weight:400;;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+
+            <hr>
+
+            <label class="light" >Primary Font</label>
+            <select name="cars" class="form-control" style="font-size:20px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+              <option value="volvo" style="font-family: 'Oregano', cursive;">Beauty & The Blondie</option>
+              <option value="saab" style="font-family: 'Kaushan Script', cursive;">Beauty & The Blondie</option>
+              <option value="fiat" style="font-family: 'Petit Formal Script', cursive;">Beauty & The Blondie</option>
+              <option value="audi">Audi</option>
+            </select>
+
+
+            <label class="light" >Secondary Font</label>
+            <select name="cars" class="form-control" style="font-size:20px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+              <option value="volvo" style="font-family: 'Oregano', cursive;">Beauty & The Blondie</option>
+              <option value="saab" style="font-family: 'Kaushan Script', cursive;">Beauty & The Blondie</option>
+              <option value="fiat" style="font-family: 'Petit Formal Script', cursive;">Beauty & The Blondie</option>
+              <option value="audi">Audi</option>
+            </select>
+
+          </div>
+
+          <div class="col-md-8">
+            <div class="label">
+            <span class="box-brand" ng-bind="box.brand_name"></span>
+            <span class="box-name" ng-bind="box.box_name"></span>
+          </div>
+          </div>
+        </div>
+
+
+      <br><br><br>
+
+  </div>
+
+  <div class="col-md-4">
+
+    {% include('builder/summary.html') %}
+
+    <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                    {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">Next Step: details</button>
+
+  </div>
+
+
+
+</div>
+
+  <br><br><br>
+
+    <!--<button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                    {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i  class="fa fa-angle-double-left arrow" aria-hidden="true"></i> Go Back</button>-->
+
+
+</div>
