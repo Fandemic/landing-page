@@ -54,6 +54,10 @@ def toString(l):
 @app.route('/builder/<cat>/<cat2>/<cat3>')
 def catalog(cat=None,cat2=None,cat3=None):
 
+    #get the box styles and packaging material
+    styles = db.design.find({"category":"box"})
+    packaging = db.design.find({"category":"packaging"})
+
     box_items = []
 
     if request.cookies.get('box') is not None:
@@ -78,7 +82,7 @@ def catalog(cat=None,cat2=None,cat3=None):
             else:
                 items = db.items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3}) #find the star
 
-    return render_template('builder.html', items=list(items), box_items=list(box_items),cat=cat,cat2=cat2,cat3=cat3)
+    return render_template('builder.html', items=list(items), box_items=list(box_items),styles=styles,packaging=packaging,cat=cat,cat2=cat2,cat3=cat3)
 
 
 @app.route('/builder/add/<sku>')

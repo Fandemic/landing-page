@@ -13,6 +13,7 @@
 
       <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
 
+      {% for style in styles %}
       <div class="carousel-cell item-box">
         <div class="thumbnail" style="height:100%;width:100%">
 
@@ -20,11 +21,11 @@
           <div class="content" style="cursor:pointer;width:100%;height:100%;">
 
 
-                <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
+                <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/{{style.img}}" alt="">
 
                 <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
-              <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Solid Color</h5>
+              <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">{{style.name}}</h5>
 
             </div>
 
@@ -32,46 +33,7 @@
 
           </div>
       </div>
-
-      <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%">
-
-
-          <div class="content" style="cursor:pointer;width:100%;height:100%;">
-
-
-                <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box-multi.png" alt="">
-
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
-
-              <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Multi Color</h5>
-
-            </div>
-
-
-
-          </div>
-      </div>
-
-      <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%">
-
-
-          <div class="content" style="cursor:pointer;width:100%;height:100%;">
-
-
-                <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box-patterned.png" alt="">
-
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
-
-              <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Patterned</h5>
-
-            </div>
-
-
-
-          </div>
-      </div>
+      {% endfor %}
 
       </div>
       <!-- end of box design -->
@@ -86,6 +48,7 @@
 
       <div class="carousel" data-flickity='{ "initialIndex": 1 }'>
 
+      {% for material in packaging %}
       <div class="carousel-cell item-box">
         <div class="thumbnail" style="height:100%;width:100%">
 
@@ -93,11 +56,11 @@
           <div class="content" style="cursor:pointer;width:100%;height:100%;">
 
 
-                <img class="product-img" style="width:80%;padding:10px;"  src="/static/img/packaging/white.jpg" alt="">
+                <img class="product-img" style="width:80%;padding:10px;"  src="/static/img/packaging/{{material.img}}" alt="">
 
                 <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
-              <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">White Shredded Paper</h5>
+              <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">{{material.name}}</h5>
 
             </div>
 
@@ -105,46 +68,8 @@
 
           </div>
       </div>
+      {% endfor %}
 
-      <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%">
-
-
-          <div class="content" style="cursor:pointer;width:100%;height:100%;">
-
-
-                <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
-
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
-
-              <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Multi Color</h5>
-
-            </div>
-
-
-
-          </div>
-      </div>
-
-      <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%">
-
-
-          <div class="content" style="cursor:pointer;width:100%;height:100%;">
-
-
-                <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/box.png" alt="">
-
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
-
-              <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">Patterned</h5>
-
-            </div>
-
-
-
-          </div>
-      </div>
 
       </div>
       <!-- end of box packaging -->
