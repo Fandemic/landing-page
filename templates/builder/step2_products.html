@@ -28,22 +28,20 @@
 
 
             <div class="content" style="cursor:pointer;width:100%;height:100%;"
-                 ng-click="toggle_product({name:'{{item.name}}',img_url:'{{item.img_url}}',cost:'{{item.cost}}' })">
+                 ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}',cost:'{{item.cost}}' })">
 
-                  {% if item.img_url[0] == "h" and  item.img_url[1] == "t" %}
-                  <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="{{item.img_url}}" alt="">
-                  {% else %}
-                  <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="/static/img/sample_products/{{item.img_url}}" alt="">
-                  {% endif %}
+
+                  <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="/static/img/beauty-items/{{item.item_num}}.jpg" alt="">
+
                   <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
 
                 <h5 class="title">{{item.name}}</h5>
 
               </div>
 
-                <span class="cost">+${{item.cost}}</span>
+                <span class="cost">+${{item.price|round|int}}</span>
                 <div class="group" style="width: 100%; position: absolute;bottom:0px;">
-                  <a class="btn btn-details" style="background:#ddd;color:#9d9d9d;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{{ item.sku|replace(' ', '-') }}">VIEW DETAILS</a>
+                  <a class="btn btn-details" style="background:#ddd;color:#9d9d9d;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}">VIEW DETAILS</a>
 
                 </div>
             </div>
@@ -56,7 +54,7 @@
 
     {% for item in group.list %}
     <!--DETAILS MODAL-->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.sku|replace(' ', '-') }}">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}">
 
       <div class="modal-dialog modal-lg">
         <div class="modal-content" style="padding:30px;padding-bottom:16px;">
@@ -69,11 +67,9 @@
             <div class="col-md-5">
               <div class="zoomable">
 
-                  {% if item.img_url[0] == "h" and  item.img_url[1] == "t" %}
-                  <img class="img-responsive" src="{{item.img_url}}" alt="">
-                  {% else %}
-                  <img class="img-responsive" src="/static/img/sample_products/{{item.img_url}}" alt="">
-                  {% endif %}
+
+                  <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="/static/img/beauty-items/{{item.item_num}}.jpg" alt="">
+
 
               </div>
             </div>
@@ -85,7 +81,7 @@
               <p>{{item.description}}</p>
               <br>
 
-              <p style="color:green;font-weight:600;">Manfuacturing Cost: {{item.cost}}</p>
+              <p style="color:green;font-weight:600;">Manfuacturing Cost: {{item.price|round|int}}</p>
               <br>
 
             </div>

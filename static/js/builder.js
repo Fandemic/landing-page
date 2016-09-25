@@ -34,7 +34,7 @@ app.controller("builder", function($scope) {
 
       if (index >= 0){
          $scope.box.products.splice(index, 1);
-         $scope.box.cost -= parseInt(product.cost);
+         $scope.box.cost -= parseInt(product.price);
          $scope.box.price = $scope.box.cost * 2;
          $.notify(product.name + " Successfully Removed From Box", { position:"top right",className:"success" });
       }
@@ -45,7 +45,7 @@ app.controller("builder", function($scope) {
 
       else{
         $scope.box.products.push(product);
-        $scope.box.cost += parseInt(product.cost);
+        $scope.box.cost += parseInt(product.price);
         $scope.box.price = $scope.box.cost * 2;
         $.notify(product.name + " Successfully Added to Box", { position:"top right",className:"success" });
       }
@@ -156,26 +156,6 @@ $("#crumbs").on('click', '.crumb', function() {
     $(this).addClass('current');
 });
 
-
-//PART 1 - premade or custom
-$("#premade").click(function(){
-
-  $("#next2").addClass("on")
- $("#premade").addClass("active");
-  $("#custom").removeClass("active");
-  $('#custom').removeClass("checked");
-  $(this).addClass("checked");
-});
-
-$("#custom").click(function(){
-
-  $("#next2").addClass("on")
- $("#premade").removeClass("active");
-  $("#custom").addClass("active");
-  $('#premade').removeClass("checked");
-  $(this).addClass("checked");
-
-});
 
 $(".thumbnail .content").click(function(){
 
