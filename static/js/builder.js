@@ -15,7 +15,8 @@ app.controller("builder", function($scope) {
       cost: 0,
       price: 20,
       products: [],
-      packaging: []
+      style: null,
+      material: null
     }
 
     //checks if a product is in the users box
@@ -54,7 +55,32 @@ app.controller("builder", function($scope) {
 
     //Toggles the packaging color or material depending
     //on the packaging dictionary variable
-    $scope.togglePackaging = function(packaging){
+    $scope.toggleStyle = function(style){
+
+      if ($scope.box.style == null){
+        $scope.box.style = style;
+      }
+      else if ($scope.box.style.name == style.name){
+        $scope.box.style = null;
+      }
+      else{
+        $scope.box.style = style;
+      }
+      
+    }
+
+    //
+    $scope.toggleMaterial = function(material){
+
+      if ($scope.box.material == null){
+        $scope.box.material = material;
+      }
+      else if ($scope.box.material.name == material.name){
+        $scope.box.material = null;
+      }
+      else{
+        $scope.box.material = material;
+      }
 
     }
 
