@@ -32,7 +32,7 @@
            </div>
    </div>
 
-   <div ng-if="box.material">
+   <div ng-if="box.style || box.material">
            <h4>Packaging</h4>
            <hr>
 
@@ -57,7 +57,12 @@
              <div class="col-xs-5" style="text-align:center;">
 
 
-                  <img  width="100%" src="../static/img/packaging/{a box.material.img a}">
+               <div ng-if="box.material == null">
+                 <img width="100%" src="../static/img/question-mark.svg">
+               </div>
+               <div ng-if="box.material != null">
+                 <img  width="100%" src="../static/img/packaging/{a box.material.img a}">
+               </div>
                   <p class="light" style="margin-top:5px;">Material</p>
 
              </div>
