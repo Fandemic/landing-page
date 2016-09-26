@@ -27,8 +27,15 @@
           <div class="thumbnail" style="height:100%;width:100%">
 
 
-            <div class="content" style="cursor:pointer;width:100%;height:100%;"
-                 ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}',cost:'{{item.price}}' })">
+            <div class="content"
+                {% if item.variation|length > 0 %}
+                 data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}-variation"
+                {% endif %}
+                {% if item.variation|length == 0 %}
+                 ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}',cost:'{{item.price}}' })"
+                {% endif %}
+                style="cursor:pointer;width:100%;height:100%;"
+                >
 
 
                   <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="/static/img/beauty-items/{{item.item_num}}.png" alt="">
@@ -40,6 +47,9 @@
               </div>
 
                 <span class="cost">+${{item.price|round|int}}</span>
+                {% if item.variation|length > 0 %}
+                <img class="color-palette" src="/static/img/color-palette.svg">
+                {% endif %}
                 <div class="group" style="width: 100%; position: absolute;bottom:0px;">
                   <a class="btn btn-details" style="background:#ddd;color:#9d9d9d;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}">VIEW DETAILS</a>
 
@@ -53,6 +63,34 @@
     </div>
 
     {% for item in group.list %}
+
+    <!-- variations modal -->
+    {% if item.variation|length > 0 %}
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}-variation">
+
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="padding:30px;padding-bottom:16px;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+            <h2 style="text-align:center;">Choose a Color!</h2><hr>
+
+              {% for v in item.variation %}
+              <div style="display:inline-block;padding:15px;text-align:center;float:center;"
+                    ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
+                    data-dismiss="modal">
+                <img width="200px" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
+                <p class="light">{{v.name}}</p>
+              </div>
+              {% endfor %}
+
+
+      </div>
+    </div>
+  </div>
+    {% endif %}
+
     <!--DETAILS MODAL-->
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}">
 

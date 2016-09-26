@@ -19,6 +19,8 @@ app.controller("builder", function($scope) {
       material: null
     }
 
+    $scope.step = 1;
+
     //checks if a product is in the users box
 
 
@@ -28,14 +30,19 @@ app.controller("builder", function($scope) {
       index = -1;
 
       for (i in $scope.box.products){
-        if ($scope.box.products[i].name == product.name){
+        if (product.variation){
+          if ( ($scope.box.products[i].name == product.name) && ($scope.box.products[i].variation == product.variation)){
+            index = i;
+          }
+        }
+        else if ($scope.box.products[i].name == product.name){
           index = i;
         }
       }
 
       if (index >= 0){
          $scope.box.products.splice(index, 1);
-         $scope.box.cost -= parseInt(product.price);
+         $scope.box.cost -= parseInt(product.cost);
          $scope.box.price = $scope.box.cost * 2;
          $.notify(product.name + " Successfully Removed From Box", { position:"top right",className:"success" });
       }
@@ -46,7 +53,7 @@ app.controller("builder", function($scope) {
 
       else{
         $scope.box.products.push(product);
-        $scope.box.cost += parseInt(product.price);
+        $scope.box.cost += parseInt(product.cost);
         $scope.box.price = $scope.box.cost * 2;
         $.notify(product.name + " Successfully Added to Box", { position:"top right",className:"success" });
       }
@@ -66,7 +73,7 @@ app.controller("builder", function($scope) {
       else{
         $scope.box.style = style;
       }
-      
+
     }
 
     //
@@ -182,7 +189,7 @@ $("#crumbs").on('click', '.crumb', function() {
     $(this).addClass('current');
 });
 
-
+/*
 $(".thumbnail .content").click(function(){
 
   $("#next3").addClass("on")
@@ -190,6 +197,7 @@ $(".thumbnail .content").click(function(){
   $(this).toggleClass("checked");
 
 });
+*/
 
 //story wsywig editor
 tinymce.init({

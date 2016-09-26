@@ -330,6 +330,16 @@ a:focus {
    padding:6px;
   }
 
+  .thumbnail .color-palette{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    opacity: .5;
+    width: 30px;
+   height: 30px;
+   padding:4px;
+  }
+
 .thumbnail .title{
   text-align: center;
   color: #7d7d7d;
