@@ -10,13 +10,13 @@
 
       <ul class="nav nav-tabs">
         {% for group in items | groupby('sub-category')%}
-        <li {% if group.grouper == 'cheeks' %}class="active"{% endif %}><a data-toggle="tab" href="#{{group.grouper}}">{{group.grouper | upper}}</a></li>
+        <li {% if group.grouper == 'Eyes' %}class="active"{% endif %}><a data-toggle="tab" href="#{{group.grouper}}">{{group.grouper | upper}}</a></li>
         {% endfor %}
       </ul>
 
     <div class="tab-content">
     {% for group in items | groupby('sub-category')%}
-    <div id="{{group.grouper}}" class="tab-pane fade in {% if group.grouper == 'cheeks' %}active{% endif %}">
+    <div id="{{group.grouper}}" class="tab-pane fade in {% if group.grouper == 'Eyes' %}active{% endif %}">
 
 
     {% for item in group.list %}
@@ -27,7 +27,7 @@
           <div class="thumbnail" style="height:100%;width:100%">
 
 
-            <div class="content"
+            <div class="content clickable"
                 {% if item.variation|length > 0 %}
                  data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}-variation"
                 {% endif %}
@@ -69,21 +69,24 @@
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}-variation">
 
       <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="padding:30px;padding-bottom:16px;">
+        <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:800px;">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
 
-            <h2 style="text-align:center;">Choose a Color!</h2><hr>
+            <h2 class="subtitle" style="text-align:center;">Choose a {{ item.name }} Color!</h2><hr>
 
+              <div style="float:center;">
               {% for v in item.variation %}
-              <div style="display:inline-block;padding:15px;text-align:center;float:center;"
+              <div  class="clickable"
+                    style="display:inline-block;padding:15px;text-align:center;"
                     ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
                     data-dismiss="modal">
                 <img width="200px" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
                 <p class="light">{{v.name}}</p>
               </div>
               {% endfor %}
+            </div>
 
 
       </div>
