@@ -948,9 +948,27 @@ input[type=range]:focus::-ms-fill-upper {
   text-align: center;
   margin: 0 auto;
   color: #1d1d1d;
-  font-size: 1.8em;
+  font-size: 1.6em;
   font-weight: 300;
 }
+
+.label2{
+  position: absolute;
+text-align: center;
+margin: 0 auto;
+color: #fff;
+top: 35%;
+left: 0;
+  right: 0;
+  margin: 0 auto;
+font-size: .9em;
+font-weight: 400;
+line-height: .4;
+-ms-transform: skew(-50deg, 11deg);
+-webkit-transform: skew(-50deg, 11deg);
+transform: skew(-50deg, 11deg);
+}
+
 .box-brand{
   text-align: center;
   display:block;
@@ -961,7 +979,19 @@ input[type=range]:focus::-ms-fill-upper {
 .box-name{
   text-align:center;
   display:block;
-  font-size:.6em !important;
+  font-size:.4em !important;
+}
+
+.circle-sticker{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height:auto;
+  z-index: 1;
+  color: rgba(130, 130, 130, 0.5);
+  text-align: center;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .range-labels {
