@@ -23,7 +23,9 @@
 
                 <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/{{style.img}}" alt="">
 
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+                <span ng-if="box.style.name=='{{style.name}}'">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
 
               <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">{{style.name}}</h5>
 
@@ -56,11 +58,13 @@
           <div class="content" ng-click="toggleMaterial({name:'{{material.name}}',img:'{{material.img}}'})" style="cursor:pointer;width:100%;height:100%;">
 
 
-                <img class="product-img" style="width:80%;padding:10px;"  src="/static/img/packaging/{{material.img}}" alt="">
+                <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/{{material.img}}" alt="">
 
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+                <span ng-if="box.material.name=='{{material.name}}'">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
 
-              <h5 class="title" style="font-size:25px;bottom:30px;color:#999;">{{material.name}}</h5>
+              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">{{material.name}}</h5>
 
             </div>
 
