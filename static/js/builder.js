@@ -91,6 +91,21 @@ app.controller("builder", function($scope) {
 
     }
 
+    $('.sample-order').on('click', function(e) {
+      // Open Checkout with further options
+      handler.open({
+      name: 'PRODUCT SAMPLE REQUEST',
+      description: '$'+ $scope.box.cost.toString() + ' + ' + ' $5(shipping) = ' + ($scope.box.cost + 5).toString() ,
+      zipCode: true,
+      billingAddress: true,
+      shippingAddress: true,
+      allowRememberMe: true,
+      panelLabel: "Pay",
+      amount: ($scope.box.cost + 5) * 100
+      });
+      e.preventDefault();
+    });
+
 });
 
 
@@ -300,20 +315,6 @@ token: function(token,args) {
 }
 });
 
-$('.sample-order').on('click', function(e) {
-  // Open Checkout with further options
-  handler.open({
-  name: 'SAMPLE COST',
-  description: '$30 for the headband',
-  zipCode: true,
-  billingAddress: true,
-  shippingAddress: true,
-  allowRememberMe: true,
-  panelLabel: "Pay",
-  amount: 3000
-  });
-  e.preventDefault();
-});
 
 var windw = this;
 
