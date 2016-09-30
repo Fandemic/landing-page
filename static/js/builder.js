@@ -349,3 +349,26 @@ $(document).ready(function() {
 
 
    });
+
+
+//slider testvar range = document.getElementById('range');
+
+var range = document.getElementById('range');
+
+var range_all_sliders = {
+	'min': [     20 ],
+	'10%': [   20,  25 ],
+	'50%': [  50, 30 ],
+	'max': [ 100 ]
+};
+
+noUiSlider.create(range, {
+	range: range_all_sliders,
+	start: 30,
+	pips: {
+		mode: 'values',
+		values: [20, 30, 50, 70, 90],
+		density: 2,
+		stepped: true
+	}
+});
