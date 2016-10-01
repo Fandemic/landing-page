@@ -106,8 +106,82 @@ app.controller("builder", function($scope) {
       e.preventDefault();
     });
 
-});
 
+    //BUTTON FUNCTIONS
+    $scope.step_2 = function(){
+
+      //check for at least 1 item
+      if ($scope.box.products.length == 0){
+        BootstrapDialog.show({
+         title: 'Alert!',
+           message: 'Please add <strong>at least one</strong> beauty product to your box &#128516;',
+           buttons: [{
+             cssClass: 'btn-success',
+             label: 'OK',
+               action: function(dialog) {
+                 dialog.close();
+               }
+           }]
+        });
+      }
+
+      else{
+        $('.steps').hide();
+        $('#step3').fadeIn('fast', function() {
+          $(".carousel").flickity('resize');
+        });
+          $('#crumb2').removeClass( "current");
+          $('#crumb2').addClass( "touched");
+          $('#crumb3').addClass('current');
+          $("#next4").addClass("on");
+          $("html, body").animate({ scrollTop: 76 }, "slow");
+          Sticker.init('.sticker');
+        }
+      }
+
+      $scope.step_3 = function(){
+
+        //check for at least 1 item
+        if ($scope.box.style == null){
+          BootstrapDialog.show({
+           title: 'Alert!',
+             message: 'Please select a <strong>box style</strong>. This is what your beauty products will ship in! &#128516;',
+             buttons: [{
+               cssClass: 'btn-success',
+               label: 'OK',
+                 action: function(dialog) {
+                   dialog.close();
+                 }
+             }]
+          });
+        }
+        else if ($scope.box.material == null){
+          BootstrapDialog.show({
+           title: 'Alert!',
+             message: 'Please select a <strong>packaging material</strong>. This goes inside your box, makes it look nice, and protects the products! &#128516;',
+             buttons: [{
+               cssClass: 'btn-success',
+               label: 'OK',
+                 action: function(dialog) {
+                   dialog.close();
+                 }
+             }]
+          });
+        }
+        else{
+          $('.steps').hide();
+          $('#step4').fadeIn('fast', function() {
+
+          });
+            $('#crumb3').removeClass( "current");
+            $('#crumb3').addClass( "touched");
+            $('#crumb4').addClass('current');
+            $("#next5").addClass("on");
+            $("html, body").animate({ scrollTop: 76 }, "slow");
+          }
+        }
+
+});
 
 
 
@@ -128,31 +202,7 @@ $("#step1").on('click', '.next-btn', function() {
   $("html, body").animate({ scrollTop: 76 }, "slow");
 });
 
-$("#step2").on('click', '.next-btn', function() {
-  $('.steps').hide();
-  $('#step3').fadeIn('fast', function() {
-    $(".carousel").flickity('resize');
-});
-  $('#crumb2').removeClass( "current");
-  $('#crumb2').addClass( "touched");
-  $('#crumb3').addClass('current');
-  $("#next4").addClass("on");
-  $("html, body").animate({ scrollTop: 76 }, "slow");
-  Sticker.init('.sticker');
-});
 
-$("#step3").on('click', '.next-btn', function() {
-  $('.steps').hide();
-  $('#step4').fadeIn('fast', function() {
-
-});
-  $('#crumb3').removeClass( "current");
-  $('#crumb3').addClass( "touched");
-  $('#crumb4').addClass('current');
-  $("#next5").addClass("on");
-  $("html, body").animate({ scrollTop: 76 }, "slow");
-  //$(".carousel").flickity('resize');
-});
 
 $("#step4").on('click', '.next-btn', function() {
   $('.steps').hide();
@@ -350,26 +400,3 @@ $(document).ready(function() {
 
 
    });
-
-
-//slider testvar range = document.getElementById('range');
-
-var range = document.getElementById('range');
-
-var range_all_sliders = {
-	'min': [     20 ],
-	'10%': [   20,  25 ],
-	'50%': [  50, 30 ],
-	'max': [ 100 ]
-};
-
-noUiSlider.create(range, {
-	range: range_all_sliders,
-	start: 30,
-	pips: {
-		mode: 'values',
-		values: [20, 30, 50, 70, 90],
-		density: 2,
-		stepped: true
-	}
-});
