@@ -8,6 +8,10 @@
 
       <img class="material" src="/static/img/packaging/{a box.material.img a}">
 
+      <div ng-repeat="p in box.products">
+        <img style="width:100px;position:absolute;left:100px;" src="/static/img/beauty-items/{a p.item_num a}.png">
+      </div>
+
       <div style="position:absolute;z-index:10;">
         <div class="label2">
           <span class="box-brand" ng-bind="box.brand_name" style="{a font1 a}"></span>
@@ -17,6 +21,7 @@
       </div>
 
     </div>
+
     <div class="col-xs-4">
 
       <div id="custom" class="option2 sample-order row" data-dismiss="modal" href="#">
@@ -32,7 +37,7 @@
 
       </div>
       <br><br>
-      <div id="premade" class="option2 sample-order row" data-dismiss="modal" href="#">
+      <div id="premade" class="option2 row" data-toggle="modal" data-target="#launch-store-modal">
         <div class="col-xs-4" style="padding:20px;">
           <img src="../static/img/rocket.svg">
         </div>
