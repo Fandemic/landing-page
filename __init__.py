@@ -52,7 +52,8 @@ def toString(l):
 @app.route('/builder/<cat>')
 @app.route('/builder/<cat>/<cat2>')
 @app.route('/builder/<cat>/<cat2>/<cat3>')
-def catalog(cat=None,cat2=None,cat3=None):
+@mobile_template('{mobile/}builder.html')
+def catalog(template,cat=None,cat2=None,cat3=None):
 
     #get the box styles and packaging material
     styles = db.design.find({"category":"box"})
@@ -86,7 +87,7 @@ def catalog(cat=None,cat2=None,cat3=None):
     for item in items:
         item['price'] = int(round( item['price'] + (item['price'] * .3) ))
 
-    return render_template('builder.html', items=list(items), box_items=list(box_items),styles=styles,packaging=packaging,cat=cat,cat2=cat2,cat3=cat3)
+    return render_template(template, items=list(items), box_items=list(box_items),styles=styles,packaging=packaging,cat=cat,cat2=cat2,cat3=cat3)
 
 
 @app.route('/builder/add/<sku>')
@@ -387,7 +388,7 @@ def sampleCharge():
         )
 
         #send the email
-        toaddr = ['sarah@fandemic.co']
+        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
         fromaddr = 'fandemicstore@gmail.com'
 
         msg = MIMEMultipart()
