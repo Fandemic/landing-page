@@ -82,6 +82,10 @@ def catalog(cat=None,cat2=None,cat3=None):
             else:
                 items = db.items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3}) #find the star
 
+    items = list(items);
+    for item in items:
+        item['price'] = int(round( item['price'] + (item['price'] * .3) ))
+
     return render_template('builder.html', items=list(items), box_items=list(box_items),styles=styles,packaging=packaging,cat=cat,cat2=cat2,cat3=cat3)
 
 
@@ -342,6 +346,78 @@ def charge():
                     msg += '(' + str(value) + ') '
             msg += '\n'
         sarah.send("order placed","Order #1234",msg)
+
+    return '';
+
+#================PROCESS A STOCKING FEE====================#
+@app.route('/sample-charge', methods=['GET', 'POST'])
+def sampleCharge():
+
+    #get the ajaxed info
+    if request.method == "POST":
+
+        info = request.get_json()
+
+        SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+        PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+        #SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
+        #PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
+
+        #initialize the stripe data
+        stripe_keys = {
+            'secret_key': SECRET_KEY,
+            'publishable_key': PUBLISHABLE_KEY
+        }
+
+        stripe.api_key = stripe_keys['secret_key']
+
+
+        customer = stripe.Customer.create(
+            email=info['email'],
+            card=info['id']
+        )
+
+        charge = stripe.Charge.create(
+            customer=customer.id,
+            amount=info['amount'],
+            currency='usd',
+            description= 'Someone ordered a sample',
+            metadata={},
+            receipt_email=info['email']
+        )
+
+        #send the email
+        toaddr = ['sarah@fandemic.co']
+        fromaddr = 'fandemicstore@gmail.com'
+
+        msg = MIMEMultipart()
+        msg['From'] = fromaddr
+        msg['To'] = ", ".join(toaddr)
+        msg['Subject'] = "New Sample Order!"
+
+        string = ''
+        for k, v in info.iteritems():
+            string += '<strong>'+k+'</strong>: ' + str(v) + '<br>'
+
+        html = """
+                <html>
+                  <head></head>
+                  <body>
+                    <div>
+                        <h3>Fandemic received a sample order!</h3>
+                        """+string+"""
+                    </div>
+                  </body>
+                </html>
+                """
+        msg.attach(MIMEText(html, 'html'))
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(fromaddr, "Fandemic123")
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
 
     return '';
 

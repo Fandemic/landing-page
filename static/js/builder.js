@@ -9,8 +9,10 @@ app.controller("builder", function($scope) {
 
     //box template
     $scope.box = {
-      brand_name: 'Beauty & The Blondie',
-      box_name: 'GLOW FROM THE GODS',
+      brand_name: 'Brand Name Goes Here',
+      box_name: 'Box Name Goes Here',
+      font1: '',
+      font2: '',
       description: null,
       cost: 0,
       price: 20,
@@ -66,9 +68,11 @@ app.controller("builder", function($scope) {
 
       if ($scope.box.style == null){
         $scope.box.style = style;
+        $scope.box.cost += 3;
       }
       else if ($scope.box.style.name == style.name){
         $scope.box.style = null;
+        $scope.box.cost -= 3;
       }
       else{
         $scope.box.style = style;
@@ -91,20 +95,52 @@ app.controller("builder", function($scope) {
 
     }
 
+    //sample order form
     $('.sample-order').on('click', function(e) {
       // Open Checkout with further options
       handler.open({
-      name: 'PRODUCT SAMPLE REQUEST',
-      description: '$'+ $scope.box.cost.toString() + ' + ' + ' $5(shipping) = ' + ($scope.box.cost + 5).toString() ,
+      name: 'ORDER A SAMPLE ($'+ $scope.box.cost.toString()+')',
+      //description: '' ,
       zipCode: true,
       billingAddress: true,
       shippingAddress: true,
       allowRememberMe: true,
       panelLabel: "Pay",
-      amount: ($scope.box.cost + 5) * 100
+      amount: Math.round(($scope.box.cost) * 100)
       });
       e.preventDefault();
     });
+
+    //STRIPE SAMPLE
+    var handler = StripeCheckout.configure({
+    key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
+    //key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
+    locale: 'auto',
+    token: function(token,args) {
+
+      //combine all info into one object
+      var result={};
+      var box = $scope.box;
+      $.extend(result, args, token);
+      $.extend(result, result, box);
+      result['amount'] = Math.round(($scope.box.cost) * 100);
+
+      $.ajax({
+        type: 'POST',
+        url: '/sample-charge',
+        data: JSON.stringify(result, null, '\t'),
+        contentType: 'application/json;charset=UTF-8',
+        success: function(response) {
+          alert('payment successful');
+        },
+        error: function(error) {
+          alert("payment error");
+        }
+      });
+
+    }
+    });
+
 
 
     //BUTTON FUNCTIONS
@@ -334,36 +370,6 @@ $(document).ready(function(){
 });
 
 
-//STRIPE SAMPLE
-var handler = StripeCheckout.configure({
-//key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
-key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
-locale: 'auto',
-token: function(token,args) {
-
-
-
-  //combine all info into one object
-  var result={};
-  $.extend(result, args, token);
-  $.extend(result, result, info);
-
-  $.ajax({
-    type: 'POST',
-    url: '/charge',
-    data: JSON.stringify(result, null, '\t'),
-    contentType: 'application/json;charset=UTF-8',
-    success: function(response) {
-      $("#paymentSuccessModal").modal()
-      resetCart();
-    },
-    error: function(error) {
-      alert("payment error");
-    }
-  });
-
-}
-});
 
 
 var windw = this;

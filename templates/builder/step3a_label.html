@@ -19,7 +19,7 @@
             <hr>
 
             <label class="light" >Primary Font</label>
-            <select name="cars" class="form-control" ng-model="font1" style="font-size:20px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+            <select name="cars" class="form-control" ng-model="box.font1" style="font-size:20px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
               <option selected="selected" value="font-family: 'Roboto';" style="font-family: 'Roboto';">Roboto</option>
               <option value="font-family: 'Oregano', cursive;" style="font-family: 'Oregano', cursive;">Oregano</option>
               <option value="font-family: 'Kaushan Script', cursive;" style="font-family: 'Kaushan Script', cursive;">Kaushan Script</option>
@@ -35,8 +35,8 @@
 
 
             <label class="light" >Secondary Font</label>
-            <select name="cars" class="form-control" ng-model="font2" style="font-size:20px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
-              <option selected="selected" value="font-family: 'Roboto';" style="font-family: 'Roboto';">Roboto</option>                            
+            <select name="cars" class="form-control" ng-model="box.font2" style="font-size:20px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+              <option selected="selected" value="font-family: 'Roboto';" style="font-family: 'Roboto';">Roboto</option>
               <option value="font-family: 'Courgette', cursive;" style="font-family: 'Courgette', cursive;">Courgette</option>
               <option value="font-family: 'Calligraffitti', cursive;" style="font-family: 'Calligraffitti', cursive;">Calligraffitti</option>
               <option value="font-family: 'Niconne', cursive;" style="font-family: 'Niconne', cursive;">Niconne</option>
@@ -56,14 +56,14 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="label">
-                  <span class="box-brand" ng-bind="box.brand_name" style="{a font1 a}"></span>
-                  <span class="box-name" ng-bind="box.box_name" style="{a font2 a}"></span>
+                  <span class="box-brand" ng-bind="box.brand_name" style="{a box.font1 a}"></span>
+                  <span class="box-name" ng-bind="box.box_name" style="{a box.font2 a}"></span>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="label2">
-                  <span class="box-brand" ng-bind="box.brand_name" style="{a font1 a}"></span>
-                  <span class="box-name" ng-bind="box.box_name" style="{a font2 a}"></span>
+                  <span class="box-brand" ng-bind="box.brand_name" style="{a box.font1 a}"></span>
+                  <span class="box-name" ng-bind="box.box_name" style="{a box.font2 a}"></span>
                 </div>
                 <img style="width: 70%;display:block;margin: 0 auto;" src="/static/img/packaging/{a box.style.img a}">
               </div>
