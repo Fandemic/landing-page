@@ -217,6 +217,20 @@ app.controller("builder", function($scope) {
           }
         }
 
+        //NAVIGATION
+        $("#step1").on('click', '.next-btn', function() {
+          $('form').removeClass("image");
+          $('.steps').hide();
+          $('#step2').fadeIn('fast', function() {
+            $(".carousel").flickity('resize');
+        });
+          $('#crumb1').removeClass( "current");
+          $('#crumb1').addClass( "touched");
+          $('#crumb2').addClass('current');
+          $("html, body").animate({ scrollTop: 76 }, "slow");
+
+        });
+
 });
 
 
@@ -226,17 +240,7 @@ app.controller("builder", function($scope) {
 
 
 
-//NAVIGATION
-$("#step1").on('click', '.next-btn', function() {
-  $('.steps').hide();
-  $('#step2').fadeIn('fast', function() {
-    $(".carousel").flickity('resize');
-});
-  $('#crumb1').removeClass( "current");
-  $('#crumb1').addClass( "touched");
-  $('#crumb2').addClass('current');
-  $("html, body").animate({ scrollTop: 76 }, "slow");
-});
+
 
 
 
@@ -284,6 +288,9 @@ $("#step3").on('click', '.prev', function() {
 
 $("#crumbs").on('click', '.crumb', function() {
     var step = $(this).attr('data-step');
+    if (step == 1){
+      $('form').addClass("image");
+    }
     $('.steps').hide( "fast"  );
     $('#'+step).show( "slow" );
     $('.crumb').removeClass('current');
