@@ -1,4 +1,4 @@
-<div id="step2" class="steps container" style="display:none;">
+<div id="step2" class="steps container" style="display:none;min-height:800px;padding-bottom:50px;">
 
   <br><br>
 
@@ -6,17 +6,24 @@
 
     <div class="col-md-8">
 
+      <div class="explain-step">
         <h3 class="subtitle">Which items do you want in your box?</h3>
+        <div class="alert alert-warning fade in" style="width:80%;" >
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <i class="light" style="font-weight:300;">add items to your box by <strong>clicking</strong> on them! <br>
+          <img width="20px;" class="color-palette" src="/static/img/color-palette.svg"> = multiple colors available</i>
+        </div>
+      </div>
 
       <ul class="nav nav-tabs">
         {% for group in items | groupby('sub-category')%}
-        <li {% if group.grouper == 'Eyes' %}class="active"{% endif %}><a data-toggle="tab" href="#{{group.grouper}}">{{group.grouper | upper}}</a></li>
+        <li {% if group.grouper == 'lips' %}class="active"{% endif %}><a data-toggle="tab" href="#{{group.grouper}}">{{group.grouper | upper}}</a></li>
         {% endfor %}
       </ul>
 
     <div class="tab-content">
     {% for group in items | groupby('sub-category')%}
-    <div id="{{group.grouper}}" class="tab-pane fade in {% if group.grouper == 'Eyes' %}active{% endif %}">
+    <div id="{{group.grouper}}" class="tab-pane fade {% if group.grouper == 'lips' %}in active{% endif %}" >
 
 
     {% for item in group.list %}
@@ -71,23 +78,23 @@
 
     <!-- variations modal -->
     {% if item.variation|length > 0 %}
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}-variation">
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}-variation">
 
       <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="padding:30px;padding-bottom:16px;width:70%;">
+        <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:1000px;">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
 
-            <h2 class="subtitle" style="text-align:center;">Choose a {{ item.name }} Color!</h2><hr>
+            <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {{ item.name }} Color!</h3><hr>
 
               <div style="text-align:center;">
               {% for v in item.variation %}
               <div  class="clickable"
-                    style="display:inline-block;padding:15px;text-align:center;"
+                    style="display:inline-block;padding:0px 25px;text-align:center;"
                     ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
                     data-dismiss="modal">
-                <img width="200px" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
+                <img width="160px" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
                 <p class="light">{{v.name}}</p>
 
 
@@ -113,25 +120,26 @@
 
           <div class="row" >
 
-            <div class="col-md-5">
+            <div class="col-md-4">
 
 
 
                   <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="/static/img/beauty-items/{{item.item_num}}.png" alt="">
 
 
-            
+
             </div>
 
-            <div class="col-md-7">
+            <div class="col-md-8">
               <h2 class="modal-title" id="myModalLabel">{{item.name}}</h2>
               <hr>
 
               <p>{{item.description}}</p>
               <br>
 
-              <p style="color:green;font-weight:600;">Manfuacturing Cost: {{item.price|round|int}}</p>
-              <br>
+              <p style="color:green;font-weight:600;">Production Cost: ${{item.price|round|int}}</p>
+              <i class="light">*each beauty item will be printed with your custom name or logo</i>
+              <br><br>
 
               {% for v in item.variation %}
               <div style="display:inline-block;margin-right:15px;text-align:center;">

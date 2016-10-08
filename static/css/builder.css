@@ -552,9 +552,9 @@ a:focus {
 
        .subtitle{
          text-align: left;
-         color: purple;
-         margin-bottom: 40px;
+         margin-bottom: 10px;
          margin-top: 0px;
+         font-weight:800px;
        }
 
        .subtitle2{
@@ -766,8 +766,8 @@ box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
 
 /* big buttons, no circle */
 .flickity-prev-next-button {
-  width: 50px !important;
-  height: 50px !important;
+  width: 40px !important;
+  height: 40px !important;
   background: #a5a5a5 !important;
   opacity: .7;
 }
@@ -802,7 +802,7 @@ box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
 }
 
 .item-box{
-  height:220px;width:200px;padding:10px;outline: 0 !important;
+  height:230px;width:210px;padding:10px;outline: 0 !important;
 }
 
 .panel-summary{
@@ -881,6 +881,9 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: -15.2px;
 }
+input[type=range]::-webkit-slider-thumb::before {
+    content: "< >";
+}
 input[type=range]:focus::-webkit-slider-runnable-track {
   background: #ffffff;
 }
@@ -901,6 +904,9 @@ input[type=range]::-moz-range-thumb {
   border-radius: 50px;
   background: #46b29d;
   cursor: pointer;
+}
+input[type=range]::-moz-range-thumb::before {
+    content: "< >";
 }
 input[type=range]::-ms-track {
   width: 100%;
@@ -931,7 +937,12 @@ input[type=range]::-ms-thumb {
   background: #46b29d;
   cursor: pointer;
   height: 20px;
+  color:white;
 }
+input[type=range]::-ms-thumb::before {
+    content: "89";
+}
+
 input[type=range]:focus::-ms-fill-lower {
   background: #ffffff;
 }
@@ -1102,4 +1113,35 @@ margin-left: auto;margin-right: auto;right: 150px;
   background-repeat: no-repeat;
   background-size: contain;
   background-color: #fff !important;
+}
+
+.explain-step{
+  margin-bottom:30px;
+  padding-left:10px;
+  padding-right:76px;
+}
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #f0e6ed;
+    border-color: #ddcbd8;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: .5;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .3;
+}
+
+.flickity-prev-next-button.next {
+    right: -40px !important;
+}
+
+.flickity-prev-next-button.previous {
+    left: -40px !important;
 }

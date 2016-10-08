@@ -4,7 +4,15 @@
 
     <div class="col-md-8" style="padding-left:40px;padding-right:40px;">
 
-      <h3 class="subtitle">How much do you want to sell this box for?</h3>
+      <div class="explain-step" style="padding-left:0px;">
+        <h3 class="subtitle">How much will you sell this box for?</h3>
+        <div class="alert alert-warning fade in" style="width:80%;" >
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <i class="light" style="font-weight:300;"><strong>drag</strong> the slider to change what your fan's pay<br>
+          <strong>Your Profit = Selling Price - Production Cost</strong>
+          </i>
+        </div>
+      </div>
 
       <!--<div class="form-horizontal pull-center" role="form" style="text-align:center;">
         <div class="form-group" style="width:160px;margin: 0 auto;">
@@ -38,7 +46,7 @@
                             <img width:"100%" src="/static/img/credit-card.svg">
                           </div>
                           <div class="col-md-6">
-                    <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:5px;padding-top:31px;"><br><span style="font-weight:700;font-size:1.4em;" >$<span ng-bind="box.price">9</span></span><br><span class="light">pre-Order price</span></p>
+                    <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:5px;padding-top:31px;"><br><span style="font-weight:700;font-size:1.4em;" >$<span ng-bind="box.price">9</span></span><br><span class="light">price customers pay</span></p>
 
                   </div>
                 </div>
@@ -59,7 +67,7 @@
                   <div class="col-md-6">
 
 
-            <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:5px;padding-top:31px;"><br><span style="font-weight:700;font-size:1.4em;" class="money" >$<span ng-bind="box.price-box.cost">9</span></span><br><span class="light">profit per box</span></p>
+            <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:5px;padding-top:31px;"><br><span style="font-weight:700;font-size:1.4em;" class="money" >$<span ng-bind="box.price-box.cost">9</span></span><br><span class="light">what you make</span></p>
           </div>
         </div>
           </div>
