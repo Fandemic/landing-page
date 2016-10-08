@@ -43,7 +43,7 @@
       <h2 class="modal-title">Wonderful!</h2>
       <p>You should receive an email that contains the next steps for your cool box!</p>
       <br>
-      <p>Your Confirmation code is: <span class="conf-code">YGS2YU12GH5JG</span></p>
+      <p>Your Confirmation code is: <span id="conf-code"></span></p>
 
       <hr>
       <button type="submit" class="btn btn-primary btn-submit" id="close-success-screen">Awesome!</button>
@@ -56,10 +56,10 @@
 <script>
   $("#launch-store-button").click(function() {
     $('#launch-store-modal').modal('hide');
+    $( "#conf-code" ).text(randomString(12));
     $('#launch-store-modal-success').modal('show');
   });
   $("#close-success-screen").click(function() {
     $('#launch-store-modal-success').modal('hide');
   });
-
 </script>
