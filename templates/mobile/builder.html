@@ -21,14 +21,54 @@
 {% include 'header.html' %}
 
 <body>
-<br><br><br>
-<img src="../static/img/logo-nav_fullsize.png" class="img-responsive" alt="Fandemic">
-<hr>
-<h1 style="text-align:center;">
-  Please build your beauty box on <strong>desktop</strong> or <strong>tablet</strong>!
-</h1>
-</body>
-<br><br><br><br><br><br><br>
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <img style="padding-left:4em; padding-right:4em" src="../static/img/logo-nav_fullsize.png" class="img-responsive" alt="Fandemic">
+  </div>
+  <hr>
+  <div class="row">
+    <h1 style="font-size:27px; padding-left:2em; padding-right:2em; text-align:center;">
+      Oops! We're not ready for your mobile device yet! Please check back on your laptop, desktop or tablet!
+    </h1>
+  </div>
+<div id="email-found-mobile" class="row" style="padding-top:2em;">
+  <button class="btn btn-success btn-lg next-btn btn-nav btn-beauty" style="margin-left:27%; background-color: #7BDC87; font-weight:700;25px;">Remind Me!</button>
+</div>
+<div id="email-not-found-mobile" class="row" style="padding-top:2em; margin: 0 7% 0 10%;">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Enter Email...">
+    <span class="input-group-btn">
+      <button class="btn btn-secondary" type="button">Remind Me!</button>
+    </span>
+  </div>
+</div>
 
-{% include 'footer.html' %}
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br> {% include 'footer.html' %}
+
 </html>
+
+<script>
+var pageUrl = window.location.href;
+var StarIdURL = pageUrl.split('#')[1];
+if (pageUrl.includes("#")){
+  $('#email-found-mobile').show();
+  $('#email-not-found-mobile').hide();
+}
+else {
+  $('#email-not-found-mobile').show();
+  $('#email-found-mobile').hide();
+}
+console.log(StarIdURL);
+
+
+
+</script>
