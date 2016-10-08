@@ -975,13 +975,22 @@ input[type=range]:focus::-ms-fill-upper {
         opacity: 0.6;
     }
 
+
+.sticker:before, .sticker:after{
+  box-shadow: 0 15px 10px #777;
+  transform: rotate(-3deg);
+}
+
 .label{
   position:relative;
   text-align: center;
   margin: 0 auto;
-  color: #1d1d1d;
-  font-size: 1.6em;
+  color: #fff;
+  font-size: .8em;
   font-weight: 300;
+  display: table-cell;
+   vertical-align: middle;
+
 }
 
 .label2{
@@ -993,7 +1002,7 @@ top: 35%;
 left: 0;
   right: 0;
   margin: 0 auto;
-font-size: .9em;
+font-size: .8em;
 font-weight: 400;
 line-height: .4;
 -ms-transform: skew(-50deg, 11deg);
@@ -1011,7 +1020,7 @@ transform: skew(-50deg, 11deg);
 .box-name{
   text-align:center;
   display:block;
-  font-size:.4em !important;
+  font-size:.5em !important;
 }
 
 .circle-sticker{

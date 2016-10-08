@@ -9,10 +9,10 @@ app.controller("builder", function($scope) {
 
     //box template
     $scope.box = {
-      brand_name: 'Brand Name Goes Here',
-      box_name: 'Box Name Goes Here',
-      font1: '',
-      font2: '',
+      brand_name: 'Your Brand',
+      box_name: 'Box Name',
+      font1: "font-family: 'Roboto';",
+      font2: "font-family: 'Roboto';",
       description: null,
       cost: 0,
       price: 20,
@@ -425,17 +425,4 @@ $(document).ready(function() {
 
   // For Safari
   return message;
-};
-
-//Random # generator for success modal
-var randomString = function (len, bits)
-{
-    bits = bits || 36;
-    var outStr = "", newStr;
-    while (outStr.length < len)
-    {
-        newStr = Math.random().toString(bits).slice(2);
-        outStr += newStr.slice(0, Math.min(newStr.length, (len - outStr.length)));
-    }
-    return outStr.toUpperCase();
 };
