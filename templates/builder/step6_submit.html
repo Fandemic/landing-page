@@ -8,77 +8,88 @@
 
       <div style="position:absolute;margin-left:auto;margin-right:auto;left:0;right:0;">
 
-      <div ng-repeat="p in box.products">
+        <div ng-repeat="p in box.products">
           <div ng-if="$index%2==0">
             <img style="position:absolute;width:120px;left:{a 6 * $index a}%; top: 100px;" src="/static/img/beauty-items/{a p.item_num a}.png">
           </div>
           <div ng-if="$index%2==1">
             <img style="position:absolute;width:120px;right:{a 5 *  $index a}%; top: 100px;" src="/static/img/beauty-items/{a p.item_num a}.png">
           </div>
-      </div>
-
-      <img class="material" src="/static/img/packaging/{a box.material.img a}">
-
-      <div style="position:absolute;top:40px;z-index:10;margin-left: auto;margin-right: auto;left: 30px;right: 0;width:350px;">
-        <div class="label2">
-          <span class="box-brand" ng-bind="box.brand_name" style="{a box.font1 a}"></span>
-          <span class="box-name" ng-bind="box.box_name" style="{a box.font2 a}"></span>
         </div>
-        <img style="width: 80%;display:block;margin: 0 auto;" src="/static/img/packaging/{a box.style.img a}">
-      </div>
 
-    </div>
+        <img class="material" src="/static/img/packaging/{a box.material.img a}">
+
+        <div style="position:absolute;top:40px;z-index:10;margin-left: auto;margin-right: auto;left: 30px;right: 0;width:350px;">
+          <div class="label2">
+            <span class="box-brand" ng-bind="box.brand_name" style="{a box.font1 a}"></span>
+            <span class="box-name" ng-bind="box.box_name" style="{a box.font2 a}"></span>
+          </div>
+          <img style="width: 80%;display:block;margin: 0 auto;" src="/static/img/packaging/{a box.style.img a}">
+        </div>
+
+      </div>
 
     </div>
   </div>
 
-      <hr>
+  <hr>
 
-      <div class="row">
-
-      <div class="col-md-5">
-      <div id="premade" class="option2" style="height:300px;" data-toggle="modal" data-target="#launch-store-modal">
-
-        <div class="col-xs-12">
-
-          <h4 style="font-weight:800;">LAUNCH A CAMPAIGN</h4>
-
-           <p class="light"><strong>Free E-commerce platform</strong></p>
-           <p class="light">7 days to pre-sell your boxes</p>
-           <p class="light">Track orders, progress, and payouts</p>
-           <p class="light">We handle orders, transactions, and shipping!</p>
-           <p class="light">*<strong>Instantly get paid</strong> upon completition of campaign</p>
-           <img width="30%" src="/static/img/google_trusted.png">
-
-        </div>
-
-      </div>
-    </div>
+  <div class="row">
 
 
-    <div class="col-xs-2 or" style="text-align:center;">
-      <strong>or</strong>
-    </div>
-
-        <div class="col-md-5">
+    <div class="col-md-5">
       <div id="custom" class="option2 sample-order" data-dismiss="modal" href="#">
 
         <div class="col-md-12">
           <h4 style="font-weight:800;">ORDER A SAMPLE BEFORE LAUNCHING (${a box.cost a})</h4>
 
-           <p class="light"><strong>2 Day Free Delivery (USA)</strong></p>
-           <p class="light"><strong>Your Sample products Include:</strong></p>
-           <div ng-repeat="p in box.products" style="margin-left:15px;">
-             <p class="light">- {a p.name a} (1)</p>
-           </div>
-           <p class="light">*sample products <strong>do not include</strong> custom labels</p>
+          <p class="light">
+            <strong>2 Day Free Delivery (USA)</strong>
+          </p>
+          <p class="light">
+            <strong>Your Sample products Included:</strong>
+          </p>
+          <div ng-repeat="p in box.products" style="margin-left:15px;">
+            <p class="light">- {a p.name a} (1)</p>
+          </div>
+          <p class="light">*sample products
+            <strong>sample products do not include</strong> custom labels</p>
 
 
         </div>
 
         <img width="100%" src="/static/img/cc_icons.png">
       </div>
-      </div>
-
     </div>
+
+    <div class="col-xs-2 or" style="text-align:center;">
+      <strong>or</strong>
+    </div>
+
+
+
+    <div class="col-md-5">
+      <div id="premade" class="option2" style="height:300px;" data-toggle="modal" data-target="#launch-store-modal">
+
+        <div class="col-xs-12">
+
+          <h4 style="font-weight:800;">LAUNCH A CAMPAIGN</h4>
+
+
+          <p class="light">
+            <strong>Free E-commerce platform</strong>
+          </p>
+          <p class="light">7 days to pre-sell your boxes</p>
+          <p class="light">Track orders, progress, and payouts</p>
+          <p class="light">We handle orders, transactions, and shipping!</p>
+          <p class="light">*
+            <strong>Instantly get paid</strong> upon completition of campaign</p>
+          <img width="30%" src="/static/img/google_trusted.png">
+
+        </div>
+
+      </div>
+    </div>
+
   </div>
+</div>

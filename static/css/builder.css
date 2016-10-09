@@ -1154,3 +1154,10 @@ margin-left: auto;margin-right: auto;right: 150px;
 .flickity-prev-next-button.previous {
     left: -40px !important;
 }
+
+p.label-indicator{
+  text-align:center;
+  font-weight: 600;
+  color: #4c4c4c;
+  font-family: 'Lato', sans-serif;
+}
