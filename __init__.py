@@ -222,6 +222,10 @@ def terms():
 def faq():
     return render_template('faq.html')
 #-------------------------------------------
+@app.route('/store')
+def new_store():
+    return render_template('store.html')
+#-------------------------------------------
 
 @app.route('/privacy')
 def privacy():
