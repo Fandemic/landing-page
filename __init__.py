@@ -392,9 +392,9 @@ def sampleCharge():
         )
 
         #send the confirmation email to client
-        toaddr = [info['star']['email']]
+        toaddr = [info['email']]
         subject = "Sample Order Confirmation"
-        html = """
+        html =  """
                 Hey """+ info['star']['name'] +""",<br><br>
                 I saw you customized your <strong>"""+ info['box_name'] +"""</strong> box and
                 that you want to sample it for yourself before you start selling it!<br><br>
@@ -402,7 +402,7 @@ def sampleCharge():
                 and should be at your doorstep in 5 business days or less.<br><br>
                 If you have any questions or concerns please don't hesitate to reach out to me!<br><br>
                 - Sarah :)
-               """
+                """
         email.send(toaddr,subject,html)
 
         #send the email

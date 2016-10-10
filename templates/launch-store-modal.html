@@ -46,13 +46,35 @@
       <br>
       <p class="light"> You should receive an email that contains the next steps!</p>
       <br>
-      <p>Your Confirmation code is: <span ng-bind="box.confirmation_code"></span></p>
+      <p>Your confirmation code is: <span ng-bind="box.confirmation_code"></span></p>
 
       <hr>
       <button data-dismiss="modal" class="btn btn-primary btn-submit" style="width" >Awesome!</button>
     </div>
   </div>
 </div>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="sample-order-modal-success">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="padding:30px">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <h2 class="modal-title"><img src="../static/img/success.svg" style="width:10%"> Order Successful!</h2>
+      <br>
+      <p class="light"> You should receive confirmation email shortly!</p>
+      <br>
+      <p>Your confirmation code is: <span ng-bind="box.confirmation_code"></span></p>
+      <br>
+      <i>Questions? Please email <strong>sarah@fandemic.co</strong> :)</i>
+
+      <hr>
+      <button data-dismiss="modal" class="btn btn-primary btn-submit" style="width" >Awesome!</button>
+    </div>
+  </div>
+</div>
+
 
 <!-- Make JQuery toggle between contents of each modal -->
 

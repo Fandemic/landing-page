@@ -24,7 +24,7 @@ app.controller("builder", function($scope) {
         'email': '',
         'phone': ''
       },
-      confirmation_code: ''
+      confirmation_code: randomString(12)
     }
 
     $scope.step = 1;
@@ -50,8 +50,6 @@ app.controller("builder", function($scope) {
       }
 
       else{
-
-        $scope.box.confirmation_code = randomString(12);
 
         var box = $scope.box;
         $("#launch-store-button").prop("disabled",true);
@@ -88,14 +86,6 @@ app.controller("builder", function($scope) {
         var phoneRe = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
         var digits = phone.replace(/\D/g, "");
         return (digits.match(phoneRe) !== null);
-      }
-
-
-      function randomString(length) {
-        var chars = '123456789ABCDEFGHIJKLMNPQRSTUVWXYZ';
-        var result = '';
-        for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-        return result;
       }
 
     }
@@ -199,23 +189,34 @@ app.controller("builder", function($scope) {
       $.extend(result, result, box);
       result['amount'] = Math.round(($scope.box.cost) * 100);
 
+      $('#big-loader').show();
+
       $.ajax({
         type: 'POST',
         url: '/sample-charge',
         data: JSON.stringify(result, null, '\t'),
         contentType: 'application/json;charset=UTF-8',
         success: function(response) {
-          alert('payment successful');
+          $('#sample-order-modal-success').modal('show');
         },
         error: function(error) {
           alert("payment error");
+        },
+        complete: function(){
+          $('#big-loader').hide();
         }
       });
 
     }
+
     });
 
-
+    function randomString(length) {
+      var chars = '123456789ABCDEFGHIJKLMNPQRSTUVWXYZ';
+      var result = '';
+      for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+      return result;
+    }
 
     //BUTTON FUNCTIONS
     $scope.step_2 = function(){
