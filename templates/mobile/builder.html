@@ -32,9 +32,10 @@
     <h1 style="font-size:27px; padding-left:2em; padding-right:2em; text-align:center;">
       Oops! We're not ready for your mobile device yet! Please check back on your laptop, desktop or tablet!
     </h1>
+    <p id="notify" style="display:none;text-align:center;font-size:10px;">Thanks! We will send you an email reminder later!</p>
   </div>
 <div id="email-found-mobile" class="row" style="padding-top:2em;">
-  <button class="btn btn-success btn-lg next-btn btn-nav btn-beauty" style="margin-left:27%; background-color: #7BDC87; font-weight:700;25px;">Remind Me!</button>
+  <button id="remind" class="btn btn-success btn-lg next-btn btn-nav btn-beauty" style="margin-left:27%; background-color: #7BDC87; font-weight:700;25px;">Remind Me!</button>
 </div>
 <div id="email-not-found-mobile" class="row" style="padding-top:2em; margin: 0 7% 0 10%;">
   <div class="input-group">
@@ -67,7 +68,58 @@ else {
   $('#email-not-found-mobile').show();
   $('#email-found-mobile').hide();
 }
-console.log(StarIdURL);
+
+
+
+$('#remind').on( "click", remind );
+
+function remind(){
+  var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+
+  $.ajax({
+     url: '/builder-remind-mobile',
+     data: {id: hash},
+     type: 'GET',
+     success: function(response) {
+         console.log(response);
+     },
+     error: function(error) {
+         console.log(error);
+     },
+     complete: function() {
+         $('#remind').hide();
+         $('#notify').show();
+     }
+ });
+}
+
+
+
+$(document).ready(function() {
+
+     //extract the id of the user from the URL
+     if(window.location.hash) {
+         var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+
+         $.ajax({
+            url: '/builder-alert-mobile',
+            data: {id: hash},
+            type: 'GET',
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+
+     } else {
+         // No hash found
+     }
+
+
+
+   });
 
 
 

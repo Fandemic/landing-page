@@ -129,8 +129,46 @@ def getData():
 
     ID = request.args.get('id')
 
+    star = db.stars.find_one({"id":ID})
+
+    emails = 'not found in DB'
+    if star is not None:
+        emails = ', '.join([str(x) for x in star['email']])
+
     sarah = Slack()
-    sarah.notify('Hey guys, the user *'+str(ID)+'* just visited the builder page.')
+    sarah.notify('*DESKTOP VISITED ALERT*\nHey guys, the user *'+str(ID)+'* just visited the beauty builder on desktop.\nTheir email address is [*'+str(emails)+'*]')
+
+    return ''
+
+@app.route("/builder-alert-mobile", methods=['GET'])
+def getDataMobile():
+
+    ID = request.args.get('id')
+
+    star = db.stars.find_one({"id":ID})
+
+    emails = 'not found in DB'
+    if star is not None:
+        emails = ', '.join([str(x) for x in star['email']])
+
+    sarah = Slack()
+    sarah.notify('*MOBILE VISITED ALERT*\nHey guys, the user *'+str(ID)+'* just visited the beauty builder on their mobile device.\nTheir email address is [*'+str(emails)+'*]')
+
+    return ''
+
+@app.route("/builder-remind-mobile", methods=['GET'])
+def reminderMobile():
+
+    ID = request.args.get('id')
+
+    star = db.stars.find_one({"id":ID})
+
+    emails = 'not found in DB'
+    if star is not None:
+        emails = ', '.join([str(x) for x in star['email']])
+
+    sarah = Slack()
+    sarah.notify('*REMINDER REQUESTED*\nHey guys, the user *'+str(ID)+'* wants to be reminded to visit the builder on desktop.\nTheir email address is [*'+str(emails)+'*]')
 
     return ''
 
