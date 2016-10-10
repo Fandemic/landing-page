@@ -18,13 +18,86 @@ app.controller("builder", function($scope) {
       price: 20,
       products: [],
       style: null,
-      material: null
+      material: null,
+      star: {
+        'name': '',
+        'email': '',
+        'phone': ''
+      },
+      confirmation_code: ''
     }
 
     $scope.step = 1;
 
-    //checks if a product is in the users box
+    //launch the users store form
+    $scope.launch_store = function(){
+      var star = $scope.box.star;
 
+      if ((star.name == '') || (star.name == undefined)){
+        $('#launch-store-button').notify("please enter your name", { position:"top center"});
+      }
+      else if ((star.email == '') || (star.email == undefined)){
+        $('#launch-store-button').notify("please enter your email", { position:"top center"});
+      }
+      else if ((star.phone == '') || (star.phone == undefined)){
+        $('#launch-store-button').notify("please enter your phone number", { position:"top center"});
+      }
+      else if (!validateEmail(star.email)){
+        $('#launch-store-button').notify("invalid email address!", { position:"top center"});
+      }
+      else if (!validatePhone(star.phone)){
+        $('#launch-store-button').notify("invalid phone number!", { position:"top center"});
+      }
+
+      else{
+
+        $scope.box.confirmation_code = randomString(12);
+
+        var box = $scope.box;
+        $("#launch-store-button").prop("disabled",true);
+
+        $('#loader').show();
+        $.ajax({
+          type: 'POST',
+          url: '/launch-store-request',
+          data: JSON.stringify(box, null, '\t'),
+          contentType: 'application/json;charset=UTF-8',
+          success: function(response) {
+            $('#launch-store-modal').modal('hide');
+            $('#launch-store-modal-success').modal('show');
+          },
+          error: function(error) {
+            alert("payment error");
+          },
+          complete: function(){
+            $('#loader').hide();
+          }
+        });
+
+
+      }
+
+
+      function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      }
+
+      function validatePhone(phone) {
+        var phoneRe = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
+        var digits = phone.replace(/\D/g, "");
+        return (digits.match(phoneRe) !== null);
+      }
+
+
+      function randomString(length) {
+        var chars = '123456789ABCDEFGHIJKLMNPQRSTUVWXYZ';
+        var result = '';
+        for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+        return result;
+      }
+
+    }
 
     //Takes a product object and adds it to the box
     $scope.toggle_product = function(product){
@@ -219,7 +292,7 @@ app.controller("builder", function($scope) {
 
         //NAVIGATION
         $("#step1").on('click', '.next-btn', function() {
-          $('form').removeClass("image");
+          $('section').removeClass("image");
           $('.steps').hide();
           $('#step2').fadeIn('fast', function() {
             $(".carousel").flickity('resize');
@@ -324,26 +397,6 @@ function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
-
-var form = document.getElementById('form');
-form.noValidate = true;
-form.addEventListener('submit', function(event) { // listen for form submitting
-        var email = validateEmail($("input[name=email]").val());
-
-        if (!event.target.checkValidity()) {
-            event.preventDefault(); // dismiss the default functionality
-            document.getElementById('errorMessageDiv').innerHTML = '<strong>Name</strong> and <strong>email</strong> are required fields!'
-            document.getElementById('errorMessageDiv').style.display = 'block'; //error message
-        }
-        else if (email == false){
-            event.preventDefault(); // dismiss the default functionality
-            document.getElementById('errorMessageDiv').innerHTML = 'That is not a valid email! Please try again :)'
-            document.getElementById('errorMessageDiv').style.display = 'block'; //error message
-        }
-        else{
-          document.getElementById("form").submit();
-        }
-    }, false);
 
 
 $('a').popover({

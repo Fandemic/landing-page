@@ -4,31 +4,33 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h2 class="modal-title" id="myModalLabel">Launch your Store!</h2>
+      <h2 class="modal-title" id="myModalLabel">Launch Your Store!</h2>
       <p class="light">fill out the form below and we will give you a free personal store!</p>
       <hr>
-      <form id="activate-store-modal-form" action="/activateStore" method="post">
+      <div>
         <div class="row">
           <div class="col-md-12">
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-              <input id="launch_fullname" name="name" type="text" class="form-control" placeholder="full name" required/>
+              <input id="launch_fullname" name="name" type="text" class="form-control" placeholder="full name" ng-model="box.star.name" required/>
             </div>
             <br>
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-              <input id="launch_email" name="email" type="email" class="form-control" placeholder="email" required/>
+              <input id="launch_email" name="email" type="email" class="form-control" placeholder="email" ng-model="box.star.email" required/>
             </div>
             <br>
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
-              <input id="launch_phone" name="phone" type="tel" class="form-control" placeholder="phone" />
+              <input id="launch_phone" name="phone" type="tel" class="form-control" placeholder="phone" ng-model="box.star.phone" style="z-index:0 !important;" required/>
             </div>
           </div>
         </div>
         <hr>
-        <button type="submit" class="btn btn-primary btn-submit" id="launch-store-button" style="width:100%;">Launch Store</button>
-      </form>
+        <button class="btn btn-primary btn-nav btn-beauty" style="width:100%;" id="launch-store-button" ng-click="launch_store()">
+          <img id="loader" width="20px" src="/static/img/loader.gif"> Launch Store
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -39,14 +41,15 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <img src="../static/img/success.svg" style="width:15%">
-      <h2 class="modal-title">Wonderful!</h2>
-      <p>You should receive an email that contains the next steps for your cool box!</p>
+
+      <h2 class="modal-title"><img src="../static/img/success.svg" style="width:10%">Wonderful!</h2>
       <br>
-      <p>Your Confirmation code is: <span id="conf-code"></span></p>
+      <p class="light"> You should receive an email that contains the next steps!</p>
+      <br>
+      <p>Your Confirmation code is: <span ng-bind="box.confirmation_code"></span></p>
 
       <hr>
-      <button type="submit" class="btn btn-primary btn-submit" id="close-success-screen">Awesome!</button>
+      <button data-dismiss="modal" class="btn btn-primary btn-submit" style="width" >Awesome!</button>
     </div>
   </div>
 </div>
@@ -54,12 +57,12 @@
 <!-- Make JQuery toggle between contents of each modal -->
 
 <script>
-  $("#launch-store-button").click(function() {
+  /*$("#launch-store-button").click(function() {
     $('#launch-store-modal').modal('hide');
     $( "#conf-code" ).text(randomString(12));
     $('#launch-store-modal-success').modal('show');
   });
   $("#close-success-screen").click(function() {
     $('#launch-store-modal-success').modal('hide');
-  });
+  });*/
 </script>

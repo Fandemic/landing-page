@@ -1161,3 +1161,7 @@ p.label-indicator{
   color: #4c4c4c;
   font-family: 'Lato', sans-serif;
 }
+
+#loader{
+  display:none;
+}

@@ -63,6 +63,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
 </head>
 
+
+
 <body ng-controller="builder">
 
   {% include('builder/nav.html') %}
@@ -71,7 +73,7 @@
 
 
 
-      <form class="image" action="/builder/submit" id="form" method="post" enctype="multipart/form-data" style="background-color:#f5f3f2;">
+      <section class="image" id="form" style="background-color:#f5f3f2;">
 
         {% include('builder/crumbs.html') %}
 
@@ -90,8 +92,11 @@
 
           {% include('builder/step6_submit.html') %}
 
+          {% include 'launch-store-modal.html' %}
 
         </div>
+
+      </section>
 
 
   <!-- Footer -->
@@ -112,7 +117,7 @@
 
 {% include 'howfandemicworks-modal.html' %}
 
-{% include 'launch-store-modal.html' %}
+
 {% include 'analytics.html' %}
 
 

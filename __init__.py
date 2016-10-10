@@ -391,6 +391,37 @@ def sampleCharge():
             receipt_email=info['email']
         )
 
+        #send the confirmation email to client
+        toaddr = [info['star']['email']]
+        fromaddr = 'fandemicstore@gmail.com'
+
+        msg = MIMEMultipart()
+        msg['From'] = fromaddr
+        msg['To'] = ", ".join(toaddr)
+        msg['Subject'] = "Sample Order Confirmation - Beauty Box"
+
+        html = """
+                <html>
+                  <head></head>
+                  <body>
+                    <div>
+                        <h3>Our team has received your sample order!</h3>
+                        <p>details of your order are outlined below:</p>
+                        <br>
+                        <p></p>
+                    </div>
+                  </body>
+                </html>
+                """
+        msg.attach(MIMEText(html, 'html'))
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(fromaddr, "Fandemic123")
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
+
         #send the email
         toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
         fromaddr = 'fandemicstore@gmail.com'
@@ -410,6 +441,83 @@ def sampleCharge():
                   <body>
                     <div>
                         <h3>Fandemic received a sample order!</h3>
+                        """+string+"""
+                    </div>
+                  </body>
+                </html>
+                """
+        msg.attach(MIMEText(html, 'html'))
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(fromaddr, "Fandemic123")
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
+
+    return '';
+
+#================PROCESS A STOCKING FEE====================#
+@app.route('/launch-store-request', methods=['GET', 'POST'])
+def launchStoreRequest():
+
+    #get the ajaxed info
+    if request.method == "POST":
+
+        info = request.get_json()
+
+        #send the email
+        toaddr = [info['star']['email']]
+        fromaddr = 'fandemicstore@gmail.com'
+
+        msg = MIMEMultipart()
+        msg['From'] = fromaddr
+        msg['To'] = ", ".join(toaddr)
+        msg['Subject'] = "Your Beauty Box Store is Almost Ready!"
+
+        html = """
+                <html>
+                  <head></head>
+                  <body>
+                    <div>
+                        <h3>Hi """+info['star']['name']+""", our team is getting your store ready!</h3>
+                        <p>Your confirmation code is: <strong>"""+info['confirmation_code']+"""</strong></p>
+                        <br>
+                        <p>A Fandemic team member will contact you today with information on how to move forward!</p>
+                    </div>
+                  </body>
+                </html>
+                """
+        msg.attach(MIMEText(html, 'html'))
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(fromaddr, "Fandemic123")
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
+
+
+
+        #send the email to fandemic team
+        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
+        fromaddr = 'fandemicstore@gmail.com'
+
+        msg = MIMEMultipart()
+        msg['From'] = fromaddr
+        msg['To'] = ", ".join(toaddr)
+        msg['Subject'] = "New Launch Store Request - "+info['star']['name']
+
+        string = ''
+        for k, v in info.iteritems():
+            string += '<strong>'+k+'</strong>: ' + str(v) + '<br>'
+
+        html = """
+                <html>
+                  <head></head>
+                  <body>
+                    <div>
+                        <h3>New launch store request from """+info['star']['name']+"""!</h3>
                         """+string+"""
                     </div>
                   </body>
