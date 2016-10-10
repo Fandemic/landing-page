@@ -396,8 +396,10 @@ def sampleCharge():
         subject = "Sample Order Confirmation"
         html = """
                 Hey """+ info['star']['name'] +""",<br><br>
-                I saw you customized your <strong>"""+ info['box_name'] +"""</strong> box and that you want to sample it for yourself before you start selling it!<br>
-                I am reaching out just to tell you that your sample will be shipped within 24 hours and should be at your doorstep in 5 business days or less.<br>
+                I saw you customized your <strong>"""+ info['box_name'] +"""</strong> box and
+                that you want to sample it for yourself before you start selling it!<br><br>
+                I am reaching out just to tell you that your sample will be shipped within 24 hours
+                and should be at your doorstep in 5 business days or less.<br><br>
                 If you have any questions or concerns please don't hesitate to reach out to me!<br><br>
                 - Sarah :)
                """

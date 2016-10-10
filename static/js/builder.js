@@ -142,11 +142,11 @@ app.controller("builder", function($scope) {
 
       if ($scope.box.style == null){
         $scope.box.style = style;
-        $scope.box.cost += 3;
+        $scope.box.cost += 5;
       }
       else if ($scope.box.style.name == style.name){
         $scope.box.style = null;
-        $scope.box.cost -= 3;
+        $scope.box.cost -= 5;
       }
       else{
         $scope.box.style = style;
