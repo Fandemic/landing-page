@@ -5,15 +5,13 @@ from pymongo import MongoClient, GEO2D
 from collections import Counter
 from jinja2 import Template
 import json
-import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
 import stripe
 import os
 from slack import Slack
 from werkzeug.utils import secure_filename
+from mailer import Mailer
 
 UPLOAD_FOLDER = 'static/img/test/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd','svg'])
@@ -22,6 +20,8 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
 db = MongoClient('45.79.159.210', 27017).fandemic
+
+email = Mailer();
 
 #================INDEX=====================
 @app.route('/', methods=['GET', 'POST'])
@@ -393,43 +393,19 @@ def sampleCharge():
 
         #send the confirmation email to client
         toaddr = [info['star']['email']]
-        fromaddr = 'fandemicstore@gmail.com'
-
-        msg = MIMEMultipart()
-        msg['From'] = fromaddr
-        msg['To'] = ", ".join(toaddr)
-        msg['Subject'] = "Sample Order Confirmation - Beauty Box"
-
+        subject = "Sample Order Confirmation"
         html = """
-                <html>
-                  <head></head>
-                  <body>
-                    <div>
-                        <h3>Our team has received your sample order!</h3>
-                        <p>details of your order are outlined below:</p>
-                        <br>
-                        <p></p>
-                    </div>
-                  </body>
-                </html>
-                """
-        msg.attach(MIMEText(html, 'html'))
-
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(fromaddr, "Fandemic123")
-        text = msg.as_string()
-        server.sendmail(fromaddr, toaddr, text)
-        server.quit()
+                Hey """+ info['star']['name'] +""",<br><br>
+                I saw you customized your <strong>"""+ info['box_name'] +"""</strong> box and that you want to sample it for yourself before you start selling it!<br>
+                I am reaching out just to tell you that your sample will be shipped within 24 hours and should be at your doorstep in 5 business days or less.<br>
+                If you have any questions or concerns please don't hesitate to reach out to me!<br><br>
+                - Sarah :)
+               """
+        email.send(toaddr,subject,html)
 
         #send the email
         toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
-        fromaddr = 'fandemicstore@gmail.com'
-
-        msg = MIMEMultipart()
-        msg['From'] = fromaddr
-        msg['To'] = ", ".join(toaddr)
-        msg['Subject'] = "New Sample Order!"
+        subject = "New Sample Order!"
 
         string = ''
         for k, v in info.iteritems():
@@ -446,14 +422,7 @@ def sampleCharge():
                   </body>
                 </html>
                 """
-        msg.attach(MIMEText(html, 'html'))
-
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(fromaddr, "Fandemic123")
-        text = msg.as_string()
-        server.sendmail(fromaddr, toaddr, text)
-        server.quit()
+        email.send(toaddr,subject,html)
 
     return '';
 
@@ -468,46 +437,25 @@ def launchStoreRequest():
 
         #send the email
         toaddr = [info['star']['email']]
-        fromaddr = 'fandemicstore@gmail.com'
-
-        msg = MIMEMultipart()
-        msg['From'] = fromaddr
-        msg['To'] = ", ".join(toaddr)
-        msg['Subject'] = "Your Beauty Box Store is Almost Ready!"
-
+        subject = "Your Beauty Box Campaign is Almost Ready!"
         html = """
-                <html>
-                  <head></head>
-                  <body>
-                    <div>
-                        <h3>Hi """+info['star']['name']+""", our team is getting your store ready!</h3>
-                        <p>Your confirmation code is: <strong>"""+info['confirmation_code']+"""</strong></p>
-                        <br>
-                        <p>A Fandemic team member will contact you today with information on how to move forward!</p>
-                    </div>
-                  </body>
-                </html>
-                """
-        msg.attach(MIMEText(html, 'html'))
+                Hey """+ info['star']['name'] +"""!<br><br>
+                I am so excited that you are ready to pre-sell your customized beauty box!<br><br>
+                I just wanted to tell you that our web designers are making a unique store for you now!<br><br>
+                Please be on the lookout for an email containing a custom link to your store!<br><br>
+                With this link you will be able to direct fans to the store and have them pre-order your boxes.<br><br>
+                If you have any questions at all, feel free to reply to this email. <br><br>
 
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(fromaddr, "Fandemic123")
-        text = msg.as_string()
-        server.sendmail(fromaddr, toaddr, text)
-        server.quit()
+                Excited to watch you launch your own product line!<br>
+                - Sarah :)
+                """
+        email.send(toaddr,subject,html)
 
 
 
         #send the email to fandemic team
         toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
-        fromaddr = 'fandemicstore@gmail.com'
-
-        msg = MIMEMultipart()
-        msg['From'] = fromaddr
-        msg['To'] = ", ".join(toaddr)
-        msg['Subject'] = "New Launch Store Request - "+info['star']['name']
-
+        subject = "New Launch Store Request - "+info['star']['name']
         string = ''
         for k, v in info.iteritems():
             string += '<strong>'+k+'</strong>: ' + str(v) + '<br>'
@@ -523,200 +471,10 @@ def launchStoreRequest():
                   </body>
                 </html>
                 """
-        msg.attach(MIMEText(html, 'html'))
-
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(fromaddr, "Fandemic123")
-        text = msg.as_string()
-        server.sendmail(fromaddr, toaddr, text)
-        server.quit()
+        email.send(toaddr,subject,html)
 
     return '';
 
-#================PROCESS A STOCKING FEE====================#
-@app.route('/charge-stocking-fee', methods=['GET', 'POST'])
-def chargeStockingFee():
-
-    #get the ajaxed info
-    if request.method == "POST":
-
-        info = request.get_json()
-
-        SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
-        PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
-
-        #initialize the stripe data
-        stripe_keys = {
-            'secret_key': SECRET_KEY,
-            'publishable_key': PUBLISHABLE_KEY
-        }
-
-        stripe.api_key = stripe_keys['secret_key']
-
-
-        customer = stripe.Customer.create(
-            email=info['email'],
-            card=info['id']
-        )
-
-        charge = stripe.Charge.create(
-            customer=customer.id,
-            amount=info['amount'],
-            currency='usd',
-            description= info['star'] + ' stocked their store!',
-            metadata={'star_id': info['star_id'],
-                      'quantity': str(info['quantity']),
-                      'items': ', '.join(info['items'])},
-            receipt_email=info['email']
-        )
-
-        #build the string to be saved
-        order = {}
-        order['name'] = info['star']
-        order['email'] = info['email']
-        order['address'] = {}
-        order['stripe'] = {}
-        order['stripe']['id'] = charge['id']
-        order['stripe']['customer'] = charge['customer']
-        order['total'] = charge['amount']
-        order['ip'] = info['client_ip']
-        order['star_id'] = info['star_id']
-        order['active'] = True if info['active'] == 'True' else False
-
-        #check for male and female
-        gender = ''
-        if info['male'] == True and info['female'] == False:
-            gender = 'male only'
-        elif info['male'] == False and info['female'] == True:
-            gender = 'female only'
-        else: gender = 'both'
-
-        #send the emaul
-        toaddr = ['ethan@fandemic.co', 'brandon@fandemic.co']
-        fromaddr = 'fandemicstore@gmail.com'
-
-        msg = MIMEMultipart()
-        msg['From'] = fromaddr
-        msg['To'] = ", ".join(toaddr)
-        msg['Subject'] = "Stocking Order - " +  info['star']
-        html = """
-                <html>
-                  <head></head>
-                  <body>
-                    <div>
-                        <h2>Congrats, Fandemic received a stocking order!</h2>
-                        <h3>Star Info</h3>
-                        Name: """ +  info['star_id'] + """<br>
-                        Star ID: """ + info['star_id'] + """<br>
-                        Email: """ + order['email'] + """<br>
-                        <hr>
-                        <h3>Order Details</h3>
-                        Item - Box <br>
-                        Quantity - """ + info['quantity'] + """<br>
-                        Box Items - """ + ', '.join(info['items']) + """<br>
-                        Gender - """ + gender + """<br>
-                        Charge ID - """ + charge['id'] + """
-                    </div>
-                  </body>
-                </html>
-                """
-        msg.attach(MIMEText(html, 'html'))
-
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(fromaddr, "Fandemic123")
-        text = msg.as_string()
-        server.sendmail(fromaddr, toaddr, text)
-        server.quit()
-
-    return '';
-
-#================ACTIVATE_STORE_MODAL==================
-@app.route('/activateStore', methods=['GET', 'POST'])
-def activate():
-    firstname = request.form['firstname']
-    email = request.form['email']
-    phone = request.form['phone']
-    youtube = request.form['youtube']
-    instagram = request.form['instagram']
-    categories = request.form['categories']
-    current_ip = request.environ['REMOTE_ADDR']
-
-    toaddr = ['ethan@fandemic.co', 'brandon@fandemic.co']
-    fromaddr = 'fandemicstore@gmail.com'
-
-    msg = MIMEMultipart()
-    msg['From'] = fromaddr
-    msg['To'] = ", ".join(toaddr)
-    msg['Subject'] = "New Store Activation Request"
-    html = """
-            <html>
-              <head></head>
-              <body>
-                <p>
-                    Firstname: """ + firstname + """<br>
-                    Email: """ + email + """<br>
-                    Phone: """ + phone + """<br>
-                    Youtube: """ + youtube + """<br>
-                    Instagram: """ + instagram + """<br>
-                    Category: """ + categories + """<br>
-                    IP Address: """ + current_ip + """
-                </p>
-              </body>
-            </html>
-            """
-    msg.attach(MIMEText(html, 'html'))
-
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(fromaddr, "Fandemic123")
-    text = msg.as_string()
-    server.sendmail(fromaddr, toaddr, text)
-    server.quit()
-
-    return ''
-#----------------------------------------------
-
-#================CONTACT_FORM_MODAL==================
-@app.route('/supportContactForm', methods=['GET', 'POST'])
-def support():
-    firstname = request.form['name']
-    email = request.form['email']
-    message = request.form['message']
-    current_ip = request.environ['REMOTE_ADDR']
-
-    toaddr = ['ethan@fandemic.co', 'brandon@fandemic.co']
-    fromaddr = 'fandemicstore@gmail.com'
-
-    msg = MIMEMultipart()
-    msg['From'] = fromaddr
-    msg['To'] = ", ".join(toaddr)
-    msg['Subject'] = "Support Email"
-    html = """
-         <html>
-           <head></head>
-           <body>
-             <p>
-                 Firstname: """ + firstname + """<br>
-                 Email: """ + email + """<br>
-                 Message: """ + message + """<br>
-                 IP Address: """ + current_ip + """
-             </p>
-           </body>
-         </html>
-         """
-    msg.attach(MIMEText(html, 'html'))
-
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(fromaddr, "Fandemic123")
-    text = msg.as_string()
-    server.sendmail(fromaddr, toaddr, text)
-    server.quit()
-
-    return ''
-#----------------------------------------------
 
 @app.errorhandler(404)
 def page_not_found(e):

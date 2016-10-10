@@ -71,6 +71,7 @@ app.controller("builder", function($scope) {
           },
           complete: function(){
             $('#loader').hide();
+            $("#launch-store-button").prop("disabled",false);
           }
         });
 
