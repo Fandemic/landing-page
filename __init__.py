@@ -401,10 +401,10 @@ def sampleCharge():
 
         info = request.get_json()
 
-        SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
-        PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
-        #SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
-        #PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
+        #SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+        #PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+        SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
+        PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
 
         #initialize the stripe data
         stripe_keys = {

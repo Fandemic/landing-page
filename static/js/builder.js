@@ -177,8 +177,8 @@ app.controller("builder", function($scope) {
 
     //STRIPE SAMPLE
     var handler = StripeCheckout.configure({
-    key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
-    //key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
+    //key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
+    key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
     locale: 'auto',
     token: function(token,args) {
 
