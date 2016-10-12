@@ -4,7 +4,17 @@
 * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
 */
 
-
+.arrow-icon {
+  width: 110px;
+  height: 34px;
+  display: block;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../img/arrow-icon.png);
+  position: absolute;
+  top: 50px;
+  right: -58px;
+}
 
 
 footer {
