@@ -1128,7 +1128,6 @@ margin-left: auto;margin-right: auto;right: 150px;
 }
 
 .image{
-  /*background-image: url(/static/img/girl.jpg);*/
   background-repeat: no-repeat;
   background-size: contain;
   background-color: #fff !important;
