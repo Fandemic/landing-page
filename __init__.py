@@ -129,7 +129,8 @@ def getData():
 
     ID = request.args.get('id')
 
-    star = db.stars.find_one({"id":ID})
+    star = db.stars.find_one({"id":ID},{'_id': 0})
+    star['_id'] = 0
 
     emails = 'not found in DB'
     if star is not None:
@@ -138,7 +139,7 @@ def getData():
     sarah = Slack()
     sarah.notify('*DESKTOP VISITED ALERT*\nHey guys, the user *'+str(ID)+'* just visited the beauty builder on desktop.\nTheir email address is [*'+str(emails)+'*]')
 
-    return ''
+    return json.dumps({'name':star['name'],'img_url':star['image']['profile']})
 
 @app.route("/builder-alert-mobile", methods=['GET'])
 def getDataMobile():

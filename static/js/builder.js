@@ -20,9 +20,10 @@ app.controller("builder", function($scope) {
       style: null,
       material: null,
       star: {
-        'name': '',
+        'name': 'one of a kind',
         'email': '',
-        'phone': ''
+        'phone': '',
+        'img_url': ''
       },
       confirmation_code: randomString(12)
     }
@@ -306,6 +307,36 @@ app.controller("builder", function($scope) {
 
         });
 
+        $scope.set_star = function(star){
+          $scope.box.star['name'] = star['name'];
+          $scope.box.star['img_url'] = star['img_url'];
+        }
+
+        //extract the id of the user from the URL
+        if(window.location.hash) {
+            var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+
+            $.ajax({
+               url: '/builder-alert',
+               data: {id: hash},
+               type: 'GET',
+               success: function(response) {
+                   data = JSON.parse(response);
+                   $scope.set_star(data);
+                   $scope.$digest();
+
+               },
+               error: function(error) {
+                   console.log(error);
+               }
+           });
+
+        } else {
+            // No hash found
+        }
+
+
+
 });
 
 
@@ -443,25 +474,7 @@ $(document).ready(function() {
       $('#how-fandemic-works').modal('show');
      }
 
-     //extract the id of the user from the URL
-     if(window.location.hash) {
-         var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
 
-         $.ajax({
-            url: '/builder-alert',
-            data: {id: hash},
-            type: 'GET',
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-
-     } else {
-         // No hash found
-     }
 
 
 

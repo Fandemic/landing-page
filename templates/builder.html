@@ -44,7 +44,7 @@
    <script src="/static/js/sticker.min.js"></script>
 
 
-   <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Indie+Flower|Kaushan+Script|Lobster|Roboto|Pacifico|Slabo+27px|Yellowtail|Petit+Formal+Script" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Indie+Flower|Kaushan+Script|Lobster|Roboto|Pacifico|Slabo+27px|Yellowtail|Petit+Formal+Script|Finger+Paint" rel="stylesheet">
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css">
    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.js"></script>
@@ -65,7 +65,7 @@
 
 <img width="150px" id="big-loader" src="/static/img/loader.gif" style="position:fixed;z-index:99999;top:40%;left:45%;display:none;">
 
-<body ng-controller="builder">
+<body ng-controller="builder" style="background-color:#F1F1F1">
 
   {% include('builder/nav.html') %}
 
@@ -98,9 +98,29 @@
 
       </section>
 
+      <div class="gallery">
+
+        <div class="product-photo">
+          <img src="/static/img/beauty_slider/1.jpg">
+        </div>
+
+        <div class="product-photo">
+          <img src="/static/img/beauty_slider/6.jpg">
+        </div>
+
+        <div class="product-photo">
+          <img src="/static/img/beauty_slider/3.jpg">
+        </div>
+
+        <div class="product-photo">
+          <img src="/static/img/beauty_slider/2.jpg">
+        </div>
+
+    </div>
+
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer" style="margin-top:2px;">
     <div class="row">
 
       <p style="text-align:center;color:#4d4d4d; font-size:16px;"><small>All products are <strong>cruelty free</strong>, <strong>not tested on animals</strong>, and made with organic ingredients.</small></p>
