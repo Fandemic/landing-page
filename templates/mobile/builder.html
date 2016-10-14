@@ -22,40 +22,81 @@
 
 <body>
   <br>
-  <br>
-  <br>
-  <div class="row">
-    <img style="padding-left:4em; padding-right:4em" src="../static/img/logo-nav_fullsize.png" class="img-responsive" alt="Fandemic">
+
+  <div class="row" style="text-align:center;">
+    <img id="user-img" style="width: 40%;border-radius:50%;text-align:center;margin:0 auto;" src="/static/img/profile.png" ng-src="{a box.star.img_url a}" alt="benefits of product">
   </div>
   <hr>
   <div class="row">
-    <h1 style="font-size:27px; padding-left:2em; padding-right:2em; text-align:center;">
-      Oops! We're not ready for your mobile device yet! Please check back on your laptop, desktop or tablet!
-    </h1>
-    <p id="notify" style="display:none;text-align:center;font-size:10px;">Thanks! We will send you an email reminder later!</p>
+    <h3 style="font-size:27px; padding-left:2em; padding-right:2em; text-align:center;color:#1d1d1d;">
+      The incredible <strong>Beauty Box Builder</strong> is not yet available for mobile devices!
+    </h3>
+
+
   </div>
-<div id="email-found-mobile" class="row" style="padding-top:2em;">
-  <button id="remind" class="btn btn-success btn-lg next-btn btn-nav btn-beauty" style="margin-left:27%; background-color: #7BDC87; font-weight:700;25px;">Remind Me!</button>
+  <br>
+  <div style="text-align:center;">Click The <strong>Remind Me</strong> and we will send you an email reminding you to check this out on your computer!</div>
+<div id="email-found-mobile" class="row" style="padding-top:1em;text-align:center;">
+    <p id="notify" style="display:none;text-align:center;font-size:10px;">Thanks! We will send you an email reminder later!</p>
+  <button id="remind" class="btn btn-success btn-lg next-btn btn-nav btn-beauty" style="background-color: #7BDC87; font-weight:700;25px;">Set Email Reminder (push me)</button>
 </div>
 <div id="email-not-found-mobile" class="row" style="padding-top:2em; margin: 0 7% 0 10%;">
+
   <div class="input-group">
     <input type="text" class="form-control" placeholder="Enter Email...">
     <span class="input-group-btn">
-      <button style="padding: 17px 24px;" class="btn btn-secondary" type="button">Remind Me!</button>
+      <button style="padding: 17px 24px;" class="btn btn-secondary" type="button">Remind Me</button>
     </span>
   </div>
 </div>
+<br><br><br>
+
+<div class="gallery">
+
+  <div class="product-photo">
+    <img src="/static/img/beauty_slider/1.jpg">
+  </div>
+
+  <div class="product-photo">
+    <img src="/static/img/beauty_slider/6.jpg">
+  </div>
+
+  <div class="product-photo">
+    <img src="/static/img/beauty_slider/3.jpg">
+  </div>
+
+  <div class="product-photo">
+    <img src="/static/img/beauty_slider/2.jpg">
+  </div>
+
+</div>
+
 
 </body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br> {% include 'footer.html' %}
+
+<!-- Footer -->
+<footer class="footer" style="margin-top:2px;width:100%;">
+  <div class="row">
+
+  </div>
+  <div class="row">
+    <p style="text-align:center;color:#4d4d4d"><small>© 2016 Fandemic Inc. | All Rights Reserved | <a href="../terms">Terms & Conditions</a></small></p>
+  </div>
+</footer>
+
 
 </html>
+
+<script src="/static/js/jquery-1.12.2.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/landing-page/waypoints.min.js"></script>
+<script src="/static/js/landing-page/jquery.animateNumber.min.js"></script>
+<script src="/static/js/landing-page/waypoints-sticky.min.js"></script>
+<script src="/static/js/landing-page/retina.min.js"></script>
+<script src="/static/js/landing-page/jquery.magnific-popup.min.js"></script>
+<script src="/static/js/landing-page/jquery.ajaxchimp.min.js"></script>
+<script src="/static/js/landing-page/main.js"></script>
+<script src="/static/js/landing-page/lightslider.js"></script>
 
 <script>
 var pageUrl = window.location.href;
@@ -81,7 +122,7 @@ function remind(){
      data: {id: hash},
      type: 'GET',
      success: function(response) {
-         console.log(response);
+      console.log(response);
      },
      error: function(error) {
          console.log(error);
@@ -106,7 +147,8 @@ $(document).ready(function() {
             data: {id: hash},
             type: 'GET',
             success: function(response) {
-                console.log(response);
+              data = JSON.parse(response);
+              $('#user-img').attr("src", data['img_url']);
             },
             error: function(error) {
                 console.log(error);

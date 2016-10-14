@@ -155,7 +155,7 @@ def getDataMobile():
     sarah = Slack()
     sarah.notify('*MOBILE VISITED ALERT*\nHey guys, the user *'+str(ID)+'* just visited the beauty builder on their mobile device.\nTheir email address is [*'+str(emails)+'*]')
 
-    return ''
+    return json.dumps({'name':star['name'],'img_url':star['image']['profile']})
 
 @app.route("/builder-remind-mobile", methods=['GET'])
 def reminderMobile():
