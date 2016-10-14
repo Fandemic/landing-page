@@ -8,16 +8,18 @@
 
       <div class="explain-step">
         <h3 class="subtitle">Which products do you want in your box?</h3>
-        <div class="alert alert-warning fade in" style="width:80%;" >
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
           <i class="light" style="font-weight:300;">add items to your box by <strong>clicking</strong> on them! <br>
           <img width="20px;" class="color-palette" src="/static/img/color-palette.svg"> = multiple colors available</i>
-        </div>
+
       </div>
 
       <ul class="nav nav-tabs">
         {% for group in items | groupby('sub-category')%}
-        <li {% if group.grouper == 'lips' %}class="active"{% endif %}><a data-toggle="tab" href="#{{group.grouper}}">{{group.grouper | upper}}</a></li>
+        <li {% if group.grouper == 'lips' %}class="active"{% endif %}><a data-toggle="tab" href="#{{group.grouper}}">
+          <img width="30px" src="/static/img/{{group.grouper}}.svg">
+          <span style="color:#7F3960 !important;">{{group.grouper | upper}}</span>
+        </a></li>
         {% endfor %}
       </ul>
 
