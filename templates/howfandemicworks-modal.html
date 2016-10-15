@@ -1,39 +1,20 @@
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="how-fandemic-works">
-  <div class="vertical-alignment-helper">
 
-  <div class="modal-dialog modal-md vertical-align-center">
+  <div class="modal-dialog modal-md">
     <div class="modal-content" style="padding:30px">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h2 class="modal-title" id="myModalLabel" style="text-align:center; font-size:1.6em;">Sell your own branded beauty boxes in 3 easy steps</h2>
+      <h2 class="modal-title" id="myModalLabel" style="text-align:center; font-size:1.6em;">Sell Your Own Branded Beauty Box</h2>
       <hr>
 
-      <div class="row modalSteps">
-          <img class="img-responsive icon" src="/static/img/howitworks/packing.svg">
-          <h3 class="steps"> Build Your Custom Box</h3>
-          <i class="light">Select items and designs for your custom box</i>
-          <hr class="stub">
-      </div>
-      <br><br>
 
 
-      <div class="row modalSteps">
-          <img class="img-responsive icon" src="/static/img/howitworks/launch.svg">
-          <h3 class="steps">Promote Your Pre-Order Campaign</h3>
-          <i class="light">It's time to start taking preorders!</i>
-          <hr class="stub">
-      </div>
-      <br><br>
 
 
-      <div class="row modalSteps">
-          <img class="img-responsive icon" src="/static/img/howitworks/get-money.svg">
-          <h3 class="steps">Get Paid</h3>
-          <i class="light">Receive your total profit if the campaign is a success!</i>
-          <hr class="stub">
-      </div>
-      <br><br>
+      <iframe src="//player.vimeo.com/video/160944827?api=1&player_id=vimeoplayer&title=0&amp;byline=0&amp;portrait=0" name="vimeoplayer" id="nofocusvideo" width="615" height="346" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
 
       <div style="text-align:center;">
         <a href="/builder" class="btn btn-submit">Build a Box</a>
@@ -42,75 +23,25 @@
     </div>
   </div>
 </div>
-</div>
 
 <style>
-
-.step{
-  color: #4E9CD4;
-}
-
-.steps{
-  margin-bottom: 0px;
-  color: #1d1d1d;
-  font-weight: 600;
-}
-
-.light{
-  color: #8d8d8d;
-  font-size:14px;
-}
-
-.col-xs-9{
-  padding:20px;
-  padding-top: 0px;
-}
-
-.icon{
-  opacity:.8;
-}
-
-.list{
-  padding-left: 30px;
-  color: #4d4d4d;
-}
-
-.stub{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-color: #eeeeee;
-}
-
-.listt li {
-    list-style-type: circle;
- }
-
-
-.img-responsive.icon {
-  width: 5em;
-  margin-left: 10em;
-
-}
-
-.row.modalSteps {
-  text-align:center;
-}
-
-.vertical-alignment-helper {
-    display:table;
-    height: 100%;
-    width: 100%;
-}
-.vertical-align-center {
-    /* To center vertically */
-    display: table-cell;
-    vertical-align: middle;
-}
 .modal-content {
-    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-    width:inherit;
-    height:inherit;
-    /* To center horizontally */
-    margin: 0 auto;
+  width:42em;
 }
 </style>
+
+<script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
+
+<script>
+var iframe = document.getElementById('nofocusvideo');
+// $f == Froogaloop
+var player = $f(iframe);
+
+$('.modal').on('hidden.bs.modal', function () {
+player.api('pause');
+})
+
+$('.modal').on('shown.bs.modal', function () {
+player.api('play');
+})
+</script>
