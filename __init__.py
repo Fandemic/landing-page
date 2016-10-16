@@ -12,6 +12,9 @@ import os
 from slack import Slack
 from werkzeug.utils import secure_filename
 from mailer import Mailer
+from shipping import Shipping
+import braintree
+
 
 UPLOAD_FOLDER = 'static/img/test/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd','svg'])
@@ -20,6 +23,11 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
 db = MongoClient('45.79.159.210', 27017).fandemic
+
+braintree.Configuration.configure(braintree.Environment.Sandbox,
+                                  merchant_id="2hf4g4nnyr988sbq",
+                                  public_key="k7kxgfrgmwq95qrr",
+                                  private_key="c33bb5198238ee8c544f5e2ff894a63b")
 
 email = Mailer();
 
@@ -124,6 +132,18 @@ def catalogRemove(sku):
 
     return resp
 
+@app.route("/shipping-rates", methods=['GET'])
+def getShippingRates():
+
+    customer = request.args.get('customer');
+
+    shipment = Shipping()
+
+    return json.dumps(shipment.get_rates(customer))
+
+
+
+
 @app.route("/builder-alert", methods=['GET'])
 def getData():
 
@@ -174,65 +194,6 @@ def reminderMobile():
     return ''
 
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
-
-def handle_file(f,name):
-
-    name = name.replace(' ','_')
-
-    directory = app.root_path + '/static/img/box_builder/'+name+'/'
-
-    print app.root_path
-
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-
-    filename = secure_filename(f.filename)
-    f.save(os.path.join(directory, filename))
-    return 'https://fandemic.co/'+'static/img/box_builder/'+name
-
-
-@app.route('/builder/submit', methods=['GET', 'POST'])
-def catalogSubmit():
-
-    items = ''
-
-    #get items in box
-    if request.cookies.get('box') is not None:
-        items = request.cookies.get('box')
-        items = items.replace(',','\n')
-
-    sarah = Slack()
-
-    name = request.form['name']
-    email = request.form['email']
-    price = request.form['price']
-    info = request.form['info']
-    price = request.form['price']
-
-
-    #UPLOAD THE FILE
-    files = request.files.getlist('file[]')
-    url = ''
-    for file in files:
-        url = handle_file(file,name)
-
-    msg = 'a new box was created! \n'
-    msg += '*Name:* ' + name + '\n'
-    msg += '*Email:* ' + email + '\n'
-    msg += '*Price:* $' + price + '\n'
-    msg += '*Items:* \n' + items + '\n'
-    msg += '*Design Instructions:*\n' + info + '\n'
-    msg += '*Design Files URL:* ' + str(url)
-
-    sarah.notify(msg)
-
-    return render_template('builder/success.html')
-
-
 @app.route('/blog/<url>')
 def blogPost(url):
     print url
@@ -269,6 +230,8 @@ def new_store():
 @app.route('/privacy')
 def privacy():
     return render_template('privacy.html')
+
+
 
 #=================MOCK STORES=====================
 @app.route('/<starID>')
@@ -311,6 +274,7 @@ def store(template,starID):
 
     return render_template(template, star = star,products = productsFiltered,
                                      cat=catIndex, pricing = pricing,
+                                     braintree=braintree.ClientToken.generate(),
                                      pricingjs=map(json.dumps, pricingjs))
 #---------------------------------------------
 
