@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 
 <head>
   <meta charset="utf-8">
@@ -20,6 +20,10 @@
   <link rel="stylesheet" href="../static/css/landing-page/magnific-popup.css">
   <script src="https://js.braintreegateway.com/js/braintree-2.29.0.min.js"></script>
   <link rel="stylesheet" href="/static/css/social-share-kit.css" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="../static/js/shop.js"></script>
 
 
 
@@ -27,7 +31,7 @@
 
 </head>
 
-<body>
+<body ng-controller="shop">
 
 <script>
 var img = document.createElement('img');
@@ -189,7 +193,7 @@ img.setAttribute('src', '{{star.image.profile}}')
         <div class="panel-body" style="padding-bottom:0px;padding-left:40px;padding-right:40px;">
           <div class="">
 
-            <h3 style="font-size:18px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
+            <h3 class="time" style="font-size:18px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
             5 days: 7 hrs: 24 min
             <br>
               <span style="color:#cdcdcd;font-size:16px;">remaining</span>
@@ -272,29 +276,29 @@ img.setAttribute('src', '{{star.image.profile}}')
             <div class='row'>
               <div class='col-xs-6'>
                 <label class='control-label'>Email</label>
-                <input class='form-control' size='30' type='email'>
+                <input class='form-control' size='30' type='text' ng-model="customer.email">
               </div>
               <div class='col-xs-6'>
                 <label class='control-label'>Full Name</label>
-                <input class='form-control' size='30' type='text'>
+                <input class='form-control' size='30' type='text' ng-model="customer.name">
               </div>
             </div>
             <br>
             <div class='row'>
               <div class='col-xs-12'>
                 <label class='control-label'>Shipping Address</label>
-                <input class='form-control' size='200' type='text'>
+                <input class='form-control' size='200' type='text' ng-model="customer.addr" ng-model-options="{ debounce: 1500 }">
               </div>
             </div>
             <br>
             <div class='row'>
               <div class='col-xs-6'>
                 <label class='control-label'>City</label>
-                <input class='form-control' size='30' type='email'>
+                <input class='form-control' size='30' type='text' ng-model="customer.city" ng-model-options="{ debounce: 1500 }">
               </div>
               <div class='col-xs-6'>
                 <label class='control-label'>State</label>
-                <input class='form-control' size='30' type='text'>
+                <input class='form-control' size='30' type='text' ng-model="customer.state">
               </div>
             </div>
 
@@ -303,12 +307,12 @@ img.setAttribute('src', '{{star.image.profile}}')
 
               <div class='col-xs-6'>
                 <label class='control-label'>Zip</label>
-                <input class='form-control' size='30' type='text'>
+                <input class='form-control' size='30' type='text' ng-model="customer.zip" ng-model-options="{ debounce: 2000 }">
               </div>
               <div class='col-xs-6'>
                 <label class='control-label'>Country</label>
                 <div class="form-group" style="text-align:left;">
-                  <select class="form-control">
+                  <select class="form-control" ng-model="customer.country">
                     <option value="AF">Afghanistan</option>
                   	<option value="AX">Åland Islands</option>
                   	<option value="AL">Albania</option>
@@ -582,8 +586,8 @@ img.setAttribute('src', '{{star.image.profile}}')
 
               <div class="form-group" style="text-align:left;">
                 <label for="sel1">Shipping Method:</label>
-                <select class="form-control" id="sel1">
-                  <option>...</option>
+                <select class="form-control" id="shipping" ng-model="shipping_method"
+                        ng-options="rate as (rate.service + ' (+$' + rate.rate + ')') for rate in rates">
                 </select>
               </div>
 
@@ -1034,23 +1038,6 @@ $('span').popover({'trigger':'hover'});
 braintree.setup('{{braintree}}', 'dropin', {
   container: 'dropin-container'
 });
-
-$(document).ready(function() {
-
-         $.ajax({
-            url: '/shipping-rates',
-            data: {customer: 'test'},
-            type: 'GET',
-            success: function(response) {
-              data = JSON.parse(response);
-              //alert(data[0]['rate']);
-            },
-            error: function(error) {
-              alert(error);
-            }
-        });
-
-   });
 </script>
 
 

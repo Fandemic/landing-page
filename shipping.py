@@ -23,13 +23,13 @@ class Shipping:
         # create and verify addresses
         to_address = easypost.Address.create(
           verify=["delivery"],
-          name = "Aidan Walsh",
-          street1 = "2681 Ideal Ct.",
+          name = customer['name'],
+          street1 = customer['addr'],
           street2 = "",
-          city = "Manchester",
-          state = "MD",
-          zip = "21102",
-          country = "US",
+          city = customer['city'],
+          state = customer['state'],
+          zip = customer['zip'],
+          country = customer['country'],
           phone = "555-555-5555"
         )
 

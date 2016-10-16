@@ -132,10 +132,11 @@ def catalogRemove(sku):
 
     return resp
 
-@app.route("/shipping-rates", methods=['GET'])
+@app.route("/shipping-rates", methods=['GET', 'POST'])
 def getShippingRates():
 
-    customer = request.args.get('customer');
+    customer = request.get_json()
+    print customer
 
     shipment = Shipping()
 
