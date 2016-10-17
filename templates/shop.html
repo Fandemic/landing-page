@@ -23,6 +23,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js"></script>
   <script src="../static/js/shop.js"></script>
 
 
@@ -194,8 +195,11 @@ img.setAttribute('src', '{{star.image.profile}}')
           <div class="">
 
             <h3 class="time" style="font-size:18px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
-            5 days: 7 hrs: 24 min
+            <span id="timer"></span>
+
             <br>
+
+
               <span style="color:#cdcdcd;font-size:16px;">remaining</span>
 
             </h3>
@@ -250,6 +254,29 @@ img.setAttribute('src', '{{star.image.profile}}')
   imgDefer[i].setAttribute('src',imgDefer[i].getAttribute('data-src'));
   } } }
   window.onload = init;
+  </script>
+
+  <script>
+
+  var unix_timestamp = 1477267200;
+
+  countdown.setLabels(
+	' milissegundo| sec| min| hr| day| semana| mês| ano| década| sec| milênio',
+	' milissegundos| sec| min| hrs| days| semanas| meses| anos| sec| séculos| milênios',
+	': ',
+	': ',
+	'agora');
+
+  var timerId =
+  countdown(
+  new Date(unix_timestamp*1000),
+  function(ts) {
+  document.getElementById('timer').innerHTML = ts.toHTML("strong");
+  },
+  countdown.DAYS|countdown.HOURS|countdown.MINUTES);
+
+  // later on this timer may be stopped
+  //window.clearInterval(timerId);
   </script>
 
   </body>

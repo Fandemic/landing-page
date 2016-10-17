@@ -24,6 +24,8 @@ app.controller("shop", function($scope) {
 
   $scope.price = 80.00;
 
+
+
   //watch for the customer variable to change!
   $scope.$watch('customer', function(c, oldValue){
 
@@ -63,5 +65,8 @@ app.controller("shop", function($scope) {
       }
 
         },true);
+
+
+
 
 });
