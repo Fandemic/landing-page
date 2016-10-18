@@ -98,39 +98,6 @@ def catalog(template,cat=None,cat2=None,cat3=None):
     return render_template(template, items=list(items), box_items=list(box_items),styles=styles,packaging=packaging,cat=cat,cat2=cat2,cat3=cat3)
 
 
-@app.route('/builder/add/<sku>')
-def catalogAdd(sku):
-
-    items = []
-
-    if request.cookies.get('box') is not None:
-        items = toList(request.cookies.get('box'))
-        items.append(sku)
-    items = toString(items)
-
-    cat = db.items.find_one({"sku":sku})['category']
-
-    resp = make_response(redirect('/builder/'+cat))
-
-    resp.set_cookie('box', items)
-
-    return resp
-
-
-@app.route('/builder/remove/<sku>')
-def catalogRemove(sku):
-
-    items = toList(request.cookies.get('box'))
-    items.remove(sku)
-
-    items = toString(items)
-
-    cat = db.items.find_one({"sku":sku})['category']
-
-    resp = make_response(redirect('/builder/'+cat))
-    resp.set_cookie('box', items)
-
-    return resp
 
 @app.route("/shipping-rates", methods=['GET', 'POST'])
 def getShippingRates():
@@ -162,6 +129,7 @@ def getData():
 
     return json.dumps({'name':star['name'],'img_url':star['image']['profile']})
 
+
 @app.route("/builder-alert-mobile", methods=['GET'])
 def getDataMobile():
 
@@ -177,6 +145,7 @@ def getDataMobile():
     sarah.notify('*MOBILE VISITED ALERT*\nHey guys, the user *'+str(ID)+'* just visited the beauty builder on their mobile device.\nTheir email address is [*'+str(emails)+'*]')
 
     return json.dumps({'name':star['name'],'img_url':star['image']['profile']})
+
 
 @app.route("/builder-remind-mobile", methods=['GET'])
 def reminderMobile():
@@ -288,73 +257,25 @@ def charge():
     #get the ajaxed info
     if request.method == "POST":
 
-        info = request.get_json()
+        data = request.get_json()
 
-        #if info['active'] == 'False':
-        #SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
-        #PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
-        #else:
-        SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
-        PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
-
-        #initialize the stripe data
-        stripe_keys = {
-            'secret_key': SECRET_KEY,
-            'publishable_key': PUBLISHABLE_KEY
-        }
-
-        stripe.api_key = stripe_keys['secret_key']
+        customer = data['customer'];
 
 
-        customer = stripe.Customer.create(
-            email=info['email'],
-            card=info['id']
-        )
+        #process the transaction
+        result = braintree.Transaction.sale({
+            "amount": str(data['price']),
+            "payment_method_nonce": data['nonce'],
+            "options": {
+              "submit_for_settlement": True
+            }
+        });
 
-        charge = stripe.Charge.create(
-            customer=customer.id,
-            amount=info['amount'],
-            currency='usd',
-            description= info['billing_name'] + ' ordered products from ' + info['star'],
-            receipt_email=info['email']
-        )
+        #submit transaction to orders collection in DB
 
-        #build the string to be saved
-        order = {}
-        order['name'] = info['billing_name']
-        order['email'] = info['email']
-        order['address'] = {}
-        street1 = order['address']['street1'] = info['shipping_address_line1']
-        city = order['address']['city'] = info['shipping_address_city']
-        state = order['address']['state'] = info['shipping_address_state']
-        zipcode = order['address']['zip'] = info['shipping_address_zip']
-        country = order['address']['country'] = info['shipping_address_country']
-        order['stripe'] = {}
-        order['stripe']['id'] = charge['id']
-        order['stripe']['customer'] = charge['customer']
-        cart = order['cart'] = info['cart']
-        order['total'] = charge['amount']
-        order['ip'] = info['client_ip']
-        order['star_id'] = info['star_id']
-        order['active'] = True if info['active'] == 'True' else False
+        #slack notification of transaction
+        sarah.send("order placed","Order #1234",str(data))
 
-        #insert into database
-        db.orders.insert_one(order)
-
-        #Get sarah to send a notification
-        msg = '*Name:* ' + order['name'] + '\n*Email:* ' + order['email']
-        msg += '\n*Address*\n' + street1
-        msg += '\n' + city + ' ' + state + ', ' + zipcode
-        msg += '\n' + country
-        msg += '\n*Cart*\n'
-        for sku, v in cart.iteritems():
-            msg += '`' + sku + '` '
-            for v2, qty in v.iteritems():
-                msg += v2
-                for qty2, value in qty.iteritems():
-                    msg += '(' + str(value) + ') '
-            msg += '\n'
-        sarah.send("order placed","Order #1234",msg)
 
     return '';
 
