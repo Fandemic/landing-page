@@ -18,24 +18,35 @@ app.controller("shop", function($scope) {
     city:'',
     state:'',
     zip:'',
-    country:''
+    country:'US'
   };
 
   $scope.data.shipping_method = {};
 
-  $scope.data.rates = [];
+  $scope.rates = [];
 
-  $scope.data.price = 80.00;
+  $scope.data.price = price;
 
   $scope.data.end_time = 1477267200;
 
-  $scope.total_price = function(){
+  $scope.total_price_str = function(){
 
     if ($scope.data.shipping_method['rate']){
       return ('($'+ ($scope.data.price + parseFloat($scope.data.shipping_method['rate'])).toFixed(2).toString() +')');
     }
     else{
       return '';
+    }
+
+  };
+
+  $scope.total_price = function(){
+
+    if ($scope.data.shipping_method['rate']){
+      return $scope.data.price + parseFloat($scope.data.shipping_method['rate']);
+    }
+    else{
+      return $scope.data.price;
     }
 
   };
@@ -116,7 +127,11 @@ app.controller("shop", function($scope) {
   //watch for the customer variable to change!
   $scope.$watch('data.customer', function(c, oldValue){
 
-      if (c.addr && c.city && c.state && c.zip && c.country){
+      if ((c.name !== oldValue.name) || (c.email !== oldValue.email)){
+
+      }
+
+      else if (c.addr && c.city && c.state && c.zip && c.country){
 
         $('#shipping').notify("updating shipping methods...", { position:"top center",className:"info" });
         $.ajax({
@@ -132,13 +147,13 @@ app.controller("shop", function($scope) {
              if (data.length > 0){
 
                $('#shipping').notify("shipping methods updated", { position:"top center",className:"success" });
-               $scope.data.rates = data;
+               $scope.rates = data;
                $scope.data.shipping_method = data[0];
                $scope.$digest();
              }
              else{
                $('#shipping').notify("Your address is invalid", { position:"top center"});
-               $scope.data.rates = [];
+               $scope.rates = [];
                $scope.data.shipping_method = {};
                $scope.$digest();
              }

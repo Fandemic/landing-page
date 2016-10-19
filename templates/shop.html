@@ -33,6 +33,10 @@
 
 </head>
 
+<script>
+  var price = {{star.campaigns[0].price}};
+</script>
+
 <body ng-controller="shop">
 
 <script>
@@ -91,7 +95,7 @@ img.setAttribute('src', '{{star.image.profile}}');
 
 
   <div class="footer">
-    <p class="copyright text-muted small">Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
+    <p class="copyright text-muted small" style="color:#fff;">Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
       <strong>Patent Pending</strong>
   </div>
 </div>
@@ -108,7 +112,7 @@ img.setAttribute('src', '{{star.image.profile}}');
 
 
     <div class="btns">
-      <button data-toggle="modal" data-target="#customerServiceModal" class="btn btn-default" aria-hidden="true">HOW THIS WORKS</button>
+      <button data-toggle="modal" data-target="#customerServiceModal" class="btn btn-default" aria-hidden="true">CREATE YOUR OWN BOX</button>
     </div>
 
 
@@ -139,8 +143,7 @@ img.setAttribute('src', '{{star.image.profile}}');
         </div>
         <div class="col-md-6" style="padding:20px;text-align:left;color:#4d4d4d;">
           <h4>About This Box</h4>
-          <p>Soak your lips in one of our delicious shades of lip gloss for high shine and totally glam looking lips. Enriched with Vitamin E, this gloss will leave lips soft and luscious. Non-sticky, glossy, weightless formula stays shiny and fresh! Available
-            in Black and Platinum. *Please Note: Available in Black only.</p>
+          <p>{{star.campaigns[0].description}}</p>
         </div>
 
 
@@ -151,36 +154,16 @@ img.setAttribute('src', '{{star.image.profile}}');
       <div class="col-md-12 ">
 
         <div class="items-listing">
+
+          {% for p in star.campaigns[0].products %}
           <div class="col-sm-2" style="padding-left:0px;">
             <div class="thumbnail" >
-              <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">
+              <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/{{p.item_num}}.png" style="width:100%;padding:10px;">
             </div>
+            <p style="font-size:9px;color:#8d8d8d;">{{p.name}}</p>
           </div>
-          <div class="col-sm-2" style="padding-left:0px;">
-            <div class="thumbnail" >
-              <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/15-18-51.png" style="width:100%;padding:10px;">
-            </div>
-          </div>
-          <div class="col-sm-2" style="padding-left:0px;">
-            <div class="thumbnail">
-              <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/24-72-11.png" style="width:100%;padding:10px;">
-            </div>
-          </div>
-          <div class="col-sm-2" style="padding-left:0px;">
-            <div class="thumbnail" >
-              <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">
-            </div>
-          </div>
-          <div class="col-sm-2" style="padding-left:0px;">
-            <div class="thumbnail" >
-              <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/15-18-51.png" style="width:100%;padding:10px;">
-            </div>
-          </div>
-          <div class="col-sm-2" style="padding-left:0px;">
-            <div class="thumbnail">
-              <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/24-72-11.png" style="width:100%;padding:10px;">
-            </div>
-          </div>
+          {% endfor %}
+
         </div>
       </div>
 
@@ -207,8 +190,16 @@ img.setAttribute('src', '{{star.image.profile}}');
 
             <div class="progress" style="margin-bottom:2px;">
               <div class="progress-bar progress-bar-success" role="progressbar"
-              aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%;height:80px;margin-left:-2px;margin-top:-2px;">
-                <strong style="font-size:16px;">5 orders</strong>
+                   style="
+                   {% if star.campaigns[0].num_orders >= 10 %}
+                   width:102%;
+                   {% else %}
+                   width: {{star.campaigns[0].num_orders*10 }}%;
+                   {% endif %}
+
+                   height:80px;margin-left:-2px;margin-top:-2px;">
+
+                <strong style="font-size:16px;">{{star.campaigns[0].num_orders}} orders</strong>
               </div>
             </div>
 
@@ -220,7 +211,7 @@ img.setAttribute('src', '{{star.image.profile}}');
         </div>
 
           <hr>
-          <h4><span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">$80.00</strong></h4>
+          <h4><span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong></h4>
           <hr>
           <br>
 
@@ -256,7 +247,7 @@ img.setAttribute('src', '{{star.image.profile}}');
 
   var timerId =
   countdown(
-  new Date(1477267200*1000),
+  new Date({{star.campaigns[0].end_time}}*1000),
   function(ts) {
   document.getElementById('timer').innerHTML = ts.toHTML("strong");
   },
@@ -324,7 +315,7 @@ img.setAttribute('src', '{{star.image.profile}}');
 
               <div class='col-xs-6'>
                 <label class='control-label'>Zip</label>
-                <input id="zip" class='form-control' size='30' type='text' ng-model="data.customer.zip" ng-model-options="{ debounce: 2000 }">
+                <input id="zip" class='form-control' size='30' type='text' ng-model="data.customer.zip" ng-model-options="{ debounce: 1500 }">
               </div>
               <div class='col-xs-6'>
                 <label class='control-label'>Country</label>
@@ -595,7 +586,7 @@ img.setAttribute('src', '{{star.image.profile}}');
           </div>
           <div class="col-md-5" style="text-align:center;padding: 5px 50px;border-left: 1px solid #e1e1e1;">
             <h4 class="modal-title">Checkout</h4>
-            <p>$80.00 USD</0>
+            <p>{a total_price() | currency a} USD</0>
               <hr>
 
               <img src="/static/img/box.jpg" style="width:80%;">
@@ -605,7 +596,7 @@ img.setAttribute('src', '{{star.image.profile}}');
               <div class="form-group" style="text-align:left;">
                 <label for="sel1">Shipping Method:</label>
                 <select class="form-control" id="shipping" ng-model="data.shipping_method"
-                        ng-options="rate as (rate.service + '('+ rate.delivery_days  + ' days) +$' + rate.rate) for rate in data.rates">
+                        ng-options="rate as (rate.service + '('+ rate.delivery_days  + ' days) +$' + rate.rate) for rate in rates">
                 </select>
               </div>
 
@@ -616,7 +607,7 @@ img.setAttribute('src', '{{star.image.profile}}');
 
               <hr>
 
-              <button id="submit" type="submit" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">PAY NOW {a total_price() a}</button>
+              <button id="submit" type="submit" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">PAY NOW {a total_price_str() a}</button>
 
 
           </div>
