@@ -242,11 +242,11 @@ img.setAttribute('src', '{{star.image.profile}}');
 
         <h5 style="color:#adadad !important;margin-bottom:0px;">Help Spread The Word!</h5>
         <div class="ssk-group ssk-count ssk-round">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has "  + daysLeft +  " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-facebook" target="_blank"></a>
-          <a href="https://twitter.com/intent/tweet?source=https://fandemic.co/{{star.id}}&amp;text={{star.name}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box! :%20https://fandemic.co/{{star.id}}" class="ssk ssk-twitter" target="_blank"></a>
-          <a href="https://plus.google.com/share?url=https://fandemic.co/{{star.id}}" class="ssk ssk-google-plus" target="_blank"></a>
-          <a href="http://pinterest.com/pin/create/button/?url=https://fandemic.co/{{star.id}}&amp;description={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-pinterest" target="_blank"></a>
-          <a href="http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-tumblr" target="_blank"></a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has "  + daysLeft +  " left to sell their {{star.campaigns.box_name}} box!" onclick="return false;" class="ssk ssk-facebook"></a>
+          <a href="https://twitter.com/intent/tweet?source=https://fandemic.co/{{star.id}}&amp;text={{star.name}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box! :%20https://fandemic.co/{{star.id}}" onclick="return false;" class="ssk ssk-twitter" ></a>
+          <a href="https://plus.google.com/share?url=https://fandemic.co/{{star.id}}" class="ssk ssk-google-plus" onclick="return false;"></a>
+          <a href="http://pinterest.com/pin/create/button/?url=https://fandemic.co/{{star.id}}&amp;description={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-pinterest" onclick="return false;"></a>
+          <a href="http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-tumblr" onclick="return false;"></a>
       </div>
       <br><br>
       <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;background-color: #BB2B25 !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
@@ -676,6 +676,9 @@ braintree.setup('{{braintree}}', 'dropin', {
 
 <script>
 var daysLeft = $("#timer strong:first-child").html();
+$(".ssk").click(function(){
+  window.open(this.href, "unicorn", "width=400, height=600, screenX=100");
+});
 </script>
 
 {% include 'analytics.html' %}
