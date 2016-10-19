@@ -42,6 +42,22 @@ app.controller("shop", function($scope) {
     $scope.product_view.img_url = product.img_url;
   }
 
+  $scope.estimated_arrival = function(){
+
+    date = undefined;
+    end_time = $scope.data.end_time;
+    production_time = 7 * 86400;
+    time_padding = 4 * 86400;
+
+    if ($scope.data.shipping_method['rate']){
+      date = new Date((end_time+production_time+parseInt($scope.data.shipping_method['delivery_days'])*86400)*1000);
+    }
+    else{
+      date = new Date((end_time+production_time+time_padding)*1000);
+    }
+    return moment(date).format("MMM Do YYYY");
+  }
+
   $scope.total_price_str = function(){
 
     if ($scope.data.shipping_method['rate']){
@@ -94,6 +110,11 @@ app.controller("shop", function($scope) {
     if (!c.email){
       $('#submit').notify("oops! you forgot your EMAIL", { position:"top center" });
       $('#email').notify("oops! you forgot your EMAIL", { position:"top center" });
+      return false;
+    }
+    if (!validateEmail(c.email)){
+      $('#submit').notify("your email is invalid!", { position:"top center" });
+      $('#email').notify("your email is invalid!", { position:"top center" });
       return false;
     }
     else if (!c.name){
@@ -180,6 +201,13 @@ app.controller("shop", function($scope) {
       }
 
         },true);
+
+
+      //HELPER FUNCTIONS
+      function validateEmail(email) {
+          var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(email);
+      }
 
 
 });

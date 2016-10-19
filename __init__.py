@@ -260,11 +260,12 @@ def charge():
         data = request.get_json()
 
         customer = data['customer'];
+        shipping_rate = float(data['shipping_method']['rate'])
 
 
         #process the transaction
         result = braintree.Transaction.sale({
-            "amount": str(data['price']),
+            "amount": str(data['price']+shipping_rate),
             "payment_method_nonce": data['nonce'],
             "options": {
               "submit_for_settlement": True
@@ -272,6 +273,14 @@ def charge():
         });
 
         #submit transaction to orders collection in DB
+        print data
+
+        print '-------------------------------------------'
+
+        #print result for testing
+        print result
+
+
 
         #slack notification of transaction
         sarah.send("order placed","Order #1234",str(data))

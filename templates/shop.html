@@ -25,6 +25,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="https://js.braintreegateway.com/js/braintree-2.29.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
   <script src="../static/js/shop.js"></script>
 
 
@@ -72,7 +73,7 @@ img.setAttribute('src', '{{star.image.profile}}');
 
 
 <!-- SIDE PANEL -->
-<div id="side-panel" class="side-panel" style="background:url(/static/img/live/aarushi-jain/bg.jpg);background-position:cover;">
+<div id="side-panel" class="side-panel" style="background:url(/static/img/live/{{star.id}}/bg.jpg);background-position:cover;">
 
   <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
   <div class="profile-img-container" style="padding:20px;">
@@ -80,16 +81,16 @@ img.setAttribute('src', '{{star.image.profile}}');
   </div>
 
   {% if star.name != "Fandemic" %}
-  <h2 style="color:#fff;">{{star.name}}</h2>
+  <h2 style="color:#cf67ad;">{{star.name}}</h2>
   {% else %}
   <h2></h2><br>
   {% endif %}
 
   <div id="social-media" >
-    <a style="color:#e1e1e1;" class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
-    <a style="color:#e1e1e1;" class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
-    <a style="color:#e1e1e1;" class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
-    <a style="color:#e1e1e1;" class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
+    <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
+    <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
+    <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
+    <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
   </div>
 
 
@@ -163,7 +164,7 @@ img.setAttribute('src', '{{star.image.profile}}');
         <div class="col-md-6">
 
             <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
-            <img class="img-responsive" style="margin-top:50px;" src="{a product_view.img_url a}">
+            <img class="img-responsive" style="width:100%;padding:40px;" src="{a product_view.img_url a}">
 
 
         </div>
@@ -252,7 +253,8 @@ img.setAttribute('src', '{{star.image.profile}}');
          <a href="http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-tumblr" onclick="return false;"></a>
      </div>
       <br><br>
-      <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;background-color: #BB2B25 !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
+      <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
+              background-color: {{star.campaigns[0].styling.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
       <br>
       </div>
 
@@ -617,7 +619,7 @@ img.setAttribute('src', '{{star.image.profile}}');
             <p>{a total_price() | currency a} USD</0>
               <hr>
 
-              <img src="/static/img/box.jpg" style="width:80%;">
+              <img src="/static/img/live/{{star.id}}/box.png" style="width:100%;">
 
               <hr>
 
@@ -631,7 +633,7 @@ img.setAttribute('src', '{{star.image.profile}}');
 
 
               <p>Estimated Arrival Date:</p>
-              <i>Dec 24th 2016</i>
+              <i>{a estimated_arrival() a}</i>
 
               <hr>
 
