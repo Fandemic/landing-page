@@ -125,7 +125,7 @@ img.setAttribute('src', '{{star.image.profile}}');
     <div class="col-md-7" style="padding-left:35px;">
 
       <div class="col-md-12">
-        <div class="thumbnail" style="width:100%;min-height:435px;padding:20px;">
+        <div class="thumbnail" style="width:100%;min-height:435px;padding:20px;" ng-show="view_mode == 'box'">
 
         <img width="60px" src="/static/img/cruelty_free.png" style="position:absolute;left:5px;top:5px;opacity:.6;">
 
@@ -151,6 +151,8 @@ img.setAttribute('src', '{{star.image.profile}}');
 
         <div class="thumbnail" style="width:100%;min-height:435px;padding:20px;" ng-show="view_mode == 'product'">
 
+        <button ng-click="view_mode = 'box'" class="btn btn-default" style="position:absolute;right:10px;top:10px;">View Box</button>
+
         <img width="60px" src="/static/img/cruelty_free.png" style="position:absolute;left:5px;top:5px;opacity:.6;">
 
         <h3>Date Night Ready</h3>
@@ -161,12 +163,12 @@ img.setAttribute('src', '{{star.image.profile}}');
         <div class="col-md-6">
 
             <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
-            <img class="img-responsive" style="margin-top:50px;" src="../static/img/live/{{star.id}}/box.png">
+            <img class="img-responsive" style="margin-top:50px;" src="{a product_view.img_url a}">
 
 
         </div>
         <div class="col-md-6" style="padding:20px;text-align:left;color:#4d4d4d;">
-          <h4>Product Description</h4>
+          <h4>{a product_view.name a}</h4>
           <p>{{star.campaigns[0].description}}</p>
         </div>
 
@@ -182,7 +184,8 @@ img.setAttribute('src', '{{star.image.profile}}');
 
           {% for p in star.campaigns[0].products %}
           <div class="col-sm-2" style="padding-left:0px;">
-            <div class="thumbnail" ng-click="toggle_product()">
+            <div class="thumbnail btn-product"
+                 ng-click="toggle_product({name:'{{p.name}}',img_url:'/static/img/live/{{star.id}}/{{p.item_num}}.png' })">
               <img alt="" class="product-img img-responsive" src="/static/img/live/{{star.id}}/{{p.item_num}}.png" style="width:100%;padding:10px;">
             </div>
             <p style="font-size:9px;color:#8d8d8d;">{{p.name}}<br>{% if p.variation %} <span style="font-size:6px;color:#8d8d8d;">{{p.variation}}</span> {% endif %}</p>
@@ -242,12 +245,12 @@ img.setAttribute('src', '{{star.image.profile}}');
 
         <h5 style="color:#adadad !important;margin-bottom:0px;">Help Spread The Word!</h5>
         <div class="ssk-group ssk-count ssk-round">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has "  + daysLeft +  " left to sell their {{star.campaigns.box_name}} box!" onclick="return false;" class="ssk ssk-facebook"></a>
-          <a href="https://twitter.com/intent/tweet?source=https://fandemic.co/{{star.id}}&amp;text={{star.name}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box! :%20https://fandemic.co/{{star.id}}" onclick="return false;" class="ssk ssk-twitter" ></a>
-          <a href="https://plus.google.com/share?url=https://fandemic.co/{{star.id}}" class="ssk ssk-google-plus" onclick="return false;"></a>
-          <a href="http://pinterest.com/pin/create/button/?url=https://fandemic.co/{{star.id}}&amp;description={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-pinterest" onclick="return false;"></a>
-          <a href="http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-tumblr" onclick="return false;"></a>
-      </div>
+         <a href="https://www.facebook.com/sharer/sharer.php?u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has "  + daysLeft +  " left to sell their {{star.campaigns.box_name}} box!" onclick="return false;" class="ssk ssk-facebook"></a>
+         <a href="https://twitter.com/intent/tweet?source=https://fandemic.co/{{star.id}}&amp;text={{star.name}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box! :%20https://fandemic.co/{{star.id}}" onclick="return false;" class="ssk ssk-twitter" ></a>
+         <a href="https://plus.google.com/share?url=https://fandemic.co/{{star.id}}" class="ssk ssk-google-plus" onclick="return false;"></a>
+         <a href="http://pinterest.com/pin/create/button/?url=https://fandemic.co/{{star.id}}&amp;description={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-pinterest" onclick="return false;"></a>
+         <a href="http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-tumblr" onclick="return false;"></a>
+     </div>
       <br><br>
       <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;background-color: #BB2B25 !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
       <br>
@@ -677,7 +680,7 @@ braintree.setup('{{braintree}}', 'dropin', {
 <script>
 var daysLeft = $("#timer strong:first-child").html();
 $(".ssk").click(function(){
-  window.open(this.href, "unicorn", "width=400, height=600, screenX=100");
+  window.open(this.href, "unicorn", "width=400, height=600, screenX=800, screenY=200");
 });
 </script>
 

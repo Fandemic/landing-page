@@ -31,8 +31,15 @@ app.controller("shop", function($scope) {
 
   $scope.view_mode = 'box';
 
-  $scope.toggle_product = function(){
+  $scope.product_view = {
+    name:'',
+    img_url: ''
+  }
+
+  $scope.toggle_product = function(product){
     $scope.view_mode = 'product';
+    $scope.product_view.name = product.name;
+    $scope.product_view.img_url = product.img_url;
   }
 
   $scope.total_price_str = function(){

@@ -859,3 +859,8 @@ box-shadow: none;
 .progress-bar{
   line-height:  35px;
 }
+
+.btn-product:hover{
+  cursor: pointer;
+  background-color: #e9e9e9;
+}
