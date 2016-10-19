@@ -29,6 +29,12 @@ app.controller("shop", function($scope) {
 
   $scope.data.end_time = 1477267200;
 
+  $scope.view_mode = 'box';
+
+  $scope.toggle_product = function(){
+    $scope.view_mode = 'product';
+  }
+
   $scope.total_price_str = function(){
 
     if ($scope.data.shipping_method['rate']){
