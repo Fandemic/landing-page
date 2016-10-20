@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 
 <head>
   <meta charset="utf-8">
@@ -30,28 +30,44 @@
   <link rel="stylesheet" href="../static/css/landing-page/magnific-popup.css">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+  <link rel="stylesheet" href="/static/css/social-share-kit.css" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="https://js.braintreegateway.com/js/braintree-2.29.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+  <script src="/static/js/shop.js"></script>
+
+
+
+  <meta property="og:image" content="{{star.image.profile}}">
+
 </head>
 
 
-{% include 'analytics.html' %}
 
+
+<script>
+  var price = {{star.campaigns[0].price}};
+</script>
 
 <!-- MOBILE HTML -->
-<body id="mobile">
+<body id="mobile" ng-controller="shop">
 
   <div id="loading"> Please Wait.. Order Processing...</div>
   <script> $('#loading').hide();</script>
 
-  <div id="menu">
+  <div id="menu" style="background:url(/static/img/live/{{star.id}}/bg.jpg);background-position:cover;">
 
-    <img class="profile-img" src="{{star.image.profile}}">
-    <h2 class="title">{{star.name}}</h2>
+    <img class="profile-img" src="/static/img/live/{{star.id}}/profile.png" style="border-radius: 50%;padding:10px;">
+    <h4 class="title" style="color:#cf67ad;">{{star.name}}</h4>
     <br>
     <div id="social-media">
-      <a class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
-      <a class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
-      <a class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
-      <a class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
+      <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
+      <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
+      <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
+      <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
     </div>
     <br><br>
 
@@ -69,319 +85,209 @@
   </div>
 
 
-  <div id="cart-menu">
-
-    <div class="cart-and-total">
-          <h2 class="title">Cart</h2>
-
-           <span class="money" style="font-size:16px;">Total: $<span class="total-cost">0.00</span></span>
-    </div>
-
-    <div id="cart" class="cart" class="well" style="max-height:160px;overflow:auto;padding:5px;">
-      <span id="alert-cart-empty"><br><br>The cart is empty!<br>Add a product to the cart by clicking <br>
-
-                                        <button class="btn btn-primary btn-add demo" role="button"><i class="fa fa-cart-plus"></i></button>
-                                        <br>
-                                      on a product card.</span>
-
-
-    </div>
-
-    <button class="btn btn-primary btn-checkout customButton" id="customButton"><i class="fa fa-check-circle-o"></i> Checkout</button>
-  </div>
-
-
 
   <div class="nav">
-      <img class="star-btn" width="50px" src="{{star.image.profile}}">
+      <img class="star-btn" width="50px" src="/static/img/live/{{star.id}}/profile.png" >
     <div class="name">
-      {{star.name}}
+      <img style="height:40px;margin-top:-6px;" src="../static/img/live/{{star.id}}/logo.png">
     </div>
-    <div class="cart-btn">
-      <i class="fa fa-shopping-cart"></i><span class="num-items"></span>
-    </div>
+    <div class="cart-btn"><i class="fa fa-bars" aria-hidden="true"></i></div>
   </div>
+
+<!-- FIXED PREORDER BUTTON -->
+<div style="position:fixed;bottom:0px;left:0px;width:100%;padding:2%;background-color:#fff;box-shadow: 0px 4px 2px #ddd, 0px -4px 2px #ddd;z-index:9999999999;">
+<button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
+        background-color: {{star.campaigns[0].styling.btn_color}} !important; border: #7BDC87 !important; width: 100%;">PRE-ORDER NOW</button>
+</div>
 
 <main id="panel">
 
   <div class="content">
-    <div class="row">
 
-      {% if star.stage != 'live' %}
-      <div class="col-md-12">
-        <div class="row-fluid">
 
-          <div class="panel panel-activate fade in" role="alert">
-            <div class="alert-text"><strong>Heads up {{star.name}}!</strong>
-              <br>Click below to create your box!
-            <br><br>
-            <button data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-activate" id="customButton">Create My Box</button>
-          </div>
+    <div class="row" style="text-align:center;">
+
+      <div class="col-md-12" style="padding:0px;">
+        <div class="thumbnail" style="width:100%;padding:10px;background-color:#fff;border:0px;margin-bottom:0px;" ng-show="view_mode == 'box'">
+
+        <!--<img width="60px" src="/static/img/cruelty_free.png" style="position:absolute;left:5px;top:5px;opacity:.6;">-->
+
+        <h3 >{{star.campaigns[0].box_name}}</h3>
+        <hr>
+
+
+
+        <div>
+
+            <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
+            <img class="img-responsive" style="width:80%;padding:5px;margin: 0 auto;" src="../static/img/live/{{star.id}}/box.png">
+
 
         </div>
+        <div  style="padding:20px;text-align:left;color:#4d4d4d;">
+          <h4>About This Box</h4>
+          <p>{{star.campaigns[0].description}}</p>
+        </div>
+
+
+        </div>
+
+        <div class="thumbnail" style="width:100%;min-height:435px;padding:10px;background-color:#fff;border:0px;margin-bottom:0px;" ng-show="view_mode == 'product'">
+
+        <button ng-click="view_mode = 'box'" class="btn btn-default" style="position:absolute;right:10px;top:10px;font-size:10px;">Box View</button>
+
+        <!--<img width="60px" src="/static/img/cruelty_free.png" style="position:absolute;left:5px;top:5px;opacity:.6;">-->
+
+        <h3>Date Night Ready</h3>
+        <hr>
+
+
+
+        <div >
+
+            <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
+            <img class="img-responsive" style="width:60%;padding:5px;margin: 0 auto;" src="{a product_view.img_url a}">
+
+
+        </div>
+        <div style="padding:20px;text-align:left;color:#4d4d4d;">
+          <h4>{a product_view.name a}<br><span style="margin-top:6px;color:#adadad;font-size:18px;font-weight:400;">{a product_view.variation a}<span></h4>
+          <p>{a product_view.description a}</p>
+        </div>
+
+
+        </div>
+      </div>
+
+
+
+      <div class="col-md-12 ">
+
+        <div class="items-listing">
+
+          {% for p in star.campaigns[0].products %}
+          <div class="col-xs-4" style="">
+            <div class="thumbnail btn-product" style="margin-bottom:2px;"
+                 ng-click="toggle_product({name:'{{p.name}}',img_url:'/static/img/live/{{star.id}}/{{p.item_num}}.png'
+                                          {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
+              <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/{{p.item_num}}.png" style="width:100%;padding:10px;">
+            </div>
+            <p style="font-size:9px;color:#8d8d8d;">{{p.name}}</p>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+
+
+
+
+  </div>
+
+
+
+    <!--START OF CAMPAIGN INFO-->
+    <div class="row" style="margin-top:55px;">
+
+      <div class="col-md-12" style="padding:0px;">
+
+        <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;padding-bottom:20px;text-align:center;border:0px;">
+          <div class="panel-heading" style="background-color:#d1d1d1;color:#fff;border-radius:0px;text-align:center;font-size:20px;">
+            <strong>CAMPAIGN</strong>
+          </div>
+          <div class="panel-body" style="padding-bottom:0px;padding-left:40px;padding-right:40px;">
+            <div class="">
+
+              <h3 class="time" style="font-size:18px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
+              <span id="timer"></span>
+
+              <br>
+
+
+                <span style="color:#cdcdcd;font-size:16px;">remaining</span>
+
+              </h3>
+
+              <div class="progress" style="margin-bottom:2px;">
+                <div class="progress-bar progress-bar-success" role="progressbar"
+                     style="
+                     {% if star.campaigns[0].num_orders >= 10 %}
+                     width:102%;
+                     {% else %}
+                     width: {{star.campaigns[0].num_orders*10 }}%;
+                     {% endif %}
+
+                     height:80px;margin-left:-2px;margin-top:-2px;">
+
+                  <strong style="font-size:16px;">{{star.campaigns[0].num_orders}} orders</strong>
+                </div>
+              </div>
+
+
+                <span class="light" style="font-size:12px;color:#c1c1c1;">at least 10 boxes must be ordered for this box to ship</span>
+
+
+            </div>
+          </div>
+
+            <hr>
+            <h4><span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong></h4>
+            <hr>
+            <br>
+
+          <h5 style="color:#adadad !important;margin-bottom:0px;">Help Spread The Word!</h5>
+          <div class="ssk-group ssk-count ssk-round">
+           <a href="https://www.facebook.com/sharer/sharer.php?u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has "  + daysLeft +  " left to sell their {{star.campaigns.box_name}} box!" onclick="return false;" class="ssk ssk-facebook"></a>
+           <a href="https://twitter.com/intent/tweet?source=https://fandemic.co/{{star.id}}&amp;text={{star.name}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box! :%20https://fandemic.co/{{star.id}}" onclick="return false;" class="ssk ssk-twitter" ></a>
+           <a href="https://plus.google.com/share?url=https://fandemic.co/{{star.id}}" class="ssk ssk-google-plus" onclick="return false;"></a>
+           <a href="http://pinterest.com/pin/create/button/?url=https://fandemic.co/{{star.id}}&amp;description={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-pinterest" onclick="return false;"></a>
+           <a href="http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has " + daysLeft + " left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-tumblr" onclick="return false;"></a>
+       </div>
+
+        </div>
+
+
       </div>
     </div>
-    {% endif %}
-
-      {% if star.stage != 'live' %}
 
 
+    <script>
 
-      {% for p in products %}
-      <div class="col-xs-12">
-        <div class="thumbnail">
-          <div class="card-header">
+    countdown.setLabels(
+  	' milissegundo| sec| min| hr| day| semana| mês| ano| década| sec| milênio',
+  	' milissegundos| sec| min| hrs| days| semanas| meses| anos| sec| séculos| milênios',
+  	': ',
+  	': ',
+  	'agora');
 
-            <img width="30px" class="shipping-icon" style="opacity:.5;" src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="../static/img/shipping-icon.png">
-            <div class="progress">
-              <span class="progress-text" style="color:#9d9d9d;">0 Items Remaining! - <a href="#" data-toggle="modal" data-target="#activateStoreModal">Restock</a></span>
-              <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="0"
-              aria-valuemin="0" aria-valuemax="100" style="100%">
+    var timerId =
+    countdown(
+    new Date({{star.campaigns[0].end_time}}*1000),
+    function(ts) {
+    document.getElementById('timer').innerHTML = ts.toHTML("strong");
+    },
+    countdown.DAYS|countdown.HOURS|countdown.MINUTES);
 
-              </div>
-            </div>
-          </div>
-          <img class="product-picture"
-          src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}"
-          >
-
-
-          {% if p.variations is defined %}
-          <div class="row variations" style="margin-bottom:15px;">
-              <div
-                class="{% if p.variations.color is defined %}
-                          col-md-6
-                       {% else %}
-                          col-md-12
-                       {% endif %}
-                          variation1">
-                <div class="name"><span>Size</span></div>
-                <select class="form-control">
-                  {% for s in p.variations.size %}
-                  <option>{{s}}</option>
-                  {% endfor %}
-                </select>
-              </div>
-              {% if p.variations.color is defined %}
-              <div class="col-md-6 variation2">
-                <div class="name"><span>color</span></div>
-                <select class="form-control">
-                    {% for c in p.variations.color %}
-                    <option>{{c.name}}</option>
-                    {% endfor %}
-                </select>
-              </div>
-              {% endif %}
-          </div>
-          {% endif %}
-
-
-
-          <div class="caption">
-            <h3 class="title">{{p.name}}</h3>
-            <span class="money">$<span class="price">{{p.price}}</span></span>
-            <!--<button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>-->
-            <button class="btn btn-primary btn-view" role="button"
-                    style="right:20px;"><i class="fa fa-eye" aria-hidden="true"></i></button>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Product Description Modal -->
-      <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="z-index:99999;" id="modal-{{p.sku}}">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h2 class="modal-title" id="myModalLabel">{{p.name}}</h2>
-            <hr>
-            <div class="row">
-            <div class="col-lg-8">
-
-
-              <img width="500px" height="500px" class="product-picture img-responsive"
-              src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}"
-              >
-
-
-              <!-- thumbnails -->
-              {% for img in p.default_img %}
-              <div class="product-sample-view" >
-                <img width="50px" height="50px" src="../static/img/{{star.stage}}/{{star.id}}//{{img}}"
-                >
-              </div>
-              {% endfor %}
-
-
-            </div>
+    // later on this timer may be stopped
+    //window.clearInterval(timerId);
+    </script>
 
 
 
 
-            <div class="col-lg-4">
-              <div class="product-description">
-                  <br><br><br>
-                  <h2>What's Included?</h2>
-                    {{p.description|safe}}
-                    <hr>
-                    <p><strong>Design:</strong>  Custom designs, logos, colors, and any modifications can be made, just ask!</p>
-
-              </div>
-
-
-            </div>
-
-            <div class="modal-footer">
-              <a href="mailto:sarah@fandemic.com" class="btn btn-default btn-lg" style="float:left;" >Contact</a>
-              <button data-dismiss="modal" data-toggle="modal" data-target="#activateStoreModal" class="btn btn-success btn-lg">Stock This Item</button>
-            </div>
-
-          </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
 
       <div class="modal-footer">
-        <a href="mailto:sarah@fandemic.com" class="btn btn-primary btn-lg" style="width:100%;" ><i class="fa fa-envelope" aria-hidden="true"></i>
- <strong>Questions?</strong></a>
+        <div class="row">
+
+          <p style="text-align:center;color:#4d4d4d; font-size:16px;"><small>All products are <strong>cruelty free</strong>, <strong>not tested on animals</strong>, <br>and made with organic ingredients.</small></p>
+
+        </div>
+        <div class="row">
+          <p style="text-align:center;color:#4d4d4d"><small>© 2016 Fandemic Inc. | All Rights Reserved | <a href="../terms">Terms & Conditions</a></small></p>
+        </div>
+        <br><br><br>
       </div>
 
-{% else %}
-
-<!-- INFO BANNER GOES HERE -->
-{% if star.id == 'jen-seidel' %}
-<div class="panel-group" id="accordion">
-<div class="panel panel-default" style="margin-left:15px;margin-right:15px;">
-   <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-     <h4 class="panel-title" style="text-align:center;">
-
-       Tap Here to Learn More
-     </h4>
-   </div>
-   <div id="collapse1" class="collapse">
-     <div class="panel-body"><div>
-       <img width="100%" src="../static/img/live/jen-seidel/pif.png">
-     </div>
-     <br>
-     <div style="font-size:16px;color:#676767;">
-       The Paint it Forward Project is the moniker given to Artist
-       Jen Seidel's personal charitable efforts. Through various
-       partnerships with multiple Non-Profits, Jen Seidel uses her
-       talents in the Art of Body Painting to raise awareness for Art
-       and for Life. Proceeds from her box/book sales are donated to
-       the <a href="http://caseycares.org/" target="_blank">Casey Cares Foundation</a>.
-       <br><br>
-       <i style="color:#878787">"When I began this journey I recognized that I was given a
-       very unique gift and I knew very early on that I would one day
-       be able to use it to put back into the world, gifts to those that
-       lack the ability to fight for themselves."
-       -Jen Seidel</i>
-     </div></div>
-   </div>
- </div>
-</div>
-{% endif %}
-
-<!-- ACTIVE STORE PRODUCTS VERSION -->
- {% for p in products %}
- <div class="col-md-6 col-lg-4 filtr-item"
-      data-category="{% for id in p.subcatID %}{{id}}{% if not loop.last %}, {% endif %}{% endfor %}"
-      data-sort="Create Your Own" style="padding: 15px;padding-top:0px;padding-bottom:0px;">
-
-   <div class="thumbnail">
-
-
-       <span class="product-id">{{p.sku}}</span>
-       <!--<div class="card-header">
-         <img width="30px" class="shipping-icon" style="opacity:.5;" src="../static/img/shipping-icon.png">
-         <div class="progress">
-            <span class="progress-text" style="color:#9d9d9d;">50 boxes remaining!</span>
-           <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="{{p.currentQty}}"
-           aria-valuemin="0" aria-valuemax="{{p.minQty}}" style="width:{{p.currentQty + 1}}%">
-
-           </div>
-         </div>
-       </div>--><br>
-       <img width="500px" height="500px" data-toggle="modal"
-            data-target="#modal-{{p.sku}}" class="product-picture"
-            src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}" alt="...">
-
-      {% if p.variations is defined %}
-       <div class="row variations">
-         {% if p.variations.size is defined %}
-           <div class="col-lg-6 variation1">
-             <div class="name"><span>size</span></div>
-             <select class="form-control">
-               {% for s in p.variations.size %}
-               <option>{{s}}</option>
-               {% endfor %}
-             </select>
-           </div>
-           {% endif %}
-           {% if p.variations.color is defined %}
-           <div class="col-lg-6 variation2">
-             <div class="name"><span>color</span></div>
-             <select class="form-control">
-                 {% for c in p.variations.color %}
-                 <option
-                   data-src="../static/img/{{star.stage}}/{{star.id}}/{{c.img[0]}}">
-                   {{c.name}}
-                 </option>
-                 {% endfor %}
-             </select>
-           </div>
-           {% endif %}
-       </div>
-       {% endif %}
-
-       <div class="caption">
-         <h3 class="title">{{p.name}}</h3>
-         <span class="money">$<span class="price">{{p.price}}</span></span>
-         <button class="add-to-cart btn btn-primary btn-add" role="button"><i class="fa fa-cart-plus"></i></button>
-         <button class="btn btn-primary btn-view" role="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
-       </div>
-   </div>
- </div>
-
-
- <!-- Product Description Modal -->
- <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="z-index:99999;" id="modal-{{p.sku}}">
-   <div class="modal-dialog modal-lg">
-     <div class="modal-content">
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-       </button>
-       <h2 class="modal-title" id="myModalLabel">{{p.name}} Description</h2>
-       <hr>
-       <div class="row">
-       <div class="col-md-8">
-         <img width="500px" height="500px" class="product-picture img-responsive" src="../static/img/{{star.stage}}/{{star.id}}/{{p.default_img[0]}}" alt="...">
-       </div>
-       <div class="col-md-4">
-         <div class="product-description">
-             <h2>Order Requirement</h2>
-
-
-         </div>
-         {% if p.variations is defined %}
-         {% for v in p.variations.color %}
-         {% for i in v.img %}
-         <div class="product-sample-view">
-           <img width="50px" height="50px" src="../static/img/{{star.stage}}/{{star.id}}/{{i}}">
-         </div>
-         {% endfor %}
-         {% endfor %}
-         {% endif %}
-       </div>
-     </div>
-     </div>
-   </div>
- </div>
- {% endfor %}
-{% endif %}
 
     </div>
 
@@ -391,6 +297,361 @@
     </div>
 
     </main>
+
+
+    <div id="payment-modal" class="modal fade" role="dialog">
+
+      <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+          <form id="checkout-form">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-7" style="padding: 5px 50px;">
+
+                <h4 class="modal-title">Checkout</h4>
+                <p>{a total_price() | currency a} USD</0>
+
+                  <hr>
+
+                <div class='row'>
+                  <div class='col-xs-6'>
+                    <label class='control-label'>Email</label>
+                    <input id="email" class='form-control' size='30' type='text' ng-model="data.customer.email">
+                  </div>
+                  <div class='col-xs-6'>
+                    <label class='control-label'>Full Name</label>
+                    <input id="name" class='form-control' size='30' type='text' ng-model="data.customer.name">
+                  </div>
+                </div>
+                <br>
+                <div class='row'>
+                  <div class='col-xs-12' style="padding: 0px 5px;">
+                    <label class='control-label'>Shipping Address</label>
+                    <input id="addr" class='form-control' size='200' type='text' ng-model="data.customer.addr" ng-model-options="{ debounce: 1500 }">
+                  </div>
+                </div>
+                <br>
+                <div class='row'>
+                  <div class='col-xs-6'>
+                    <label class='control-label'>City</label>
+                    <input id="city" class='form-control' size='30' type='text' ng-model="data.customer.city" ng-model-options="{ debounce: 1500 }">
+                  </div>
+                  <div class='col-xs-6'>
+                    <label class='control-label'>State</label>
+                    <input id="state" class='form-control' size='30' type='text' ng-model="data.customer.state">
+                  </div>
+                </div>
+
+                <br>
+                <div class='row'>
+
+                  <div class='col-xs-6'>
+                    <label class='control-label'>Zip</label>
+                    <input id="zip" class='form-control' size='30' type='text' ng-model="data.customer.zip" ng-model-options="{ debounce: 1500 }">
+                  </div>
+                  <div class='col-xs-6'>
+                    <label class='control-label'>Country</label>
+                    <div class="form-group" style="text-align:left;">
+                      <select id="country" class="form-control" ng-model="data.customer.country">
+                        <option value="AF">Afghanistan</option>
+                      	<option value="AX">Åland Islands</option>
+                      	<option value="AL">Albania</option>
+                      	<option value="DZ">Algeria</option>
+                      	<option value="AS">American Samoa</option>
+                      	<option value="AD">Andorra</option>
+                      	<option value="AO">Angola</option>
+                      	<option value="AI">Anguilla</option>
+                      	<option value="AQ">Antarctica</option>
+                      	<option value="AG">Antigua and Barbuda</option>
+                      	<option value="AR">Argentina</option>
+                      	<option value="AM">Armenia</option>
+                      	<option value="AW">Aruba</option>
+                      	<option value="AU">Australia</option>
+                      	<option value="AT">Austria</option>
+                      	<option value="AZ">Azerbaijan</option>
+                      	<option value="BS">Bahamas</option>
+                      	<option value="BH">Bahrain</option>
+                      	<option value="BD">Bangladesh</option>
+                      	<option value="BB">Barbados</option>
+                      	<option value="BY">Belarus</option>
+                      	<option value="BE">Belgium</option>
+                      	<option value="BZ">Belize</option>
+                      	<option value="BJ">Benin</option>
+                      	<option value="BM">Bermuda</option>
+                      	<option value="BT">Bhutan</option>
+                      	<option value="BO">Bolivia, Plurinational State of</option>
+                      	<option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                      	<option value="BA">Bosnia and Herzegovina</option>
+                      	<option value="BW">Botswana</option>
+                      	<option value="BV">Bouvet Island</option>
+                      	<option value="BR">Brazil</option>
+                      	<option value="IO">British Indian Ocean Territory</option>
+                      	<option value="BN">Brunei Darussalam</option>
+                      	<option value="BG">Bulgaria</option>
+                      	<option value="BF">Burkina Faso</option>
+                      	<option value="BI">Burundi</option>
+                      	<option value="KH">Cambodia</option>
+                      	<option value="CM">Cameroon</option>
+                      	<option value="CA">Canada</option>
+                      	<option value="CV">Cape Verde</option>
+                      	<option value="KY">Cayman Islands</option>
+                      	<option value="CF">Central African Republic</option>
+                      	<option value="TD">Chad</option>
+                      	<option value="CL">Chile</option>
+                      	<option value="CN">China</option>
+                      	<option value="CX">Christmas Island</option>
+                      	<option value="CC">Cocos (Keeling) Islands</option>
+                      	<option value="CO">Colombia</option>
+                      	<option value="KM">Comoros</option>
+                      	<option value="CG">Congo</option>
+                      	<option value="CD">Congo, the Democratic Republic of the</option>
+                      	<option value="CK">Cook Islands</option>
+                      	<option value="CR">Costa Rica</option>
+                      	<option value="CI">Côte d'Ivoire</option>
+                      	<option value="HR">Croatia</option>
+                      	<option value="CU">Cuba</option>
+                      	<option value="CW">Curaçao</option>
+                      	<option value="CY">Cyprus</option>
+                      	<option value="CZ">Czech Republic</option>
+                      	<option value="DK">Denmark</option>
+                      	<option value="DJ">Djibouti</option>
+                      	<option value="DM">Dominica</option>
+                      	<option value="DO">Dominican Republic</option>
+                      	<option value="EC">Ecuador</option>
+                      	<option value="EG">Egypt</option>
+                      	<option value="SV">El Salvador</option>
+                      	<option value="GQ">Equatorial Guinea</option>
+                      	<option value="ER">Eritrea</option>
+                      	<option value="EE">Estonia</option>
+                      	<option value="ET">Ethiopia</option>
+                      	<option value="FK">Falkland Islands (Malvinas)</option>
+                      	<option value="FO">Faroe Islands</option>
+                      	<option value="FJ">Fiji</option>
+                      	<option value="FI">Finland</option>
+                      	<option value="FR">France</option>
+                      	<option value="GF">French Guiana</option>
+                      	<option value="PF">French Polynesia</option>
+                      	<option value="TF">French Southern Territories</option>
+                      	<option value="GA">Gabon</option>
+                      	<option value="GM">Gambia</option>
+                      	<option value="GE">Georgia</option>
+                      	<option value="DE">Germany</option>
+                      	<option value="GH">Ghana</option>
+                      	<option value="GI">Gibraltar</option>
+                      	<option value="GR">Greece</option>
+                      	<option value="GL">Greenland</option>
+                      	<option value="GD">Grenada</option>
+                      	<option value="GP">Guadeloupe</option>
+                      	<option value="GU">Guam</option>
+                      	<option value="GT">Guatemala</option>
+                      	<option value="GG">Guernsey</option>
+                      	<option value="GN">Guinea</option>
+                      	<option value="GW">Guinea-Bissau</option>
+                      	<option value="GY">Guyana</option>
+                      	<option value="HT">Haiti</option>
+                      	<option value="HM">Heard Island and McDonald Islands</option>
+                      	<option value="VA">Holy See (Vatican City State)</option>
+                      	<option value="HN">Honduras</option>
+                      	<option value="HK">Hong Kong</option>
+                      	<option value="HU">Hungary</option>
+                      	<option value="IS">Iceland</option>
+                      	<option value="IN">India</option>
+                      	<option value="ID">Indonesia</option>
+                      	<option value="IR">Iran, Islamic Republic of</option>
+                      	<option value="IQ">Iraq</option>
+                      	<option value="IE">Ireland</option>
+                      	<option value="IM">Isle of Man</option>
+                      	<option value="IL">Israel</option>
+                      	<option value="IT">Italy</option>
+                      	<option value="JM">Jamaica</option>
+                      	<option value="JP">Japan</option>
+                      	<option value="JE">Jersey</option>
+                      	<option value="JO">Jordan</option>
+                      	<option value="KZ">Kazakhstan</option>
+                      	<option value="KE">Kenya</option>
+                      	<option value="KI">Kiribati</option>
+                      	<option value="KP">Korea, Democratic People's Republic of</option>
+                      	<option value="KR">Korea, Republic of</option>
+                      	<option value="KW">Kuwait</option>
+                      	<option value="KG">Kyrgyzstan</option>
+                      	<option value="LA">Lao People's Democratic Republic</option>
+                      	<option value="LV">Latvia</option>
+                      	<option value="LB">Lebanon</option>
+                      	<option value="LS">Lesotho</option>
+                      	<option value="LR">Liberia</option>
+                      	<option value="LY">Libya</option>
+                      	<option value="LI">Liechtenstein</option>
+                      	<option value="LT">Lithuania</option>
+                      	<option value="LU">Luxembourg</option>
+                      	<option value="MO">Macao</option>
+                      	<option value="MK">Macedonia, the former Yugoslav Republic of</option>
+                      	<option value="MG">Madagascar</option>
+                      	<option value="MW">Malawi</option>
+                      	<option value="MY">Malaysia</option>
+                      	<option value="MV">Maldives</option>
+                      	<option value="ML">Mali</option>
+                      	<option value="MT">Malta</option>
+                      	<option value="MH">Marshall Islands</option>
+                      	<option value="MQ">Martinique</option>
+                      	<option value="MR">Mauritania</option>
+                      	<option value="MU">Mauritius</option>
+                      	<option value="YT">Mayotte</option>
+                      	<option value="MX">Mexico</option>
+                      	<option value="FM">Micronesia, Federated States of</option>
+                      	<option value="MD">Moldova, Republic of</option>
+                      	<option value="MC">Monaco</option>
+                      	<option value="MN">Mongolia</option>
+                      	<option value="ME">Montenegro</option>
+                      	<option value="MS">Montserrat</option>
+                      	<option value="MA">Morocco</option>
+                      	<option value="MZ">Mozambique</option>
+                      	<option value="MM">Myanmar</option>
+                      	<option value="NA">Namibia</option>
+                      	<option value="NR">Nauru</option>
+                      	<option value="NP">Nepal</option>
+                      	<option value="NL">Netherlands</option>
+                      	<option value="NC">New Caledonia</option>
+                      	<option value="NZ">New Zealand</option>
+                      	<option value="NI">Nicaragua</option>
+                      	<option value="NE">Niger</option>
+                      	<option value="NG">Nigeria</option>
+                      	<option value="NU">Niue</option>
+                      	<option value="NF">Norfolk Island</option>
+                      	<option value="MP">Northern Mariana Islands</option>
+                      	<option value="NO">Norway</option>
+                      	<option value="OM">Oman</option>
+                      	<option value="PK">Pakistan</option>
+                      	<option value="PW">Palau</option>
+                      	<option value="PS">Palestinian Territory, Occupied</option>
+                      	<option value="PA">Panama</option>
+                      	<option value="PG">Papua New Guinea</option>
+                      	<option value="PY">Paraguay</option>
+                      	<option value="PE">Peru</option>
+                      	<option value="PH">Philippines</option>
+                      	<option value="PN">Pitcairn</option>
+                      	<option value="PL">Poland</option>
+                      	<option value="PT">Portugal</option>
+                      	<option value="PR">Puerto Rico</option>
+                      	<option value="QA">Qatar</option>
+                      	<option value="RE">Réunion</option>
+                      	<option value="RO">Romania</option>
+                      	<option value="RU">Russian Federation</option>
+                      	<option value="RW">Rwanda</option>
+                      	<option value="BL">Saint Barthélemy</option>
+                      	<option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+                      	<option value="KN">Saint Kitts and Nevis</option>
+                      	<option value="LC">Saint Lucia</option>
+                      	<option value="MF">Saint Martin (French part)</option>
+                      	<option value="PM">Saint Pierre and Miquelon</option>
+                      	<option value="VC">Saint Vincent and the Grenadines</option>
+                      	<option value="WS">Samoa</option>
+                      	<option value="SM">San Marino</option>
+                      	<option value="ST">Sao Tome and Principe</option>
+                      	<option value="SA">Saudi Arabia</option>
+                      	<option value="SN">Senegal</option>
+                      	<option value="RS">Serbia</option>
+                      	<option value="SC">Seychelles</option>
+                      	<option value="SL">Sierra Leone</option>
+                      	<option value="SG">Singapore</option>
+                      	<option value="SX">Sint Maarten (Dutch part)</option>
+                      	<option value="SK">Slovakia</option>
+                      	<option value="SI">Slovenia</option>
+                      	<option value="SB">Solomon Islands</option>
+                      	<option value="SO">Somalia</option>
+                      	<option value="ZA">South Africa</option>
+                      	<option value="GS">South Georgia and the South Sandwich Islands</option>
+                      	<option value="SS">South Sudan</option>
+                      	<option value="ES">Spain</option>
+                      	<option value="LK">Sri Lanka</option>
+                      	<option value="SD">Sudan</option>
+                      	<option value="SR">Suriname</option>
+                      	<option value="SJ">Svalbard and Jan Mayen</option>
+                      	<option value="SZ">Swaziland</option>
+                      	<option value="SE">Sweden</option>
+                      	<option value="CH">Switzerland</option>
+                      	<option value="SY">Syrian Arab Republic</option>
+                      	<option value="TW">Taiwan, Province of China</option>
+                      	<option value="TJ">Tajikistan</option>
+                      	<option value="TZ">Tanzania, United Republic of</option>
+                      	<option value="TH">Thailand</option>
+                      	<option value="TL">Timor-Leste</option>
+                      	<option value="TG">Togo</option>
+                      	<option value="TK">Tokelau</option>
+                      	<option value="TO">Tonga</option>
+                      	<option value="TT">Trinidad and Tobago</option>
+                      	<option value="TN">Tunisia</option>
+                      	<option value="TR">Turkey</option>
+                      	<option value="TM">Turkmenistan</option>
+                      	<option value="TC">Turks and Caicos Islands</option>
+                      	<option value="TV">Tuvalu</option>
+                      	<option value="UG">Uganda</option>
+                      	<option value="UA">Ukraine</option>
+                      	<option value="AE">United Arab Emirates</option>
+                      	<option value="GB">United Kingdom</option>
+                      	<option value="US" selected>United States</option>
+                      	<option value="UM">United States Minor Outlying Islands</option>
+                      	<option value="UY">Uruguay</option>
+                      	<option value="UZ">Uzbekistan</option>
+                      	<option value="VU">Vanuatu</option>
+                      	<option value="VE">Venezuela, Bolivarian Republic of</option>
+                      	<option value="VN">Viet Nam</option>
+                      	<option value="VG">Virgin Islands, British</option>
+                      	<option value="VI">Virgin Islands, U.S.</option>
+                      	<option value="WF">Wallis and Futuna</option>
+                      	<option value="EH">Western Sahara</option>
+                      	<option value="YE">Yemen</option>
+                      	<option value="ZM">Zambia</option>
+                      	<option value="ZW">Zimbabwe</option>
+                      </select>
+                    </div>
+
+
+                  </div>
+
+                  <div class="form-group" style="text-align:left;padding: 0px 5px;">
+                    <label for="sel1">Shipping Method:</label>
+                    <select class="form-control" id="shipping" ng-model="data.shipping_method"
+                            ng-options="rate as (rate.service + '('+ rate.delivery_days  + ' days) +$' + rate.rate) for rate in rates">
+                    </select>
+                  </div>
+
+                </div>
+
+                <hr>
+
+
+                  <div id="dropin-container"></div>
+
+
+
+              </div>
+              <div class="col-md-5" style="text-align:center;">
+
+
+                  <p>Estimated Arrival Date:</p>
+                  <i>{a estimated_arrival() a}</i>
+
+                  <hr>
+
+                  <button id="submit" type="submit" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">PAY NOW {a total_price_str() a}</button>
+                  <br><br><br><br><br>
+
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
 
 
 
@@ -407,15 +668,6 @@
       'touch': false
     });
 
-    var cartMenu = new Slideout({
-      'panel': document.getElementById('panel'),
-      'menu': document.getElementById('cart-menu'),
-      'padding': 256,
-      'tolerance': 70,
-      'side': 'right',
-      'touch': false
-    });
-
     //menu toggle
     document.querySelector('.star-btn').addEventListener('click', function() {
       menu.toggle();
@@ -423,20 +675,8 @@
       $('#menu').css('z-index', 0);
     });
 
-    //cart toggle
-    // Toggle button
-    document.querySelector('.cart-btn').addEventListener('click', function() {
-
-      cartMenu.toggle();
-      $('#menu').css('z-index', -1);
-      $('#cart-menu').css('z-index', 0);
-
-    });
 
   </script>
-
-
-</div>
 
 
 
@@ -444,174 +684,10 @@
 
 </html>
 
-<!-- STORE STOCKER MODAL -->
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="activateStoreModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-
-      <div class="modal-header">
-      <h3 class="modal-title" id="myModalLabel">create your box!</h3>
-      <p>Virtually stock your store with fan boxes! We handle the hard part!</p>
-    </div>
-
-      <div class="row" style="padding:20px;">
-
-        <div class="alert alert-info" style="text-align:center;">
-          <strong>Free Design</strong> with every order.
-        </div>
-
-        <div class="col-md-3">
-
-          <h4>Box Items
-              <i
-              class="fa fa-question-circle boxToolTip"
-              title="These are the products you can add to your box.
-                         Check off the ones the you want!"></i>
-          </h4>
-
-
-          <!-- Generate item checklists and give attributes -->
-          <div class="btn-group btn-group item-checkboxes" data-toggle="buttons">
-         {% for p in pricing %}
-         {% if p.name != 'Box' %}
-           <label class="btn active" id='{{p.name.replace(' ', '-')}}-wizard-checkbox'>
-             <input type="checkbox" class="box-item"
-                    value="{{p.name}}" checked><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
-                    <span data-content="{{p.description}}">{{p.name}}</span>
-          </label>
-         {% endif %}
-         {% endfor %}
-          </div>
-
-
-        <hr>
-
-        <!-- <div class="btn-group btn-group" data-toggle="buttons">
-            <label class="btn active"><input type="checkbox" id="male" checked><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> <span>Male</span></label>
-            <label class="btn active"><input type="checkbox" id="female" checked><i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> <span>Female</span></label>
-          </div> -->
-
-         <hr>
 
 
 
-        </div>
 
-        <div class="col-md-9">
-
-          <h4>Quantity x<span id="quantity"></span>
-
-          </h4>
-          <br>
-          <input type="range" min="50" max="2000" step="50" value="1000" data-rangeslider>
-
-
-          <br><br>
-          <div style="text-align:center;color:#5d5d5d;">
-            <h3 style="margin:0px">
-              Deposit <span class="money boxToolTip"
-                        style=" border-bottom: 1px dashed #999;text-decoration: none;cursor:pointer"
-                        data-html="true"
-                        title="You pay this fee so Fandemic can manufacturer and stock the boxes for you.<br>
-                                      We make no money from this fee and <strong>you get it back</strong> when the boxes sell!">
-                                   $<span id="box-stocking-fee">15.00</span></span> per box
-            </h3> <br>
-
-            <h3 style="margin:0px;color:#e6e6e6;"><i class="fa fa-arrow-down" aria-hidden="true"></i></h3> <br>
-
-            <h3 style="margin:0px">Get Paid <span class="money boxToolTip"
-            style=" border-bottom: 1px dashed #999;text-decoration: none;cursor:pointer"
-            data-html="true"
-            title="How much money you will make from each and every box sale!<br>
-                          Fandemic only takes a small $5 fee from every box, this helps us keep the lights on!">
-            $<span id="box-revenue-per-item">20.00</span></span> per sale</h3>
-
-            <br>
-
-            <h3 style="margin:0px;color:#e6e6e6;"><i class="fa fa-arrow-down" aria-hidden="true"></i></h3> <br>
-
-            <h3 style="margin:0px">Earn <span class="money boxToolTip"
-            style=" border-bottom: 1px dashed #999;text-decoration: none;cursor:pointer"
-            data-html="true"
-            title="Total profit once all boxes are sold. This is pure profit, and does not include the reimbursed stocking fee.">
-            $<span id="stocking-fee">20.00</span></span> in total profit!</h3>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="modal-footer">
-        <a href="mailto:sarah@fandemic.co?subject=Question regarding {{star.name}} Fandemic store" class="btn btn-default btn-lg" style="float:left;" >Contact</a>
-        <button id="pay" data-dismiss="modal" class="btn btn-success btn-lg payStockingButton">Create Box</button>
-      </div>
-
-
-    </div>
-  </div>
-</div>
-
-  <!-- MODAL -->
-  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="customerServiceModal">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <!--<h2 class="modal-title" id="myModalLabel">Activate Store</h2>-->
-      <p>
-        Fill out the form below
-        <br>
-        We will contact you within 24 hours
-      </p>
-
-      <form id="activate-store-modal-form" action="/activateStore" method="post">
-        <div class="row">
-          <div class="col-xs-6">
-            <div class="input-group input-group-sm">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-              <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name" autofocus/>
-            </div>
-            <br>
-            <div class="input-group input-group-sm">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
-              <input id="activate_phone" name="phone" type="tel" class="form-control" placeholder="Phone" />
-            </div>
-            <br>
-            <div class="input-group input-group-sm">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-              <input id="activate_email" name="email" type="email" class="form-control" placeholder="Email" value="{{star.email[0]}}"/>
-            </div>
-          </div>
-
-          <div class="col-xs-6">
-            <div class="input-group input-group-sm">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
-              <input id="activate_youtube" name="youtube" type="url" class="form-control" placeholder="Youtube Channel URL" value="{{star.url.youtube}}"/>
-            </div>
-            <br>
-            <div class="input-group input-group-sm">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
-              <input id="activate_instagram" name="instagram" type="text" class="form-control" placeholder="Instagram Username" value="{{star.url.instagram}}" />
-            </div>
-            <br>
-            <div class="input-group input-group-sm">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-facebook-square"></i></span>
-              <input id="activate_facebook" name="facebook" type="text" class="form-control" placeholder="Facebook Fan Page URL" value="{{star.url.facebook}}"/>
-            </div>
-          </div>
-        </div>
-        <p id="activate-store-notification"></p>
-        <button type="submit" class="btn btn-primary center btn-submit" id="activate-store-button">Submit</button>
-
-      </form>
-    </div>
-  </div>
-</div>
 
 
 <!-- Payment Success Modal -->
@@ -631,190 +707,32 @@
   </div>
 </div>
 
-<!-- Payment Success Modal - stocking fee version -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="stockingSuccessModal">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h2 class="modal-title" id="myModalLabel">Stocking Order Successful!</h2>
-      <p>You should receive an email/receipt shortly</p>
-      <hr>
-      <p>You have successfully stocked your store! The item(s) will be ready for sale in about 14 days.</p>
-      <br>
-      <p>Questions or concerns? Email us at <strong>support@fandemic.co</strong> and we will respond within a few hours. Thanks!</p>
-    </div>
-  </div>
-</div>
-
 <script>
-(function ($) {
-$('.spinner .btn:first-of-type').on('click', function() {
-  $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
-});
-$('.spinner .btn:last-of-type').on('click', function() {
-  $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
-});
-})(jQuery);
-</script>
+$('span').popover({'trigger':'hover'});
 
-<script>
-//define star's stage
-var starStage = '{{star.stage}}';
-
-var pricing_index = {};
-{% for p in pricingjs %}
-  var temp = {{p|safe}};
-  pricing_index[temp.name] = {};
-  pricing_index[temp.name]['mfc'] = temp.pricing;
-  pricing_index[temp.name]['retail'] = temp.retail;
-{% endfor %}
-</script>
-
-
-<link rel="stylesheet" href="../static/css/rangeslider.css">
-<script src="../static/js/rangeslider.min.js"></script>
-<script src="../static/js/countdown.min.js"></script>
-<script src="../static/js/shop.js"></script>
-<script src="../static/js/mobile.js"></script>
-
-
-<script>
-var handler = StripeCheckout.configure({
-//key: 'pk_test_z1mq9KQ3GyakW5OdduPIX94u',
-key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
-image: '{{star.image.profile}}',
-locale: 'auto',
-token: function(token,args) {
-
-  //gather info from the order
-  var info = {};
-  info['star'] = "{{star.name}}";
-    info['star_id'] = "{{star.id}}";
-  info['active'] = "{{star.active}}";
-  info['amount'] = Math.round(total_cost * 100);
-  info['cart'] = cart;
-
-  //combine all info into one object
-  var result={};
-  $.extend(result, args, token);
-  $.extend(result, result, info);
-
-  $.ajax({
-    type: 'POST',
-    url: '/charge',
-    data: JSON.stringify(result, null, '\t'),
-    contentType: 'application/json;charset=UTF-8',
-    success: function(response) {
-      $("#paymentSuccessModal").modal()
-      resetCart();
-    },
-    error: function(error) {
-      alert("payment error");
+braintree.setup('{{braintree}}', 'dropin', {
+  container: 'dropin-container',
+  paypal: {
+    button: {
+      type: 'checkout',
+      singleUse: true,
+      amount: 10.00,
+      currency: 'USD'
     }
-  });
-
-}
+  },
+  onPaymentMethodReceived: function(obj) {
+    angular.element($('body')).scope().process_order(obj['nonce']);
+    console.log( obj['nonce'] );
+  }
 });
-
-var handler2 = StripeCheckout.configure({
-key: 'pk_live_kyvM71oajfwVWnxBoy7SfqOp',
-image: '{{star.image.profile}}',
-locale: 'auto',
-token: function(token,args) {
-
-  //gather info from the order
-  var info = {};
-  info['star'] = "{{star.name}}";
-  info['star_id'] = "{{star.id}}";
-  info['active'] = "{{star.active}}";
-  info['quantity'] = box_quantity.toString();
-  info['items'] = itemsInBox;
-  info['male'] = document.getElementById('male').checked;
-  info['female'] = document.getElementById('female').checked;
-
-  info['amount'] = Math.round(stockingFee * 100);
-
-  //combine all info into one object
-  var result={};
-  $.extend(result, args, token);
-  $.extend(result, result, info);
-
-  $.ajax({
-    type: 'POST',
-    url: '/charge-stocking-fee',
-    data: JSON.stringify(result, null, '\t'),
-    contentType: 'application/json;charset=UTF-8',
-    success: function(response) {
-      $("#stockingSuccessModal").modal();
-    },
-    error: function(error) {
-      alert("payment error");
-    }
-  });
-
-}
-});
-
-
-$( document ).ajaxStart(function () {
-  $('#loading').show();  // show loading indicator
-});
-
-$( document ).ajaxStop(function()
-{
-    $('#loading').hide();  // hide loading indicator
-});
-
-$('.payStockingButton').on('click', function(e) {
-// Open Checkout with further options
-handler2.open({
-name: 'Stocking Fee',
-description: box_quantity +
-             ' boxes X $'+ box_stockingFee.formatMoney(2) +
-             ' = $' + stockingFee.formatMoney(2),
-allowRememberMe: true,
-panelLabel: "Pay",
-email: '{{star.email.0}}',
-amount: Math.round(stockingFee * 100)
-});
-e.preventDefault();
-});
-
-
-
-$('.customButton').on('click', function(e) {
-// Open Checkout with further options
-handler.open({
-name: 'ORDER TOTAL',
-description: '$' + total_cost.formatMoney(2),
-zipCode: true,
-billingAddress: true,
-shippingAddress: true,
-allowRememberMe: true,
-panelLabel: "Pay",
-amount: Math.round(total_cost * 100)
-});
-e.preventDefault();
-});
-
-// Close Checkout on page navigation
-$(window).on('popstate', function() {
-handler.close();
-});
-
-//bootstrap autofocus modal
-$('.modal').on('shown.bs.modal', function() {
-  menu.close();
-  $(this).find('[autofocus]').focus();
-});
-
-$('.litebox-hero, .litebox-tour').magnificPopup({
-  type: 'iframe'
-});
-
-$( ".boxToolTip" ).tooltip();
-
 
 </script>
+
+<script>
+var daysLeft = $("#timer strong:first-child").html();
+$(".ssk").click(function(){
+  window.open(this.href, "unicorn", "width=400, height=600, screenX=800, screenY=200");
+});
+</script>
+
+{% include 'analytics.html' %}

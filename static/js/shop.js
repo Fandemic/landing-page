@@ -33,13 +33,14 @@ app.controller("shop", function($scope) {
 
   $scope.product_view = {
     name:'',
-    img_url: ''
+    img_url: '',
+    variation: '',
+    description: ''
   }
 
   $scope.toggle_product = function(product){
     $scope.view_mode = 'product';
-    $scope.product_view.name = product.name;
-    $scope.product_view.img_url = product.img_url;
+    $scope.product_view = product;
   }
 
   $scope.estimated_arrival = function(){
