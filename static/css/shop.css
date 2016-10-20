@@ -864,3 +864,22 @@ box-shadow: none;
   cursor: pointer;
   background-color: #e9e9e9;
 }
+
+/*RESPONSIVENESS*/
+@media screen and (min-width: 1700px) {
+    .display-main{
+      min-height:480px !important;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .display-main{
+      min-height:600px !important;
+    }
+}
+
+@media screen and (min-width: 2400px) {
+    .display-main{
+      min-height:800px !important;
+    }
+}
