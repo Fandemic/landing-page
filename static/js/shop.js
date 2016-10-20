@@ -41,6 +41,9 @@ app.controller("shop", function($scope) {
   $scope.toggle_product = function(product){
     $scope.view_mode = 'product';
     $scope.product_view = product;
+    $('html').animate({
+        scrollTop: 0
+    }, 2000);
   }
 
   $scope.estimated_arrival = function(){
