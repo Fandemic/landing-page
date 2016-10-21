@@ -10,6 +10,7 @@ from flask.ext.mobility.decorators import mobile_template
 import stripe
 import os
 from slack import Slack
+from trello import Trello
 from werkzeug.utils import secure_filename
 from mailer import Mailer
 from shipping import Shipping
@@ -374,6 +375,8 @@ def launchStoreRequest():
     #get the ajaxed info
     if request.method == "POST":
 
+        trello = Trello();
+
         info = request.get_json()
 
         #send the email
@@ -399,7 +402,7 @@ def launchStoreRequest():
         subject = "New Launch Store Request - "+info['star']['name']
         string = ''
         for k, v in info.iteritems():
-            string += '<strong>'+k+'</strong>: ' + str(v) + '<br>'
+            string += k + ': ' + str(v) + '\n'
 
         html = """
                 <html>
@@ -413,6 +416,8 @@ def launchStoreRequest():
                 </html>
                 """
         email.send(toaddr,subject,html)
+
+        trello.addCard_CR(info['star']['name'],string)
 
     return '';
 

@@ -90,11 +90,11 @@ var iframe = document.getElementById('nofocusvideo');
 // $f == Froogaloop
 var player = $f(iframe);
 
-$('.modal').on('hidden.bs.modal', function () {
+$('#how-fandemic-works').on('hidden.bs.modal', function () {
 player.api('pause');
 })
 
-$('.modal').on('shown.bs.modal', function () {
+$('#how-fandemic-works').on('shown.bs.modal', function () {
 player.api('play');
 })
 </script>
