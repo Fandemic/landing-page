@@ -39,7 +39,7 @@ email = Mailer();
 @app.route('/', methods=['GET', 'POST'])
 def home():
     storeCount = db.stars.count()
-    stars = db.stars.find({'stage': 'custom'}) #find stars with custom and pull just name and id
+    stars = db.stars.find({'stage': 'mock'}) #find stars with mock and pull just name and id
     categories = db.stars.distinct("category")
 
     return render_template('index.html', categories = categories, stars=stars, storeCount = storeCount)
@@ -201,9 +201,16 @@ def faq():
 def about():
     return render_template('about.html')
 #-------------------------------------------
-@app.route('/store')
-def new_store():
-    return render_template('store.html')
+
+@app.route('/partners')
+def partners():
+    return render_template('partners.html')
+#-------------------------------------------
+
+@app.route('/benefits')
+def benefits():
+    return render_template('benefits.html')
+
 #-------------------------------------------
 
 @app.route('/privacy')
