@@ -10,7 +10,7 @@
 <script src="../static/js/landing-page/lightslider.js"></script>
 
 <!--site-footer-->
-<!--<section id="updates" class="sub-form section-spacing text-center">
+<section id="updates" class="sub-form section-spacing text-center">
     <div class="container">
       <header class="section-header">
         <h2>Get Updates from Us</h2>
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-  </section>-->
+  </section>
 
 <footer class="footer">
   <div class="container">
@@ -44,28 +44,36 @@
             <br>
 
             <small>© 2016 Fandemic Inc. | All Rights Reserved</small>
+            <br>
+            <small><a href="/terms">Terms and Conditions</a> | <a href="/privacy">Privacy Policy</a></small>
+
+
+
 
           </div>
         </div>
       </div>
       <div class="col-md-3">
         <h2 style="font-size:20px">Read This</h2>
-        <ul>
+        <!-- <ul>
           <li><a href="/blog">Blog</a></li>
+        </ul> -->
+        <ul>
+          <li><a href="/benefits">Benefits</a></li>
+        </ul>
+        <ul>
+          <li><a href="/partners">Partners</a></li>
+        </ul>
+        <ul>
+          <li><a href="/about">Team</a></li>
         </ul>
         <ul>
           <li><a href="/faq">FAQ</a></li>
         </ul>
-        <ul>
-          <li><a href="/terms">Terms and Conditions</a></li>
-        </ul>
-        <ul>
-          <li><a href="/privacy">Privacy Policy</a></li>
-        </ul>
       </div>
       <div class="col-md-3">
         <h2 style="font-size:20px">Example Stores</h2>
-        <ul>
+        <!-- <ul>
           <li><a href="/zac-smith-fitness">Zac Smith Fitness</a></li>
         </ul>
         <ul>
@@ -73,7 +81,7 @@
         </ul>
         <ul>
           <li><a href="/jen-seidel">Jen Seidel: Paint it Forward</a></li>
-        </ul>
+        </ul> -->
       </div>
       <div class="col-md-3">
         <div class="ft-social">
@@ -98,62 +106,5 @@
 
 <!--site-footer end-->
 
-<!-- MODAL -->
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <h2 class="modal-title" id="myModalLabel">Request a store!</h2>
-      <p>Fill out the form below and we will generate a mock store where you can add your own products!</p>
-      <hr>
-      <form id="activate-store-modal-form" action="/activateStore" method="post">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-              <input id="activate_firstname" name="firstname" type="text" class="form-control" placeholder="Name" required/>
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-              <input id="activate_email" name="email" type="email" class="form-control" placeholder="Email" required/>
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
-              <input id="activate_phone" name="phone" type="tel" class="form-control" placeholder="Phone" />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-youtube"></i></span>
-              <input id="activate_youtube" name="youtube" type="text" class="form-control" placeholder="Youtube Channel" />
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-instagram"></i></span>
-              <input id="activate_instagram" name="instagram" type="text" class="form-control" placeholder="Instagram Username" />
-            </div>
-            <br>
-            <div class="input-group input-group-lg">
-              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-industry"></i></span>
-              <select id="categories" name="categories" type="text" class="form-control" placeholder="Select your Industry">
-                <option value="" selected disabled>Select your Industry</option>
-                {% for c in categories %}
-                <option value="{{c}}">{{c.title()}}</option>
-                {% endfor %}
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <button type="submit" class="btn btn-primary center btn-submit" id="activate-store-button">Request Store</button>
-        <p id="activate-store-notification"></p>
-      </form>
-    </div>
-  </div>
 
   {% include 'analytics.html' %}

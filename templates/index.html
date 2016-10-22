@@ -4,7 +4,16 @@
 
 {% include 'header.html' %}
 
+<style>
+.team-details p{
+  color:#4c4c4c;
+}
+.team-details img{
+  width: 10em;
+  border-radius: 5em;
+}
 
+</style>
 <body>
 
   <!--hero section-->
@@ -28,9 +37,10 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav nav-left">
-            <li><a href="#works">How it Works </a></li>
-            <li><a href="#reviews">Reviews</a></li>
-            <li><a href="#activestores">Example Stores</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/partners">Partners</a></li>
+            <li><a href="/benefits">Benefits</a></li>
+            <li><a href="/faq">Help</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-toggle="modal" data-target="#how-fandemic-works" class="btn">How Fandemic Works</a></li>
@@ -169,7 +179,7 @@
               They are super affordable and convenient, all I had to pay was an initial stocking fee, but I got all of it back in addition to my profit!
               I will definitely be using Fandemic to sell more boxes!
             </p>
-            <cite>— <a href="/jen-seidel">Jen Seidel Body Painting</a></cite>
+            <cite>— Jen Seidel Body Painting</cite>
           </blockquote>
 
 
@@ -189,7 +199,7 @@
               Brandon & Ethan went out of their way to make sure the merchandising process
               benefits all parties involved and we look forward to a long and prosperous relationship!
             </p>
-            <cite>— <a href="/team-dna-fitness">Team DNA Fitness</a></cite>
+            <cite>— Team DNA Fitness</cite>
           </blockquote>
 
 
@@ -198,65 +208,6 @@
     </div>
   </section>
 
-  <!--reviews end-->
-
-  <!--Features-->
-  <!-- <section id="features">
-    <div class="features section-spacing">
-      <div class="container">
-
-
-        <div class="row" style="padding-right:15%">
-          <div class="col-md-7 col-md-push-5 text-center">
-            <img src="../static/img/feature-1.png" alt="feature"> </div>
-          <div class="col-md-5 col-md-pull-7">
-            <article>
-              <h2>Box Design</h2>
-              <p></p>
-              <ul>
-                <li>Schedule a free call with our design professionals</li>
-                <li>Choose from the team's selected design options</li>
-                <li>Complete the store wizard and get started!</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-        <div class="row" style="padding-left:25%">
-          <div class="col-md-7 text-center">
-            <img src="../static/img/stock-animation.gif" style="max-width: 35em;"alt="feature"> </div>
-          <div class="col-md-5">
-            <article>
-              <h2>Product Store Interface</h2>
-              <p></p>
-              <ul>
-                <li>Add products to your store</li>
-                <li>Approve product designs</li>
-                <li>Share links to your campaign page</li>
-                <li>Check out an <a href="/rxmuscle">Example Store</a></li>
-
-              </ul>
-            </article>
-          </div>
-        </div>
-        <div class="row" style="padding-right:15%">
-          <div class="col-md-7 col-md-push-5 text-center">
-            <img src="../static/img/feature-3.png" alt="feature"> </div>
-          <div class="col-md-5 col-md-pull-7">
-            <article>
-              <h2>Monitor Your Campaign</h2>
-              <p></p>
-              <ul>
-                <li>Promote, promote, promote!</li>
-                <li>We ship, and you get paid!</li>
-                <li>We handle all customer service!</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-  <!--cta section-->
 
   <section class="cta-section section-spacing text-center">
     <div class="container">
@@ -272,9 +223,7 @@
     </div>
   </section>
 
-  <!--cta section end-->
-  <!--slider-->
-  <section id="activestores">
+  <!-- <section id="activestores">
     <div class="activestores section-spacing">
       <div class="container">
         <header class="section-header" style="text-align:center">
@@ -290,37 +239,6 @@
                             <h3>Zac Smith Fitness</h3>
                           </a>
                         </li>
-                        <li>
-                          <a href="/team-dna-fitness">
-                            <img class="slider-sample" src="../static/img/custom/team-dna-fitness/box-female.png">
-                            <h3>Team DNA Fitness</h3>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/faze-censor">
-                            <img class="slider-sample" src="../static/img/custom/jeff-seid/box-female.png">
-                            <h3>Jeff Seid</h3>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/rxmuscle">
-                            <img class="slider-sample" src="../static/img/custom/rxmuscle/box-male.png">
-                            <h3>RX Muscle</h3>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/fortress">
-                            <img class="slider-sample" src="../static/img/custom/fortress/box-male.png">
-                            <h3>Fortress</h3>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="/jen-seidel">
-                            <img class="slider-sample" src="../static/img/live/jen-seidel/box-female.png">
-                            <h3>Jen Seidel Art</h3>
-                          </a>
-                        </li>
-
                     </ul>
                 </div>
 
@@ -334,194 +252,68 @@
 
       </div>
 
-  </section>
+  </section> -->
 
   <!--Features end-->
 
-  <!--Pricing-->
 
-  <!-- <section class="pricing section-spacing text-center" id="pricing">
-    <div class="container">
-      <header class="section-header">
-        <h2>The different Fandemic.co Plans</h2>
-        <h3>Free signup. No credit card required.</h3>
-      </header>
-      <div class="row">
-        <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4">
-          <div class="plan">
-            <div class="plan-details">
-              <div class="header">
-                <h4>BASIC</h4>
-              </div>
-              <div class="price">
-                <span class="currency">$</span>
-                <span class="price-amount">0</span>
-              </div>
-              <ul class="plan-features">
-                <li>
-                  <span>Logo</span> Design<i class="fa fa-times"></i>
-                </li>
-                <li>
-                  <span>Free</span> Samples For You<i class="fa fa-times"></i>
-                </li>
-                <li>
-                  <span>Custom</span> Product Specifications<i class="fa fa-times"></i>
-                </li>
-                <li>
-                  <span>Product</span> Consultation<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>24/7</span> Support<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>5%</span> Per Order Taken<i class="fa fa-check"></i>
-                </li>
-              </ul>
-            </div>
-            <div class="buy-button"><a class="btn" href="#">SIGNUP</a>
-              <p>Most Affordable!</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4">
-          <div class="plan">
-            <div class="plan-details">
-              <div class="header">
-                <h4>DESIGN</h4>
-              </div>
-              <div class="price">
-                <span class="currency">$</span>
-                <span class="price-amount">299</span>
-              </div>
-              <ul class="plan-features">
-                <li>
-                  <span>Logo</span> Design<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>Free</span> Samples For You<i class="fa fa-times"></i>
-                </li>
-                <li>
-                  <span>Custom</span> Product Specifications<i class="fa fa-times"></i>
-                </li>
-                <li>
-                  <span>Product</span> Consultation<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>24/7</span> Support<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>4%</span> Per Order Taken<i class="fa fa-check"></i>
-                </li>
-              </ul>
-            </div>
-            <div class="buy-button"><a class="btn" href="#">SIGNUP</a>
-              <p>Most Popular!</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-8 col-sm-8 col-md-4 col-lg-4">
-          <div class="plan">
-            <div class="plan-details">
-              <div class="header">
-                <h4>SUPERSTAR</h4>
-              </div>
-              <div class="price">
-                <span class="currency">$</span>
-                <span class="price-amount">999</span>
-              </div>
-              <ul class="plan-features">
-                <li>
-                  <span>Logo</span> Design<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>Free</span> Samples For You<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>Custom</span> Product Specifications<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>Product</span> Consultation<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>24/7</span> Support<i class="fa fa-check"></i>
-                </li>
-                <li>
-                  <span>3%</span> Per Order Taken<i class="fa fa-check"></i>
-                </li>
-              </ul>
-            </div>
-            <div class="buy-button"><a class="btn" href="#">SIGNUP</a>
-              <p>Become Royalty!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!--Pricing end-->
 
 
 
   <!--Team-->
 
-  <!-- <section class="team section-spacing text-center" id="team">
+  <section class="team section-spacing text-center" id="team">
     <div class="container">
       <header class="section-header">
         <h2>Meet The Team</h2>
         <h3>The folks behind the Fandemic experience:</h3>
       </header>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <div class="team-details">
             <figure>
-              <img src="../static/img/team-1.jpg" alt="Team Member">
-              <figcaption>
-                <div>
-                  <p>A full stack software engineer and fitness model, Brandon is well-versed in web development best practices in order to create a sleek fundraising platform for you!
-                    <p>
-
-
-                      <ul class="social">
-                        <li><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                      </ul>
-
-
-                </div>
-              </figcaption>
+              <img src="../static/img/brandon.png" alt="Team Member">
             </figure>
             <div class="team-info">
               <h4>Brandon Walsh</h4>
-              <h5>Software Guy</h5>
+              <h5>Tech Lord</h5>
+              <hr>
+              <p>A web development expert, Brandon is an expert in design and will make a sleek store for you!</p>
             </div>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <div class="team-details">
             <figure>
-              <img src="../static/img/team-2.jpg" alt="Team Member">
-              <figcaption>
-                <div>
-                  <p>A systems engineer and management consultant, Ethan is experienced in supply chain management in order to ensure top notch quality products for you!</p>
+              <img src="../static/img/sarah.png" alt="Team Member">
 
+            </figure>
+            <div class="team-info">
+              <h4>Sarah Sharpe</h4>
+              <h5>Marketing Guru</h5>
+              <hr>
+              <p>A marketing genius, Sarah is on the ball with all of Fandemic's communication to keep you informed!</p>
+            </div>
 
-                  <ul class="social">
-                    <li><a href="https://twitter.com/Ethans100" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                  </ul>
-
-
-                </div>
-              </figcaption>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-details">
+            <figure>
+              <img src="../static/img/ethan.png" alt="Team Member">
             </figure>
             <div class="team-info">
               <h4>Ethan Steininger</h4>
-              <h5>Business Guy</h5>
+              <h5>Supply Expert</h5>
+              <hr>
+              <p>A business-oriented guy, Ethan handles the merchandise in order to ensure top notch quality products for you!</p>
             </div>
           </div>
         </div>
+
       </div>
     </div>
-  </section> -->
+  </section>
 
   <!--Team end-->
 
