@@ -80,17 +80,17 @@ img.setAttribute('src', '{{star.image.profile}}');
     <img class="profile-img" style="border-radius: 50%;" src="/static/img/live/{{star.id}}/profile.png">
   </div>
 
-  {% if star.name != "Fandemic" %}
-  <h4 style="color:#cf67ad;">{{star.name}}</h4>
+  {% if star.campaigns[0].style.color_primary != '' %}
+  <h4 style="color:{{star.campaigns[0].style.color_primary}};">{{star.name}}</h4>
   {% else %}
-  <h2></h2><br>
+  <h4 style="color:#cf67ad;">{{star.name}}</h4>
   {% endif %}
 
   <div id="social-media" >
-    <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
-    <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
-    <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
-    <a style="color:#8d8d8d;" class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
+    <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
+    <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
+    <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
+    <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
   </div>
 
 
@@ -156,7 +156,7 @@ img.setAttribute('src', '{{star.image.profile}}');
 
         <img width="60px" src="/static/img/cruelty_free.png" style="position:absolute;left:5px;top:5px;opacity:.6;">
 
-        <h3>Date Night Ready</h3>
+        <h3>{{star.campaigns[0].style.box_name}}</h3>
         <hr>
 
 
@@ -255,7 +255,7 @@ img.setAttribute('src', '{{star.image.profile}}');
      </div>
       <br><br>
       <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
-              background-color: {{star.campaigns[0].styling.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
+              background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
       <br>
       </div>
 
