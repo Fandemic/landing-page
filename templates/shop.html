@@ -86,7 +86,7 @@ img.setAttribute('src', '{{star.image.profile}}');
   <h4 style="color:#cf67ad;">{{star.name}}</h4>
   {% endif %}
 
-  <div id="social-media" >
+  <div id="social-media">
     <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
     <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
     <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
