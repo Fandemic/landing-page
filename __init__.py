@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+import math
+import random
+from email.utils import parseaddr
 from flask import Flask, render_template, request, jsonify, redirect, make_response
 from pymongo import MongoClient, GEO2D
 from collections import Counter
@@ -420,6 +423,32 @@ def launchStoreRequest():
         trello.addCard_CR(info['star']['name'],string)
 
     return '';
+
+
+#=============EMAIL UPDATER=============
+@app.route("/email-batch-updater/admin")
+def emailBatchUpdater():
+
+    count = db.stars.find({'email':{'$size': 0},'category':'beauty'}).count()
+
+    stars = db.stars.find({'email':{'$size': 0},'category':'beauty'}).limit(30).skip( int(round( random.random() * count )) ) #find the star
+
+    return render_template('email-batch-updater.html', stars = stars, count = count)
+
+
+@app.route('/batchUpdateEmail', methods=['GET', 'POST'])
+def update():
+
+    if request.method == 'POST':
+        name = request.form
+        for v in request.form:
+            email = request.form[v]
+            email = parseaddr(email)[1]
+            if email != '':
+                db.stars.update_one({'id':v},{"$set":{"email.0":email}})
+
+    return redirect('/email-batch-updater/admin')
+
 
 
 @app.errorhandler(404)
