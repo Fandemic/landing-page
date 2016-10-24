@@ -102,22 +102,27 @@ img.setAttribute('src', '{{star.image.profile}}');
 </div>
 
 
+<div class="controls-container">
 
-<div class="controls">
-  <!--<input style="float:left" type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>-->
+  {% if star.campaigns[0].status == 'pending' %}
+  <div class="top-alert-bar"><strong>THIS STORE IS PENDING(not yet live)</strong> - payments <strong>will not</strong> be processed</div>
+  {% endif %}
 
+  <div class="controls">
 
-    <img style="position:absolute;height:50px;top:5px;left:35px;" src="../static/img/live/{{star.id}}/logo.png">
-
-
-
-
-    <div class="btns">
-      <button data-toggle="modal" data-target="#customerServiceModal" class="btn btn-default" aria-hidden="true"
-              style="font-weight:700;color:#adadad;border:1px solid #adadad;">CREATE YOUR OWN BOX</button>
-    </div>
+    <!--<input style="float:left" type="text" class="form-control filtr-search" name="filtr-search" placeholder="Product Search" data-search>-->
 
 
+      <img style="float:left;height:50px;margin-top:5px;margin-left:35px;" src="../static/img/live/{{star.id}}/logo.png">
+
+
+      <div class="btns">
+        <button data-toggle="modal" data-target="#customerServiceModal" class="btn btn-default" aria-hidden="true"
+                style="font-weight:700;color:#adadad;border:1px solid #adadad;">CREATE YOUR OWN BOX</button>
+      </div>
+
+
+  </div>
 </div>
 
 <!-- CENTER PANEL -->
