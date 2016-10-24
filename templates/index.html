@@ -37,10 +37,10 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
           <ul class="nav navbar-nav nav-left">
-            <li><a href="/about">About</a></li>
-            <li><a href="/partners">Partners</a></li>
-            <li><a href="/benefits">Benefits</a></li>
-            <li><a href="/faq">Help</a></li>
+            <li><a style="font-weight:600;" href="/about">About</a></li>
+            <li><a style="font-weight:600;" href="/partners">Partners</a></li>
+            <li><a style="font-weight:600;" href="/benefits">Benefits</a></li>
+            <li><a style="font-weight:600;" href="/faq">Help</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-toggle="modal" data-target="#how-fandemic-works" class="btn">How Fandemic Works</a></li>
@@ -66,7 +66,7 @@
           <div class="cta-btn">
             <p style="padding-bottom:2em">
               <span class="total-number-1">0</span> Stores Already!</p>
-            <a href="/builder" class="btn">Build a Box</a>
+            <a href="/builder" class="btn" style="font-size:22px;">BUILD A BOX</a>
           </div>
         </div>
       </div>
@@ -91,19 +91,19 @@
       </header>
       <div class="row">
         <div class="col-sm-4">
-          <img width="150px" src="../static/img/packing.svg" alt="benefits of product">
+          <img width="120px" src="../static/img/packing.svg" alt="benefits of product">
           <h4>Build Your Box</h4>
-          <p>Select what items to put in your box from our huge catalog of customizable items!</p>
+          <p>Select what to put in your box from our huge catalog of customizable products!</p>
           <span class="arrow-icon">&nbsp;</span>
         </div>
         <div class="col-sm-4">
-          <img width="150px" src="../static/img/megaphone.svg" alt="benefits of product">
+          <img width="120px" src="../static/img/megaphone.svg" alt="benefits of product">
           <h4>Promote Your Campaign</h4>
           <p>You have 7 days to <strong>pre-sell</strong> your boxes, if you sell more than 10 you get paid!
           <span class="arrow-icon">&nbsp;</span>
         </div>
         <div class="col-sm-4">
-          <img width="150px" src="../static/img/get-money.svg" alt="benefits of product">
+          <img width="120px" src="../static/img/get-money.svg" alt="benefits of product">
           <h4>Get Paid</h4>
           <p>Earn larger cash bonuses as you pre-sell more boxes!</p>
 
@@ -148,7 +148,7 @@
     <div class="container">
       <header class="section-header">
         <h2>Zero risk!</h2>
-        <h3>There is <strong>no cost</strong> to make a box, simply follow the box builder wizard and launch your campaign!</h3>
+        <h3>There is <strong>no cost</strong> to make a box <br> simply follow the box builder and launch your campaign!</h3>
       </header>
       <div class="row">
         <div class="col-md-12"> <a href="/builder" class="btn">Box Builder</a>
@@ -157,6 +157,68 @@
       </div>
     </div>
   </section>
+
+  <section id="activestores">
+    <div class="activestores section-spacing">
+      <div class="container">
+        <header class="section-header" style="text-align:center">
+                <h2>Recent Campaigns</h2>
+                <h3 style="color:#adadad;">What other stars have made:</h3>
+              </header>
+
+          <div class="demo">
+                <div class="item">
+                    <ul id="content-slider" class="content-slider" style="height:400px !important;">
+
+                        {% for star in stars %}
+                        <li>
+                          <a href="/{{star.id}}">
+                            <div class="panel slider-sample" style="text-align:center;position:relative;height:390px;">
+
+                              <img  class="" style="height:60px;position:absolute;top:0px;left:-20px;" src="../static/img/live/{{star.id}}/logo.png">
+                              <img  class="" style="width:250px;border-radius:50%;position:absolute;top:60px;right:0px;" src="../static/img/live/{{star.id}}/profile.png">
+                              <img  class="" style="width:250px;position:absolute;bottom:-80px;right:-50px;" src="../static/img/live/{{star.id}}/box.png">
+
+                            </div>
+                          </a>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <p class="store-disclaimer" style="text-align: center; margin-top: 10px;font-size: 12px;">Logos are each star's trademark and property.</p>
+
+      </div>
+
+  </section>
+
+
+
+
+  <section class="cta-section section-spacing text-center">
+    <div class="container">
+      <header class="section-header">
+        <h2>We do all the hard stuff!</h2>
+        <h3 style="font-weight:600;">Manufacturing, design, e-commerce, distribution, and customer service. <br><br>All you do is promote your box!</h3>
+      </header>
+      <div class="row">
+        <div class="col-md-12"> <a href="/builder" class="btn">Build a Box</a>
+          <p>Have a question? <a href="mailto:sarah@fandemic.co"> Shoot us an email </a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!--Features end-->
 
   <!--reviews-->
 
@@ -209,58 +271,8 @@
   </section>
 
 
-  <section class="cta-section section-spacing text-center">
-    <div class="container">
-      <header class="section-header">
-        <h2>We do all the hard stuff!</h2>
-        <h3>Our team takes care of the manufacturing, design, e-commerce, distribution, and customer service. <br>All you do is promote your box on social media!</h3>
-      </header>
-      <div class="row">
-        <div class="col-md-12"> <a href="/builder" class="btn">Build a Box</a>
-          <p>Have a question? <a href="mailto:sarah@fandemic.co"> Shoot us an email </a></p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- <section id="activestores">
-    <div class="activestores section-spacing">
-      <div class="container">
-        <header class="section-header" style="text-align:center">
-                <h2>Example Stars' Boxes</h2>
-                <h3>What other stars have made:</h3>
-              </header>
-          <div class="demo">
-                <div class="item">
-                    <ul id="content-slider" class="content-slider">
-                        <li>
-                          <a href="/zac-smith-fitness">
-                            <img class="slider-sample" src="../static/img/custom/zac-smith-fitness/box-male.png">
-                            <h3>Zac Smith Fitness</h3>
-                          </a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-
-
-        </div>
-
-        <p class="store-disclaimer" style="text-align: center; margin-top: 10px;font-size: 12px;">Logos are each star's trademark and property.</p>
-
-      </div>
-
-  </section> -->
-
-  <!--Features end-->
-
-
-
-
-
-  <!--Team-->
+  <!--
 
   <section class="team section-spacing text-center" id="team">
     <div class="container">
@@ -315,7 +327,7 @@
     </div>
   </section>
 
-  <!--Team end-->
+  -->
 
   <!--contact us end-->
 
@@ -396,7 +408,7 @@ $(document).ready(function() {
      }
 
 var autoplaySlider = $('#content-slider').lightSlider({
-    auto:true,
+    auto:false,
     loop:true,
     pauseOnHover: true,
     onBeforeSlide: function (el) {

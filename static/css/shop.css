@@ -136,9 +136,10 @@ h3{
 }
 
 .top-alert-bar{
-  background-color: #bf1d1d;
+  background-color: #f9c348;
   color:#fff;
   text-align: center;
+  padding: 5px;
 }
 
 .controls .btns{
@@ -156,6 +157,25 @@ h3{
 
 .controls .button:hover{
   color: #68A0D4;
+}
+
+.rotate {
+
+/* Safari */
+-webkit-transform: rotate(-90deg);
+
+/* Firefox */
+-moz-transform: rotate(-90deg);
+
+/* IE */
+-ms-transform: rotate(-90deg);
+
+/* Opera */
+-o-transform: rotate(-90deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
 }
 
 

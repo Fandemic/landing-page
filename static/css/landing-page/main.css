@@ -116,18 +116,19 @@ b, strong {
   margin: 0;
 }
 .btn {
-  padding: 1em 3em;
-  color: #fff;
+  padding: 1em 2em;
+  color: #000;
   font-size: 18px;
   text-align: center;
   text-decoration: none;
-  background-color: #7BDC87;
+  background-color: #FFC94C;
   line-height: 1.5;
   border: none;
-  border-radius: 3px;
-  font-weight: 600;
+  border-radius: 4px;
+  font-weight: 800;
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
+  border: 1px solid #000;
 }
 .btn:hover {
   color: #fff;
@@ -564,6 +565,7 @@ blockquote cite {
 
 .cta-section {
   background-color: #4D9BD3;
+  background: url('/static/img/blue_bg.png');
 }
 .cta-section p a {
   color: #7cdd88;
@@ -582,14 +584,14 @@ blockquote cite {
   color: #fff;
 }
 .cta-section .btn {
-  background-color: #7cdd88 !important;
-  color: white;
-  border: 1px solid transparent;
+  background-color: #FFC94C !important;
+  color: #000;
+  border: 1px solid #000;
 }
 .cta-section .btn:hover {
   background-color: transparent;
-  color: #fff;
-  border: 1px solid #fff;
+  color: #000;
+  border: 1px solid #000;
 }
 .cta-section p {
   color: #fff;
