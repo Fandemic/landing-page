@@ -33,21 +33,6 @@ class Slack:
             #"thumb_url": "http://example.com/path/to/thumb.png",
             "footer": "Box Sale",
             "footer_icon": "https://fandemic.co",
-             "actions": [
-                {
-                    "name": "status",
-                    "text": "Order Shipped",
-                    "style": "success",
-                    "type": "button",
-                    "value": "true",
-                    "confirm": {
-                        "title": "Are you sure?",
-                        "text": "Are you sure this item has been shipped?",
-                        "ok_text": "Yes",
-                        "dismiss_text": "No"
-                    }
-                }
-            ],
             "mrkdwn": True,
             "mrkdwn_in": ["text", "pretext"],
             "ts": int(time.time())

@@ -29,6 +29,12 @@ app.controller("shop", function($scope) {
 
   $scope.data.end_time = 1477267200;
 
+  $scope.data.order_id = randomString(10);
+
+  $scope.data.star_id = star_id;
+
+  $scope.data.campaign_id = campaign_id;
+
   $scope.view_mode = 'box';
 
   $scope.product_view = {
@@ -96,10 +102,11 @@ app.controller("shop", function($scope) {
            type: 'POST',
            contentType: 'application/json;charset=UTF-8',
            success: function(response) {
-             alert('payment sent to backend');
+             $("#payment-modal").modal("hide");
+             $("#payment-success-modal").modal("show");
            },
            error: function(error) {
-             alert(error);
+             alert("Payment Error: please try again later");
            }
        });
 
@@ -211,6 +218,13 @@ app.controller("shop", function($scope) {
       function validateEmail(email) {
           var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           return re.test(email);
+      }
+
+      function randomString(length) {
+        var chars = '123456789ABCDEFGHIJKLMNPQRSTUVWXYZ';
+        var result = '';
+        for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+        return result;
       }
 
 

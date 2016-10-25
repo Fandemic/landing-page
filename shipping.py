@@ -4,7 +4,7 @@ class Shipping:
 
     def __init__(self):
 
-        easypost.api_key = 'UkcBy5FU81KSXBEHqAicwA'
+        easypost.api_key = 'rqNWHlFPA9OAjCBkUMnexg'
 
         self.from_address = easypost.Address.create(
           verify=["delivery"],

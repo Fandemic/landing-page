@@ -28,6 +28,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
 db = MongoClient('45.79.159.210', 27017).fandemic
 
+#BRAINTREE TEST MODE
 braintree.Configuration.configure(braintree.Environment.Sandbox,
                                   merchant_id="2hf4g4nnyr988sbq",
                                   public_key="k7kxgfrgmwq95qrr",
@@ -296,13 +297,48 @@ def charge():
         #print result for testing
         print result
 
+        if result.is_success:
+
+            #send an email to the person who ordered
+            toaddr = [customer['email']]
+            subject = "Order Confirmation - Fandemic"
+            html =  """
+                    Hey """+ customer['name'] +""",<br><br>
+                    Your order has been processed successfully!<br><br>
+
+                    <h3>Order Details</h3>
+                    <p>Order ID: """+ data['order_id'] +"""</p>
+                    <p>Star ID: """+ data['star_id'] +"""</p>
+                    <p>Campaign ID: """+ data['campaign_id'] +"""</p>
+                    <hr>
+                    <h3>Shipping Information</h3>
+                    <p>"""+ customer['name'] +"""</p>
+                    <p>"""+ customer['addr'] +"""</p>
+                    <p>"""+ customer['city'] +""" """+ customer['state'] +""", """+ customer['zip'] +"""</p>
+                    <p>"""+ customer['country'] +"""</p>
+                    """
+            email.send(toaddr,subject,html)
 
 
-        #slack notification of transaction
-        sarah.send("order placed","Order #1234",str(data))
+
+            #slack notification of transaction
+            msg= ''
+            msg += '\n*star ID:* ' + data['star_id']
+            msg += '\n*campaign ID:* ' + data['campaign_id']
+            msg += '\n*name:* ' + customer['name']
+            msg += '\n*email:* ' + customer['email']
+            msg += '\n*addr:* ' + customer['addr']
+            msg += '\n*city:* ' + customer['city']
+            msg += '\n*state:* ' + customer['state']
+            msg += '\n*zip:* ' + customer['zip']
+            msg += '\n*shipping service:* ' + data['shipping_method']['service']
+            msg += '\n*shipping rate:* ' + data['shipping_method']['rate']
 
 
-    return '';
+            sarah.send("order from " + data['star_id'] + "'s store","Order ID: "+data['order_id'],msg)
+
+
+            return '';
 
 #================PROCESS A STOCKING FEE====================#
 @app.route('/sample-charge', methods=['GET', 'POST'])
