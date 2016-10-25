@@ -81,7 +81,7 @@ b, strong {
    ========================================================================== */
 
 .hero-section {
-  background: url(../../img/bg6.jpg) center center no-repeat scroll;
+  background: url(../../img/faq.jpg) center center no-repeat scroll;
   background-size: cover;
   padding: 0 0 4.5em;
   position: relative;
@@ -98,7 +98,7 @@ b, strong {
   right: 0;
 }
 .hero-section::before {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0);
 }
 .welcome-message {
   margin-top: 4.5em;
@@ -117,18 +117,17 @@ b, strong {
 }
 .btn {
   padding: 1em 2em;
-  color: #000;
+  color: #fff;
   font-size: 18px;
   text-align: center;
   text-decoration: none;
-  background-color: #FFC94C;
+  background-color: #4D9BD3;
   line-height: 1.5;
   border: none;
   border-radius: 4px;
   font-weight: 800;
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
-  border: 1px solid #000;
 }
 .btn:hover {
   color: #fff;
