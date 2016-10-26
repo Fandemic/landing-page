@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en">
+<html lang="en" class="container wrapper">
 
 <head>
   <meta charset="utf-8">
@@ -21,6 +21,37 @@
 {% include 'header.html' %}
 
 <body>
+  <!--navigation-->
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#home">
+          <img class="logo-nav" alt="logo" src="../static/img/logo-nav_fullsize_wordart.png" style="padding-top:5px" width="124" height="45">
+          <img class="logo-head" width="150px" alt="logo" src="../static/img/logowhite.png">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+        <ul class="nav navbar-nav nav-left">
+          <li><a style="font-weight:600;" href="/about">About</a></li>
+          <li><a style="font-weight:600;" href="/partners">Partners</a></li>
+          <li><a style="font-weight:600;" href="/benefits">Benefits</a></li>
+          <li><a style="font-weight:600;" href="/faq">Help</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#" data-toggle="modal" data-target="#how-fandemic-works" class="btn">How Fandemic Works</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--navigation end-->
+  <section class="">
   <br>
 
   <div class="row" style="text-align:center;">
@@ -29,7 +60,7 @@
   <hr>
   <div class="row">
     <h3 style="font-size:27px; padding-left:2em; padding-right:2em; text-align:center;color:#1d1d1d;">
-      The incredible <strong>Beauty Box Builder</strong> is not yet available for mobile devices!
+       <strong>Beauty Box Design Studio</strong> is not available for mobile devices!
     </h3>
 
 
@@ -70,6 +101,7 @@
   </div>
 
 </div>
+</section>
 
 
 </body>
