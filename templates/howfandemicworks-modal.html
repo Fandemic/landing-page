@@ -78,6 +78,9 @@
   text-align:center;
 }
 
+.invisible {
+  display:none;
+}
 
 
 </style>
@@ -100,7 +103,7 @@ player.api('play');
 
 var pageURL = window.location.href;
 if( pageURL.indexOf('builder') >= 0){
-  $('.videoButtonCTA').hide();
+  $('.videoButtonCTA').addClass('invisible');
 }
 
 </script>
