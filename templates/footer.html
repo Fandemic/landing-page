@@ -73,15 +73,11 @@
       </div>
       <div class="col-md-3">
         <h2 style="font-size:20px">Example Stores</h2>
-        <!-- <ul>
-          <li><a href="/zac-smith-fitness">Zac Smith Fitness</a></li>
-        </ul>
+        {% for star in star_names %}
         <ul>
-          <li><a href="/team-dna-fitness">Team DNA Fitness</a></li>
+          <li><a href="/{{star.id}}">{{star.name}}</a></li>
         </ul>
-        <ul>
-          <li><a href="/jen-seidel">Jen Seidel: Paint it Forward</a></li>
-        </ul> -->
+        {% endfor %}
       </div>
       <div class="col-md-3">
         <div class="ft-social">
