@@ -28,11 +28,21 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
 db = MongoClient('45.79.159.210', 27017).fandemic
 
-#BRAINTREE TEST MODE
-braintree.Configuration.configure(braintree.Environment.Sandbox,
-                                  merchant_id="2hf4g4nnyr988sbq",
-                                  public_key="k7kxgfrgmwq95qrr",
-                                  private_key="c33bb5198238ee8c544f5e2ff894a63b")
+mode = 'live';
+
+#get the stars products
+if mode == 'test':
+    #BRAINTREE TEST MODE
+    braintree.Configuration.configure(braintree.Environment.Sandbox,
+                                      merchant_id="2hf4g4nnyr988sbq",
+                                      public_key="k7kxgfrgmwq95qrr",
+                                      private_key="c33bb5198238ee8c544f5e2ff894a63b")
+elif mode == 'live':
+    #BRAINTREE LIVE MODE
+    braintree.Configuration.configure(braintree.Environment.Production,
+                                      merchant_id="xhfrd2njsj3hpjqg",
+                                      public_key="24hn86zpmj3kg6zd",
+                                      private_key="bf70efac06af024e582747b76b9a621a")
 
 email = Mailer();
 
@@ -226,43 +236,12 @@ def privacy():
 def store(template,starID):
 
     star = db.stars.find_one({'id':starID.lower()}) #find the star
-    print star
+    #print star
 
     if star == None: return render_template("404.html")
 
-    #get the stars products
-    if star['stage'] == 'live':
-        products = star['products']
-    else:
-        products = db.sample_products.find({'category': star['category']}).sort("sort",-1).limit(6)
-
-    #extract pricing for the wizard
-    pricing = db.product_pricing.find({'category': star['category']},{'_id': False})
-    pricingjs = db.product_pricing.find({'category': star['category']},{'_id': False})
-
-    #loop products and index the categories on the fly
-    catIndex = {}
-    productsFiltered = []
-    counter = 1
-    for p in products:
-        p["subcatID"] = [] #list of ID's for each product
-        for c in p["subcat"]:
-
-            if c in catIndex:
-                p["subcatID"].append(catIndex[c])
-
-            else:
-                catIndex[c] = counter
-                counter += 1
-                p["subcatID"].append(catIndex[c])
-
-
-        productsFiltered.append(p)
-
-    return render_template(template, star = star,products = productsFiltered,
-                                     cat=catIndex, pricing = pricing,
-                                     braintree=braintree.ClientToken.generate(),
-                                     pricingjs=map(json.dumps, pricingjs))
+    return render_template(template, star = star,
+                                     braintree=braintree.ClientToken.generate())
 #---------------------------------------------
 
 #================PROCESS AN ORDER====================#
@@ -284,12 +263,14 @@ def charge():
         result = braintree.Transaction.sale({
             "amount": str(data['price']+shipping_rate),
             "payment_method_nonce": data['nonce'],
+            "order_id": data['order_id'],
             "options": {
               "submit_for_settlement": True
             }
+
         });
 
-        #submit transaction to orders collection in DB
+
         print data
 
         print '-------------------------------------------'
@@ -299,6 +280,18 @@ def charge():
 
         if result.is_success:
 
+
+            #submit transaction to orders collection
+            result = db.orders.insert_one(data);
+
+            #increment star's order qty by 1
+            db.stars.update_one({
+                  'id': data['star_id'],
+                  'campaigns.0.id': data['campaign_id']
+                },{
+                  '$inc': { 'campaigns.0.num_orders': 1 }
+                })
+
             #send an email to the person who ordered
             toaddr = [customer['email']]
             subject = "Order Confirmation - Fandemic"
@@ -307,6 +300,7 @@ def charge():
                     Your order has been processed successfully!<br><br>
 
                     <h3>Order Details</h3>
+                    <p>Total Price: $"""+ str(data['price']+shipping_rate) +"""($"""+ str(data['price']) +""" box + $"""+ data['shipping_method']['rate'] +""" shipping)</p>
                     <p>Order ID: """+ data['order_id'] +"""</p>
                     <p>Star ID: """+ data['star_id'] +"""</p>
                     <p>Campaign ID: """+ data['campaign_id'] +"""</p>
@@ -332,7 +326,10 @@ def charge():
             msg += '\n*state:* ' + customer['state']
             msg += '\n*zip:* ' + customer['zip']
             msg += '\n*shipping service:* ' + data['shipping_method']['service']
-            msg += '\n*shipping rate:* ' + data['shipping_method']['rate']
+            msg += '\n*shipping rate:* $' + str(data['shipping_method']['rate'])
+            msg += '\n*box price:* $' + str(data['price'])
+            msg += '\n*total price:* $' + str(data['price']+shipping_rate)
+
 
 
             sarah.send("order from " + data['star_id'] + "'s store","Order ID: "+data['order_id'],msg)

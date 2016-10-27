@@ -50,6 +50,8 @@
 
 <script>
   var price = {{star.campaigns[0].price}};
+  var star_id = '{{star.id}}';
+  var campaign_id = '{{star.campaigns[0].id}}';
 </script>
 
 <!-- MOBILE HTML -->
@@ -58,10 +60,19 @@
   <div id="loading"> Please Wait.. Order Processing...</div>
   <script> $('#loading').hide();</script>
 
+  {% if star.campaigns[0].status == 'pending' %}
+  <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;"><strong>THIS STORE IS PENDING</strong> - payments <strong>will not</strong> be processed</div>
+  <style>
+  .nav{
+    top:40px;
+  }
+  </style>
+  {% endif %}
+
   <div id="menu" style="background:url(/static/img/live/{{star.id}}/bg.jpg);background-position:cover;">
 
     <img class="profile-img" src="/static/img/live/{{star.id}}/profile.png" style="border-radius: 50%;padding:10px;">
-    
+
 
     {% if star.campaigns[0].style.color_primary != '' %}
     <h4 class="title"  style="color:{{star.campaigns[0].style.color_primary}};">{{star.name}}</h4>
@@ -669,6 +680,53 @@
 
       </div>
 
+    </div>
+
+
+    <!-- PAYMENT SUCCESS MODAL -->
+    <div id="payment-success-modal" class="modal fade" role="dialog">
+
+      <div class="modal-dialog modal-md">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <div class="modal-body">
+
+            <h2>ORDER SUCCESSFUL!</h2>
+            <i>You will receive an email containing this information</i>
+            <hr>
+            <p><strong>Order ID:</strong> <span ng-bind="data.order_id"></span></p>
+            <p><strong>Store:</strong> <span>{{star.name}}</span></p>
+            <p><strong>Campaign:</strong> <span>{{star.campaigns[0].box_name}}</span></p>
+
+
+            <hr>
+
+            <p><span ng-bind="data.customer.name"></span></p>
+            <p><span ng-bind="data.customer.email"></span></p>
+
+            <p>
+              <span ng-bind="data.customer.addr"></span>
+              <br>
+              <span ng-bind="data.customer.city"></span> <span ng-bind="data.customer.state"></span>, <span ng-bind="data.customer.zip"></span>
+              <br>
+              <span ng-bind="data.customer.country"></span>
+
+            </p>
+
+            <hr>
+
+            Questions? Email us at contact@fandemic.co<br><br>
+
+            <p style="font-size:12px;text-align:center;">If this campaign does not reach the minimum requirement of 10 orders,
+            you will receive a full refund when the campaign is over.</p>
+
+          </div>
+        </div>
+      </div>
     </div>
 
 

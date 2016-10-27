@@ -98,7 +98,7 @@ app.controller("shop", function($scope) {
 
         $.ajax({
            url: '/charge',
-           data: JSON.stringify($scope.data, null, '\t'),
+           data: angular.toJson($scope.data, null, '\t'),
            type: 'POST',
            contentType: 'application/json;charset=UTF-8',
            success: function(response) {
