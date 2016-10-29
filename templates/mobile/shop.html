@@ -817,10 +817,6 @@ $('.ssk-twitter').attr('href', 'https://twitter.com/intent/tweet?source=https://
 $('.ssk-google-plus').attr('href', 'https://plus.google.com/share?url=https://fandemic.co/{{star.id}}');
 $('.ssk-pinterest').attr('href', 'http://pinterest.com/pin/create/button/?url=https://fandemic.co/{{star.id}}&amp;description={{star.id}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box!');
 $('.ssk-tumblr').attr('href', 'http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box!');
-
-$(".ssk").click(function(){
-  window.open(this.href, "unicorn", "width=400, height=600, screenX=800, screenY=200");
-});
 </script>
 
 {% include 'analytics.html' %}
