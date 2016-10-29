@@ -256,15 +256,21 @@ img.setAttribute('src', '{{star.image.profile}}');
 
         <h5 style="color:#adadad !important;margin-bottom:0px;">Share {{star.name}}'s Box!</h5>
         <div class="ssk-group ssk-count ssk-round">
-         <a href="https://www.facebook.com/sharer/sharer.php?u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has a couple days left to sell their {{star.campaigns.box_name}} box!" onclick="return false;" class="ssk ssk-facebook"></a>
-         <a href="https://twitter.com/intent/tweet?source=https://fandemic.co/{{star.id}}&amp;text={{star.name}} only has a couple days left to sell their {{star.campaigns.box_name}} box! :%20https://fandemic.co/{{star.id}}" onclick="return false;" class="ssk ssk-twitter" ></a>
-         <a href="https://plus.google.com/share?url=https://fandemic.co/{{star.id}}" class="ssk ssk-google-plus" onclick="return false;"></a>
-         <a href="http://pinterest.com/pin/create/button/?url=https://fandemic.co/{{star.id}}&amp;description={{star.id}} only has a couple days left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-pinterest" onclick="return false;"></a>
-         <a href="http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has a couple days left to sell their {{star.campaigns.box_name}} box!" class="ssk ssk-tumblr" onclick="return false;"></a>
+         <a href="" onclick="return false;" class="ssk ssk-facebook"></a>
+         <a href="" onclick="return false;" class="ssk ssk-twitter" ></a>
+         <a href="" class="ssk ssk-google-plus" onclick="return false;"></a>
+         <a href="" class="ssk ssk-pinterest" onclick="return false;"></a>
+         <a href="" class="ssk ssk-tumblr" onclick="return false;"></a>
      </div>
       <br><br>
+      {% if star.campaigns[0].status == 'pending' %}
+      <a href="mailto:sarah@fandemic.co?subject={{star.name}} wants to activate their store!">
+        <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">ACTIVATE STORE</button>
+      </a>
+      {% else %}
       <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
               background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
+      {% endif %}
       <br>
       </div>
 
@@ -738,7 +744,15 @@ braintree.setup('{{braintree}}', 'dropin', {
 </script>
 
 <script>
+
 var daysLeft = $("#timer strong:first-child").html();
+$('.ssk-facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box!');
+$('.ssk-twitter').attr('href', 'https://twitter.com/intent/tweet?source=https://fandemic.co/{{star.id}}&amp;text={{star.name}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box! https://fandemic.co/{{star.id}}');
+$('.ssk-google-plus').attr('href', 'https://plus.google.com/share?url=https://fandemic.co/{{star.id}}');
+$('.ssk-pinterest').attr('href', 'http://pinterest.com/pin/create/button/?url=https://fandemic.co/{{star.id}}&amp;description={{star.id}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box!');
+$('.ssk-tumblr').attr('href', 'http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box!');
+
+
 
 $(".ssk").click(function(){
   window.open(this.href, "unicorn", "width=400, height=600, screenX=800, screenY=200");
