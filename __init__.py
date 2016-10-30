@@ -2,6 +2,7 @@
 
 import math
 import random
+import time
 from email.utils import parseaddr
 from flask import Flask, render_template, request, jsonify, redirect, make_response
 from pymongo import MongoClient, GEO2D
@@ -243,6 +244,52 @@ def store(template,starID):
     return render_template(template, star = star,
                                      braintree=braintree.ClientToken.generate())
 #---------------------------------------------
+
+#=================MOCK STORES========================
+@app.route('/<starID>/activate/<key>')
+def activate_store(starID,key):
+
+    star = db.stars.find_one({'id':starID.lower()})
+
+    if star == None: return render_template("404.html")
+
+    currentTime = int(time.time())
+    end_time = currentTime + 604800;
+
+    if star['campaigns'][0]['status'] != 'live':
+
+        #set up the star's store in the database
+        db.stars.update_one({
+            'id':starID.lower()
+        },
+        {
+        '$set': {
+            'campaigns.0.status': 'live',
+            'campaigns.0.num_orders': 0,
+            'campaigns.0.end_time':end_time
+        }
+        }, upsert=False)
+
+        #send an email to brandon and ethan
+        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
+        subject = star['name'] + " Has Activated Their Store!"
+        html =  """
+                """+star['name']+""" has activated their store!
+                The star's ID is """ + star['id'] + """
+                """
+        email.send(toaddr,subject,html)
+
+
+        #send an email to the star
+        toaddr = [star['email'][0]]
+        email.sendActivateStoreEmail(toaddr,star['id'],star['name'])
+
+    else:
+        return render_template("404.html")
+
+
+    return redirect("http://fandemic.co/"+starID, code=302)
+#----------------------------------------------------
 
 #================PROCESS AN ORDER====================#
 @app.route('/charge', methods=['GET', 'POST'])
