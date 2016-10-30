@@ -110,7 +110,7 @@ app.controller("builder", function($scope) {
       if (index >= 0){
          $scope.box.products.splice(index, 1);
          $scope.box.cost -= parseInt(product.cost);
-         $scope.box.price = $scope.box.cost * 2;
+         $scope.box.price = $scope.box.cost + 10;
          $.notify(product.name + " Successfully Removed From Box", { position:"top right",className:"success" });
       }
 
@@ -121,7 +121,7 @@ app.controller("builder", function($scope) {
       else{
         $scope.box.products.push(product);
         $scope.box.cost += parseInt(product.cost);
-        $scope.box.price = $scope.box.cost * 2;
+        $scope.box.price = $scope.box.cost + 10;
         $.notify(product.name + " Successfully Added to Box", { position:"top right",className:"success" });
       }
 
