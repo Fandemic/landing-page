@@ -263,11 +263,18 @@ img.setAttribute('src', '{{star.image.profile}}');
          <a href="" class="ssk ssk-tumblr" onclick="return false;"></a>
      </div>
       <br><br>
-      {% if star.campaigns[0].status == 'pending' %}
-      <a href="mailto:sarah@fandemic.co?subject={{star.name}} wants to activate their store!">
-        <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">ACTIVATE STORE</button>
+      {% if star.campaigns[0].status == 'mock' %}
+      <a href="../builder">
+        <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">CREATE BOX</button>
       </a>
-      {% else %}
+      {% endif %}
+
+      {% if star.campaigns[0].status == 'pending' %}
+      <button data-toggle="modal" data-target="" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="  opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
+              background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
+      {% endif %}
+
+      {% if star.campaigns[0].status == 'live' %}
       <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
               background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
       {% endif %}
