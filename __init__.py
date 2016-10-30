@@ -52,9 +52,11 @@ email = Mailer();
 def home():
     storeCount = db.stars.count()
     stars = db.stars.find({'campaigns.0.status': 'pending'}).limit(10) #find stars with mock and pull just name and id
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
+
     categories = db.stars.distinct("category")
 
-    return render_template('index.html', categories = categories, stars=stars, storeCount = storeCount)
+    return render_template('index.html', categories = categories, stars=stars, star_names = star_names, storeCount = storeCount)
 #-------------------------------------------
 
 @app.route('/blog')
@@ -201,33 +203,39 @@ def blogPost(url):
 
 @app.route('/terms')
 def terms():
-    return render_template('terms.html')
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
+    return render_template('terms.html', star_names=star_names)
 #-------------------------------------------
 
 @app.route('/faq')
 def faq():
-    return render_template('faq.html')
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
+    return render_template('faq.html', star_names=star_names)
 #-------------------------------------------
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
+    return render_template('about.html', star_names=star_names)
 #-------------------------------------------
 
 @app.route('/partners')
 def partners():
-    return render_template('partners.html')
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
+    return render_template('partners.html', star_names=star_names)
 #-------------------------------------------
 
 @app.route('/benefits')
 def benefits():
-    return render_template('benefits.html')
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
+    return render_template('benefits.html', star_names=star_names)
 
 #-------------------------------------------
 
 @app.route('/privacy')
 def privacy():
-    return render_template('privacy.html')
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
+    return render_template('privacy.html', star_names=star_names)
 
 
 
