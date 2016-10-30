@@ -251,7 +251,7 @@ class Mailer:
                                                     </tr>
                                                     <tr>
                                                         <td style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
-                                                            Post with a picture of the beauty box and a link to the store! Stay engaged in the thread and answer all questions your fans have! Include the exclusivity of the store (it won't last!).
+                                                            <strong>Post with a picture</strong> of the beauty box and a link to the store! Stay engaged in the thread and answer all questions your fans have!
                                                         </td>
                                                     </tr>
                                                 </tbody></table>
@@ -267,7 +267,7 @@ class Mailer:
                                                     </tr>
                                                     <tr>
                                                         <td style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
-                                                            Posting the store link (a picture will automatically be placed), with a call to action such as "Only 3 days left to buy my XYZ box!". Also encourage retweets by telling your fans that the more people that buy it the more campaigns in the future!
+                                                            <strong>Post a link</strong> to the store, with a call to action such as "Only 3 days left to buy my beauty box!". Also, encourage retweets by telling your fans that the more people that buy it the more campaigns in the future!
                                                         </td>
                                                     </tr>
                                                 </tbody></table>
