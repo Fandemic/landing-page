@@ -51,7 +51,8 @@ email = Mailer();
 @app.route('/', methods=['GET', 'POST'])
 def home():
     storeCount = db.stars.count()
-    stars = db.stars.find({'campaigns.0.status': 'pending'}).limit(10) #find stars with mock and pull just name and id
+    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
+
     star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
 
     categories = db.stars.distinct("category")
