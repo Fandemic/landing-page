@@ -20,7 +20,7 @@ app.controller("builder", function($scope) {
       style: null,
       material: null,
       star: {
-        'name': 'one of a kind',
+        'name': '',
         'email': '',
         'phone': '',
         'img_url': ''

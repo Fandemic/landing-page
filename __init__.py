@@ -112,7 +112,7 @@ def catalog(template,cat=None,cat2=None,cat3=None):
 
     items = list(items);
     for item in items:
-        item['price'] = int(round( item['price'] + (item['price'] * .3) ))
+        item['price'] = int(math.ceil( item['price'] ))
 
     return render_template(template, items=list(items), box_items=list(box_items),styles=styles,packaging=packaging,cat=cat,cat2=cat2,cat3=cat3)
 
