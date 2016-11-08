@@ -146,7 +146,7 @@ def getData():
     sarah = Slack()
     sarah.notify('*DESKTOP VISITED ALERT*\nHey guys, the user *'+str(ID)+'* just visited the beauty builder on desktop.\nTheir email address is [*'+str(emails)+'*]')
 
-    return json.dumps({'name':star['name'],'img_url':star['image']['profile']})
+    return json.dumps({'name':star['name'],'img_url':star['image']['profile'],'id':star['id']})
 
 
 @app.route("/builder-alert-mobile", methods=['GET'])
@@ -478,6 +478,108 @@ def launchStoreRequest():
 
         info = request.get_json()
 
+        #create a campaign if the user exists
+        if info['star']['exists']:
+            ID = info['star']['id']
+            star = db.stars.find_one({'id':ID.lower()})
+            campaign = {}
+            campaign['id'] = info['box_name'].replace(' ', '-').lower()
+            campaign['status'] = 'pending'
+            campaign['index'] = 1
+            campaign['box_name'] = info['box_name']
+            campaign['brand_name'] = info['brand_name']
+            campaign['end_time'] = 1477267200
+            campaign['cost'] = info['cost']
+            campaign['price'] = info['price']
+            campaign['description'] = 'your box description goes here, please email it to sarah@fandemic.co'
+            campaign['num_orders'] = 500
+            campaign['style'] = {}
+            campaign['style']['color_primary'] = '#fff'
+            campaign['style']['color_secondary'] = '#fff'
+            campaign['style']['btn_color'] = '#28a237'
+            campaign['products'] = info['products']
+            db.stars.update_one({'id':ID.lower()}, {'$push': {'campaigns': campaign}})
+
+        #send the email to fandemic team
+        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
+        subject = "New Launch Store Request - "+info['star']['name']
+
+        #build the trello string
+        trello_string = ''
+        trello_string += '**Store URL:** ' + 'https://fandemic.co/' + info['star']['id'] + '\n'
+        trello_string += '**Confirmation Code:** ' + info['confirmation_code'] + '\n'
+        trello_string += 'STAR\n'
+        trello_string += '-----------------------------\n'
+        trello_string += '**Name:** ' + info['star']['name'] + '\n'
+        trello_string += '**ID:** ' + info['star']['id'] + '\n'
+        trello_string += '**Phone:** ' + info['star']['phone'] + '\n'
+        trello_string += '**Exists:** ' + str(info['star']['exists']) + '\n'
+        trello_string += 'BOX\n'
+        trello_string += '-----------------------------\n'
+        trello_string += '**Cost:** ' + str(info['cost']) + '\n'
+        trello_string += '**Price:** ' + str(info['price']) + '\n'
+        trello_string += '**Profit:** ' + str(int(info['price']) - int(info['cost']))  + '\n'
+        trello_string += '**Box Name:** ' + info['box_name'] + '\n'
+        trello_string += '**Brand Name:** ' + info['brand_name'] + '\n'
+        trello_string += '**Color:** ' + info['style']['name'] + '\n'
+        trello_string += '**Material:** ' +info['material']['name'] + '\n'
+        trello_string += '**Primary Font:** ' + info['font1'] + '\n'
+        trello_string += '**Secondary Font:** ' + info['font2'] + '\n'
+        trello_string += 'PRODUCTS\n'
+        trello_string += '-----------------------------\n'
+        for p in info['products']:
+            trello_string += p['item_num'] + ' | ' + p['name'] + ' | ' + p['cost']
+            if 'variation' in p:
+                trello_string += ' | ' + p['variation']
+            trello_string += '\n~~~~~~~~~~~~~~~~~~~~\n'
+
+        #build the trello string
+        email_string = ''
+        email_string += '<strong>Store URL:</strong> ' + 'https://fandemic.co/' + info['star']['id'] + '<br>'
+        email_string += '<strong>Confirmation Code:</strong> ' + info['confirmation_code'] + '<br>'
+        email_string += '<br><h3>STAR</h3>'
+        email_string += '<hr>'
+        email_string += '<strong>Name:</strong> ' + info['star']['name'] + '<br>'
+        email_string += '<strong>ID:</strong> ' + info['star']['id'] + '<br>'
+        email_string += '<strong>Phone:</strong> ' + info['star']['phone'] + '<br>'
+        email_string += '<strong>Exists:</strong> ' + str(info['star']['exists']) + '<br>'
+        email_string += '<br><h3>BOX</h3>'
+        email_string += '<hr>'
+        email_string += '<strong>Cost:</strong> ' + str(info['cost']) + '<br>'
+        email_string += '<strong>Price:</strong> ' + str(info['price']) + '<br>'
+        email_string += '<strong>Profit:</strong> ' + str(int(info['price']) - int(info['cost']))  + '<br>'
+        email_string += '<strong>Box Name:</strong> ' + info['box_name'] + '<br>'
+        email_string += '<strong>Brand Name:</strong> ' + info['brand_name'] + '<br>'
+        email_string += '<strong>Color:</strong> ' + info['style']['name'] + '<br>'
+        email_string += '<strong>Material:</strong> ' +info['material']['name'] + '<br>'
+        email_string += '<strong>Primary Font:</strong> ' + info['font1'] + '<br>'
+        email_string += '<strong>Secondary Font:</strong> ' + info['font2'] + '<br>'
+        email_string += '<br><h3>PRODUCTS</h3>'
+        email_string += '<hr>'
+        for p in info['products']:
+            email_string += p['item_num'] + ' | ' + p['name'] + ' | ' + p['cost']
+            if 'variation' in p:
+                email_string += ' | ' + p['variation']
+            email_string += '<br>'
+
+
+        html = """
+                <html>
+                  <head></head>
+                  <body>
+                    <div>
+                        <h3>New launch store request from """+info['star']['name']+"""!</h3>
+                        """+email_string+"""
+                    </div>
+                  </body>
+                </html>
+                """
+        email.send(toaddr,subject,html)
+
+        #add a email card with the store request
+        trello.addCard_CR(info['star']['name'],trello_string)
+
+
         #send the email
         toaddr = [info['star']['email']]
         subject = "Your Beauty Box Campaign is Almost Ready!"
@@ -493,30 +595,6 @@ def launchStoreRequest():
                 - Sarah :)
                 """
         email.send(toaddr,subject,html)
-
-
-
-        #send the email to fandemic team
-        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
-        subject = "New Launch Store Request - "+info['star']['name']
-        string = ''
-        for k, v in info.iteritems():
-            string += k + ': ' + str(v) + '\n'
-
-        html = """
-                <html>
-                  <head></head>
-                  <body>
-                    <div>
-                        <h3>New launch store request from """+info['star']['name']+"""!</h3>
-                        """+string+"""
-                    </div>
-                  </body>
-                </html>
-                """
-        email.send(toaddr,subject,html)
-
-        trello.addCard_CR(info['star']['name'],string)
 
     return '';
 

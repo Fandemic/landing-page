@@ -20,7 +20,9 @@ app.controller("builder", function($scope) {
       style: null,
       material: null,
       star: {
+        'exists': false,
         'name': '',
+        'id': '',
         'email': '',
         'phone': '',
         'img_url': ''
@@ -59,7 +61,7 @@ app.controller("builder", function($scope) {
         $.ajax({
           type: 'POST',
           url: '/launch-store-request',
-          data: JSON.stringify(box, null, '\t'),
+          data: angular.toJson(box, null, '\t'),
           contentType: 'application/json;charset=UTF-8',
           success: function(response) {
             $('#launch-store-modal').modal('hide');
@@ -309,7 +311,9 @@ app.controller("builder", function($scope) {
 
         $scope.set_star = function(star){
           $scope.box.star['name'] = star['name'];
+          $scope.box.star['id'] = star['id'];
           $scope.box.star['img_url'] = star['img_url'];
+          $scope.box.star['exists'] = true;
         }
 
         //extract the id of the user from the URL
