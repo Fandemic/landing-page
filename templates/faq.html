@@ -366,22 +366,121 @@
 
 </body>
 
+
+
+<script>
+</script>
+
+</html>
+
+<!--site-footer-->
+
+
 <script src="../static/js/jquery-1.12.2.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
-<!-- <script src="../static/js/landing-page/waypoints.min.js"></script> -->
+<script src="../static/js/landing-page/waypoints.min.js"></script>
 <script src="../static/js/landing-page/jquery.animateNumber.min.js"></script>
-<!-- <script src="../static/js/landing-page/waypoints-sticky.min.js"></script> -->
+<script src="../static/js/landing-page/waypoints-sticky.min.js"></script>
 <script src="../static/js/landing-page/retina.min.js"></script>
 <script src="../static/js/landing-page/jquery.magnific-popup.min.js"></script>
 <script src="../static/js/landing-page/jquery.ajaxchimp.min.js"></script>
-<script src="../static/js/landing-page/main.js"></script>
 <script src="../static/js/landing-page/lightslider.js"></script>
 
 <!--site-footer-->
-{% include 'footer.html' %}
+<section id="updates" class="sub-form section-spacing text-center">
+    <div class="container">
+      <header class="section-header">
+        <h2>Get Updates from Us</h2>
+        <h3>Enter your email to get new discounts and coupons for your Fandemic campaign </h3>
+      </header>
+      <div class="row">
+        <div class="col-md-6 center-block col-sm-11">
+          <form id="mc-form" novalidate="true">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Email Address" required="" id="mc-email" name="EMAIL">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">SUBSCRIBE <i class="fa fa-envelope"></i> </button>
+              </span>
+            </div>
+            <label for="mc-email" id="mc-notification"></label>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="copyright">
+          <a href="#home" class="ft-logo" title="Fandemic - Modern Start Up Landing Page">
+            <img src="../static/img/logo-nav_fullsize.png" width="160px" alt="Fandemic">
+          </a>
+          <div class=""> <a href="mailto:sarah@fandemic.co" title="Contact Us">Contact Us</a> - Baltimore, MD
+            <br>
+
+            <small>© 2016 Fandemic Inc. | All Rights Reserved</small>
+            <br>
+            <small><a href="/terms">Terms and Conditions</a> | <a href="/privacy">Privacy Policy</a></small>
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h2 style="font-size:20px">Read This</h2>
+        <!-- <ul>
+          <li><a href="/blog">Blog</a></li>
+        </ul> -->
+        <ul>
+          <li><a href="/benefits">Benefits</a></li>
+        </ul>
+        <ul>
+          <li><a href="/partners">Partners</a></li>
+        </ul>
+        <ul>
+          <li><a href="/about">Team</a></li>
+        </ul>
+        <ul>
+          <li><a href="/faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h2 style="font-size:20px">Example Stores</h2>
+        {% for star in star_names %}
+        <ul>
+          <li><a href="/{{star.id}}">{{star.name}}</a></li>
+        </ul>
+        {% endfor %}
+      </div>
+      <div class="col-md-3">
+        <div class="ft-social">
+          <div class="social">
+            <ul>
+              <li><a class="tip" data-toggle="tooltip" href="https://twitter.com/The_Fandemic" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+              <li><a class="tip" data-toggle="tooltip" href="https://instagram.com/Fandemic" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+              <li><a class="tip" data-toggle="tooltip" href="https://www.linkedin.com/company/10566554" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+              <li><a class="tip" data-toggle="tooltip" href="https://angel.co/fandemic-1" title="Angel List"><i class="fa fa-angellist"></i></a></li>
+              <!--<li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+              <li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Google plus"><i class="fa fa-google-plus"></i></a></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </html>
+
+
+<!--site-footer end-->
+
+
+  {% include 'analytics.html' %}
 
 
 <!--site-footer end-->
