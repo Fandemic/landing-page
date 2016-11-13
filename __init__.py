@@ -84,6 +84,10 @@ def toString(l):
 @mobile_template('{mobile/}builder.html')
 def catalog(template,cat=None,cat2=None,cat3=None):
 
+    #Get the current stars store info
+    storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
+    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).limit(6)
+
     #get the box styles and packaging material
     styles = db.design.find({"category":"box"})
     packaging = db.design.find({"category":"packaging"})
@@ -116,7 +120,7 @@ def catalog(template,cat=None,cat2=None,cat3=None):
     for item in items:
         item['price'] = int(math.ceil( item['price'] ))
 
-    return render_template(template, items=list(items), box_items=list(box_items),styles=styles,packaging=packaging,cat=cat,cat2=cat2,cat3=cat3)
+    return render_template(template, items=list(items), box_items=list(box_items),styles=styles,packaging=packaging,cat=cat,cat2=cat2,cat3=cat3,stars=stars)
 
 
 

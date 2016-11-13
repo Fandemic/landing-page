@@ -32,6 +32,18 @@ app.controller("builder", function($scope) {
 
     $scope.step = 1;
 
+    /*$("#slider").ionRangeSlider({
+     grid: true,
+     min: 0,
+     max: 100,
+     from: 10,
+     step: 1,
+     prettify_enabled: false,
+     prefix: "$"
+   });
+   $scope.slider = $("#slider").data("ionRangeSlider");
+   */
+
     //launch the users store form
     $scope.launch_store = function(){
       var star = $scope.box.star;
@@ -127,6 +139,8 @@ app.controller("builder", function($scope) {
         $.notify(product.name + " Successfully Added to Box", { position:"top right",className:"success" });
       }
 
+      //$scope.updateSlider();
+
     }
 
     //Toggles the packaging color or material depending
@@ -161,6 +175,19 @@ app.controller("builder", function($scope) {
       }
 
     }
+
+  /*  $scope.updateSlider = function(){
+      // UPDATE - updates slider to any new values
+      $scope.slider.update({
+        min: $scope.box.cost,
+        max: $scope.box.cost + 50,
+        from: $scope.box.cost,
+      });
+
+      // RESET - reset slider to it's first values
+      $scope.slider.reset();
+    }
+    */
 
     //sample order form
     $('.sample-order').on('click', function(e) {
@@ -297,7 +324,7 @@ app.controller("builder", function($scope) {
 
         //NAVIGATION
         $("#step1").on('click', '.next-btn', function() {
-          $('section').removeClass("image");
+
           $('.steps').hide();
           $('#step2').fadeIn('fast', function() {
             $(".carousel").flickity('resize');
@@ -398,9 +425,7 @@ $("#step3").on('click', '.prev', function() {
 
 $("#crumbs").on('click', '.crumb', function() {
     var step = $(this).attr('data-step');
-    if (step == 1){
-      $('form').addClass("image");
-    }
+
     $('.steps').hide( "fast"  );
     $('#'+step).show( "slow" );
     $('.crumb').removeClass('current');
