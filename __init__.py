@@ -399,6 +399,83 @@ def charge():
 
             return '';
 
+@app.route('/request-sample/<starID>', methods=['GET', 'POST'])
+def sampleRequest(starID):
+
+    star = db.stars.find_one({'id':starID.lower()}) #find the star
+
+    return render_template('sample-request.html',star=star)
+
+@app.route('/charge-sample-request', methods=['GET', 'POST'])
+def chargeSampleRequest():
+
+    sarah = Slack()
+
+    #get the ajaxed info
+    if request.method == "POST":
+
+        info = request.get_json()
+
+        #if info['active'] == 'False':
+        #SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+        #PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+        #else:
+        SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
+        PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
+
+        #initialize the stripe data
+        stripe_keys = {
+            'secret_key': SECRET_KEY,
+            'publishable_key': PUBLISHABLE_KEY
+        }
+
+        stripe.api_key = stripe_keys['secret_key']
+
+
+        customer = stripe.Customer.create(
+            email=info['email'],
+            card=info['id']
+        )
+
+        charge = stripe.Charge.create(
+            customer=customer.id,
+            amount=info['amount'],
+            currency='usd',
+            description= info['billing_name'] + ' ordered products from ' + info['star'],
+            receipt_email=info['email']
+        )
+
+        #build the string to be saved
+        order = {}
+        order['name'] = info['billing_name']
+        order['email'] = info['email']
+        order['address'] = {}
+        street1 = order['address']['street1'] = info['shipping_address_line1']
+        city = order['address']['city'] = info['shipping_address_city']
+        state = order['address']['state'] = info['shipping_address_state']
+        zipcode = order['address']['zip'] = info['shipping_address_zip']
+        country = order['address']['country'] = info['shipping_address_country']
+        order['stripe'] = {}
+        order['stripe']['id'] = charge['id']
+        order['stripe']['customer'] = charge['customer']
+        order['total'] = charge['amount']
+        order['ip'] = info['client_ip']
+        order['star_id'] = info['star_id']
+
+        #insert into database
+        #db.orders.insert_one(order)
+
+        #Get sarah to send a notification
+        msg = '*Name:* ' + order['name'] + '\n*Email:* ' + order['email']
+        msg += '\n' + str(order['total'])
+        msg += '\n*Address*\n' + street1
+        msg += '\n' + city + ' ' + state + ', ' + zipcode
+        msg += '\n' + country
+        msg += '\n'
+        sarah.send("sample request","SAMPLE REQUEST",msg)
+
+    return '';
+
 #================PROCESS A STOCKING FEE====================#
 @app.route('/sample-charge', methods=['GET', 'POST'])
 def sampleCharge():
