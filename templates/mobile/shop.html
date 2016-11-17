@@ -108,22 +108,39 @@
   </div>
 
 <!-- FIXED PREORDER BUTTON -->
+<style>
+
+.col-xs-4{
+  padding-left: 11px !important;
+  padding-right: 11px !important;
+}
+
+@media screen and (max-width: 350px) {
+    #preorder-btn {
+        width:50% !important;
+    }
+    .col-xs-4{
+      padding-left: 3px !important;
+      padding-right: 3px !important;
+    }
+}
+</style>
 <div class="bottom-btn" style="position:fixed;bottom:0px;left:0px;width:100%;padding:2%;background-color:#fff;z-index:9;">
   <span style="float:left;margin-top:1px;">
     <span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong><br>
     <span  id="timer2" style="color:#5d5d5d;"></span>
   </span>
 {% if star.campaigns[0].status == 'pending' %}
-  <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">ACTIVATE STORE</button>
+  <button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">ACTIVATE STORE</button>
 {% endif %}
 {% if star.campaigns[0].status == 'mock' %}
 <a href="../builder">
-  <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">BUILD BOX</button>
+  <button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">BUILD BOX</button>
 </a>
 {% endif %}
 
 {% if star.campaigns[0].status == 'live' %}
-<button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">PRE-ORDER</button>
+<button id="preorder-btn" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">PRE-ORDER</button>
 {% endif %}
 
 </div>
@@ -227,7 +244,7 @@
             <div class="">
 
               <h3 class="time" style="font-size:18px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
-              <span id="timer"></span>
+              <span id="timer" style="font-size:17px;"></span>
 
               <br>
 
@@ -294,7 +311,7 @@
     function(ts) {
     document.getElementById('timer').innerHTML = ts.toHTML("strong");
     },
-    countdown.DAYS|countdown.HOURS|countdown.MINUTES);
+    countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
 
     var timerID2 =
     countdown(

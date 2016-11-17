@@ -27,7 +27,7 @@ app.controller("shop", function($scope) {
 
   $scope.data.price = price;
 
-  $scope.data.end_time = 1477267200;
+  $scope.data.end_time = end_time;
 
   $scope.data.order_id = randomString(10);
 
@@ -56,8 +56,8 @@ app.controller("shop", function($scope) {
 
     date = undefined;
     end_time = $scope.data.end_time;
-    production_time = 7 * 86400;
-    time_padding = 4 * 86400;
+    production_time = 14 * 86400; //two week production time
+    time_padding = 4 * 86400; //used when a shipping method is not present
 
     if ($scope.data.shipping_method['rate']){
       date = new Date((end_time+production_time+parseInt($scope.data.shipping_method['delivery_days'])*86400)*1000);
