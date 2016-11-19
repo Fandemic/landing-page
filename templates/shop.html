@@ -108,8 +108,14 @@ img.setAttribute('src', '{{star.image.profile}}');
 
 <div class="controls-container">
 
-  {% if star.campaigns[0].status == 'pending' %}
+  {% if star.campaigns[0].status == 'mock' %}
+  <div class="top-alert-bar"><strong>ALERT: THIS IS A MOCK STORE</strong> - payments <strong>will not</strong> be processed</div>
+  {% elif star.campaigns[0].status == 'pending' %}
   <div class="top-alert-bar"><strong>THIS STORE IS PENDING(not yet live)</strong> - payments <strong>will not</strong> be processed</div>
+  {% elif star.campaigns[0].status == 'failed' %}
+  <div class="top-alert-bar"><strong>Campaign Ended: not funded</div>
+  {% elif star.campaigns[0].status == 'success' %}
+  <div class="top-alert-bar" style="background-color:#5ec45e;"><strong>Campaign Funded Successfully!</div>
   {% endif %}
 
   <div class="controls">
@@ -220,13 +226,23 @@ img.setAttribute('src', '{{star.image.profile}}');
           <div class="">
 
             <h3 class="time" style="font-size:18px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
+            {% if star.campaigns[0].status == 'live' or star.campaigns[0].status == 'mock'%}
             <span id="timer"></span>
-
             <br>
-
-
               <span style="color:#cdcdcd;font-size:16px;">remaining</span>
-
+            {% elif star.campaigns[0].status == 'pending' %}
+            PENDING
+            <br>
+              <span style="color:#cdcdcd;font-size:16px;">timer will start upon activation</span>
+            {% elif star.campaigns[0].status == 'success' %}
+            COMPLETE
+            <br>
+              <span style="color:#cdcdcd;font-size:16px;">campaign was funded succesfully</span>
+            {% elif star.campaigns[0].status == 'failed' %}
+            COMPLETE
+            <br>
+              <span style="color:#cdcdcd;font-size:16px;">campaign was not fully funded</span>
+            {% endif %}
             </h3>
 
             <div class="progress" style="margin-bottom:2px;">
@@ -265,21 +281,25 @@ img.setAttribute('src', '{{star.image.profile}}');
          <a href="" class="ssk ssk-tumblr" onclick="return false;"></a>
      </div>
       <br><br>
+
+
       {% if star.campaigns[0].status == 'mock' %}
-      <a href="../builder">
+      <a href="/builder">
         <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">CREATE BOX</button>
+      </a>
+      {% elif star.campaigns[0].status == 'pending' %}
+      <button data-toggle="modal" data-target="" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="  opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
+              background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
+      {% elif star.campaigns[0].status == 'live' %}
+      <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
+              background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
+      {% elif star.campaigns[0].status == 'success' or star.campaigns[0].status == 'failed'%}
+      <a href="/builder">
+        <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">CREATE YOUR OWN BOX</button>
       </a>
       {% endif %}
 
-      {% if star.campaigns[0].status == 'pending' %}
-      <button data-toggle="modal" data-target="" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="  opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
-              background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
-      {% endif %}
 
-      {% if star.campaigns[0].status == 'live' %}
-      <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
-              background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
-      {% endif %}
       <br>
       </div>
 

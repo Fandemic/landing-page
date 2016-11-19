@@ -256,6 +256,23 @@ def store(template,starID):
 
     if star == None: return render_template("404.html")
 
+    currentTime = int(time.time())
+
+    #auto-set the timer to 7 days for mock campaigns
+    if star['campaigns'][0]['status'] == 'mock':
+        star['campaigns'][0]['end_time'] = ( currentTime + (7 * 86400) )
+        star['campaigns'][0]['num_orders'] = random.randint(40,1000)
+        star['campaigns'][0]['price'] = random.randint(30,50)
+
+    if star['campaigns'][0]['status'] == 'live':
+        if star['campaigns'][0]['end_time'] < currentTime:
+            if star['campaigns'][0]['num_orders'] < 10:
+                star['campaigns'][0]['status'] = 'failed'
+            elif star['campaigns'][0]['num_orders'] > 10:
+                star['campaigns'][0]['status'] = 'success'
+
+
+
     return render_template(template, star = star,
                                      braintree=braintree.ClientToken.generate())
 #---------------------------------------------
