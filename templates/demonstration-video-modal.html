@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-md">
     <div class="modal-content" style="padding:30px">
       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <button type="button" id="demo-modal-close" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
          </button>
          <h4 class="modal-title">{{star.name}}'s {{star.campaigns.0.box_name}} Box</h4>
@@ -102,5 +102,14 @@ var pageURL = window.location.href;
 if( pageURL.indexOf('builder') >= 0){
   $('.videoButtonCTA').addClass('invisible');
 }
+
+$( "#demo-modal-close" ).click(function() {
+  var $frame = $('iframe#nofocusvideo');
+  var vidsrc = $frame.attr('src');  // saves the current iframe source
+  $frame.attr('src','');  // sets the source to nothing, stopping the video
+  $frame.attr('src', vidsrc);  // sets it back to the correct link so that it reloads immediately on the next window open
+});
+
+
 
 </script>
