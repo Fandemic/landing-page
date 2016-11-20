@@ -84,9 +84,9 @@ img.setAttribute('src', '{{star.image.profile}}');
   </div>
 
   {% if star.campaigns[0].style.color_primary != '' %}
-  <h4 style="color:{{star.campaigns[0].style.color_primary}};">{{star.name}}</h4>
+  <h4 style="font-size:22px;color:{{star.campaigns[0].style.color_primary}};">{{star.name}}</h4>
   {% else %}
-  <h4 style="color:#cf67ad;">{{star.name}}</h4>
+  <h4 style="font-size:22px;color:#cf67ad;">{{star.name}}</h4>
   {% endif %}
 
   <div id="social-media">
@@ -97,21 +97,11 @@ img.setAttribute('src', '{{star.image.profile}}');
   </div>
   {% if star.campaigns[0].campaign_video %}
   <div class="campaign_video">
-    <img src="../static/img/play-btn-live.png"/>
+    <a href="#" data-toggle="modal" data-target="#demonstration-video" >
+      <i class="fa fa-play-circle" aria-hidden="true" style="padding-top:5%;font-size: 5em;color:{% if star.campaigns[0].style.color_secondary %}{{star.campaigns[0].style.color_secondary}}{% else %}#8d8d8d{% endif %}"></i>
+    </a>
   </div>
   {% endif %}
-
-  {% if star.campaigns[0].charity %}
-  <div class="charity">
-    <p>{{star.name}} has donated
-      <br>
-      $0.00
-      <br>
-      to {{star.campaigns[0].charity}}
-  </div>
-  {% endif %}
-
-
 
   <div class="footer">
     <p class="copyright text-muted small" style="color:#8d8d8d;">Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
@@ -276,7 +266,7 @@ img.setAttribute('src', '{{star.image.profile}}');
             </div>
 
 
-              <span class="light" style="font-size:12px;color:#c1c1c1;">at least 10 boxes must be ordered for this box to ship</span>
+              <span class="light" style="font-size:12px;color:#c1c1c1;">at least 25 boxes must be ordered for this box to ship</span>
 
 
           </div>
@@ -284,6 +274,13 @@ img.setAttribute('src', '{{star.image.profile}}');
 
           <hr>
           <h4><span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong></h4>
+          {% if star.campaigns[0].charity %}
+          <div class="charity">
+            <p>
+              ${{donations}}.00
+              has been donated to <a href="{{star.campaigns[0].charity[0].URL}}">{{star.campaigns[0].charity[0].name}}</a>
+          </div>
+          {% endif %}
           <hr>
           <br>
 
@@ -806,3 +803,5 @@ $(".ssk").click(function(){
 </script>
 
 {% include 'analytics.html' %}
+
+{% include 'demonstration-video-modal.html' %}

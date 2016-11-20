@@ -1,0 +1,106 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="demonstration-video">
+
+  <div class="modal-dialog modal-md">
+    <div class="modal-content" style="padding:30px">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+         <h4 class="modal-title">{{star.name}}'s {{star.campaigns.0.box_name}} Box</h4>
+       </div>
+      <br>
+
+
+
+
+
+      <iframe src="//player.vimeo.com/video/{{star.campaigns[0].campaign_video}}?api=1&player_id=vimeoplayer&title=0&amp;byline=0&amp;portrait=0" name="vimeoplayer" id="nofocusvideo" width="615" height="346" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+    </div>
+  </div>
+</div>
+
+<style>
+.modal-content {
+  width:42em;
+}
+
+.step{
+  color: #4E9CD4;
+}
+
+.steps{
+  margin-bottom: 0px;
+  color: #1d1d1d;
+  font-weight: 600;
+}
+
+.light{
+  color: #8d8d8d;
+  font-size:14px;
+}
+
+.col-xs-9{
+  padding:20px;
+  padding-top: 0px;
+}
+
+.icon{
+  opacity:.8;
+}
+
+.list{
+  padding-left: 30px;
+  color: #4d4d4d;
+}
+
+.stub{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-color: #eeeeee;
+}
+
+.listt li {
+    list-style-type: circle;
+ }
+
+
+.img-responsive.icon {
+  width: 5em;
+  margin-left: 10em;
+
+}
+
+.row.modalSteps {
+  text-align:center;
+}
+
+.invisible {
+  display:none;
+}
+
+
+</style>
+
+
+<script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
+
+<script>
+var iframe = document.getElementById('nofocusvideo');
+// $f == Froogaloop
+var player = $f(iframe)
+
+$('#how-fandemic-works').on('hidden.bs.modal', function () {
+player.api('pause');
+})
+
+$('#how-fandemic-works').on('shown.bs.modal', function () {
+player.api('play');
+})
+
+var pageURL = window.location.href;
+if( pageURL.indexOf('builder') >= 0){
+  $('.videoButtonCTA').addClass('invisible');
+}
+
+</script>
