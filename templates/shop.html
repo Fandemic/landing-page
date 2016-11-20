@@ -98,7 +98,7 @@ img.setAttribute('src', '{{star.image.profile}}');
   {% if star.campaigns[0].campaign_video %}
   <div class="campaign_video">
     <a href="#" data-toggle="modal" data-target="#demonstration-video" >
-      <i class="fa fa-play-circle" aria-hidden="true" style="padding-top:5%;font-size: 5em;color:{% if star.campaigns[0].style.color_secondary %}{{star.campaigns[0].style.color_secondary}}{% else %}#8d8d8d{% endif %}"></i>
+      <i class="fa fa-play-circle" aria-hidden="true" style="text-shadow: 3px 2px 1px #8d8d8d;padding-top:5%;font-size: 5em;color:{% if star.campaigns[0].style.color_secondary %}{{star.campaigns[0].style.color_secondary}}{% else %}#8d8d8d{% endif %}"></i>
     </a>
   </div>
   {% endif %}
