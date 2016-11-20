@@ -104,7 +104,7 @@ img.setAttribute('src', '{{star.image.profile}}');
   {% endif %}
 
   <div class="footer">
-    <p class="copyright text-muted small" style="color:#8d8d8d;">Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
+    <p class="copyright text-muted small" {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %}>Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
       <strong>Patent Pending</strong>
     </p>
   </div>
@@ -782,15 +782,17 @@ braintree.setup('{{braintree}}', 'dropin', {
 
 <script>
 
-var daysLeft = $("#timer strong:first-child").html();
+var daysLeft = $("#timer strong:first-child").html().replace(' ', ' more ');
+
 if (daysLeft == undefined){
   daysLeft = '0 days'
 }
 
+
 {% if star.campaigns[0].social_share_twitter %}
-  $('.ssk-twitter').attr('href', 'https://twitter.com/intent/tweet?url=https://fandemic.co/{{star.id}}&text={{star.name}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}}box!&hashtags={{star.campaigns[0].social_share_twitter}}');
+  $('.ssk-twitter').attr('href', "https://twitter.com/intent/tweet?url=https://fandemic.co/{{star.id}}&text={{star.name}}'s {{star.campaigns[0].box_name}} box is only available for " + daysLeft + "!&hashtags={{star.campaigns[0].social_share_twitter}}");
 {% else %}
-  $('.ssk-twitter').attr('href', 'https://twitter.com/intent/tweet?url=https://fandemic.co/{{star.id}}&text={{star.name}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}}box!');
+  $('.ssk-twitter').attr('href', "https://twitter.com/intent/tweet?url=https://fandemic.co/{{star.id}}&text={{star.name}}'s {{star.campaigns[0].box_name}} box is only available for " + daysLeft + "!");
 {% endif %}
 
 $('.ssk-facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box!');
@@ -807,4 +809,6 @@ $(".ssk").click(function(){
 
 {% include 'analytics.html' %}
 
-{% include 'demonstration-video-modal.html' %}
+{% if star.campaigns[0].campaign_video %}
+  {% include 'demonstration-video-modal.html' %}
+{% endif %}

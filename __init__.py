@@ -276,7 +276,7 @@ def store(template,starID):
     if star['campaigns'][0].has_key('charity'):
         donations = format(star['campaigns'][0]['charity'][0]['amount'] * star['campaigns'][0]['num_orders'], ",d")
     else:
-        donations = ''
+        donations = '0'
 
     return render_template(template, donations = donations, star = star,
                                      braintree=braintree.ClientToken.generate())
