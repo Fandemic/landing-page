@@ -53,9 +53,9 @@ def home():
     storeCount = db.stars.count()
 
     storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
-    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).limit(15).skip( int(round( random.random() * storeCountPending )) )
+    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).limit(10)#.skip( int(round( random.random() * storeCountPending )) )
 
-    star_names = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).limit(5).skip( int(round( random.random() * storeCountPending )) )#find stars with mock and pull just name and id
+    star_names = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).limit(5)#.skip( int(round( random.random() * storeCountPending )) )#find stars with mock and pull just name and id
 
     categories = db.stars.distinct("category")
 
