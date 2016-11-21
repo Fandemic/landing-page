@@ -52,6 +52,7 @@
   var price = {{star.campaigns[0].price}};
   var star_id = '{{star.id}}';
   var campaign_id = '{{star.campaigns[0].id}}';
+  var end_time = {{star.campaigns[0].end_time}};
 </script>
 
 <!-- MOBILE HTML -->
@@ -60,13 +61,35 @@
   <div id="loading"> Please Wait.. Order Processing...</div>
   <script> $('#loading').hide();</script>
 
-  {% if star.campaigns[0].status == 'pending' %}
-  <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;"><strong>THIS STORE IS PENDING</strong> - payments <strong>will not</strong> be processed</div>
+
+  {% if star.campaigns[0].status == 'mock' %}
+  <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;"><strong>THIS IS A MOCK STORE</strong></div>
   <style>
   .nav{
     top:40px;
   }
   </style>
+  {% elif star.campaigns[0].status == 'pending' %}
+  <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;"><strong>THIS STORE IS PENDING</strong></div>
+  <style>
+  .nav{
+    top:40px;
+  }
+  </style>
+  {% elif star.campaigns[0].status == 'failed' %}
+  <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;"><strong>Campaign Ended: not funded</strong></div>
+  <style>
+  .nav{
+    top:40px;
+  }
+  </style>
+  {% elif star.campaigns[0].status == 'success' %}
+    <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;background-color:#5ec45e;"><strong>Campaign Funded Successfully</strong></div>
+    <style>
+    .nav{
+      top:40px;
+    }
+    </style>
   {% endif %}
 
   <div id="menu" style="background:url(/static/img/live/{{star.id}}/bg.jpg);background-position:cover;">
@@ -130,6 +153,8 @@
     <span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong><br>
     <span  id="timer2" style="color:#5d5d5d;"></span>
   </span>
+
+<!--
 {% if star.campaigns[0].status == 'pending' %}
   <button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">ACTIVATE STORE</button>
 {% endif %}
@@ -141,6 +166,21 @@
 
 {% if star.campaigns[0].status == 'live' %}
 <button id="preorder-btn" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">PRE-ORDER</button>
+{% endif %}
+-->
+
+{% if star.campaigns[0].status == 'mock' %}
+<a href="/builder">
+  <button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">CREATE BOX</button>
+</a>
+{% elif star.campaigns[0].status == 'pending' %}
+<button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">ACTIVATE STORE</button>
+{% elif star.campaigns[0].status == 'live' %}
+<button id="preorder-btn" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">PRE-ORDER</button>
+{% elif star.campaigns[0].status == 'success' or star.campaigns[0].status == 'failed'%}
+<a href="/builder">
+  <button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">CREATE A BOX</button>
+</a>
 {% endif %}
 
 </div>
@@ -243,6 +283,7 @@
           <div class="panel-body" style="padding-bottom:0px;padding-left:40px;padding-right:40px;border-bottom:0px;">
             <div class="">
 
+              <!--
               <h3 class="time" style="font-size:18px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
               <span id="timer" style="font-size:17px;"></span>
 
@@ -251,6 +292,27 @@
 
                 <span style="color:#cdcdcd;font-size:16px;">remaining</span>
 
+              </h3>
+            -->
+
+              <h3 class="time" style="font-size:18px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
+              {% if star.campaigns[0].status == 'live' or star.campaigns[0].status == 'mock'%}
+              <span id="timer"></span>
+              <br>
+                <span style="color:#cdcdcd;font-size:16px;">remaining</span>
+              {% elif star.campaigns[0].status == 'pending' %}
+              PENDING
+              <br>
+                <span style="color:#cdcdcd;font-size:16px;">timer will start upon activation</span>
+              {% elif star.campaigns[0].status == 'success' %}
+              COMPLETE
+              <br>
+                <span style="color:#cdcdcd;font-size:16px;">campaign was funded succesfully</span>
+              {% elif star.campaigns[0].status == 'failed' %}
+              COMPLETE
+              <br>
+                <span style="color:#cdcdcd;font-size:16px;">campaign was not fully funded</span>
+              {% endif %}
               </h3>
 
               <div class="progress" style="margin-bottom:2px;">

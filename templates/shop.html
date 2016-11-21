@@ -113,9 +113,9 @@ img.setAttribute('src', '{{star.image.profile}}');
   {% elif star.campaigns[0].status == 'pending' %}
   <div class="top-alert-bar"><strong>THIS STORE IS PENDING(not yet live)</strong> - payments <strong>will not</strong> be processed</div>
   {% elif star.campaigns[0].status == 'failed' %}
-  <div class="top-alert-bar"><strong>Campaign Ended: not funded</div>
+  <div class="top-alert-bar"><strong>Campaign Ended: not funded</strong></div>
   {% elif star.campaigns[0].status == 'success' %}
-  <div class="top-alert-bar" style="background-color:#5ec45e;"><strong>Campaign Funded Successfully!</div>
+  <div class="top-alert-bar" style="background-color:#5ec45e;"><strong>Campaign Funded Successfully!</strong></div>
   {% endif %}
 
   <div class="controls">
