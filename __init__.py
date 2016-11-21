@@ -271,13 +271,17 @@ def store(template,starID):
             elif star['campaigns'][0]['num_orders'] > 10:
                 star['campaigns'][0]['status'] = 'success'
 
+    #if !star['campaigns'][0]['charity']:
 
+    if star['campaigns'][0].has_key('charity'):
+        donations = format(star['campaigns'][0]['charity'][0]['amount'] * star['campaigns'][0]['num_orders'], ",d")
+    else:
+        donations = '0'
 
-    return render_template(template, star = star,
+    return render_template(template, donations = donations, star = star,
                                      braintree=braintree.ClientToken.generate())
-#---------------------------------------------
 
-#=================MOCK STORES========================
+#================= MOCK STORES ========================
 @app.route('/<starID>/activate/<key>')
 def activate_store(starID,key):
 
