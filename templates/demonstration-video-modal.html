@@ -14,13 +14,19 @@
 
 
 
-      <iframe src="//player.vimeo.com/video/{{star.campaigns[0].campaign_video}}?api=1&player_id=vimeoplayer&title=0&amp;byline=0&amp;portrait=0" name="vimeoplayer" id="nofocusvideo" width="615" height="346" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <iframe class="video-iframe" src="//player.vimeo.com/video/{{star.campaigns[0].campaign_video}}?api=1&player_id=vimeoplayer&title=0&amp;byline=0&amp;portrait=0" name="vimeoplayer" id="nofocusvideo" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
     </div>
   </div>
 </div>
 
 <style>
+.video-iframe{
+  width:615px;
+  height:346px;
+}
+
+
 .modal-content {
   width:42em;
 }

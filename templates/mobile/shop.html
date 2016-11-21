@@ -109,6 +109,13 @@
       <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
       <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
     </div>
+    {% if star.campaigns[0].campaign_video %}
+    <div class="campaign_video">
+      <a href="#" data-toggle="modal" data-target="#demonstration-video" >
+        <i class="fa fa-play-circle" aria-hidden="true" style="text-shadow: 3px 2px 1px #8d8d8d;padding-top:5%;font-size: 5em;color:{% if star.campaigns[0].style.color_secondary %}{{star.campaigns[0].style.color_secondary}}{% else %}#8d8d8d{% endif %}"></i>
+      </a>
+    </div>
+    {% endif %}
     <br><br>
 
 
@@ -153,6 +160,13 @@
     <span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong><br>
     <span  id="timer2" style="color:#5d5d5d;"></span>
   </span>
+  {% if star.campaigns[0].charity %}
+  <div class="charity">
+    <p>
+      ${{donations}}.00
+      has been donated to <a href="{{star.campaigns[0].charity[0].URL}}">{{star.campaigns[0].charity[0].name}}</a>
+  </div>
+  {% endif %}
 
 <!--
 {% if star.campaigns[0].status == 'pending' %}
@@ -344,11 +358,11 @@
 
           <h5 style="color:#adadad !important;margin-bottom:0px;">Help Spread The Word!</h5>
           <div class="ssk-group ssk-count ssk-round">
-           <a href="" onclick="return false;" class="ssk ssk-facebook"></a>
-           <a href="" onclick="return false;" class="ssk ssk-twitter"></a>
-           <a href="" onclick="return false;" class="ssk ssk-google-plus"></a>
-           <a href="" onclick="return false;" class="ssk ssk-pinterest"></a>
-           <a href="" onclick="return false;" class="ssk ssk-tumblr"></a>
+           <a href="" class="ssk ssk-facebook"></a>
+           <a href="" class="ssk ssk-twitter"></a>
+           <a href="" class="ssk ssk-google-plus"></a>
+           <a href="" class="ssk ssk-pinterest"></a>
+           <a href="" class="ssk ssk-tumblr"></a>
        </div>
 
         </div>
@@ -895,12 +909,26 @@ braintree.setup('{{braintree}}', 'dropin', {
 </script>
 
 <script>
-var daysLeft = $("#timer strong:first-child").html();
+var daysLeft = $("#timer strong:first-child").html()
+if (daysLeft == undefined){
+  daysLeft = '0 days'
+}
+daysLeft.replace(' ', ' more ');
+
+{% if star.campaigns[0].social_share_twitter %}
+  $('.ssk-twitter').attr('href', "https://twitter.com/intent/tweet?url=https://fandemic.co/{{star.id}}&text={{star.name}}'s box, {{star.campaigns[0].box_name}} is only available for " + daysLeft + "!&hashtags={{star.campaigns[0].social_share_twitter}}");
+{% else %}
+  $('.ssk-twitter').attr('href', "https://twitter.com/intent/tweet?url=https://fandemic.co/{{star.id}}&text={{star.name}}'s box, {{star.campaigns[0].box_name}} is only available for " + daysLeft + "!");
+{% endif %}
+
 $('.ssk-facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box!');
-$('.ssk-twitter').attr('href', 'https://twitter.com/intent/tweet?source=https://fandemic.co/{{star.id}}&amp;text={{star.name}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box! https://fandemic.co/{{star.id}}');
 $('.ssk-google-plus').attr('href', 'https://plus.google.com/share?url=https://fandemic.co/{{star.id}}');
 $('.ssk-pinterest').attr('href', 'http://pinterest.com/pin/create/button/?url=https://fandemic.co/{{star.id}}&amp;description={{star.id}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box!');
 $('.ssk-tumblr').attr('href', 'http://www.tumblr.com/share?v=3&amp;u=https://fandemic.co/{{star.id}}&amp;t={{star.id}} only has ' + daysLeft + ' left to sell their {{star.campaigns.box_name}} box!');
-</script>
 
+</script>
 {% include 'analytics.html' %}
+
+{% if star.campaigns[0].campaign_video %}
+  {% include 'demonstration-video-modal.html' %}
+{% endif %}
