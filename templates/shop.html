@@ -785,7 +785,9 @@ var daysLeft = $("#timer strong:first-child").html();
 if (daysLeft == undefined){
   daysLeft = '0 days'
 };
-daysLeft.replace(' ', ' more ');
+var daysLeft = daysLeft.replace(' ', ' more ');
+
+
 
 
 {% if star.campaigns[0].social_share_twitter %}
