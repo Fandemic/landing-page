@@ -53,9 +53,9 @@ def home():
     storeCount = db.stars.count()
 
     storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
-    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).limit(10)#.skip( int(round( random.random() * storeCountPending )) )
+    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).sort('campaigns.0.status', 1).limit(10)
 
-    star_names = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).limit(5)#.skip( int(round( random.random() * storeCountPending )) )#find stars with mock and pull just name and id
+    star_names = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).sort('campaigns.0.status', 1).limit(5)
 
     categories = db.stars.distinct("category")
 
@@ -86,7 +86,7 @@ def catalog(template,cat=None,cat2=None,cat3=None):
 
     #Get the current stars store info
     storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
-    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).limit(6)
+    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).sort('campaigns.0.status', 1).limit(6)
 
     #get the box styles and packaging material
     styles = db.design.find({"category":"box"})
