@@ -588,7 +588,7 @@ def launchStoreRequest():
             star = db.stars.find_one({'id':ID.lower()})
             campaign = {}
             campaign['id'] = info['box_name'].replace(' ', '-').lower()
-            campaign['status'] = 'pending'
+            campaign['status'] = 'mock'
             campaign['index'] = 1
             campaign['box_name'] = info['box_name']
             campaign['brand_name'] = info['brand_name']
