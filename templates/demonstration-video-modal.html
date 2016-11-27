@@ -1,6 +1,6 @@
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="demonstration-video">
 
-  <div class="modal-dialog modal-md">
+  <div class="modal-dialog modal-md" style="width:43em;">
     <div class="modal-content" style="padding:30px">
       <div class="modal-header">
          <button type="button" id="demo-modal-close" class="close" data-dismiss="modal" aria-label="Close">
@@ -92,7 +92,7 @@
 <script src="http://a.vimeocdn.com/js/froogaloop2.min.js"></script>
 
 <script>
-var iframe = document.getElementById('nofocusvideo');
+var iframe = $('#nofocusvideo')[0];
 // $f == Froogaloop
 var player = $f(iframe)
 
