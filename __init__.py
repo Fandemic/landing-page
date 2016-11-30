@@ -615,8 +615,6 @@ def launchStoreRequest():
         trello_string += 'STAR\n'
         trello_string += '-----------------------------\n'
         trello_string += '**Name:** ' + info['star']['name'] + '\n'
-        trello_string += '**Email:** ' + info['star']['email'] + '\n'
-        trello_string += '**YouTube:** ' + info['star']['url']['youtube'] + '\n'
         trello_string += '**ID:** ' + info['star']['id'] + '\n'
         trello_string += '**Phone:** ' + info['star']['phone'] + '\n'
         trello_string += '**Exists:** ' + str(info['star']['exists']) + '\n'
