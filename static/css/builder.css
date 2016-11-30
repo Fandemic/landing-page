@@ -537,8 +537,8 @@ a:focus {
         }
 
         .btn-beauty{
-          background-color: #22a332 !important;
-          box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+          background-color: #25CB68 !important;
+          border-radius:4px;
         }
 
         .btn-nav:hover{

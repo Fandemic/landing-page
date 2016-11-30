@@ -2,183 +2,225 @@
 
   <section class="row">
 
+
+    <!-- START OF LEFT SIDE PANEL -->
     <div class="col-md-8" style="padding-left:40px;padding-right:40px;">
 
+      <!-- title that explains the step -->
       <div class="explain-step" style="padding-left:0px;">
-        <h3 class="subtitle">How much will you sell this box for?</h3>
-          <i class="light" style="font-weight:300;"><strong>drag</strong> the slider to change what your fan's pay<br>
-          <strong>Your Profit = Selling Price - Production Cost</strong>
+        <h3 class="subtitle">What is Your Sales Goal?</h3>
+          <i class="light" style="font-weight:300;">
+            The more you sell, the better your margins!
           </i>
       </div>
 
-      <!--<div class="form-horizontal pull-center" role="form" style="text-align:center;">
-        <div class="form-group" style="width:160px;margin: 0 auto;">
-          <h3>Sell this box for</h3>
-          <input style="font-size:25px;height:60px;text-align:center;" id="demo2" type="text" name="price" >
-          <p>USD</p>
-        </div>
-      </div>-->
+      <!-- Goal slider starts here -->
+      <div class="panel panel-default" style="padding:30px 40px;">
+          <label for="basic-url">Sales Goal</label>
 
-      <!--<input type="text" id="slider" name="slider" value="" />-->
-      <input  ng-model="box.price" ng-value="box.price" step="1" min="{a box.cost a}" max="{a box.cost+50 a}" style="margin-top:60px;margin-bottom:60px;" type="range">
-
-        <div class="row" >
-
-          <div>
-          <div class="col-md-12" style="margin-bottom:30px;">
-
-            <div class="row">
-
-              <!-- <div class="col-md-6" style="text-align:center;padding:30px;">
-
-                  <img src="/static/img/get-money.svg">
-                </div> -->
-
-                <div class="col-md-6" style="text-align:center;">
-                  <div class="panel panel-default">
-
-                      <div class="panel-body">
-
-                        <div class="row">
-                          <div class="col-md-6">
-                            <img width:"100%" src="/static/img/credit-card.svg">
-                          </div>
-                          <div class="col-md-6">
-                    <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:5px;padding-top:31px;"><br><span style="font-weight:700;font-size:1.4em;" >$<span ng-bind="box.price">9</span></span><br><span class="light">what your fans pay</span></p>
-
-                  </div>
-                </div>
-                  </div>
-                </div>
-              </div>
-
-        <div class="col-md-6" style="text-align:center;">
-          <div class="panel panel-default" style="overflow:hidden;">
-
-              <div class="panel-body">
-                <div style="position:absolute;top:10px;right:30px;font-size:30px;color:#cdcdcd;"><i class="fa fa-info-circle" aria-hidden="true"></i></div>
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <img width:"100%" src="/static/img/get-money.svg">
-                  </div>
-                  <div class="col-md-6">
-
-
-            <p style="font-size:35px;color:#6d6d6d;line-height: 20px;padding:5px;padding-top:31px;"><br><span style="font-weight:700;font-size:1.4em;" class="money" >$<span ng-bind="box.price-box.cost">9</span></span><br><span class="light">what you earn</span></p>
-          </div>
-        </div>
-          </div>
-        </div>
-      </div>
-
-
-    </div>
+          <div style="padding:15px">
+            <div id="rangeslider"></div>
           </div>
 
-          <!--
-          <div class="col-md-12">
-            <h2>Lets Compare!</h2>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th><img src="/static/img/star.svg"></th>
-                  <th>YOUR BOX</th>
-                  <th>
+          <br><br>
 
-                    <img style="width: 20%;display:block;margin: 0 auto;" src="/static/img/packaging/{a box.style.img a}">
-                  </th>
-                  <th><span style="color:green;">AVG ITEM COST $10</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
-            </table>
-          </div> -->
+          <div class="row">
+            <div class="col-md-3">
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon3"># of units</span>
+              <input id="goal_qty" type="text" class="form-control" ng-value="box.goal" aria-describedby="basic-addon3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="light" style="padding-left:100px;font-weight:400;color:#9d9d9d;">
+              Your goal is the number of units you’re aiming to sell, but we’ll ship your beauty box as long as you sell at least 10!
+            </div>
+          </div>
+          </div>
 
-          <!-- <div class="col-md-12">
+          <br>
 
-            <table class="pure-table pure-table-horizontal" style="width:100%;font-size:25px;background:#fff;">
-               <thead style="background:#fff;">
-              <tr>
-                <th>Sell</th>
-                <th>Make</th>
-              </tr>
-            </thead>
-             <tbody>
-              <tr>
-                <td>25</td>
-                <td class="money">$<span ng-bind="25*(box.price-box.cost)"></span></td>
-              </tr>
-              <tr>
-                <td>50</td>
-                <td class="money">$<span ng-bind="50*(box.price-box.cost)"></td>
-              </tr>
-              <tr>
-                <td>100</td>
-                <td class="money">$<span ng-bind="100*(box.price-box.cost)"></td>
-              </tr>
-              <tr>
-                <td>250</td>
-                <td class="money">$<span ng-bind="250*(box.price-box.cost)"></td>
-              </tr>
-              <tr>
-                <td>500</td>
-                <td class="money">$<span ng-bind="500*(box.price-box.cost)"></td>
-              </tr>
-              <tr>
-                <td>750</td>
-                <td class="money">$<span ng-bind="750*(box.price-box.cost)"></td>
-              </tr>
-              <tr>
-                <td>1000</td>
-                <td class="money">$<span ng-bind="1000*(box.price-box.cost)"></td>
-              </tr>
-            </tbody>
-            </table>
-
-
-
-          </div> -->
-
-        </div>
-
-        <hr>
+          <label for="basic-url">Estimated Profit</label><br>
+          <span style="font-size:40px;color:#25CB68;">{a ((box.price-box.cost)*box.goal) | currency:"$":0 a}+</span>
 
       </div>
 
-        <!--<h5 class="light">Based on previous campaigns "Beauty & The Blondie" could make up to $20,000 selling this box!</h5>-->
-        <i class="light" style="text-align:center;margin-top:-15px;">Money is sent to you via PayPal or Check when your campaign is complete</i>
+      <!-- Goal slider starts here -->
+      <div class="panel panel-default" style="padding:0px 5px 0px 25px;">
+
+        <div class="row">
+          <div class="col-md-3">
+            <img  width="100%" src="../static/img/packaging/{a box.style.img a}">
+          </div>
+          <div class="col-md-5" style="padding-top:40px;">
+            <h5>{a box.brand_name a} <span>({a box.box_name a})</span></h5>
+            <h6 class="light">{a box.price-box.cost | currency:"$":2 a} profit/sale</h6>
+          </div>
+          <div class="col-md-3" style="padding-top:25px;">
+            <input id="retail_price" type="text" class="form-control"
+                   style="margin-top:10px;"
+                   ng-value='box.price | currency:"$":2'>
+            <h6 class="light" style="font-size:10px;font-weight:400;">Fandemic recommends {a box.cost+8 | currency:"$":2 a}</h6>
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
 
+    <!--START OF RIGHT SIDE SUMMARY PANEL -->
     <div class="col-md-4">
-
       {% include('builder/summary.html') %}
+      <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                  {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">NEXT STEP: Finish</button>
+    </div>
 
 
-    <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                    {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">NEXT STEP: Finish</button>
+
+ </section>
+
+</div>
+
+<script>
+var slider = document.getElementById('rangeslider');
+
+var range_all_sliders = {
+	'min': [     10, 1 ],
+	'30%': [   25,  1 ],
+	'50%': [  50, 1 ],
+  '70%': [  100, 1 ],
+  '90%': [  400, 1 ],
+	'max': [ 1000 ]
+};
+
+noUiSlider.create(slider, {
+	start: 25,
+  connect: [true, false],
+  tooltips: wNumb({ decimals: 0 }),
+  range: range_all_sliders,
+  pips: {
+		mode: 'range',
+		density: 100
+	},
+  format: wNumb({
+		decimals: 0
+	})
+});
+
+//angular update goal function
+function change(goal) {
+    var appElement = document.querySelector('[ng-app=app]');
+    var $scope = angular.element(appElement).scope();
+    $scope = $scope.$$childHead; // add this and it will work
+    $scope.$apply(function() {
+        if (goal < 10){
+          goal = 10;
+        }
+        else if (goal > 1000){
+          goal = 1000;
+        }
+        $scope.box.goal = goal;
+    });
+}
+
+//update when clicking off of goal input
+$('#goal_qty').on('blur', function() {
+    var goal = $(this).val();
+    if (goal < 10){
+      goal = 10;
+    }
+    else if (goal > 1000){
+      goal = 1000;
+    }
+    slider.noUiSlider.set(goal);
+    $('#goal_qty').val(goal);
+    change(goal);
+});
+
+//update when hitting enter on goal input
+$('#goal_qty').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+      var goal = $(this).val();
+      if (goal < 10){
+        goal = 10;
+      }
+      else if (goal > 1000){
+        goal = 1000;
+      }
+      slider.noUiSlider.set(goal);
+      $('#goal_qty').val(goal);
+      change(goal);
+    }
+});
+
+slider.noUiSlider.on('slide', function(){
+	change(slider.noUiSlider.get());
+  $('#goal_qty').val(slider.noUiSlider.get());
+});
+
+//console.log(slider.noUiSlider.get());
+
+$('.noUi-tooltip').hide();
+
+$( ".noUi-handle" ).hover(
+  function() {
+    $('.noUi-tooltip').show();
+  }, function() {
+    $('.noUi-tooltip').hide();
+  }
+);
 
 
+//RETAIL PRICE JS
 
-     </div>
-   </div>
+//angular update goal function
+function change_retail_price(goal) {
+    var appElement = document.querySelector('[ng-app=app]');
+    var $scope = angular.element(appElement).scope();
+    $scope = $scope.$$childHead; // add this and it will work
+    $scope.$apply(function() {
+
+        $scope.box.price = goal;
+    });
+}
+
+//update when clicking off of goal input
+$('#retail_price').on('blur', function() {
+    var newPrice = $(this).val();
+    newPrice = newPrice.replace('$',''); //if user includes $ sign
+
+    if (isNumber(newPrice)){
+      change_retail_price(newPrice);
+      $('#retail_price').val('$'+parseFloat(newPrice).toFixed(2).toString());
+    }
+
+});
+
+//update when hitting enter on goal input
+$('#retail_price').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+      var newPrice = $(this).val();
+      newPrice = newPrice.replace('$',''); //if user includes $ sign
+
+      if (isNumber(newPrice)){
+        change_retail_price(newPrice);
+        $('#retail_price').val('$'+parseFloat(newPrice).toFixed(2).toString());
+      }
+
+    }
+});
+
+//function that validates number
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+</script>
+
+<style>
+.noUi-handle:hover {
+  cursor: pointer;
+}
+</style>

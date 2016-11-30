@@ -15,7 +15,8 @@ app.controller("builder", function($scope) {
       font2: "font-family: 'Roboto';",
       description: null,
       cost: 0,
-      price: 20,
+      price: 50,
+      goal: 25,
       products: [],
       style: null,
       material: null,
@@ -124,7 +125,7 @@ app.controller("builder", function($scope) {
       if (index >= 0){
          $scope.box.products.splice(index, 1);
          $scope.box.cost -= parseInt(product.cost);
-         $scope.box.price = $scope.box.cost + 10;
+         $scope.box.price = $scope.box.cost + 8;
          $.notify(product.name + " Successfully Removed From Box", { position:"top right",className:"success" });
       }
 
@@ -135,7 +136,7 @@ app.controller("builder", function($scope) {
       else{
         $scope.box.products.push(product);
         $scope.box.cost += parseInt(product.cost);
-        $scope.box.price = $scope.box.cost + 10;
+        $scope.box.price = $scope.box.cost + 8;
         $.notify(product.name + " Successfully Added to Box", { position:"top right",className:"success" });
       }
 
@@ -150,10 +151,12 @@ app.controller("builder", function($scope) {
       if ($scope.box.style == null){
         $scope.box.style = style;
         $scope.box.cost += 5;
+        $scope.box.price = $scope.box.cost + 8;
       }
       else if ($scope.box.style.name == style.name){
         $scope.box.style = null;
         $scope.box.cost -= 5;
+        $scope.box.price = $scope.box.cost + 8;
       }
       else{
         $scope.box.style = style;
