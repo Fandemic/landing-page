@@ -160,13 +160,7 @@
     <span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong><br>
     <span  id="timer2" style="color:#5d5d5d;"></span>
   </span>
-  {% if star.campaigns[0].charity %}
-  <div class="charity">
-    <p>
-      ${{donations}}.00
-      has been donated to <a href="{{star.campaigns[0].charity[0].URL}}">{{star.campaigns[0].charity[0].name}}</a>
-  </div>
-  {% endif %}
+
 
 <!--
 {% if star.campaigns[0].status == 'pending' %}
@@ -354,6 +348,13 @@
             <br>
             <h3><span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong></h3>
             <br>
+            {% if star.campaigns[0].charity %}
+            <div class="charity">
+              <p>
+                ${{donations}}.00
+                has been donated to <a target="_blank" href="{{star.campaigns[0].charity[0].URL}}">{{star.campaigns[0].charity[0].name}}</a>
+            </div>
+            {% endif %}
 
 
           <h5 style="color:#adadad !important;margin-bottom:0px;">Help Spread The Word!</h5>
