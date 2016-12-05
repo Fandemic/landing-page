@@ -10,7 +10,7 @@
       <div class="explain-step" style="padding-left:0px;">
         <h3 class="subtitle">What is Your Sales Goal?</h3>
           <i class="light" style="font-weight:300;">
-            The more you sell, the better your margins!
+            You have 7 days to sell this box. The more you sell, the better your margins!
           </i>
       </div>
 
@@ -25,15 +25,15 @@
           <br><br>
 
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
             <div class="input-group">
-              <span class="input-group-addon" id="basic-addon3"># of units</span>
+              <span class="input-group-addon" id="basic-addon3"># of boxes</span>
               <input id="goal_qty" type="text" class="form-control" ng-value="box.goal" aria-describedby="basic-addon3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
             </div>
           </div>
-          <div class="col-md-9">
-            <div class="light" style="padding-left:100px;font-weight:400;color:#9d9d9d;">
-              Your goal is the number of units you’re aiming to sell, but we’ll ship your beauty box as long as you sell at least 10!
+          <div class="col-md-8">
+            <div class="light" style="padding-left:80px;font-weight:400;color:#9d9d9d;">
+              Your goal is the number of boxes you’re aiming to sell, but we’ll ship your beauty box as long as you sell at least 10!
             </div>
           </div>
           </div>
@@ -46,25 +46,41 @@
       </div>
 
       <!-- Goal slider starts here -->
-      <div class="panel panel-default" style="padding:0px 5px 0px 25px;">
 
         <div class="row">
-          <div class="col-md-3">
-            <img  width="100%" src="../static/img/packaging/{a box.style.img a}">
+
+
+            <div class="col-md-7">
+              <div class="panel panel-default" style="padding:23px 5px 23px 25px;">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img  width="100%" src="../static/img/packaging/{a box.style.img a}">
+                  </div>
+                  <div class="col-md-8" style="padding-top:5px;">
+                    <h4>{a box.brand_name a}</h4>
+                    <i class="light">{a box.box_name a}</i>
+                    <h6 class="light">{a box.price-box.cost | currency:"$":2 a} profit/sale</h6>
+                  </div>
+              </div>
+            </div>
           </div>
-          <div class="col-md-5" style="padding-top:40px;">
-            <h5>{a box.brand_name a} <span>({a box.box_name a})</span></h5>
-            <h6 class="light">{a box.price-box.cost | currency:"$":2 a} profit/sale</h6>
+
+
+            <div class="col-md-5">
+              <div class="panel panel-default" style="padding:20px 20px 20px 20px;text-align:center !important;background-color:#FAFAFA;">
+                <div class="row">
+                  <label>Retail Price</label>
+                  <p style="font-size:11px;font-weight:300;color:#9d9d9d;">this is how much your customer pays</p>
+                  <input id="retail_price" type="text" class="form-control"
+                         style="margin-top:10px;width:75px;margin: 0 auto;text-align:center;color:#25CB68;"
+                         ng-value='box.price | currency:"$":2'>
+                  <h6 class="light" style="font-size:10px;font-weight:400;">Fandemic recommends {a box.cost+5 | currency:"$":2 a}</h6>
+              </div>
+            </div>
           </div>
-          <div class="col-md-3" style="padding-top:25px;">
-            <input id="retail_price" type="text" class="form-control"
-                   style="margin-top:10px;"
-                   ng-value='box.price | currency:"$":2'>
-            <h6 class="light" style="font-size:10px;font-weight:400;">Fandemic recommends {a box.cost+8 | currency:"$":2 a}</h6>
-          </div>
+
         </div>
 
-      </div>
 
     </div>
 
