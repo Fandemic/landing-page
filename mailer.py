@@ -200,7 +200,7 @@ class Mailer:
                             <!-- 1 Column Text : BEGIN -->
                             <tr>
                                 <td bgcolor="#ffffff" style="padding: 40px; text-align: center; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
-                									<h1>Congratulations<h1><h2>""" + name + """</h2> <br>Your Beauty Store is ready to promote! You have 7 days to sell as many boxes as possible. Remember, you must sell at least 10 for the campaign to be successful. Below you will find some tips that other stars have found useful while promoting their campaign!
+                									<h1>Congratulations<h1><h2>""" + name + """</h2> <br>Your Beauty Store is ready to promote! You have 7 days to sell as many boxes as possible. Remember, you must sell at least 25 for the campaign to be successful. Below you will find some tips that other stars have found useful while promoting their campaign!
                 								<br><br>
 
                                 </td>
