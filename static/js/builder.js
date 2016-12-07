@@ -81,7 +81,7 @@ app.controller("builder", function($scope) {
             $('#launch-store-modal-success').modal('show');
           },
           error: function(error) {
-            alert("payment error");
+            alert("Submission Error: " + error.toString());
           },
           complete: function(){
             $('#loader').hide();
