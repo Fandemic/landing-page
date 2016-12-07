@@ -23,86 +23,180 @@
 </div>
 
 <style>
-.modal-content2 {
-  width:42em !important;
-}
+  .modal-content2 {
+    width: 42em !important;
+  }
 
-.step{
-  color: #4E9CD4;
-}
+  .step {
+    color: #4E9CD4;
+  }
 
-.steps{
-  margin-bottom: 0px;
-  color: #1d1d1d;
-  font-weight: 600;
-}
+  .steps {
+    margin-bottom: 0px;
+    color: #1d1d1d;
+    font-weight: 600;
+  }
 
-.light{
-  color: #8d8d8d;
-  font-size:14px;
-}
+  .light {
+    color: #8d8d8d;
+    font-size: 14px;
+  }
 
-.col-xs-9{
-  padding:20px;
-  padding-top: 0px;
-}
+  .col-xs-9 {
+    padding: 20px;
+    padding-top: 0px;
+  }
 
-.icon{
-  opacity:.8;
-}
+  .icon {
+    opacity: .8;
+  }
 
-.list{
-  padding-left: 30px;
-  color: #4d4d4d;
-}
+  .list {
+    padding-left: 30px;
+    color: #4d4d4d;
+  }
 
-.stub{
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-color: #eeeeee;
-}
+  .stub {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-color: #eeeeee;
+  }
 
-.listt li {
+  .listt li {
     list-style-type: circle;
- }
+  }
 
+  .img-responsive.icon {
+    width: 5em;
+    margin-left: 10em;
+  }
 
-.img-responsive.icon {
-  width: 5em;
-  margin-left: 10em;
+  .row.modalSteps {
+    text-align: center;
+  }
 
-}
-
-.row.modalSteps {
-  text-align:center;
-}
-
-.invisible {
-  display:none;
-}
-
-
+  .invisible {
+    display: none;
+  }
 </style>
 
 
+<<<<<<< Updated upstream
 <script src="https://a.vimeocdn.com/js/froogaloop2.min.js"></script>
 
+=======
+>>>>>>> Stashed changes
 <script>
-var iframe = document.getElementById('nofocusvideo');
-// $f == Froogaloop
-var player = $f(iframe)
+  var Froogaloop = function() {
+    function e(a) {
+      return new e.fn.init(a)
+    }
 
-$('#how-fandemic-works').on('hidden.bs.modal', function () {
-player.api('pause');
-})
+    function g(a, c, b) {
+      if (!b.contentWindow.postMessage) return !1;
+      a = JSON.stringify({
+        method: a,
+        value: c
+      });
+      b.contentWindow.postMessage(a, h)
+    }
 
-$('#how-fandemic-works').on('shown.bs.modal', function () {
-player.api('play');
-})
+    function l(a) {
+      var c, b;
+      try {
+        c = JSON.parse(a.data), b = c.event || c.method
+      } catch (e) {}
+      "ready" != b || k || (k = !0);
+      if (!/^https?:\/\/player.vimeo.com/.test(a.origin)) return !1;
+      "*" === h && (h = a.origin);
+      a = c.value;
+      var m = c.data,
+        f = "" === f ? null : c.player_id;
+      c = f ? d[f][b] : d[b];
+      b = [];
+      if (!c) return !1;
+      void 0 !== a && b.push(a);
+      m && b.push(m);
+      f && b.push(f);
+      return 0 < b.length ? c.apply(null, b) : c.call()
+    }
 
-var pageURL = window.location.href;
-if( pageURL.indexOf('builder') >= 0){
-  $('.videoButtonCTA').addClass('invisible');
-}
+    function n(a, c, b) {
+      b ? (d[b] || (d[b] = {}), d[b][a] = c) : d[a] = c
+    }
+    var d = {},
+      k = !1,
+      h = "*";
+    e.fn = e.prototype = {
+      element: null,
+      init: function(a) {
+        "string" === typeof a && (a = document.getElementById(a));
+        this.element = a;
+        return this
+      },
+      api: function(a, c) {
+        if (!this.element || !a) return !1;
+        var b = this.element,
+          d = "" !== b.id ? b.id : null,
+          e = c && c.constructor && c.call && c.apply ? null : c,
+          f = c && c.constructor && c.call && c.apply ? c : null;
+        f && n(a, f, d);
+        g(a, e, b);
+        return this
+      },
+      addEvent: function(a, c) {
+        if (!this.element) return !1;
+        var b = this.element,
+          d = "" !== b.id ? b.id : null;
+        n(a, c, d);
+        "ready" != a ? g("addEventListener", a, b) : "ready" == a && k && c.call(null, d);
+        return this
+      },
+      removeEvent: function(a) {
+        if (!this.element) return !1;
+        var c = this.element,
+          b = "" !== c.id ? c.id : null;
+        a: {
+          if (b && d[b]) {
+            if (!d[b][a]) {
+              b = !1;
+              break a
+            }
+            d[b][a] = null
+          } else {
+            if (!d[a]) {
+              b = !1;
+              break a
+            }
+            d[a] = null
+          }
+          b = !0
+        }
+        "ready" != a && b && g("removeEventListener", a, c)
+      }
+    };
+    e.fn.init.prototype = e.fn;
+    window.addEventListener ? window.addEventListener("message", l, !1) : window.attachEvent("onmessage", l);
+    return window.Froogaloop =
+      window.$f = e
+  }();
+</script>
 
+<script>
+  var iframe = document.getElementById('nofocusvideo');
+  // $f == Froogaloop
+  var player = $f(iframe)
+
+  $('#how-fandemic-works').on('hidden.bs.modal', function() {
+    player.api('pause');
+  })
+
+  $('#how-fandemic-works').on('shown.bs.modal', function() {
+    player.api('play');
+  })
+
+  var pageURL = window.location.href;
+  if (pageURL.indexOf('builder') >= 0) {
+    $('.videoButtonCTA').addClass('invisible');
+  }
 </script>
