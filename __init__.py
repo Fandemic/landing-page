@@ -726,24 +726,24 @@ def launchStoreRequest():
         html = """
                 Hi """+ info['star']['name'] +""",<br><br>
 
-                Woohoo! One step closer to launching your beauty line!<br><br>
+                Woohoo! One step closer to launching your beauty kit!<br><br>
                 I just need some important things before we launch :)<br><br>
 
                 <div style="font-size:16px">
                 <strong>Please send me the following:</strong><br>
-                1. Your Social Media URL's<br>
-                2. Short description of your box<br>
-                3. Logo if you have one<br>
+                1. Your Social Media URL's (Youtube, Instagram etc pages)<br>
+                2. Short 1-2 sentence description of your box<br>
+                3. Logo and/or any designs if you have<br>
                 4. Profile photo for the store
                 </div>
 
                 <br><br>
-                Once I get this information I can send over an activation link.
-                Your store will be found here, https://fandemic.co/""" + info['star']['id'] + """
+                Once I get this information I can send over an activation link for your store!
+                Meanwhile you can see your store here, https://fandemic.co/""" + info['star']['id'] + """
                 <br><br>
                 You will have 7 days to sell as many boxes as possible!
                 <br><br>
-                If you want a <strong>sample</strong> before launching you can order one at the end of the <a "https://fandemic.co/builder">Beauty Box Builder</a>.
+                If you want a <strong>sample</strong> before launching you can order one at the end of the <a "https://fandemic.co/builder#""" + info['star']['id'] + """">Beauty Box Builder</a>.
 
 
                 <br><br>
