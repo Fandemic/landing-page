@@ -46,7 +46,7 @@
 <script>
 var img = document.createElement('img');
 img.crossOrigin = "Anonymous";
-img.setAttribute('src', '{{star.image.profile}}');
+img.setAttribute('src', 'https://fandemic.co/static/img/live/{{star.id}}/profile.png');
 
 </script>
 
@@ -89,12 +89,15 @@ img.setAttribute('src', '{{star.image.profile}}');
   <h4 style="font-size:22px;color:#cf67ad;">{{star.name}}</h4>
   {% endif %}
 
+  {% if star.url %}
   <div id="social-media">
     <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
     <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
     <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
     <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
   </div>
+  {% endif %}
+
   {% if star.campaigns[0].campaign_video %}
   <div class="campaign_video">
     <a href="#" data-toggle="modal" data-target="#demonstration-video" >

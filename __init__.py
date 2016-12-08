@@ -588,7 +588,7 @@ def launchStoreRequest():
             star = db.stars.find_one({'id':ID.lower()})
             campaign = {}
             campaign['id'] = info['box_name'].replace(' ', '-').lower()
-            campaign['status'] = 'mock'
+            campaign['status'] = 'pending'
             campaign['index'] = 1
             campaign['box_name'] = info['box_name']
             campaign['brand_name'] = info['brand_name']
@@ -603,6 +603,38 @@ def launchStoreRequest():
             campaign['style']['btn_color'] = '#28a237'
             campaign['products'] = info['products']
             db.stars.update_one({'id':ID.lower()}, {'$push': {'campaigns': campaign}})
+
+        #if star does not exist, create them
+        else:
+
+            info['star']['id'] = info['star']['name'].replace(' ', '-').lower()
+            ID = info['star']['id']
+
+            #make sure ID does not exist
+            if (db.stars.find({'id':ID}).count() <= 0):
+                client = {}
+                client['id'] = info['star']['id']
+                client['name'] = info['star']['name']
+                client['email'] = [info['star']['email']]
+                client['phone'] = info['star']['phone']
+                client['campaigns'] = [{}]
+                client['campaigns'][0]['id'] = info['box_name'].replace(' ', '-').lower()
+                client['campaigns'][0]['status'] = 'pending'
+                client['campaigns'][0]['index'] = 1
+                client['campaigns'][0]['box_name'] = info['box_name']
+                client['campaigns'][0]['brand_name'] = info['brand_name']
+                client['campaigns'][0]['end_time'] = 1477267200
+                client['campaigns'][0]['goal'] = info['goal']
+                client['campaigns'][0]['cost'] = info['cost']
+                client['campaigns'][0]['price'] = info['price']
+                client['campaigns'][0]['description'] = 'your box description goes here, please email it to sarah@fandemic.co'
+                client['campaigns'][0]['num_orders'] = 500
+                client['campaigns'][0]['style'] = {}
+                client['campaigns'][0]['style']['color_primary'] = '#9d9d9d'
+                client['campaigns'][0]['style']['color_secondary'] = '#9d9d9d'
+                client['campaigns'][0]['style']['btn_color'] = '#28a237'
+                client['campaigns'][0]['products'] = info['products']
+                db.stars.insert_one(client)
 
         #send the email to fandemic team
         toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
@@ -692,15 +724,31 @@ def launchStoreRequest():
         toaddr = [info['star']['email']]
         subject = "Your Beauty Box Campaign is Almost Ready!"
         html = """
-                Hey """+ info['star']['name'] +"""!<br><br>
-                I am so excited that you are ready to pre-sell your customized beauty box!<br><br>
-                I just wanted to tell you that our web designers are making a unique store for you now!<br><br>
-                Please be on the lookout for an email containing a custom link to your store!<br><br>
-                With this link you will be able to direct fans to the store and have them pre-order your boxes.<br><br>
-                If you have any questions at all, feel free to reply to this email. <br><br>
+                Hi """+ info['star']['name'] +""",<br><br>
 
-                Excited to watch you launch your own product line!<br>
-                - Sarah :)
+                Woohoo! One step closer to launching your beauty line!<br><br>
+                I just need some important things before we launch :)<br><br>
+
+                <div style="font-size:16px">
+                <strong>Please send me the following:</strong><br>
+                1. Your Social Media URL's<br>
+                2. Short description of your box<br>
+                3. Logo if you have one<br>
+                4. Profile photo for the store
+                </div>
+
+                <br><br>
+                Once I get this information I can send over an activation link.
+                Your store will be found here, https://fandemic.co/""" + info['star']['id'] + """
+                <br><br>
+                You will have 7 days to sell as many boxes as possible!
+                <br><br>
+                If you want a <strong>sample</strong> before launching you can order one at the end of the <a "https://fandemic.co/builder">Beauty Box Builder</a>.
+
+
+                <br><br>
+                Excited to watch you launch!<br><br>
+                Sarah :)
                 """
         email.send(toaddr,subject,html)
 
