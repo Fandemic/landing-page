@@ -41,7 +41,7 @@
 
 
 
-  <meta property="og:image" content="{{star.image.profile}}">
+  <meta property="og:image" content="https://fandemic.co/static/img/live/{{star.id}}/profile.png">
 
 </head>
 
@@ -103,12 +103,14 @@
     <h4 class="title"  style="color:#cf67ad;">{{star.name}}</h4>
     {% endif %}
     <br>
+    {% if star.url %}
     <div id="social-media">
       <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
       <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
       <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
       <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
     </div>
+    {% endif %}
     {% if star.campaigns[0].campaign_video %}
     <div class="campaign_video">
       <a href="#" data-toggle="modal" data-target="#demonstration-video" >
@@ -119,12 +121,6 @@
     <br><br>
 
 
-    <!--{% if star.video_url != '' %}
-      <p style="color:white">{{star.name}} decided to make a video for you all! Check it out here:<p>
-      <a href="{{star.url.video_url}}" class="play litebox-hero">
-        <i class="fa fa-play-circle button" aria-hidden="true" style="color:#7d7d7d; font-size: 3.5em; padding-top:.3em"></i>
-      </a>
-    {% endif %}-->
   </div>
 
 
