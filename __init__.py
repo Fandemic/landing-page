@@ -52,10 +52,10 @@ email = Mailer();
 def home():
     storeCount = db.stars.count()
 
-    storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
-    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).sort('campaigns.0.status', 1).limit(10)
+    storeCountPending = db.stars.count({"campaigns.0.status":"live"})
+    stars = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(10)
 
-    star_names = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).sort('campaigns.0.status', 1).limit(5)
+    star_names = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(5)
 
     categories = db.stars.distinct("category")
 
@@ -86,7 +86,7 @@ def catalog(template,cat=None,cat2=None,cat3=None):
 
     #Get the current stars store info
     storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
-    stars = db.stars.find({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]}).sort('campaigns.0.status', 1).limit(6)
+    stars = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(6)
 
     #get the box styles and packaging material
     styles = db.design.find({"category":"box"})
@@ -743,7 +743,7 @@ def launchStoreRequest():
                 <br><br>
                 You will have 7 days to sell as many boxes as possible!
                 <br><br>
-                If you want a <strong>sample</strong> before launching you can order one at the end of the <a "https://fandemic.co/builder#""" + info['star']['id'] + """">Beauty Box Builder</a>.
+                If you want a <strong>sample</strong> before launching you can order one at the end of the <a href="https://fandemic.co/builder#""" + info['star']['id'] + """">Beauty Box Builder</a>.
 
 
                 <br><br>
