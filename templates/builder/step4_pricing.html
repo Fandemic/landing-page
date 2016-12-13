@@ -9,22 +9,28 @@
 
       <!-- Choose your box design -->
       <h4 style="color:#8d8d8d;">1. Select a <strong>Pricing Option</strong></h4>
-      <i class="light">this is how much your fans will pay</i>
 
-
-      <div class="carousel">
+      <div class="carousel" data-flickity='{ "initialIndex": 1,"freeScroll": true,"wrapAround": true }'>
 
       <!-- WORDLY -->
       <div class="carousel-cell item-box">
         <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
           <div class="content" ng-click="" style="cursor:pointer;width:100%;height:100%;">
-                <img class="product-img" style="width:100%;padding:10px;"  src="" alt="">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/donation.svg" alt="">
 
                 <span>
-                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
                 </span>
 
-              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Worldly</h5>
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
+                    $4 for <strong>Charity</strong>
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Helping Hand
+              <br> <span class="money" >Retail: ${a box.cost + 4 a}</span></h5>
             </div>
           </div>
       </div>
@@ -33,13 +39,24 @@
       <div class="carousel-cell item-box">
         <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
           <div class="content" ng-click="" style="cursor:pointer;width:100%;height:100%;">
-                <img class="product-img" style="width:100%;padding:10px;"  src="" alt="">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/versatile.svg" alt="">
 
                 <span>
                   <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
                 </span>
 
-              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Sweet Spot <span class="money">($30.00)</span></h5>
+                <!-- split bar -->
+                <div class="progress">
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:50%">
+                    $4 for <strong>Charity</strong>
+                  </div>
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
+                    $4 for <strong>You</strong>
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Versatile
+              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span></h5>
             </div>
           </div>
       </div>
@@ -48,13 +65,93 @@
       <div class="carousel-cell item-box">
         <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
           <div class="content" ng-click="" style="cursor:pointer;width:100%;height:100%;">
-                <img class="product-img" style="width:100%;padding:10px;"  src="" alt="">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/money-maker.svg" alt="">
 
                 <span>
-                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
                 </span>
 
-              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Money Maker</h5>
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                    $8 for <strong>You</strong>
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Money Maker
+                <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span></h5>
+
+            </div>
+          </div>
+      </div>
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="" style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/piggy-bank.svg" alt="">
+
+                <span>
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+                </span>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Piggy Bank
+              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 4 a}</span></h5>
+
+              <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                  $4 for <strong>You</strong>
+                </div>
+              </div>
+
+            </div>
+          </div>
+      </div>
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="" style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/customer.svg" alt="">
+
+                <span>
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+                </span>
+
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-default" role="progressbar" style="width:100%">
+                    $0 for <strong>You</strong>
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Customer Care
+              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 0 a}</span></h5>
+            </div>
+          </div>
+      </div>
+
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="" style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/angel.svg" alt="">
+
+                <span>
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">
+                </span>
+
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
+                    $8 for <strong>Charity</strong>
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Angel
+              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span></h5>
             </div>
           </div>
       </div>
@@ -63,112 +160,17 @@
       </div>
       <!-- end of box design -->
 
-      <br><br><br>
+      <br><br>
 
 
+      <!-- Choose your box design -->
+      <h4 style="color:#8d8d8d;">2. Create a <strong>story</strong> for your campaign</h4>
 
       <textarea>
-        <p style="text-align: center;"><img src="../static/img/packaging/box-patterned.png" alt="" width="259" height="259" /></p>
-        <h1 style="text-align: center;"><strong>Beauty &amp; The Blondie</strong></h1>
-        <h4 style="text-align: center;">GLOW OF THE GODS</h4>
-        <h3>In the box...</h3>
-        <table style="width: 663px;">
-        <tbody>
-        <tr>
-        <td style="width: 174px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="../static/img/sample_products/fake-eyelashes.png" alt="" width="138" height="138" /></td>
-        <td style="width: 487px;">The description about the makeup goes here.</td>
-        </tr>
-        <tr>
-        <td style="width: 174px; text-align: center;"><img src="http://www.ladyburd.com/packaging/Spring-blush-per-pkg.jpg" alt="" width="137" height="89" /></td>
-        <td style="width: 487px;">The description about the makeup goes here.</td>
-        </tr>
-        <tr>
-        <td style="width: 174px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://www.ladyburd.com/packaging/36bbpkgmn.jpg" alt="" width="122" height="119" /></td>
-        <td style="width: 487px;">&nbsp;The description about the makeup goes here.</td>
-        </tr>
-        </tbody>
-        </table>
-        <h2>&nbsp;</h2>
+
       </textarea>
 
 
-
-
-
-      <!-- title that explains the step -->
-      <div class="explain-step" style="padding-left:0px;">
-        <h3 class="subtitle">What is Your Sales Goal?</h3>
-          <i class="light" style="font-weight:300;">
-            You have 7 days to sell this box. The more you sell, the better your margins!
-          </i>
-      </div>
-
-      <!-- Goal slider starts here -->
-      <div class="panel panel-default" style="padding:30px 40px;">
-          <label for="basic-url">Sales Goal</label>
-
-          <div style="padding:15px">
-            <div id="rangeslider"></div>
-          </div>
-
-          <br><br>
-
-          <div class="row">
-            <div class="col-md-4">
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon3"># of boxes</span>
-              <input id="goal_qty" type="text" class="form-control" ng-value="box.goal" aria-describedby="basic-addon3" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <div class="light" style="padding-left:80px;font-weight:400;color:#9d9d9d;">
-              Your goal is the number of boxes you’re aiming to sell, but we’ll ship your beauty box as long as you sell at least 10!
-            </div>
-          </div>
-          </div>
-
-          <br>
-
-          <label for="basic-url">Estimated Profit</label><br>
-          <span style="font-size:40px;color:#25CB68;">{a ((box.price-box.cost)*box.goal) | currency:"$":0 a}+</span>
-
-      </div>
-
-      <!-- Goal slider starts here -->
-
-        <div class="row">
-
-
-            <div class="col-md-7">
-              <div class="panel panel-default" style="padding:23px 5px 23px 25px;">
-                <div class="row">
-                  <div class="col-md-4">
-                    <img  width="100%" src="../static/img/packaging/{a box.style.img a}">
-                  </div>
-                  <div class="col-md-8" style="padding-top:5px;">
-                    <h4>{a box.brand_name a}</h4>
-                    <i class="light">{a box.box_name a}</i>
-                    <h6 class="light">{a box.price-box.cost | currency:"$":2 a} profit/sale</h6>
-                  </div>
-              </div>
-            </div>
-          </div>
-
-
-            <div class="col-md-5">
-              <div class="panel panel-default" style="padding:20px 20px 20px 20px;text-align:center !important;background-color:#FAFAFA;">
-                <div class="row">
-                  <label>Retail Price</label>
-                  <p style="font-size:11px;font-weight:300;color:#9d9d9d;">this is how much your customer pays</p>
-                  <input id="retail_price" type="text" class="form-control"
-                         style="margin-top:10px;width:75px;margin: 0 auto;text-align:center;color:#25CB68;"
-                         ng-value='box.price | currency:"$":2'>
-                  <h6 class="light" style="font-size:10px;font-weight:400;">Fandemic recommends {a box.cost+5 | currency:"$":2 a}</h6>
-              </div>
-            </div>
-          </div>
-
-        </div>
 
 
     </div>
@@ -177,8 +179,8 @@
     <!--START OF RIGHT SIDE SUMMARY PANEL -->
     <div class="col-md-4">
       {% include('builder/summary.html') %}
-      <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                  {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">NEXT STEP: Finish</button>
+      <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                  {% if cat == 'beauty' %}btn-beauty{% endif %}" data-toggle="modal" data-target="#launch-store-modal">Finish</button>
     </div>
 
 
@@ -328,4 +330,8 @@ function isNumber(n) {
 .noUi-handle:hover {
   cursor: pointer;
 }
+#mceu_11-body{
+  display: none;
+}
+
 </style>

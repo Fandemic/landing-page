@@ -36,8 +36,9 @@ footer {
 }
 
 .money {
-  color: green;
-  font-weight: bold;
+  color: #25CB68;
+  font-size:13px;
+  opacity: .6;
 
 }
 
@@ -291,9 +292,6 @@ a:focus {
     line-height: 20px;
 }
 
-.money{
-  color:#46B29D;
-}
 
 .navbar-toggle {
     margin-top: 18px;
@@ -378,6 +376,19 @@ a:focus {
   padding: 10px 0px;
 }
 
+.progress{
+  position:absolute;top:0px;left:0px;width:100%;opacity:.7;border-radius: 4px 4px 0px 0px;
+
+}
+
+.progress-bar-primary{
+  background-color: #BA82AA;
+}
+
+.progress-bar-success{
+  background-color: #25CB68;
+}
+
 /*progress bar*/
 .nav-container{
   width:100%;
@@ -411,7 +422,7 @@ a:focus {
 			text-decoration: none;
 			color: #fff;
       transition:none;
-      width: 16.66%;
+      width: 20%;
 		}
 
     .beauty ul li a{
@@ -689,7 +700,7 @@ a:focus {
     text-decoration: none;
     color: #fff;
     transition:none;
-    width: 28%;
+    width: 24% !important;
   }
 
   #crumbs ul li a:after {

@@ -387,7 +387,7 @@ app.controller("builder", function($scope) {
 $("#step4").on('click', '.next-btn', function() {
   $('.steps').hide();
   $('#step5').fadeIn('fast', function() {
-    
+      $(".carousel").flickity('resize');
 
 });
   $('#crumb4').removeClass( "current");
@@ -514,3 +514,17 @@ $(document).ready(function() {
   // For Safari
   return message;
 };
+
+
+tinymce.init({
+  selector: 'textarea',
+  height: 140,
+  menubar: false,
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table contextmenu paste code'
+  ],
+  toolbar: 'bold italic underline | link image',
+  content_css: '//www.tinymce.com/css/codepen.min.css'
+});
