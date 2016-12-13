@@ -387,6 +387,7 @@ app.controller("builder", function($scope) {
 $("#step4").on('click', '.next-btn', function() {
   $('.steps').hide();
   $('#step5').fadeIn('fast', function() {
+    
 
 });
   $('#crumb4').removeClass( "current");
