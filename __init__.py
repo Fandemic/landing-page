@@ -595,7 +595,8 @@ def launchStoreRequest():
             campaign['end_time'] = 1477267200
             campaign['cost'] = info['cost']
             campaign['price'] = info['price']
-            campaign['description'] = 'your box description goes here, please email it to sarah@fandemic.co'
+            campaign['profit'] = info['profit']
+            campaign['description'] = info['desc']
             campaign['num_orders'] = 500
             campaign['style'] = {}
             campaign['style']['color_primary'] = '#fff'
@@ -627,7 +628,8 @@ def launchStoreRequest():
                 client['campaigns'][0]['goal'] = info['goal']
                 client['campaigns'][0]['cost'] = info['cost']
                 client['campaigns'][0]['price'] = info['price']
-                client['campaigns'][0]['description'] = 'your box description goes here, please email it to sarah@fandemic.co'
+                client['campaigns'][0]['profit'] = info['profit']
+                client['campaigns'][0]['description'] = info['desc']
                 client['campaigns'][0]['num_orders'] = 500
                 client['campaigns'][0]['style'] = {}
                 client['campaigns'][0]['style']['color_primary'] = '#9d9d9d'
@@ -656,6 +658,10 @@ def launchStoreRequest():
         trello_string += '**Goal:** ' + str(info['goal']) + '\n'
         trello_string += '**Cost:** ' + str(info['cost']) + '\n'
         trello_string += '**Price:** ' + str(info['price']) + '\n'
+
+        trello_string += '**Profit:** ' + str(info['profit']) + '\n'
+        trello_string += '**Charity:** ' + str(info['charity']) + '\n'
+
         trello_string += '**Profit:** ' + str(float(info['price']) - float(info['cost']))  + '\n'
         trello_string += '**Box Name:** ' + info['box_name'] + '\n'
         trello_string += '**Brand Name:** ' + info['brand_name'] + '\n'
@@ -663,6 +669,7 @@ def launchStoreRequest():
         trello_string += '**Material:** ' +info['material']['name'] + '\n'
         trello_string += '**Primary Font:** ' + info['font1'] + '\n'
         trello_string += '**Secondary Font:** ' + info['font2'] + '\n'
+        trello_string += '**Description:** ' + info['desc'] + '\n'
         trello_string += 'PRODUCTS\n'
         trello_string += '-----------------------------\n'
         for p in info['products']:
@@ -686,6 +693,10 @@ def launchStoreRequest():
         email_string += '<hr>'
         email_string += '<strong>Goal:</strong> ' + str(info['goal']) + '<br>'
         email_string += '<strong>Cost:</strong> ' + str(info['cost']) + '<br>'
+
+        email_string += '<strong>Profit:</strong> ' + str(info['profit']) + '<br>'
+        email_string += '<strong>Charity:</strong> ' + str(info['charity']) + '<br>'
+
         email_string += '<strong>Price:</strong> ' + str(info['price']) + '<br>'
         email_string += '<strong>Profit:</strong> ' + str(float(info['price']) - float(info['cost']))  + '<br>'
         email_string += '<strong>Box Name:</strong> ' + info['box_name'] + '<br>'
@@ -694,6 +705,8 @@ def launchStoreRequest():
         email_string += '<strong>Material:</strong> ' +info['material']['name'] + '<br>'
         email_string += '<strong>Primary Font:</strong> ' + info['font1'] + '<br>'
         email_string += '<strong>Secondary Font:</strong> ' + info['font2'] + '<br>'
+        email_string += '<strong>Description:</strong> ' + info['desc'] + '<br>'
+
         email_string += '<br><h3>PRODUCTS</h3>'
         email_string += '<hr>'
         for p in info['products']:
@@ -708,7 +721,7 @@ def launchStoreRequest():
                   <head></head>
                   <body>
                     <div>
-                        <h3>New launch store request from """+info['star']['name']+"""!</h3>
+                        <h3>New store request from """+info['star']['name']+"""!</h3>
                         """+email_string+"""
                     </div>
                   </body>

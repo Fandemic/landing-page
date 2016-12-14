@@ -16,10 +16,13 @@ app.controller("builder", function($scope) {
       description: null,
       cost: 0,
       price: 50,
+      profit: 0,
+      charity: 0,
       goal: 25,
       products: [],
       style: null,
       material: null,
+      desc: '',
       star: {
         'exists': false,
         'name': '',
@@ -178,6 +181,18 @@ app.controller("builder", function($scope) {
       }
 
     }
+
+
+
+    $scope.togglePrice = function(price){
+
+      $scope.box.profit = price.profit
+      $scope.box.charity = price.charity
+      $scope.box.price = $scope.box.cost + price.profit + price.charity
+
+    }
+
+
 
   /*  $scope.updateSlider = function(){
       // UPDATE - updates slider to any new values
@@ -371,6 +386,27 @@ app.controller("builder", function($scope) {
 
 
 
+        tinymce.init({
+          selector: 'textarea',
+          height: 140,
+          menubar: false,
+          plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table contextmenu paste code'
+          ],
+          toolbar: 'bold italic underline | link image',
+          content_css: '//www.tinymce.com/css/codepen.min.css',
+          setup:function(ed) {
+              ed.on('change', function(e) {
+                $scope.$apply(function () {
+          
+                $scope.box.desc = tinymce.activeEditor.getContent();
+                });
+              });
+          }
+        });
+
 });
 
 
@@ -514,17 +550,3 @@ $(document).ready(function() {
   // For Safari
   return message;
 };
-
-
-tinymce.init({
-  selector: 'textarea',
-  height: 140,
-  menubar: false,
-  plugins: [
-    'advlist autolink lists link image charmap print preview anchor',
-    'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table contextmenu paste code'
-  ],
-  toolbar: 'bold italic underline | link image',
-  content_css: '//www.tinymce.com/css/codepen.min.css'
-});

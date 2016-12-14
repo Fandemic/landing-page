@@ -1,16 +1,13 @@
 <!-- Customer Service Modal -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="customerServiceModal">
-  <div class="modal-dialog modal-lg">
-  <div class="vertical-alignment-helper">
-    <div class="modal-dialog vertical-align-center">
-    <div class="modal-content" style="overflow:auto">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content modal-content2" style="padding:30px;height:100%;overflow-y: scroll;">
+
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
       <h2 class="modal-title" id="myModalLabel">Customer Service</h2><br>
-      <p>Fandemic manages {{star.name}}'s official store<br>
-         If you have any questions or issues with the platform please use the tools below</p>
-      <br>
+
 
       <div>
         <!-- Nav tabs -->
@@ -18,20 +15,13 @@
           <!-- <li role="presentation" class="active"><a href="#howitworks" aria-controls="howitworks" role="tab" data-toggle="tab">How It Works</a></li> -->
           <li role="presentation" class="active"><a href="#faq" aria-controls="faq" role="tab" data-toggle="tab">FAQ</a></li>
           <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
-          <li role="presentation"><a href="#sizing" aria-controls="sizing" role="tab" data-toggle="tab">Clothing Measurements</a></li>
         </ul>
       </div>
 
       <!-- Tab panes -->
       <div class="tab-content">
 
-        {% if star.faq is defined %}
-        <div role="tabpanel" class="tab-pane fade in active" id="faq">
-          <div class="tab-content faq-cat-content">
-            {{star.faq}}
-          </div>
-        </div>
-        {% else %}
+
         <div role="tabpanel" class="tab-pane fade in active" id="faq">
                     <!-- Tab panes -->
                     <div class="tab-content faq-cat-content">
@@ -355,7 +345,7 @@
                         </div>
                     </div>
         </div>
-        {% endif %}
+
         <div role="tabpanel" class="tab-pane fade" id="contact">
           <form id="support-contact-form" action="/supportContactForm" method="post">
                   <div class="row">
@@ -385,12 +375,9 @@
                   <p id="support-form-notification"></p>
                 </form>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="sizing">
-          <img src="../static/img/measurements.png" style="width:80%">
-        </div>
+
       </div>
     </div>
-</div>
-  </div>
+
 </div>
 </div>
