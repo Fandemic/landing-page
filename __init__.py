@@ -67,8 +67,6 @@ def blogHome():
     posts = db.blog.find({})
     return render_template('blog.html', posts = posts)
 
-
-
 def toList(s):
     return [str(x) for x in s.split(',') if x]
 
@@ -636,7 +634,7 @@ def launchStoreRequest():
                 client['campaigns'][0]['style']['color_secondary'] = '#9d9d9d'
                 client['campaigns'][0]['style']['btn_color'] = '#28a237'
                 client['campaigns'][0]['products'] = info['products']
-                db.stars.insert_one(client)
+                db.stars_temp.insert_one(client)
 
         #send the email to fandemic team
         toaddr = ['brandon@fandemic.co','ethan@fandemic.co']

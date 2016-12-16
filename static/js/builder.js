@@ -81,7 +81,12 @@ app.controller("builder", function($scope) {
           contentType: 'application/json;charset=UTF-8',
           success: function(response) {
             $('#launch-store-modal').modal('hide');
-            $('#launch-store-modal-success').modal('show');
+            //$('#launch-store-modal-success').modal('show');
+            $('.fa-times').hide();
+            $('.steps').hide();
+            $('#step6').fadeIn('fast', function() {
+
+            });
           },
           error: function(error) {
             alert("Submission Error: " + str(error));
@@ -400,7 +405,7 @@ app.controller("builder", function($scope) {
           setup:function(ed) {
               ed.on('change', function(e) {
                 $scope.$apply(function () {
-          
+
                 $scope.box.desc = tinymce.activeEditor.getContent();
                 });
               });
