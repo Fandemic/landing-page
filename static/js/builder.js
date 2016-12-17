@@ -11,8 +11,8 @@ app.controller("builder", function($scope) {
     $scope.box = {
       brand_name: 'Your Brand',
       box_name: 'Box Name',
-      font1: "font-family: 'Roboto';",
-      font2: "font-family: 'Roboto';",
+      font1: "font-family: 'Quicksand'",
+      font2: "font-family: 'Arvo'",
       description: null,
       cost: 0,
       price: 50,
