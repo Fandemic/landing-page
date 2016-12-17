@@ -1,90 +1,94 @@
-<div id="step5" class="steps container" style="margin-top:60px;display:none;">
+<div id="step6" class="steps container" style="margin-top:60px;display:none;height:800px;">
 
-  <div class="col-md-8">
-    <h3 class="subtitle"><strong>Edit</strong> your beauty box description!</h3>
 
-<textarea>
-  <p style="text-align: center;"><img src="../static/img/packaging/box-patterned.png" alt="" width="259" height="259" /></p>
-  <h1 style="text-align: center;"><strong>Beauty &amp; The Blondie</strong></h1>
-  <h4 style="text-align: center;">GLOW OF THE GODS</h4>
-  <h3>In the box...</h3>
-  <table style="width: 663px;">
-  <tbody>
-  <tr>
-  <td style="width: 174px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="../static/img/sample_products/fake-eyelashes.png" alt="" width="138" height="138" /></td>
-  <td style="width: 487px;">The description about the makeup goes here.</td>
-  </tr>
-  <tr>
-  <td style="width: 174px; text-align: center;"><img src="http://www.ladyburd.com/packaging/Spring-blush-per-pkg.jpg" alt="" width="137" height="89" /></td>
-  <td style="width: 487px;">The description about the makeup goes here.</td>
-  </tr>
-  <tr>
-  <td style="width: 174px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="http://www.ladyburd.com/packaging/36bbpkgmn.jpg" alt="" width="122" height="119" /></td>
-  <td style="width: 487px;">&nbsp;The description about the makeup goes here.</td>
-  </tr>
-  </tbody>
-  </table>
-  <h2>&nbsp;</h2>
-</textarea>
 
-  </div>
+  <div class="row">
 
-  <div class="col-md-4">
 
-    <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;">
-     <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">YOUR BOX</div>
-     <div class="panel-body" style="min-height:450px;">
+    <div class="col-md-8">
 
-        <div class="row">
-          <div class="col-xs-4" style="text-align:center;">
 
-               <img width="100%" src="../static/img/sample_products/fake-eyelashes.png">
-               <p class="light" style="margin-top:5px;"><strong>Eyelashes</strong> <br> <span style="font-size:.8em">Party Girl</span></p>
+      <h2 style="text-align:center;margin-top:-25px;font-weight:500;color:#4d4d4d;font-family: 'Rubik', sans-serif;">
+        Campaign Confirmation
+        <br><p style="color:#8d8d8d;">Your store will be setup within 24 hours</p>
+      </h2>
+
+
+
+      <hr>
+
+      <br>
+
+
+      <div class="row">
+
+
+      <div class="col-md-6" style="padding-left:20px;padding-right:20px;">
+
+        <p><strong>Hi {a box.star.name a}!</strong><br><br>
+
+          <p class="light"> You should receive confirmation email shortly!</p>
+          <br>
+          <p>Your confirmation code is: <strong><span ng-bind="box.confirmation_code"></span></strong></p>
+          <br>
+
+            <p class="light"> Our team of beauty experts are setting up your online campaign.<br><br>
+           You will recieve an email with an activation link within 24 hours.</p>
+
+           <br><br>
+
+           <p>Thanks!<br>
+           <i>The Fandemic Team</i></p>
+        <!--
+        <img class="img-responsive" src="/static/img/sarah.jpg" style="border-radius:50%;width:30%;">
+        <p>Your assigned campaign expert is <strong>Sarah Sharpe</strong>.
+        If you have questions please email her at <strong>sarah@fandemic.co</strong></p>
+      -->
+      </div>
+
+      <div class="col-md-6" style="padding-left:20px;padding-right:20px;">
+        <div id="custom" class="option2 sample-order" data-dismiss="modal" href="#">
+
+          <div class="col-md-12" style="margin-bottom:15px;">
+            <h4 style="font-weight:800;">ORDER A SAMPLE</h4>
+            <hr>
+
+            <p class="light">
+              <strong>Free 2 Day Delivery (USA)</strong>
+            </p>
+            <br>
+            <p class="light">
+              <strong>Your Sample products Included:</strong>
+            </p>
+            <div ng-repeat="p in box.products" style="margin-left:15px;">
+              <p class="light">- {a p.name a} (1)</p>
+            </div>
+            <br>
+            <p class="light">
+              *sample products <strong>do not include</strong> custom branding or custom packaging.
+              It is for testing the products.
+            </p>
+            <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                            {% if cat == 'beauty' %}btn-beauty{% endif %}">Order Now</button>
 
           </div>
-          <div class="col-xs-4" style="display:table;height:130px;text-align:center;">
-            <img width="100%" src="http://www.ladyburd.com/packaging/Spring-blush-per-pkg.jpg">
-            <p class="light" style="margin-top:5px;"><strong>Blush</strong> <br> <span style="font-size:.8em">Opal of my Eye</span></p>
+
+          <div style="text-align:center;">
+            <img width="50%" src="/static/img/cc_icons.png">
           </div>
-          <div class="col-xs-4" style="text-align:center;">
-            <img width="100%" src="http://www.ladyburd.com/packaging/36bbpkgmn.jpg">
-            <p class="light" style="margin-top:5px;"><strong>Lipstick</strong> <br> <span style="font-size:.8em">Crimson Red</span></p>
-          </div>
+
         </div>
+    </div>
 
-
-       <h4>Packaging</h4>
-       <hr>
-
-       <div class="row">
-         <div class="col-xs-5" style="text-align:center;">
-
-              <img width="100%" src="../static/img/packaging/box.png">
-              <p class="light" style="margin-top:5px;">Box Style</p>
-
-         </div>
-         <div class="col-xs-2" style="display:table;height:130px;">
-           <strong style="font-size:1.8em;display: table-cell; vertical-align: middle;color:#ebebeb;"><i class="fa fa-plus-circle" aria-hidden="true"></i></strong>
-         </div>
-         <div class="col-xs-5" style="text-align:center;">
-
-              <img  width="100%" src="../static/img/question-mark.svg">
-              <p class="light" style="margin-top:5px;">Packaging</p>
-
-         </div>
-       </div>
-
-     </div>
     </div>
 
 
-    <button id="next-btn6" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                    {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">Next Step</button>
+    </div>
 
 
-   </div>
+    <div class="col-md-4">
+      {% include('builder/summary.html') %}
+    </div>
 
-
-
-
+  </div>
 </div>
