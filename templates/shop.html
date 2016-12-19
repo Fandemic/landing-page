@@ -168,7 +168,7 @@ img.setAttribute('src', 'https://fandemic.co/static/img/live/{{star.id}}/profile
         </div>
         <div class="col-md-6" style="padding:20px;text-align:left;color:#4d4d4d;">
           <h4>About This Box</h4>
-          <p>{{star.campaigns[0].description}}</p>
+          <p>{{star.campaigns[0].description | safe}}</p>
         </div>
 
 
