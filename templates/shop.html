@@ -252,17 +252,17 @@ img.setAttribute('src', 'https://fandemic.co/static/img/live/{{star.id}}/profile
               <span class="campaign-status-subtext">timer will start upon activation</span>
             {% elif star.campaigns[0].status == 'success' %}
                   {% if star.campaigns[0].progress == 1 %}
-                    STEP 1/3: In Production
+                    STEP 1/3: Production
                     <br>  <br>
                       <span class="campaign-status-subtext">{{star.campaigns[0].box_name}} boxes are currently being made by our manufacturers!</span>
 
                     {% elif star.campaigns[0].progress == 2 %}
-                    STEP 2/3: Shipping to Us
+                    STEP 2/3: Packaging
                     <br><br>
-                      <span class="campaign-status-subtext">{{star.campaigns[0].box_name}} boxes are on their way to our warehouse!</span>
+                      <span class="campaign-status-subtext">{{star.campaigns[0].box_name}} boxes are getting put together by our team!</span>
 
                     {% elif star.campaigns[0].progress == 3 %}
-                    STEP 3/3: Shipping to You
+                    STEP 3/3: Shipping
                     <br><br>
                       <span class="campaign-status-subtext">{{star.campaigns[0].box_name}} boxes are on their way to everyone that pre-ordered!</span>
 
