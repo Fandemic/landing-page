@@ -334,7 +334,7 @@ a:focus {
 
   .thumbnail .cost{
     position: absolute;
-    top:0px;
+    top:-3px;
     right: 0px;
     font-weight: 700;
     color: green;
@@ -355,6 +355,16 @@ a:focus {
     width: 30px;
    height: 30px;
    padding:4px;
+  }
+
+  .thumbnail .recycle{
+    position: absolute;
+    top: 0px;
+    left: 25px;
+    opacity: .5;
+    width: 30px;
+    height: 35px;
+    padding: 4px;
   }
 
 .thumbnail .title{

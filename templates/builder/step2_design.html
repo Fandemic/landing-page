@@ -6,41 +6,184 @@
     <div class="col-md-8" style="padding-right:90px;">
 
       <div class="explain-step" style="padding-left:0px;">
-        <h3 class="subtitle">How will your box packaging look?</h3>
-          <i class="light" style="font-weight:300;">use the <strong>arrows</strong> to see all variations!<br>
-          the box and packaging material you choose will be what your items are shipped in
+        <h3 class="subtitle">How will your packaging look?</h3>
+          <i class="light" style="font-weight:300;">
+          the mailer box and packaging material is what your products will ship in
           </i>
       </div>
 
       <!-- Choose your box design -->
-      <h4 style="color:#8d8d8d;">1. Select a <strong>box color</strong></h4>
+      <h4 style="color:#8d8d8d;">1. Select a <strong>box style</strong></h4>
 
 
-      <div class="carousel" data-flickity='{ "initialIndex": 1,"freeScroll": true,"wrapAround": true }'>
+      <!--new version-->
+      <div class="carousel" data-flickity='{ "initialIndex": 1, prevNextButtons: false  }'>
 
-      {% for style in styles %}
-      <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
-
-
-          <div class="content" ng-click="toggleStyle({name:'{{style.name}}',img:'{{style.img}}'})" style="cursor:pointer;width:100%;height:100%;">
+        <div class="carousel-cell item-box">
+          <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
 
 
-                <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/{{style.img}}" alt="">
+            <div class="content" ng-click="toggleStyle({name:'Plain White',img:'plain-white.png'})" style="cursor:pointer;width:100%;height:100%;">
 
-                <span ng-if="box.style.name=='{{style.name}}'">
-                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                </span>
 
-              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">{{style.name}}</h5>
+                  <img class="product-img" style="width:100%;"  src="/static/img/packaging/plain-white.png" alt="">
+
+                  <span ng-if="box.style.name=='Plain White'">
+                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  </span>
+
+                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Plain White</h5>
+
+              </div>
+
+
 
             </div>
+        </div>
+
+        <div class="carousel-cell item-box">
+          <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
 
 
+            <div class="content"  data-toggle="modal" data-target="#box-color-modal" style="cursor:pointer;width:100%;height:100%;">
 
-          </div>
+
+                  <img class="product-img" style="width:100%;"  src="/static/img/packaging/colored-box.png" alt="">
+
+                  <span ng-if="box.style.name=='Solid Color'">
+                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  </span>
+
+                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Solid Color</h5>
+
+              </div>
+
+              <!--price-->
+              <span class="cost">+$5</span>
+              <img class="color-palette" src="/static/img/color-palette.svg">
+
+            </div>
+        </div>
+
+        <div class="carousel-cell item-box">
+          <div class="thumbnail" style="height:100%;width:100%;padding:10px;border: 2px solid #D2AFC9;">
+
+            <div style="background-color: #D2AFC9;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: #fff;
+    border-radius: 0px 0px 4px 0px;
+    font-size: 12px;
+    padding: 5px;
+"><i class="fa fa-star" aria-hidden="true"></i> Premium Upgrade</div>
+
+
+            <div class="content"  data-toggle="modal" data-target="#professional-design-verify" style="cursor:pointer;width:100%;height:100%;">
+
+
+                  <img class="product-img" style="width:100%;"  src="/static/img/packaging/professional-box.png" alt="">
+
+                  <span ng-if="box.style.name=='Professional Design'">
+                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  </span>
+
+                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Professional Design</h5>
+
+              </div>
+
+              <!--price-->
+              <span class="cost">+$5</span>
+
+            </div>
+        </div>
+
+
       </div>
-      {% endfor %}
+      <!-- end of box design -->
+
+      <br>
+
+
+      <!-- Choose your box packaging -->
+      <h4 style="color:#8d8d8d;">2. Select a <strong>packaging material</strong></h4>
+
+      <div class="carousel" data-flickity='{ "initialIndex": 1,prevNextButtons: false }'>
+
+        <div class="carousel-cell item-box">
+          <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+
+
+            <div class="content" ng-click="toggleStyle({name:'',img:''})" style="cursor:pointer;width:100%;height:100%;">
+
+
+                  <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/shredded-paper.jpg" alt="">
+
+                  <span ng-if="box.style.name==''">
+                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  </span>
+
+                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Shredded Paper</h5>
+
+              </div>
+
+
+              <img class="color-palette" src="/static/img/color-palette.svg">
+              <!--<img class="recycle" src="/static/img/recycle.svg">-->
+
+            </div>
+        </div>
+
+        <div class="carousel-cell item-box">
+          <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+
+
+            <div class="content" ng-click="toggleStyle({name:'',img:''})" style="cursor:pointer;width:100%;height:100%;">
+
+
+                  <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/tissue-paper.jpg" alt="">
+
+                  <span ng-if="box.style.name==''">
+                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  </span>
+
+                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Tissue Paper</h5>
+
+              </div>
+
+
+
+              <img class="color-palette" src="/static/img/color-palette.svg">
+              <!--<img class="recycle" src="/static/img/recycle.svg">-->
+
+            </div>
+        </div>
+
+
+        <div class="carousel-cell item-box">
+          <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+
+
+            <div class="content" ng-click="toggleMaterial({name:'Metallic Shreds',img:'metallic-shreds.jpg'})" style="cursor:pointer;width:100%;height:100%;">
+
+
+                  <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/metallic-shreds.jpg" alt="">
+
+                  <span ng-if="box.material.name=='Metallic Shreds'">
+                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  </span>
+
+                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Metallic Shreds</h5>
+
+              </div>
+
+
+
+            </div>
+        </div>
+
+
+
 
       </div>
       <!-- end of box design -->
@@ -48,8 +191,11 @@
       <br><br><br>
 
 
-      <!-- Choose your box packaging -->
-      <h4 style="color:#8d8d8d;">2. Select a <strong>packaging material</strong></h4>
+
+
+
+
+
 
 
 
@@ -106,4 +252,81 @@
                     {% if cat == 'beauty' %}btn-beauty{% endif %} prev"><i  class="fa fa-angle-double-left arrow" aria-hidden="true"></i> Go Back</button>-->
 
 
+</div>
+
+
+<!--VARIATIONS MODAL -->
+<div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="box-color-modal">
+
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:1000px;">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+        <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a Box Color!</h3><hr>
+
+          <div style="text-align:center;">
+
+
+          {% for style in styles %}
+          <!--start of option-->
+          <div  class="clickable"
+                style="display:inline-block;padding:0px 25px;text-align:center;"
+                ng-click="toggleStyle({ name:'{{style.name}}',img:'{{style.img}}' })"
+                data-dismiss="modal">
+            <img width="160px" src="/static/img/packaging/{{style.img}}">
+            <p class="light">{{style.name}}</p>
+
+          </div>
+          <!-- end of option 1 -->
+          {% endfor %}
+
+
+        </div>
+
+
+  </div>
+</div>
+</div>
+
+
+
+<!-- PROFESSIONAL DESIGN VERIFY MODAL-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="professional-design-verify">
+
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content modal-content2" style="padding:30px">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <br>
+
+      <div class="row">
+        <div class="col-md-4">
+            <img class="product-img" style="width:100%;margin-top:-60px;"  src="/static/img/packaging/professional-box.png" alt="">
+              <img class="product-img" style="width:100%;margin-top:-60px;"  src="/static/img/packaging/professional-box2.png" alt="">
+                <img class="product-img" style="width:100%;margin-top:-60px;"  src="/static/img/packaging/professional-box.png" alt="">
+                  <img class="product-img" style="width:100%;margin-top:-60px;"  src="/static/img/packaging/professional-box2.png" alt="">
+        </div>
+        <div class="col-md-8">
+          <h4>Professional Box Design Services</h4>
+          <hr>
+          <p>Stand out from other campaigns with a custom designed mailer box.</p>
+          <p>Fandemic has a team of certified graphic designers who can make you something beautiful!</p>
+
+          <br>
+
+          <div class="well">
+            <p><strong>One Time Fee:</strong> <span style="color:#25CB68;">$19.99</span><br><strong>Turn Around Time:</strong> 2 Days</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:right;">
+        <a ng-click="toggleStyle({name:'Professional Design',img:'professional-box.png'})" data-dismiss="modal" class="btn btn-primary">I Agree</a>
+      </div>
+
+    </div>
+  </div>
 </div>
