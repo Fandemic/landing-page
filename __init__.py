@@ -88,7 +88,7 @@ def catalog(template,cat=None,cat2=None,cat3=None):
 
     #get the box styles and packaging material
     styles = db.design.find({"category":"box"})
-    packaging = db.design.find({"category":"packaging"})
+    packaging = db.packaging.find({"category":"packaging"})
 
     box_items = []
 

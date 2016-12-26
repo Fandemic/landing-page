@@ -160,27 +160,63 @@
         </div>
 
 
+        {% for p in packaging %}
         <div class="carousel-cell item-box">
           <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
 
 
-            <div class="content" ng-click="toggleMaterial({name:'Metallic Shreds',img:'metallic-shreds.jpg'})" style="cursor:pointer;width:100%;height:100%;">
+            <div class="content" data-toggle="modal" data-target="#modal-{{p.sku}}"  style="cursor:pointer;width:100%;height:100%;">
 
 
-                  <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/metallic-shreds.jpg" alt="">
+                  <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/{{p.item_num}}.jpg" alt="">
 
-                  <span ng-if="box.material.name=='Metallic Shreds'">
+                  <span ng-if="box.material.name=='{{p.name}}'">
                     <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
                   </span>
 
-                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Metallic Shreds</h5>
+                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">{{p.name}}</h5>
 
               </div>
 
-
-
             </div>
         </div>
+
+
+        <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modal-{{p.sku}}">
+
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:1000px;height:100%;overflow-y:auto;">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+
+                <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a Box Color!</h3><hr>
+
+                  <div style="text-align:center;">
+
+
+                  {% for v in p.variation %}
+                  <!--start of option-->
+                  <div  class="clickable"
+                        style="display:inline-block;padding:0px 25px;text-align:center;"
+                        ng-click="toggleMaterial({ name:'{{v.name}}',img:'{{p.item_num + '-' + v.item_num}}.jpg' })"
+                        data-dismiss="modal">
+                    <img width="160px" src="/static/img/packaging/{{p.item_num + '-' + v.item_num}}.jpg">
+                    <p class="light">{{v.name}}</p>
+
+                  </div>
+                  <!-- end of option 1 -->
+                  {% endfor %}
+
+
+                </div>
+
+
+          </div>
+        </div>
+        </div>
+
+        {% endfor %}
 
 
 
@@ -191,45 +227,6 @@
       <br><br><br>
 
 
-
-
-
-
-
-
-
-
-      <div class="carousel" data-flickity='{ "initialIndex": 1,"freeScroll": true,"wrapAround": true }'>
-
-      {% for material in packaging %}
-      <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%;padding:15px;">
-
-
-          <div class="content" ng-click="toggleMaterial({name:'{{material.name}}',img:'{{material.img}}'})" style="cursor:pointer;width:100%;height:100%;">
-
-
-                <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/{{material.img}}" alt="">
-
-                <span ng-if="box.material.name=='{{material.name}}'">
-                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                </span>
-
-              <h5 class="title" style="font-size:16px;bottom:30px;color:#999;">{{material.name}}</h5>
-
-            </div>
-
-
-
-          </div>
-      </div>
-      {% endfor %}
-
-
-      </div>
-      <!-- end of box packaging -->
-
-      <br><br><br>
 
   </div>
 
@@ -289,6 +286,11 @@
   </div>
 </div>
 </div>
+
+
+
+
+
 
 
 
