@@ -110,55 +110,6 @@
 
       <div class="carousel" data-flickity='{ "initialIndex": 1,prevNextButtons: false }'>
 
-        <div class="carousel-cell item-box">
-          <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
-
-
-            <div class="content" ng-click="toggleStyle({name:'',img:''})" style="cursor:pointer;width:100%;height:100%;">
-
-
-                  <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/shredded-paper.jpg" alt="">
-
-                  <span ng-if="box.style.name==''">
-                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                  </span>
-
-                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Shredded Paper</h5>
-
-              </div>
-
-
-              <img class="color-palette" src="/static/img/color-palette.svg">
-              <!--<img class="recycle" src="/static/img/recycle.svg">-->
-
-            </div>
-        </div>
-
-        <div class="carousel-cell item-box">
-          <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
-
-
-            <div class="content" ng-click="toggleStyle({name:'',img:''})" style="cursor:pointer;width:100%;height:100%;">
-
-
-                  <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/tissue-paper.jpg" alt="">
-
-                  <span ng-if="box.style.name==''">
-                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                  </span>
-
-                <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Tissue Paper</h5>
-
-              </div>
-
-
-
-              <img class="color-palette" src="/static/img/color-palette.svg">
-              <!--<img class="recycle" src="/static/img/recycle.svg">-->
-
-            </div>
-        </div>
-
 
         {% for p in packaging %}
         <div class="carousel-cell item-box">
@@ -168,7 +119,7 @@
             <div class="content" data-toggle="modal" data-target="#modal-{{p.sku}}"  style="cursor:pointer;width:100%;height:100%;">
 
 
-                  <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/{{p.item_num}}.jpg" alt="">
+                  <img class="product-img" style="width:100%;padding:10px;"  src="/static/img/packaging/{{p.item_num}}.png" alt="">
 
                   <span ng-if="box.material.name=='{{p.name}}'">
                     <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
@@ -177,6 +128,8 @@
                 <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">{{p.name}}</h5>
 
               </div>
+
+              <img class="color-palette" src="/static/img/color-palette.svg">
 
             </div>
         </div>
@@ -190,7 +143,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
 
-                <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a Box Color!</h3><hr>
+                <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {{p.name}} Color!</h3><hr>
 
                   <div style="text-align:center;">
 
@@ -199,9 +152,9 @@
                   <!--start of option-->
                   <div  class="clickable"
                         style="display:inline-block;padding:0px 25px;text-align:center;"
-                        ng-click="toggleMaterial({ name:'{{v.name}}',img:'{{p.item_num + '-' + v.item_num}}.jpg' })"
+                        ng-click="toggleMaterial({ name:'{{v.name}}',img:'{{p.item_num + '-' + v.item_num}}.png' })"
                         data-dismiss="modal">
-                    <img width="160px" src="/static/img/packaging/{{p.item_num + '-' + v.item_num}}.jpg">
+                    <img width="160px" src="/static/img/packaging/{{p.item_num + '-' + v.item_num}}.png">
                     <p class="light">{{v.name}}</p>
 
                   </div>
