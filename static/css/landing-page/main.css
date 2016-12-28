@@ -1152,7 +1152,7 @@ blockquote cite {
 }
 
 #updates {
-    background: url(../../img/updates-bg.png) center center no-repeat scroll;
+    background: url(../../img/blue_bg.png) center center no-repeat scroll;
     background-size: cover;
     padding: 2em;
     position: relative;
@@ -1162,4 +1162,11 @@ blockquote cite {
 
 #updates h2, h3  {
   color:white;
+}
+
+.welcome-message h1 {
+  font-weight:800;
+}
+.welcome-message h2 {
+  word-spacing:10px;
 }
