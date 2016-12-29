@@ -160,14 +160,17 @@ app.controller("builder", function($scope) {
         $scope.box.style = style;
         $scope.box.cost += 10;
         $scope.box.price = $scope.box.cost + 5;
+        $.notify(style.name + " Box Successfully Added", { position:"top right",className:"success" });
       }
-      else if ($scope.box.style.name == style.name){
+      else if ($scope.box.style.variation == style.variation){
         $scope.box.style = null;
         $scope.box.cost -= 10;
         $scope.box.price = $scope.box.cost + 5;
+        $.notify(style.name + " Box Successfully Removed", { position:"top right",className:"success" });
       }
       else{
         $scope.box.style = style;
+        $.notify(style.name + " Box Successfully Added", { position:"top right",className:"success" });
       }
 
     }
@@ -177,12 +180,15 @@ app.controller("builder", function($scope) {
 
       if ($scope.box.material == null){
         $scope.box.material = material;
+        $.notify(material.name + " Successfully Added", { position:"top right",className:"success" });
       }
-      else if ($scope.box.material.name == material.name){
+      else if ($scope.box.material.variation == material.variation){
         $scope.box.material = null;
+        $.notify(material.variation + " Successfully Removed", { position:"top right",className:"success" });
       }
       else{
         $scope.box.material = material;
+        $.notify(material.variation + " Successfully Added", { position:"top right",className:"success" });
       }
 
     }
