@@ -1170,3 +1170,139 @@ blockquote cite {
 .welcome-message h2 {
   word-spacing:10px;
 }
+
+.star-preview-box{
+  width:250px;
+  position:absolute;
+  bottom:-80px;
+  right:-50px;
+}
+
+@media only screen and (max-width: 980px) {
+.star-preview-box{
+    bottom: 11em !important;
+    right: -30px !important;
+  }
+
+}
+
+.gallery {
+  white-space: nowrap;
+  overflow-x: auto;
+  font-size: 0;
+  overflow-y:hidden;
+  width: 100%;
+  margin-top: 0px;
+  padding-bottom: 35px;
+}
+
+
+.product-photo {
+  height: 250px;
+  display: inline-block;
+  opacity:1;
+  width:400px;
+}
+
+.product-photo:hover{
+  opacity:1;
+}
+
+.product-photo img{
+
+}
+
+
+  .thumbnail{
+  	border: 0px;
+  	padding: 0px;
+    border-radius: 4px;
+    position:relative;
+    background-color: #fff;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.24);
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 0px;
+
+  }
+
+  .thumbnail .product-img{
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+
+  .thumbnail .group{
+    border-top: 1px solid rgba(0,0,0,.12);
+    text-align:center;
+    font-size:16px;
+  }
+
+  .thumbnail .btn{
+    font-weight: 700 !important;
+    color: #7d7d7d;
+  }
+
+  .thumbnail .btn:hover{
+    font-weight: 700 !important;
+    color: #7d7d7d;
+    background-color: #ededed;
+  }
+
+  .thumbnail .cost{
+    position: absolute;
+    top:-3px;
+    right: 0px;
+    font-weight: 700;
+    color: green;
+    opacity: .3;
+    width: 40px;
+   height: 40px;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px;
+   border-radius: 20px;
+   padding:6px;
+  }
+
+  .thumbnail .color-palette{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    opacity: .5;
+    width: 30px;
+   height: 30px;
+   padding:4px;
+  }
+
+  .thumbnail .recycle{
+    position: absolute;
+    top: 0px;
+    left: 25px;
+    opacity: .5;
+    width: 30px;
+    height: 35px;
+    padding: 4px;
+  }
+
+.thumbnail .title{
+  text-align: center;
+  color: #7d7d7d;
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+}
+
+.campaigns-header {
+  padding-top:25px;
+  text-align:center
+}
+
+.campaigns-header-hr {
+  border-top: 1px solid #800080;
+  width: 90%;
+  text-align: center;
+  margin-left: 5%;
+  border-top-width: 3px;
+
+}

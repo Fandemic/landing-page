@@ -117,61 +117,55 @@
     </div>
   </div>
    -->
+   <div class="campaigns-header-hr"></div>
 
-  <section class="cta-section section-spacing text-center">
-    <div class="container">
-      <header class="section-header">
-        <h2>Zero risk!</h2>
-        <h3>There is <strong>no cost</strong> to make a kit <br> simply follow the designer and launch your campaign!</h3>
-      </header>
-      <div class="row">
-        <div class="col-md-12"> <a href="/builder" class="btn">Beauty Designer</a>
-          <p>Have a question? Check out the <a href="/faq">FAQ</a> or  shoot us an <a href="mailto:sarah@fandemic.co">email</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
+   <header class="campaigns-header">
+              <h2>Recent Campaigns</h2>
+  </header>
 
-  <section id="activestores">
-    <div class="activestores section-spacing">
-      <div class="container">
-        <header class="section-header" style="text-align:center">
-                <h2>Recent Campaigns</h2>
-                <h3 style="color:#adadad;">What other stars have made:</h3>
-              </header>
-
-          <div class="demo">
-                <div class="item">
-                    <ul id="content-slider" class="content-slider" style="height:400px !important;">
-
-                        {% for star in stars %}
-                        <li>
-                          <a href="/{{star.id}}">
-                            <div class="panel slider-sample" style="text-align:center;position:relative;height:390px;">
-
-                              <img  class="" style="height:60px;position:absolute;top:0px;left:-20px;" src="../static/img/live/{{star.id}}/logo.png">
-                              <img  class="" style="width:250px;border-radius:50%;position:absolute;top:60px;right:0px;" src="../static/img/live/{{star.id}}/profile.png">
-                              <img  class="" style="width:250px;position:absolute;bottom:-80px;right:-50px;" src="../static/img/live/{{star.id}}/box.png">
-
-                            </div>
-                          </a>
-                        </li>
-                        {% endfor %}
-
-                    </ul>
-                </div>
-
-            </div>
+   <div class="gallery">
 
 
+     {% for star in stars %}
 
-        </div>
+     <div class="product-photo" style="padding:20px;position:relative;">
 
-        <p class="store-disclaimer" style="text-align: center; margin-top: 10px;font-size: 12px;">Logos are each star's trademark and property.</p>
+       <a href="/{{star.id}}" target="_blank">
+       <div class="thumbnail" style="width:100%;height:100%;">
+       <div style="width:100%;height:30%;background-image:url('/static/img/live/{{star.id}}/bg.jpg');">
 
-      </div>
+       </div>
+         <img src="/static/img/live/{{star.id}}/logo.png" style="height:30px;position:absolute;bottom:5px;left:5px;opacity:.6;">
+         <img width="200px" height="200px" src="/static/img/live/{{star.id}}/profile.png" style="width:100px;height:100px;position:absolute;top:15px;left:15px;border-radius:50%;">
 
-  </section>
+
+         <img  src="/static/img/live/{{star.id}}/box.png" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
+
+         {% if star.campaigns.0.status != 'live' %}
+         <div style="position:absolute;top:5px;right:5px;font-size:12px;color:#8282dd;font-weight:800;">{{star.campaigns.0.status}}</div>
+         {% else %}
+         <div style="position:absolute;top:5px;right:5px;font-size:12px;color:green;font-weight:800;">{{star.campaigns.0.status}}</div>
+         {% endif %}
+
+
+           <p style="width: 200px;position:absolute;top:70px;left:130px;font-size:14px;font-weight:800;color:#6d6d6d;text-overflow: ellipsis;
+           white-space: nowrap;">{{star.name}}
+             <br><span style="font-weight:400;font-size:14px; overflow: hidden;">{{star.campaigns.0.box_name}}</span>
+             <br><span style="color:#25CB68;">{{star.campaigns.0.num_orders}} orders</span></p>
+
+
+       </div>
+     </a>
+
+     </div>
+
+     {% endfor %}
+ </div>
+ <p class="store-disclaimer" style="text-align: center; margin-top: 10px;font-size: 12px;">Logos are each star's trademark and property.</p>
+
+
+
+
 
 
 
