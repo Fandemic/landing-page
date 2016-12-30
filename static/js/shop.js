@@ -47,9 +47,22 @@ app.controller("shop", function($scope) {
   $scope.toggle_product = function(product){
     $scope.view_mode = 'product';
     $scope.product_view = product;
+
+
     $('html').animate({
         scrollTop: 0
     }, 2000);
+
+
+    $.get("https://fandemic.co/"+product.img_url)
+    .done(function() {
+        // Do something now you know the image exists.
+
+    }).fail(function() {
+        $scope.product_view.img_url = "/static/img/beauty-items/" + product.item_num + ".png"
+
+    })
+
   }
 
   $scope.estimated_arrival = function(){
@@ -229,3 +242,16 @@ app.controller("shop", function($scope) {
 
 
 });
+
+
+//check if an image exists
+function imageExists(image_url){
+
+    var http = new XMLHttpRequest();
+
+    http.open('HEAD', image_url, false);
+    http.send();
+
+    return http.status != 404;
+
+}

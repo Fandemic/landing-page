@@ -38,7 +38,7 @@ class Shipping:
         try:
           parcel = easypost.Parcel.create(
             predefined_package = "Parcel",
-            weight = 2
+            weight = 24
           )
         except easypost.Error as e:
           print e.message
@@ -50,7 +50,7 @@ class Shipping:
             length = 8,
             width = 6,
             height = 2,
-            weight = 2
+            weight = 24
           )
         except easypost.Error as e:
           raise e
@@ -62,7 +62,7 @@ class Shipping:
           origin_country = "US",
           quantity = 2,
           value = 96.27,
-          weight = 21.1
+          weight = 24
         )
         customs_info = easypost.CustomsInfo.create(
           customs_certify = 1,

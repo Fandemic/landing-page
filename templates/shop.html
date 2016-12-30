@@ -84,7 +84,7 @@ img.setAttribute('src', 'https://fandemic.co/static/img/live/{{star.id}}/profile
 
   <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
   <div class="profile-img-container" style="margin-top:1em;padding:20px;">
-    <img class="profile-img" style="border-radius: 50%;" src="/static/img/live/{{star.id}}/profile.png">
+    <img class="profile-img" style="border-radius: 50%;" src="/static/img/live/{{star.id}}/profile.png" [src]="invalidPath" onError="this.src='/static/img/user.png'">
   </div>
 
   {% if star.campaigns[0].style.color_primary != '' %}
@@ -214,7 +214,7 @@ img.setAttribute('src', 'https://fandemic.co/static/img/live/{{star.id}}/profile
           {% for p in star.campaigns[0].products %}
           <div class="col-sm-2" style="padding-left:0px;">
             <div class="thumbnail btn-product"
-                 ng-click="toggle_product({name:'{{p.name}}',img_url:'/static/img/live/{{star.id}}/{{p.item_num}}.png'
+                 ng-click="toggle_product({name:'{{p.name}}',img_url:'/static/img/live/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
                                           {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
               <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/{{p.item_num}}.png" style="width:100%;padding:10px;">
 
