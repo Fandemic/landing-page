@@ -54,14 +54,10 @@ app.controller("shop", function($scope) {
     }, 2000);
 
 
-    $.get("https://fandemic.co/"+product.img_url)
-    .done(function() {
-        // Do something now you know the image exists.
-
-    }).fail(function() {
-        $scope.product_view.img_url = "/static/img/beauty-items/" + product.item_num + ".png"
-
-    })
+    if (imageExists(product.img_url) == false)
+    {
+        $scope.product_view.img_url = "/static/img/beauty-items/" + product.item_num + ".png";
+      }
 
   }
 

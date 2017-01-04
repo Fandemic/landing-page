@@ -731,37 +731,9 @@ def launchStoreRequest():
         trello.addCard_CR(info['star']['name'],trello_string)
 
 
-        #send the email
+        #send an activate store email to the user
         toaddr = [info['star']['email']]
-        subject = "Your Beauty Box Campaign is Almost Ready!"
-        html = """
-                Hi """+ info['star']['name'] +""",<br><br>
-
-                Woohoo! One step closer to launching your beauty kit!<br><br>
-                I just need some important things before we launch :)<br><br>
-
-                <div style="font-size:16px">
-                <strong>Please send me the following:</strong><br>
-                1. Your Social Media URL's (Youtube, Instagram etc pages)<br>
-                2. Short 1-2 sentence description of your box<br>
-                3. Logo and/or any designs if you have<br>
-                4. Profile photo for the store
-                </div>
-
-                <br><br>
-                Once I get this information I can send over an activation link for your store!
-                Meanwhile you can see your store here, https://fandemic.co/""" + info['star']['id'] + """
-                <br><br>
-                You will have 7 days to sell as many boxes as possible!
-                <br><br>
-                If you want a <strong>sample</strong> before launching you can order one at the end of the <a href="https://fandemic.co/builder#""" + info['star']['id'] + """">Beauty Box Builder</a>.
-
-
-                <br><br>
-                Excited to watch you launch!<br><br>
-                Sarah :)
-                """
-        email.send(toaddr,subject,html)
+        email.sendActivate(toaddr,info['star']['id'],info['box_name'])
 
     return '';
 
