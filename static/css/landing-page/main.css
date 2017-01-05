@@ -833,7 +833,7 @@ blockquote cite {
    ========================================================================== */
 
 .footer {
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: white;
   padding: 50px 0 15px
 }
 .footer a, .footer h2, .footer .h2, .footer h3, .footer .h3, .footer h4, .footer .h4 {
@@ -1152,9 +1152,9 @@ blockquote cite {
 }
 
 #updates {
-    background: url(../../img/blue_bg.png) center center no-repeat scroll;
+    background: url(../../img/makeup-bg3.jpg) left center repeat scroll;
     background-size: cover;
-    padding: 2em;
+    padding: 5em 2em;
     position: relative;
     color: #fff;
     background-position: 0 53%;
