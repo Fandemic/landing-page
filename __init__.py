@@ -276,6 +276,14 @@ def store(template,starID):
     else:
         donations = '0'
 
+
+    #pull default descriptions for products
+    c = 0
+    for product in star['campaigns'][0]['products']:
+        star['campaigns'][0]['products'][c]['description'] = db.items.find_one({'name':product['name']})['description'] #find the star
+        c += 1
+
+
     return render_template(template, donations = donations, star = star,
                                      braintree=braintree.ClientToken.generate())
 
