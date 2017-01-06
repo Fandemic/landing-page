@@ -280,7 +280,7 @@ def store(template,starID):
     #pull default descriptions for products
     c = 0
     for product in star['campaigns'][0]['products']:
-        star['campaigns'][0]['products'][c]['description'] = db.items.find_one({'name':product['name']})['description'] #find the star
+        star['campaigns'][0]['products'][c]['description'] = db.items.find_one({'name':product['name']})['description'].replace("'","\\'") #find the star
         c += 1
 
 

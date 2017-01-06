@@ -121,7 +121,7 @@
 
   <div id="menu" style="background:url(/static/img/live/{{star.id}}/bg.jpg);background-position:cover;">
 
-    <img class="profile-img" src="/static/img/live/{{star.id}}/profile.png" style="border-radius: 50%;padding:10px;">
+    <img class="profile-img" src="/static/img/live/{{star.id}}/profile.png" style="border-radius: 50%;padding:10px;" [src]="invalidPath" onError="this.src='/static/img/user.png'">
 
 
     {% if star.campaigns[0].style.color_primary != '' %}
@@ -153,9 +153,16 @@
 
 
   <div class="nav">
-      <img class="star-btn" width="50px" src="/static/img/live/{{star.id}}/profile.png" >
+      <img class="star-btn" width="50px" src="/static/img/live/{{star.id}}/profile.png" [src]="invalidPath" onError="this.src='/static/img/user.png'">
     <div class="name">
-      <img style="height:40px;margin-top:-6px;" src="../static/img/live/{{star.id}}/logo.png">
+      <script>
+      if (imageExists("../static/img/live/{{star.id}}/logo.png") == true){
+        document.write('<img style="height:40px;margin-top:4px;" src="../static/img/live/{{star.id}}/logo.png">');
+      }
+      else{
+        document.write('<h2 style="float:center;height:40px;margin-top:-6px;">{{star.campaigns[0].brand_name}}</h2>')
+      }
+      </script>
     </div>
     <!--<div class="cart-btn"><i class="fa fa-bars" aria-hidden="true"></i></div>-->
   </div>
@@ -242,7 +249,7 @@
         </div>
         <div  style="padding:20px;text-align:left;color:#4d4d4d;">
           <h4>About This Box</h4>
-          <p>{{star.campaigns[0].description}}</p>
+          <p>{{star.campaigns[0].description | safe}}</p>
         </div>
 
 
@@ -284,8 +291,8 @@
           {% for p in star.campaigns[0].products %}
           <div class="col-xs-4" style="">
             <div class="thumbnail btn-product" style="margin-bottom:2px;"
-                 ng-click="toggle_product({name:'{{p.name}}',img_url:'/static/img/live/{{star.id}}/{{p.item_num}}.png'
-                                          {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
+            ng-click="toggle_product({name:'{{p.name}}',img_url:'/static/img/live/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
+                                     {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
               <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/{{p.item_num}}.png" style="width:100%;padding:10px;">
             </div>
             <p style="font-size:9px;color:#8d8d8d;">{{p.name}}</p>
