@@ -27,7 +27,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
-db = MongoClient('45.79.159.210', 27017).fandemic
+db = MongoClient('45.79.159.210', 27018).fandemic
 
 mode = 'live';
 
