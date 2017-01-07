@@ -5,6 +5,32 @@
 */
 
 
+.promotion{
+  width: 100%;
+  background: url('../img/promotion-bg2.jpg');
+  background-size: cover;
+  padding: 10px 50px;
+  margin-top: -20px;
+  background-position: top 500px;
+  position: relative;
+
+}
+
+.promotion h2{
+  color: rgba(255,255,255,.7);
+  font-family: 'Lobster', cursive;
+  text-align: left;
+}
+
+.promotion .exit{
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 30px;
+  color: rgba(255,255,255,.7);
+  cursor: pointer;
+}
+
 .noUi-connect {
     background: #25CB68;
     box-shadow: inset 0 0 3px rgba(51,51,51,.45);
