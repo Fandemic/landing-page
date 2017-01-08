@@ -56,7 +56,15 @@ app.controller("shop", function($scope) {
 
     if (imageExists(product.img_url) == false)
     {
+      if (product.item_num.length == 8){
+        product.item_num = product.item_num.slice(0, -3);
         $scope.product_view.img_url = "/static/img/beauty-items/" + product.item_num + ".png";
+        console.log(product.item_num);
+      }
+      else{
+        $scope.product_view.img_url = "/static/img/beauty-items/" + product.item_num + ".png";
+        console.log(product.item_num);
+      }
       }
 
   }
