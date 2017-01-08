@@ -134,7 +134,7 @@ app.controller("builder", function($scope) {
          $scope.box.products.splice(index, 1);
          $scope.box.cost -= parseInt(product.cost);
          $scope.box.price = $scope.box.cost + 8;
-         $.notify(product.name + " Successfully Removed From Box", { position:"top right",className:"success" });
+         $.notify(product.name + " Successfully Removed From Box", { position:"top right",className:"error" });
       }
 
       else if ($scope.box.products.length >= 6){
