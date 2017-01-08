@@ -145,12 +145,12 @@
               <p>{{item.description}}</p>
               <br>
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <p style="color:green;font-weight:600;">Production Cost: ${{item.price|round|int}}</p>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <img style="margin-top:-2em;width:6em" src="../../static/img/partners/{{item.company.logo_url}}">
-                </div>
+                </div> -->
               </div>
               {% if item.company.customizable == True %}
               <i class="light">*each beauty item will be printed with your custom name or logo</i>
