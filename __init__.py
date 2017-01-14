@@ -62,11 +62,6 @@ def home():
     return render_template('index.html', categories = categories, stars=stars, star_names = star_names, storeCount = storeCount)
 #-------------------------------------------
 
-@app.route('/blog')
-def blogHome():
-    posts = db.blog.find({})
-    return render_template('blog.html', posts = posts)
-
 def toList(s):
     return [str(x) for x in s.split(',') if x]
 
@@ -186,6 +181,21 @@ def reminderMobile():
 
     return ''
 
+#-------------------------------------------
+
+@app.route('/terms')
+def terms():
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
+    return render_template('terms.html', star_names=star_names)
+#-------------------------------------------
+
+@app.route('/blog')
+def blogHome():
+    posts = db.blog.find({})
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
+    return render_template('blog.html', star_names=star_names, posts = posts)
+
+#-------------------------------------------
 
 @app.route('/blog/<url>')
 def blogPost(url):
@@ -202,14 +212,9 @@ def blogPost(url):
         title = posts['title']
     #content = post.content
     #print post['content']
+    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id    
 
-    return render_template('blog-posts.html', content = content, title = title, author = author, date = date)
-#-------------------------------------------
-
-@app.route('/terms')
-def terms():
-    star_names = db.stars.find({'campaigns.0.status': 'pending'}).limit(5) #find stars with mock and pull just name and id
-    return render_template('terms.html', star_names=star_names)
+    return render_template('blog-posts.html',star_names=star_names, content = content, title = title, author = author, date = date)
 #-------------------------------------------
 
 @app.route('/faq')
