@@ -31,7 +31,9 @@ app.controller("builder", function($scope) {
         'phone': '',
         'img_url': ''
       },
-      confirmation_code: randomString(12)
+      confirmation_code: randomString(12),
+      logo: '',
+      box_img: ''
     }
 
     $scope.step = 1;

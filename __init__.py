@@ -18,6 +18,7 @@ from trello import Trello
 from werkzeug.utils import secure_filename
 from mailer import Mailer
 from shipping import Shipping
+from cdn import CDN
 import braintree
 
 
@@ -742,6 +743,16 @@ def launchStoreRequest():
         #send an activate store email to the user
         toaddr = [info['star']['email']]
         email.sendActivate(toaddr,info['star']['id'],info['box_name'])
+
+        if info['logo'] != '':
+            #submit logo to cloudinary_url
+            cdn = CDN();
+            cdn.uploadLogo(info['logo'],info['star']['id']);
+
+        if info['box_img'] != '':
+            #submit box to cloudinary_url
+            cdn = CDN();
+            cdn.uploadBox(info['box_img'],info['star']['id']);
 
     return '';
 
