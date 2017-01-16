@@ -4,26 +4,33 @@
 <title>About Us</title>
 
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fandemic's Story</title>
-  <meta name="description" content="A fundraising platform for social media stars and organizations">
-  <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="../static/img/favicon.ico" type="image/x-icon">
-
-  <link href="../static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link href="../static/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../static/css/landing-page/magnific-popup.css" rel="stylesheet">
-  <link href="../static/css/landing-page/main.css" rel="stylesheet">
-  <link href="../static/css/landing-page/lightslider.css" rel="stylesheet">
-  <link href="../static/css/bootstrap/bootstrap-blog.css" rel="stylesheet">
-</head>
+  {% include 'header.html' %}
 
 <style>
+  .purple-font {
+    color:#800180;
+  }
+.badge {
+  display: inline-block;
+  min-width: 30px;
+  padding: 6px 15px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  color: #FFF;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #800180;
+  border-radius: 10px;
+}
+
+  hr{
+    height: 1px;
+    color: #800180;
+
+  }
+
   .row {
     margin-bottom: 2em;
   }
@@ -34,6 +41,7 @@
     background: url('/static/img/blog/presentation.png');
     background-size: cover;
     height:100%;
+    padding-bottom:10px;
   }
   .list-group-item {
     border: 0px !important;
@@ -114,7 +122,7 @@
   }
 
   .white-font{
-    color:rgb(204, 204, 204);
+    color:rgb(255, 255, 255);
   }
 </style>
 
@@ -129,19 +137,6 @@
 
   <!-- Page Header -->
   <!-- Set your background image for this header on the line below. -->
-  <header class="intro-header" style="background-image: url('../../static/img/about-us.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <div class="site-heading">
-            <h1>About Us</h1>
-            <hr class="small">
-            <span class="subheading">how we got started. why we care. who we are.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
 
   <!-- Main Content -->
   <div style="color:#4c4c4c" class="about-page">
@@ -149,11 +144,14 @@
 
     <div class="row">
       <div class="col-md-6">
-        <h1 class="title left">Why is it so difficult?</h1>
+        <h1 class="title left">Selling beauty products is intense.</h1>
+        <br>
         <p>
-          Creating your own business should not take away from your valuable content creation time, after all, that is how you got to where you are today.
+          You have to find the best manufacturers, design a secure store, and ship everything yourself.
           <br>
-          We set out to provide the tools and resources to allow you to create your own custom beauty kits online with zero cost, while you continue to create the content your fans love.
+          Can you do all that while still keeping up with all your social media postings? After all, that is how you got here.
+          <br><br>
+          Make your <a href="/beauty">beauty kit</a> and you'll be ready to accept payments right away.
         </p>
       </div>
       <div class="col-md-6">
@@ -167,18 +165,17 @@
       <div class="col-md-6">
         <h1 class="white-font title right">Our Story</h1>
         <p class="white-font">
-          In the Spring of 2016, two technology and design gurus (Brandon & Ethan) had the idea of reinventing the way beauty influencers connect with their fans.
+          Two technology and design gurus (Brandon & Ethan) had the idea of reinventing the way influencers give back to their fans.
           <br>
-          They wanted to create a simple platform that connects manufacturers with social media influencers with a simple kit builder and sleek store to sell it on.
-          <br>
-          This year has been an epidemic of fan growth and thus Fandemic was born out of necessity.
+          They wanted to empower anybody with a social media following to create their own beauty line.
+          <br><br>
         </p>
       </div>
     </div>
 
     <div class="row" style="text-align:center;background: #f7f8f9;padding: 1.2em;">
           <h1 class="title">We do all the hard stuff!</h1>
-          <p>Let us take care of manufactureing, technology and products</p>
+          <p>Let us take care of production, technology and shipping</p>
         <div class="row">
           <div class="col-md-12"> <a href="/builder" class="btn">Build a Box</a>
             <p style="font-size:10px;">Have a question? <a href="mailto:sarah@fandemic.co"> Shoot us an email </a></p>
@@ -199,24 +196,22 @@
           <hr>
           <ul class="list-group">
             <li class="list-group-item justify-content-between">
-              Researching manufacturers <span class="badge badge-default badge-pill">30 days</span>
+              Researching and contacting the best manufacturers <span class="badge badge-default badge-pill">30 days</span>
             </li>
             <li class="list-group-item justify-content-between">
-              Building store website <span class="badge badge-default badge-pill">14 days</span>
+              Building a store website that looks great on any device <span class="badge badge-default badge-pill">30 days</span>
             </li>
             <li class="list-group-item justify-content-between">
-              Handling payments securely <span class="badge badge-default badge-pill">10 days</span>
+              Accepting payments securely and automating the taxes <span class="badge badge-default badge-pill">2 days</span>
             </li>
             <li class="list-group-item justify-content-between">
-              Boxing and shipping products <span class="badge badge-default badge-pill">4 days</span>
-            </li>
-            <li class="list-group-item justify-content-between">
-              Accounting <span class="badge badge-default badge-pill">2 days</span>
+              Boxing and shipping each order yourself <span class="badge badge-default badge-pill">4 days</span>
             </li>
           </ul>
         </p>
       </div>
     </div>
+    <hr>
     <div class="row">
       <div class="col-md-6">
         <h1 class="title left">What we <strong>DO</strong> like:</h1>
