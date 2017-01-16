@@ -24,51 +24,98 @@
 </head>
 
 <style>
-.brand-logo-image {
-  width:15em;
-}
-h1.title{
-  font-size:4em;
-}
-.row h3{
-  color:#4c4c4c;
-}
-.team-details p{
-  color:#4c4c4c;
-}
-.team-details img{
-  width: 70%;
-  border-radius: 50%;
-}
-.team .container{
-  background-color: #4D9BD3;
-  width: 100%;
-  padding: 2em;
-  margin-bottom: -6em;
-}
-.team .title {
-  color: white;
-}
-.team .team-info{
-  color: white ;
-}
-.team h4, .team h5, .team p{
-  color: white !important;
-}
-.team-details {
-  width:80%;
-}
-.nav a{
-  font-weight: 600;
-}
-
-@media only screen
-  and (max-device-width: 960px) {
-    .container.about{
-      padding:5em;
-    }
+  .row {
+    margin-bottom: 2em;
+  }
+  .about-page {
+    padding:1.2em;
+  }
+  .story-background {
+    background: url('/static/img/blog/presentation.png');
+    background-size: cover;
+    height:100%;
+  }
+  .list-group-item {
+    border: 0px !important;
+  }
+  .pitch-with-background {
+    text-align:center;
+  }
+  .brand-logo-image {
+    width: 15em;
   }
 
+  h1.title {
+    font-size: 36px;
+  }
+
+  h1.title.left {
+    text-align: center;
+  }
+
+  h1.title.right {
+    text-align: center;
+  }
+
+  .row p{
+    font-size: 1.875rem;
+  }
+
+  .row h3 {
+    color: #4c4c4c;
+  }
+
+  .team-details p {
+    color: #4c4c4c;
+  }
+
+  .team-details img {
+    width: 70%;
+    border-radius: 50%;
+  }
+
+  .team .container {
+    background-color: #4D9BD3;
+    width: 100%;
+    padding: 2em;
+    margin-bottom: -6em;
+  }
+
+  .team .title {
+    color: white;
+  }
+
+  .team .team-info {
+    color: white;
+  }
+
+  .team h4,
+  .team h5,
+  .team p {
+    color: white !important;
+  }
+
+  .team-details {
+    width: 80%;
+  }
+
+  .nav a {
+    font-weight: 600;
+  }
+
+  @media only screen and (max-device-width: 960px) {
+    .container.about {
+      padding: 5em;
+    }
+  }
+  .col-md-6 {
+    padding-left: 5em;
+    padding-right: 5em;
+  }
+
+  .white-font{
+    color:rgb(204, 204, 204);
+  }
 </style>
 
 <body>
@@ -87,7 +134,7 @@ h1.title{
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           <div class="site-heading">
-            <h1>Our Story</h1>
+            <h1>About Us</h1>
             <hr class="small">
             <span class="subheading">how we got started. why we care. who we are.</span>
           </div>
@@ -97,97 +144,159 @@ h1.title{
   </header>
 
   <!-- Main Content -->
-  <div style="color:#4c4c4c" class="container about">
+  <div style="color:#4c4c4c" class="about-page">
     <br>
-        <div class="row">
-          <h1 class="title">About Us</h1>
-          <div class="col-md-8">
-          <h3>What do we even do?</h3>
-            <p>
-              Fandemic is a free web platform that helps influencers (and quite frankly anybody) design and sell their own industry-specific "kits" or "boxes".
-              Whether it be a Beauty Kit, Fitness Kit, or plain old Lifestyle Kit, Fandemic's team has you covered!
-              <br><br>
-              We designed the super intuitive <a href="../builder">Box Builder</a> that allows you to create your own box experience to sell to your fan base.
-              <br><br>
-              A <strong>box experience</strong> is simply the initial reaction someone has upon receiving your glorious branded kit. The plan is that each recepient takes pictures and videos of their box experience and shares on social media, thus growing your already popular brand image!
-            </p>
-          </div>
-          <div class="col-md-4">
-            <img src="../static/img/showcase/aboutpage_caci.png">
-          </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="title left">Why is it so difficult?</h1>
+        <p>
+          Creating your own business should not take away from your valuable content creation time, after all, that is how you got to where you are today.
           <br>
-          <hr>
-          <!-- <br>
-
-          <h1 class="title">Mission Statement & Vision</h1>
-          <h3>What keeps us up at night?</h3>
-          <p>
-            Our mission is to create a fun and easy platform for anybody to create their own custom branded boxes to sell to their fans with zero risk.
-            <br><br>
-            We want to ensure that each box submission has the ability to turn into a full fledged business so that nothing is stopping you from submitting your own box today.
-            <br><br>
-            We pride ourselves on being as transparent as possible with our revenue model, pricing, manufacturers and hiring so if there is anything you want to know <a href="mailto:sarah@fandemic.co">just ask</a>.
-            <br>
-          </p> -->
-
-
-
-        </div>
+          We set out to provide the tools and resources to allow you to create your own custom beauty kits online with zero cost, while you continue to create the content your fans love.
+        </p>
       </div>
+      <div class="col-md-6">
+        <img src="../static/img/blog/sarahbox.png">
+      </div>
+    </div>
 
-        <section class="team section-spacing text-center" id="team" >
-          <div class="container" style="  background: url('/static/img/about_bg.png');">
-            <header class="section-header">
-              <h1 class="title">The Crew</h1>
-              <h3>Who even are we?</h3>
-            </header>
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="team-details">
-                  <figure>
-                    <img src="../static/img/brandon2.jpg" alt="Team Member">
-                  </figure>
-                  <div class="team-info">
-                    <h4>Brandon Walsh</h4>
-                    <h5>Technical Lead</h5>
-                    <hr>
-                    <p>A development expert, Brandon leads the design & development team for the Fandemic platform!</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="team-details">
-                  <figure>
-                    <img src="../static/img/sarah.png" alt="Team Member">
+    <div class="row story-background">
+      <div class="col-md-6">
+      </div>
+      <div class="col-md-6">
+        <h1 class="white-font title right">Our Story</h1>
+        <p class="white-font">
+          In the Spring of 2016, two technology and design gurus (Brandon & Ethan) had the idea of reinventing the way beauty influencers connect with their fans.
+          <br>
+          They wanted to create a simple platform that connects manufacturers with social media influencers with a simple kit builder and sleek store to sell it on.
+          <br>
+          This year has been an epidemic of fan growth and thus Fandemic was born out of necessity.
+        </p>
+      </div>
+    </div>
 
-                  </figure>
-                  <div class="team-info">
-                    <h4>Sarah Sharpe</h4>
-                    <h5>Marketing Guru</h5>
-                    <hr>
-                    <p>A communications expert, Sarah is on the ball with Fandemic's client communications to keep you informed!</p>
-                  </div>
+    <div class="row" style="text-align:center;background: #f7f8f9;padding: 1.2em;">
+          <h1 class="title">We do all the hard stuff!</h1>
+          <p>Let us take care of manufactureing, technology and products</p>
+        <div class="row">
+          <div class="col-md-12"> <a href="/builder" class="btn">Build a Box</a>
+            <p style="font-size:10px;">Have a question? <a href="mailto:sarah@fandemic.co"> Shoot us an email </a></p>
+          </div>
+        </div>
+    </div>
 
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="team-details">
-                  <figure>
-                    <img src="../static/img/ethan2.jpg" alt="Team Member">
-                  </figure>
-                  <div class="team-info">
-                    <h4>Ethan Steininger</h4>
-                    <h5>Business Lead</h5>
-                    <hr>
-                    <p>A business expert, Ethan leads the marketing and product team for the Fandemic experience!</p>
-                  </div>
-                </div>
-              </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <img src="../static/img/blog/caciboxes.png">
+      </div>
+      <div class="col-md-6">
+        <h1 class="title right">What we
+          <strong>DON'T</strong> like:</h1>
+        <p>
+          Creating your own beauty business <strong>SHOULD NOT</strong> involve:
+          <hr>
+          <ul class="list-group">
+            <li class="list-group-item justify-content-between">
+              Researching manufacturers <span class="badge badge-default badge-pill">30 days</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+              Building store website <span class="badge badge-default badge-pill">14 days</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+              Handling payments securely <span class="badge badge-default badge-pill">10 days</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+              Boxing and shipping products <span class="badge badge-default badge-pill">4 days</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+              Accounting <span class="badge badge-default badge-pill">2 days</span>
+            </li>
+          </ul>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="title left">What we <strong>DO</strong> like:</h1>
+        <p>
+          All you have to do:
+          <hr>
+          <ul class="list-group">
+            <li class="list-group-item justify-content-between">
+              Build your kit <span class="badge badge-default badge-pill">5 minutes</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+              Promote your store <span class="badge badge-default badge-pill">7 Days</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+              Fans receive their kits <span class="badge badge-default badge-pill">14 Days</span>
+            </li>
+          </ul>
+        </p>
+      </div>
+      <div class="col-md-6">
+        <img src="../static/img/blog/gerribox.png">
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <section class="team text-center" id="team" style="padding-bottom: 3em;">
+    <div class="container" style="  background: url('/static/img/about_bg.png');">
+      <header class="section-header">
+        <h1 class="title">The Crew</h1>
+        <h3>Who even are we?</h3>
+      </header>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="team-details">
+            <figure>
+              <img src="../static/img/brandon2.jpg" alt="Team Member">
+            </figure>
+            <div class="team-info">
+              <h4>Brandon Walsh</h4>
+              <h5>Technical Lead</h5>
+              <hr>
+              <p>A development expert, Brandon leads the design & development team for the Fandemic platform!</p>
             </div>
           </div>
-        </section>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-details">
+            <figure>
+              <img src="../static/img/sarah.png" alt="Team Member">
+
+            </figure>
+            <div class="team-info">
+              <h4>Sarah Sharpe</h4>
+              <h5>Marketing Guru</h5>
+              <hr>
+              <p>A communications expert, Sarah is on the ball with Fandemic's client communications to keep you informed!</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-details">
+            <figure>
+              <img src="../static/img/ethan2.jpg" alt="Team Member">
+            </figure>
+            <div class="team-info">
+              <h4>Ethan Steininger</h4>
+              <h5>Business Lead</h5>
+              <hr>
+              <p>A business expert, Ethan leads the product and marketing team for the Fandemic platform!</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
 
 
@@ -212,4 +321,4 @@ h1.title{
 <!--site-footer end-->
 
 
-  {% include 'analytics.html' %}
+{% include 'analytics.html' %}
