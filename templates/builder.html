@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 
+<div id="main-loader" style="position:fixed;width:100%;height:100%;background-color:#fff;top: 0;
+left: 0;z-index:999999999999;overflow:none;">
+
+<img width="200px" style="position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;" src="/static/img/builder-loading.gif">
+
+</div>
+
 <head>
 
   <meta charset="utf-8">
@@ -95,6 +107,13 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
 </head>
 
+<script>
+$(window).load(function() {
+		// Animate loader off screen
+		$("#main-loader").fadeOut("slow");;
+	});
+</script>
+
 <img width="150px" id="big-loader" src="/static/img/loader.gif" style="position:fixed;z-index:99999;top:40%;left:45%;display:none;">
 
 <body ng-controller="builder" style="background-color:#F1F1F1">
@@ -107,6 +126,7 @@
         {% include('builder/crumbs.html') %}
 
         <div class="builder-container" style="min-height:560px;">
+
 
 
           {% include('builder/step1_products.html') %}

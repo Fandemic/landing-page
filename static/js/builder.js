@@ -60,15 +60,15 @@ app.controller("builder", function($scope) {
       else if ((star.email == '') || (star.email == undefined)){
         $('#launch-store-button').notify("please enter your email", { position:"top center"});
       }
-      else if ((star.phone == '') || (star.phone == undefined)){
-        $('#launch-store-button').notify("please enter your phone number", { position:"top center"});
-      }
+      //else if ((star.phone == '') || (star.phone == undefined)){
+        //$('#launch-store-button').notify("please enter your phone number", { position:"top center"});
+      //}
       else if (!validateEmail(star.email)){
         $('#launch-store-button').notify("invalid email address!", { position:"top center"});
       }
-      else if (!validatePhone(star.phone)){
-        $('#launch-store-button').notify("invalid phone number!", { position:"top center"});
-      }
+      //else if (!validatePhone(star.phone)){
+        //$('#launch-store-button').notify("invalid phone number!", { position:"top center"});
+      //}
 
       else{
 

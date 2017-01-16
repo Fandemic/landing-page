@@ -1,11 +1,12 @@
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="launch-store-modal">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="launch-store-modal">
+  <div class="modal-dialog modal-md">
     <div class="modal-content" style="padding:30px">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h2 class="modal-title" id="myModalLabel">Sign Up</h2>
-      <p class="light">fill out the form below and we will create your store</p>
+      <h2 class="modal-title" id="myModalLabel">Complete Your Box!</h2>
+      <p class="light" style="margin-bottom:0px">fill out the form below and receive a free store via email</p>
+      <p class="light">you will also have the option to order a sample</p>
       <hr>
       <div>
         <div class="row">
@@ -20,13 +21,15 @@
               <input id="launch_email" name="email" type="email" class="form-control" placeholder="email" ng-model="box.star.email" required/>
             </div>
             <br>
+            <!--
             <div class="input-group input-group-lg">
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone-square"></i></span>
               <input id="launch_phone" name="phone" type="tel" class="form-control" placeholder="phone" ng-model="box.star.phone" style="z-index:0 !important;" required/>
             </div>
+          -->
           </div>
         </div>
-        <hr>
+
         <button class="btn btn-primary btn-nav btn-beauty" style="width:100%;" id="launch-store-button" ng-click="launch_store()">
           <img id="loader" width="20px" src="/static/img/loader.gif"> Submit
         </button>
