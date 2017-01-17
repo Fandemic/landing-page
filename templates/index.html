@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Quicksand" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
 
 
 <style>
@@ -38,15 +39,15 @@
       bottom: -140px;
       right: -20px;">
 
-      <div  style="width: 250px;
+      <div  id="desktop-box" style="width: 300px;
       position: absolute;
-      bottom: -120px;
+      bottom: -70px;
       left: 40px;
       text-align:center;">
         <a href="/lifeoflanie" target="_blank">
         <img src="../static/img/home/lanie_box.png" style="width:inherit">
-        <p style="color:#fff;font-size:13px;tetx-align:center;margin-bottom:0px;">LifeOfLanie Official Beauty Box</p>
-        <i class="light" style="font-size:10px;">click to view store</i>
+        <p class="light" style="font-size:13px;tetx-align:center;margin-bottom:0px;">LifeOfLanie Official Beauty Box (<i class="light" style="font-size:10px;">click to view store</i>)</p>
+
         </a>
       </div>
 
@@ -54,9 +55,12 @@
       <div class="row">
 
         <div class="col-md-12">
-          <h1 style="font-weight:400;font-family: 'Lobster Two', sans-serif;">Design Your Own Beauty Kit</h1>
 
-          <h2>Design | Promote | Earn </h2>
+
+
+          <h1 style="font-weight:400;font-size:60px;font-family: 'Caveat', cursive;">Design Your Own Beauty Kit</h1>
+
+          <h2 style="font-weight:200;">Design | Promote | Earn </h2>
           <!-- <div class="play-btn">
             <a href="https://vimeo.com/160944827" class="play litebox-hero">
               <img src="../static/img/play-btn.png" alt="play">
@@ -64,8 +68,9 @@
           </div> -->
           <div class="cta-btn" style="margin-top:2em">
             <a href="/builder" class="btn" style="font-size:22px;background-color:#ca1488;">Start Designing</a>
-            <p style="padding-bottom:2em"><span class="total-number-1">0</span> kits already made!</p>
+            <p style="padding-bottom:2em;font-weight:200;opacity:.6;"><span class="total-number-1">0</span> kits already created!</p>
           </div>
+          <img id="mobile-box" src="../static/img/home/lanie_box.png" style="width:70%;display:none">
         </div>
       </div>
     </section>
@@ -86,26 +91,29 @@
     <div class="container">
       <header class="section-header">
         <h1>How Does <!--<img height="25px" style="margin-top:14px;opacity:.8;height:35px;" src="../static/img/logo-pink.png">--> it Work?</h1>
-        <h3 style="color:#1d1d1d;">Instantly launch Your Own Makeup Line for Free</h3>
+        <h3 style="color:#1d1d1d;">Instantly launch Your Own Makeup Line</h3>
       </header>
+      <hr class="visible-xs">
       <div class="row">
         <div class="col-sm-4">
           <a href="/builder/beauty">
           <img width="120px" style="padding:20px;" src="../static/img/home/box.svg" alt="benefits of product">
-          <h4 style="font-family: 'Lobster Two', sans-serif;color:#898989;">Design Beauty Kit</h4>
+          <h4 style="font-family: 'Caveat', cursive;color:#898989;">Design Your Beauty Kit</h4>
           <!--<p>Select Items, create a brand, and design packaging!</p>-->
           <span class="arrow-icon">&nbsp;</span>
          </a>
         </div>
+        <hr class="visible-xs">
         <div class="col-sm-4">
           <img width="120px" src="../static/img/home/promotion.png" alt="benefits of product">
-          <h4 style="font-family: 'Lobster Two', sans-serif;color:#1d1d1d;color:#898989;">Promote Your Store</h4>
+          <h4 style="font-family: 'Caveat', cursive;color:#1d1d1d;color:#898989;">Promote Your Store</h4>
           <!--<p>You have 7 days to <strong>pre-sell</strong> your kits, if you sell more than 25 you get paid!-->
           <span class="arrow-icon">&nbsp;</span>
         </div>
+        <hr class="visible-xs">
         <div class="col-sm-4">
           <img width="120px" style="padding:20px;" src="../static/img/home/money.svg" alt="benefits of product">
-          <h4 style="font-family: 'Lobster Two', sans-serif;color:#1d1d1d;color:#898989;">Make Money</h4>
+          <h4 style="font-family: 'Caveat', cursive;color:#1d1d1d;color:#898989;">Make Money</h4>
           <!--<p></p>-->
 
           <!--<span class="arrow-icon">&nbsp;</span>-->
@@ -366,12 +374,5 @@ var autoplaySlider = $('#content-slider').lightSlider({
     }
 });
 });
-
-
-$(window).load(function () {
-          $("#lanie").slideDown();
-    });
-
-
 
 </script>

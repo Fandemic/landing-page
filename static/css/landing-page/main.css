@@ -31,10 +31,6 @@
    1.General
    ========================================================================== */
 
-#lanie{
-  display:none;
-}
-
 body {
   font-family: 'Source Sans Pro', sans-serif;
   line-height: 1.5;
@@ -179,7 +175,7 @@ b, strong {
   padding-right: .2em;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: #7BDC87;
+  background-color: #800080;
   transition: all 0.3s ease-in-out;
 }
 .navbar-default .navbar-toggle:hover .icon-bar, .navbar-default .navbar-toggle:focus .icon-bar {
@@ -214,11 +210,13 @@ b, strong {
   background: #7BDC87;
   color: #fff;
   border: 1px solid #7BDC87;
-  background-color:transparent;border-color:#800080;color:#800080;
+  background-color:transparent;
+  border-color:#CA1488;
+  color:#CA1488;
 }
 .navbar-default.stuck .navbar-nav .btn:hover, .navbar-default.stuck .navbar-nav .btn:focus {
-  background: #800080!important;
-  color: #fff;
+  background: #CA1488!important;
+  color: #fff !important;
 }
 .navbar-default.stuck {
   position: fixed;
@@ -934,6 +932,27 @@ blockquote cite {
   background: #7BDC87;
 }
 
+
+/* ==========================================================================
+   Mobile devices
+   ========================================================================== */
+
+@media only screen and (max-width: 500px) {
+    .welcome-message {
+        padding-top: 60px;
+    }
+    #lanie{
+      display: none;
+    }
+    #mobile-box{
+      display: block !important;
+      margin: 0 auto;
+    }
+    #desktop-box{
+      display: none;
+    }
+}
+
 /* ==========================================================================
    19.Small devices (tablets, 768px and up)
    ========================================================================== */
@@ -941,6 +960,7 @@ blockquote cite {
 @media (min-width: 768px) {
   .hero-section {
     padding: 0 0 7.5em;
+    /*padding-bottom: 5px;*/
   }
   .welcome-message {
     margin-top: 8.25em;
@@ -1009,6 +1029,7 @@ blockquote cite {
 @media (min-width: 992px) {
   .hero-section {
     padding: 3em 0 8.75em;
+    padding-bottom: 5em;
   }
   .navbar-default {
     background-color: transparent;
@@ -1028,7 +1049,7 @@ blockquote cite {
     padding-left: 3em;
   }
   .welcome-message {
-    margin-top: 5em;
+    margin-top: 7em;
   }
   .welcome-message h1 {
     font-size: 56px;
