@@ -13,6 +13,7 @@ app.controller("builder", function($scope) {
       box_name: 'Box Name',
       font1: "font-family: 'Quicksand'",
       font2: "font-family: 'Arvo'",
+      font_color: '',
       description: null,
       cost: 0,
       price: 50,
