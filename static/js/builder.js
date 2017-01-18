@@ -435,16 +435,36 @@ app.controller("builder", function($scope) {
 
 
 $("#step4").on('click', '.next-btn', function() {
-  $('.steps').hide();
-  $('#step5').fadeIn('fast', function() {
-      $(".carousel").flickity('resize');
 
-});
-  $('#crumb4').removeClass( "current");
-  $('#crumb4').addClass( "touched");
-  $('#crumb5').addClass('current');
-  $("#next6").addClass("on");
-  $("html, body").animate({ scrollTop: 76 }, "slow");
+  html2canvas($("#myBox"), {
+  onrendered: function (canvas) {
+    var dataURL = canvas.toDataURL("img/png");
+
+    console.log(dataURL);
+    window.open(dataURL);
+
+    var appElement = document.querySelector('[ng-app=app]');
+    $scope = angular.element(appElement).scope();
+    $scope = $scope.$$childHead; // add this and it will work
+    $scope.$apply(function() {
+        $scope.box.box_img = dataURL;
+    });
+
+    $('.steps').hide();
+    $('#step5').fadeIn('fast', function() {
+        $(".carousel").flickity('resize');
+
+  });
+    $('#crumb4').removeClass( "current");
+    $('#crumb4').addClass( "touched");
+    $('#crumb5').addClass('current');
+    $("#next6").addClass("on");
+    $("html, body").animate({ scrollTop: 76 }, "slow");
+
+      }
+  });
+
+
 });
 
 $("#step5").on('click', '.next-btn', function() {

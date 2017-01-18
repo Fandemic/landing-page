@@ -536,7 +536,7 @@ class Mailer:
                             <tbody>
                                 <tr>
                                     <td bgcolor="#ffffff">
-                                        <img src="https://fandemic.co/static/img/live/"""+ID+"""/box.png" border="0" align="center" class="fluid" style="margin-left:25%;width: 20em; max-width: 600px; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
+                                        <img src="https://res.cloudinary.com/fandemic/stars/"""+ID+"""/box.png" border="0" align="center" class="fluid" style="margin-left:25%;width: 20em; max-width: 600px; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
                                     </td>
                                 </tr>
                                 <!-- Hero Image, Flush : END -->

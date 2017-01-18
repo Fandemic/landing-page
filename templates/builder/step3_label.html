@@ -290,20 +290,8 @@ function imageIsLoaded(e) {
 
 $(function() {
   $("#next-btn4").on('click', function () {
-       html2canvas($("#myBox"), {
-       onrendered: function (canvas) {
-         var dataURL = canvas.toDataURL();
-         $.ajax({
-           type: "POST",
-           url: "/launch-store-request",
-           data: {
-              imgBase64: dataURL
-           }
-         }).done(function(o) {
-           console.log('saved');
-         });
-           }
-       });
+
+       
   });
 });
 </script>
