@@ -438,6 +438,8 @@ $("#step4").on('click', '.next-btn', function() {
 
   html2canvas($("#myBox"), {
   onrendered: function (canvas) {
+    $( '#myBox img' ).css( 'width', '100%' );
+
     var dataURL = canvas.toDataURL("img/png");
 
     console.log(dataURL);
