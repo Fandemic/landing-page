@@ -92,34 +92,62 @@
 
     <!-- variations modal -->
     {% if item.variation|length > 0 %}
-    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}-variation">
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}-variation" style="padding-right: 15px;">
 
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:1000px;">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:1000px;max-height:100%;overflow-y:auto;">
+
+
+           <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
 
             <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {{ item.name }} Color!</h3><hr>
 
-              <div style="text-align:center;">
+              <div  style="text-align:center;">
+
               {% for v in item.variation %}
-              <div  class="clickable"
+
+              {% if item.variation|length > 12 %}
+              <div
+              class="col-md-3 clickable"
+                    style="display:inline-block;padding:0px 25px;text-align:center;margin-bottom:15px;"
+                    ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
+                    data-dismiss="modal">
+                <img class="img-responsive" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
+                <p class="light">{{v.name}}</p>
+
+              </div>
+              {% elif item.variation|length <= 4 %}
+              <div
+              class="col-md-6 clickable"
                     style="display:inline-block;padding:0px 25px;text-align:center;"
                     ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
                     data-dismiss="modal">
-                <img width="160px" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
+                <img class="" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
                 <p class="light">{{v.name}}</p>
 
-
+              </div>
+              {% else %}
+              <div
+              class="col-md-3 clickable"
+                    style="display:inline-block;padding:0px 25px;text-align:center;"
+                    ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
+                    data-dismiss="modal">
+                <img class="img-responsive" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
+                <p class="light">{{v.name}}</p>
 
               </div>
+              {% endif %}
+
               {% endfor %}
             </div>
 
 
       </div>
     </div>
+  </div>
   </div>
     {% endif %}
 
