@@ -1,200 +1,259 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
 
-<html lang="en" class="container wrapper">
+<div id="main-loader" style="position:fixed;width:100%;height:100%;background-color:#fff;top: 0;
+left: 0;z-index:999999999999;overflow:none;">
+
+<img width="200px" style="position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;" src="/static/img/builder-loading.gif">
+
+</div>
 
 <head>
+
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=320, height=device-height, target-densitydpi=medium-dpi" />
 
-  <title></title>
-  <meta name="description" content="Use a desktop or tablet">
-  <meta name="author" content="Fandemic">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <title>Fandemic Box Builder</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="/static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/static/css/normalize.css">
+  <link rel="stylesheet" href="/static/css/slider.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/cs-select.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/cs-skin-elastic.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+  <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.15/jquery.zoom.min.js"></script>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <link rel="stylesheet" href="/static/css/builder-mobile.css">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2.0/dist/flickity.css" media="screen">
+  <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Oregano" rel="stylesheet">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.4.3/tinymce.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+      <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Alfa+Slab+One|Antic+Slab|Arbutus+Slab|Arvo" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Bad+Script|Bevan|Bitter|Crete+Round|Cutive" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Droid+Sans|Glegoo|Graduate|Kreon|Lato" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Life+Savers|Lobster|Maiden+Orange|Monsieur+La+Doulaise|Montserrat|Muli" rel="stylesheet">
 
+   <link href="https://fonts.googleapis.com/css?family=Nixie+One|Noto+Sans|Open+Sans|Pacifico" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Peralta|Podkova" rel="stylesheet">
+
+   <link href="https://fonts.googleapis.com/css?family=PT+Sans|PT+Sans+Narrow|PT+Serif+Caption|Quicksand|Roboto|Roboto+Slab" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Rokkitt|Sanchez|Source+Code+Pro|Stint+Ultra+Condensed|Ubuntu|Vast+Shadow" rel="stylesheet">
+
+
+
+
+
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+   <script src="/static/js/sticker.min.js"></script>
+   <script src="/static/js/jscolor.min.js"></script>
+   <script src="/static/js/html2canvas.js"></script>
+   <script src="/static/js/html2canvas.js"></script>
+
+
+
+
+
+
+   <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Indie+Flower|Kaushan+Script|Lobster|Roboto|Pacifico|Slabo+27px|Yellowtail|Petit+Formal+Script|Finger+Paint" rel="stylesheet">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/css/ion.rangeSlider.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/css/ion.rangeSlider.skinModern.min.css">
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.4/js/ion.rangeSlider.min.js"></script>
+
+   <link href="https://fonts.googleapis.com/css?family=Arimo:400,400i,700,700i" rel="stylesheet">
+
+   <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.0.4/wNumb.min.js"></script>
+    <!-- In <head> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css" rel="stylesheet">
+
+    <!-- In <body> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-checkbox/1.4.0/bootstrap-checkbox.min.js"></script>
+
+
+
+
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300i|Bilbo+Swash+Caps|Calligraffitti|Caveat|Courgette|Knewave|Marck+Script|Niconne" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
 </head>
 
-{% include 'header.html' %}
+<script>
+$(window).load(function() {
+		// Animate loader off screen
+		$("#main-loader").fadeOut("slow");;
+	});
+</script>
 
-<body>
-  <!--navigation-->
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#home">
-          <img class="logo-nav" alt="logo" src="../static/img/logo-nav_fullsize_wordart.png" style="padding-top:5px" width="124" height="45">
-          <img class="logo-head" width="150px" alt="logo" src="../static/img/logowhite.png">
-        </a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-        <ul class="nav navbar-nav nav-left">
-          <li><a style="font-weight:600;" href="/about">About</a></li>
-          <li><a style="font-weight:600;" href="/partners">Partners</a></li>
-          <li><a style="font-weight:600;" href="/benefits">Benefits</a></li>
-          <li><a style="font-weight:600;" href="/faq">Help</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" data-toggle="modal" data-target="#how-fandemic-works" class="btn">How Fandemic Works</a></li>
-        </ul>
-      </div>
+<img width="150px" id="big-loader" src="/static/img/loader.gif" style="position:fixed;z-index:99999;top:40%;left:45%;display:none;">
+
+<body ng-controller="builder" style="background-color:#F1F1F1">
+
+  {% include('builder/nav.html') %}
+
+
+      <section class="image" id="form" style="background-color:#f5f3f2;">
+
+        {% include('builder/crumbs.html') %}
+
+        <div class="builder-container" style="min-height:560px;">
+
+
+
+          {% include('mobile/builder/step1_products.html') %}
+
+          {% include('mobile/builder/step2_design.html') %}
+
+          {% include('mobile/builder/step3_label.html') %}
+
+          {% include('mobile/builder/step4_finish.html') %}
+
+          {% include('mobile/builder/step5_confirm.html') %}
+
+          {% include('mobile/builder/summary.html') %}
+
+          {% include 'launch-store-modal.html' %}
+
+        </div>
+
+      </section>
+
+      <!--
+      <div class="gallery">
+
+        <div class="product-photo">
+          <img src="/static/img/beauty_slider/1.jpg">
+        </div>
+
+        <div class="product-photo">
+          <img src="/static/img/beauty_slider/6.jpg">
+        </div>
+
+        <div class="product-photo">
+          <img src="/static/img/beauty_slider/3.jpg">
+        </div>
+
+        <div class="product-photo">
+          <img src="/static/img/beauty_slider/2.jpg">
+        </div>
+
     </div>
-  </nav>
-
-  <!--navigation end-->
-  <section class="">
-  <br>
-
-  <div class="row" style="text-align:center;">
-    <img id="user-img" style="width: 40%;border-radius:50%;text-align:center;margin:0 auto;" src="/static/img/profile.png" ng-src="{a box.star.img_url a}" alt="benefits of product">
-  </div>
-  <hr>
-  <div class="row">
-    <h3 style="font-size:27px; padding-left:2em; padding-right:2em; text-align:center;color:#1d1d1d;">
-       <strong>Beauty Box Design Studio</strong> is not available for mobile devices!
-    </h3>
+    -->
+    <div class="gallery">
 
 
-  </div>
-  <br>
-  <div style="text-align:center;">Click The <strong>Remind Me</strong> and we will send you an email reminding you to check this out on your computer!</div>
-<div id="email-found-mobile" class="row" style="padding-top:1em;text-align:center;">
-    <p id="notify" style="display:none;text-align:center;font-size:10px;">Thanks! We will send you an email reminder later!</p>
-  <button id="remind" class="btn btn-success btn-lg next-btn btn-nav btn-beauty" style="background-color: #7BDC87; font-weight:700;25px;">Send Reminder In 1 Hour!</button>
-</div>
-<div id="email-not-found-mobile" class="row" style="padding-top:2em; margin: 0 7% 0 10%;">
+      <h4 style="font-weight:300;color:#adadad;text-align:center;margin-top:20px;"> <i class="fa fa-fire" aria-hidden="true"></i> Trending Campaigns</h4>
 
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Enter Email...">
-    <span class="input-group-btn">
-      <button style="padding: 17px 24px;" class="btn btn-secondary" type="button">Remind Me</button>
-    </span>
-  </div>
-</div>
-<br><br><br>
 
-<div class="gallery">
+      {% for star in stars %}
 
-  <div class="product-photo">
-    <img src="/static/img/beauty_slider/1.jpg">
-  </div>
+      <div class="product-photo" style="padding:20px;position:relative;">
 
-  <div class="product-photo">
-    <img src="/static/img/beauty_slider/6.jpg">
-  </div>
+        <a href="/{{star.id}}" target="_blank">
+        <div class="thumbnail" style="width:100%;height:100%;">
+        <div style="width:100%;height:30%;background-image:url('/static/img/live/{{star.id}}/bg.jpg');">
 
-  <div class="product-photo">
-    <img src="/static/img/beauty_slider/3.jpg">
+        </div>
+          <img src="/static/img/live/{{star.id}}/logo.png" style="height:30px;position:absolute;bottom:5px;left:5px;opacity:.6;">
+          <img width="200px" height="200px" src="/static/img/live/{{star.id}}/profile.png" style="width:100px;height:100px;position:absolute;top:15px;left:15px;border-radius:50%;">
+
+
+          <img  src="/static/img/live/{{star.id}}/box.png" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
+
+          {% if star.campaigns.0.status != 'live' %}
+          <div style="position:absolute;top:5px;right:5px;font-size:12px;color:#8282dd;font-weight:800;">{{star.campaigns.0.status}}</div>
+          {% else %}
+          <div style="position:absolute;top:5px;right:5px;font-size:12px;color:green;font-weight:800;">{{star.campaigns.0.status}}</div>
+          {% endif %}
+
+
+            <p style="width: 200px;position:absolute;top:70px;left:130px;font-size:14px;font-weight:800;color:#6d6d6d;text-overflow: ellipsis;
+            white-space: nowrap;">{{star.name}}
+              <br><span style="font-weight:400;font-size:14px; overflow: hidden;">{{star.campaigns.0.box_name}}</span>
+              <br><span style="color:#25CB68;">{{star.campaigns.0.num_orders}} orders</span></p>
+
+
+        </div>
+      </a>
+
+      </div>
+
+      {% endfor %}
+
   </div>
 
-  <div class="product-photo">
-    <img src="/static/img/beauty_slider/2.jpg">
-  </div>
 
-</div>
-</section>
+  <!-- Footer -->
+  <footer class="footer" style="margin-top:2px;margin-bottom:60px;">
+    <div class="row">
 
+      <p style="text-align:center;color:#4d4d4d; font-size:16px;"><small>All products are <strong>cruelty free</strong> & <strong>not tested on animals</strong></small></p>
+
+    </div>
+    <div class="row">
+      <p style="text-align:center;color:#4d4d4d;font-size:14px;"><small>© 2016 Fandemic Inc. | All Rights Reserved | <a href="../terms">Terms & Conditions</a></small></p>
+    </div>
+  </footer>
 
 </body>
 
-<!-- Footer -->
-<footer class="footer" style="margin-top:2px;width:100%;">
-  <div class="row">
-
-  </div>
-  <div class="row">
-    <p style="text-align:center;color:#4d4d4d"><small>© 2016 Fandemic Inc. | All Rights Reserved | <a href="../terms">Terms & Conditions</a></small></p>
-  </div>
-</footer>
-
-
 </html>
 
-<script src="/static/js/jquery-1.12.2.min.js"></script>
+{% include 'howfandemicworks-modal.html' %}
+{% include 'builder/faq-modal.html' %}
+
+
+{% include 'analytics.html' %}
+
+
+{% if box_items|length != 0 %}
+  <script>
+  $('#collapse2').collapse("show");
+  </script>
+{% endif %}
+
+<script src="/static/js/jquery.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/landing-page/waypoints.min.js"></script>
-<script src="/static/js/landing-page/jquery.animateNumber.min.js"></script>
-<script src="/static/js/landing-page/waypoints-sticky.min.js"></script>
-<script src="/static/js/landing-page/retina.min.js"></script>
-<script src="/static/js/landing-page/jquery.magnific-popup.min.js"></script>
-<script src="/static/js/landing-page/jquery.ajaxchimp.min.js"></script>
-<script src="/static/js/landing-page/main.js"></script>
-<script src="/static/js/landing-page/lightslider.js"></script>
-
-<script>
-var pageUrl = window.location.href;
-var StarIdURL = pageUrl.split('#')[1];
-if (pageUrl.includes("#")){
-  $('#email-found-mobile').show();
-  $('#email-not-found-mobile').hide();
-}
-else {
-  $('#email-not-found-mobile').show();
-  $('#email-found-mobile').hide();
-}
-
-
-
-$('#remind').on( "click", remind );
-
-function remind(){
-  var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-
-  $.ajax({
-     url: '/builder-remind-mobile',
-     data: {id: hash},
-     type: 'GET',
-     success: function(response) {
-      console.log(response);
-     },
-     error: function(error) {
-         console.log(error);
-     },
-     complete: function() {
-         $('#remind').hide();
-         $('#notify').show();
-     }
- });
-}
-
-
-
-$(document).ready(function() {
-
-     //extract the id of the user from the URL
-     if(window.location.hash) {
-         var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-
-         $.ajax({
-            url: '/builder-alert-mobile',
-            data: {id: hash},
-            type: 'GET',
-            success: function(response) {
-              data = JSON.parse(response);
-              $('#user-img').attr("src", data['img_url']);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-
-     } else {
-         // No hash found
-     }
-
-
-
-   });
-
-
-
-</script>
+<script src="/static/js/slider.js"></script>
+<script src="/static/js/builder.js"></script>
+<script src="/static/js/classie.js"></script>
+<script src="/static/js/selectFx.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.3/css/bootstrap-dialog.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.3/js/bootstrap-dialog.min.js"></script>

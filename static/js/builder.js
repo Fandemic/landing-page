@@ -440,8 +440,6 @@ $("#step4").on('click', '.next-btn', function() {
   onrendered: function (canvas) {
     var dataURL = canvas.toDataURL("img/png");
 
-    console.log(dataURL);
-    window.open(dataURL);
 
     var appElement = document.querySelector('[ng-app=app]');
     $scope = angular.element(appElement).scope();

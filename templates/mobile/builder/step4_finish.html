@@ -1,0 +1,360 @@
+<div id="step5" class="steps container" style="padding-top:30px;padding-bottom:60px;display:none;">
+
+  <section class="row">
+
+
+    <!-- START OF LEFT SIDE PANEL -->
+    <div class="col-md-8" style="padding-left:40px;padding-right:40px;">
+
+
+      <!-- Choose your box design -->
+      <h4 style="color:#8d8d8d;">1. Select a <strong>Pricing Option</strong></h4>
+
+      <div class="carousel" data-flickity='{ "initialIndex": 1,"freeScroll": true,"wrapAround": true }'>
+
+
+        <!-- WORDLY -->
+        <div class="carousel-cell item-box">
+          <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+            <div class="content" ng-click="togglePrice({profit:0,charity:0})"
+                 style="cursor:pointer;width:100%;height:100%;">
+                  <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/customer.svg" alt="">
+
+                  <span ng-if="box.charity==0 && box.profit==0">
+                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  </span>
+
+                  <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                    <div class="progress-bar progress-bar-default" role="progressbar" style="width:100%">
+                      $0 for <strong>You</strong>
+                    </div>
+                  </div>
+
+                <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Follower Friendly
+                <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 0 a}</span></h5>
+              </div>
+            </div>
+        </div>
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" style="cursor:pointer;width:100%;height:100%;"
+               ng-click="togglePrice({profit:0,charity:4})">
+
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/donation.svg" alt="">
+
+
+
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
+                    $4 for <strong>Charity</strong>
+                  </div>
+                </div>
+
+                <span ng-if="box.charity==4 && box.profit==0">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Helping Hand
+              <br> <span class="money" >Retail: ${a box.cost + 4 a}</span></h5>
+            </div>
+          </div>
+      </div>
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="togglePrice({profit:4,charity:0})"
+               style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/piggy-bank.svg" alt="">
+
+                <span ng-if="box.charity==0 && box.profit==4">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Piggy Bank
+              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 4 a}</span></h5>
+
+              <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                  $4 for <strong>You</strong>
+                </div>
+              </div>
+
+            </div>
+          </div>
+      </div>
+
+
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="togglePrice({profit:4,charity:4})" style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/versatile.svg" alt="">
+
+                <span ng-if="box.charity==4 && box.profit==4">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
+
+                <!-- split bar -->
+                <div class="progress">
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:50%">
+                    $4 for <strong>Charity</strong>
+                  </div>
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
+                    $4 for <strong>You</strong>
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Versatile
+              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span></h5>
+            </div>
+          </div>
+      </div>
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="togglePrice({profit:0,charity:8})" style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/angel.svg" alt="">
+
+                <span ng-if="box.charity==8 && box.profit==0">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
+
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
+                    $8 for <strong>Charity</strong>
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Angel
+              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span></h5>
+            </div>
+          </div>
+      </div>
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="togglePrice({profit:8,charity:0})" style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/money-maker.svg" alt="">
+
+                <span ng-if="box.charity==0 && box.profit==8">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
+
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                    $8 for <strong>You</strong>
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Money Maker
+                <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span></h5>
+
+            </div>
+          </div>
+      </div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <!-- end of box design -->
+
+      <br><br>
+
+
+
+
+    </div>
+
+    <div class="col-md-8">
+    <!-- Choose your box design -->
+    <h4 style="color:#8d8d8d;">2. Write a description for your box</h4>
+    <i class="light" style="font-weight:300;">this will be displayed on your store!</i>
+
+    <textarea>
+
+    </textarea>
+
+  </div>
+
+
+
+    <div class="bottom-fixed-menu">
+
+      <button data-toggle="modal" data-target="#summary-modal" class="btn btn-primary btn-lg btn-nav
+                      {% if cat == 'beauty' %}btn-beauty{% endif %}
+                      view-btn" >View Box</button>
+
+      <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                  {% if cat == 'beauty' %}btn-beauty{% endif %}" data-toggle="modal" data-target="#launch-store-modal">Finish</button>
+
+    </div>
+
+
+
+ </section>
+
+</div>
+
+<script>
+var slider = document.getElementById('rangeslider');
+
+var range_all_sliders = {
+	'min': [     10, 1 ],
+	'30%': [   25,  1 ],
+	'50%': [  50, 1 ],
+  '70%': [  100, 1 ],
+  '90%': [  400, 1 ],
+	'max': [ 1000 ]
+};
+
+noUiSlider.create(slider, {
+	start: 25,
+  connect: [true, false],
+  tooltips: wNumb({ decimals: 0 }),
+  range: range_all_sliders,
+  pips: {
+		mode: 'range',
+		density: 100
+	},
+  format: wNumb({
+		decimals: 0
+	})
+});
+
+//angular update goal function
+function change(goal) {
+    var appElement = document.querySelector('[ng-app=app]');
+    var $scope = angular.element(appElement).scope();
+    $scope = $scope.$$childHead; // add this and it will work
+    $scope.$apply(function() {
+        if (goal < 10){
+          goal = 10;
+        }
+        else if (goal > 1000){
+          goal = 1000;
+        }
+        $scope.box.goal = goal;
+    });
+}
+
+//update when clicking off of goal input
+$('#goal_qty').on('blur', function() {
+    var goal = $(this).val();
+    if (goal < 10){
+      goal = 10;
+    }
+    else if (goal > 1000){
+      goal = 1000;
+    }
+    slider.noUiSlider.set(goal);
+    $('#goal_qty').val(goal);
+    change(goal);
+});
+
+//update when hitting enter on goal input
+$('#goal_qty').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+      var goal = $(this).val();
+      if (goal < 10){
+        goal = 10;
+      }
+      else if (goal > 1000){
+        goal = 1000;
+      }
+      slider.noUiSlider.set(goal);
+      $('#goal_qty').val(goal);
+      change(goal);
+    }
+});
+
+slider.noUiSlider.on('slide', function(){
+	change(slider.noUiSlider.get());
+  $('#goal_qty').val(slider.noUiSlider.get());
+});
+
+//console.log(slider.noUiSlider.get());
+
+$('.noUi-tooltip').hide();
+
+$( ".noUi-handle" ).hover(
+  function() {
+    $('.noUi-tooltip').show();
+  }, function() {
+    $('.noUi-tooltip').hide();
+  }
+);
+
+
+//RETAIL PRICE JS
+
+//angular update goal function
+function change_retail_price(goal) {
+    var appElement = document.querySelector('[ng-app=app]');
+    var $scope = angular.element(appElement).scope();
+    $scope = $scope.$$childHead; // add this and it will work
+    $scope.$apply(function() {
+
+        $scope.box.price = goal;
+    });
+}
+
+//update when clicking off of goal input
+$('#retail_price').on('blur', function() {
+    var newPrice = $(this).val();
+    newPrice = newPrice.replace('$',''); //if user includes $ sign
+
+    if (isNumber(newPrice)){
+      change_retail_price(newPrice);
+      $('#retail_price').val('$'+parseFloat(newPrice).toFixed(2).toString());
+    }
+
+});
+
+//update when hitting enter on goal input
+$('#retail_price').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+      var newPrice = $(this).val();
+      newPrice = newPrice.replace('$',''); //if user includes $ sign
+
+      if (isNumber(newPrice)){
+        change_retail_price(newPrice);
+        $('#retail_price').val('$'+parseFloat(newPrice).toFixed(2).toString());
+      }
+
+    }
+});
+
+//function that validates number
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+</script>
+
+<style>
+.noUi-handle:hover {
+  cursor: pointer;
+}
+#mceu_11-body{
+  display: none;
+}
+
+</style>

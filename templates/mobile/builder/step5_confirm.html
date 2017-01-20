@@ -1,0 +1,94 @@
+<div id="step6" class="steps container" style="margin-top:60px;display:none;height:800px;">
+
+
+
+  <div class="row">
+
+
+    <div class="col-md-8">
+
+
+      <h2 style="text-align:center;margin-top:-25px;font-weight:500;color:#4d4d4d;font-family: 'Rubik', sans-serif;">
+        Campaign Confirmation
+        <br><p style="color:#8d8d8d;">Your store will be ready within 24 hours</p>
+      </h2>
+
+
+
+      <hr>
+
+      <br>
+
+
+      <div class="row">
+
+
+      <div class="col-md-6" style="padding-left:20px;padding-right:20px;">
+
+        <p><strong>Hey {a box.star.name a}!</strong><br><br>
+
+          <p class="light"> You will receive an email confirmation very soon!</p>
+          <br>
+          <p>Your confirmation code is: <strong><span ng-bind="box.confirmation_code"></span></strong></p>
+
+            <p class="light"> Our team of beauty experts are setting up your online store.<br><br>
+           You will later recieve an email to <strong>activate</strong> or <strong>modify</strong> your store as well!</p>
+
+           <br>
+
+           <p>Thanks!<br>
+           <i>The Fandemic Team</i></p>
+        <!--
+        <img class="img-responsive" src="/static/img/sarah.jpg" style="border-radius:50%;width:30%;">
+        <p>Your assigned campaign expert is <strong>Sarah Sharpe</strong>.
+        If you have questions please email her at <strong>sarah@fandemic.co</strong></p>
+      -->
+      </div>
+
+      <div class="col-md-6" style="padding-left:20px;padding-right:20px;">
+        <div id="custom" class="option2 sample-order" data-dismiss="modal" href="#">
+
+          <div class="col-md-12" style="margin-bottom:15px;">
+            <h4 style="font-weight:800;">ORDER A SAMPLE</h4>
+            <hr>
+
+            <p class="light">
+              <strong>Free 2 Day Delivery (USA)</strong>
+            </p>
+            <br>
+            <p class="light">
+              <strong>Your Sample products Included:</strong>
+            </p>
+            <div ng-repeat="p in box.products" style="margin-left:15px;">
+              <p class="light">- {a p.name a} (1)</p>
+            </div>
+            <br>
+            <p class="light">
+              *sample products <strong>do not include</strong> custom branding or custom packaging.
+              It is for testing the products.<br>
+              **you will receive a <strong>refund</strong> for your sample when you make a video demonstration!
+            </p>
+            <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                            {% if cat == 'beauty' %}btn-beauty{% endif %}">Order Now</button>
+
+          </div>
+
+          <div style="text-align:center;">
+            <img width="50%" src="/static/img/cc_icons.png">
+          </div>
+
+        </div>
+    </div>
+
+    </div>
+
+
+    </div>
+
+
+    <div class="col-md-4">
+      {% include('builder/summary.html') %}
+    </div>
+
+  </div>
+</div>

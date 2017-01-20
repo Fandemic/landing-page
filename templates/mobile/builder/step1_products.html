@@ -1,0 +1,260 @@
+<div id="step2" class="steps container" style="min-height:800px;padding-bottom:50px;margin-top:30px;">
+
+
+
+  <div class="row">
+
+    <div class="col-md-8">
+
+      <div class="explain-step">
+        <h3 class="subtitle">Which products do you want in your box?</h3>
+
+
+        <!--<i class="light" style="font-weight:300;">
+                        add items to your box by <strong>clicking</strong> on them <br>
+                         all products are declared cruelty-free by PETA<br>
+                         <strong>Order a sample of chosen products at the end!</strong><br><br>
+                         <img width="20px;" class="color-palette" src="/static/img/color-palette.svg"> = multiple colors available <br>
+                         <img width="20px;" src="/static/img/vegan.svg"> = this product is vegan
+        </i>-->
+
+        <i class="light" style="">
+
+                         <img width="20px;" class="color-palette" src="/static/img/color-palette.svg"> = multiple colors available <br>
+                         <img width="20px;" src="/static/img/vegan.svg"> = this product is vegan
+        </i>
+
+      </div>
+
+      <ul class="nav nav-tabs makeup-tabs">
+        {% for group in items | groupby('sub-category')%}
+        <li {% if group.grouper == 'lips' %}class="active"{% endif %}><a data-toggle="tab" href="#{{group.grouper}}">
+          <img width="30px" src="/static/img/{{group.grouper}}.svg">
+          <span style="color:#7F3960 !important;">{{group.grouper | upper}}</span>
+        </a></li>
+        {% endfor %}
+      </ul>
+
+    <div class="tab-content">
+    {% for group in items | groupby('sub-category')%}
+    <div id="{{group.grouper}}" class="tab-pane fade {% if group.grouper == 'lips' %}in active{% endif %}" >
+
+
+    {% for item in group.list %}
+
+    <div class="item-box"
+         style="float:left;width:50%;height:235px;margin:0px;">
+
+          <div class="thumbnail" style="height:100%;width:100%">
+
+
+            <div class="content clickable"
+                {% if item.variation|length > 0 %}
+                 data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}-variation"
+                {% endif %}
+                {% if item.variation|length == 0 %}
+                 ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}',cost:'{{item.price}}' })"
+                {% endif %}
+                style="cursor:pointer;width:100%;height:100%;"
+                >
+
+
+                  <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="/static/img/beauty-items/{{item.item_num}}.png" alt="">
+
+                  <span ng-repeat="p in box.products">
+                    <span ng-if="p.name =='{{item.name}}'">
+                      <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                    </span>
+                  </span>
+                  <!--<img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">-->
+
+                <h5 class="title">{{item.name}}</h5>
+
+              </div>
+
+                <span class="cost">+${{item.price|round|int}}</span>
+                {% if item.variation|length > 0 %}
+                <img class="color-palette" src="/static/img/color-palette.svg">
+                {% endif %}
+                <div class="group" style="width: 100%; position: absolute;bottom:0px;">
+                  <a class="btn btn-details" style="background:#ddd;color:#9d9d9d;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}">VIEW DETAILS</a>
+
+                </div>
+            </div>
+        </div>
+
+
+
+      {% endfor %}
+    </div>
+
+    {% for item in group.list %}
+
+    <!-- variations modal -->
+    {% if item.variation|length > 0 %}
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}-variation" style="padding-right: 15px;">
+
+<div class="modal-dialog modal-lg">
+  <div class="modal-content" style="padding:30px;padding-bottom:16px;width:100%;max-height:100%;overflow-y:auto;">
+
+
+           <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+            <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {{ item.name }} Color!</h3><hr>
+
+              <div  style="text-align:center;">
+
+              {% for v in item.variation %}
+
+              {% if item.variation|length > 12 %}
+              <div
+              class="col-md-3 col-xs-4 clickable"
+                    style="display:inline-block;padding:0px 5px;text-align:center;margin-bottom:15px;"
+                    ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
+                    data-dismiss="modal">
+                <img class="img-responsive" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
+                <p class="light">{{v.name}}</p>
+
+              </div>
+              {% elif item.variation|length <= 4 %}
+              <div
+              class="col-md-6 col-xs-4 clickable"
+                    style="display:inline-block;padding:0px 5px;text-align:center;"
+                    ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
+                    data-dismiss="modal">
+                <img class="img-responsive" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
+                <p class="light">{{v.name}}</p>
+
+              </div>
+              {% else %}
+              <div
+              class="col-md-3 col-xs-4 clickable"
+                    style="display:inline-block;padding:0px 5px;text-align:center;"
+                    ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
+                    data-dismiss="modal">
+                <img class="img-responsive" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
+                <p class="light">{{v.name}}</p>
+
+              </div>
+              {% endif %}
+
+              {% endfor %}
+            </div>
+
+
+      </div>
+    </div>
+  </div>
+  </div>
+    {% endif %}
+
+    <!--DETAILS MODAL-->
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}">
+
+      <div class="modal-dialog" style="width:80% !important;">
+        <div class="modal-content" style="padding:30px;padding-bottom:16px;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+          <div class="row" >
+
+            <div class="col-md-4">
+
+
+
+                  <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="/static/img/beauty-items/{{item.item_num}}.png" alt="">
+
+
+
+            </div>
+
+            <div class="col-md-8">
+              <h2 class="modal-title" id="myModalLabel">{{item.name}}</h2>
+              <hr>
+
+              <p>{{item.description}}</p>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <p style="color:green;font-weight:600;">Production Cost: ${{item.price|round|int}}</p>
+                </div>
+                <!-- <div class="col-md-4">
+                  <img style="margin-top:-2em;width:6em" src="../../static/img/partners/{{item.company.logo_url}}">
+                </div> -->
+              </div>
+              {% if item.company.customizable == True %}
+              <i class="light">*each beauty item will be printed with your custom name or logo</i>
+              {% endif %}
+              <br><br>
+
+              {% for v in item.variation %}
+              <div style="display:inline-block;margin-right:15px;text-align:center;">
+                <img width="100px" src="/static/img/beauty-items/{{item.item_num}}-{{v.item_num}}.png">
+                <p class="light">{{v.name}}</p>
+              </div>
+              {% endfor %}
+
+            </div>
+
+          </div>
+
+          <!--
+          <div class="row" style="margin-top:30px;">
+            <a  data-dismiss="modal" href="#" class="sample-order" style="position: absolute;bottom: 16px;">Order a blank sample of the {{item.name}}</a>
+            <a class="btn btn-submit pull-right" href="/builder/add/{{item.sku}}">Add Item to Box</a>
+          </div>
+        -->
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+
+
+
+      {% endfor %}
+    <!-- /.row -->
+</div></div>
+
+<div class="bottom-fixed-menu">
+
+  <button data-toggle="modal" data-target="#summary-modal" class="btn btn-primary btn-lg btn-nav
+                  {% if cat == 'beauty' %}btn-beauty{% endif %}
+                  view-btn" >View Box</button>
+
+
+
+  <button ng-click="step_2()" class="btn btn-primary btn-lg btn-nav
+                  {% if cat == 'beauty' %}btn-beauty{% endif %}
+                  next-btn">
+    Next</i>
+  </button>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+      <script type="text/javascript">
+          $(document).ready(function(){
+            $('.products').slick({infinite: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        adaptiveHeight: true,
+        centerMode: true,
+        variableWidth: true});
+          });
+        </script>
+
+
+</div>

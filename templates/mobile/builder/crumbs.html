@@ -1,0 +1,32 @@
+<div class="nav-container">
+
+    <h2 class="panel-title" style="color:#A6CCE8;">
+
+      <div id="crumbs"
+           class="{% if cat == 'beauty' %}beauty{% endif %}"
+           style="z-index:99;">
+        <ul>
+          <li><a class="crumb current" id="crumb2" data-step="step2">1. Products</a></li>
+          <li><a class="crumb" id="crumb3" data-step="step3">2. Packaging</a></li>
+          <li><a class="crumb" id="crumb4" data-step="step4">3. Branding</a></li>
+          <li><a class="crumb" id="crumb5" data-step="step5">4. Finish</a></li>
+          <!-- <li><a class="crumb" id="crumb6" data-step="step6">Finish</a></li> -->
+        </ul>
+      </div>
+</div>
+
+<!--
+<div class="promotion">
+
+<h2>Free Full Sized Samples  <br><span style="font-size:18px;font-family: 'Arimo', sans-serif;font-weight:800;">Complete This Builder to Claim Yours</span></h2>
+
+<span class="exit"><span style="font-size:11px;">hide promotion</span> <i class="fa fa-times-circle" aria-hidden="true"></i></span>
+</div>
+-->
+
+<script>
+$(".exit").click(function () {
+    $(".promotion").css("display", "none");
+});
+
+</script>
