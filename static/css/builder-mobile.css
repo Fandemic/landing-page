@@ -1238,7 +1238,7 @@ margin-left: auto;margin-right: auto;right: 150px;
 }
 
 .close {
-    float: right;
+    float: left;
     font-size: 51px;
     font-weight: 700;
     line-height: .4;
@@ -1246,7 +1246,7 @@ margin-left: auto;margin-right: auto;right: 150px;
     color: #000;
     text-shadow: 0 1px 0 #fff;
     filter: alpha(opacity=20);
-    opacity: .1;
+    opacity: .3;
 }
 
 .flickity-prev-next-button.next {
@@ -1378,4 +1378,14 @@ border: none;
   background-color: #fff !important;
   color: #25CB68;
   border: 1px solid #25CB68;
+}
+
+.nav > li.dropdown.open {
+    position: static;
+}
+.nav > li.dropdown.open .dropdown-menu {
+    display:table; width: 100%; text-align: center; left:0; right:0;
+}
+.dropdown-menu>li {
+    display: table-cell;
 }
