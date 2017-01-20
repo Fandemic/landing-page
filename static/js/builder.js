@@ -137,7 +137,7 @@ app.controller("builder", function($scope) {
          $scope.box.products.splice(index, 1);
          $scope.box.cost -= parseInt(product.cost);
          $scope.box.price = $scope.box.cost + 8;
-         $.notify(product.name + " Successfully Removed From Box", { position:"top right",className:"error" });
+         $.notify("Product Removed From Box", { position:"top right",className:"error" });
       }
 
       else if ($scope.box.products.length >= 6){
@@ -148,7 +148,7 @@ app.controller("builder", function($scope) {
         $scope.box.products.push(product);
         $scope.box.cost += parseInt(product.cost);
         $scope.box.price = $scope.box.cost + 8;
-        $.notify(product.name + " Successfully Added to Box", { position:"top right",className:"success" });
+        $.notify("Product Added to Box", { position:"top right",className:"success" });
       }
 
       //$scope.updateSlider();
@@ -163,17 +163,17 @@ app.controller("builder", function($scope) {
         $scope.box.style = style;
         $scope.box.cost += 10;
         $scope.box.price = $scope.box.cost + 5;
-        $.notify(style.name + " Box Successfully Added", { position:"top right",className:"success" });
+        $.notify("Box Successfully Added", { position:"top right",className:"success" });
       }
       else if ($scope.box.style.variation == style.variation){
         $scope.box.style = null;
         $scope.box.cost -= 10;
         $scope.box.price = $scope.box.cost + 5;
-        $.notify(style.name + " Box Successfully Removed", { position:"top right",className:"success" });
+        $.notify("Box Successfully Removed", { position:"top right",className:"success" });
       }
       else{
         $scope.box.style = style;
-        $.notify(style.name + " Box Successfully Added", { position:"top right",className:"success" });
+        $.notify("Box Successfully Updated", { position:"top right",className:"success" });
       }
 
     }
@@ -183,15 +183,15 @@ app.controller("builder", function($scope) {
 
       if ($scope.box.material == null){
         $scope.box.material = material;
-        $.notify(material.name + " Successfully Added", { position:"top right",className:"success" });
+        $.notify("Packaging Successfully Added", { position:"top right",className:"success" });
       }
       else if ($scope.box.material.variation == material.variation){
         $scope.box.material = null;
-        $.notify(material.variation + " Successfully Removed", { position:"top right",className:"success" });
+        $.notify("Packaging Successfully Removed", { position:"top right",className:"success" });
       }
       else{
         $scope.box.material = material;
-        $.notify(material.variation + " Successfully Added", { position:"top right",className:"success" });
+        $.notify("Packaging Successfully Updated", { position:"top right",className:"success" });
       }
 
     }
@@ -283,6 +283,8 @@ app.controller("builder", function($scope) {
     //BUTTON FUNCTIONS
     $scope.step_2 = function(){
 
+      $('.modal').modal('hide');
+
       //check for at least 1 item
       if ($scope.box.products.length == 0){
         BootstrapDialog.show({
@@ -313,6 +315,8 @@ app.controller("builder", function($scope) {
       }
 
       $scope.step_3 = function(){
+
+        $('.modal').modal('hide');
 
         //check for at least 1 item
         if ($scope.box.style == null){
@@ -436,6 +440,8 @@ app.controller("builder", function($scope) {
 
 $("#step4").on('click', '.next-btn', function() {
 
+  $('.modal').modal('hide');
+
   html2canvas($("#myBox"), {
   onrendered: function (canvas) {
     var dataURL = canvas.toDataURL("img/png");
@@ -465,7 +471,11 @@ $("#step4").on('click', '.next-btn', function() {
 //
 });
 
-$("#step5").on('click', '.next-btn', function() {
+$("#step5").on('click', '.finish', function() {
+
+  $('.modal').modal('hide');
+
+/*
   $('.steps').hide();
   $('#step6').fadeIn('fast', function() {
 
@@ -475,6 +485,7 @@ $("#step5").on('click', '.next-btn', function() {
   $('#crumb6').addClass('current');
   $("#finish").addClass("on");
   $("html, body").animate({ scrollTop: 76 }, "slow");
+  */
 });
 
 /*
@@ -496,6 +507,9 @@ $("#step3").on('click', '.prev', function() {
 */
 
 $("#crumbs").on('click', '.crumb', function() {
+
+   $('.modal').modal('hide');
+
     var step = $(this).attr('data-step');
 
     $('.steps').hide( "fast"  );

@@ -893,6 +893,7 @@ box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
 .item-box{
   height:230px;width:210px;padding:5px;outline: 0 !important;
   display: inline-block;
+  margin-bottom: 8px !important;
 }
 
 .panel-summary{
@@ -1238,13 +1239,14 @@ margin-left: auto;margin-right: auto;right: 150px;
 
 .close {
     float: right;
-    font-size: 21px;
+    font-size: 51px;
     font-weight: 700;
-    line-height: .5;
+    line-height: .4;
+    z-index: 99999999999;
     color: #000;
     text-shadow: 0 1px 0 #fff;
     filter: alpha(opacity=20);
-    opacity: .3;
+    opacity: .1;
 }
 
 .flickity-prev-next-button.next {
