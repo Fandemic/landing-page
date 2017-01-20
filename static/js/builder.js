@@ -438,6 +438,8 @@ $("#step4").on('click', '.next-btn', function() {
 
   html2canvas($("#myBox"), {
   onrendered: function (canvas) {
+    $( '#myBox img' ).css( 'width', '100%' );
+
     var dataURL = canvas.toDataURL("img/png");
 
 
@@ -460,10 +462,12 @@ $("#step4").on('click', '.next-btn', function() {
     $("html, body").animate({ scrollTop: 76 }, "slow");
 
       }
+      $( '#myBox img' ).css( 'width', '70%' );
   });
 
 
 });
+
 
 $("#step5").on('click', '.next-btn', function() {
   $('.steps').hide();
