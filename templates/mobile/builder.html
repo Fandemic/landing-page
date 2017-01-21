@@ -99,6 +99,9 @@ left: 0;z-index:999999999999;overflow:none;">
 
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300i|Bilbo+Swash+Caps|Calligraffitti|Caveat|Courgette|Knewave|Marck+Script|Niconne" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+
+    {% include 'analytics.html' %}
+
 </head>
 
 <script>
@@ -185,7 +188,7 @@ $(window).load(function() {
 {% include 'builder/faq-modal.html' %}
 
 
-{% include 'analytics.html' %}
+
 
 
 {% if box_items|length != 0 %}
