@@ -76,6 +76,12 @@ app.controller("builder", function($scope) {
         var box = $scope.box;
         $("#launch-store-button").prop("disabled",true);
 
+          //facebook event tracking
+          fbq('track', 'CompleteRegistration', {
+          value: 0.00,
+          currency: 'USD'
+          });
+
         $('#loader').show();
         $.ajax({
           type: 'POST',
@@ -301,6 +307,12 @@ app.controller("builder", function($scope) {
       }
 
       else{
+
+
+        fbq('track', 'NextStep', {
+        dest: '2.Packaging'
+        });
+
         $('.steps').hide();
         $('#step3').fadeIn('fast', function() {
           $(".carousel").flickity('resize');
