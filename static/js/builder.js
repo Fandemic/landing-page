@@ -82,6 +82,13 @@ app.controller("builder", function($scope) {
           currency: 'USD'
           });
 
+          //Google Analytics
+          ga('send', 'event', {
+            eventCategory: 'Builder',
+            eventAction: 'Next Step',
+            eventLabel: 'Builder Submission Success'
+          });
+
         $('#loader').show();
         $.ajax({
           type: 'POST',
@@ -313,6 +320,12 @@ app.controller("builder", function($scope) {
         dest: '2.Packaging'
         });
 
+        ga('send', 'event', {
+          eventCategory: 'Builder',
+          eventAction: 'Next Step',
+          eventLabel: 'Step 1: Products -> Step 2: Packaging'
+        });
+
         $('.steps').hide();
         $('#step3').fadeIn('fast', function() {
           $(".carousel").flickity('resize');
@@ -358,6 +371,13 @@ app.controller("builder", function($scope) {
           });
         }
         else{
+
+          ga('send', 'event', {
+            eventCategory: 'Builder',
+            eventAction: 'Next Step',
+            eventLabel: 'Step 2: Packaging -> Step 3: Branding'
+          });
+
           $('.steps').hide();
           $('#step4').fadeIn('fast', function() {
 
@@ -451,6 +471,12 @@ app.controller("builder", function($scope) {
 
 
 $("#step4").on('click', '.next-btn', function() {
+
+  ga('send', 'event', {
+    eventCategory: 'Builder',
+    eventAction: 'Next Step',
+    eventLabel: 'Step 3: Branding -> Step 4: Finish'
+  });
 
   $('.modal').modal('hide');
 
