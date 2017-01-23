@@ -452,19 +452,37 @@ app.controller("builder", function($scope) {
                 $scope.$apply(function () {
 
                 $scope.box.desc = tinymce.activeEditor.getContent();
+
                 });
               });
           }
         });
 
-});
+  $scope.finish_last_step = function(){
+    if ($scope.box.desc == ''){
+      BootstrapDialog.show({
+       title: 'Alert!',
+         message: 'Please enter a box description! &#128516;',
+         buttons: [{
+           cssClass: 'btn-success',
+           label: 'OK',
+             action: function(dialog) {
+               dialog.close();
+             }
+         }]
+      });
+    }
+    else {
+      $('#launch-store-modal').modal('show');
+    }
+
+  }
 
 
 
 
 
-
-$('#next-btn5').click(function(){
+$scope.next_btn5 = function(){
 
     if ($("#your-brand-input").val()  == 'Your Brand'){
       BootstrapDialog.show({
@@ -493,46 +511,72 @@ $('#next-btn5').click(function(){
       });
     }
     else{
-
-
-
-    ga('send', 'event', {
-      eventCategory: 'Builder',
-      eventAction: 'Next Step',
-      eventLabel: 'Step 3: Branding -> Step 4: Finish'
-    });
-
-    $('.modal').modal('hide');
-
-    html2canvas($("#myBox"), {
-    onrendered: function (canvas) {
-      var dataURL = canvas.toDataURL("img/png");
-
-
-      var appElement = document.querySelector('[ng-app=app]');
-      $scope = angular.element(appElement).scope();
-      $scope = $scope.$$childHead; // add this and it will work
-      $scope.$apply(function() {
-          $scope.box.box_img = dataURL;
+      ga('send', 'event', {
+        eventCategory: 'Builder',
+        eventAction: 'Next Step',
+        eventLabel: 'Step 3: Branding -> Step 4: Finish'
       });
 
-      $('.steps').hide();
-      $('#step5').fadeIn('fast', function() {
-          $(".carousel").flickity('resize');
+      $('.modal').modal('hide');
 
-    });
-      $('#crumb4').removeClass( "current");
-      $('#crumb4').addClass( "touched");
-      $('#crumb5').addClass('current');
-      $("#next6").addClass("on");
-      $("html, body").animate({ scrollTop: 76 }, "slow");
+      html2canvas($("#myBox"), {
+      onrendered: function (canvas) {
+        var dataURL = canvas.toDataURL("img/png");
 
-        }
-    });
+
+        var appElement = document.querySelector('[ng-app=app]');
+        $scope = angular.element(appElement).scope();
+        $scope = $scope.$$childHead; // add this and it will work
+        $scope.$apply(function() {
+            $scope.box.box_img = dataURL;
+        });
+
+        $('.steps').hide();
+        $('#step5').fadeIn('fast', function() {
+            $(".carousel").flickity('resize');
+
+      });
+        $('#crumb4').removeClass( "current");
+        $('#crumb4').addClass( "touched");
+        $('#crumb5').addClass('current');
+        $("#next6").addClass("on");
+        $("html, body").animate({ scrollTop: 76 }, "slow");
+
+          }
+      });
 
   }
 //
-});
+};
+
+
+}); //scope
+
+
+// $scope.finish_last_step = function(){
+//   console.log($scope.box.description);
+//   console.log($('#box-description-textarea').val());
+//     if ($scope.box.description == null){
+//       BootstrapDialog.show({
+//        title: 'Alert!',
+//          message: 'Please enter a box description! &#128516;',
+//          buttons: [{
+//            cssClass: 'btn-success',
+//            label: 'OK',
+//              action: function(dialog) {
+//                dialog.close();
+//              }
+//          }]
+//       });
+//     }
+//     else {
+//       $('#launch-store-modal').modal('show');
+//     }
+// }
+//
+// $('#finish-last-step').click(function(){
+//   console.log($('#box-description-textarea').val());
+// })
 
 $("#step5").on('click', '.finish', function() {
 

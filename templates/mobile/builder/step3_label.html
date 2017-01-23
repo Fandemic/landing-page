@@ -31,12 +31,12 @@
 
         <div class="col-md-4">
         <label class="light" style="font-weight:300;">Brand Name</label>
-        <input ng-value="box.brand_name" ng-model="box.brand_name" type="text" class="form-control" style="font-size:16px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+        <input id="your-brand-input" ng-value="box.brand_name" ng-model="box.brand_name" type="text" class="form-control" style="font-size:16px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
         </div>
 
         <div class="col-md-4">
         <label class="light" style="font-weight:300;">Box Name</label>
-        <input ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control" style="font-size:16px;height:40px;font-weight:400;;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+        <input id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control" style="font-size:16px;height:40px;font-weight:400;;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
       </div>
 
     </div>
@@ -217,7 +217,7 @@
                     {% if cat == 'beauty' %}btn-beauty{% endif %}
                     view-btn" >View Box</button>
 
-    <button id="next-btn4" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+    <button id="next-btn4" ng-click="next_btn5()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                     {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn" >Next</button>
 
   </div>
