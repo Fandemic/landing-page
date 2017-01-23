@@ -19,6 +19,7 @@ from werkzeug.utils import secure_filename
 from mailer import Mailer
 from shipping import Shipping
 from cdn import CDN
+import cloudinary
 import braintree
 
 
@@ -29,6 +30,11 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
 db = MongoClient('45.79.159.210', 27018).fandemic
+cloudinary.config(
+  cloud_name = 'fandemic',
+  api_key = '994433149748285',
+  api_secret = 'd1PkimpR_UZP5kQEKKfderGv1JA'
+)
 
 mode = 'live';
 
@@ -255,6 +261,8 @@ def privacy():
 @mobile_template('{mobile/}shop.html')
 def store(template,starID):
 
+    starID = starID.lower()
+
     star = db.stars.find_one({'id':starID.lower()}) #find the star
     #print star
 
@@ -290,7 +298,13 @@ def store(template,starID):
         c += 1
 
 
-    return render_template(template, donations = donations, star = star,
+    img = {}
+    img['profile'] = cloudinary.CloudinaryImage("stars/"+starID.lower()+"/profile.png").image();
+    img['logo'] = cloudinary.CloudinaryImage("stars/"+starID.lower()+"/logo.png").image();
+    img['bg'] = cloudinary.CloudinaryImage("stars/"+starID.lower()+"/bg.jpg").image();
+
+
+    return render_template(template, donations = donations, star = star, img=img,
                                      braintree=braintree.ClientToken.generate())
 
 #================= MOCK STORES ========================
