@@ -41,7 +41,7 @@
 
 
 
-  <meta property="og:image" content="https://fandemic.cohttps://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/profile.png">
+  <meta property="og:image" content="https://fandemic.cohttps://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/profile.png">
 
 </head>
 
@@ -119,9 +119,9 @@
     {% endif %}
   {% endif %}
 
-  <div id="menu" style="background:url(https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/bg.jpg);background-position:cover;">
+  <div id="menu" style="background:url(https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/bg.jpg);background-position:cover;">
 
-    <img class="profile-img" src="https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/profile.png" style="border-radius: 50%;padding:10px;" [src]="invalidPath" onError="this.src='/static/img/user.png'">
+    <img class="profile-img" src="https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/profile.png" style="border-radius: 50%;padding:10px;" [src]="invalidPath" onError="this.src='/static/img/user.png'">
 
 
     {% if star.campaigns[0].style.color_primary != '' %}
@@ -153,11 +153,11 @@
 
 
   <div class="nav">
-      <img class="star-btn" width="50px" src="https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/profile.png" [src]="invalidPath" onError="this.src='/static/img/user.png'">
+      <img class="star-btn" width="50px" src="https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/profile.png" [src]="invalidPath" onError="this.src='/static/img/user.png'">
     <div class="name">
       <script>
-      if (imageExists("https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/logo.png") == true){
-        document.write('<img style="height:40px;margin-top:4px;" src="https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/logo.png">');
+      if (imageExists("https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/logo.png") == true){
+        document.write('<img style="height:40px;margin-top:4px;" src="https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/logo.png">');
       }
       else{
         document.write('<h2 style="float:center;height:40px;margin-top:-6px;">{{star.campaigns[0].brand_name}}</h2>')
@@ -243,7 +243,7 @@
         <div>
 
             <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
-            <img class="img-responsive" style="width:60%;padding:5px;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/box.png">
+            <img class="img-responsive" style="width:60%;padding:5px;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/box.png">
 
 
         </div>
@@ -291,7 +291,7 @@
           {% for p in star.campaigns[0].products %}
           <div class="col-xs-4" style="">
             <div class="thumbnail btn-product" style="margin-bottom:2px;"
-            ng-click="toggle_product({name:'{{p.name}}',img_url:'https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
+            ng-click="toggle_product({name:'{{p.name}}',img_url:'https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
                                      {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
               <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/{{p.item_num}}.png" style="width:100%;padding:10px;">
             </div>

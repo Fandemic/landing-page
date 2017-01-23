@@ -30,7 +30,7 @@
 
 
 
-  <meta property="og:image" content="https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/profile.png">
+  <meta property="og:image" content="https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/profile.png">
 
 </head>
 
@@ -46,7 +46,7 @@
 <script>
 var img = document.createElement('img');
 img.crossOrigin = "Anonymous";
-img.setAttribute('src', 'https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/profile.png');
+img.setAttribute('src', 'https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/profile.png');
 
 </script>
 
@@ -80,13 +80,13 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/image/upload/v14851
 
 
 <!-- SIDE PANEL -->
-<div id="side-panel" class="side-panel" style="background:url(https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/bg.jpg);background-position:cover;">
+<div id="side-panel" class="side-panel" style="background:url(https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/bg.jpg);background-position:cover;">
 
   <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
   <div class="profile-img-container" style="margin-top:1em;padding:20px;">
 
     {% if star.campaigns.0.custom == true %}
-    <img class="profile-img" style="border-radius: 50%;" src="https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/profile.png">
+    <img class="profile-img" style="border-radius: 50%;" src="https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/profile.png">
     {% else %}
     <img class="profile-img" style="border-radius: 50%;" src="/static/img/user.png">
     {% endif %}
@@ -144,8 +144,8 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/image/upload/v14851
 
 
       <script>
-      if (imageExists("https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/logo.png") == true){
-        document.write('<img style="float:left;height:50px;margin-top:5px;margin-left:35px;" src="https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/logo.png">');
+      if (imageExists("https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/logo.png") == true){
+        document.write('<img style="float:left;height:50px;margin-top:5px;margin-left:35px;" src="https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/logo.png">');
       }
       else{
         document.write('<h2 style="float:left;margin-top:15px;margin-left:35px;">{{star.campaigns[0].brand_name}}</h2>')
@@ -182,7 +182,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/image/upload/v14851
         <div class="col-md-6">
 
             <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
-            <img class="img-responsive" style="padding:5px;" src="https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/box.png">
+            <img class="img-responsive" style="padding:5px;" src="https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/box.png">
 
         </div>
         <div class="col-md-6" style="padding:20px;text-align:left;color:#4d4d4d;">
@@ -229,7 +229,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/image/upload/v14851
           {% for p in star.campaigns[0].products %}
           <div class="col-sm-2" style="padding-left:0px;">
             <div class="thumbnail btn-product"
-                 ng-click="toggle_product({name:'{{p.name}}',img_url:'https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
+                 ng-click="toggle_product({name:'{{p.name}}',img_url:'https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
                                           {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
               <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/{{p.item_num}}.png" style="width:100%;padding:10px;">
 
@@ -718,7 +718,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/image/upload/v14851
             <p>{a total_price() | currency a} USD</0>
               <hr>
 
-              <img src="https://res.cloudinary.com/fandemic/image/upload/v1485130463/stars/{{star.id}}/box.png" style="width:100%;">
+              <img src="https://res.cloudinary.com/fandemic/image/upload/v1485140556/stars/{{star.id}}/box.png" style="width:100%;">
 
               <hr>
 
