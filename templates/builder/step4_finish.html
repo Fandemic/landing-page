@@ -182,7 +182,7 @@
       <h4 style="color:#8d8d8d;">2. Write a description for your box</h4>
       <i class="light" style="font-weight:300;">this will be displayed on your store!</i>
 
-      <textarea>
+      <textarea value="enter a description" id ="box-description-textarea">
 
       </textarea>
 
@@ -192,7 +192,7 @@
     <!--START OF RIGHT SIDE SUMMARY PANEL -->
     <div class="col-md-4">
       {% include('builder/summary.html') %}
-      <button class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+      <button id="finish-last-step" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                   {% if cat == 'beauty' %}btn-beauty{% endif %}" data-toggle="modal" data-target="#launch-store-modal">Finish</button>
     </div>
 
@@ -337,6 +337,28 @@ $('#retail_price').keyup(function(e){
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+// $('#finish-last-step').click(function(){
+//   if ($("#box-description-textarea").val() == null){
+//     BootstrapDialog.show({
+//      title: 'Alert!',
+//        message: 'Please enter a box description! &#128516;',
+//        buttons: [{
+//          cssClass: 'btn-success',
+//          label: 'OK',
+//            action: function(dialog) {
+//              dialog.close();
+//            }
+//        }]
+//     });
+//   }
+//   else {
+//     $('#launch-store-modal').modal('show');
+//   }
+// });
+
+
+
 </script>
 
 <style>
