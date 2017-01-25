@@ -79,8 +79,22 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 <script> $('#loading').hide();</script>
 
 
-<!-- SIDE PANEL -->
-<div id="side-panel" class="side-panel" style="background:url(https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg);background-position:cover;">
+<!-- store background -->
+<script>
+function getRandomBgNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+if (imageExists("https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg") == true){
+  $("#dynamic-store-background").replaceWith('<div id="side-panel" class="side-panel" style="background:url(https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg);background-position:cover;">')
+}
+else{
+  $("#dynamic-store-background").replaceWith('<div id="side-panel" class="side-panel" style="background:url(https://fandemic.co/fandemic/store-bg/' + getRandomBgNumber(1, 8) + '.jpg);background-position:cover;">')
+}
+</script>
+
+<div id="dynamic-store-background"></div>
+
+
 
   <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
   <div class="profile-img-container" style="margin-top:1em;padding:20px;">
@@ -131,7 +145,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
   {% elif star.campaigns[0].status == 'pending' %}
   <div class="top-alert-bar"><strong>THIS STORE IS PENDING(not yet live)</strong> - payments <strong>will not</strong> be processed</div>
   {% elif star.campaigns[0].status == 'failed' %}
-  <div class="top-alert-bar"><strong>Campaign Ended: not funded</strong></div>
+  <div class="top-alert-bar" style="background-color:#e33102 !important;"><strong>Campaign Ended: not funded</strong></div>
   {% elif star.campaigns[0].status == 'success' %}
   <div class="top-alert-bar" style="background-color:#5ec45e;"><strong>Campaign Funded Successfully!</strong></div>
   {% endif %}
