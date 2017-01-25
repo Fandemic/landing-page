@@ -79,7 +79,8 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 <script> $('#loading').hide();</script>
 
 
-<!-- store background -->
+<!-- SIDE PANEL -->
+<!--
 <script>
 function getRandomBgNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -92,9 +93,10 @@ else{
 }
 </script>
 
-<div id="dynamic-store-background"></div>
+<div id="dynamic-store-background"></div> -->
 
 
+<div id="side-panel" class="side-panel" style="background:url(https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg);background-position:cover;">
 
   <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
   <div class="profile-img-container" style="margin-top:1em;padding:20px;">
