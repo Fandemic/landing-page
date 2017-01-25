@@ -80,20 +80,25 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 
 
 <!-- SIDE PANEL -->
-<!--
 <script>
 function getRandomBgNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 if (imageExists("https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg") == true){
-  $("#dynamic-store-background").replaceWith('<div id="side-panel" class="side-panel" style="background:url(https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg);background-position:cover;">')
+  $('#side-panel').css({
+     'background' : 'url("https://res.cloudinary.com/fandemic/stars/muaamber/bg.jpg")',
+     'background-position' : 'cover'
+  });
+
 }
 else{
-  $("#dynamic-store-background").replaceWith('<div id="side-panel" class="side-panel" style="background:url(https://fandemic.co/fandemic/store-bg/' + getRandomBgNumber(1, 8) + '.jpg);background-position:cover;">')
+  $('#side-panel').css({
+     'background' : 'url("https://fandemic.co/static/img/store-bg/' + getRandomBgNumber(1,8) + '.jpg")',
+     'background-position' : 'cover'
+  });
 }
 </script>
-
-<div id="dynamic-store-background"></div> -->
 
 
 <div id="side-panel" class="side-panel" style="background:url(https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg);background-position:cover;">
