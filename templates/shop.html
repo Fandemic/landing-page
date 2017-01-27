@@ -80,28 +80,9 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 
 
 <!-- SIDE PANEL -->
-<script>
-function getRandomBgNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-if (imageExists("https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg") == true){
-  $('#side-panel').css({
-     'background' : 'url("https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg")',
-     'background-position' : 'cover'
-  });
-
-}
-else{
-  $('#side-panel').css({
-     'background' : 'url("https://fandemic.co/static/img/store-bg/' + getRandomBgNumber(1,8) + '.jpg")',
-     'background-position' : 'cover'
-  });
-}
-</script>
 
 
-<div id="side-panel" class="side-panel" style="background:url(https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg);background-position:cover;">
+<div id="side-panel" class="side-panel" style="">
 
   <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
   <div class="profile-img-container" style="margin-top:1em;padding:20px;">
@@ -862,7 +843,29 @@ $('.ssk-facebook').attr('href', 'https://www.facebook.com/sharer/sharer.php?u=ht
 $(".ssk").click(function(){
   window.open(this.href, "unicorn", "width=400, height=600, screenX=800, screenY=200");
 });
+
+function getNumberForStore() {
+    var num = star_id.charCodeAt(0);
+    var str = num.toString();
+    var lastDigit = str.charAt(str.length-1);
+    return(lastDigit);
+}
+
+if (imageExists("https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg") == true){
+  $('#side-panel').css({
+     'background' : 'url("https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg")',
+     'background-position' : 'cover'
+  });
+
+}
+else{
+  $('#side-panel').css({
+     'background' : 'url("https://fandemic.co/static/img/store-bg/' + getNumberForStore() + '.jpg")',
+     'background-position' : 'cover'
+  });
+}
 </script>
+
 
 {% include 'analytics.html' %}
 
