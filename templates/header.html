@@ -1,12 +1,13 @@
 
 
-<head>
+<head itemscope itemtype="http://schema.org/WebSite">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=320, height=device-height, target-densitydpi=medium-dpi" />
-  <title>Design Your Own Beauty Kit</title>
+  <title itemprop='name'>Fandemic</title>
+  <link rel="canonical" href="https://fandemic.co/" itemprop="url">
   <meta name="description" content="A fundraising platform for social media stars and organizations">
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
   <link rel="icon" href="../static/img/favicon.ico" type="image/x-icon">
@@ -23,6 +24,70 @@
   }
 
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Fandemic",
+    "url": "http://www.fandemic.co",
+    "sameAs": [
+      "https://instagram.com/Fandemic",
+      "https://www.facebook.com/thefandemic",
+      "https://twitter.com/The_Fandemic"
+    ],
+    "logo": "https://fandemic.co/static/img/logo-pink.png",
+    "alternateName": "Build your beauty kit today"
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "https://fandemic.co",
+        "name": "Homepage",
+        "image": "https://fandemic.co/static/img/logo-pink.png"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@id": "https://fandemic.co/builder",
+        "name": "Builder",
+        "image": "https://fandemic.co/static/img/logo-pink.png"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@id": "https://fandemic.co/about",
+        "name": "About",
+        "image": "https://fandemic.co/static/img/logo-pink.png"
+      }
+    },{
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@id": "https://fandemic.co/faq",
+        "name": "FAQ",
+        "image": "https://fandemic.co/static/img/logo-pink.png"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@id": "https://fandemic.co/blog",
+        "name": "FAQ",
+        "image": "https://fandemic.co/blog"
+      }
+    }  ]
+  }
+
+
+  </script>
 
 
     {% include 'analytics.html' %}

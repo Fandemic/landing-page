@@ -455,19 +455,37 @@ app.controller("builder", function($scope) {
                 $scope.$apply(function () {
 
                 $scope.box.desc = tinymce.activeEditor.getContent();
+
                 });
               });
           }
         });
 
-});
+  $scope.finish_last_step = function(){
+    if ($scope.box.desc == ''){
+      BootstrapDialog.show({
+       title: 'Alert!',
+         message: 'Please enter a box description! &#128516;',
+         buttons: [{
+           cssClass: 'btn-success',
+           label: 'OK',
+             action: function(dialog) {
+               dialog.close();
+             }
+         }]
+      });
+    }
+    else {
+      $('#launch-store-modal').modal('show');
+    }
+
+  }
 
 
 
 
 
-
-$('#next-btn5').click(function(){
+$scope.next_btn5 = function(){
 
     if ($("#your-brand-input").val()  == 'Your Brand'){
       BootstrapDialog.show({
@@ -496,19 +514,15 @@ $('#next-btn5').click(function(){
       });
     }
     else{
+      ga('send', 'event', {
+        eventCategory: 'Builder',
+        eventAction: 'Next Step',
+        eventLabel: 'Step 3: Branding -> Step 4: Finish'
+      });
 
+      $('.modal').modal('hide');
 
-
-    ga('send', 'event', {
-      eventCategory: 'Builder',
-      eventAction: 'Next Step',
-      eventLabel: 'Step 3: Branding -> Step 4: Finish'
-    });
-
-    $('.modal').modal('hide');
-
-
-
+    
 
 
       $('.steps').hide();
@@ -522,11 +536,38 @@ $('#next-btn5').click(function(){
       $("#next6").addClass("on");
       $("html, body").animate({ scrollTop: 76 }, "slow");
 
-
-
   }
 //
-});
+};
+
+
+}); //scope
+
+
+// $scope.finish_last_step = function(){
+//   console.log($scope.box.description);
+//   console.log($('#box-description-textarea').val());
+//     if ($scope.box.description == null){
+//       BootstrapDialog.show({
+//        title: 'Alert!',
+//          message: 'Please enter a box description! &#128516;',
+//          buttons: [{
+//            cssClass: 'btn-success',
+//            label: 'OK',
+//              action: function(dialog) {
+//                dialog.close();
+//              }
+//          }]
+//       });
+//     }
+//     else {
+//       $('#launch-store-modal').modal('show');
+//     }
+// }
+//
+// $('#finish-last-step').click(function(){
+//   console.log($('#box-description-textarea').val());
+// })
 
 $("#step5").on('click', '.finish', function() {
 
