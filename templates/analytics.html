@@ -14,31 +14,25 @@
   ga('create', 'UA-75519719-1', 'auto');
   ga('send', 'pageview');
 
-    var _mfq = _mfq || [];
-    (function() {
-        var mf = document.createElement("script");
-        mf.type = "text/javascript"; mf.async = true;
-        mf.src = "//cdn.mouseflow.com/projects/3438cb30-f7f9-49a6-aab7-4e90dfc9cd1b.js";
-        document.getElementsByTagName("head")[0].appendChild(mf);
-    })();
-
-
-    var _kmq = _kmq || [];
-    var _kmk = _kmk || '8299eeb212772fb1c9404b7a70491914bf474df2';
-    function _kms(u){
-      setTimeout(function(){
-        var d = document, f = d.getElementsByTagName('script')[0],
-        s = d.createElement('script');
-        s.type = 'text/javascript'; s.async = true; s.src = u;
-        f.parentNode.insertBefore(s, f);
-      }, 1);
+$(document).ready(function() {
+  $(document).on('click', function (event) {
+    var clickedElement = $(event.target).attr('data-category');
+    if (clickedElement !== undefined) {
+      var dataCategory = $(event.target).attr('data-category');
+      var dataAction = $(event.target).attr('data-action');
+      var dataLabel = $(event.target).attr('data-label');
+      ga('send', 'event', {
+        eventCategory: dataCategory,
+        eventAction: dataAction,
+        eventLabel: dataLabel
+      });
+      console.log(dataAction);
     }
-    _kms('//i.kissmetrics.com/i.js');
-    _kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
-
-
-
-
+    else{
+    }
+  });
+});
+// data-category="builder" data-action="" data-label="Clicked tab"
 </script>
 
 
