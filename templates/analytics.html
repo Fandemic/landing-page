@@ -15,18 +15,18 @@
   ga('send', 'pageview');
 
 $(document).ready(function() {
-  $(document).on('click', function (event) {
-    var clickedElement = $(event.target).attr('data-category');
+  $(document).on("click", function (e) {
+    var clickedElement = $(e.target).attr('data-category');
     if (clickedElement !== undefined) {
-      var dataCategory = $(event.target).attr('data-category');
-      var dataAction = $(event.target).attr('data-action');
-      var dataLabel = $(event.target).attr('data-label');
+      var dataCategory = $(e.target).attr('data-category');
+      var dataAction = $(e.target).attr('data-action');
+      var dataLabel = $(e.target).attr('data-label');
       ga('send', 'event', {
         eventCategory: dataCategory,
         eventAction: dataAction,
         eventLabel: dataLabel
       });
-      console.log(dataAction);
+      console.log(dataLabel);
     }
     else{
     }

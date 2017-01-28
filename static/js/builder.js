@@ -320,12 +320,6 @@ app.controller("builder", function($scope) {
         dest: '2.Packaging'
         });
 
-        ga('send', 'event', {
-          eventCategory: 'Builder',
-          eventAction: 'Next Step',
-          eventLabel: 'Step 1: Products -> Step 2: Packaging'
-        });
-
         $('.steps').hide();
         $('#step3').fadeIn('fast', function() {
           $(".carousel").flickity('resize');
@@ -487,7 +481,7 @@ app.controller("builder", function($scope) {
 
 $scope.next_btn5 = function(){
 
-    if ($("#your-brand-input").val()  == 'Your Brand'){
+    if ($("#your-brand-input").val()  == ''){
       BootstrapDialog.show({
        title: 'Alert!',
          message: 'Please enter a brand name for your store! &#128516;',
@@ -500,7 +494,7 @@ $scope.next_btn5 = function(){
          }]
       });
     }
-    else if ($("#your-box-input").val()  == 'Box Name'){
+    else if ($("#your-box-input").val()  == ''){
       BootstrapDialog.show({
        title: 'Alert!',
          message: 'Please name your box! &#128516;',
@@ -522,7 +516,7 @@ $scope.next_btn5 = function(){
 
       $('.modal').modal('hide');
 
-    
+
 
 
       $('.steps').hide();
