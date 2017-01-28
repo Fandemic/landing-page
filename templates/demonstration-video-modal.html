@@ -9,13 +9,11 @@
          <h4 class="modal-title">{{star.name}}'s {{star.campaigns.0.box_name}} Box</h4>
        </div>
       <br>
-
-
-
-
-
+      {% if star.campaigns[0].campaign_video != '' %}
       <iframe class="video-iframe" src="//player.vimeo.com/video/{{star.campaigns[0].campaign_video}}?api=1&player_id=vimeoplayer&title=0&amp;byline=0&amp;portrait=0" name="vimeoplayer" id="nofocusvideo" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
+      {% else %}
+      <h3> email us </h3>
+      {% endif %}
     </div>
   </div>
 </div>

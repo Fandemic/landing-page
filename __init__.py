@@ -611,10 +611,12 @@ def launchStoreRequest():
             campaign['description'] = info['desc']
             campaign['num_orders'] = 500
             campaign['style'] = {}
-            campaign['style']['color_primary'] = '#fff'
+            campaign['style']['color_primary'] = '#' + info['font_color'].lower()
             campaign['style']['color_secondary'] = '#fff'
             campaign['style']['btn_color'] = '#28a237'
             campaign['products'] = info['products']
+            campaign['campaign_video'] = ''
+
             db.stars.update_one({'id':ID.lower()}, {'$push': {'campaigns': campaign}})
 
         #if star does not exist, create them
@@ -643,8 +645,9 @@ def launchStoreRequest():
                 client['campaigns'][0]['profit'] = info['profit']
                 client['campaigns'][0]['description'] = info['desc']
                 client['campaigns'][0]['num_orders'] = 500
+                client['campaigns'][0]['campaign_video'] = ''
                 client['campaigns'][0]['style'] = {}
-                client['campaigns'][0]['style']['color_primary'] = '#9d9d9d'
+                client['campaigns'][0]['style']['color_primary'] = '#' + info['font_color'].lower()
                 client['campaigns'][0]['style']['color_secondary'] = '#9d9d9d'
                 client['campaigns'][0]['style']['btn_color'] = '#28a237'
                 client['campaigns'][0]['products'] = info['products']
