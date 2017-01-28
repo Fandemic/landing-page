@@ -9,8 +9,8 @@ app.controller("builder", function($scope) {
 
     //box template
     $scope.box = {
-      brand_name: 'Your Brand',
-      box_name: 'Box Name',
+      brand_name: '',
+      box_name: '',
       font1: "font-family: 'Quicksand'",
       font2: "font-family: 'Arvo'",
       font_color: '',
@@ -378,7 +378,10 @@ app.controller("builder", function($scope) {
             eventLabel: 'Step 2: Packaging -> Step 3: Branding'
           });
 
+          $("#step4").css("visibility", "visible");
+
           $('.steps').hide();
+
           $('#step4').fadeIn('fast', function() {
 
           });
@@ -504,17 +507,9 @@ $('#next-btn5').click(function(){
 
     $('.modal').modal('hide');
 
-    html2canvas($("#myBox"), {
-    onrendered: function (canvas) {
-      var dataURL = canvas.toDataURL("img/png");
 
 
-      var appElement = document.querySelector('[ng-app=app]');
-      $scope = angular.element(appElement).scope();
-      $scope = $scope.$$childHead; // add this and it will work
-      $scope.$apply(function() {
-          $scope.box.box_img = dataURL;
-      });
+
 
       $('.steps').hide();
       $('#step5').fadeIn('fast', function() {
@@ -527,8 +522,7 @@ $('#next-btn5').click(function(){
       $("#next6").addClass("on");
       $("html, body").animate({ scrollTop: 76 }, "slow");
 
-        }
-    });
+
 
   }
 //

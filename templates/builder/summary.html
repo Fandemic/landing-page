@@ -44,7 +44,13 @@
                     <img width="100%" src="../static/img/question-mark.svg">
                   </div>
                   <div ng-if="box.style != null">
-                    <img  width="100%" src="../static/img/packaging/{a box.style.img a}">
+                    <div ng-if="box.style.name != 'Custom Design'">
+                      <img  width="100%" src="../static/img/packaging/{a box.style.img a}">
+                    </div>
+                    <div ng-if="box.style.name == 'Custom Design'">
+                      <img  width="180%" style="margin-top:-40px;margin-left:-40px;" ng-src="{a box.box_img a}">
+                    </div>
+
                   </div>
                   <p class="light" style="margin-top:5px;">{a box.style.name a}</p>
 

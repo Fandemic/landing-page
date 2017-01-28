@@ -1,21 +1,34 @@
-<div id="step4" class="steps container" style="margin-top:30px;display:none;">
+<div id="step4" class="steps container" style="margin-top:30px;visibility:hidden;">
 
 
 
     <div class="row">
     <div class="col-md-8">
 
+
       <div class="explain-step" style="padding-left:0px;">
         <!--<h3 class="subtitle">How will your product label look?</h3>-->
-        <h3 class="subtitle">Create a Brand</h3><hr>
+        <h3 class="subtitle">Create a Product Label</h3><hr>
 
 
         <div class="row">
           <div class="col-md-12">
-            <h4 style="color:#8d8d8d;">1. Do you have a <strong>logo</strong>?</h4>
+            <h4 style="color:#8d8d8d;">1. Create your <strong>brand name</strong> and <strong>box name</strong>!</h4>
+
             <!--<input type="checkbox" data-off-label="NO" data-on-label="YES" data-group-cls="btn-group-md">-->
-            <button id="no"  class="btn btn-default btn-lg">NO</button>
-            <button id="yes" class="btn btn-default btn-lg">YES</button>
+            <div class="row">
+            <div class="col-md-4">
+
+            <label class="light" style="font-weight:300;">Brand Name</label>
+            <input id="your-brand-input" ng-value="box.brand_name" ng-model="box.brand_name" type="text" class="form-control form-control-lg" style="font-size:20px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+            </div>
+
+            <div class="col-md-4">
+            <label class="light" style="font-weight:300;">Box Name</label>
+            <input id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control form-control-lg" style="font-size:20px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+          </div>
+        </div>
+
           </div>
 
         </div>
@@ -26,18 +39,13 @@
         <div class="row">
 
         <div class="col-md-12">
-        <h4 style="color:#8d8d8d;">2. Name Your Brand & Box</h4>
+        <h4 style="color:#8d8d8d;">2. Do you have a logo?</h4>
+
+        <button id="no"  class="btn btn-default btn-lg">NO</button>
+        <button id="yes" class="btn btn-default btn-lg">YES</button>
       </div>
 
-        <div class="col-md-4">
-        <label class="light" style="font-weight:300;">Brand Name</label>
-        <input id="your-brand-input" ng-value="box.brand_name" ng-model="box.brand_name" type="text" class="form-control" style="font-size:16px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
-        </div>
 
-        <div class="col-md-4">
-        <label class="light" style="font-weight:300;">Box Name</label>
-        <input id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control" style="font-size:16px;height:40px;font-weight:400;;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
-      </div>
 
     </div>
 
@@ -68,7 +76,7 @@
 
 
 
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label class="light" style="font-weight:300;">Primary Font</label>
             <select name="cars" class="form-control" ng-model="box.font1" style="font-size:16px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
               <option style="font-family: 'Alex Brush';" value="font-family: 'Alex Brush'" selected>Alex Brush</option>
@@ -114,7 +122,7 @@
           </div>
 
 
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label class="light" style="font-weight:300;">Secondary Font</label>
             <select name="cars" class="form-control" ng-model="box.font2" style="font-size:16px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
               <option selected style="font-family: 'Alex Brush';" value="font-family: 'Alex Brush'" selected>Alex Brush</option>
@@ -159,26 +167,33 @@
             </select>
           </div>
 
-          </div>
-          <!--<hr>-->
 
-          <div class="row">
             <div class="col-md-4 color-selector">
               <label class="light" style="font-weight:300;">Font Color</label>
               <input ng-model="box.font_color" class="jscolor form-control" style="font-size:16px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
             </div>
+
+
+
           </div>
+          <!--<hr>-->
+
+
 
 
           <div class="col-md-12" id="design-display" style="display:none;">
 
 
-            <div class="row">
-              <div class="col-md-4">
+
+
+              <div style="width:50%;">
                 <div class="sticker" style="width:200px;height:200px;margin:0 auto;margin-top:50px;border-radius:4px;border:1px solid;border-color:#1d1d1d;display:table;">
                   <div class="label">
                     <span class="box-brand box-brand1" ng-bind="box.brand_name" style="{a box.font1 a}; color:#{a box.font_color a};"></span>
                     <span class="box-name" ng-bind="box.box_name" style="{a box.font2 a}; color:#{a box.font_color a};"></span>
+                    <div ng-if="box.logo != ''">
+                      <img class="img-responsive" ng-src="{a box.logo a}">
+                    </div>
                   </div>
                   </div>
                   <p class = "label-indicator" style="margin-top:3em">This will be on your products</p>
@@ -187,22 +202,9 @@
                 </div>
 
 
-              <div class="col-md-8">
-
-                <div id="myBox">
-                  <div class="label2">
-                    <span class="box-brand box-brand2" ng-bind="box.brand_name" style="{a box.font1 a}; color:#{a box.font_color a};"></span>
-                    <span class="box-name" ng-bind="box.box_name" style="{a box.font2 a}; color:#{a box.font_color a};"></span>
-                  </div>
-                  <img style="width: 70%;display:block;margin: 0 auto;" src="/static/img/packaging/{a box.style.img a}">
-                </div>
 
 
-                <p class = "label-indicator">This will be how your mailer box will look</p>
 
-              </div>
-
-            </div>
 
           </div>
         </div>
@@ -250,6 +252,7 @@ $('#no').click(function(){
 
 $('#yes').click(function(){
   //$('#font-designer').hide();
+  $('#font-designer').hide();
   $('#logo-upload').show();
   $('#design-display').show();
   $('#yes').css("background-color", "#D2AFC9");
@@ -261,6 +264,7 @@ $('#yes').click(function(){
   $('.box-brand').html('');
   $('.box-name').html('');
 });
+
 
 //Load and display image
 $(function () {

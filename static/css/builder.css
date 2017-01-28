@@ -1315,3 +1315,251 @@ transition:all0.3slinear;
   width: 500px !important;
   cursor: zoom-in;
 }
+
+
+/*BOX DESIGNER*/
+.box#new .side-selector {
+    margin: 0 auto;
+    max-width: 60%;
+    display: flex;
+}
+.box#new .side-selector .box-side.active {
+    border: 1px solid #d5d5d5;
+    background: #f6fefb;
+}
+.box#new .side-selector .box-side {
+    flex: 1;
+    margin-right: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+.box#new .primary .artwork-editors {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    max-width: 300px;
+}
+.box#new .primary .box-viewer {
+    flex: 1;
+    min-width: 400px;
+}
+.box#new .primary .box-viewer .viewer {
+    min-height: 400px;
+}
+.box#new .primary .artwork-editor {
+    position: absolute;
+    top: -99999px;
+    visibility: hidden;
+    pointer-events: none;
+    order: 1;
+}
+.box#new .primary .artwork-editor.active {
+    position: static;
+    visibility: visible;
+    pointer-events: all;
+    order: 0;
+}
+.box#new .primary .artwork-editor .panel-graphics {
+    margin-bottom: 20px;
+}
+.box#new .primary .artwork-editor .add-artwork, .box#new .primary .artwork-editor .panel-color {
+    margin-bottom: 10px;
+}
+.box#new .primary .artwork-editor .add-artwork input {
+    display: none;
+}
+
+.box#new .primary .artwork-editor .add-artwork p {
+    display: inline-block;
+    font-size: .75rem;
+    vertical-align: bottom;
+    margin-bottom: 0;
+    color: #7b7b7b;
+}
+.add-artwork-btn{
+  padding: 8px 15px;
+background: #e8eefd;
+color: #122957;
+border: 1px solid rgba(0,0,0,.1);
+border-radius: 3px;
+text-transform: uppercase;
+text-decoration: none!important;
+box-shadow: 0 1px 0 0 rgba(0,0,0,.1);
+}
+.box#new .primary .artwork-editor .add-text {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 0;
+    text-transform: uppercase;
+    text-decoration: none!important;
+    box-shadow: 0 1px 0 0 rgba(0,0,0,.1);
+}
+.box#new .primary .artwork-editor .add-text btn{
+  text-transform: uppercase;
+text-decoration: none!important;
+box-shadow: 0 1px 0 0 rgba(0,0,0,.1);
+}
+.box#new .primary .artwork-editor .add-text .font-btn {
+    flex: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+    margin-left: 4px;
+    text-align: left;
+    line-height: 1;
+    text-transform: none;
+    align-items: center;
+}
+box#new .primary .artwork-editor .add-text .font-btn .font {
+    font-weight: 400;
+    font-size: 1rem;
+}
+.box#new .primary .artwork-editor .add-text .font-btn .arrow {
+    float: right;
+    color: #d5d5d5;
+}
+.drop-element.drop-theme-arrows-bounce.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content:before {
+    bottom: 100%;
+    right: 12px;
+    border-bottom-color: #fff;
+}
+.box#new .font-picker {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+.box#new .font-picker li {
+    font-size: 1rem;
+    line-height: 1.8;
+    cursor: pointer;
+}
+.drop-element.drop-theme-arrows-bounce .drop-content:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-width: 12px;
+    border-style: solid;
+}
+.drop-element, .drop-element *, .drop-element :after, .drop-element :before, .drop-element:after, .drop-element:before {
+    box-sizing: border-box;
+}
+.drop-element.drop-theme-arrows-bounce .drop-content {
+    border-radius: 5px;
+    position: relative;
+    font-family: inherit;
+    background: #fff;
+    color: #444;
+    padding: .5rem;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    transform: translateZ(0);
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .2));
+    border: 1px solid #d5d5d5;
+}
+.drop-element.drop-theme-arrows-bounce.drop-element-attached-top.drop-element-attached-left.drop-target-attached-bottom .drop-content, .drop-element.drop-theme-arrows-bounce.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content {
+    margin-top: 12px;
+}
+.drop-element, .drop-element *, .drop-element :after, .drop-element :before, .drop-element:after, .drop-element:before {
+    box-sizing: border-box;
+}
+.drop-element {
+    position: absolute;
+    display: none;
+}
+.drop-element.drop-open {
+    display: block;
+}
+.drop-element.drop-theme-arrows-bounce {
+    max-width: 100%;
+    max-height: 100%;
+    transition: opacity .1s;
+    opacity: 0;
+}
+.drop-element.drop-theme-arrows-bounce.drop-after-open {
+    opacity: 1;
+}
+.drop-element.drop-theme-arrows-bounce.drop-open {
+    display: none;
+}
+.drop-element.drop-theme-arrows-bounce.drop-open-transitionend {
+    display: block;
+}
+
+.btn.white {
+    background: #fff;
+}
+.btn.white, a {
+    color: #122957;
+}
+.box#new .primary .artwork-editor .add-text .text-color-btn {
+    display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+    justify-content: center;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.box#new .primary .artwork-editor .btn .color {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1);
+    background: #fff;
+}
+.box#new .primary .artwork-editor .artwork-canvas {
+    position: relative;
+    border: 2px dashed #d5d5d5;
+    margin-bottom: 10px;
+}
+
+.box#new .primary .artwork-editor .panel-color input[type=color] {
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+    width: 0;
+}
+.box#new .primary .artwork-editor .add-color-btn {
+    margin-bottom: 10px;
+    line-height: 20px;
+}
+.box#new .primary .artwork-editor .add-color-btn .color {
+    margin-left: 15px;
+    float: right;
+}
+.box#new .primary .artwork-editor .btn .color {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.1);
+    background: #fff;
+}
+.box#new .side-selector .box-side svg {
+    width: 50px;
+    height: 50px;
+    fill: none;
+}
+.box#new .side-selector .box-side svg .edges {
+    stroke: #7b7b7b;
+}
+.box#new .side-selector .box-side svg .edges .base {
+    opacity: .4;
+}
+.box#new .side-selector .box-side svg .sides {
+    fill: #d5d5d5;
+    opacity: .5;
+    transition: fill .3s ease,opacity .3s ease;
+}
+.btn.danger {
+    background: #f3dadd;
+    color: #e56171;
+}
