@@ -48,7 +48,7 @@
 
         <div class="carousel-cell item-box">
           <div
-          data-category="builder" data-action="Premade Designers" data-label="User selected Premade Designs Box"          
+          data-category="builder" data-action="Premade Designers" data-label="User selected Premade Designs Box"
           class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
 
 
@@ -74,7 +74,6 @@
         </div>
 
         <div class="carousel-cell item-box">
-          <div class="popular-box-packaging"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
 
           <div
           data-category="builder" data-action="Make your own box" data-label="Selected Make your own Box"
@@ -118,9 +117,6 @@
 
         {% for p in packaging %}
         <div class="carousel-cell item-box">
-          {% if p.popular == True %}
-          <div class="popular-box-packaging"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
-          {% endif %}
           <div data-category="builder" data-action="{{p.name}}" data-label="{{p.name}} packaging material selected" class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
 
             <div class="content" data-toggle="modal" data-target="#modal-{{p.sku}}" style="cursor:pointer;width:100%;height:100%;">
