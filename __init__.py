@@ -278,7 +278,7 @@ def store(template,starID):
     #if !star['campaigns'][0]['charity']:
 
     if star['campaigns'][0].has_key('charity'):
-        donations = format(star['campaigns'][0]['charity'][0]['amount'] * star['campaigns'][0]['num_orders'], ",d")
+        donations = format(int(star['campaigns'][0]['charity']['amount']) * int(star['campaigns'][0]['num_orders']), ",d")
     else:
         donations = '0'
 
@@ -616,6 +616,10 @@ def launchStoreRequest():
             campaign['style']['btn_color'] = '#28a237'
             campaign['products'] = info['products']
             campaign['campaign_video'] = '0'
+            campaigns['charity'] = {}
+            campaigns['charity']['amount'] = info['charity']
+            campaigns['charity']['name'] = 'No Charity Setup'
+            campaigns['charity']['URL'] = '#'
 
             db.stars.update_one({'id':ID.lower()}, {'$push': {'campaigns': campaign}})
 
@@ -645,12 +649,19 @@ def launchStoreRequest():
                 client['campaigns'][0]['profit'] = info['profit']
                 client['campaigns'][0]['description'] = info['desc']
                 client['campaigns'][0]['num_orders'] = 500
-                client['campaigns'][0]['campaign_video'] = ''
+                client['campaigns'][0]['campaign_video'] = '0'
                 client['campaigns'][0]['style'] = {}
                 client['campaigns'][0]['style']['color_primary'] = '#' + info['font_color'].lower()
                 client['campaigns'][0]['style']['color_secondary'] = '#9d9d9d'
                 client['campaigns'][0]['style']['btn_color'] = '#28a237'
                 client['campaigns'][0]['products'] = info['products']
+                client['campaigns'][0]['charity'] = {}
+                client['campaigns'][0]['charity']['amount'] = info['charity']
+                client['campaigns'][0]['charity']['name'] = 'No Charity Setup'
+                client['campaigns'][0]['charity']['URL'] = '#'
+
+
+
                 db.stars.insert_one(client)
 
         #send the email to fandemic team

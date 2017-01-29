@@ -22,11 +22,12 @@
       <div class="carousel" data-flickity='{ "initialIndex": 1, prevNextButtons: false  }'>
 
         <div class="carousel-cell item-box">
-          <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
+          <div
+          data-category="builder" data-action="Plain White Box" data-label="User selected Plain White Box"
+          class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
 
 
             <div
-            data-category="builder" data-action="Plain White Box" data-label="User selected Plain White Box"
             class="content" ng-click="toggleStyle({name:'Plain White',variation:'Plain White',img:'plain-white.png'})" style="cursor:pointer;width:100%;height:100%;">
 
 
@@ -46,11 +47,12 @@
         </div>
 
         <div class="carousel-cell item-box">
-          <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
+          <div
+          data-category="builder" data-action="Premade Designers" data-label="User selected Premade Designs Box"          
+          class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
 
 
             <div
-            data-category="builder" data-action="Premade Designers" data-label="User selected Premade Designs Box"
             class="content" data-toggle="modal" data-target="#box-color-modal" style="cursor:pointer;width:100%;height:100%;">
 
 
@@ -73,11 +75,14 @@
 
         <div class="carousel-cell item-box">
           <div class="popular-box-packaging"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
-          
-          <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;border: 2px solid #D2AFC9;">
+
+          <div
+          data-category="builder" data-action="Make your own box" data-label="Selected Make your own Box"
+          class="thumbnail clickable" style="height:100%;width:100%;padding:10px;border: 2px solid #D2AFC9;">
 
 
-            <div class="content" onclick="$('#box-designer').css('visibility', 'visible');$('.artwork-editor').css('visibility', 'visible');" style="cursor:pointer;width:100%;height:100%;">
+            <div
+            class="content" onclick="$('#box-designer').css('visibility', 'visible');$('.artwork-editor').css('visibility', 'visible');" style="cursor:pointer;width:100%;height:100%;">
 
 
               <img class="product-img" style="width:100%;" src="/static/img/packaging/professional-box.png" alt="">
@@ -116,8 +121,7 @@
           {% if p.popular == True %}
           <div class="popular-box-packaging"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
           {% endif %}
-          <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
-
+          <div data-category="builder" data-action="{{p.name}}" data-label="{{p.name}} packaging material selected" class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
 
             <div class="content" data-toggle="modal" data-target="#modal-{{p.sku}}" style="cursor:pointer;width:100%;height:100%;">
 
