@@ -21,7 +21,7 @@
         <i class="light" style="font-weight:300;position:absolute;right:80px;top:0px;">
 
                          <img width="20px;" class="color-palette" src="/static/img/color-palette.svg"> = multiple colors available <br>
-                         <img width="20px;" src="/static/img/vegan.svg"> = this product is vegan
+                         <!-- <img width="20px;" src="/static/img/vegan.svg"> = this product is vegan -->
         </i>
 
       </div>
@@ -44,9 +44,12 @@
 
     {% for item in group.list %}
 
-    <div class="item-box" style="float:left;width:220px;height:285px;margin:5px;">
-
+    <div class="item-box" style="float:left;width:220px;height:285px;margin:5px;position:relative;">
+      {% if item.popular == True %}
+      <div class="popular-product-label"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
+      {% endif %}
           <div class="thumbnail" style="height:100%;width:100%">
+
 
 
             <div class="content clickable"
@@ -62,7 +65,8 @@
                 >
 
 
-                  <img data-category="builder" class="product-img img-responsive" style="width:100%;padding:10px;"  src="https://res.cloudinary.com/fandemic/w_300,h_300,c_pad/products/{{item.item_num}}.png" alt="">
+                  <img data-category="builder" class="product-img img-responsive"  style="{% if item.popular == True %}width:90% !important;{% endif %} width:100%;padding:10px;" src="https://res.cloudinary.com/fandemic/w_300,h_300,c_pad/products/{{item.item_num}}.png" alt="">
+
 
                   <span ng-repeat="p in box.products">
                     <span ng-if="p.name =='{{item.name}}'">
@@ -87,6 +91,7 @@
                 </div>
             </div>
         </div>
+
 
 
 

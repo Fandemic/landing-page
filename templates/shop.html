@@ -329,11 +329,11 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 
           <hr>
           <h4><span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong></h4>
-          {% if star.campaigns[0].charity %}
+          {% if star.campaigns[0].charity and star.campaigns[0].charity.amount != 0 %}
           <div class="charity">
             <p>
               ${{donations}}.00
-              has been donated to <a target="_blank" href="{{star.campaigns[0].charity[0].URL}}">{{star.campaigns[0].charity[0].name}}</a>
+              has been donated to <a target="_blank" href="{{star.campaigns[0].charity.URL}}">{{star.campaigns[0].charity.name}}</a>
           </div>
           {% endif %}
           <hr>

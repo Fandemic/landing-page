@@ -4,6 +4,31 @@
 * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
 */
 
+.popular-product-label {
+    background-color: #D2AFC9;
+    right: -56px;
+    top: 70px;
+    position: absolute;
+    color: #fff;
+    border-radius: 4px 4px 0px 0px;
+    font-size: 12px;
+    padding: 0px 8px;
+    width: 115px;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.24);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.popular-box-packaging {
+  background-color: #D2AFC9;
+  left: 0px;
+  color: #fff;
+  border-radius: 4px 4px 0px 0px;
+  font-size: 12px;
+  padding: 5px;
+  width: 189px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.24);
+}
 .logo-box {
     position: absolute;
     width: 200px;
