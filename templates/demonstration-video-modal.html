@@ -1,3 +1,35 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="no-profile-img">
+
+  <div class="modal-dialog modal-md" style="width:43em;">
+    <div class="modal-content" style="padding:30px">
+      <div class="modal-header">
+         <button type="button" id="demo-modal-close" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+         <h4 class="modal-title">{{star.name}}'s {{star.campaigns.0.box_name}} Box</h4>
+       </div>
+      <br>
+      <h3 style="text-align:center"> <a href="mailto:sarah@fandemico?subject={{star.name}} profile img">Send us your profile image</a></h3>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="no-social-media-profiles">
+
+  <div class="modal-dialog modal-md" style="width:43em;">
+    <div class="modal-content" style="padding:30px">
+      <div class="modal-header">
+         <button type="button" id="demo-modal-close" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+         <h4 class="modal-title">{{star.name}}'s {{star.campaigns.0.box_name}} Box</h4>
+       </div>
+      <br>
+      <h3 style="text-align:center"> <a href="mailto:sarah@fandemico?subject={{star.name}} social media">Send us your Social Media profiles</a></h3>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="demonstration-video">
 
   <div class="modal-dialog modal-md" style="width:43em;">
@@ -9,14 +41,15 @@
          <h4 class="modal-title">{{star.name}}'s {{star.campaigns.0.box_name}} Box</h4>
        </div>
       <br>
-      {% if star.campaigns[0].campaign_video != '' %}
+      {% if star.campaigns[0].campaign_video != '0' %}
       <iframe class="video-iframe" src="//player.vimeo.com/video/{{star.campaigns[0].campaign_video}}?api=1&player_id=vimeoplayer&title=0&amp;byline=0&amp;portrait=0" name="vimeoplayer" id="nofocusvideo" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       {% else %}
-      <h3> email us </h3>
+      <h3 style="text-align:center"> <a href="mailto:sarah@fandemico?subject={{star.name}} video">Send us your video</a></h3>
       {% endif %}
     </div>
   </div>
 </div>
+
 
 <style>
 .video-iframe{
@@ -88,6 +121,7 @@
 
 
 <script>
+console.log({{star.campaigns[0].campaign_video}});
 var Froogaloop = function() {
   function e(a) {
     return new e.fn.init(a)

@@ -95,7 +95,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
     {% if star.campaigns.0.custom == true %}
     <img class="profile-img" style="border-radius: 50%;" src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/profile.png">
     {% else %}
-    <img class="profile-img" style="border-radius: 50%;" src="/static/img/user.png">
+    <a href="#" data-toggle="modal" data-target='#no-profile-img'><img class="profile-img" style="border-radius: 50%;" src="/static/img/user.png"></a>
     {% endif %}
 
   </div>
@@ -115,10 +115,10 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
   </div>
   {% else %}
   <div id="social-media">
-    <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link no-social-link" target="_blank" href=""><i class="fa fa-youtube"></i></a>
-    <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link no-social-link" target="_blank" href=""><i class="fa fa-instagram"></i></a>
-    <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link no-social-link" target="_blank" href=""><i class="fa fa-facebook"></i></a>
-    <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link no-social-link" target="_blank" href=""><i class="fa fa-twitter"></i></a>
+    <a data-toggle="modal" data-target='#no-social-media-profiles' {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link no-social-link" target="_blank" href=""><i class="fa fa-youtube"></i></a>
+    <a data-toggle="modal" data-target='#no-social-media-profiles' {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link no-social-link" target="_blank" href=""><i class="fa fa-instagram"></i></a>
+    <a data-toggle="modal" data-target='#no-social-media-profiles' {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link no-social-link" target="_blank" href=""><i class="fa fa-facebook"></i></a>
+    <a data-toggle="modal" data-target='#no-social-media-profiles' {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link no-social-link" target="_blank" href=""><i class="fa fa-twitter"></i></a>
   </div>
   {% endif %}
 
