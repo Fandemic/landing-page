@@ -58,10 +58,11 @@ app.controller("shop", function($scope) {
     {
         if (product.item_num.length == 8){
           product.item_num = product.item_num.slice(0, -3);
-          $scope.product_view.img_url = "/static/img/beauty-items/" + product.item_num + ".png";
+
+          $scope.product_view.img_url = "https://res.cloudinary.com/fandemic/image/upload/e_trim,e_make_transparent/w_400,h_400,c_pad/products/" + product.item_num + ".png";
         }
         else{
-          $scope.product_view.img_url = "/static/img/beauty-items/" + product.item_num + ".png";
+          $scope.product_view.img_url = "https://res.cloudinary.com/fandemic/image/upload/e_trim,e_make_transparent/w_400,h_400,c_pad/products/" + product.item_num + ".png";
         }
       }
 

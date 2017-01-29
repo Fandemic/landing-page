@@ -143,7 +143,7 @@
         </div>
 
 
-        <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modal-{{p.sku}}">
+        <div class="modal fade variations-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modal-{{p.sku}}">
 
           <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:1000px;height:100%;overflow-y:auto;">
@@ -160,7 +160,7 @@
                 {% for v in p.variation %}
                 <!--start of option-->
                 <div class="clickable" style="display:inline-block;padding:0px 25px;text-align:center;" ng-click="toggleMaterial({ name:'{{p.name}}',variation:'{{v.name}}', img:'{{p.item_num + '-' + v.item_num}}.png' })" data-dismiss="modal">
-                  <img width="160px" src="/static/img/packaging/{{p.item_num + '-' + v.item_num}}.png">
+                  <img width="160px" class="lazy_load" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/static/img/packaging/{{p.item_num + '-' + v.item_num}}.png">
                   <p class="light">{{v.name}}</p>
 
                 </div>
@@ -216,7 +216,7 @@
 
 
 <!--VARIATIONS MODAL -->
-<div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="box-color-modal">
+<div class="modal fade variations-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="box-color-modal">
 
   <div class="modal-dialog modal-lg">
     <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:1000px;height:100%;overflow-y:auto;">
@@ -235,7 +235,7 @@
         <div
         data-category="builder" data-action="Premade Box Styles" data-label="User selected style {{style.name}} of Premade Boxes"
         class="clickable" style="display:inline-block;padding:0px 25px;text-align:center;" ng-click="toggleStyle({ name:'Solid Color',variation:'{{style.name}}',img:'{{style.img}}' })" data-dismiss="modal">
-          <img width="160px" src="/static/img/packaging/{{style.img}}">
+          <img width="160px" class="lazy_load" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/static/img/packaging/{{style.img}}">
           <p class="light">{{style.name}}</p>
 
         </div>

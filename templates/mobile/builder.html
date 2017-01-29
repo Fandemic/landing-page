@@ -205,3 +205,12 @@ $(window).load(function() {
 <script src="/static/js/selectFx.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.3/css/bootstrap-dialog.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.3/js/bootstrap-dialog.min.js"></script>
+
+<script>
+$('.variations-modal').on("show.bs.modal", function () {
+    $(this).find('.lazy_load').each(function(){
+        var img = $(this);
+        img.attr('src', img.data('src'));
+    });
+});
+</script>

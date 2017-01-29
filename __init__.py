@@ -20,6 +20,7 @@ from mailer import Mailer
 from shipping import Shipping
 from cdn import CDN
 import braintree
+from flask_compress import Compress
 
 
 UPLOAD_FOLDER = 'static/img/test/'
@@ -28,6 +29,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
+Compress(app)
 db = MongoClient('45.79.159.210', 27018).fandemic
 
 mode = 'live';

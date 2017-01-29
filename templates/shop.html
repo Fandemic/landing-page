@@ -17,7 +17,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../static/css/shop.css">
-  <link rel="stylesheet" href="../static/css/landing-page/magnific-popup.css">
+  <!--<link rel="stylesheet" href="../static/css/landing-page/magnific-popup.css">-->
 
   <link rel="stylesheet" href="/static/css/social-share-kit.css" type="text/css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
@@ -241,7 +241,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
             <div class="thumbnail btn-product"
                  ng-click="toggle_product({name:'{{p.name}}',img_url:'https://res.cloudinary.com/fandemic/stars/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
                                           {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
-              <img alt="" class="product-img img-responsive" src="/static/img/beauty-items/{{p.item_num}}.png" style="width:100%;padding:10px;">
+              <img alt="" class="product-img img-responsive" src="https://res.cloudinary.com/fandemic/image/upload/e_trim,e_make_transparent/w_250,h_250,c_pad/products/{{p.item_num}}.png" style="width:100%;padding:10px;">
 
             </div>
             <p style="font-size:9px;color:#8d8d8d;">{{p.name}}<br>{% if p.variation %} <span style="font-size:6px;color:#8d8d8d;">{{p.variation}}</span> {% endif %}</p>
