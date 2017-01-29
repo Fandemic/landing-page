@@ -615,7 +615,7 @@ def launchStoreRequest():
             campaign['style']['color_secondary'] = '#fff'
             campaign['style']['btn_color'] = '#28a237'
             campaign['products'] = info['products']
-            campaign['campaign_video'] = ''
+            campaign['campaign_video'] = '0'
 
             db.stars.update_one({'id':ID.lower()}, {'$push': {'campaigns': campaign}})
 

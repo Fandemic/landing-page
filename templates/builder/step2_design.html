@@ -72,17 +72,9 @@
         </div>
 
         <div class="carousel-cell item-box">
+          <div class="popular-box-packaging"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
+          
           <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;border: 2px solid #D2AFC9;">
-
-            <div style="background-color: #D2AFC9;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    color: #fff;
-    border-radius: 0px 0px 4px 0px;
-    font-size: 12px;
-    padding: 5px;
-"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
 
 
             <div class="content" onclick="$('#box-designer').css('visibility', 'visible');$('.artwork-editor').css('visibility', 'visible');" style="cursor:pointer;width:100%;height:100%;">
@@ -121,6 +113,9 @@
 
         {% for p in packaging %}
         <div class="carousel-cell item-box">
+          {% if p.popular == True %}
+          <div class="popular-box-packaging"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
+          {% endif %}
           <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
 
 
