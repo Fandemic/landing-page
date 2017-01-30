@@ -329,7 +329,7 @@ app.controller("builder", function($scope) {
           $('#crumb3').addClass('current');
           $("#next4").addClass("on");
           $("html, body").animate({ scrollTop: 76 }, "slow");
-          Sticker.init('.sticker');
+        
         }
       }
 

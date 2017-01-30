@@ -13,7 +13,7 @@
 
         <div class="row">
           <div class="col-md-12">
-            <h4 style="color:#8d8d8d;">1. Create your <strong>brand name</strong> and <strong>box name</strong>!</h4>
+            <h4 style="color:#8d8d8d;">1. Name your brand & box</h4>
 
             <!--<input type="checkbox" data-off-label="NO" data-on-label="YES" data-group-cls="btn-group-md">-->
             <div class="row">
@@ -52,19 +52,54 @@
       <br>
 
 
-          <div id="logo-upload" style="display:none;">
 
-            <br>
-            <h4 style="color:#8d8d8d;">3b. Upload your logo
-            </h4>
-            <input style="margin-top:26px;" type="file" name="fileToUpload" id="fileToUpload">
-
-          </div>
 
       </div>
 
         <div class="row" style="font-size:22px;color:#adadad;font-weight:300;">
           <div class="col-md-12">
+
+
+            <div id="logo-upload" class="row" style="display:none;">
+
+
+              <div class="col-md-12">
+                <h4 style="color:#8d8d8d;">3b. Upload your logo
+                </h4>
+              </div>
+
+              <div class="col-md-4" >
+              <input id="logo-uploader" style="margin-top:26px;" type="file" name="fileToUpload" >
+              </div>
+
+              <div class="col-md-8" id="design-display2">
+
+
+
+
+                  <div style="width:100%;">
+                    <div class="sticker" style="width:200px;height:200px;margin:0 auto;margin-top:50px;border-radius:4px;border:1px solid;border-color:#1d1d1d;display:table;">
+                      <div class="label">
+
+
+                          <img class="img-responsive" src="{a box.logo a}">
+
+                      </div>
+                      </div>
+                      <p class = "label-indicator">This will be on your products</p>
+                      <p class="light" style="font-weight:300;font-size:10px;text-align:center;"><br>*label is heat transfered directly to products</p>
+
+                    </div>
+
+              </div>
+
+            </div>
+
+
+
+
+
+
 
             <div id="font-designer" class="row" style="display:none;">
 
@@ -77,6 +112,7 @@
 
 
           <div class="col-md-4">
+
             <label class="light" style="font-weight:300;">Primary Font</label>
             <select name="cars" class="form-control" ng-model="box.font1" style="font-size:16px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
               <option style="font-family: 'Alex Brush';" value="font-family: 'Alex Brush'" selected>Alex Brush</option>
@@ -119,10 +155,10 @@
               <option style="font-family: 'Ubuntu';" value="font-family: 'Ubuntu'">Ubuntu</option>
               <option style="font-family: 'Vast Shadow';" value="font-family: 'Vast Shadow'">Vast Shadow</option>
             </select>
-          </div>
 
 
-          <div class="col-md-4">
+
+
             <label class="light" style="font-weight:300;">Secondary Font</label>
             <select name="cars" class="form-control" ng-model="box.font2" style="font-size:16px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
               <option selected style="font-family: 'Alex Brush';" value="font-family: 'Alex Brush'" selected>Alex Brush</option>
@@ -165,38 +201,36 @@
               <option style="font-family: 'Ubuntu';" value="font-family: 'Ubuntu'">Ubuntu</option>
               <option style="font-family: 'Vast Shadow';" value="font-family: 'Vast Shadow'">Vast Shadow</option>
             </select>
-          </div>
 
 
-            <div class="col-md-4 color-selector">
+
+            <div class="color-selector">
               <label class="light" style="font-weight:300;">Font Color</label>
               <input ng-model="box.font_color" class="jscolor form-control" style="font-size:16px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
             </div>
 
+              </div>
 
 
-          </div>
           <!--<hr>-->
 
 
 
 
-          <div class="col-md-12" id="design-display" style="display:none;">
+          <div class="col-md-8" id="design-display">
 
 
 
 
-              <div style="width:50%;">
+              <div style="width:100%;">
                 <div class="sticker" style="width:200px;height:200px;margin:0 auto;margin-top:50px;border-radius:4px;border:1px solid;border-color:#1d1d1d;display:table;">
                   <div class="label">
                     <span class="box-brand box-brand1" ng-bind="box.brand_name" style="{a box.font1 a}; color:#{a box.font_color a};"></span>
                     <span class="box-name" ng-bind="box.box_name" style="{a box.font2 a}; color:#{a box.font_color a};"></span>
-                    <div ng-if="box.logo != ''">
-                      <img class="img-responsive" ng-src="{a box.logo a}">
-                    </div>
+
                   </div>
                   </div>
-                  <p class = "label-indicator" style="margin-top:3em">This will be on your products</p>
+                  <p class = "label-indicator">This will be on your products</p>
                   <p class="light" style="font-weight:300;font-size:10px;text-align:center;"><br>*label is heat transfered directly to products</p>
 
                 </div>
@@ -207,6 +241,7 @@
 
 
           </div>
+            </div>
         </div>
       </div>
 
@@ -238,10 +273,32 @@
 
 <script>
 
+$("#logo-uploader").change(function () {
+    if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = imageIsLoaded;
+        reader.readAsDataURL(this.files[0]);
+    }
+});
+
+
+function imageIsLoaded(e) {
+// $('.box-brand1').html('<img class="logo-box" src="'+e.target.result+'">');
+// $('.box-brand2').html('<img class="logo-label" src="'+e.target.result+'">');
+
+var appElement = document.querySelector('[ng-app=app]');
+$scope = angular.element(appElement).scope();
+$scope = $scope.$$childHead; // add this and it will work
+$scope.$apply(function() {
+    $scope.box.logo = e.target.result;
+});
+
+};
+
 $('#no').click(function(){
   $('#font-designer').show();
   $('#logo-upload').hide();
-  $('#design-display').show();
+
   $('#no').css("background-color", "#D2AFC9");
   $('#yes').css("background-color", "#fff");
   $('#no').css("color", "#fff");
@@ -254,46 +311,12 @@ $('#yes').click(function(){
   //$('#font-designer').hide();
   $('#font-designer').hide();
   $('#logo-upload').show();
-  $('#design-display').show();
   $('#yes').css("background-color", "#D2AFC9");
   $('#yes').css("color", "#fff");
   $('#no').css("background-color", "#fff");
   $('#no').css("color", "#1d1d1d");
   //$('.label').css('background-color', '#fff');
   $('.label').css('background-color', 'black');
-  $('.box-brand').html('');
-  $('.box-name').html('');
 });
-
-
-//Load and display image
-$(function () {
-    $(":file").change(function () {
-        if (this.files && this.files[0]) {
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded;
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-});
-
-function imageIsLoaded(e) {
-    // $('.box-brand1').html('<img class="logo-box" src="'+e.target.result+'">');
-    // $('.box-brand2').html('<img class="logo-label" src="'+e.target.result+'">');
-
-    $('.box-name').html('');
-
-    var appElement = document.querySelector('[ng-app=app]');
-    $scope = angular.element(appElement).scope();
-    $scope = $scope.$$childHead; // add this and it will work
-    $scope.$apply(function() {
-        $scope.box.logo = e.target.result;
-    });
-
-};
-
-
-
-
 
 </script>
