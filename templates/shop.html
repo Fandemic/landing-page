@@ -165,7 +165,8 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 
       <div class="btns">
         <a href="/builder" target="_blank">
-          <button class="btn btn-default" aria-hidden="true" style="background:#ef8db6;font-weight:700;color:white;border:1px solid #ef8db6;">CREATE YOUR OWN BOX</button>
+          <button data-category="Shop" data-action="Create box button" data-label="Create your own box button"
+          class="btn btn-default" aria-hidden="true" style="background:#ef8db6;font-weight:700;color:white;border:1px solid #ef8db6;">CREATE YOUR OWN BOX</button>
         </a>
       </div>
 
@@ -205,7 +206,8 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 
         <div class="thumbnail display-main" style="overflow: hidden;width:100%;min-height:435px;padding:20px;" ng-show="view_mode == 'product'">
 
-        <button ng-click="view_mode = 'box'" class="btn btn-default" style="position:absolute;right:10px;top:10px;">View Box</button>
+        <button data-category="Shop" data-action="View Box" data-label="View box selected"
+        ng-click="view_mode = 'box'" class="btn btn-default" style="position:absolute;right:10px;top:10px;">View Box</button>
 
         <img width="60px" src="/static/img/cruelty_free.png" style="position:absolute;left:5px;top:5px;opacity:.6;">
 
@@ -241,7 +243,8 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
             <div class="thumbnail btn-product"
                  ng-click="toggle_product({name:'{{p.name}}',img_url:'https://res.cloudinary.com/fandemic/stars/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
                                           {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
-              <img alt="" class="product-img img-responsive" src="https://res.cloudinary.com/fandemic/image/upload/e_trim,e_make_transparent/w_250,h_250,c_pad/products/{{p.item_num}}.png" style="width:100%;padding:10px;">
+              <img data-category="Shop" data-action="product preview" data-label="Product preview for {{p.name}}"
+               alt="" class="product-img img-responsive" src="https://res.cloudinary.com/fandemic/image/upload/e_trim,e_make_transparent/w_250,h_250,c_pad/products/{{p.item_num}}.png" style="width:100%;padding:10px;">
 
             </div>
             <p style="font-size:9px;color:#8d8d8d;">{{p.name}}<br>{% if p.variation %} <span style="font-size:6px;color:#8d8d8d;">{{p.variation}}</span> {% endif %}</p>
@@ -355,7 +358,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
       <button data-toggle="modal" data-target="" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="  opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
               background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
       {% elif star.campaigns[0].status == 'live' %}
-      <button data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
+      <button class="pre-order-now" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
               background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
       {% elif star.campaigns[0].status == 'success' or star.campaigns[0].status == 'failed'%}
       <a href="/builder">
@@ -423,29 +426,29 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
             <div class='row'>
               <div class='col-xs-6'>
                 <label class='control-label'>Email</label>
-                <input id="email" class='form-control' size='30' type='text' ng-model="data.customer.email">
+                <input data-category="Shop" data-action="Email form" data-label="Email Input Form" id="email" class='form-control' size='30' type='text' ng-model="data.customer.email">
               </div>
               <div class='col-xs-6'>
                 <label class='control-label'>Full Name</label>
-                <input id="name" class='form-control' size='30' type='text' ng-model="data.customer.name">
+                <input data-category="Shop" data-action="Full Name form" data-label="Full Name Input Form" id="name" class='form-control' size='30' type='text' ng-model="data.customer.name">
               </div>
             </div>
             <br>
             <div class='row'>
               <div class='col-xs-12'>
                 <label class='control-label'>Shipping Address</label>
-                <input id="addr" class='form-control' size='200' type='text' ng-model="data.customer.addr" ng-model-options="{ debounce: 1500 }">
+                <input data-category="Shop" data-action="Shipping Address form" data-label="Address Input Form" id="addr" class='form-control' size='200' type='text' ng-model="data.customer.addr" ng-model-options="{ debounce: 1500 }">
               </div>
             </div>
             <br>
             <div class='row'>
               <div class='col-xs-6'>
                 <label class='control-label'>City</label>
-                <input id="city" class='form-control' size='30' type='text' ng-model="data.customer.city" ng-model-options="{ debounce: 1500 }">
+                <input data-category="Shop" data-action="City form" data-label="City Input Form" id="city" class='form-control' size='30' type='text' ng-model="data.customer.city" ng-model-options="{ debounce: 1500 }">
               </div>
               <div class='col-xs-6'>
                 <label class='control-label'>State</label>
-                <input id="state" class='form-control' size='30' type='text' ng-model="data.customer.state">
+                <input data-category="Shop" data-action="State form" data-label="State Input Form" id="state" class='form-control' size='30' type='text' ng-model="data.customer.state">
               </div>
             </div>
 
@@ -454,12 +457,12 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 
               <div class='col-xs-6'>
                 <label class='control-label'>Zip</label>
-                <input id="zip" class='form-control' size='30' type='text' ng-model="data.customer.zip" ng-model-options="{ debounce: 1500 }">
+                <input data-category="Shop" data-action="Zip form" data-label="Zip Input Form" id="zip" class='form-control' size='30' type='text' ng-model="data.customer.zip" ng-model-options="{ debounce: 1500 }">
               </div>
               <div class='col-xs-6'>
                 <label class='control-label'>Country</label>
                 <div class="form-group" style="text-align:left;">
-                  <select id="country" class="form-control" ng-model="data.customer.country">
+                  <select data-category="Shop" data-action="Country form" data-label="Country Input Form" id="country" class="form-control" ng-model="data.customer.country">
                     <option value="AF">Afghanistan</option>
                   	<option value="AX">Åland Islands</option>
                   	<option value="AL">Albania</option>
@@ -734,7 +737,8 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 
               <div class="form-group" style="text-align:left;">
                 <label for="sel1">Shipping Method:</label>
-                <select class="form-control" id="shipping" ng-model="data.shipping_method"
+                <select data-category="Shop" data-action="Shipping method form" data-label="Shipping method Input Form"
+                        class="form-control" id="shipping" ng-model="data.shipping_method"
                         ng-options="rate as (rate.service + '('+ rate.delivery_days  + ' days) +$' + rate.rate) for rate in rates">
                 </select>
               </div>
@@ -746,7 +750,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
 
               <hr>
 
-              <button id="submit" type="submit" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">PAY NOW {a total_price_str() a}</button>
+              <button data-category="Shop" data-action="Order Submission" data-label="Order Submitted" id="submit" type="submit" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">PAY NOW {a total_price_str() a}</button>
 
 
           </div>
@@ -867,6 +871,35 @@ else{
      'background-position' : 'cover'
   });
 }
+// $(".pre-order-now").click(function(){
+//   $('#braintree-paypal-button').attr({
+//     "data-category": "Shop",
+//     "data-action": "Paypal Button",
+//     "data-label": "Paypal Button Clicked on Payment Form"
+//   })
+//
+//   $('#credit-card-number').attr({
+//     "data-category": "Shop",
+//     "data-action": "Credit Card Number Input",
+//     "data-label": "Credit Card Number entered on Payment Form"
+//   })
+//
+//   $('#expiration').attr({
+//     "data-category": "Shop",
+//     "data-action": "Expiration Input",
+//     "data-label": "Expiration Form entered on Payment Form"
+//   })
+//
+//   $('#cvv').attr({
+//     "data-category": "Shop",
+//     "data-action": "CVV Input",
+//     "data-label": "CVV Entered on Payment Form"
+//   })
+// })
+
+$( "li" ).each(function() {
+  $( this ).addClass( "foo" );
+});
 </script>
 
 
