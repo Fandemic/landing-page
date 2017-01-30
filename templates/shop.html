@@ -122,11 +122,13 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
   </div>
   {% endif %}
 
+  {% if star.campaigns[0].campaign_video != '0' %}
   <div class="campaign_video">
     <a href="#" data-toggle="modal" data-target="#demonstration-video" >
       <i class="fa fa-play-circle" aria-hidden="true" style="text-shadow: 3px 2px 1px #8d8d8d;padding-top:5%;font-size: 5em;color:{% if star.campaigns[0].style.color_secondary %}{{star.campaigns[0].style.color_secondary}}{% else %}#8d8d8d{% endif %}"></i>
     </a>
   </div>
+  {% endif %}
 
   <div class="footer">
     <p class="copyright text-muted small" {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %}>Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
@@ -166,7 +168,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
       <div class="btns">
         <a href="/builder" target="_blank">
           <button data-category="Shop" data-action="Create box button" data-label="Create your own box button"
-          class="btn btn-default" aria-hidden="true" style="background:#ef8db6;font-weight:700;color:white;border:1px solid #ef8db6;">CREATE YOUR OWN BOX</button>
+          class="btn btn-default" aria-hidden="true" style="background:#fff;font-weight:300;color:#1d1d1d;border:1px solid #1d1d1d;">CREATE YOUR OWN BOX</button>
         </a>
       </div>
 
