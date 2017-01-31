@@ -382,9 +382,10 @@
             <br>
             {% if star.campaigns[0].charity and star.campaigns[0].charity.amount != 0 %}
             <div class="charity">
-              <p>
+              <p style="font-size:12px;color:#9d9d9d;">
                 ${{donations}}.00
-                will been donated to <a target="_blank" href="{{star.campaigns[0].charity.URL}}">{{star.campaigns[0].charity.name}}</a>
+                has been donated to <a target="_blank" href="{{star.campaigns[0].charity.URL}}">{{star.campaigns[0].charity.name}}</a>
+              </p>
             </div>
             {% endif %}
 
