@@ -72,7 +72,7 @@ app.controller("shop", function($scope) {
 
     date = undefined;
     end_time = $scope.data.end_time;
-    production_time = 14 * 86400; //two week production time
+    production_time = 2 * 86400; //two week production time
     time_padding = 4 * 86400; //used when a shipping method is not present
 
     if ($scope.data.shipping_method['rate']){
