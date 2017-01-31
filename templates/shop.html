@@ -907,6 +907,6 @@ $( "li" ).each(function() {
 
 {% include 'analytics.html' %}
 
-{% if star.campaigns[0].campaign_video %}
+{% if star.campaigns[0].campaign_video != '0' %}
   {% include 'demonstration-video-modal.html' %}
 {% endif %}

@@ -41,7 +41,7 @@
 
 
 
-  <meta property="og:image" content="https://fandemic.co/static/img/live/{{star.id}}/profile.png">
+  <meta property="og:image" content="https://res.cloudinary.com/fandemic/stars/valentines-day/profile.png">
 
 </head>
 
@@ -119,9 +119,11 @@
     {% endif %}
   {% endif %}
 
-  <div id="menu" style="background:url(/static/img/live/{{star.id}}/bg.jpg);background-position:cover;">
 
-    <img class="profile-img" src="/static/img/live/{{star.id}}/profile.png" style="border-radius: 50%;padding:10px;" [src]="invalidPath" onError="this.src='/static/img/user.png'">
+
+  <div id="menu">
+
+    <img class="profile-img" src="https://res.cloudinary.com/fandemic/stars/valentines-day/profile.png" style="border-radius: 50%;padding:10px;" [src]="invalidPath" onError="this.src='/static/img/user.png'">
 
 
     {% if star.campaigns[0].style.color_primary != '' %}
@@ -138,7 +140,7 @@
       <a {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %} class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
     </div>
     {% endif %}
-    {% if star.campaigns[0].campaign_video %}
+    {% if star.campaigns[0].campaign_video != '0' %}
     <div class="campaign_video">
       <a href="#" data-toggle="modal" data-target="#demonstration-video" >
         <i class="fa fa-play-circle" aria-hidden="true" style="text-shadow: 3px 2px 1px #8d8d8d;padding-top:5%;font-size: 5em;color:{% if star.campaigns[0].style.color_secondary %}{{star.campaigns[0].style.color_secondary}}{% else %}#8d8d8d{% endif %}"></i>
@@ -153,7 +155,7 @@
 
 
   <div class="nav">
-      <img class="star-btn" width="50px" src="/static/img/live/{{star.id}}/profile.png" [src]="invalidPath" onError="this.src='/static/img/user.png'">
+      <img class="star-btn" width="50px" src="https://res.cloudinary.com/fandemic/stars/valentines-day/profile.png" [src]="invalidPath" onError="this.src='/static/img/user.png'">
     <div class="name">
       <script>
       if (imageExists("../static/img/live/{{star.id}}/logo.png") == true){
@@ -243,7 +245,7 @@
         <div>
 
             <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
-            <img class="img-responsive" style="width:60%;padding:5px;margin: 0 auto;" src="../static/img/live/{{star.id}}/box.png">
+            <img class="img-responsive" style="width:60%;padding:5px;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/box.png">
 
 
         </div>
@@ -378,11 +380,11 @@
             <br>
             <h3><span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong></h3>
             <br>
-            {% if star.campaigns[0].charity %}
+            {% if star.campaigns[0].charity and star.campaigns[0].charity.amount != 0 %}
             <div class="charity">
               <p>
                 ${{donations}}.00
-                has been donated to <a target="_blank" href="{{star.campaigns[0].charity[0].URL}}">{{star.campaigns[0].charity[0].name}}</a>
+                has been donated to <a target="_blank" href="{{star.campaigns[0].charity.URL}}">{{star.campaigns[0].charity.name}}</a>
             </div>
             {% endif %}
 
@@ -960,7 +962,7 @@ $('.ssk-tumblr').attr('href', 'http://www.tumblr.com/share?v=3&amp;u=https://fan
 </script>
 {% include 'analytics.html' %}
 
-{% if star.campaigns[0].campaign_video %}
+{% if star.campaigns[0].campaign_video != '0' %}
   {% include 'demonstration-video-modal.html' %}
 {% endif %}
 
@@ -973,4 +975,19 @@ window.zESettings = {
     }
   }
 };
+
+if (imageExists("https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg") == true){
+  $('#menu').css({
+     'background' : 'url("https://res.cloudinary.com/fandemic/stars/{{star.id}}/bg.jpg")',
+     'background-position' : 'cover'
+  });
+
+}
+else{
+  $('#menu').css({
+     'background' : 'url("https://fandemic.co/static/img/store-bg/6.jpg")',
+     'background-position' : 'cover'
+  });
+}
+
 </script>
