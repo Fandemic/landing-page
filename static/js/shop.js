@@ -120,6 +120,10 @@ app.controller("shop", function($scope) {
            success: function(response) {
              $("#payment-modal").modal("hide");
              $("#payment-success-modal").modal("show");
+
+             //facebook event tracking
+             fbq('track', 'Purchase', {value: $scope.data.price, currency:'USD'});
+
            },
            error: function(error) {
              alert("Payment Error: please try again later");

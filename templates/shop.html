@@ -131,7 +131,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
   {% endif %}
 
   <div class="footer">
-    <p class="copyright text-muted small" {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %}>Copyright &copy; Fandemic. 2016. All Rights Reserved. &nbsp;
+    <p class="copyright text-muted small" {% if star.campaigns[0].style.color_secondary %} style="color:{{star.campaigns[0].style.color_secondary}};" {% else %} style="color:#8d8d8d;" {% endif %}>Copyright &copy; Fandemic. 2017. All Rights Reserved. &nbsp;
       <strong>Patent Pending</strong>
     </p>
   </div>
@@ -360,7 +360,7 @@ img.setAttribute('src', 'https://res.cloudinary.com/fandemic/stars/{{star.id}}/p
       <button data-toggle="modal" data-target="" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="  opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
               background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
       {% elif star.campaigns[0].status == 'live' %}
-      <button class="pre-order-now" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
+      <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
               background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
       {% elif star.campaigns[0].status == 'success' or star.campaigns[0].status == 'failed'%}
       <a href="/builder">
