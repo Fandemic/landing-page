@@ -14,24 +14,7 @@
   ga('create', 'UA-75519719-1', 'auto');
   ga('send', 'pageview');
 
-$(document).ready(function() {
-  $(document).on("click", function (e) {
-    var clickedElement = $(e.target).attr('data-category');
-    if (clickedElement !== undefined) {
-      var dataCategory = $(e.target).attr('data-category');
-      var dataAction = $(e.target).attr('data-action');
-      var dataLabel = $(e.target).attr('data-label');
-      ga('send', 'event', {
-        eventCategory: dataCategory,
-        eventAction: dataAction,
-        eventLabel: dataLabel
-      });
-      console.log(dataLabel);
-    }
-    else{
-    }
-  });
-});
+
 // data-category="builder" data-action="" data-label="Clicked tab"
 </script>
 
@@ -57,3 +40,114 @@ src="https://www.facebook.com/tr?id=426872080841033&ev=PageView&noscript=1"
 <!--<script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(e){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","fandemic.zendesk.com");
 /*]]>*/</script>-->
 <!-- End of fandemic Zendesk Widget script -->
+
+<script>
+(function ($) {
+
+    $.fn.analytics = function () {
+
+        var $element = $(this);
+
+        // Tests whether Google Analytics is present
+        function testGaq() {
+            // Testing whether ga variable is present and is callable (Universal Analytics)
+            if (typeof ga === "function") {
+                return true;
+            }
+
+            // Testing whether _gaq variable is present and push is callable (deprecated ga.js library)
+            if (typeof _gaq !== 'undefined' && typeof _gaq.push === "function") {
+                return true;
+            }
+
+            return false;
+        }
+
+        // Sends the requested event
+        function sendEvent(data) {
+            if (typeof ga === "function") {
+                return ga.apply(null, ['send', 'event'].concat(data));
+
+            }
+
+            if (typeof _gaq !== 'undefined' && typeof _gaq.push === "function") {
+                return _gaq.push(['_trackEvent'].concat(data));
+            }
+        }
+
+        // Adding click and tap event listeners to selected elements
+        // At least data-ga-click-event-category attribute must be defined
+        $('*[data-ga-click-event-category]', $element).on("click tap", function (event) {
+
+            // Checking whether there is GA initialized
+            if (!testGaq())
+            {
+                if (typeof console !== 'undefined' && typeof console.log === "function") {
+                    console.log('Neither ga nor _gaq.push is a function. Make sure Google Analytics is initialized');
+                }
+                return;
+            }
+
+            var $clickedElement = $(this);
+
+            // GA parameters to be read from the element
+            var dataParameters = ['ga-click-event-category', 'ga-click-event-action', 'ga-click-event-label', 'ga-click-event-value'];
+
+            // Data array initialization
+            var data = [];
+            // Used for breaking the loop
+            var skip = false;
+
+            // Walking trough the list of allowed parameters
+            $.each(dataParameters, function (index, value) {
+                if (skip) {
+                    return; // break
+                }
+
+                value = $clickedElement.data(value);
+                if (!value) {
+                    // If there is no value it makes no sense to walk trough the array anymore
+                    skip = true;
+                    return; // break
+                }
+                data.push(value);
+            });
+
+            // When multiplicity is specified and greater than zero, then the event will be sent a given number of times
+            var multiplicity = $clickedElement.data('ga-click-event-track-multiplicity');
+            // Only if the initial multiplicity was greater than 0 the following condition will be true
+            // By default multiplicity is equal to 0 or undefined so the event will be tracked multiple times
+            if (multiplicity > 0) {
+                multiplicity--;
+                $clickedElement.data('ga-click-event-track-multiplicity', multiplicity);
+                if (multiplicity == 0) {
+                    $clickedElement.data('ga-click-event-track-multiplicity', -1);
+
+                    // Remove category data thus prevent the event to be reported
+                    $clickedElement.data('ga-click-event-category', null);
+                    $clickedElement.removeAttr('data-ga-click-event-category');
+                }
+            }
+
+            // In case data-ga-click-event-category was there but empty
+            if (data.length > 1)
+            {
+                if (typeof console !== 'undefined' && typeof console.log === "function") {
+                    console.log('GA event tracked', data);
+                }
+
+                // Pushing the event
+                ///debug check
+                console.log(data);
+                sendEvent(data);
+            }
+
+        });
+    }
+})(jQuery);
+
+$(document).ready(function()
+{
+    $(document).analytics();
+});
+</script>

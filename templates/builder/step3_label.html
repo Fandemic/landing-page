@@ -20,12 +20,16 @@
             <div class="col-md-4">
 
             <label class="light" style="font-weight:300;">Brand Name</label>
-            <input id="your-brand-input" ng-value="box.brand_name" ng-model="box.brand_name" type="text" class="form-control form-control-lg" style="font-size:20px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+            <input
+            data-ga-click-event-category="builder" data-ga-click-event-action="Input Brand Name" data-click-event-label="User inputted a brand name"
+            id="your-brand-input" ng-value="box.brand_name" ng-model="box.brand_name" type="text" class="form-control form-control-lg" style="font-size:20px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
             </div>
 
             <div class="col-md-4">
             <label class="light" style="font-weight:300;">Box Name</label>
-            <input id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control form-control-lg" style="font-size:20px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+            <input
+            data-ga-click-event-category="builder" data-ga-click-event-action="Input Box Name" data-click-event-label="User Input a box name"
+            id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control form-control-lg" style="font-size:20px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
           </div>
         </div>
 
@@ -41,8 +45,12 @@
         <div class="col-md-12">
         <h4 style="color:#8d8d8d;">2. Do you have a logo?</h4>
 
-        <button id="no"  class="btn btn-default btn-lg">NO</button>
-        <button id="yes" class="btn btn-default btn-lg">YES</button>
+        <button
+        data-ga-click-event-category="builder" data-ga-click-event-action="No Logo" data-click-event-label="User clicked No Logo"
+        id="no"  class="btn btn-default btn-lg">NO</button>
+        <button
+        data-ga-click-event-category="builder" data-ga-click-event-action="Yes Logo" data-click-event-label="User clicked Yes Logo"
+        id="yes" class="btn btn-default btn-lg">YES</button>
       </div>
 
 
@@ -69,7 +77,9 @@
               </div>
 
               <div class="col-md-4" >
-              <input id="logo-uploader" style="margin-top:26px;" type="file" name="fileToUpload" >
+              <input
+              data-ga-click-event-category="builder" data-ga-click-event-action="Logo uploader" data-click-event-label=""
+              id="logo-uploader" style="margin-top:26px;" type="file" name="fileToUpload" >
               </div>
 
               <div class="col-md-8" id="design-display2">
@@ -114,7 +124,9 @@
           <div class="col-md-4">
 
             <label class="light" style="font-weight:300;">Primary Font</label>
-            <select name="cars" class="form-control" ng-model="box.font1" style="font-size:16px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+            <select
+            data-ga-click-event-category="builder" data-ga-click-event-action="Primary Font" data-click-event-label=""
+            name="cars" class="form-control" ng-model="box.font1" style="font-size:16px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
               <option style="font-family: 'Alex Brush';" value="font-family: 'Alex Brush'" selected>Alex Brush</option>
               <option style="font-family: 'Alfa Slab One';" value="font-family: 'Alfa Slab One'">Alfa Slab One</option>
               <option style="font-family: 'Antic Slab';" value="font-family: 'Antic Slab'">Antic Slab</option>
@@ -160,7 +172,9 @@
 
 
             <label class="light" style="font-weight:300;">Secondary Font</label>
-            <select name="cars" class="form-control" ng-model="box.font2" style="font-size:16px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+            <select
+            data-ga-click-event-category="builder" data-ga-click-event-action="Secondary Font" data-click-event-label=""
+            name="cars" class="form-control" ng-model="box.font2" style="font-size:16px;height:40px;font-weight:400;box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
               <option selected style="font-family: 'Alex Brush';" value="font-family: 'Alex Brush'" selected>Alex Brush</option>
               <option style="font-family: 'Alfa Slab One';" value="font-family: 'Alfa Slab One'">Alfa Slab One</option>
               <option style="font-family: 'Antic Slab';" value="font-family: 'Antic Slab'">Antic Slab</option>
@@ -206,7 +220,9 @@
 
             <div class="color-selector">
               <label class="light" style="font-weight:300;">Font Color</label>
-              <input ng-model="box.font_color" class="jscolor form-control" style="font-size:16px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
+              <input
+              data-ga-click-event-category="builder" data-ga-click-event-action="Font Color" data-click-event-label=""
+              ng-model="box.font_color" class="jscolor form-control" style="font-size:16px;height:40px;font-weight:400;-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #F5F3F2, 0 1px 0 #F5F3F2;">
             </div>
 
               </div>
@@ -254,7 +270,9 @@
 
     {% include('builder/summary.html') %}
 
-    <button ng-click="next_btn5()" id="next-btn5" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+    <button
+    data-ga-click-event-category="builder" data-ga-click-event-action="Next Step 3" data-click-event-label="Step 3: Labeling -> Step 4: Finish"    
+    ng-click="next_btn5()" id="next-btn5" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                     {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn">Next</button>
 
   </div>
