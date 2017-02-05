@@ -15,7 +15,9 @@
 
         <!-- WORDLY -->
         <div class="carousel-cell item-box">
-          <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div
+          data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-click-event-label="Follower Friendly"
+          class="thumbnail" style="height:100%;width:100%;padding:10px;">
             <div class="content" ng-click="togglePrice({profit:0,charity:0})"
                  style="cursor:pointer;width:100%;height:100%;">
                   <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/customer.svg" alt="">
@@ -39,7 +41,9 @@
 
       <!-- WORDLY -->
       <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-click-event-label="Helping Hand"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
           <div class="content" style="cursor:pointer;width:100%;height:100%;"
                ng-click="togglePrice({profit:0,charity:4})">
 
@@ -66,7 +70,9 @@
 
       <!-- WORDLY -->
       <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-click-event-label="Piggy Bank"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
           <div class="content" ng-click="togglePrice({profit:4,charity:0})"
                style="cursor:pointer;width:100%;height:100%;">
                 <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/piggy-bank.svg" alt="">
@@ -93,7 +99,9 @@
 
       <!-- WORDLY -->
       <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-click-event-label="Versatile"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
           <div class="content" ng-click="togglePrice({profit:4,charity:4})" style="cursor:pointer;width:100%;height:100%;">
                 <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/versatile.svg" alt="">
 
@@ -119,7 +127,9 @@
 
       <!-- WORDLY -->
       <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-click-event-label="Angel"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
           <div class="content" ng-click="togglePrice({profit:0,charity:8})" style="cursor:pointer;width:100%;height:100%;">
                 <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/angel.svg" alt="">
 
@@ -142,7 +152,9 @@
 
       <!-- WORDLY -->
       <div class="carousel-cell item-box">
-        <div class="thumbnail" style="height:100%;width:100%;padding:10px;">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-click-event-label="Money Maker"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
           <div class="content" ng-click="togglePrice({profit:8,charity:0})" style="cursor:pointer;width:100%;height:100%;">
                 <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/money-maker.svg" alt="">
 
@@ -182,7 +194,9 @@
       <h4 style="color:#8d8d8d;">2. Write a description for your box</h4>
       <i class="light" style="font-weight:300;">this will be displayed on your store!</i>
 
-      <textarea ng-model="box.description" id ="box-description-textarea">
+      <textarea
+      data-ga-click-event-category="Step 4" data-ga-click-event-action="Description" data-click-event-label="Box Description"
+      ng-model="box.description" id ="box-description-textarea">
 
       </textarea>
 
@@ -192,7 +206,9 @@
     <!--START OF RIGHT SIDE SUMMARY PANEL -->
     <div class="col-md-4">
       {% include('builder/summary.html') %}
-      <button id="finish-last-step" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+      <button
+      data-ga-click-event-category="Step 4" data-ga-click-event-action="Next Step 4" data-click-event-label="Step 4: Finish"
+      id="finish-last-step" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                   {% if cat == 'beauty' %}btn-beauty{% endif %}">Finish</button>
     </div>
 
