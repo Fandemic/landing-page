@@ -216,7 +216,7 @@ h3{
 </style>
 <div class="bottom-btn" style="position:fixed;bottom:0px;left:0px;width:100%;padding:2%;background-color:#fff;z-index:9;">
   <span style="float:left;margin-top:1px;">
-    <span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong><br>
+    <span style="font-weight:600;">Sale Price:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong><br>
     <span  id="timer2" style="color:#5d5d5d;"></span>
   </span>
 
@@ -243,7 +243,7 @@ h3{
 {% elif star.campaigns[0].status == 'pending' %}
 <button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">ACTIVATE STORE</button>
 {% elif star.campaigns[0].status == 'live' %}
-<button id="preorder-btn" onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:800;margin-bottom20px;font-size:22px;background-color: #CA1488 !important; border: #CA1488 !important; width: 60%;float:right;">ORDER NOW</button>
+<button id="preorder-btn" onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="font-family: 'Source Sans Pro', sans-serif;border-radius:2px;font-weight:600;margin-bottom20px;font-size:20px;background-color: #CA1488 !important; border: #CA1488 !important; width: 60%;float:right;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now</button>
 {% elif star.campaigns[0].status == 'success' or star.campaigns[0].status == 'failed'%}
 <a href="/builder">
   <button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">CREATE A BOX</button>
@@ -337,7 +337,7 @@ h3{
 
         </div>
         <div style="padding:20px;text-align:left;color:#4d4d4d;">
-          <h4>{a product_view.name a}<br><span style="margin-top:6px;color:#adadad;font-size:18px;font-weight:400;">{a product_view.variation a}<span></h4>
+          <h3>{a product_view.name a}<br><span style="margin-top:6px;color:#adadad;font-size:22px;font-weight:400;">{a product_view.variation a}<span></h3>
           <p>{a product_view.description a}</p>
         </div>
 
@@ -431,7 +431,7 @@ h3{
           </div>
 
             <br>
-            <h3><span style="">SALE PRICE:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong></h3>
+            <h3><span style="">Sale Price:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong></h3>
             <br>
             {% if star.campaigns[0].charity and star.campaigns[0].charity.amount != 0 %}
             <div class="charity">
