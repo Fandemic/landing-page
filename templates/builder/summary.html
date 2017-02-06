@@ -22,7 +22,9 @@
                     <!--<a ng-click="toggle_product({name:product.name,item_num:product.item_num,cost:product.cost })">
                       <i style="position:absolute;top:10px;right:40px;color:#ba82aa;font-size:20px;cursor:pointer;" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>-->
-                    <a ng-click="toggle_product({name:product.name,item_num:product.item_num,cost:product.cost,variation:product.variation })">
+                    <a
+                    data-ga-click-event-category="Box Summary" data-ga-click-event-action="Remove Item" data-ga-click-event-label="{a product.name a} Removed"                      
+                    ng-click="toggle_product({name:product.name,item_num:product.item_num,cost:product.cost,variation:product.variation })">
                       <i style="position:absolute;top:10px;right:10px;color:#f66262;font-size:20px;cursor:pointer;" class="fa fa-times" aria-hidden="true"></i>
                     </a>
                 </div>
