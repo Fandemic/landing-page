@@ -193,7 +193,7 @@ h3{
       <img style="height:40px;margin-top:-10px;" src="/static/img/fandemic.png">
 
     </div>
-    <div class="cart-btn"><i class="fa fa-bars" aria-hidden="true"></i></div>
+    <div class="cart-btn" style="color:#999999;margin-top:0px;font-size:40px;"><i class="fa fa-compass" aria-hidden="true"></i></div>
   </div>
 
 <!-- FIXED PREORDER BUTTON -->
@@ -266,7 +266,7 @@ h3{
 
         <h2 >{{star.campaigns[0].box_name}}</h2>
         <i>created by {{star.name}}</i>
-        <hr>
+
 
 
 
@@ -279,11 +279,14 @@ h3{
 
         </div>
 
-        <div class="items-listing">
+
+
+        <div class="items-listing" style="position:relative;">
 
           <h3>What's Inside This Box?</h3>
           <i style="color:#9d9d9d;">tap the products to learn more</i>
           <br>
+          <div class="row">
           {% for p in star.campaigns[0].products %}
           <div class="col-xs-4" style="">
             <div class="" style="margin-bottom:2px;"
@@ -294,13 +297,21 @@ h3{
             <p style="font-size:9px;color:#8d8d8d;">{{p.name}}</p>
           </div>
           {% endfor %}
+        </div>
 
         </div>
 
+
+
         <br>
-        <div id="about-box" style="padding:20px;text-align:left;color:#4d4d4d;">
-          <br>
+
+        <div id="about-box" style="padding:20px;padding-bottom:0px;text-align:left;color:#4d4d4d;">
+
+          <div style="text-align:center;">
           <h3 >About This Box</h3>
+          <i style="color:#9d9d9d;">a message from {{star.name}}</i>
+          </div>
+
           <p>{{star.campaigns[0].description | safe}}</p>
         </div>
 
@@ -309,7 +320,7 @@ h3{
 
         <div class="thumbnail" style="width:100%;min-height:435px;padding:10px;background-color:#fff;border:0px;margin-bottom:0px;" ng-show="view_mode == 'product'">
 
-        <button ng-click="view_mode = 'box'" class="btn btn-default" style="position:absolute;right:20px;top:27px;font-size:10px;">Box View</button>
+        <button ng-click="view_mode = 'box'" class="btn btn-default" style="position:absolute;left:20px;top:27px;font-size:16px;color:#CA1488;border-color:#CA1488;"><i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i> Back</button>
 
         <!--<img width="60px" src="/static/img/cruelty_free.png" style="position:absolute;left:5px;top:5px;opacity:.6;">-->
 
@@ -346,10 +357,15 @@ h3{
 
   </div>
 
-<hr>
+
 
     <!--START OF CAMPAIGN INFO-->
-    <div class="row" style="margin-top:20px;">
+    <div class="row" style="">
+
+      <div style="text-align:center;">
+      <h3 >Campaign Status</h3>
+      <i style="color:#9d9d9d;">quick overview of {{star.name}}'s campaign</i>
+      </div>
 
       <div class="col-md-12" style="padding:0px;">
 
@@ -372,11 +388,11 @@ h3{
               </h3>
             -->
 
-              <h3 class="time" style="font-size:18px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
+              <h3 class="time" style="font-size:22px;border: 2px solid #c1c1c1;padding:30px 10px;border-radius:2px;#cdcdcd;margin-top:2px;">
               {% if star.campaigns[0].status == 'live' or star.campaigns[0].status == 'mock'%}
               <span id="timer"></span>
               <br>
-                <span style="color:#cdcdcd;font-size:16px;">remaining</span>
+                <span style="color:#cdcdcd;font-size:18px;">remaining</span>
               {% elif star.campaigns[0].status == 'pending' %}
               PENDING
               <br>
