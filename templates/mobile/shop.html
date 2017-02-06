@@ -109,7 +109,7 @@ h3{
   {% elif star.campaigns[0].status == 'success' %}
 
     {% if star.campaigns[0].progress == 1 %}
-      <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;background-color:#5ec45e;"><strong>Campaign Successful Step 1/3: Production</strong></div>
+      <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;background-color:#5ec45e;"><strong>Campaign Successful Step 1/3: In Production</strong></div>
       <style>
       .nav{
         top:40px;
@@ -125,7 +125,7 @@ h3{
       </style>
 
       {% elif star.campaigns[0].progress == 3 %}
-      <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;background-color:#5ec45e;"><strong>Campaign Successful Step 3/3: Shipping</strong></div>
+      <div class="top-alert-bar" style="position:fixed;height:40px;width: 100%;z-index:101;background-color:#5ec45e;"><strong>Campaign Successful Step 3/3: Shipped</strong></div>
       <style>
       .nav{
         top:40px;
@@ -190,7 +190,10 @@ h3{
       }
       */
       </script>
-      <img style="height:40px;margin-top:-10px;" src="/static/img/fandemic.png">
+
+      <a href="/">
+        <img style="height:40px;margin-top:-10px;" src="/static/img/fandemic.png">
+      </a>
 
     </div>
     <div class="cart-btn" style="color:#999999;margin-top:0px;font-size:40px;"><i class="fa fa-compass" aria-hidden="true"></i></div>
@@ -411,10 +414,10 @@ h3{
               <div class="progress" style="margin-bottom:2px;">
                 <div class="progress-bar progress-bar-success" role="progressbar"
                      style="
-                     {% if star.campaigns[0].num_orders >= 25 %}
+                     {% if star.campaigns[0].num_orders >= 10 %}
                      width:102%;
                      {% else %}
-                     width: {{ (star.campaigns[0].num_orders/25)*100 }}%;
+                     width: {{ (star.campaigns[0].num_orders/10)*100 }}%;
                      {% endif %}
 
                      height:80px;margin-left:-2px;margin-top:-2px;">
@@ -424,7 +427,7 @@ h3{
               </div>
 
 
-                <span class="light" style="font-size:12px;color:#c1c1c1;">at least 25 boxes must be ordered for this box to ship</span>
+                <span class="light" style="font-size:12px;color:#c1c1c1;">at least 10 boxes must be ordered for this box to ship</span>
 
 
             </div>
