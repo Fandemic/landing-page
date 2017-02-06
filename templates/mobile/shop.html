@@ -10,9 +10,11 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
-  <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+  <!--<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>-->
+  <link href="https://fonts.googleapis.com/css?family=Caveat|Josefin+Sans:300,400,600|Sue+Ellen+Francisco" rel="stylesheet">
+
 
   <script src="../static/js/jquery-1.12.2.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -44,6 +46,27 @@
   <meta property="og:image" content="https://res.cloudinary.com/fandemic/stars/valentines-day/profile.png">
 
 </head>
+
+<style>
+body{
+  font-family: 'Josefin Sans', sans-serif !important;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Caveat', cursive !important;
+}
+h2{
+  font-family: 'Josefin Sans', sans-serif !important;
+  font-weight: 600;
+}
+h3{
+  color: #4d4d4d;
+}
+#about-box img{
+  width: 100%;
+  height: auto;
+}
+
+</style>
 
 
 
@@ -158,15 +181,19 @@
       <img class="star-btn" width="50px" src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/profile.png" [src]="invalidPath" onError="this.src='/static/img/user.png'">
     <div class="name">
       <script>
+      /*
       if (imageExists("https://res.cloudinary.com/fandemic/stars/{{star.id}}/logo.png") == true){
         document.write('<img style="height:40px;margin-top:4px;" src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/logo.png">');
       }
       else{
         document.write('<h2 style="float:center;height:40px;margin-top:-6px;">{{star.campaigns[0].brand_name}}</h2>')
       }
+      */
       </script>
+      <img style="height:40px;margin-top:-10px;" src="/static/img/fandemic.png">
+
     </div>
-    <!--<div class="cart-btn"><i class="fa fa-bars" aria-hidden="true"></i></div>-->
+    <div class="cart-btn"><i class="fa fa-bars" aria-hidden="true"></i></div>
   </div>
 
 <!-- FIXED PREORDER BUTTON -->
@@ -216,7 +243,7 @@
 {% elif star.campaigns[0].status == 'pending' %}
 <button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">ACTIVATE STORE</button>
 {% elif star.campaigns[0].status == 'live' %}
-<button id="preorder-btn" onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">PRE-ORDER</button>
+<button id="preorder-btn" onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:800;margin-bottom20px;font-size:22px;background-color: #CA1488 !important; border: #CA1488 !important; width: 60%;float:right;">ORDER NOW</button>
 {% elif star.campaigns[0].status == 'success' or star.campaigns[0].status == 'failed'%}
 <a href="/builder">
   <button id="preorder-btn" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:22px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 60%;float:right;">CREATE A BOX</button>
@@ -237,7 +264,8 @@
 
         <!--<img width="60px" src="/static/img/cruelty_free.png" style="position:absolute;left:5px;top:5px;opacity:.6;">-->
 
-        <h3 >{{star.campaigns[0].box_name}}</h3>
+        <h2 >{{star.campaigns[0].box_name}}</h2>
+        <i>created by {{star.name}}</i>
         <hr>
 
 
@@ -245,12 +273,34 @@
         <div>
 
             <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
-            <img class="img-responsive" style="width:60%;padding:5px;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/box.png">
+            <img class="img-responsive" style="width:60%;padding:5px;margin: 0 auto;"
+            src="https://res.cloudinary.com/fandemic/image/upload/e_trim/w_250,h_250,c_pad/stars/{{star.id}}/box.png">
 
 
         </div>
-        <div  style="padding:20px;text-align:left;color:#4d4d4d;">
-          <h4>About This Box</h4>
+
+        <div class="items-listing">
+
+          <h3>What's Inside This Box?</h3>
+          <i style="color:#9d9d9d;">tap the products to learn more</i>
+          <br>
+          {% for p in star.campaigns[0].products %}
+          <div class="col-xs-4" style="">
+            <div class="" style="margin-bottom:2px;"
+            ng-click="toggle_product({name:'{{p.name}}',img_url:'https://res.cloudinary.com/fandemic/stars/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
+                                     {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
+              <img alt="" class="product-img img-responsive" src="https://res.cloudinary.com/fandemic/image/upload/e_trim,e_make_transparent/w_250,h_250,c_pad/products/{{p.item_num}}.png" style="width:100%;padding:10px;">
+            </div>
+            <p style="font-size:9px;color:#8d8d8d;">{{p.name}}</p>
+          </div>
+          {% endfor %}
+
+        </div>
+
+        <br>
+        <div id="about-box" style="padding:20px;text-align:left;color:#4d4d4d;">
+          <br>
+          <h3 >About This Box</h3>
           <p>{{star.campaigns[0].description | safe}}</p>
         </div>
 
@@ -288,20 +338,7 @@
 
       <div class="col-md-12 ">
 
-        <div class="items-listing">
 
-          {% for p in star.campaigns[0].products %}
-          <div class="col-xs-4" style="">
-            <div class="thumbnail btn-product" style="margin-bottom:2px;"
-            ng-click="toggle_product({name:'{{p.name}}',img_url:'https://res.cloudinary.com/fandemic/stars/{{star.id}}/{{p.item_num}}.png',id:'{{star.id}}',item_num:'{{p.item_num}}'
-                                     {% if p.variation %},variation:'{{p.variation}}'{% endif %} ,description:'{{p.description}}'})">
-              <img alt="" class="product-img img-responsive" src="https://res.cloudinary.com/fandemic/image/upload/e_trim,e_make_transparent/w_250,h_250,c_pad/products/{{p.item_num}}.png" style="width:100%;padding:10px;">
-            </div>
-            <p style="font-size:9px;color:#8d8d8d;">{{p.name}}</p>
-          </div>
-          {% endfor %}
-
-        </div>
       </div>
 
 
