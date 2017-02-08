@@ -189,9 +189,35 @@
 
       <br><br>
 
+      <!-- Choose your box design -->
+      <h4 style="color:#8d8d8d;">2. Give your box a name</h4>
+      <!--<i class="light" style="font-weight:300;">this will be displayed on your store!</i>-->
+
+
+      <div ng-if="box.style.name != 'Custom Design'" style="height:60px;width:60px;background-color:#fff;float:left;display:inline-block;
+      border: 1px solid #ccc;
+    border-radius: 2px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);border-right:none;">
+        <img  width="100%" src="../static/img/packaging/{a box.style.img a}">
+      </div>
+      <div ng-if="box.style.name == 'Custom Design'" style="height:60px;width:60px;background-color:#fff;float:left;display:inline-block;
+      border: 1px solid #ccc;
+    border-radius: 2px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);border-right:none;">
+        <img  width="150%" style="margin-top:-15px;margin-left:-10px;" ng-src="{a box.box_img a}">
+      </div>
+        <!--<label class="light" style="font-weight:300;">Box Name</label>-->
+        <input
+        data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
+        id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control form-control-lg" style="border-left:none;width:50%;font-size:22px;height:60px;font-weight:400;border-radius:2px;">
+
+
+      <br>
 
       <!-- Choose your box design -->
-      <h4 style="color:#8d8d8d;">2. Write a description for your box</h4>
+      <h4 style="color:#8d8d8d;">3. Write a description for your box</h4>
       <i class="light" style="font-weight:300;">this will be displayed on your store!</i>
 
       <textarea

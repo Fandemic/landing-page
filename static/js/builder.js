@@ -329,7 +329,7 @@ app.controller("builder", function($scope) {
           $('#crumb3').addClass('current');
           $("#next4").addClass("on");
           $("html, body").animate({ scrollTop: 76 }, "slow");
-        
+
         }
       }
 
@@ -376,8 +376,8 @@ app.controller("builder", function($scope) {
 
           $('.steps').hide();
 
-          $('#step4').fadeIn('fast', function() {
-
+          $('#step5').fadeIn('fast', function() {
+            $(".carousel").flickity('resize');
           });
             $('#crumb3').removeClass( "current");
             $('#crumb3').addClass( "touched");

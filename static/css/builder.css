@@ -490,7 +490,7 @@ a:focus {
 			text-decoration: none;
 			color: #fff;
       transition:none;
-      width: 25%;
+      width: 33.33%;
 		}
 
     .beauty ul li a{
@@ -768,7 +768,7 @@ a:focus {
     text-decoration: none;
     color: #fff;
     transition:none;
-    width: 24% !important;
+    width: 32% !important;
   }
 
   #crumbs ul li a:after {
