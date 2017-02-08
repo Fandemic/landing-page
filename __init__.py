@@ -585,6 +585,7 @@ def sampleCharge():
 
     return '';
 
+
 #================PROCESS A STOCKING FEE====================#
 @app.route('/launch-store-request', methods=['GET', 'POST'])
 def launchStoreRequest():
@@ -775,6 +776,14 @@ def launchStoreRequest():
             cdn = CDN();
             cdn.uploadBox(info['box_img'],info['star']['id']);
 
+    return '';
+
+#=============PARTNERS FORM=============
+
+@app.route('/partner-submit-form', methods=['GET', 'POST'])
+def partnersForm():
+    info = request.get_json()
+    print info;
     return '';
 
 
