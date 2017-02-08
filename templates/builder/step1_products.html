@@ -212,12 +212,23 @@
 
           </div>
 
-          <!--
+
           <div class="row" style="margin-top:30px;">
-            <a  data-dismiss="modal" href="#" class="sample-order" style="position: absolute;bottom: 16px;">Order a blank sample of the {{item.name}}</a>
-            <a class="btn btn-submit pull-right" href="/builder/add/{{item.sku}}">Add Item to Box</a>
+
+            <a class="btn btn-submit pull-right"
+            {% if item.variation|length > 0 %}
+             data-dismiss="modal" data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}-variation"
+             data-ga-click-event-category="Step 1" data-ga-click-event-action="Product Add" data-ga-click-event-label="{{item.name}}"
+            {% endif %}
+            {% if item.variation|length == 0 %}
+             data-dismiss="modal" ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}',cost:'{{item.price}}' })"
+             data-ga-click-event-category="Step 1" data-ga-click-event-action="Product Add" data-ga-click-event-label="{{item.name}}"
+            {% endif %}
+
+
+            >Add Product</a>
           </div>
-        -->
+
 
         </div>
       </div>
