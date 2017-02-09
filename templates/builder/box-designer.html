@@ -1,4 +1,4 @@
-<div id="box-designer" style="z-index:999; position:fixed;width:900px;height:600px;background-color:rgba(0,0,0,.5);visibility:hidden;left: 50%;
+<div id="box-designer" style="z-index:99;position:fixed;width:900px;height:600px;background-color:rgba(0,0,0,.5);visibility:hidden;left: 50%;
 top: 50%;
 transform: translate(-50%, -50%);">
 <div style="position:relative;background-color:rgb(241, 241, 241);height:100%;padding:15px;border-radius:5px;-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
@@ -12,8 +12,12 @@ transform: translate(-50%, -50%);">
   min-width: 300px;
   max-width: 300px;
 }
+.drop{
+  z-index:99999 !important;
+}
     </style>
 
+    <!-- save button -->
     <button onClick="saveBoxDesign();"
     ng-click="toggleStyle({name:'Custom Design',img:'professional-box.png'})"
     style="position:absolute;right:15px;bottom:20px;padding: .4em;
@@ -28,6 +32,13 @@ transform: translate(-50%, -50%);">
     border: none;
     border-radius: 4px;
     font-weight: 600;z-index:99999;">Save & Exit</button>
+    <!-- end of save button -->
+
+    <!-- start of exit buttton -->
+    <button type="button" class="close" onClick="saveBoxDesign();" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- end of exit button -->
 
     <h2 style="margin-left:15px;">Design Your Own Box</h2>
   <!--BOX DESIGNER STARTS HERE-->
@@ -164,7 +175,7 @@ background: #FFA6BB;color:white;
  </style>
   <form class="add-artwork">
     <input name="file" type="file" accept=".jpg,.png">
-    <button class="btn  add-artwork-btn">Add Artwork</button>
+    <button class="btn  add-artwork-btn">ADD IMAGE</button>
     <p>
     File formats:
     <br>
@@ -330,7 +341,7 @@ background: #FFA6BB;color:white;
 
   <form class="add-artwork">
     <input name="file" type="file" accept=".ai,.pdf,.eps,.jpg,.png">
-    <button class="btn  add-artwork-btn">Add Artwork</button>
+    <button class="btn  add-artwork-btn">ADD IMAGE</button>
     <p>
     File formats:
     <br>
@@ -498,7 +509,7 @@ background: #FFA6BB;color:white;
 
   <form class="add-artwork">
     <input name="file" type="file" accept=".ai,.pdf,.eps,.jpg,.png">
-    <button class="btn  add-artwork-btn">Add Artwork</button>
+    <button class="btn  add-artwork-btn">ADD IMAGE</button>
     <p>
     File formats:
     <br>
@@ -666,7 +677,7 @@ background: #FFA6BB;color:white;
 
   <form class="add-artwork">
     <input name="file" type="file" accept=".ai,.pdf,.eps,.jpg,.png">
-    <button class="btn  add-artwork-btn">Add Artwork</button>
+    <button class="btn  add-artwork-btn">ADD IMAGE</button>
     <p>
     File formats:
     <br>
@@ -834,7 +845,7 @@ background: #FFA6BB;color:white;
 
   <form class="add-artwork">
     <input name="file" type="file" accept=".ai,.pdf,.eps,.jpg,.png">
-    <button class="btn  add-artwork-btn">Add Artwork</button>
+    <button class="btn  add-artwork-btn">ADD IMAGE</button>
     <p>
     File formats:
     <br>
@@ -1002,7 +1013,7 @@ background: #FFA6BB;color:white;
 
   <form class="add-artwork">
     <input name="file" type="file" accept=".ai,.pdf,.eps,.jpg,.png">
-    <button class="btn  add-artwork-btn">Add Artwork</button>
+    <button class="btn  add-artwork-btn">ADD IMAGE</button>
     <p>
     File formats:
     <br>
