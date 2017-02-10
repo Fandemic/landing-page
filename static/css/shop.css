@@ -13,7 +13,7 @@ h1,h2,h3,h4,h5,h6{
   font-weight: 700;
 }
 body{
-  background-color: #F5F5F5;
+  background-color: #fff;
 }
 
 h3{
@@ -54,20 +54,20 @@ h3{
     width: 300px;
     padding: 0px 0px 10px 0px;
     height: 100%;
-    background-color: #f5f5f5;
-    padding-top: 72px;
+    background-color: #6b536a;
+    padding-top: 20px;
     text-align: center;
     z-index: 100;
-    color: #7d7d7d;
+    color: #fff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1);
 }
 
 
 #center-panel{
   height: 100%;
-  padding-top: 105px;
+  padding-top: 70px;
   text-align: center;
-  background-color: #F5F5F5;
+  background-color: #fff;
   margin-left: 260px;
   -webkit-transition:200ms linear;
 	-moz-transition:200ms linear;
@@ -214,7 +214,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 
 /*SIDE BAR*/
 .profile-img {
-  width: 90%;
+  width: 80%;
 }
 .profile-img-container {
   position: relative;
@@ -464,6 +464,8 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 .footer{
   position: absolute;
   bottom: 3px;
+  text-align:center;
+  width: 100%;
 }
 
 /*QUANTITY*/
@@ -913,4 +915,35 @@ box-shadow: none;
     .display-main{
       min-height:800px !important;
     }
+}
+
+.items-listing{
+  text-align: left;
+}
+
+hr.style16 {
+  height: 30px;
+  border-style: solid;
+  border-color: #8c8b8b;
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
+}
+hr.style16:before {
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: #8c8b8b;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
+}
+
+.progress-bar-success{
+  background-color: #6b536a;
+}
+
+.btn-beauty{
+  font-family: 'Caveat', cursive;font-size:27px !important;font-weight: 300 !important;
+  background-color: #ca1488 !important;
 }
