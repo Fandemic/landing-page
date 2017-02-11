@@ -780,10 +780,17 @@ def launchStoreRequest():
 
 #=============PARTNERS FORM=============
 
-@app.route('/partner-submit-form', methods=['GET', 'POST'])
+@app.route('/partner-submit-form', methods=['POST'])
 def partnersForm():
-    info = request.get_json()
-    print info;
+    companyname =  request.form['companyname']
+    companywebsite = request.form['companywebsite']
+    name = request.form['name']
+    email = request.form['email']
+    phone = request.form['phone']
+
+    sarah = Slack()
+    sarah.notify('*PARTNER FORM SUBMISSION*\nHey guys, *'+companyname+'* just filled out the partner request form!')
+
     return '';
 
 
