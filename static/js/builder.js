@@ -439,27 +439,52 @@ app.controller("builder", function($scope) {
           menubar: false,
           plugins: [
             'advlist autolink lists link image charmap print preview anchor',
-            'searchreplace visualblocks code fullscreen',
+            'searchreplace visualblocks code fullscreen wordcount',
             'insertdatetime media table contextmenu paste code'
           ],
-          toolbar: 'bold italic underline | link image',
+          toolbar: 'bold italic underline',
           content_css: '//www.tinymce.com/css/codepen.min.css',
           setup:function(ed) {
               ed.on('change', function(e) {
                 $scope.$apply(function () {
-
                 $scope.box.desc = tinymce.activeEditor.getContent();
-
                 });
               });
           }
         });
 
   $scope.finish_last_step = function(){
+    var wordCount = $('#mceu_11').html().split(' ')[1];
     if ($scope.box.desc == ''){
       BootstrapDialog.show({
        title: 'Alert!',
          message: 'Please enter a box description! &#128516;',
+         buttons: [{
+           cssClass: 'btn-success',
+           label: 'OK',
+             action: function(dialog) {
+               dialog.close();
+             }
+         }]
+      });
+    }
+    else if ($scope.box.box_name == ''){
+      BootstrapDialog.show({
+       title: 'Alert!',
+         message: 'Please enter a box name! &#128516;',
+         buttons: [{
+           cssClass: 'btn-success',
+           label: 'OK',
+             action: function(dialog) {
+               dialog.close();
+             }
+         }]
+      });
+    }
+    else if (wordCount > 500){
+      BootstrapDialog.show({
+       title: 'Alert!',
+         message: 'We can only hold 500 words here! &#128516;',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
