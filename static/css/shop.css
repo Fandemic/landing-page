@@ -51,7 +51,7 @@ h3{
 #side-panel {
     position: fixed;
     float: left;
-    width: 300px;
+    width: 240px;
     padding: 0px 0px 10px 0px;
     height: 100%;
     background-color: #6b536a;
@@ -65,10 +65,10 @@ h3{
 
 #center-panel{
   height: 100%;
-  padding-top: 70px;
+  padding-top: 30px;
   text-align: center;
   background-color: #fff;
-  margin-left: 260px;
+  margin-left: 200px;
   -webkit-transition:200ms linear;
 	-moz-transition:200ms linear;
 	-o-transition:200ms linear;
@@ -925,6 +925,12 @@ box-shadow: none;
   color:#fff !important;
 }
 
+#social-media a:hover{
+  color:#000 !important;
+}
+.campaign_video i:hover{
+  color:#000 !important;
+}
 hr.style16 {
   height: 30px;
   border-style: solid;
