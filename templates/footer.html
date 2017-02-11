@@ -13,6 +13,13 @@
 hidden-xs.footer a{
    color: #800180;
  }
+ .btn-updates{
+   background-color: #ca1488;
+ }
+ .btn-updates:hover{
+   background-color: #ca1488;
+   color:#000;
+ }
 </style>
 <!--site-footer-->
 <section id="updates" class="sub-form section-spacing text-center">
@@ -27,7 +34,7 @@ hidden-xs.footer a{
             <div class="input-group">
               <input type="email" class="form-control" placeholder="Email Address" required="" id="mc-email" name="EMAIL">
               <span class="input-group-btn">
-                <button type="submit" class="btn btn-default">Get Updates <i class="fa fa-envelope"></i> </button>
+                <button type="submit" class="btn btn-default btn-updates">Get Updates <i class="fa fa-envelope"></i> </button>
               </span>
             </div>
             <label for="mc-email" id="mc-notification"></label>
@@ -37,15 +44,31 @@ hidden-xs.footer a{
     </div>
   </section>
 
-<footer class="hidden-xs footer">
+<footer class="hidden-xs footer" style="
+
+
+
+
+
+
+
+
+
+background: #e96443; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #e96443 , #e258b0); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #e96443 , #e258b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+                ">
   <div class="container">
     <div class="row">
       <div class="col-md-3">
         <div class="copyright">
           <a href="#home" class="ft-logo" title="Fandemic - Modern Start Up Landing Page">
-            <img src="../static/img/logo-pink.png" width="160px" alt="Fandemic">
+            <img src="../static/img/fandemic_logo_white.png" width="160px" alt="Fandemic">
           </a>
-          <div class=""> <a href="mailto:sarah@fandemic.co" title="Contact Us">Contact Us</a> - Baltimore, MD
+          <div style="color:#fff !important;"> <a href="mailto:sarah@fandemic.co" title="Contact Us">Contact Us</a> - Baltimore, MD
             <br>
 
             <small>© 2017 Fandemic Inc. | All Rights Reserved</small>
@@ -58,7 +81,7 @@ hidden-xs.footer a{
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <h2 style="font-size:20px">Read This</h2>
         <ul>
           <li><a href="/about">About us</a></li>
@@ -73,16 +96,16 @@ hidden-xs.footer a{
           <li><a href="/blog">Blog</a></li>
         </ul>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <h2 style="font-size:20px">Example Stores</h2>
-        {% for star in star_names[0:5] %}
+        {% for star in star_names[0:4] %}
         <ul>
           <li><a href="/{{star.id}}">{{star.name}}</a></li>
         </ul>
         {% endfor %}
       </div>
-      <div class="col-md-3">
-
+      <div class="col-md-2">
+        <h2 style="font-size:20px;text-align:center;">Join The Fandemic!</h2>
         <div class="row">
         <div class="ft-social">
           <div class="social">
@@ -90,17 +113,26 @@ hidden-xs.footer a{
               <li><a class="tip" data-toggle="tooltip" href="https://twitter.com/The_Fandemic" title="Twitter"><i class="fa fa-twitter"></i></a></li>
               <li><a class="tip" data-toggle="tooltip" href="https://instagram.com/Fandemic" title="Instagram"><i class="fa fa-instagram"></i></a></li>
               <li><a class="tip" data-toggle="tooltip" href="https://www.linkedin.com/company/10566554" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-              <li><a class="tip" data-toggle="tooltip" href="https://angel.co/fandemic-1" title="Angel List"><i class="fa fa-angellist"></i></a></li>
+              <!--<li><a class="tip" data-toggle="tooltip" href="https://angel.co/fandemic-1" title="Angel List"><i class="fa fa-angellist"></i></a></li>-->
               <!--<li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Facebook"><i class="fa fa-facebook"></i></a></li>
               <li><a class="tip" data-toggle="tooltip" href="javascript:void(0);" title="Google plus"><i class="fa fa-google-plus"></i></a></li> -->
             </ul>
           </div>
         </div>
+
       </div>
       <!-- <div class="row snapchat" style="text-align:center !important;">
         <img src="../static/img/social_media/snapchat.png">
       </div> -->
       </div>
+
+      <div class="col-md-2">
+        <h2 style="font-size:20px;text-align:center;">Snap Us!</h2>
+        <div class="row snapchat" style="text-align:center !important;">
+          <img src="../static/img/social_media/snapchat.png"><br>
+          @fandemic
+        </div>
+    </div>
     </div>
   </div>
 </footer>

@@ -836,21 +836,26 @@ blockquote cite {
 
 .footer {
   background-color: white;
-  padding: 50px 0 15px
+  padding: 50px 0 15px;
+  font-family: 'Josefin Sans', sans-serif !important;
 }
 .footer a, .footer h2, .footer .h2, .footer h3, .footer .h3, .footer h4, .footer .h4 {
-  color: ##66595C
+  color: #fff;
+}
+.footer h2{
+  font-family: 'Caveat', cursive !important;
+  font-size: 24px !important;
 }
 .footer hr {
   border-color: #2b2b2b
 }
 .footer .ft-hr {
-  margin: 40px 0
+  margin: 20px 0
 }
 .footer .ft-logo {
   display: block;
   float: left;
-  padding: 0 30px 0 0;
+  padding: 0 0px 0 0;
   margin-right: 30px;
   border-right: 1px solid #2b2b2b
 }
@@ -884,6 +889,10 @@ blockquote cite {
 }
 .footer .ft-social .social {
   text-align: center
+}
+
+.footer a:hover{
+  color:#000;
 }
 
 /*.site-footer small { display: inline-block; }
@@ -925,11 +934,9 @@ blockquote cite {
   position: relative;
   transition: all .8s ease;
   font-size: 1.3em;
-  background: #D6D6D6;
 }
 .social li a:hover {
-  color: #fff;
-  background: #7BDC87;
+  color: #000;
 }
 
 
