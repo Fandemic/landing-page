@@ -921,6 +921,10 @@ box-shadow: none;
   text-align: left;
 }
 
+.small a{
+  color:#fff !important;
+}
+
 hr.style16 {
   height: 30px;
   border-style: solid;
