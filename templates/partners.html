@@ -238,11 +238,11 @@ $("#partners-form-submit").click(function(e) {
       success: function(response) {
           console.log(response);
           $('#partners-form-submit').replaceWith('<p style="text-align:center">Awesome! We will get back to you ASAP!</p>')
+          // setTimeout(function() { $('#partner-form').modal('hide'); }, 2000);
       },
       error: function(error) {
           console.log(error);
           $('#partners-form-submit').replaceWith('<p style="text-align:center">Awesome! We will get back to you ASAP!</p>')
-          setTimeout(function() { $('#partner-form').modal('hide'); }, 2000);
       }
     });
 

@@ -780,7 +780,7 @@ def launchStoreRequest():
 
 #=============PARTNERS FORM=============
 
-@app.route('/partner-submit-form', methods=['POST'])
+@app.route('/partner-submit-form', methods=['GET', 'POST'])
 def partnersForm():
     companyname =  request.form['companyname']
     companywebsite = request.form['companywebsite']
