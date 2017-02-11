@@ -789,7 +789,8 @@ def partnersForm():
     phone = request.form['phone']
 
     sarah = Slack()
-    sarah.notify('*PARTNER FORM SUBMISSION*\nHey guys, *'+str(companyname)+'* just filled out the partner request form, follow up with them ASAP!')
+    if request.method == "POST":
+        sarah.notify('*PARTNER FORM SUBMISSION*\nHey guys, *'+str(companyname)+'* just filled out the partner request form, follow up with them ASAP!')
     return '';
 
 
