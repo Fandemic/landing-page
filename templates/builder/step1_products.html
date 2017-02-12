@@ -120,41 +120,18 @@
 
               {% for v in item.variation %}
 
-              {% if item.variation|length > 12 %}
+
               <div
               data-ga-click-event-category="Step 1" data-ga-click-event-action="Variation Selected" data-ga-click-event-label="{{v.name}}"
               class="col-md-3 clickable"
                     style="display:inline-block;padding:0px 25px;text-align:center;margin-bottom:15px;"
                     ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
                     data-dismiss="modal">
-                <img class="img-responsive lazy_load" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://res.cloudinary.com/fandemic/w_200,h_200,c_pad/products/{{item.item_num}}-{{v.item_num}}.png">
+                <img class="img-responsive lazy_load" src="/static/img/loader.gif" data-src="https://res.cloudinary.com/fandemic/w_200,h_200,c_pad/products/{{item.item_num}}-{{v.item_num}}.png">
                 <p class="light">{{v.name}}</p>
 
               </div>
-              {% elif item.variation|length <= 4 %}
-              <div
-              data-ga-click-event-category="Step 1" data-ga-click-event-action="Variation Selected" data-ga-click-event-label="{{v.name}}"
-              class="col-md-6 clickable"
-                    style="display:inline-block;padding:0px 25px;text-align:center;"
-                    ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
-                    data-dismiss="modal">
-                <img class="lazy_load" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://res.cloudinary.com/fandemic/w_200,h_200,c_pad/products/{{item.item_num}}-{{v.item_num}}.png">
-                <p class="light">{{v.name}}</p>
-
-              </div>
-              {% else %}
-              <div
-              class="col-md-3 clickable"
-              data-ga-click-event-category="Step 1" data-ga-click-event-action="Variation Selected" data-ga-click-event-label="{{v.name}}"
-                    style="display:inline-block;padding:0px 25px;text-align:center;"
-                    ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
-                    data-dismiss="modal">
-                <img class="img-responsive lazy_load" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="https://res.cloudinary.com/fandemic/w_200,h_200,c_pad/products/{{item.item_num}}-{{v.item_num}}.png">
-                <p class="light">{{v.name}}</p>
-
-              </div>
-              {% endif %}
-
+            
               {% endfor %}
 
             </div>

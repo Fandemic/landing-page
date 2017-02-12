@@ -79,6 +79,8 @@ b, strong {
   max-width: 10em;
 }
 
+
+
 /* ==========================================================================
    2.Hero section
    ========================================================================== */
@@ -200,7 +202,7 @@ b, strong {
   color: #4c4c4c;
 }
 .navbar-default.stuck .navbar-nav > li > a:hover, .navbar-default.stuck .navbar-nav > li > a:focus {
-  color: #800080;
+  color: #ca1488;
 }
 .navbar-default .btn {
   font-size: 16px;
