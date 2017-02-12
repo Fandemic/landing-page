@@ -162,7 +162,7 @@
 
       <button data-toggle="modal" data-target="#summary-modal" class="btn btn-primary btn-lg btn-nav
                       {% if cat == 'beauty' %}btn-beauty{% endif %}
-                      view-btn" ><i class="fa fa-eye" aria-hidden="true"></i> View Box</button>
+                      view-btn" ><i class="fa fa-eye" aria-hidden="true"></i> View Box ({a box.products.length a} items)</button>
 
       <button id="next-btn4" ng-click="step_3()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                     {% if cat == 'beauty' %}btn-beauty{% endif %} next-btn" >Next Step ></button>
@@ -195,7 +195,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
 
-      <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a Box Color!</h3>
+      <h3 class="subtitle2" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a Box Color!</h3>
       <hr>
 
       <div style="text-align:center;">
@@ -205,7 +205,7 @@
         <!--start of option-->
         <div class="col-xs-4" style="padding: 0px;">
           <div class="clickable" style="display:inline-block;padding:0px 0px;text-align:center;" ng-click="toggleStyle({ name:'Solid Color',variation:'{{style.name}}',img:'{{style.img}}' })" data-dismiss="modal">
-            <img class="img-responsive lazy_load" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/static/img/packaging/{{style.img}}">
+            <img class="img-responsive lazy_load" src="/static/img/loader.gif" data-src="/static/img/packaging/{{style.img}}">
             <p class="light">{{style.name}}</p>
 
           </div>
@@ -232,7 +232,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
 
-      <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {{p.name}} Color!</h3>
+      <h3 class="subtitle2" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {{p.name}} Color!</h3>
       <hr>
 
       <div style="text-align:center;">
@@ -242,7 +242,7 @@
         <!--start of option-->
         <div class="col-xs-4" style="padding: 0px;">
           <div class="clickable" style="display:inline-block;padding:0px 5px;text-align:center;" ng-click="toggleMaterial({ name:'{{p.name}}',variation:'{{v.name}}', img:'{{p.item_num + '-' + v.item_num}}.png' })" data-dismiss="modal">
-            <img class="img-responsive lazy_load" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/static/img/packaging/{{p.item_num + '-' + v.item_num}}.png">
+            <img class="img-responsive lazy_load" src="/static/img/loader.gif" data-src="/static/img/packaging/{{p.item_num + '-' + v.item_num}}.png">
             <p class="light">{{v.name}}</p>
 
           </div>

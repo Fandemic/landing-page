@@ -225,10 +225,10 @@
 
       <button data-toggle="modal" data-target="#summary-modal" class="btn btn-primary btn-lg btn-nav
                       {% if cat == 'beauty' %}btn-beauty{% endif %}
-                      view-btn" ><i class="fa fa-eye" aria-hidden="true"></i> View Box</button>
+                      view-btn" ><i class="fa fa-eye" aria-hidden="true"></i> View Box ({a box.products.length a} items)</button>
 
         <button id="finish-last-step" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                              {% if cat == 'beauty' %}btn-beauty{% endif %}">Finish</button>
+                              {% if cat == 'beauty' %}btn-beauty{% endif %}" style="width: 50% !important;">Finish</button>
     </div>
     </div>
 
