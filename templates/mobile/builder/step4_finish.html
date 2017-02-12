@@ -175,16 +175,42 @@
       </div>
       <!-- end of box design -->
 
-      <br><br>
+
 
 
 
 
     </div>
 
+    <br><br>
+
+    <div class=col-md-8>
+    <!-- Choose your box design -->
+    <h4 style="color:#8d8d8d;">2. Give your box a name</h4>
+    <!--<i class="light" style="font-weight:300;">this will be displayed on your store!</i>-->
+
+
+    <div style="position: relative;">
+    <div ng-if="box.style.name != 'Custom Design'" style="height:60px;width:60px;position:absolute;top:0px;left:10px;">
+      <img  width="100%" src="../static/img/packaging/{a box.style.img a}">
+    </div>
+    <div ng-if="box.style.name == 'Custom Design'" style="height:60px;width:60px;position:absolute;top:0px;left:10px;">
+      <img  width="150%" style="margin-top:-15px;margin-left:-10px;" ng-src="{a box.box_img a}">
+    </div>
+
+      <!--<label class="light" style="font-weight:300;">Box Name</label>-->
+      <input
+      data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
+      id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control form-control-lg" style="padding-left:90px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+
+      </div>
+    </div>
+
+    <br>
+
     <div class="col-md-8">
     <!-- Choose your box design -->
-    <h4 style="color:#8d8d8d;">2. Write a description for your box</h4>
+    <h4 style="color:#8d8d8d;">3. Write a description for your box</h4>
     <i class="light" style="font-weight:300;">this will be displayed on your store!</i>
 
     <textarea ng-model="box.description" id ="box-description-textarea">
@@ -199,7 +225,7 @@
 
       <button data-toggle="modal" data-target="#summary-modal" class="btn btn-primary btn-lg btn-nav
                       {% if cat == 'beauty' %}btn-beauty{% endif %}
-                      view-btn" >View Box</button>
+                      view-btn" ><i class="fa fa-eye" aria-hidden="true"></i> View Box</button>
 
         <button id="finish-last-step" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                               {% if cat == 'beauty' %}btn-beauty{% endif %}">Finish</button>

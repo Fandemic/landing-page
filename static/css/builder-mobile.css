@@ -209,7 +209,7 @@ a:focus {
 }
 
 .navbar{
-  height: 74px;
+  height: 60px;
   width: 100%;
   z-index: 999 !important;
   top: 0;
@@ -329,29 +329,27 @@ a:focus {
 
 }
 
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    margin-top: 10px;
-}
 
 .navbar-brand {
     float: left;
     height: 50px;
-    padding: 15px 15px;
+    padding: 10px 15px;
     font-size: 18px;
     line-height: 20px;
 }
 
 
 .navbar-toggle {
-    margin-top: 18px;
+    margin-top: 13px;
   }
 
   .thumbnail{
   	border: 0px;
   	padding: 0px;
-    border-radius: 4px;
+    border-radius: 2px;
     position:relative;
     background-color: #fff;
+    border: 1px solid #000 !important;
     box-shadow: 0px 0px 3px rgba(0,0,0,0.24);
     transition: all 0.2s ease-in-out;
     margin-bottom: 0px;
@@ -441,7 +439,7 @@ a:focus {
 }
 
 .progress-bar-primary{
-  background-color: #BA82AA;
+  background-color: #000;
 }
 
 .progress-bar-success{
@@ -491,18 +489,18 @@ a:focus {
 		}
 
     .beauty ul li .active{
-      background: #D2AFC9 !important;
+      background: #666 !important;
     }
 
     .beauty ul li .touched{
 
       pointer-events: all;
       cursor: pointer;
-      background: #D2AFC9 !important ;
+      background: #666 !important ;
     }
 
     .beauty ul li .touched:after{
-      border-left-color: #D2AFC9 !important ;
+      border-left-color: #666 !important ;
     }
 
     #crumbs .current{
@@ -510,7 +508,7 @@ a:focus {
     }
 
     .beauty .current {
-			background: #ba82aa !important;
+			background: #000 !important;
 		}
 
 
@@ -530,7 +528,7 @@ a:focus {
 
 
       .beauty .current:after{
-  			border-left-color: #ba82aa !important;
+  			border-left-color: #000 !important;
   		}
 
       #crumbs .current:after{
@@ -593,38 +591,30 @@ a:focus {
 
         .btn-nav {
     padding: .2em;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
+    padding-left: 1.0em;
+    padding-right: 1.0em;
     color: #fff;
-    font-size: 18px;
+    font-size: 16px;
+    height: 60px;
     text-align: center;
     text-decoration: none;
-    background-color: #7BDC8A !important;
     line-height: 1.5;
     border: none;
-    border-radius: 4px;
     font-weight: 600;
-    background-color: #A6CCE8 !important;
+    background-color: #ca1488 !important;
     border: none;
-    border-radius: 2px;
     font-size: 20px;
     float: right;
+    border-radius: 0px;
     width: 40%;
-    margin-top: 10px;
-    margin-right: 10px;
+
 }
-        .btn-beauty{
-          background-color: #25CB68 !important;
-          border-radius:4px;
-        }
+
 
         .btn-nav:hover{
           background-color: #4E9CD4 !important;
         }
 
-        .btn-beauty:hover{
-          background-color: #4ac559 !important;
-        }
 
         .prev{
           left: 30px;
@@ -639,11 +629,16 @@ a:focus {
           font-size: 15px;
         }
 
+        .btn-details{
+          background:#000;color:#fff !important;width:100%;border-radius:0px;border-bottom-left-radius: 2px;border-bottom-right-radius: 2px;
+        }
+
        .subtitle{
          text-align: left;
          margin-bottom: 10px;
          margin-top: 0px;
-         font-weight:800px;
+         font-size: 30px;
+         font-family: 'Caveat', cursive !important;
        }
 
        .subtitle2{
@@ -651,6 +646,7 @@ a:focus {
          color: purple;
          margin-bottom: 30px;
          margin-top: 20px;
+          font-size: 18px;
        }
 
        .line{
@@ -759,7 +755,7 @@ a:focus {
     text-decoration: none;
     color: #fff;
     transition:none;
-    width: 25% !important;
+    width: 33.33% !important;
   }
 
   #crumbs ul li a:after {
@@ -953,6 +949,7 @@ float: none;
     pointer-events:all;
     border-radius: 0px !important;
     border: none !important;
+    padding-bottom: 30px !important;
 }
 
 .plus{
@@ -1210,6 +1207,17 @@ border-radius:4px;
     font-weight: 900 !important;
 }
 
+.bootstrap-dialog .bootstrap-dialog-title{
+  float: right;
+}
+
+.dialog-title {
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    float: right;
+}
+
 .bootstrap-dialog.type-primary .modal-header {
     background-color: #BA82AA !important;
 }
@@ -1239,14 +1247,17 @@ margin-left: auto;margin-right: auto;right: 150px;
 
 .close {
     float: left;
+    position: absolute;
+    left:20px;
+    top: 20px;
     font-size: 51px;
     font-weight: 700;
     line-height: .4;
     z-index: 99999999999;
     color: #000;
     text-shadow: 0 1px 0 #fff;
-    filter: alpha(opacity=20);
-    opacity: .3;
+    filter: alpha(opacity=50);
+    opacity: .5;
 }
 
 .flickity-prev-next-button.next {
@@ -1374,10 +1385,23 @@ border: none;
 
 .view-btn{
   float:left;
-  margin-left: 10px;
-  background-color: #fff !important;
-  color: #25CB68;
-  border: 1px solid #25CB68;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 60px;
+  width: 50%;
+  background-color: #000 !important;
+  color: #fff;
+  border: none;
+
+  font-weight: 600;
+  font-family: 'Caveat', cursive !important;
+  font-size: 18px;
+
+}
+
+.next-btn{
+  font-family: 'Caveat', cursive !important;
+  width: 50%;
 }
 
 .nav > li.dropdown.open {
