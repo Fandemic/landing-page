@@ -788,9 +788,12 @@ def partnersForm():
     email = request.form['email']
     phone = request.form['phone']
 
-    sarah = Slack()
-    if request.method == "POST":
-        sarah.notify('*PARTNER FORM SUBMISSION*\nHey guys, *'+str(companyname)+'* just filled out the partner request form, follow up with them ASAP!')
+    toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
+    subject = "Partner form submission!"
+    html =  """boom"""
+
+    email.send(toaddr,subject,html)
+
     return '';
 
 
