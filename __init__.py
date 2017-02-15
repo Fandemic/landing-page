@@ -228,7 +228,8 @@ def blogPostSubmission():
 @app.route('/email-poster/jGDA1286AJGDJS12836')
 def emailPoster():
     emailCategories = db.leads.distinct('category')
-    return render_template('email-poster.html', emailCategories = emailCategories)
+    emails = db.emails.find()
+    return render_template('email-poster.html', emails=emails, emailCategories = emailCategories)
 
 @app.route('/email-post-submit-form', methods=['GET', 'POST'])
 def emailPostSubmission():
@@ -243,6 +244,15 @@ def emailPostSubmission():
     db.emails.insert_one(emailPost)
 
     return ''
+@app.route('/email-delete/jGDA1286AJGDJS12836/<emailID>', methods=['GET', 'POST'])
+def emailDeleteSubmission(emailID):
+    newemail = emailID.split('&')
+    found = db.emails.find_one({ "category" : newemail[0], "order" : int(newemail[1])})
+    #delete = db.emails.remove({ "category" : newemail[0], "order" : int(newemail[1])})
+    return found['subject']
+
+
+
 
 #-------------------END Email POST SUBMISSION------------------------
 
@@ -834,11 +844,19 @@ def partnersForm():
     email = request.form['email']
     phone = request.form['phone']
 
-    toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
-    subject = "Partner form submission!"
-    html =  """boom"""
+    toaddr = ['ethan@fandemic.co']
+    subject = "tst"
+    html =  """
+    Company Name: """ + companyname + """<br>
+    Company Website: """ + companywebsite + """<br>
+    Name: """ + name + """<br>
+    Email: """ + email + """<br>
+    Phone: """ + phone + """
+    """
+    sarah = Slack()
 
-    email.send(toaddr,subject,html)
+    sarah.notify('*DESKTOP VISITED ALERT*\nHey guys')
+
 
     return '';
 

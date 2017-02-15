@@ -1,4 +1,6 @@
 <head>
+  <meta name="robots" content="noindex" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.4.3/tinymce.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
@@ -18,6 +20,31 @@
   <textarea id="body" name="body"></textarea>
 </form>
 <button class="btn btn-primary btn-nav btn-beauty" style="width:30%;" id="email-post-form-submit">Submit</button>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Order</th>
+        <th>Subject</th>
+        <th>Body</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for email in emails %}
+      <tr>
+        <td>{{email.category}}</td>
+        <td>{{email.order}}</td>
+        <td>{{email.subject}}</td>
+        <td>{{email.body | safe}}</td>
+        <td><a href="/email-delete/jGDA1286AJGDJS12836/{{email.category}}&{{email.order}}">Delete</a></td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
 <div class="container">
 </html>
 <script>
@@ -36,7 +63,7 @@ tinymce.init({
 
 
 $("#email-post-form-submit").click(function(e) {
-  $('#email-post-form-submit').replaceWith('<p id="email-post-form-submit" style="text-align:center">Updating...</p>')  
+  $('#email-post-form-submit').replaceWith('<p id="email-post-form-submit" style="text-align:center">Updating...</p>')
   $('#' + 'body').html( tinymce.get('body').getContent() );
     $.ajax({
       url: "/email-post-submit-form",
