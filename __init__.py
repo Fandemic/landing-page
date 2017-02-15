@@ -197,8 +197,54 @@ def blogHome():
     posts = db.blog.find({})
     star_names = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(5)
     return render_template('blog.html', star_names=star_names, posts = posts)
-
 #-------------------------------------------
+
+#------------BLOG POST SUBMISSION-------------------------------
+
+@app.route('/blog-poster/SJHGA77612bDHGwjgdw732')
+def blogPoster():
+    return render_template('blog-poster.html')
+
+@app.route('/blog-post-submit-form', methods=['GET', 'POST'])
+def blogPostSubmission():
+    blogPost = {}
+
+    blogPost['content'] = request.form['content']
+    blogPost['author'] = request.form['author']
+    blogPost['url'] = request.form['url']
+    blogPost['title'] = request.form['title']
+    blogPost['summary'] = request.form['summary']
+    blogPost['date'] = time.strftime("%B %d, %Y")
+
+    db.blog.insert_one(blogPost)
+
+    return ''
+
+#-----------------END BLOG POST SUBMITTER--------------------------
+
+
+#------------EMAIL SUBMITTER-------------------------------
+
+@app.route('/email-poster/jGDA1286AJGDJS12836')
+def emailPoster():
+    emailCategories = db.leads.distinct('category')
+    return render_template('email-poster.html', emailCategories = emailCategories)
+
+@app.route('/email-post-submit-form', methods=['GET', 'POST'])
+def emailPostSubmission():
+
+    emailPost = {}
+
+    emailPost['category'] = request.form['category']
+    emailPost['order'] = int(request.form['order'])
+    emailPost['subject'] = request.form['subject']
+    emailPost['body'] = request.form['body']
+
+    db.emails.insert_one(emailPost)
+
+    return ''
+
+#-------------------END Email POST SUBMISSION------------------------
 
 @app.route('/blog/<url>')
 def blogPost(url):

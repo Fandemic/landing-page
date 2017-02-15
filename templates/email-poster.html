@@ -1,0 +1,56 @@
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.4.3/tinymce.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
+</head>
+
+<html>
+<div class="container">
+  <h2>Fandemic email Poster</h2>
+<form id="email-post-form" action="/email-post-submit-form" method="post" role="form">
+  <select id="category" name="category">
+    {% for category in emailCategories %}
+    <option>{{category}}</option>
+    {% endfor %}
+  </select>
+  <input id="order" name="order" class="form-control" type="number" placeholder="Order Number">
+  <input id="subject" name="subject" class="form-control" type="text" placeholder="Subject">
+  <textarea id="body" name="body"></textarea>
+</form>
+<button class="btn btn-primary btn-nav btn-beauty" style="width:30%;" id="email-post-form-submit">Submit</button>
+<div class="container">
+</html>
+<script>
+tinymce.init({
+  selector: 'textarea',
+  height: 250,
+  menubar: false,
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table contextmenu paste code'
+  ],
+  toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+  content_css: '//www.tinymce.com/css/codepen.min.css'
+});
+
+
+$("#email-post-form-submit").click(function(e) {
+  $('#email-post-form-submit').replaceWith('<p id="email-post-form-submit" style="text-align:center">Updating...</p>')  
+  $('#' + 'body').html( tinymce.get('body').getContent() );
+    $.ajax({
+      url: "/email-post-submit-form",
+      data: $('form').serialize(),
+      type: 'POST',
+      success: function(response) {
+          console.log(response);
+          $('#email-post-form-submit').replaceWith('<p style="text-align:center">Awesome! We just posted it!</p>')
+      },
+      error: function(error) {
+          console.log(error);
+          $('#email-post-form-submit').replaceWith('<p style="text-align:center">Error!</p>')
+      }
+    });
+
+});
+</script>
