@@ -150,6 +150,17 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          <button class="btn-fancy"
+          {% if item.variation|length > 0 %}
+           data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}-variation"
+          {% endif %}
+          {% if item.variation|length == 0 %}
+           ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}',cost:'{{item.price}}' })"
+          {% endif %}
+          data-dismiss="modal"
+          >
+            Add Product >
+          </button>
 
           <div class="row" style="margin-top:60px;">
 

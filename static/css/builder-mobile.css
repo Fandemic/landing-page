@@ -1209,7 +1209,7 @@ border-radius:4px;
     pointer-events: none;
     }
 
-  
+
 
     .bootstrap-dialog .bootstrap-dialog-message {
     font-size: 18px !important;
@@ -1456,4 +1456,18 @@ border: none;
 }
 .dropdown-menu>li {
     display: table-cell;
+}
+
+.btn-fancy{
+  font-family: 'Caveat', cursive !important;
+position: absolute;
+border-radius: 4px;
+border: 1px solid #000;
+background-color: #fff;
+color: #000;
+top: 20px;
+right: 20px;
+font-size: 22px;
+font-weight: 400;
+z-index: 9999;
 }
