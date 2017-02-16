@@ -209,7 +209,7 @@ def do_admin_login():
     if credential != None:
         if credential['system'] == 'blog' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
             session['logged_in'] = True
-            return blogPoster()
+            return blogPoster(credential)
         elif credential['system'] == 'email' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
             session['logged_in'] = True
             return emailPoster()
@@ -220,11 +220,11 @@ def do_admin_login():
 
 
 @app.route('/blog-poster')
-def blogPoster():
+def blogPoster(credential):
     if not session.get('logged_in'):
         return render_template('poster-login.html')
     else:
-        return render_template('blog-poster.html')
+        return render_template('blog-poster.html', credential=credential)
 
 @app.route('/blog-post-submit-form', methods=['GET', 'POST'])
 def blogPosterSubmission():
@@ -863,11 +863,10 @@ def partnersForm():
     toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
     subject = "Partner Submit Form"
     html =  """
-<<<<<<< HEAD
             Company Name: """ + companyname + """<br>
             Company Website: """ + companywebsite + """<br>
             Name: """ + name + """<br>
-            Email: """ + email + """<br>
+            Email: <a href="mailto:""" + email + """"> """ + email + """ </a><br>
             Phone: """ + phone + """
             """
 
@@ -879,14 +878,11 @@ def partnersForm():
     slack_msg = '*Company Name:* ' + companyname
     slack_msg += '\n Company Website:* ' + companywebsite
     slack_msg += '\n Name:* ' + name
-    slack_msg += '\n Email:* ' + email
+    slack_msg += '\n Email:* ' + str(email)
     slack_msg += '\n Phone:* ' + phone
 
 
     sarah.notify(slack_msg)
-
-
-    email.send(toaddr,subject,html)
 
     return '';
 
