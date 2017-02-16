@@ -954,5 +954,5 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.secret_key = os.urandom(12)
+    app.secret_key = 'secretkey'
     app.run(debug=True)
