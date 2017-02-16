@@ -297,7 +297,7 @@ a:focus {
     width: inherit;
     text-align:center;
     z-index: 999 !important;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #fff;
 
 
 }
