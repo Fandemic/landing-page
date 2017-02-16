@@ -38,7 +38,7 @@
         <td>{{email.order}}</td>
         <td>{{email.subject}}</td>
         <td>{{email.body | safe}}</td>
-        <td><a href="/email-delete/jGDA1286AJGDJS12836/{{email.category}}&{{email.order}}">Delete</a></td>
+        <td><a href="#{{email.category}}&{{email.order}}">Delete</a></td>
       </tr>
       {% endfor %}
 

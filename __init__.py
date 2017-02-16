@@ -4,7 +4,7 @@ import math
 import random
 import time
 from email.utils import parseaddr
-from flask import Flask, render_template, request, jsonify, redirect, make_response
+from flask import Flask, render_template, request, jsonify, redirect, make_response, session
 from pymongo import MongoClient, GEO2D
 from collections import Counter
 from jinja2 import Template
@@ -199,16 +199,36 @@ def blogHome():
     return render_template('blog.html', star_names=star_names, posts = posts)
 #-------------------------------------------
 
-#------------BLOG POST SUBMISSION-------------------------------
+#------------BLOG POST and EMAIL POST SUBMISSION & DELETION-------------------------------
 
-@app.route('/blog-poster/SJHGA77612bDHGwjgdw732')
+@app.route('/poster-login', methods=['POST'])
+def do_admin_login():
+    username = str(request.form['username'])
+    credential = db.credentials.find_one({'username':username})
+
+    if credential != None:
+        if credential['system'] == 'blog' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
+            session['logged_in'] = True
+            return blogPoster()
+        elif credential['system'] == 'email' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
+            session['logged_in'] = True
+            return emailPoster()
+        else:
+            return 'Wrong Username or Password'
+    else:
+        return 'Wrong Username or Password!'
+
+
+@app.route('/blog-poster')
 def blogPoster():
-    return render_template('blog-poster.html')
+    if not session.get('logged_in'):
+        return render_template('poster-login.html')
+    else:
+        return render_template('blog-poster.html')
 
 @app.route('/blog-post-submit-form', methods=['GET', 'POST'])
-def blogPostSubmission():
+def blogPosterSubmission():
     blogPost = {}
-
     blogPost['content'] = request.form['content']
     blogPost['author'] = request.form['author']
     blogPost['url'] = request.form['url']
@@ -216,24 +236,20 @@ def blogPostSubmission():
     blogPost['summary'] = request.form['summary']
     blogPost['date'] = time.strftime("%B %d, %Y")
 
-    db.blog.insert_one(blogPost)
-
+    db.testblog.insert_one(blogPost)
     return ''
 
-#-----------------END BLOG POST SUBMITTER--------------------------
-
-
-#------------EMAIL SUBMITTER-------------------------------
-
-@app.route('/email-poster/jGDA1286AJGDJS12836')
+@app.route('/email-poster', methods=['GET', 'POST'])
 def emailPoster():
-    emailCategories = db.leads.distinct('category')
-    emails = db.emails.find()
-    return render_template('email-poster.html', emails=emails, emailCategories = emailCategories)
+    if not session.get('logged_in'):
+        return render_template('poster-login.html')
+    else:
+        emailCategories = db.leads.distinct('category')
+        emails = db.emails.find()
+        return render_template('email-poster.html', emails=emails, emailCategories = emailCategories)
 
 @app.route('/email-post-submit-form', methods=['GET', 'POST'])
-def emailPostSubmission():
-
+def emailPosterSubmission():
     emailPost = {}
 
     emailPost['category'] = request.form['category']
@@ -241,16 +257,16 @@ def emailPostSubmission():
     emailPost['subject'] = request.form['subject']
     emailPost['body'] = request.form['body']
 
-    db.emails.insert_one(emailPost)
-
+    db.testblog.insert_one(emailPost)
     return ''
-@app.route('/email-delete/jGDA1286AJGDJS12836/<emailID>', methods=['GET', 'POST'])
-def emailDeleteSubmission(emailID):
-    newemail = emailID.split('&')
-    found = db.emails.find_one({ "category" : newemail[0], "order" : int(newemail[1])})
-    #delete = db.emails.remove({ "category" : newemail[0], "order" : int(newemail[1])})
-    return found['subject']
 
+
+# @app.route('/email-delete/jGDA1286AJGDJS12836/<emailID>', methods=['GET', 'POST'])
+# def emailDeleteSubmission(emailID):
+#     newemail = emailID.split('&')
+#     found = db.emails.find_one({ "category" : newemail[0], "order" : int(newemail[1])})
+#     #delete = db.emails.remove({ "category" : newemail[0], "order" : int(newemail[1])})
+#     return found['subject']
 
 
 
@@ -892,5 +908,5 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-
-    app.run(debug=True)
+    app.secret_key = os.urandom(12)
+    app.run(host='10.0.0.204', debug=True)
