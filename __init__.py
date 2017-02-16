@@ -857,7 +857,7 @@ def partnersForm():
     companyname =  request.form['companyname']
     companywebsite = request.form['companywebsite']
     name = request.form['name']
-    email = request.form['email']
+    companyemail = request.form['email']
     phone = request.form['phone']
 
     toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
@@ -866,7 +866,7 @@ def partnersForm():
             Company Name: """ + companyname + """<br>
             Company Website: """ + companywebsite + """<br>
             Name: """ + name + """<br>
-            Email: <a href="mailto:""" + email + """"> """ + email + """ </a><br>
+            Email: <a href="mailto:""" + companyemail + """"> """ + companyemail + """ </a><br>
             Phone: """ + phone + """
             """
 
@@ -878,7 +878,7 @@ def partnersForm():
     slack_msg = '*Company Name:* ' + companyname
     slack_msg += '\n Company Website:* ' + companywebsite
     slack_msg += '\n Name:* ' + name
-    slack_msg += '\n Email:* ' + str(email)
+    slack_msg += '\n Email:* ' + str(companyemail)
     slack_msg += '\n Phone:* ' + phone
 
 
