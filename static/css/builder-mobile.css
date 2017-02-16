@@ -1209,11 +1209,7 @@ border-radius:4px;
     pointer-events: none;
     }
 
-    .modal-dialog{
-      display: table-cell !important;
-    pointer-events: none !important;
-    width: 30% !important;
-    }
+  
 
     .bootstrap-dialog .bootstrap-dialog-message {
     font-size: 18px !important;
@@ -1270,9 +1266,7 @@ width: 200px;
 margin-left: auto;margin-right: auto;right: 150px;
 }
 
-.in{
-  display: table !important;height: 100% !important;width: 100% !important;
-}
+
 
 
 .explain-step{
