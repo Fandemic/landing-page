@@ -863,6 +863,7 @@ def partnersForm():
     toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
     subject = "Partner Submit Form"
     html =  """
+<<<<<<< HEAD
             Company Name: """ + companyname + """<br>
             Company Website: """ + companywebsite + """<br>
             Name: """ + name + """<br>
@@ -884,6 +885,8 @@ def partnersForm():
 
     sarah.notify(slack_msg)
 
+
+    email.send(toaddr,subject,html)
 
     return '';
 
