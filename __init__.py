@@ -860,18 +860,29 @@ def partnersForm():
     email = request.form['email']
     phone = request.form['phone']
 
-    toaddr = ['ethan@fandemic.co']
-    subject = "tst"
+    toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
+    subject = "Partner Submit Form"
     html =  """
-    Company Name: """ + companyname + """<br>
-    Company Website: """ + companywebsite + """<br>
-    Name: """ + name + """<br>
-    Email: """ + email + """<br>
-    Phone: """ + phone + """
-    """
+            Company Name: """ + companyname + """<br>
+            Company Website: """ + companywebsite + """<br>
+            Name: """ + name + """<br>
+            Email: """ + email + """<br>
+            Phone: """ + phone + """
+            """
+
+    email = Mailer()
+    email.send(toaddr,subject,html)
+
     sarah = Slack()
 
-    sarah.notify('*DESKTOP VISITED ALERT*\nHey guys')
+    slack_msg = '*Company Name:* ' + companyname
+    slack_msg += '\n Company Website:* ' + companywebsite
+    slack_msg += '\n Name:* ' + name
+    slack_msg += '\n Email:* ' + email
+    slack_msg += '\n Phone:* ' + phone
+
+
+    sarah.notify(slack_msg)
 
 
     return '';
@@ -909,4 +920,4 @@ def page_not_found(e):
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
-    app.run(host='10.0.0.204', debug=True)
+    app.run(debug=True)
