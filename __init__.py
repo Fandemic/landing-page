@@ -869,10 +869,8 @@ def partnersForm():
     Email: """ + email + """<br>
     Phone: """ + phone + """
     """
-    sarah = Slack()
 
-    sarah.notify('*DESKTOP VISITED ALERT*\nHey guys')
-
+    email.send(toaddr,subject,html)
 
     return '';
 
