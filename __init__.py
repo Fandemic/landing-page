@@ -9,6 +9,7 @@ from pymongo import MongoClient, GEO2D
 from collections import Counter
 from jinja2 import Template
 import json
+import bson
 from flask.ext.mobility import Mobility
 from flask.ext.mobility.decorators import mobile_template
 import stripe
@@ -209,9 +210,11 @@ def do_admin_login():
     if credential != None:
         if credential['system'] == 'blog' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
             session['logged_in'] = True
+            session['username'] = credential['username']
             return blogPoster(credential)
         elif credential['system'] == 'email' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
             session['logged_in'] = True
+            session['username'] = credential['username']
             return emailPoster()
         else:
             return 'Wrong Username or Password'
@@ -257,9 +260,42 @@ def emailPosterSubmission():
     emailPost['subject'] = request.form['subject']
     emailPost['body'] = request.form['body']
 
-    db.testblog.insert_one(emailPost)
+    db.emails.insert_one(emailPost)
     return ''
 
+@app.route('/email-update-form', methods=['GET', 'POST'])
+def emailPosterUpdate():
+    emailPost = {}
+
+    ID = bson.ObjectId(request.form['id'])
+    subject = request.form['subject']
+    body = request.form['body']
+
+    db.emails.update_one({
+                          '_id': ID
+                        },{
+                          '$set': {
+                            'subject': subject,
+                            'body' : body
+                          }
+                        }, upsert=False);
+
+    sarah = Slack()
+    sarah.notify(session['username'] + ' has updated one of my emails!')
+
+    return ''
+
+@app.route('/email-delete-form', methods=['GET', 'POST'])
+def emailPosterDelete():
+
+    ID = bson.ObjectId(request.form['id'])
+
+    db.emails.remove({'_id': ID},{'justOne': True,});
+
+    sarah = Slack()
+    sarah.notify(session['username'] + ' has deleted one of my emails!')
+
+    return ''
 
 # @app.route('/email-delete/jGDA1286AJGDJS12836/<emailID>', methods=['GET', 'POST'])
 # def emailDeleteSubmission(emailID):
