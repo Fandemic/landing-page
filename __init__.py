@@ -210,11 +210,11 @@ def do_admin_login():
 
     if credential != None:
         if credential['system'] == 'blog' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
-            session['logged_in'] = True
+            session['logged_in_blog'] = True
             session['username'] = credential['username']
-            return blogPoster(credential)
+            return blogPoster()
         elif credential['system'] == 'email' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
-            session['logged_in'] = True
+            session['logged_in_email'] = True
             session['username'] = credential['username']
             return emailPoster()
         else:
@@ -222,10 +222,16 @@ def do_admin_login():
     else:
         return 'Wrong Username or Password!'
 
+@app.route("/logout-sessions")
+def logout():
+    session['logged_in_blog'] = False
+    session['logged_in_email'] = False
+    return 'done!'
 
 @app.route('/blog-poster')
-def blogPoster(credential):
-    if not session.get('logged_in'):
+def blogPoster():
+    credential = db.credentials.find_one({'username':session['username']})
+    if not session.get('logged_in_blog'):
         return render_template('poster-login.html')
     else:
         return render_template('blog-poster.html', credential=credential)
@@ -245,7 +251,7 @@ def blogPosterSubmission():
 
 @app.route('/email-poster', methods=['GET', 'POST'])
 def emailPoster():
-    if not session.get('logged_in'):
+    if not session.get('logged_in_email'):
         return render_template('poster-login.html')
     else:
         emailCategories = db.leads.distinct('category')
@@ -955,4 +961,5 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
+
     app.run(debug=True)
