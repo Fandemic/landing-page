@@ -268,6 +268,10 @@ def emailPosterSubmission():
     emailPost['body'] = request.form['body']
 
     db.emails.insert_one(emailPost)
+
+    sarah = Slack()
+    sarah.notify(session['username'] + ' has added an emails!')
+
     return ''
 
 @app.route('/email-update-form', methods=['GET', 'POST'])
@@ -303,15 +307,6 @@ def emailPosterDelete():
     sarah.notify(session['username'] + ' has deleted one of my emails!')
 
     return ''
-
-# @app.route('/email-delete/jGDA1286AJGDJS12836/<emailID>', methods=['GET', 'POST'])
-# def emailDeleteSubmission(emailID):
-#     newemail = emailID.split('&')
-#     found = db.emails.find_one({ "category" : newemail[0], "order" : int(newemail[1])})
-#     #delete = db.emails.remove({ "category" : newemail[0], "order" : int(newemail[1])})
-#     return found['subject']
-
-
 
 #-------------------END Email POST SUBMISSION------------------------
 
