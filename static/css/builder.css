@@ -4,6 +4,10 @@
 * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
 */
 
+.brand-requester{
+  clear: both;
+}
+
 .popular-product-label {
     background-color: #D2AFC9;
     right: -56px;
@@ -434,7 +438,7 @@ a:focus {
   right: 0;
   bottom: 50px;
   font-size:17px;
-  
+
   font-family: 'Caveat', cursive;
 }
 
