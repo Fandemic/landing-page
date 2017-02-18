@@ -192,7 +192,7 @@ class Mailer:
                             <!-- Hero Image, Flush : BEGIN -->
                             <tbody><tr>
                 				<td bgcolor="#ffffff">
-                					<img src="https://fandemic.co/static/img/live/""" + ID + """/box.png" alt="alt_text" border="0" align="center" class="fluid" style="margin-left:25%;width: 20em; max-width: 600px; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
+                					<img src="https://fandemic.co/static/img/live/""" + ID + """/box.png" alt="alt_text" border="0" class="fluid" style="margin-left:25%;width: 20em; max-width: 600px; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
                 				</td>
                             </tr>
                             <!-- Hero Image, Flush : END -->
@@ -200,7 +200,7 @@ class Mailer:
                             <!-- 1 Column Text : BEGIN -->
                             <tr>
                                 <td bgcolor="#ffffff" style="padding: 40px; text-align: center; font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
-                									<h1>Congratulations<h1><h2>""" + name + """</h2> <br>Your Beauty Store is ready to promote! You have 7 days to sell as many boxes as possible. Remember, you must sell at least 25 for the campaign to be successful. Below you will find some tips that other stars have found useful while promoting their campaign!
+                									<h1>Congratulations<h1><h2>""" + name + """</h2> <br>Your Beauty Store is ready to promote! You have 7 days to sell as many boxes as possible. Remember, you only have to pre-sell more than 10 for the campaign to be successful. <br><br>Below you will find some tips that other stars have found useful while promoting their campaign!
                 								<br><br>
 
                                 </td>
@@ -267,7 +267,7 @@ class Mailer:
                                                     </tr>
                                                     <tr>
                                                         <td style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
-                                                            Post your makeup samples on snapchat! Didn't get any samples? No worries! Just snap your store, your fans will loveee it!
+                                                            <strong>Snap your samples</strong>! Didn't get any samples? No worries! Snap your store! Also add us using the snap code above to be featured on our story!
                                                         </td>
                                                     </tr>
                                                 </tbody></table>
@@ -285,7 +285,7 @@ class Mailer:
                                                     </tr>
                                                     <tr>
                                                         <td style="font-family: sans-serif; font-size: 15px; mso-height-rule: exactly; line-height: 20px; color: #555555; padding: 0 10px 10px; text-align: left;" class="center-on-narrow">
-                                                            Post a picture or short video of the box with some awesome hashtags! Tag us for the chance to be featured on our website!
+                                                            Post a picture or short video of the box with some awesome hashtags! <strong>Tag us</strong> for the chance to be featured on our website!
                                                         </td>
                                                     </tr>
                                                 </tbody></table>
