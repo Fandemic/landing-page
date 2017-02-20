@@ -303,12 +303,12 @@ def emailPosterDelete():
     ID = bson.ObjectId(request.form['id'])
     emailID = db.emails.find_one({"_id":ID})
 
+    sarah = Slack()
+    sarah.notify(session['username'] + ' has deleted one of my emails in the ' + emailID['category'] + ' category!')
 
     db.emails.remove({'_id': ID},{'justOne': True,});
 
-    print emailID['category']
-    sarah = Slack()
-    sarah.notify(session['username'] + ' has deleted one of my emails in the ' + emailID['category'] + ' category!')
+
 
     return ''
 
