@@ -270,7 +270,7 @@ def emailPosterSubmission():
     db.emails.insert_one(emailPost)
 
     sarah = Slack()
-    sarah.notify(session['username'] + ' has added an emails!')
+    sarah.notify(session['username'] + ' has added an email to the ' + emailPost['category'] + 'category!')
 
     return ''
 
@@ -292,7 +292,7 @@ def emailPosterUpdate():
                         }, upsert=False);
 
     sarah = Slack()
-    sarah.notify(session['username'] + ' has updated one of my emails!')
+    sarah.notify(session['username'] + ' has updated one of my emails!' + ID['category'] + 'category!')
 
     return ''
 
@@ -304,7 +304,7 @@ def emailPosterDelete():
     db.emails.remove({'_id': ID},{'justOne': True,});
 
     sarah = Slack()
-    sarah.notify(session['username'] + ' has deleted one of my emails!')
+    sarah.notify(session['username'] + ' has deleted one of my emails from the ' + ID['category'] + 'category!')
 
     return ''
 
