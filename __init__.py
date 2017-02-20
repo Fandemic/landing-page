@@ -282,6 +282,7 @@ def emailPosterUpdate():
     subject = request.form['subject']
     body = request.form['body']
 
+    emailID = db.emails.find_one({"_id":ID})
     db.emails.update_one({
                           '_id': ID
                         },{
@@ -292,7 +293,7 @@ def emailPosterUpdate():
                         }, upsert=False);
 
     sarah = Slack()
-    sarah.notify(session['username'] + ' has updated one of my emails!' + ID['category'] + 'category!')
+    sarah.notify(session['username'] + ' has updated one of my emails in the ' + emailID['category'] + 'category!')
 
     return ''
 
@@ -302,9 +303,11 @@ def emailPosterDelete():
     ID = bson.ObjectId(request.form['id'])
 
     db.emails.remove({'_id': ID},{'justOne': True,});
+    emailID = db.emails.find_one({"_id":ID})
+
 
     sarah = Slack()
-    sarah.notify(session['username'] + ' has deleted one of my emails from the ' + ID['category'] + 'category!')
+    sarah.notify(session['username'] + ' has deleted one of my emails in the ' + emailID['category'] + 'category!')
 
     return ''
 
