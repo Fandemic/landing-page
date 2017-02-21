@@ -722,10 +722,7 @@ def launchStoreRequest():
             campaign['profit'] = info['profit']
             campaign['description'] = info['desc']
             campaign['num_orders'] = 500
-            campaign['style'] = {}
-            campaign['style']['color_primary'] = '#' + info['font_color'].lower()
-            campaign['style']['color_secondary'] = '#fff'
-            campaign['style']['btn_color'] = '#28a237'
+            campaign['style'] = info['style']
             campaign['products'] = info['products']
             campaign['campaign_video'] = '0'
             campaigns['charity'] = {}

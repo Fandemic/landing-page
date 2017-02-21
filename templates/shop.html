@@ -117,7 +117,7 @@ h4 {
   </div>
 
   {% if star.campaigns[0].style.color_primary != '' %}
-  <h4 style="font-family: 'Caveat', cursive;font-size:32px;color:#dd9a9d;">{{star.name}}</h4>
+  <h4 style="font-family: 'Caveat', cursive;font-size:32px;color:#fff;">{{star.name}}</h4>
   {% else %}
   <h4 style="font-size:32px;color:#dd9a9d;">{{star.name}}</h4>
   {% endif %}
@@ -149,7 +149,7 @@ h4 {
   <div class="footer">
     <img  alt="logo" src="/static/img/fandemic_logo_white.png" style="text-align:center;" height="30">
     <p class="small" ><a href="/about">About Us</a> - <a href="/partners">Partners</a> - <a href="/blog">Blog</a> - <a href="/faq">FAQ</a></p>
-    <p class="copyright small"  style="color:#fff;">Copyright &copy; Fandemic. 2017. All Rights Reserved. &nbsp;
+    <p class="copyright small"  style="color:#fff;font-size:65%;">Copyright &copy; Fandemic. 2017. All Rights Reserved. &nbsp;
 
     </p>
   </div>
@@ -192,7 +192,13 @@ h4 {
 
           <br>
             <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
+            {% if star.campaigns[0].style.name == 'Plain White' %}
+            <img class="img-responsive" style="width:40%;margin: 0 auto;" src="/static/img/packaging/plain-white.png">
+            {% elif star.campaigns[0].style.name == 'Solid Color' %}
+            <img class="img-responsive" style="padding:5px;width:40%;margin: 0 auto;" src="/static/img/packaging/{{star.campaigns[0].style.img}}">
+            {% else %}
             <img class="img-responsive" style="padding:5px;width:40%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/image/upload/e_trim/stars/{{star.id}}/box.png">
+            {% endif %}
             <br>
 
         </div>
@@ -214,13 +220,13 @@ h4 {
 
 
 
-      <div class="col-md-12 ">
+      <div class="col-md-12 " >
 
-              <div class="col-md-12" style="padding:20px;text-align:left;color:#4d4d4d;">
+              <div class="col-md-12" style="padding:20px;padding-top:0px;text-align:left;color:#4d4d4d;">
                 <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:600;border-bottom: 1px dotted #a9a9a9;padding:5px;">What's Inside?</h4>
               </div>
 
-        <div class="items-listing">
+        <div class="items-listing" style="padding-left:50px;padding-right:50px;">
 
           {% for p in star.campaigns[0].products %}
 
@@ -231,7 +237,9 @@ h4 {
             <div class="col-md-8">
               <h4>{{ p.name }}<br><span style="margin-top:3px;color:#8d8d8d;font-size:20px;font-weight:400;">{{ p.variation }}<span></h4>
               <p>{{p.description}}</p>
+              <img style="position:absolute;right:30px;top:12px;width:60px;" src="../static/img/fandemic_logo_pink.png">
             </div>
+
           </div>
           <hr class="">
 
@@ -250,7 +258,7 @@ h4 {
           <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:400;margin:2px;">Campaign Status</h4>
         </div>
 
-        <button class="btn" style="font-family: 'Caveat', cursive !important;position:absolute;border-radius:4px;border: 1px solid #000; background-color:#fff;color:#000;top:-60px;right:0px;" href="/builder/beauty">Design Your Own ></button>
+        <a href="/builder"><button class="btn" style="font-family: 'Caveat', cursive !important;position:absolute;border-radius:1px;border: 1px solid #000; background-color:#fff;color:#000;top:-60px;right:0px;" href="/builder/beauty">Design Your Own ></button></a>
 
         <div class="panel-body" style="padding-bottom:0px;padding-left:40px;padding-right:40px;">
           <div class="">
@@ -338,11 +346,9 @@ h4 {
         <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">CREATE BOX</button>
       </a>
       {% elif star.campaigns[0].status == 'pending' %}
-      <button data-toggle="modal" data-target="" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="  opacity: 0.65; cursor: not-allowed;border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
-              background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
+      <button data-toggle="modal" data-target="" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="  opacity: 0.65; cursor: not-allowed;border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 50%;">ORDER NOW</button>
       {% elif star.campaigns[0].status == 'live' %}
-      <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;
-              background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">PRE-ORDER NOW</button>
+      <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 50%;">ORDER NOW</button>
       {% elif star.campaigns[0].status == 'success' or star.campaigns[0].status == 'failed'%}
       <a href="/builder">
         <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:22px;border: #7BDC87 !important; width: 90%;">Design Your Own</button>
@@ -714,7 +720,13 @@ h4 {
             <p>{a total_price() | currency a} USD</0>
               <hr>
 
+              {% if star.campaigns[0].style.name == 'Plain White' %}
+              <img src="/static/img/packaging/plain-white.png" style="width:100%;">
+              {% elif star.campaigns[0].style.name == 'Solid Color' %}
+              <img src="/static/img/packaging/{{star.campaigns[0].style.img}}" style="width:100%;">
+              {% else %}
               <img src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/box.png" style="width:100%;">
+              {% endif %}
 
               <hr>
 

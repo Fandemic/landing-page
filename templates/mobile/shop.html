@@ -43,7 +43,8 @@
 
 
 
-  <meta property="og:image" content="https://res.cloudinary.com/fandemic/stars/valentines-day/profile.png">
+  <meta property="og:image" content="https://res.cloudinary.com/fandemic/stars/{{star.id}}/profile.png">
+
 
 </head>
 
@@ -192,7 +193,7 @@ h3{
       </script>
 
       <a href="/">
-        <img style="height:40px;margin-top:-10px;" src="/static/img/fandemic.png">
+        <img style="height:40px;margin-top:-10px;" src="/static/img/fandemic_logo_pink.png">
       </a>
 
     </div>
@@ -276,18 +277,25 @@ h3{
         <div>
 
             <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
-            <img class="img-responsive" style="width:60%;padding:5px;margin: 0 auto;"
-            src="https://res.cloudinary.com/fandemic/image/upload/e_trim/w_250,h_250,c_pad/stars/{{star.id}}/box.png">
+            {% if star.campaigns[0].style.name == 'Plain White' %}
+            <img class="img-responsive" style="width:60%;margin: 0 auto;" src="/static/img/packaging/plain-white.png">
+            {% elif star.campaigns[0].style.name == 'Solid Color' %}
+            <imgclass="img-responsive" style="width:60%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/image/upload/e_trim/stars/{{star.id}}/box.png">
+            {% else %}
+            <img class="img-responsive" style="width:60%;padding:5px;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/image/upload/e_trim/w_250,h_250,c_pad/stars/{{star.id}}/box.png">
+            {% endif %}
 
 
         </div>
 
 
 
-        <div class="items-listing" style="position:relative;">
+        <div class="items-listing" style="position:relative;padding-left:20px;padding-right:20px;">
 
+          <div style="text-align:center">
           <h3>What's Inside This Box?</h3>
           <i style="color:#9d9d9d;">tap the products to learn more</i>
+          </div>
           <br>
           <div class="row">
           {% for p in star.campaigns[0].products %}

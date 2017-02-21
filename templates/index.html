@@ -190,17 +190,23 @@
            <img width="200px" height="200px" src="/static/img/user.png" style="width:100px;height:100px;position:absolute;top:15px;left:15px;border-radius:50%;">
            {% endif %}
 
+
+
            {% if star.image.box %}
            <img  src="https://res.cloudinary.com/fandemic/w_200,c_scale/stars/{{star.id}}/box.png" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
            {% else %}
            <img  src="https://res.cloudinary.com/fandemic/w_200,c_scale/stars/{{star.id}}/box.png" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
            {% endif %}
 
+        {% elif star.campaigns[0].style.name == 'Plain White' %}
+        <img width="200px" height="200px" src="/static/img/user.png" style="width:100px;height:100px;position:absolute;top:15px;left:15px;border-radius:50%;">
+        <img  src="/static/img/packaging/plain-white.png" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
+        {% elif star.campaigns[0].style.name == 'Solid Color' %}
+        <img width="200px" height="200px" src="/static/img/user.png" style="width:100px;height:100px;position:absolute;top:15px;left:15px;border-radius:50%;">
+        <img  src="/static/img/packaging/{{star.campaigns[0].style.img}}" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
         {% else %}
-
         <img width="200px" height="200px" src="/static/img/user.png" style="width:100px;height:100px;position:absolute;top:15px;left:15px;border-radius:50%;">
         <img  src="https://res.cloudinary.com/fandemic/image/upload/e_trim/w_200,h_200,c_pad/stars/{{star.id}}/box.png" style="padding:10px;width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
-
         {% endif %}
 
          {% if star.campaigns.0.status != 'live' %}

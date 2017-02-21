@@ -54,7 +54,7 @@ h3{
     width: 240px;
     padding: 0px 0px 10px 0px;
     height: 100%;
-    background-color: #6b536a;
+    background-color: #000;
     padding-top: 20px;
     text-align: center;
     z-index: 100;
@@ -366,6 +366,13 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
   position: absolute;
   bottom: 10px;
   right: 70px;
+}
+
+.btn-primary{
+  background: #e96443;
+background: -webkit-linear-gradient(to left, #e96443 , #e258b0);
+background: linear-gradient(to left, #e96443 , #e258b0);
+font-weight: 400 !important;
 }
 
 .btn-primary:hover{
@@ -926,10 +933,10 @@ box-shadow: none;
 }
 
 #social-media a:hover{
-  color:#000 !important;
+  color:#ca1488 !important;
 }
 .campaign_video i:hover{
-  color:#000 !important;
+  color:#ca1488 !important;
 }
 hr.style16 {
   height: 30px;
