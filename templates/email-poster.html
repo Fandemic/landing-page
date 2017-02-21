@@ -7,7 +7,9 @@
 </head>
 
 <style>
-a{cursor: pointer !important;}
+a{
+  cursor: pointer !important;
+}
 </style>
 
 <html>
@@ -20,7 +22,6 @@ a{cursor: pointer !important;}
     {% for category in emailCategories %}
     <option>{{category}}</option>
     {% endfor %}
-    <option>beauty_influencer</option>
   </select>
   <input id="order" name="order" class="form-control" type="number" placeholder="Order Number">
   <input id="subject" name="subject" class="form-control" type="text" placeholder="Subject">
@@ -43,7 +44,7 @@ a{cursor: pointer !important;}
 </div>
 <hr>
 
-  {% for email in emails %}
+  {% for email in emails | sort(attribute='category') %}
   <form class="email-update-form" action="/email-update-form" method="post" role="form">
       <div class="row">
           <div class="col-md-2">{{email.category}}</div>

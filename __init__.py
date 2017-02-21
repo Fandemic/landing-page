@@ -210,11 +210,11 @@ def do_admin_login():
 
     if credential != None:
         if credential['system'] == 'blog' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
-            session['logged_in'] = True
+            session['logged_in_blog'] = True
             session['username'] = credential['username']
-            return blogPoster(credential)
+            return blogPoster()
         elif credential['system'] == 'email' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
-            session['logged_in'] = True
+            session['logged_in_email'] = True
             session['username'] = credential['username']
             return emailPoster()
         else:
@@ -222,10 +222,16 @@ def do_admin_login():
     else:
         return 'Wrong Username or Password!'
 
+@app.route("/logout-sessions")
+def logout():
+    session['logged_in_blog'] = False
+    session['logged_in_email'] = False
+    return 'done!'
 
 @app.route('/blog-poster')
-def blogPoster(credential):
-    if not session.get('logged_in'):
+def blogPoster():
+    credential = db.credentials.find_one({'username':session['username']})
+    if not session.get('logged_in_blog'):
         return render_template('poster-login.html')
     else:
         return render_template('blog-poster.html', credential=credential)
@@ -245,7 +251,7 @@ def blogPosterSubmission():
 
 @app.route('/email-poster', methods=['GET', 'POST'])
 def emailPoster():
-    if not session.get('logged_in'):
+    if not session.get('logged_in_email'):
         return render_template('poster-login.html')
     else:
         emailCategories = db.leads.distinct('category')
@@ -262,6 +268,10 @@ def emailPosterSubmission():
     emailPost['body'] = request.form['body']
 
     db.emails.insert_one(emailPost)
+
+    sarah = Slack()
+    sarah.notify(session['username'] + ' has added an email to the ' + emailPost['category'] + 'category!')
+
     return ''
 
 @app.route('/email-update-form', methods=['GET', 'POST'])
@@ -272,6 +282,7 @@ def emailPosterUpdate():
     subject = request.form['subject']
     body = request.form['body']
 
+    emailID = db.emails.find_one({"_id":ID})
     db.emails.update_one({
                           '_id': ID
                         },{
@@ -282,7 +293,7 @@ def emailPosterUpdate():
                         }, upsert=False);
 
     sarah = Slack()
-    sarah.notify(session['username'] + ' has updated one of my emails!')
+    sarah.notify(session['username'] + ' has updated one of my emails in the ' + emailID['category'] + 'category!')
 
     return ''
 
@@ -297,15 +308,6 @@ def emailPosterDelete():
     sarah.notify(session['username'] + ' has deleted one of my emails!')
 
     return ''
-
-# @app.route('/email-delete/jGDA1286AJGDJS12836/<emailID>', methods=['GET', 'POST'])
-# def emailDeleteSubmission(emailID):
-#     newemail = emailID.split('&')
-#     found = db.emails.find_one({ "category" : newemail[0], "order" : int(newemail[1])})
-#     #delete = db.emails.remove({ "category" : newemail[0], "order" : int(newemail[1])})
-#     return found['subject']
-
-
 
 #-------------------END Email POST SUBMISSION------------------------
 
@@ -952,4 +954,5 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
+
     app.run(debug=True)

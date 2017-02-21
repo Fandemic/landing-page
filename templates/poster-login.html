@@ -81,8 +81,14 @@ box-shadow: none;
 
 <link rel="stylesheet" href="/static/style.css" type="text/css">
 {% block body %}
-{% if session['logged_in'] %}
-<p>You're logged in already!</p>
+{% if session['logged_in_blog'] %}
+<p>You're logged in already, to blog!</p>
+ <a href='/logout-sessions'>Logout</a>
+
+{% elif session['logged_in_email'] %}
+<p>You're logged in already, to email!</p>
+<a href='/logout-sessions'>Logout</a>
+
 {% else %}
 
 
