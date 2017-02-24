@@ -1343,3 +1343,28 @@ blockquote cite {
   border-top-width: 3px;
 
 }
+
+.btn-hollow{
+  style="display: inline-block;
+  background: #7BDC87;
+  color: #fff;
+  border: 1px solid #7BDC87;
+  background-color: transparent;
+  border-color: #CA1488;
+  color: #CA1488;"
+}
+
+.btn-hollow:hover{
+  background-color: white !important;
+    background: #e96443;
+    background: -webkit-linear-gradient(to left, #e96443 , #e258b0);
+    background: linear-gradient(to left, #e96443 , #e258b0);
+
+}
+
+.btn-white{
+  color: #fff !important;
+  background-color: #CA1488 !important;
+  border: 1px solid #CA1488 !important;
+  font-weight: 600 !important;
+}

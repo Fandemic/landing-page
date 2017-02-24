@@ -21,6 +21,7 @@
   <link href="../static/css/landing-page/main.css" rel="stylesheet">
   <link href="../static/css/landing-page/lightslider.css" rel="stylesheet">
   <link href="../static/css/bootstrap/bootstrap-blog.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Caveat|Source+Sans+Pro|Montserrat|Sue+Ellen+Francisco|Josefin+Sans' rel='stylesheet' type='text/css'>
 </head>
 
 <style>
@@ -103,75 +104,97 @@ p {
 
   <!-- Page Header -->
   <!-- Set your background image for this header on the line below. -->
-  <div class="container partners">
+  <div class="container partners" style="padding-bottom: 60px;">
     <div class="row">
-      <h2 class="title">We connect the top influencers with growing brands... for free!</h2>
-      <div class="padding">
+      <h2 class="title" style="font-family: 'Caveat', cursive !important;font-size:40px;">We connect the top influencers with growing brands... for free!</h2>
+      <hr>
+      <div class="padding" style="padding-top:5px;">
         <div class="col-md-6">
           <div class="card">
             <p class="card-text" style="font-size: 32px;font-weight:600; ">Wait what...?</p>
-              <p class="card-text" style="font-size: 27px; text-align:left">Add some of your best cosmetic products to our catalogue and let the top influencers discover you!<br>Grow your brand without spending a dime on marketing!</p>
+              <img class="pull-left" width="60px" style="margin-left:20px;margin-right:10px;" src="/static/img/lipstick.svg">
+              <p class="card-text" style="font-size: 20px; text-align:left">Add some of your best cosmetic products to our catalogue and let the top influencers discover you!</p>
+
+              <img class="pull-left" width="80px" src="/static/img/growth.svg" style="margin-right:10px;">
+              <p class="card-text" style="font-size: 20px; text-align:left">Grow your brand without spending a dime on marketing!</p>
           </div>
+
+          <br><br>
+          <a  data-toggle="modal" data-target="#partner-form" class="btn btn-hollow">Join the Program</a>
+
         </div>
-        <div class="col-md-6">
-          <iframe src="https://player.vimeo.com/video/203917137" width="640" height="379" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <div class="col-md-6" style="padding-top:30px;">
+          <iframe src="https://player.vimeo.com/video/203917137" width="100%" height="350px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
     </div>
     </div>
   </div>
 
 
-  <div class="container join-us" style="text-align:center; background-color: #4D9BD3;width: 100%;padding: 3em;margin-top: 2em;">
-    <h2 class="title" style="color:white" class="title">Let's get your brand in front of everyone!</h2>
-    <a data-toggle="modal" data-target="#partner-form" class="btn">Join the Program</a>
+  <div class="container join-us" style="text-align:center; background-color: white !important;
+    background: #e96443;
+    background: -webkit-linear-gradient(to left, #e96443 , #e258b0);
+    background: linear-gradient(to left, #e96443 , #e258b0);width: 100%;padding: 3em;margin-top: 2em;padding-bottom:6em;">
+    <h2 class="title" style="color:white;font-family: 'Caveat', cursive !important;" class="title">Let's get your brand in front of everyone!</h2>
+    <a data-toggle="modal" data-target="#partner-form" class="btn btn-white">Join the Program</a>
 
   </div>
 
   <!-- Main Content -->
   <div class="container partners">
     <div class="row">
-      <h2 class="title">We will handle the...</h2>
+      <br>
+      <p class="card-text" style="font-size: 32px;font-weight:600; ">We will handle the...</p>
+      <hr>
       <div class="col-md-3">
         <div class="card">
-          <p class="card-text" style="font-size: 26px;font-weight:600; ">Marketing</p>
-          <img style="height: 180px; width: 100%; display: block;" src="../../static/img/partners/marketing.svg">
+          <p class="card-text" style="font-size: 26px;font-weight:600;font-family: 'Caveat', cursive !important; ">Marketing</p>
+          <img style="height: 140px; width: 100%; display: block;" src="../../static/img/partners/marketing.svg">
             <p class="card-text" style="text-align:left">Let us connect the most popular influencers with your brand which will increase your brand's sales and awareness.</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card">
-          <p class="card-text"style="font-size: 26px;font-weight:600; ">Technology</p>
-          <img style="height: 180px; width: 100%; display: block;" src="../../static/img/partners/technology.svg">
+          <p class="card-text"style="font-size: 26px;font-weight:600;font-family: 'Caveat', cursive !important ">Technology</p>
+          <img style="height: 140px; width: 100%; display: block;" src="../../static/img/partners/technology.svg">
             <p class="card-text" style="text-align:left">Our secure, intuitive, and simplistic interface will allow anybody to pick and choose which of your products to sell for you.</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card">
-          <p class="card-text"style="font-size: 26px;font-weight:600; ">Shipping</p>
-          <img style="height: 180px; width: 100%; display: block;" src="../../static/img/partners/shipping.svg">
+          <p class="card-text"style="font-size: 26px;font-weight:600;font-family: 'Caveat', cursive !important; ">Shipping</p>
+          <img style="height: 140px; width: 100%; display: block;" src="../../static/img/partners/shipping.svg">
             <p class="card-text" style="text-align:left">We provide shipping labels for you to send the bulk orders to us once a campaign ends.</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card">
-          <p class="card-text"style="font-size: 26px;font-weight:600; ">Customer Service</p>
-          <img style="height: 180px; width: 100%; display: block;" src="../../static/img/partners/customersupport.svg">
+          <p class="card-text"style="font-size: 26px;font-weight:600;font-family: 'Caveat', cursive !important ">Customer Service</p>
+          <img style="height: 140px; width: 100%; display: block;" src="../../static/img/partners/customersupport.svg">
             <p class="card-text" style="text-align:left">If any customers experience any issues, we got it, and will only escalate to you as a last resort!</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="container join-us" style="text-align:center; background-color: #4D9BD3;width: 100%;padding: 3em;margin-top: 2em;">
-    <h2 class="title" style="color:white" class="title">Don't you want free marketing?</h2>
-    <a data-toggle="modal" data-target="#partner-form" class="btn">Just Try us Out!</a>
+  <div class="container join-us" style="text-align:center; background-color: #4D9BD3;width: 100%;padding: 3em;margin-top: 2em;padding-bottom:6em;background: #e96443;
+  background: -webkit-linear-gradient(to left, #e96443 , #e258b0);
+  background: linear-gradient(to left, #e96443 , #e258b0);">
+    <h2 class="title" style="color:white;font-family: 'Caveat', cursive !important;" class="title">Don't you want free marketing?</h2>
+    <a data-toggle="modal" data-target="#partner-form" class="btn btn-white">Just Try us Out!</a>
 
   </div>
+
   <div class="row">
-    <h2 class="title">Existing Partners</h2>
-    <div class="col-md-6" style="text-align: center;">
+    <br>
+    <p class="card-text" style="font-size: 32px;font-weight:600; ">Existing Partners</p>
+    <hr>
+    <div class="col-md-4" style="text-align: center;">
       <img class="brand-logo-image" src="../static/img/partners/logo-pink.png">
     </div>
-    <div class="col-md-6" style="text-align: center;">
+    <div class="col-md-4" style="text-align: center;">
+      <img class="brand-logo-image" src="../static/img/partners/ladyburd.png">
+    </div>
+    <div class="col-md-4" style="text-align: center;">
       <img class="brand-logo-image" src="../static/img/partners/monave.png">
     </div>
   </div>
@@ -205,7 +228,7 @@ p {
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">×</span>
       </button>
-      <h2 class="modal-title" id="myModalLabel">We need some info!</h2>
+      <h2 class="modal-title" id="myModalLabel" style="font-family: 'Caveat', cursive !important;">Tell Us About Your Company!</h2> 
       <p class="light" style="margin-bottom:0px">Fill out the form below and someone on our team will reach out.</p>
       <hr>
       <div>
@@ -238,7 +261,9 @@ p {
         </div>
         <br>
 
-        <button class="btn btn-primary btn-nav btn-beauty" style="width:100%;" id="partners-form-submit">Submit</button>
+        <button class="btn btn-primary btn-nav btn-beauty" style="width:100%;background: #e96443;
+        background: -webkit-linear-gradient(to left, #e96443 , #e258b0);
+        background: linear-gradient(to left, #e96443 , #e258b0);" id="partners-form-submit">Submit</button>
       </div>
     </div>
   </div>
