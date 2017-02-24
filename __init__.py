@@ -916,9 +916,19 @@ def partnersForm():
             Email: <a href="mailto:""" + companyemail + """"> """ + companyemail + """ </a><br>
             Phone: """ + phone + """
             """
+    toaddr_comp = [companyemail]
+    subject_comp = "Thanks for your Partner request!"
+    html_comp =  """
+            Hey """ + name + """
+            <br>
+            Thanks so much for submitting a partnership request to be added to Fandemic's Beauty Builder.
+            Someone should reach out real soon!
+            """
 
     email = Mailer()
     email.send(toaddr,subject,html)
+    email.send(toaddr_comp,subject_comp,html_comp)
+
 
     sarah = Slack()
 
