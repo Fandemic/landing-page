@@ -24,6 +24,12 @@
 </head>
 
 <style>
+p {
+  font-family: 'Josefin Sans', sans-serif !important;
+}
+  .padding {
+    padding-top:3em;
+  }
   .checking {
     width:20px;
     height:20px;
@@ -47,6 +53,8 @@
   h2.title {
     text-align: center;
     font-size: 41px;
+    padding-top:1em;
+
   }
 
   .card-text {
@@ -70,7 +78,7 @@
     font-size: 22px;
     font-weight: 400;
     background-color:#ca1488;
-    border-radius:10em;
+    border-radius:-1em;
   }
 
   .nav a {
@@ -95,19 +103,29 @@
 
   <!-- Page Header -->
   <!-- Set your background image for this header on the line below. -->
-  <header class="intro-header" style="background-image: url('../../static/img/partners.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <div class="site-heading">
-            <h1>Our Partners</h1>
-            <hr class="small">
-            <span class="subheading">Want to join the Fandemic revolution?</span>
+  <div class="container partners">
+    <div class="row">
+      <h2 class="title">We connect the top influencers with growing brands... for free!</h2>
+      <div class="padding">
+        <div class="col-md-6">
+          <div class="card">
+            <p class="card-text" style="font-size: 32px;font-weight:600; ">Wait what...?</p>
+              <p class="card-text" style="font-size: 27px; text-align:left">Add some of your best cosmetic products to our catalogue and let the top influencers discover you!<br>Grow your brand without spending a dime on marketing!</p>
           </div>
         </div>
-      </div>
+        <div class="col-md-6">
+          <iframe src="https://player.vimeo.com/video/203917137" width="640" height="379" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
     </div>
-  </header>
+    </div>
+  </div>
+
+
+  <div class="container join-us" style="text-align:center; background-color: #4D9BD3;width: 100%;padding: 3em;margin-top: 2em;">
+    <h2 class="title" style="color:white" class="title">Let's get your brand in front of everyone!</h2>
+    <a data-toggle="modal" data-target="#partner-form" class="btn">Join the Program</a>
+
+  </div>
 
   <!-- Main Content -->
   <div class="container partners">
@@ -144,8 +162,8 @@
     </div>
   </div>
   <div class="container join-us" style="text-align:center; background-color: #4D9BD3;width: 100%;padding: 3em;margin-top: 2em;">
-    <h2 class="title" style="color:white" class="title">Let's get your brand in front of everyone!</h2>
-    <a data-toggle="modal" data-target="#partner-form" class="btn">Try it out</a>
+    <h2 class="title" style="color:white" class="title">Don't you want free marketing?</h2>
+    <a data-toggle="modal" data-target="#partner-form" class="btn">Just Try us Out!</a>
 
   </div>
   <div class="row">
