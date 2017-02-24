@@ -139,7 +139,7 @@ b, strong {
   background-color: #800080;
 }
 .btn:hover {
-    color: #d6d6d6 !important;
+    color: #d6d6d6;
 }
 .btn:active, .btn:focus, .btn:active:hover, .btn:active:focus {
   color: #fff;
@@ -1355,7 +1355,7 @@ blockquote cite {
 }
 
 .btn-hollow:hover{
-  background-color: white !important;
+  color: white !important;
     background: #e96443;
     background: -webkit-linear-gradient(to left, #e96443 , #e258b0);
     background: linear-gradient(to left, #e96443 , #e258b0);
