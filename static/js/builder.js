@@ -32,6 +32,12 @@ app.controller("builder", function($scope) {
         'phone': '',
         'img_url': ''
       },
+      social_media: {
+        'instagram': '',
+        'twitter': '',
+        'facebook': '',
+        'youtube': ''
+      },
       confirmation_code: randomString(12),
       logo: '',
       box_img: ''
@@ -435,7 +441,7 @@ app.controller("builder", function($scope) {
 
         tinymce.init({
           selector: 'textarea',
-          height: 140,
+          height: 180,
           menubar: false,
           plugins: [
             'advlist autolink lists link image charmap print preview anchor',

@@ -107,8 +107,9 @@ h4 {
   <div class="profile-img-container" style="margin-top:1em;padding:20px;">
 
 
-
-    {% if star.campaigns.0.custom == true %}
+    {% if star.img %}
+    <img class="profile-img" style="border-radius: 50%;" src="{{star.img.profile}}">
+    {% elif star.campaigns.0.custom == true %}
     <img class="profile-img" style="border-radius: 50%;" src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/profile.png">
     {% else %}
     <a href="#" data-toggle="modal" data-target='#no-profile-img'><img class="profile-img" style="border-radius: 50%;" src="/static/img/user.png"></a>

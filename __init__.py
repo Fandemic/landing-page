@@ -16,6 +16,7 @@ import stripe
 import os
 from slack import Slack
 from trello import Trello
+from utils import Utils
 from werkzeug.utils import secure_filename
 from mailer import Mailer
 from shipping import Shipping
@@ -740,13 +741,26 @@ def launchStoreRequest():
             info['star']['id'] = info['star']['name'].replace(' ', '-').lower()
             ID = info['star']['id']
 
+
             #make sure ID does not exist
             if (db.stars.find({'id':ID}).count() <= 0):
+
+                #Get img url from instagram
+                u = Utils()
+                profile_img_url = u.getInstagramImageFromUsername(info['social_media']['instagram'])
+
                 client = {}
                 client['id'] = info['star']['id']
                 client['name'] = info['star']['name']
                 client['email'] = [info['star']['email']]
                 client['phone'] = info['star']['phone']
+                client['img'] = {}
+                client['img']['profile'] = profile_img_url
+                client['url'] = {}
+                client['url']['instagram'] = 'https://instagram.com/'+info['social_media']['instagram']
+                client['url']['twitter'] = 'https://twitter.com/'+info['social_media']['twitter']
+                client['url']['facebook'] = info['social_media']['facebook']
+                client['url']['youtube'] = info['social_media']['youtube']
                 client['campaigns'] = [{}]
                 client['campaigns'][0]['id'] = info['box_name'].replace(' ', '-').lower()
                 client['campaigns'][0]['status'] = 'pending'
@@ -761,10 +775,7 @@ def launchStoreRequest():
                 client['campaigns'][0]['description'] = info['desc']
                 client['campaigns'][0]['num_orders'] = 500
                 client['campaigns'][0]['campaign_video'] = '0'
-                client['campaigns'][0]['style'] = {}
-                client['campaigns'][0]['style']['color_primary'] = '#' + info['font_color'].lower()
-                client['campaigns'][0]['style']['color_secondary'] = '#9d9d9d'
-                client['campaigns'][0]['style']['btn_color'] = '#28a237'
+                client['campaigns'][0]['style'] = info['style']
                 client['campaigns'][0]['products'] = info['products']
                 client['campaigns'][0]['charity'] = {}
                 client['campaigns'][0]['charity']['amount'] = info['charity']
