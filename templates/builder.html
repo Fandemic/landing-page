@@ -282,7 +282,7 @@ $('.variations-modal').on("show.bs.modal", function () {
 </div>
 
 <script>
-$('#viewExample_1, #viewExample_2, #viewExample_3, #viewExample_4, #viewExample_5').on('click', function(e) {
+$('#viewExample_1, #viewExample_2, #viewExample_3, #viewExample_4, #viewExample_5, #viewExample_6').on('click', function(e) {
   var modalContent = $(this).attr("passed-step");
   var newImageSource = '<img style="width:61em" src="../static/img/examples/' + modalContent + '.png">';
   console.log(modalContent)
@@ -290,6 +290,10 @@ $('#viewExample_1, #viewExample_2, #viewExample_3, #viewExample_4, #viewExample_
   $('#swapped-title').append(modalContent);
 });
 $('#clear-content').on('click', function(e) {
+  $('#swapped-picture').empty();
+  $('#swapped-title').empty();
+})
+$('#view-example').on('hidden.bs.modal', function () {
   $('#swapped-picture').empty();
   $('#swapped-title').empty();
 })
