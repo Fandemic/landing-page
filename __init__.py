@@ -969,6 +969,17 @@ def update():
     return redirect('/email-batch-updater/admin')
 
 
+@app.route('/instagram-validate', methods=['GET', 'POST'])
+def instagramValidate():
+    username = request.args.get('username')
+    u = Utils()
+    exists = u.instagramUsernameExists(username)
+    if exists == True:
+        return 'success'
+    else:
+        return 'failed'
+
+
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -461,10 +461,11 @@ app.controller("builder", function($scope) {
 
   $scope.finish_last_step = function(){
     var wordCount = $('#mceu_11').html().split(' ')[1];
-    if ($scope.box.desc == ''){
+
+    if ($scope.box.box_name == ''){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please enter a box description! &#128516;',
+         message: 'Please enter a box name! &#128516;',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -474,10 +475,24 @@ app.controller("builder", function($scope) {
          }]
       });
     }
-    else if ($scope.box.box_name == ''){
+    else if ($scope.box.social_media.instagram == ''){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please enter a box name! &#128516;',
+         message: 'Please enter your Instagram Username! This field is required to help verify your identity. &#128516;',
+         buttons: [{
+           cssClass: 'btn-success',
+           label: 'OK',
+             action: function(dialog) {
+               dialog.close();
+             }
+         }]
+      });
+    }
+
+    else if ($scope.box.desc == ''){
+      BootstrapDialog.show({
+       title: 'Alert!',
+         message: 'Please enter a box description! &#128516;',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -501,12 +516,45 @@ app.controller("builder", function($scope) {
       });
     }
     else {
-      $('#launch-store-modal').modal('show');
+      testInstagram($scope.box.social_media.instagram)
     }
+
 
   }
 
 
+function testInstagram(username){
+
+  return $.ajax({
+    type: 'GET',
+    url: '/instagram-validate',
+    data: {username: username},
+    async: false,
+   error: function(xhr) {
+      return false;
+   },
+   success: function(data) {
+    if (data == 'success'){
+      $('#launch-store-modal').modal('show');
+    }
+    else if (data == 'failed'){
+      BootstrapDialog.show({
+       title: 'Alert!',
+         message: 'This Instagram username does not exist! This field is required to help verify your identity. &#128516;',
+         buttons: [{
+           cssClass: 'btn-success',
+           label: 'OK',
+             action: function(dialog) {
+               dialog.close();
+             }
+         }]
+      });
+    }
+  }
+});
+
+
+}
 
 
 

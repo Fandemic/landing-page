@@ -23,6 +23,7 @@
       <!--new version-->
       <div class="carousel" data-flickity='{ "initialIndex": 1, prevNextButtons: false  }'>
 
+        <!--
         <div class="carousel-cell item-box">
           <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
 
@@ -46,6 +47,36 @@
 
           </div>
         </div>
+      -->
+
+      <div class="carousel-cell item-box" style="position:relative;">
+        <div class="popular-product-label"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
+        <div
+        data-ga-click-event-category="Step 2" data-ga-click-event-action="Box Selection" data-ga-click-event-label="Design Your Own"
+        class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
+
+
+
+          <div class="content" onclick="$('#box-designer').css('visibility', 'visible');$('.artwork-editor').css('visibility', 'visible');" style="cursor:pointer;width:100%;height:100%;">
+
+
+
+            <img class="product-img" style="width:100%;" src="/static/img/packaging/colored-box.png" alt="">
+
+            <span ng-if="box.style.name=='Custom Design'">
+              <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+            </span>
+
+            <h5 class="title" style="font-size:18px;bottom:30px;color:#999;font-weight:800;">Make Your Own</h5>
+
+          </div>
+
+          <!--price-->
+          <span class="cost">+$5</span>
+          <img class="color-palette" src="/static/img/color-palette.svg">
+
+        </div>
+      </div>
 
         <div class="carousel-cell item-box">
           <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
@@ -56,13 +87,13 @@
             class="content" data-toggle="modal" data-target="#box-color-modal" style="cursor:pointer;width:100%;height:100%;">
 
 
-              <img class="product-img" style="width:100%;" src="/static/img/packaging/colored-box.png" alt="">
+              <img class="product-img" style="width:100%;" src="/static/img/packaging/solid-box.png" alt="">
 
               <span ng-if="box.style.name=='Solid Color'">
                 <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
               </span>
 
-              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Premade Designs</h5>
+              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Solid Color</h5>
 
             </div>
 
@@ -73,33 +104,7 @@
           </div>
         </div>
 
-        <div class="carousel-cell item-box" style="position:relative;">
-          <div class="popular-product-label"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
-          <div
-          data-ga-click-event-category="Step 2" data-ga-click-event-action="Box Selection" data-ga-click-event-label="Design Your Own"
-          class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
 
-
-
-            <div class="content" onclick="$('#box-designer').css('visibility', 'visible');$('.artwork-editor').css('visibility', 'visible');" style="cursor:pointer;width:100%;height:100%;">
-
-
-
-              <img class="product-img" style="width:100%;" src="/static/img/packaging/professional-box.png" alt="">
-
-              <span ng-if="box.style.name=='Custom Design'">
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-              </span>
-
-              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Make Your Own</h5>
-
-            </div>
-
-            <!--price-->
-            <span class="cost">+$5</span>
-
-          </div>
-        </div>
 
 
       </div>
