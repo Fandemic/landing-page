@@ -96,231 +96,111 @@ h4 {
 <script> $('#loading').hide();</script>
 
 
+<nav class="navbar navbar-default stuck">
+  <div class="container-fluid" style="padding: 0px 40px;">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img class="logo-nav" alt="logo" src="../static/img/fandemic_logo_pink.png" style="padding-top:0px;margin-top:-4px;" width="160px">
+
+
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav nav-left" style="padding-left:1em;">
+        <li><a style="font-weight:600;font-size:18px;" href="/about">About</a></li>
+        <li><a style="font-weight:600;font-size:18px;" href="/partners">Partners</a></li>
+        <li><a style="font-weight:600;font-size:18px;" href="/blog">Blog</a></li>
+        <li><a style="font-weight:600;font-size:18px;" href="/faq">FAQ</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/builder" class="btn">Start Designing</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 <!-- SIDE PANEL -->
 
-
-<div id="side-panel" class="side-panel" style="">
-
-
-
-  <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
-  <div class="profile-img-container" style="margin-top:1em;padding:20px;">
-
-
-    {% if star.img %}
-    <img class="profile-img" style="border-radius: 50%;" src="{{star.img.profile}}">
-    {% elif star.campaigns.0.custom == true %}
-    <img class="profile-img" style="border-radius: 50%;" src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/profile.png">
-    {% else %}
-    <a href="#" data-toggle="modal" data-target='#no-profile-img'><img class="profile-img" style="border-radius: 50%;" src="/static/img/user.png"></a>
-    {% endif %}
-
-  </div>
-
-  {% if star.campaigns[0].style.color_primary != '' %}
-  <h4 style="font-family: 'Caveat', cursive;font-size:32px;color:#fff;">{{star.name}}</h4>
-  {% else %}
-  <h4 style="font-size:32px;color:#dd9a9d;">{{star.name}}</h4>
-  {% endif %}
-
-  {% if star.url %}
-  <div id="social-media">
-    <a  style="color:#fff;" class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
-    <a  style="color:#fff;" class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
-    <a  style="color:#fff;" class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
-    <a  style="color:#fff;" class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
-  </div>
-  {% else %}
-  <div id="social-media">
-    <a data-toggle="modal" data-target='#no-social-media-profiles' style="color:#fff;" class="link no-social-link" target="_blank" href=""><i class="fa fa-youtube"></i></a>
-    <a data-toggle="modal" data-target='#no-social-media-profiles'  style="color:#fff;"  class="link no-social-link" target="_blank" href=""><i class="fa fa-instagram"></i></a>
-    <a data-toggle="modal" data-target='#no-social-media-profiles'  style="color:#fff;"  class="link no-social-link" target="_blank" href=""><i class="fa fa-facebook"></i></a>
-    <a data-toggle="modal" data-target='#no-social-media-profiles'  style="color:#fff;"  class="link no-social-link" target="_blank" href=""><i class="fa fa-twitter"></i></a>
-  </div>
-  {% endif %}
-
-
-  <div class="campaign_video">
-    <a href="#" data-toggle="modal" data-target="#demonstration-video" >
-      <i class="fa fa-play" aria-hidden="true" style="margin-top:20px;font-size: 2.7em;color:#fff"></i>
-    </a>
-  </div>
-
-
-  <div class="footer">
-    <img  alt="logo" src="/static/img/fandemic_logo_white.png" style="text-align:center;" height="30">
-    <p class="small" ><a href="/about">About Us</a> - <a href="/partners">Partners</a> - <a href="/blog">Blog</a> - <a href="/faq">FAQ</a></p>
-    <p class="copyright small"  style="color:#fff;font-size:65%;">Copyright &copy; Fandemic. 2017. All Rights Reserved. &nbsp;
-
-    </p>
-  </div>
-</div>
-
-
-<div class="controls-container">
-
-  {% if star.campaigns[0].status == 'mock' %}
-  <div class="top-alert-bar"><strong>ALERT: THIS IS A MOCK STORE</strong> - payments <strong>will not</strong> be processed</div>
-  {% elif star.campaigns[0].status == 'pending' %}
-  <div class="top-alert-bar"><strong>THIS STORE IS PENDING(not yet live)</strong> - payments <strong>will not</strong> be processed</div>
-  {% elif star.campaigns[0].status == 'failed' %}
-  <div class="top-alert-bar" style="background-color:#e33102 !important;"><strong>Campaign Ended: not funded</strong></div>
-  {% elif star.campaigns[0].status == 'success' %}
-  <div class="top-alert-bar" style="background-color:#5ec45e;"><strong>Campaign Funded Successfully!</strong></div>
-  {% endif %}
-
-
-</div>
-
-<!-- CENTER PANEL -->
-<div id="center-panel" class="container-fluid">
-
+<div class="main-content container-fluid">
   <div class="row">
-    <div class="col-md-7" style="padding-left:35px;">
+    <div class="col-md-3">
+      <div class="left-panel">
 
-      <div class="col-md-12">
+        <a>View All Blogs</a>
 
-
-        <img width="60px" src="/static/img/cruelty_free.png" style="position:absolute;left:30px;top:5px;opacity:.6;">
-
-        <h3 style="font-family: 'Caveat', cursive; font-size:2.0em;margin-bottom:0px;">{{star.campaigns[0].box_name}}</h3>
-        <i style="font-weight:200;color:#9a9a9a;">by {{star.name}}</i>
+        <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
+        <div class="profile-img-container" style="margin-top:1em;padding:20px;">
 
 
-
-
-        <div class="col-md-12" style="margin-top:20px;">
-
-          <br>
-            <!--<img alt="" class="product-img img-responsive" src="/static/img/beauty-items/61-61.png" style="width:100%;padding:10px;">-->
-            {% if star.campaigns[0].style.name == 'Plain White' %}
-            <img class="img-responsive" style="width:40%;margin: 0 auto;" src="/static/img/packaging/plain-white.png">
-            {% elif star.campaigns[0].style.name == 'Solid Color' %}
-            <img class="img-responsive" style="padding:5px;width:40%;margin: 0 auto;" src="/static/img/packaging/{{star.campaigns[0].style.img}}">
-            {% else %}
-            <img class="img-responsive" style="padding:5px;width:40%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/image/upload/e_trim/stars/{{star.id}}/box.png">
-            {% endif %}
-            <br>
+          {% if star.img %}
+          <img class="profile-img" style="border-radius: 50%;" src="{{star.img.profile}}">
+          {% elif star.campaigns.0.custom == true %}
+          <img class="profile-img" style="border-radius: 50%;" src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/profile.png">
+          {% else %}
+          <a href="#" data-toggle="modal" data-target='#no-profile-img'><img class="profile-img" style="border-radius: 50%;" src="/static/img/user.png"></a>
+          {% endif %}
 
         </div>
 
 
+        <h4 style="font-family: 'Caveat', cursive;font-size:28px;color:#1d1d1d;">{{star.name}}</h4>
 
-        <div class="col-md-12" style="padding:20px;text-align:left;color:#4d4d4d;">
-          <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:600;text-decoration:margin-botto:0px;border-bottom: 1px dotted #a9a9a9;">About This Box</h4>
-          <p style="font-size:18px;padding:0px;padding-top:0px;padding-bottom:0px;">{{star.campaigns[0].description | safe}}</p>
+        {% if star.url %}
+        <div id="social-media">
+          <a  style="color:#1d1d1d;" class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
+          <a  style="color:#1d1d1d;" class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
+          <a  style="color:#1d1d1d;" class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
+          <a  style="color:#1d1d1d;" class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
         </div>
-
-
-
-
+        {% else %}
+        <div id="social-media">
+          <a data-toggle="modal" data-target='#no-social-media-profiles' style="color:#1d1d1d;" class="link no-social-link" target="_blank" href=""><i class="fa fa-youtube"></i></a>
+          <a data-toggle="modal" data-target='#no-social-media-profiles'  style="color:#1d1d1d;"  class="link no-social-link" target="_blank" href=""><i class="fa fa-instagram"></i></a>
+          <a data-toggle="modal" data-target='#no-social-media-profiles'  style="color:#1d1d1d;"  class="link no-social-link" target="_blank" href=""><i class="fa fa-facebook"></i></a>
+          <a data-toggle="modal" data-target='#no-social-media-profiles'  style="color:#1d1d1d;"  class="link no-social-link" target="_blank" href=""><i class="fa fa-twitter"></i></a>
+        </div>
+        {% endif %}
 
       </div>
-
-
-
-
-
-      <div class="col-md-12 " >
-
-              <div class="col-md-12" style="padding:20px;padding-top:0px;text-align:left;color:#4d4d4d;">
-                <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:600;border-bottom: 1px dotted #a9a9a9;padding:5px;">What's Inside?</h4>
-              </div>
-
-        <div class="items-listing" style="padding-left:50px;padding-right:50px;">
-
-          {% for p in star.campaigns[0].products %}
-
-          <div class="row">
-            <div class="col-md-4">
-              <img class="img-responsive" style="width:90%;margin 0 auto;" src="https://res.cloudinary.com/fandemic/products/{{p.item_num}}.png">
-            </div>
-            <div class="col-md-8">
-              <h4>{{ p.name }}<br><span style="margin-top:3px;color:#8d8d8d;font-size:20px;font-weight:400;">{{ p.variation }}<span></h4>
-              <p>{{p.description}}</p>
-              <img style="position:absolute;right:30px;top:12px;width:60px;" src="../static/img/fandemic_logo_pink.png">
-            </div>
-
-          </div>
-          <hr class="">
-
-          {% endfor %}
-
-        </div>
-      </div>
-
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
+      <div class="items-listing" style="">
 
+        {% for p in star.campaigns[0].products %}
 
-      <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;padding-bottom:20px;position:fixed;top:100px;width:28%;border: 1px solid #000;">
-        <div class="panel-heading" style="background-color:#000;color:#fff;border-radius:0px;text-align:center;font-size:20px;border-bottom: 1px solid #000;">
-          <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:400;margin:2px;">Campaign Status</h4>
-        </div>
+          <div class="col-md-4" style="text-align:center;">
+            <img class="img-responsive" style="width:90%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/products/{{p.item_num}}.png">
 
+            <img style="width:60px;" src="../static/img/fandemic_logo_pink.png">
 
-        <a href="/builder/beauty" target="_blank"><button class="btn" style="font-family: 'Caveat', cursive !important;position:absolute;border-radius:4px;border: 1px solid #000; background-color:#fff;color:#000;top:-60px;right:0px;">Design Your Own ></button></a>
-
-
-        <div class="panel-body" style="padding-bottom:0px;padding-left:40px;padding-right:40px;">
-          <div class="">
-
-            <h3 class="time" style="font-size:18px;padding:30px 5px;border-radius:2px;#cdcdcd;margin-top:2px;">
-            {% if star.campaigns[0].status == 'live' or star.campaigns[0].status == 'mock'%}
-            <span id="timer"></span>
-            <br><br>
-              <span class="campaign-status-subtext">remaining</span>
-            {% elif star.campaigns[0].status == 'pending' %}
-            PENDING
-            <br> <br>
-              <span class="campaign-status-subtext">timer will start upon activation</span>
-
-            {% elif star.campaigns[0].status == 'success' %}
-                  {% if star.campaigns[0].progress == 1 %}
-                    STEP 1/3: Boxes in Production
-
-
-                    {% elif star.campaigns[0].progress == 2 %}
-                    STEP 2/3: Boxes Packaged
-
-                    {% elif star.campaigns[0].progress == 3 %}
-                    STEP 3/3: Boxes Shipped
-
-
-                    {% elif 'progress' not in star.campaigns[0] %}
-                    SUCCESS!
-
-
-                  {% endif %}
-
-            {% elif star.campaigns[0].status == 'failed' %}
-            COMPLETE
-            <br>
-              <span class="campaign-status-subtext">campaign was not fully funded</span>
-            {% endif %}
-            </h3>
-
-            <div class="progress" style="margin-bottom:2px;">
-              <div class="progress-bar progress-bar-success" role="progressbar"
-                   style="
-                   {% if star.campaigns[0].num_orders >= 25 %}
-                   width:102%;
-                   {% else %}
-                   width: {{ (star.campaigns[0].num_orders/25)*100 }}%;
-                   {% endif %}
-
-                   height:80px;margin-left:-2px;margin-top:-2px;">
-
-                <strong style="font-size:16px;">{{star.campaigns[0].num_orders}} orders</strong>
-              </div>
-            </div>
-
-
-              <span class="light" style="font-size:12px;color:#c1c1c1;">at least 10 boxes must be ordered for this box to ship</span>
-
+            <h4>{{ p.name }}<br><span style="margin-top:3px;color:#8d8d8d;font-size:20px;font-weight:400;text-align:center;">{{ p.variation }}<span></h4>
 
           </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;padding-bottom:20px;border: 1px solid #000;">
+        <div class="panel-heading" style="background-color:#000;color:#fff;border-radius:0px;text-align:center;font-size:20px;border-bottom: 1px solid #000;">
+          <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:400;margin:2px;">Cart</h4>
+        </div>
+
+        <!--
+        <a href="/builder/beauty" target="_blank"><button class="btn" style="font-family: 'Caveat', cursive !important;position:absolute;border-radius:4px;border: 1px solid #000; background-color:#fff;color:#000;top:-60px;right:0px;">Design Your Own ></button></a>
+        -->
+
+        <div class="panel-body" style="padding-bottom:0px;padding-left:40px;padding-right:40px;">
+
         </div>
 
           <br>
@@ -354,20 +234,37 @@ h4 {
       <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 50%;">ORDER NOW</button>
       {% elif star.campaigns[0].status == 'success' or star.campaigns[0].status == 'failed'%}
       <a href="/builder">
-        <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:22px;border: #7BDC87 !important; width: 90%;">Design Your Own</button>
+        <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:22px;border: #7BDC87 !important; width: 90%;">Checkout</button>
       </a>
       {% endif %}
 
 
       <br>
       </div>
-
-
     </div>
   </div>
+</div>
+
+
+
+
+<!--
+<div class="controls-container">
+
+  {% if star.campaigns[0].status == 'mock' %}
+  <div class="top-alert-bar"><strong>ALERT: THIS IS A MOCK STORE</strong> - payments <strong>will not</strong> be processed</div>
+  {% elif star.campaigns[0].status == 'pending' %}
+  <div class="top-alert-bar"><strong>THIS STORE IS PENDING(not yet live)</strong> - payments <strong>will not</strong> be processed</div>
+  {% elif star.campaigns[0].status == 'failed' %}
+  <div class="top-alert-bar" style="background-color:#e33102 !important;"><strong>Campaign Ended: not funded</strong></div>
+  {% elif star.campaigns[0].status == 'success' %}
+  <div class="top-alert-bar" style="background-color:#5ec45e;"><strong>Campaign Funded Successfully!</strong></div>
+  {% endif %}
 
 
 </div>
+-->
+
 
 
   <script>
