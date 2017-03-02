@@ -178,6 +178,14 @@ h3{
       </div>
     -->
 
+    <div style="position:fixed;top:500px;text-align:center;width:22%;">
+      <h5 style="color:#adadad !important;margin-bottom:0px;margin-top:2px;">Share {{star.name}}'s Store!</h5>
+      <div class="ssk-group ssk-count ssk-round">
+         <a href="" onclick="return false;" class="ssk ssk-facebook"></a>
+         <a href="" onclick="return false;" class="ssk ssk-twitter" ></a>
+      </div>
+    </div>
+
     </div>
     <div class="col-md-6">
       <div class="items-listing" style="">
@@ -198,9 +206,10 @@ h3{
 
               <img style="width:50px;position:absolute;left:10px;top:10px;" src="../static/img/fandemic_logo_pink.png">
 
-              <h5>{{ p.name }}<br><span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span></h5>
-
-              <button class="btn" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;">Add To Cart</button>
+              <h5>{{ p.name }}<br><!--<span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span>--></h5>
+                <span class="money" style="text-decoration:line-through">$49.99</span> <span class="money">$29.99</span>
+                <br><br>
+              <button ng-click="toggle_product({name:'{{p.name}}',price:24.99,item_num:'{{p.item_num}}' });" class="btn" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;">Add To Cart</button>
               <button class="btn" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;">View Details</button>
             </div>
 
@@ -220,23 +229,26 @@ h3{
         <a href="/builder/beauty" target="_blank"><button class="btn" style="font-family: 'Caveat', cursive !important;position:absolute;border-radius:4px;border: 1px solid #000; background-color:#fff;color:#000;top:-60px;right:0px;">Design Your Own ></button></a>
         -->
 
-        <div class="panel-body" style="padding-bottom:0px;padding-left:40px;padding-right:40px;">
+        <div class="panel-body" style="padding-bottom:0px;padding-left:5px;padding-right:5px;">
+
+          <div ng-repeat="p in data.cart">
+            <img  style="width:40px;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
+            {a p.name a}
+          </div>
 
         </div>
 
-        <h5 style="color:#adadad !important;margin-bottom:0px;margin-top:2px;">Share {{star.name}}'s Store!</h5>
-        <div class="ssk-group ssk-count ssk-round">
-         <a href="" onclick="return false;" class="ssk ssk-facebook"></a>
-         <a href="" onclick="return false;" class="ssk ssk-twitter" ></a>
-     </div>
-      <br>
 
 
 
-      <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 80%;position: absolute;
+
+
+      <div style="position: absolute;
     bottom: 20px;
-    left: 21px;">Checkout</button>
-
+    left: 21px;width:90%;">
+      <span class="money">Total: {a data.total_price | currency a}</span>
+      <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 80%;">Checkout</button>
+    </div>
 
 
       <br>

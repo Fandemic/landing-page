@@ -21,6 +21,9 @@ app.controller("shop", function($scope) {
     country:'US'
   };
 
+  $scope.data.cart = [];
+  $scope.data.total_price = 0;
+
   $scope.data.shipping_method = {};
 
   $scope.rates = [];
@@ -44,28 +47,10 @@ app.controller("shop", function($scope) {
     description: ''
   }
 
+  //name, price, img_url
   $scope.toggle_product = function(product){
-    $scope.view_mode = 'product';
-    $scope.product_view = product;
-
-
-    $('html').animate({
-        scrollTop: 0
-    }, 2000);
-
-
-    if (imageExists(product.img_url) == false)
-    {
-        if (product.item_num.length == 8){
-          product.item_num = product.item_num.slice(0, -3);
-
-          $scope.product_view.img_url = "https://res.cloudinary.com/fandemic/image/upload/e_trim,e_make_transparent/w_400,h_400,c_pad/products/" + product.item_num + ".png";
-        }
-        else{
-          $scope.product_view.img_url = "https://res.cloudinary.com/fandemic/image/upload/e_trim,e_make_transparent/w_400,h_400,c_pad/products/" + product.item_num + ".png";
-        }
-      }
-
+    $scope.data.cart.push(product);
+    $scope.data.total_price += product.price;
   }
 
   $scope.estimated_arrival = function(){
