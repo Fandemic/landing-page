@@ -229,10 +229,26 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
 .left-panel{
-  border: 1px solid #1d1d1d;
+
   position: relative;
   text-align: center;
   padding-bottom: 35px;
+  box-shadow: 0 1px 12px 0px rgba(51, 51, 51, 0.23);
+    -webkit-animation: fadeInDown 1s both;
+    animation: fadeInDown 1s both;
+    position: fixed;
+    width: 23%;
+}
+
+.left-panel-bottom{
+  margin-top:30px;
+  padding: 15px;
+  position: relative;
+  text-align: center;
+  padding-bottom: 35px;
+  box-shadow: 0 1px 12px 0px rgba(51, 51, 51, 0.23);
+    -webkit-animation: fadeInDown 1s both;
+    animation: fadeInDown 1s both;
 }
 
 #social-media{

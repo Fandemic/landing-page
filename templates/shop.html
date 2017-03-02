@@ -84,11 +84,7 @@ h3{
   font-family: 'Josefin Sans', sans-serif !important;
   font-weight:300 !important;
 }
-h4 {
-  font-family: 'Caveat', cursive !important;
-  font-size:24px;
-  font-weight:300;
-}
+
 
 </style>
 
@@ -132,8 +128,8 @@ h4 {
   <div class="row">
     <div class="col-md-3">
       <div class="left-panel">
-
-        <a>View All Blogs</a>
+        <br>
+        <a>View My Blog</a>
 
         <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
         <div class="profile-img-container" style="margin-top:1em;padding:20px;">
@@ -170,18 +166,43 @@ h4 {
 
       </div>
 
+      <!--
+      <div class="left-panel-bottom">
+        <div>
+          1000<br>
+          page views
+        </div>
+        <div>
+
+        </div>
+      </div>
+    -->
+
     </div>
     <div class="col-md-6">
       <div class="items-listing" style="">
 
         {% for p in star.campaigns[0].products %}
 
-          <div class="col-md-4" style="text-align:center;">
-            <img class="img-responsive" style="width:90%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/products/{{p.item_num}}.png">
+          <div class="col-lg-6 col-md-6 col-sm-6" style="text-align:center;padding:50px 0px 30px 0px;
 
-            <img style="width:60px;" src="../static/img/fandemic_logo_pink.png">
+          {% set count = loop.index + 1 %}
+          {% if count % 2 == 0 %}
+          border-right: 1px solid #eeeeee;
+          {% endif %}
 
-            <h4>{{ p.name }}<br><span style="margin-top:3px;color:#8d8d8d;font-size:20px;font-weight:400;text-align:center;">{{ p.variation }}<span></h4>
+          border-bottom: 1px solid #eeeeee;">
+
+            <div style="">
+              <img class="img-responsive" style="width:60%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/products/{{p.item_num}}.png">
+
+              <img style="width:50px;position:absolute;left:10px;top:10px;" src="../static/img/fandemic_logo_pink.png">
+
+              <h5>{{ p.name }}<br><span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span></h5>
+
+              <button class="btn" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;">Add To Cart</button>
+              <button class="btn" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;">View Details</button>
+            </div>
 
           </div>
 
@@ -190,8 +211,8 @@ h4 {
       </div>
     </div>
     <div class="col-md-3">
-      <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;padding-bottom:20px;border: 1px solid #000;">
-        <div class="panel-heading" style="background-color:#000;color:#fff;border-radius:0px;text-align:center;font-size:20px;border-bottom: 1px solid #000;">
+      <div class="panel panel-default panel-summary" style="position:fixed;width:25%;border-radius: 0px;padding-bottom:20px;top:75px;height:calc(100% - 75px);text-align:center;">
+        <div class="panel-heading" style="border-radius:0px;text-align:center;font-size:20px;border-bottom: 1px solid #fff;font-weight:600;">
           <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:400;margin:2px;">Cart</h4>
         </div>
 
@@ -203,20 +224,7 @@ h4 {
 
         </div>
 
-          <br>
-          <h3><span style="">Sale Price:</span> <strong style="color:#7CC67C;">${{star.campaigns[0].price | int}}</strong></h3>
-          {% if star.campaigns[0].charity and star.campaigns[0].charity.amount != 0 %}
-          <div class="charity">
-            <p style="font-size:12px;color:#9d9d9d;">
-              ${{donations}}.00
-              has been donated to <a target="_blank" href="{{star.campaigns[0].charity.URL}}">{{star.campaigns[0].charity.name}}</a>
-            </p>
-          </div>
-          {% endif %}
-          <br>
-
-
-        <h5 style="color:#adadad !important;margin-bottom:0px;margin-top:2px;">Share {{star.name}}'s Box!</h5>
+        <h5 style="color:#adadad !important;margin-bottom:0px;margin-top:2px;">Share {{star.name}}'s Store!</h5>
         <div class="ssk-group ssk-count ssk-round">
          <a href="" onclick="return false;" class="ssk ssk-facebook"></a>
          <a href="" onclick="return false;" class="ssk ssk-twitter" ></a>
@@ -224,19 +232,11 @@ h4 {
       <br>
 
 
-      {% if star.campaigns[0].status == 'mock' %}
-      <a href="/builder">
-        <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:4px;font-weight:600;margin-bottom20px;font-size:26px;background-color: {{star.campaigns[0].style.btn_color}} !important; border: #7BDC87 !important; width: 90%;">CREATE BOX</button>
-      </a>
-      {% elif star.campaigns[0].status == 'pending' %}
-      <button data-toggle="modal" data-target="" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="  opacity: 0.65; cursor: not-allowed;border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 50%;">ORDER NOW</button>
-      {% elif star.campaigns[0].status == 'live' %}
-      <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 50%;">ORDER NOW</button>
-      {% elif star.campaigns[0].status == 'success' or star.campaigns[0].status == 'failed'%}
-      <a href="/builder">
-        <button class="btn btn-primary btn-lg btn-nav btn-beauty next-btn" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:22px;border: #7BDC87 !important; width: 90%;">Checkout</button>
-      </a>
-      {% endif %}
+
+      <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 80%;position: absolute;
+    bottom: 20px;
+    left: 21px;">Checkout</button>
+
 
 
       <br>
@@ -618,15 +618,7 @@ h4 {
           <div class="col-md-5" style="text-align:center;padding: 5px 50px;border-left: 1px solid #e1e1e1;">
             <h4 class="modal-title">Checkout</h4>
             <p>{a total_price() | currency a} USD</0>
-              <hr>
 
-              {% if star.campaigns[0].style.name == 'Plain White' %}
-              <img src="/static/img/packaging/plain-white.png" style="width:100%;">
-              {% elif star.campaigns[0].style.name == 'Solid Color' %}
-              <img src="/static/img/packaging/{{star.campaigns[0].style.img}}" style="width:100%;">
-              {% else %}
-              <img src="https://res.cloudinary.com/fandemic/stars/{{star.id}}/box.png" style="width:100%;">
-              {% endif %}
 
               <hr>
 
