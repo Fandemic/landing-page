@@ -40,7 +40,7 @@
   var end_time = {{star.campaigns[0].end_time}};
 </script>
 
-<body ng-controller="shop">
+<body ng-controller="shop" style="background-color:#f9f9f9;">
 
 <script>
 var img = document.createElement('img');
@@ -85,6 +85,11 @@ h3{
   font-weight:300 !important;
 }
 
+.btn-main:hover{
+  background-color: #000 !important;
+  color:#fff !important;
+}
+
 
 </style>
 
@@ -115,7 +120,7 @@ h3{
         <li><a style="font-weight:600;font-size:18px;" href="/faq">FAQ</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/builder" class="btn">Start Designing</a></li>
+        <li><a href="/builder" class="btn">Launch a Store</a></li>
       </ul>
     </div>
   </div>
@@ -127,7 +132,7 @@ h3{
 <div class="main-content container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <div class="left-panel">
+      <div class="left-panel" style="background-color:#fff;">
         <br>
         <a>View My Blog</a>
 
@@ -165,6 +170,7 @@ h3{
         {% endif %}
 
       </div>
+      This is {{star.name}}'s official Fandemic store
 
       <!--
       <div class="left-panel-bottom">
@@ -192,7 +198,7 @@ h3{
 
         {% for p in star.campaigns[0].products %}
 
-          <div class="col-lg-6 col-md-6 col-sm-6" style="text-align:center;padding:50px 0px 30px 0px;
+          <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center;padding:50px 0px 30px 0px;
 
           {% set count = loop.index + 1 %}
           {% if count % 2 == 0 %}
@@ -209,8 +215,8 @@ h3{
               <h5>{{ p.name }}<br><!--<span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span>--></h5>
                 <span class="money" style="text-decoration:line-through">$49.99</span> <span class="money">$29.99</span>
                 <br><br>
-              <button ng-click="toggle_product({name:'{{p.name}}',price:24.99,item_num:'{{p.item_num}}' });" class="btn" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;">Add To Cart</button>
-              <button class="btn" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;">View Details</button>
+              <button ng-click="toggle_product({name:'{{p.name}}',price:24.99,item_num:'{{p.item_num}}' });" class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+              <button class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"  data-toggle="modal" data-target="#{{ p.item_num|replace(' ', '-') }}-variation">View Details</button>
             </div>
 
           </div>
@@ -222,27 +228,41 @@ h3{
     <div class="col-md-3">
       <div class="panel panel-default panel-summary" style="position:fixed;width:25%;border-radius: 0px;padding-bottom:20px;top:75px;height:calc(100% - 75px);text-align:center;">
         <div class="panel-heading" style="border-radius:0px;text-align:center;font-size:20px;border-bottom: 1px solid #fff;font-weight:600;">
-          <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:400;margin:2px;">Cart</h4>
+          <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:400;margin:2px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</h4>
         </div>
 
         <!--
         <a href="/builder/beauty" target="_blank"><button class="btn" style="font-family: 'Caveat', cursive !important;position:absolute;border-radius:4px;border: 1px solid #000; background-color:#fff;color:#000;top:-60px;right:0px;">Design Your Own ></button></a>
         -->
 
-        <div class="panel-body" style="padding-bottom:0px;padding-left:20px;padding-right:20px;float:left;width:100%;">
+        <div class="panel-body" style="padding-bottom:0px;padding-left:20px;padding-right:20px;float:left;width:100%;max-height:calc(100% - 180px);overflow-y:auto;">
 
           <div ng-repeat="p in data.cart">
-            <div style="margin-bottom:40px;">
-            <div class="pull-left">
-              <img  style="width:40px;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
-              {a p.name a} - {a p.price | currency a}
-            </div>
-            <span class="pull-right"><i class="fa fa-trash" aria-hidden="true"></i></span>
+            <div style="margin-bottom:5px;">
+
+              <div class="row">
+                <div class="col-md-2">
+                  <img style="width:40px;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
+                </div>
+                <div class="col-md-6" style="text-align:left;">
+                  {a p.name a}
+                </div>
+                <div class="col-md-2" style="text-align:left;">
+                  {a p.price | currency a}
+                </div>
+                <div class="col-md-2" style="text-align:right;">
+                  <span class="pull-right" ng-click="delete_product(p)"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                </div>
+              </div>
+
+
             <br>
           </div>
           </div>
-
         </div>
+
+        <span style="font-weight:400;color:green;margin-top:10px;">You will save $4.00 on this order!</span>
+
 
 
 
@@ -311,6 +331,28 @@ h3{
 </html>
 
 
+
+{% for p in star.campaigns[0].products %}
+<div id="{{ p.item_num|replace(' ', '-') }}-variation" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <button type="button" class="close" style="top:50px !important;" data-dismiss="modal">&times;</button>
+
+      <div class="row">
+        <div class="col-md-4">
+          <img class="img-responsive" style="width:90%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/products/{{p.item_num}}.png">
+        </div>
+        <div class="col-md-8">
+          <h2>{{p.name}}</h2>
+          <p>{{p.description}}</p>
+        </div>
+      </div>
+      <img style="width:200px;float:right;" src="../static/img/fandemic_logo_pink.png">
+
+    </div>
+  </div>
+</div>
+{% endfor %}
 
 
 <!-- Modal -->

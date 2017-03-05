@@ -51,7 +51,26 @@ app.controller("shop", function($scope) {
   $scope.toggle_product = function(product){
     $scope.data.cart.push(product);
     $scope.data.total_price += product.price;
+     $.notify("Product Added To Box", { position:"bottom left",className:"success" });
   }
+
+  $scope.delete_product = function(product){
+
+    for (i in $scope.data.cart){
+      if ( ($scope.data.cart[i].name == product.name)){
+        index = i;
+      }
+    }
+
+    if (index >= 0){
+       $scope.data.cart.splice(index, 1);
+       $scope.data.total_price -= product.price;
+       $.notify("Product Removed From Box", { position:"bottom left",className:"success" });
+    }
+
+  }
+
+
 
   $scope.estimated_arrival = function(){
 
