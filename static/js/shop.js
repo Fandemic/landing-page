@@ -91,7 +91,7 @@ app.controller("shop", function($scope) {
   $scope.total_price_str = function(){
 
     if ($scope.data.shipping_method['rate']){
-      return ('($'+ ($scope.data.price + parseFloat($scope.data.shipping_method['rate'])).toFixed(2).toString() +')');
+      return ('($'+ ($scope.data.total_price + parseFloat($scope.data.shipping_method['rate'])).toFixed(2).toString() +')');
     }
     else{
       return '';
@@ -102,10 +102,10 @@ app.controller("shop", function($scope) {
   $scope.total_price = function(){
 
     if ($scope.data.shipping_method['rate']){
-      return $scope.data.price + parseFloat($scope.data.shipping_method['rate']);
+      return $scope.data.total_price + parseFloat($scope.data.shipping_method['rate']);
     }
     else{
-      return $scope.data.price;
+      return $scope.data.total_price;
     }
 
   };
