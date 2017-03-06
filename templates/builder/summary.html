@@ -1,5 +1,5 @@
 <div class="panel panel-default panel-summary" style="width:100%;border-radius: 0px;">
- <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">BOX SUMMARY </div>
+ <div class="panel-heading" style="background-color:#939598;color:#fff;border-radius:0px;text-align:center;font-size:20px;">STORE SUMMARY </div>
  <div class="panel-body" style="min-height:350px;">
 
    <div ng-if="box.products.length == 0" style="text-align:center;">
@@ -23,7 +23,7 @@
                       <i style="position:absolute;top:10px;right:40px;color:#ba82aa;font-size:20px;cursor:pointer;" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>-->
                     <a
-                    data-ga-click-event-category="Box Summary" data-ga-click-event-action="Remove Item" data-ga-click-event-label="{a product.name a} Removed"                      
+                    data-ga-click-event-category="Box Summary" data-ga-click-event-action="Remove Item" data-ga-click-event-label="{a product.name a} Removed"
                     ng-click="toggle_product({name:product.name,item_num:product.item_num,cost:product.cost,variation:product.variation })">
                       <i style="position:absolute;top:10px;right:10px;color:#f66262;font-size:20px;cursor:pointer;" class="fa fa-times" aria-hidden="true"></i>
                     </a>

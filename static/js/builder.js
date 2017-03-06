@@ -343,34 +343,8 @@ app.controller("builder", function($scope) {
 
         $('.modal').modal('hide');
 
-        //check for at least 1 item
-        if ($scope.box.style == null){
-          BootstrapDialog.show({
-           title: 'Alert!',
-             message: 'Please select a <strong>box style</strong>. This is what your beauty products will ship in! &#128516;',
-             buttons: [{
-               cssClass: 'btn-success',
-               label: 'OK',
-                 action: function(dialog) {
-                   dialog.close();
-                 }
-             }]
-          });
-        }
-        else if ($scope.box.material == null){
-          BootstrapDialog.show({
-           title: 'Alert!',
-             message: 'Please select a <strong>packaging material</strong>. This goes inside your box, makes it look nice, and protects the products! &#128516;',
-             buttons: [{
-               cssClass: 'btn-success',
-               label: 'OK',
-                 action: function(dialog) {
-                   dialog.close();
-                 }
-             }]
-          });
-        }
-        else{
+
+
 
           ga('send', 'event', {
             eventCategory: 'Builder',
@@ -390,7 +364,7 @@ app.controller("builder", function($scope) {
             $('#crumb4').addClass('current');
             $("#next5").addClass("on");
             $("html, body").animate({ scrollTop: 76 }, "slow");
-          }
+          
         }
 
         //NAVIGATION

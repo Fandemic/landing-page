@@ -170,7 +170,7 @@ h3{
         {% endif %}
 
       </div>
-      This is {{star.name}}'s official Fandemic store
+
 
       <!--
       <div class="left-panel-bottom">
@@ -194,23 +194,27 @@ h3{
 
     </div>
     <div class="col-md-6">
-      <div class="items-listing" style="">
+      <div class="items-listing" style="padding: 0px 30px;">
 
         {% for p in star.campaigns[0].products %}
 
+        {% set countt = loop.index %}
+        {% if countt % 3 == 1 %}
+        <div class="row">
+        {% endif %}
+        {% if countt == 1 %}
+          <div class="row">
+        {% endif %}
           <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center;padding:50px 0px 30px 0px;
 
-          {% set count = loop.index + 1 %}
-          {% if count % 2 == 0 %}
-          border-right: 1px solid #eeeeee;
-          {% endif %}
-
-          border-bottom: 1px solid #eeeeee;">
+        ">
 
             <div style="">
+
+              <img style="width:70px;position:margin:0 auto;" src="../static/img/fandemic_logo_pink.png">
               <img class="img-responsive" style="width:60%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/products/{{p.item_num}}.png">
 
-              <img style="width:50px;position:absolute;left:10px;top:10px;" src="../static/img/fandemic_logo_pink.png">
+
 
               <h5>{{ p.name }}<br><!--<span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span>--></h5>
                 <span class="money" style="text-decoration:line-through">$49.99</span> <span class="money">$29.99</span>
@@ -220,6 +224,15 @@ h3{
             </div>
 
           </div>
+
+
+
+          {% if countt % 3 == 0 %}
+          </div>
+          {% endif %}
+          {% if star.campaigns[0].products|length == countt %}
+        </div>
+        {% endif %}
 
         {% endfor %}
 

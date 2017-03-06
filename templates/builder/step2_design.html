@@ -6,195 +6,189 @@
     <div class="col-md-8" style="padding-right:40px;">
 
       <div class="explain-step" style="padding-left:0px;">
-        <h3 class="subtitle">How will your packaging look?</h3>
+        <h3 class="subtitle">Select a Pricing Option</h3>
         <i class="light" style="font-weight:300;">
-          the mailer box and packaging material is what your products will ship in
+          This is how much <strong>you</strong> will make off of each item sold
         </i>
         <i class="light" style="font-weight:300;"><a style="font-weight:100;" href="#" id="viewExample_2" passed-step="Box" data-toggle="modal" data-target="#view-example">View Example</a></i>
 
       </div>
 
-      <!-- Choose your box design -->
-      <h4 style="color:#8d8d8d;">1. Select a
-        <strong>box style</strong>
-      </h4>
+      <div class="row" >
 
 
-      <!--new version-->
-      <div class="carousel" data-flickity='{ "initialIndex": 1, prevNextButtons: false  }'>
-
-        <!--
+        <!-- WORDLY -->
         <div class="carousel-cell item-box">
-          <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
-
-
-            <div
-            data-ga-click-event-category="Step 2" data-ga-click-event-action="Box Selection" data-ga-click-event-label="Plain White Box"
-            class="content" ng-click="toggleStyle({name:'Plain White',variation:'Plain White',img:'plain-white.png'})" style="cursor:pointer;width:100%;height:100%;">
-
-
-              <img class="product-img" style="width:100%;" src="/static/img/packaging/plain-white.png" alt="">
-
-              <span ng-if="box.style.name=='Plain White'">
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-              </span>
-
-              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Plain White</h5>
-
-            </div>
-
-
-
-          </div>
-        </div>
-      -->
-
-      <div class="carousel-cell item-box" style="position:relative;">
-        <div class="popular-product-label"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
-        <div
-        data-ga-click-event-category="Step 2" data-ga-click-event-action="Box Selection" data-ga-click-event-label="Design Your Own"
-        class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
-
-
-
-          <div class="content" onclick="$('#box-designer').css('visibility', 'visible');$('.artwork-editor').css('visibility', 'visible');" style="cursor:pointer;width:100%;height:100%;">
-
-
-
-            <img class="product-img" style="width:100%;" src="/static/img/packaging/colored-box.png" alt="">
-
-            <span ng-if="box.style.name=='Custom Design'">
-              <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-            </span>
-
-            <h5 class="title" style="font-size:18px;bottom:30px;color:#999;font-weight:800;">Make Your Own</h5>
-
-          </div>
-
-          <!--price-->
-          <span class="cost">+$5</span>
-          <img class="color-palette" src="/static/img/color-palette.svg">
-
-        </div>
-      </div>
-
-        <div class="carousel-cell item-box">
-          <div class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
-
-
-            <div
-            data-ga-click-event-category="Step 2" data-ga-click-event-action="Box Selection" data-ga-click-event-label="Solid Color"
-            class="content" data-toggle="modal" data-target="#box-color-modal" style="cursor:pointer;width:100%;height:100%;">
-
-
-              <img class="product-img" style="width:100%;" src="/static/img/packaging/solid-box.png" alt="">
-
-              <span ng-if="box.style.name=='Solid Color'">
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-              </span>
-
-              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">Solid Color</h5>
-
-            </div>
-
-            <!--price-->
-            <span class="cost">+$5</span>
-            <img class="color-palette" src="/static/img/color-palette.svg">
-
-          </div>
-        </div>
-
-
-
-
-      </div>
-      <!-- end of box design -->
-
-      <br>
-
-
-      <!-- Choose your box packaging -->
-      <h4 style="color:#8d8d8d;">2. Select a
-        <strong>packaging material</strong>
-      </h4>
-
-      <div class="carousel" data-flickity='{ "initialIndex": 1,prevNextButtons: false }'>
-
-
-        {% for p in packaging %}
-        <div class="carousel-cell item-box">
-
           <div
-          data-ga-click-event-category="Step 2" data-ga-click-event-action="Packaging" data-ga-click-event-label="{{p.name}}"
-          class="thumbnail clickable" style="height:100%;width:100%;padding:10px;">
+          data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Follower Friendly"
+          class="thumbnail" style="height:100%;width:100%;padding:10px;">
+            <div class="content" ng-click="togglePrice({profit:0,charity:0})"
+                 style="cursor:pointer;width:100%;height:100%;">
+                  <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/customer.svg" alt="">
 
-            <div class="content" data-toggle="modal" data-target="#modal-{{p.sku}}" style="cursor:pointer;width:100%;height:100%;">
+                  <span ng-if="box.charity==0 && box.profit==0">
+                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                  </span>
 
+                  <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
 
-              <img class="product-img" style="width:100%;padding:10px;" src="/static/img/packaging/{{p.item_num}}.png" alt="">
+                    <div class="progress-bar progress-bar-default" role="progressbar" style="width:100%">
+                      $0 for <strong>you per sale</strong>
+                    </div>
+                  </div>
 
-              <span ng-if="box.material.name=='{{p.name}}'">
-                <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-              </span>
-
-              <h5 class="title" style="font-size:18px;bottom:30px;color:#999;">{{p.name}}</h5>
-
+                <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Follower Friendly
+                <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 0 a}</span>--></h5>
+              </div>
             </div>
-
-            <img class="color-palette" src="/static/img/color-palette.svg">
-
-          </div>
         </div>
 
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Helping Hand"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" style="cursor:pointer;width:100%;height:100%;"
+               ng-click="togglePrice({profit:0,charity:4})">
 
-        <div class="modal fade variations-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modal-{{p.sku}}">
-
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:1000px;height:100%;overflow-y:auto;">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-
-              <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {{p.name}} Color!</h3>
-              <hr>
-
-              <div style="text-align:center;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/donation.svg" alt="">
 
 
-                {% for v in p.variation %}
-                <!--start of option-->
-                <div
-                data-ga-click-event-category="Step 2" data-ga-click-event-action="Packaging Variation" data-ga-click-event-label="{{v.name}}"
-                class="clickable" style="display:inline-block;padding:0px 25px;text-align:center;" ng-click="toggleMaterial({ name:'{{p.name}}',variation:'{{v.name}}', img:'{{p.item_num + '-' + v.item_num}}.png' })" data-dismiss="modal">
-                  <img width="160px" class="lazy_load" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/static/img/packaging/{{p.item_num + '-' + v.item_num}}.png">
-                  <p class="light">{{v.name}}</p>
 
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
+                    $4 for <strong>charity per sale</strong>
+                  </div>
                 </div>
-                <!-- end of option 1 -->
-                {% endfor %}
 
+                <span ng-if="box.charity==4 && box.profit==0">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
 
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Helping Hand
+              <!--<br> <span class="money" >Retail: ${a box.cost + 4 a}</span>--></h5>
+            </div>
+          </div>
+      </div>
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Piggy Bank"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="togglePrice({profit:4,charity:0})"
+               style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/piggy-bank.svg" alt="">
+
+                <span ng-if="box.charity==0 && box.profit==4">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Piggy Bank
+              <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 4 a}</span>--></h5>
+
+              <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                  $4 for <strong>you per sale</strong>
+                </div>
               </div>
 
+            </div>
+          </div>
+      </div>
+
+
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Versatile"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="togglePrice({profit:4,charity:4})" style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/versatile.svg" alt="">
+
+                <span ng-if="box.charity==4 && box.profit==4">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
+
+                <!-- split bar -->
+                <div class="progress">
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:50%">
+                    $4 for <strong>charity</strong> per sale
+                  </div>
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
+                    $4 for <strong>you</strong> per sale
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Versatile
+              <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span>--></h5>
+            </div>
+          </div>
+      </div>
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Angel"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="togglePrice({profit:0,charity:8})" style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/angel.svg" alt="">
+
+                <span ng-if="box.charity==8 && box.profit==0">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
+
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
+                    $8 for <strong>charity</strong> per sale
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Angel
+              <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span>--></h5>
+            </div>
+          </div>
+      </div>
+
+      <!-- WORDLY -->
+      <div class="carousel-cell item-box">
+        <div
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Money Maker"
+        class="thumbnail" style="height:100%;width:100%;padding:10px;">
+          <div class="content" ng-click="togglePrice({profit:8,charity:0})" style="cursor:pointer;width:100%;height:100%;">
+                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/money-maker.svg" alt="">
+
+                <span ng-if="box.charity==0 && box.profit==8">
+                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
+                </span>
+
+                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
+
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+                    $8 for <strong>you</strong> per sale
+                  </div>
+                </div>
+
+              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Money Maker
+                <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span>--></h5>
 
             </div>
           </div>
-        </div>
+      </div>
 
-        {% endfor %}
+
+
+
+
 
 
 
 
       </div>
-      <!-- end of box design -->
-
-      <br>
-      <br>
-      <br>
-
-
-
     </div>
 
     <div class="col-md-4">

@@ -7,301 +7,112 @@
     <div class="col-md-8" style="padding-left:40px;padding-right:40px;">
 
 
-      <!-- Choose your box design -->
-      <h4 style="color:#8d8d8d;">1. Select a <strong>Pricing Option</strong></h4>
-      <i class="light" style="font-weight:300;"><a style="font-weight:100;" href="#" id="viewExample_3" passed-step="Pricing" data-toggle="modal" data-target="#view-example">View Example</a></i>
-
-
-      <div class="carousel" data-flickity='{ "initialIndex": 1,"freeScroll": true,"wrapAround": true }'>
-
-
-        <!-- WORDLY -->
-        <div class="carousel-cell item-box">
-          <div
-          data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Follower Friendly"
-          class="thumbnail" style="height:100%;width:100%;padding:10px;">
-            <div class="content" ng-click="togglePrice({profit:0,charity:0})"
-                 style="cursor:pointer;width:100%;height:100%;">
-                  <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/customer.svg" alt="">
-
-                  <span ng-if="box.charity==0 && box.profit==0">
-                    <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                  </span>
-
-                  <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
-
-                    <div class="progress-bar progress-bar-default" role="progressbar" style="width:100%">
-                      $0 for <strong>You</strong>
-                    </div>
-                  </div>
-
-                <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Follower Friendly
-                <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 0 a}</span></h5>
-              </div>
-            </div>
-        </div>
-
-      <!-- WORDLY -->
-      <div class="carousel-cell item-box">
-        <div
-        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Helping Hand"
-        class="thumbnail" style="height:100%;width:100%;padding:10px;">
-          <div class="content" style="cursor:pointer;width:100%;height:100%;"
-               ng-click="togglePrice({profit:0,charity:4})">
-
-                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/donation.svg" alt="">
-
-
-
-                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
-
-                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
-                    $4 for <strong>Charity</strong>
-                  </div>
-                </div>
-
-                <span ng-if="box.charity==4 && box.profit==0">
-                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                </span>
-
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Helping Hand
-              <br> <span class="money" >Retail: ${a box.cost + 4 a}</span></h5>
-            </div>
-          </div>
-      </div>
-
-      <!-- WORDLY -->
-      <div class="carousel-cell item-box">
-        <div
-        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Piggy Bank"
-        class="thumbnail" style="height:100%;width:100%;padding:10px;">
-          <div class="content" ng-click="togglePrice({profit:4,charity:0})"
-               style="cursor:pointer;width:100%;height:100%;">
-                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/piggy-bank.svg" alt="">
-
-                <span ng-if="box.charity==0 && box.profit==4">
-                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                </span>
-
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Piggy Bank
-              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 4 a}</span></h5>
-
-              <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
-
-                <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
-                  $4 for <strong>You</strong>
-                </div>
-              </div>
-
-            </div>
-          </div>
-      </div>
-
-
-
-      <!-- WORDLY -->
-      <div class="carousel-cell item-box">
-        <div
-        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Versatile"
-        class="thumbnail" style="height:100%;width:100%;padding:10px;">
-          <div class="content" ng-click="togglePrice({profit:4,charity:4})" style="cursor:pointer;width:100%;height:100%;">
-                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/versatile.svg" alt="">
-
-                <span ng-if="box.charity==4 && box.profit==4">
-                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                </span>
-
-                <!-- split bar -->
-                <div class="progress">
-                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:50%">
-                    $4 for <strong>Charity</strong>
-                  </div>
-                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
-                    $4 for <strong>You</strong>
-                  </div>
-                </div>
-
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Versatile
-              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span></h5>
-            </div>
-          </div>
-      </div>
-
-      <!-- WORDLY -->
-      <div class="carousel-cell item-box">
-        <div
-        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Angel"
-        class="thumbnail" style="height:100%;width:100%;padding:10px;">
-          <div class="content" ng-click="togglePrice({profit:0,charity:8})" style="cursor:pointer;width:100%;height:100%;">
-                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/angel.svg" alt="">
-
-                <span ng-if="box.charity==8 && box.profit==0">
-                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                </span>
-
-                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
-
-                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
-                    $8 for <strong>Charity</strong>
-                  </div>
-                </div>
-
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Angel
-              <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span></h5>
-            </div>
-          </div>
-      </div>
-
-      <!-- WORDLY -->
-      <div class="carousel-cell item-box">
-        <div
-        data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Money Maker"
-        class="thumbnail" style="height:100%;width:100%;padding:10px;">
-          <div class="content" ng-click="togglePrice({profit:8,charity:0})" style="cursor:pointer;width:100%;height:100%;">
-                <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/money-maker.svg" alt="">
-
-                <span ng-if="box.charity==0 && box.profit==8">
-                  <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
-                </span>
-
-                <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
-
-                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
-                    $8 for <strong>You</strong>
-                  </div>
-                </div>
-
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Money Maker
-                <br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span></h5>
-
-            </div>
-          </div>
-      </div>
-
-
-
-
-
-
-
-
-
-      </div>
-      <!-- end of box design -->
-
-      <br><br>
-
+      <h3 class="subtitle">Looking good! Lets finish the signup process.</h3>
+      <hr>
 
         <div class="row">
 
-          <div class="col-md-5">
+          <div class="col-md-6">
           <!-- Choose your box design -->
-          <h4 style="color:#8d8d8d;">2. Give your box a name</h4>
-          <i class="light" style="font-weight:300;"><a style="font-weight:100;" href="#" id="viewExample_4" passed-step="Name" data-toggle="modal" data-target="#view-example">View Example</a></i>
-
-          <!--<i class="light" style="font-weight:300;">this will be displayed on your store!</i>-->
+          <h4 style="color:#8d8d8d;">Enter Your Name</h4>
+          <!--<i class="light" style="font-weight:300;"><a style="font-weight:100;" href="#" id="viewExample_4" passed-step="Name" data-toggle="modal" data-target="#view-example">View Example</a></i>-->
 
 
-          <div style="position: relative;">
-          <div ng-if="box.style.name != 'Custom Design'" style="height:60px;width:60px;position:absolute;top:0px;left:10px;">
-            <img  width="100%" src="../static/img/packaging/{a box.style.img a}">
+          <div style="position:relative;">
+          <div style="height:40px;width:40px;position:absolute;top:10px;left:10px;">
+            <img  width="100%" src="/static/img/avatar.svg">
           </div>
-          <div ng-if="box.style.name == 'Custom Design'" style="height:60px;width:60px;position:absolute;top:0px;left:10px;">
-            <img  width="150%" style="margin-top:-15px;margin-left:-10px;" ng-src="{a box.box_img a}">
-          </div>
-
-            <!--<label class="light" style="font-weight:300;">Box Name</label>-->
-            <input
+          <input
             data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
-            id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control form-control-lg" style="padding-left:90px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+            id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control form-control-lg" style="padding-left:65px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+
 
             </div>
-
-            <hr>
-
-            <!-- Choose your box design -->
-            <h4 style="color:#8d8d8d;">3. Your Social Media</h4>
-            <i class="light" style="font-weight:300;"><a style="font-weight:100;" href="#" id="viewExample_6" passed-step="Social" data-toggle="modal" data-target="#view-example">View Example</a></i>
-
-
-            <div style="position: relative;">
-            <div style="height:20px;width:20px;position:absolute;top:2px;left:10px;">
-              <img  width="100%" src="/static/img/instagram.svg">
             </div>
 
 
-              <!--<label class="light" style="font-weight:300;">Box Name</label>-->
-              <input
-              data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
-              id="your-box-input"  ng-model="box.social_media.instagram" type="text" class="form-control form-control-lg" placeholder="instagram username (required)" style="padding-left:45px;font-family: 'Caveat', cursive;width:100%;font-size:18px;height:30px;font-weight:400;border-radius:2px;">
+            <div class="col-md-6">
+              <!-- Choose your box design -->
+              <h4 style="color:#8d8d8d;">Enter your email
 
-              </div>
+              </h4>
 
-              <div style="position: relative;">
-              <div style="height:20px;width:20px;position:absolute;top:2px;left:10px;">
-                <img  width="100%" src="/static/img/twitter.svg">
+
+              <div style="position:relative;">
+              <div style="height:40px;width:40px;position:absolute;top:10px;left:10px;">
+                <img  width="100%" src="/static/img/mail.svg">
               </div>
 
 
                 <!--<label class="light" style="font-weight:300;">Box Name</label>-->
                 <input
                 data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
-                id="your-box-input"  ng-model="box.social_media.twitter" type="text" class="form-control form-control-lg" placeholder="twitter username (optional)" style="padding-left:45px;font-family: 'Caveat', cursive;width:100%;font-size:18px;height:30px;font-weight:400;border-radius:2px;">
+                id="your-box-input"  ng-model="box.social_media.instagram" type="text" class="form-control form-control-lg" style="padding-left:65px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
 
                 </div>
+              </div>
 
-                <div style="position: relative;">
-                <div style="height:20px;width:20px;position:absolute;top:2px;left:10px;">
-                  <img  width="100%" src="/static/img/facebook.svg">
+            <div class="col-md-12" style="margin-top:30px;">
+              <!-- Choose your box design -->
+              <h4 style="color:#8d8d8d;">Enter your Instagram username
+              </h4>
+
+
+              <div style="position:relative;">
+              <div style="height:40px;width:40px;position:absolute;top:10px;left:10px;">
+                <img  width="100%" src="/static/img/instagram.svg">
+              </div>
+
+
+                <!--<label class="light" style="font-weight:300;">Box Name</label>-->
+                <input
+                data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
+                id="your-box-input"  ng-model="box.social_media.instagram" type="text" class="form-control form-control-lg" style="padding-left:65px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+
                 </div>
+              </div>
 
 
-                  <!--<label class="light" style="font-weight:300;">Box Name</label>-->
-                  <input
-                  data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
-                  id="your-box-input"  ng-model="box.social_media.facebook" type="text" class="form-control form-control-lg" placeholder="facebook url (optional)" style="padding-left:45px;font-family: 'Caveat', cursive;width:100%;font-size:18px;height:30px;font-weight:400;border-radius:2px;">
 
-                  </div>
+                <div class="col-md-12" style="margin-top:30px;">
+                  <!-- Choose your box design -->
+                  <h4 style="color:#8d8d8d;">Create a password
+                  </h4>
 
-                  <div style="position: relative;">
-                  <div style="height:20px;width:20px;position:absolute;top:2px;left:10px;">
-                    <img  width="100%" src="/static/img/youtube.svg">
+
+                  <div style="position:relative;">
+                  <div style="height:40px;width:40px;position:absolute;top:10px;left:10px;">
+                    <img  width="100%" src="/static/img/key.svg">
                   </div>
 
 
                     <!--<label class="light" style="font-weight:300;">Box Name</label>-->
                     <input
                     data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
-                    id="your-box-input"  ng-model="box.social_media.youtube" type="text" class="form-control form-control-lg" placeholder="youtube url (optional)" style="padding-left:45px;font-family: 'Caveat', cursive;width:100%;font-size:18px;height:30px;font-weight:400;border-radius:2px;">
+                    id="your-box-input"  ng-model="box.social_media.instagram" type="text" class="form-control form-control-lg" style="padding-left:65px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
 
                     </div>
+                  </div>
+
+
           </div>
 
 
-          <div class="col-md-7">
-            <!-- Choose your box design -->
-            <h4 style="color:#8d8d8d;">4. Write a description for your box</h4>
-            <i class="light" style="font-weight:300;"><a style="font-weight:100;" href="#" id="viewExample_5" passed-step="Description" data-toggle="modal" data-target="#view-example">View Example</a></i>
-
-            <textarea
-            data-ga-click-event-category="Step 4" data-ga-click-event-action="Description" data-ga-click-event-label="Box Description"
-            ng-model="box.description" id ="box-description-textarea">
-
-            </textarea>
-          </div>
       </div>
 
-    </div>
+      <!--START OF RIGHT SIDE SUMMARY PANEL -->
+      <div class="col-md-4">
+        {% include('builder/summary.html') %}
+        <button
+        data-ga-click-event-category="Step 4" data-ga-click-event-action="Next Step 4" data-ga-click-event-label="Step 4: Finish"
+        id="finish-last-step" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                    {% if cat == 'beauty' %}btn-beauty{% endif %}">Finish</button>
+      </div>
 
 
-    <!--START OF RIGHT SIDE SUMMARY PANEL -->
-    <div class="col-md-4">
-      {% include('builder/summary.html') %}
-      <button
-      data-ga-click-event-category="Step 4" data-ga-click-event-action="Next Step 4" data-ga-click-event-label="Step 4: Finish"
-      id="finish-last-step" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                  {% if cat == 'beauty' %}btn-beauty{% endif %}">Finish</button>
-    </div>
+
+
+
 
 
 
