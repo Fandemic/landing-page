@@ -23,6 +23,7 @@ from shipping import Shipping
 from cdn import CDN
 import braintree
 from flask_compress import Compress
+from password import hash_password, verify_password
 
 
 UPLOAD_FOLDER = 'static/img/test/'
@@ -905,7 +906,40 @@ def partnersForm():
     companywebsite = request.form['companywebsite']
     name = request.form['name']
     companyemail = request.form['email']
-    phone = request.form['phone']
+    username = request.form['username']
+    password = request.form['password']
+
+    hashed, salt = hash_password(password)
+
+    #build dictionary
+    userProfile = {}
+    userProfile['username'] = username
+    userProfile['hashed_pw'] = hashed
+    userProfile['salt_pw'] = salt
+    userProfile['system'] = 'partners'
+
+    userProfile['bio'] = {}
+    userProfile['bio']['company_id'] = companyname.replace(" ","")
+    userProfile['bio']['company_name'] = companyname
+    userProfile['bio']['short_story'] = ''
+    userProfile['bio']['contact_name'] = name
+    userProfile['bio']['website'] = companywebsite
+    userProfile['bio']['email'] = companyemail
+    userProfile['bio']['phone'] = ''
+    userProfile['bio']['logo_url'] = ''
+    userProfile['bio']['approved'] = False
+
+    userProfile['bio']['address'] = {}
+    userProfile['bio']['address']['street'] = ''
+    userProfile['bio']['address']['city'] = ''
+    userProfile['bio']['address']['state'] = ''
+    userProfile['bio']['address']['zip'] = ''
+    userProfile['bio']['address']['country'] = ''
+
+
+
+
+    db.profiles.insert_one(userProfile)
 
     toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
     subject = "Partner Submit Form"
@@ -914,7 +948,8 @@ def partnersForm():
             Company Website: """ + companywebsite + """<br>
             Name: """ + name + """<br>
             Email: <a href="mailto:""" + companyemail + """"> """ + companyemail + """ </a><br>
-            Phone: """ + phone + """
+            CompanyID: """ + companyname.replace(" ","") + """"
+
             """
     toaddr_comp = [companyemail]
     subject_comp = "Thanks for your Partner request!"
@@ -922,7 +957,8 @@ def partnersForm():
             Hey """ + name + """
             <br>
             Thanks so much for submitting a partnership request to be added to Fandemic's Beauty Builder.
-            Someone should reach out real soon!
+            <br>
+            You will be able to access your
             """
 
     email = Mailer()
@@ -936,7 +972,6 @@ def partnersForm():
     slack_msg += '\n Company Website:* ' + companywebsite
     slack_msg += '\n Name:* ' + name
     slack_msg += '\n Email:* ' + str(companyemail)
-    slack_msg += '\n Phone:* ' + phone
 
 
     sarah.notify(slack_msg)
