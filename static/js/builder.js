@@ -441,12 +441,11 @@ app.controller("builder", function($scope) {
         });
 
   $scope.finish_last_step = function(){
-    var wordCount = $('#mceu_11').html().split(' ')[1];
 
-    if ($scope.box.box_name == ''){
+    if ($scope.validation.name != 'valid'){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please enter a box name! &#128516;',
+         message: 'Please enter your name! &#128516;',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -456,7 +455,7 @@ app.controller("builder", function($scope) {
          }]
       });
     }
-    else if ($scope.box.social_media.instagram == ''){
+    else if ($scope.validation.instagram != 'valid'){
       BootstrapDialog.show({
        title: 'Alert!',
          message: 'Please enter your Instagram Username! This field is required to help verify your identity. &#128516;',
@@ -469,11 +468,10 @@ app.controller("builder", function($scope) {
          }]
       });
     }
-
-    else if ($scope.box.desc == ''){
+    else if ($scope.validation.email != 'valid'){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please enter a box description! &#128516;',
+         message: 'Please enter your email address! &#128516;',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -483,10 +481,10 @@ app.controller("builder", function($scope) {
          }]
       });
     }
-    else if (wordCount > 500){
+    else if ($scope.validation.password != 'valid'){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'We can only hold 500 words here! &#128516;',
+         message: 'Please enter password with at least 6 characters! &#128516;',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -497,7 +495,7 @@ app.controller("builder", function($scope) {
       });
     }
     else {
-      testInstagram($scope.box.social_media.instagram)
+      alert('success');
     }
 
 
