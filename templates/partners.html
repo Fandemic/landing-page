@@ -236,6 +236,10 @@ p {
           <div class="col-md-12">
             <form id="partners-form" action="/partner-submit-form" method="post" role="form">
               <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+                <input id="name" name="name" class="form-control" type="text" placeholder="Your Name">
+              </div>
+              <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-building"></i></span>
                 <input id="companyname" name="companyname" class="form-control" type="text" placeholder="Company Name">
               </div>
@@ -244,16 +248,16 @@ p {
                 <input id="companywebsite" name="companywebsite" class="form-control" type="text" placeholder="Company Website">
               </div>
               <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-                <input id="name" name="name" class="form-control" type="text" placeholder="Your Name">
-              </div>
-              <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
                 <input id="email" name="email" class="form-control" type="text" placeholder="Email">
               </div>
               <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
-                <input id="phone" name="phone" class="form-control" type="text" placeholder="Phone Number">
+                <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+                <input id="username" name="username" class="form-control" type="text" placeholder="Username" required>
+              </div>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-key"></i></span>
+                <input id="password" name="password" class="form-control" type="password" placeholder="Password" required>
               </div>
           </form>
 
