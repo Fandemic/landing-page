@@ -38,6 +38,8 @@ db = MongoClient('45.79.159.210', 27018).fandemic
 
 mode = 'live';
 
+salt = 'dSGSjghjEGFCugbEgbv'
+
 #get the stars products
 if mode == 'test':
     #BRAINTREE TEST MODE
@@ -909,13 +911,12 @@ def partnersForm():
     username = request.form['username']
     password = request.form['password']
 
-    hashed, salt = hash_password(password)
+    hashed = hash_password(password, salt)
 
     #build dictionary
     userProfile = {}
     userProfile['username'] = username
     userProfile['hashed_pw'] = hashed
-    userProfile['salt_pw'] = salt
     userProfile['system'] = 'partners'
 
     userProfile['bio'] = {}
@@ -962,8 +963,8 @@ def partnersForm():
             """
 
     email = Mailer()
-    email.send(toaddr,subject,html)
-    email.send(toaddr_comp,subject_comp,html_comp)
+    #email.send(toaddr,subject,html)
+    #email.send(toaddr_comp,subject_comp,html_comp)
 
 
     sarah = Slack()
@@ -974,7 +975,7 @@ def partnersForm():
     slack_msg += '\n Email:* ' + str(companyemail)
 
 
-    sarah.notify(slack_msg)
+    #sarah.notify(slack_msg)
 
     return '';
 
