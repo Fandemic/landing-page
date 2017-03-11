@@ -30,7 +30,8 @@ app.controller("builder", function($scope) {
         'id': '',
         'email': '',
         'phone': '',
-        'img_url': ''
+        'img_url': '',
+        'password': ''
       },
       social_media: {
         'instagram': '',
@@ -66,28 +67,9 @@ app.controller("builder", function($scope) {
 
     //launch the users store form
     $scope.launch_store = function(){
-      var star = $scope.box.star;
-
-      if ((star.name == '') || (star.name == undefined)){
-        $('#launch-store-button').notify("please enter your name", { position:"top center"});
-      }
-      else if ((star.email == '') || (star.email == undefined)){
-        $('#launch-store-button').notify("please enter your email", { position:"top center"});
-      }
-      //else if ((star.phone == '') || (star.phone == undefined)){
-        //$('#launch-store-button').notify("please enter your phone number", { position:"top center"});
-      //}
-      else if (!validateEmail(star.email)){
-        $('#launch-store-button').notify("invalid email address!", { position:"top center"});
-      }
-      //else if (!validatePhone(star.phone)){
-        //$('#launch-store-button').notify("invalid phone number!", { position:"top center"});
-      //}
-
-      else{
 
         var box = $scope.box;
-        $("#launch-store-button").prop("disabled",true);
+        $("#finish-last-step").prop("disabled",true);
 
           //facebook event tracking
           fbq('track', 'CompleteRegistration', {
@@ -103,6 +85,7 @@ app.controller("builder", function($scope) {
           });
 
         $('#loader').show();
+
         $.ajax({
           type: 'POST',
           url: '/launch-store-request',
@@ -110,7 +93,6 @@ app.controller("builder", function($scope) {
           contentType: 'application/json;charset=UTF-8',
           success: function(response) {
             $('#launch-store-modal').modal('hide');
-            //$('#launch-store-modal-success').modal('show');
             $('.fa-times').hide();
             $('.steps').hide();
             $('#step6').fadeIn('fast', function() {
@@ -126,8 +108,6 @@ app.controller("builder", function($scope) {
           }
         });
 
-
-      }
 
 
       function validateEmail(email) {
@@ -495,7 +475,7 @@ app.controller("builder", function($scope) {
       });
     }
     else {
-      alert('success');
+      $scope.launch_store();
     }
 
 

@@ -324,26 +324,6 @@ def store(template,starID):
 
     currentTime = int(time.time())
 
-    #auto-set the timer to 7 days for mock campaigns
-    if star['campaigns'][0]['status'] == 'mock':
-        star['campaigns'][0]['end_time'] = ( currentTime + (7 * 86400) )
-        star['campaigns'][0]['num_orders'] = random.randint(40,1000)
-        star['campaigns'][0]['price'] = random.randint(30,50)
-
-    if star['campaigns'][0]['status'] == 'live':
-        if star['campaigns'][0]['end_time'] < currentTime:
-            if star['campaigns'][0]['num_orders'] < 10:
-                star['campaigns'][0]['status'] = 'failed'
-            elif star['campaigns'][0]['num_orders'] > 10:
-                star['campaigns'][0]['status'] = 'success'
-
-    #if !star['campaigns'][0]['charity']:
-
-    if star['campaigns'][0].has_key('charity'):
-        donations = format(int(star['campaigns'][0]['charity']['amount']) * int(star['campaigns'][0]['num_orders']), ",d")
-    else:
-        donations = '0'
-
 
     #pull default descriptions for products
     c = 0
@@ -352,7 +332,7 @@ def store(template,starID):
         c += 1
 
 
-    return render_template(template, donations = donations, star = star,
+    return render_template(template, star = star,
                                      braintree=braintree.ClientToken.generate())
 
 #================= MOCK STORES ========================
@@ -570,96 +550,70 @@ def sampleCharge():
     return '';
 
 
-#================PROCESS A STOCKING FEE====================#
+#================Launch a Store====================#
 @app.route('/launch-store-request', methods=['GET', 'POST'])
 def launchStoreRequest():
 
     #get the ajaxed info
     if request.method == "POST":
 
-        trello = Trello();
+        trello = Trello()
 
         info = request.get_json()
 
-        #create a campaign if the user exists
-        if info['star']['exists']:
-            ID = info['star']['id']
-            star = db.stars.find_one({'id':ID.lower()})
-            campaign = {}
-            campaign['id'] = info['box_name'].replace(' ', '-').lower()
-            campaign['status'] = 'pending'
-            campaign['index'] = 1
-            campaign['box_name'] = info['box_name']
-            campaign['brand_name'] = info['brand_name']
-            campaign['end_time'] = 1477267200
-            campaign['cost'] = info['cost']
-            campaign['price'] = info['price']
-            campaign['profit'] = info['profit']
-            campaign['description'] = info['desc']
-            campaign['num_orders'] = 500
-            campaign['style'] = info['style']
-            campaign['products'] = info['products']
-            campaign['campaign_video'] = '0'
-            campaigns['charity'] = {}
-            campaigns['charity']['amount'] = info['charity']
-            campaigns['charity']['name'] = 'No Charity Setup'
-            campaigns['charity']['URL'] = '#'
+        #create the star ID using the instagram
+        info['star']['id'] = info['star']['instagram']
 
-            db.stars.update_one({'id':ID.lower()}, {'$push': {'campaigns': campaign}})
+        #check if the name exists
+        exist = True
+        c = 1
+        while exist:
+            if (db.stars.find({'id':info['star']['id']}).count() <= 0):
+                exist = False
+            else:
+                info['star']['id'] = info['star']['instagram'] + str(c)
+                c = c + 1
 
-        #if star does not exist, create them
-        else:
+        #Get img url from instagram
+        u = Utils()
+        profile_img_url = u.getInstagramImageFromUsername(info['star']['instagram'])
 
-            info['star']['id'] = info['star']['name'].replace(' ', '-').lower()
-            ID = info['star']['id']
+        client = {}
+        client['id'] = info['star']['id']
+        client['name'] = info['star']['name']
+        client['email'] = [info['star']['email']]
+        client['phone'] = info['star']['phone']
+        client['password'] = info['star']['password']
+        client['img'] = {}
+        client['img']['profile'] = profile_img_url
+        client['url'] = {}
+        client['url']['instagram'] = 'https://instagram.com/'+info['social_media']['instagram']
+        client['url']['twitter'] = 'https://twitter.com/'+info['social_media']['twitter']
+        client['url']['facebook'] = info['social_media']['facebook']
+        client['url']['youtube'] = info['social_media']['youtube']
+        client['campaigns'] = [{}]
+        client['campaigns'][0]['id'] = info['box_name'].replace(' ', '-').lower()
+        client['campaigns'][0]['status'] = 'pending'
+        client['campaigns'][0]['index'] = 1
+        client['campaigns'][0]['box_name'] = info['box_name']
+        client['campaigns'][0]['brand_name'] = info['brand_name']
+        client['campaigns'][0]['end_time'] = 1477267200
+        client['campaigns'][0]['cost'] = info['cost']
+        client['campaigns'][0]['price'] = info['price']
+        client['campaigns'][0]['profit'] = info['profit']
+        client['campaigns'][0]['description'] = info['desc']
+        client['campaigns'][0]['campaign_video'] = '0'
+        client['campaigns'][0]['style'] = info['style']
+        client['campaigns'][0]['products'] = info['products']
+        client['campaigns'][0]['charity'] = {}
+        client['campaigns'][0]['charity']['amount'] = info['charity']
+        client['campaigns'][0]['charity']['name'] = 'No Charity Setup'
+        client['campaigns'][0]['charity']['URL'] = '#'
 
-
-            #make sure ID does not exist
-            if (db.stars.find({'id':ID}).count() <= 0):
-
-                #Get img url from instagram
-                u = Utils()
-                profile_img_url = u.getInstagramImageFromUsername(info['social_media']['instagram'])
-
-                client = {}
-                client['id'] = info['star']['id']
-                client['name'] = info['star']['name']
-                client['email'] = [info['star']['email']]
-                client['phone'] = info['star']['phone']
-                client['img'] = {}
-                client['img']['profile'] = profile_img_url
-                client['url'] = {}
-                client['url']['instagram'] = 'https://instagram.com/'+info['social_media']['instagram']
-                client['url']['twitter'] = 'https://twitter.com/'+info['social_media']['twitter']
-                client['url']['facebook'] = info['social_media']['facebook']
-                client['url']['youtube'] = info['social_media']['youtube']
-                client['campaigns'] = [{}]
-                client['campaigns'][0]['id'] = info['box_name'].replace(' ', '-').lower()
-                client['campaigns'][0]['status'] = 'pending'
-                client['campaigns'][0]['index'] = 1
-                client['campaigns'][0]['box_name'] = info['box_name']
-                client['campaigns'][0]['brand_name'] = info['brand_name']
-                client['campaigns'][0]['end_time'] = 1477267200
-                client['campaigns'][0]['goal'] = info['goal']
-                client['campaigns'][0]['cost'] = info['cost']
-                client['campaigns'][0]['price'] = info['price']
-                client['campaigns'][0]['profit'] = info['profit']
-                client['campaigns'][0]['description'] = info['desc']
-                client['campaigns'][0]['num_orders'] = 500
-                client['campaigns'][0]['campaign_video'] = '0'
-                client['campaigns'][0]['style'] = info['style']
-                client['campaigns'][0]['products'] = info['products']
-                client['campaigns'][0]['charity'] = {}
-                client['campaigns'][0]['charity']['amount'] = info['charity']
-                client['campaigns'][0]['charity']['name'] = 'No Charity Setup'
-                client['campaigns'][0]['charity']['URL'] = '#'
-
-
-
-                db.stars.insert_one(client)
+        db.stars.insert_one(client)
 
         #send the email to fandemic team
-        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
+        toaddr = ['brandon@fandemic.co']
         subject = "New Launch Store Request - "+info['star']['name']
 
         #build the trello string
@@ -685,11 +639,6 @@ def launchStoreRequest():
         trello_string += '**Profit:** ' + str(float(info['price']) - float(info['cost']))  + '\n'
         trello_string += '**Box Name:** ' + info['box_name'] + '\n'
         trello_string += '**Brand Name:** ' + info['brand_name'] + '\n'
-        trello_string += '**Color:** ' + info['style']['name'] + '\n'
-        trello_string += '**Material:** ' +info['material']['name'] + '\n'
-        trello_string += '**Primary Font:** ' + info['font1'] + '\n'
-        trello_string += '**Secondary Font:** ' + info['font2'] + '\n'
-        trello_string += '**Description:** ' + info['desc'] + '\n'
         trello_string += 'PRODUCTS\n'
         trello_string += '-----------------------------\n'
         for p in info['products']:
@@ -721,11 +670,6 @@ def launchStoreRequest():
         email_string += '<strong>Profit:</strong> ' + str(float(info['price']) - float(info['cost']))  + '<br>'
         email_string += '<strong>Box Name:</strong> ' + info['box_name'] + '<br>'
         email_string += '<strong>Brand Name:</strong> ' + info['brand_name'] + '<br>'
-        email_string += '<strong>Color:</strong> ' + info['style']['name'] + '<br>'
-        email_string += '<strong>Material:</strong> ' +info['material']['name'] + '<br>'
-        email_string += '<strong>Primary Font:</strong> ' + info['font1'] + '<br>'
-        email_string += '<strong>Secondary Font:</strong> ' + info['font2'] + '<br>'
-        email_string += '<strong>Description:</strong> ' + info['desc'] + '<br>'
 
         email_string += '<br><h3>PRODUCTS</h3>'
         email_string += '<hr>'
