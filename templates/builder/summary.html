@@ -10,7 +10,7 @@
    </div>
 
    <div ng-if="box.products.length > 0">
-           <h4 style="width:100%;">Products <!--<span class="light" style="text-align:right !important;float:right;">Total Box Cost: ${a box.cost a}</span>--></h4>
+           <h4 style="width:100%;">Products  <span style="float:right">{a box.products.length a}/6</span><!--<span class="light" style="text-align:right !important;float:right;">Total Box Cost: ${a box.cost a}</span>--></h4>
            <hr>
 
            <div class="row">
@@ -18,7 +18,18 @@
 
                   <div>
                     <img width="60px" src="/static/img/beauty-items/{a product.item_num a}.png" style="float:left;padding-right:10px;">
-                    <p class="light" style="margin-top:5px;"><strong>{a product.name a}</strong> (${a product.cost a}) <br> <span style="font-size:.8em">{a product.variation a}</span></p>
+                    <p class="light" style="margin-top:5px;"><strong>{a product.name a}</strong> (${a 1*product.cost + 1*box.profit + 1*box.charity a})
+                      <span ng-if="box.charity!= 0" style="color:#CFA7C3;font-weight:600;">
+                        <br>
+                        Charity: ${a box.charity a}
+                      </span>
+                      <span ng-if="box.profit!= 0" style="color:#66DA95;font-weight:600;">
+                        <span ng-if="box.charity == 0">
+                          <br>
+                        </span>
+                        Profit: ${a box.profit a}
+                      </span>
+                      <br> <span style="font-size:.8em">{a product.variation a}</span></p>
                     <!--<a ng-click="toggle_product({name:product.name,item_num:product.item_num,cost:product.cost })">
                       <i style="position:absolute;top:10px;right:40px;color:#ba82aa;font-size:20px;cursor:pointer;" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>-->
@@ -33,6 +44,8 @@
 
            </div>
    </div>
+
+
 
    <div ng-if="box.style || box.material">
            <br>

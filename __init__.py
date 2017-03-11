@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 import math
 import random
 import time
@@ -135,60 +134,6 @@ def getShippingRates():
     shipment = Shipping()
 
     return json.dumps(shipment.get_rates(customer))
-
-
-
-
-@app.route("/builder-alert", methods=['GET'])
-def getData():
-
-    ID = request.args.get('id')
-
-    star = db.stars.find_one({"id":ID},{'_id': 0})
-    star['_id'] = 0
-
-    emails = 'not found in DB'
-    if star is not None:
-        emails = ', '.join([str(x) for x in star['email']])
-
-    sarah = Slack()
-    sarah.notify('*DESKTOP VISITED ALERT*\nHey guys, the user *'+str(ID)+'* just visited the beauty builder on desktop.\nTheir email address is [*'+str(emails)+'*]')
-
-    return json.dumps({'name':star['name'],'img_url':star['image']['profile'],'id':star['id']})
-
-
-@app.route("/builder-alert-mobile", methods=['GET'])
-def getDataMobile():
-
-    ID = request.args.get('id')
-
-    star = db.stars.find_one({"id":ID})
-
-    emails = 'not found in DB'
-    if star is not None:
-        emails = ', '.join([str(x) for x in star['email']])
-
-    sarah = Slack()
-    sarah.notify('*MOBILE VISITED ALERT*\nHey guys, the user *'+str(ID)+'* just visited the beauty builder on their mobile device.\nTheir email address is [*'+str(emails)+'*]')
-
-    return json.dumps({'name':star['name'],'img_url':star['image']['profile']})
-
-
-@app.route("/builder-remind-mobile", methods=['GET'])
-def reminderMobile():
-
-    ID = request.args.get('id')
-
-    star = db.stars.find_one({"id":ID})
-
-    emails = 'not found in DB'
-    if star is not None:
-        emails = ', '.join([str(x) for x in star['email']])
-
-    sarah = Slack()
-    sarah.notify('*REMINDER REQUESTED*\nHey guys, the user *'+str(ID)+'* wants to be reminded to visit the builder on desktop.\nTheir email address is [*'+str(emails)+'*]')
-
-    return ''
 
 #-------------------------------------------
 
@@ -549,82 +494,6 @@ def charge():
 
             return '';
 
-@app.route('/request-sample/<starID>', methods=['GET', 'POST'])
-def sampleRequest(starID):
-
-    star = db.stars.find_one({'id':starID.lower()}) #find the star
-
-    return render_template('sample-request.html',star=star)
-
-@app.route('/charge-sample-request', methods=['GET', 'POST'])
-def chargeSampleRequest():
-
-    sarah = Slack()
-
-    #get the ajaxed info
-    if request.method == "POST":
-
-        info = request.get_json()
-
-        #if info['active'] == 'False':
-        #SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
-        #PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
-        #else:
-        SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
-        PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
-
-        #initialize the stripe data
-        stripe_keys = {
-            'secret_key': SECRET_KEY,
-            'publishable_key': PUBLISHABLE_KEY
-        }
-
-        stripe.api_key = stripe_keys['secret_key']
-
-
-        customer = stripe.Customer.create(
-            email=info['email'],
-            card=info['id']
-        )
-
-        charge = stripe.Charge.create(
-            customer=customer.id,
-            amount=info['amount'],
-            currency='usd',
-            description= info['billing_name'] + ' ordered products from ' + info['star'],
-            receipt_email=info['email']
-        )
-
-        #build the string to be saved
-        order = {}
-        order['name'] = info['billing_name']
-        order['email'] = info['email']
-        order['address'] = {}
-        street1 = order['address']['street1'] = info['shipping_address_line1']
-        city = order['address']['city'] = info['shipping_address_city']
-        state = order['address']['state'] = info['shipping_address_state']
-        zipcode = order['address']['zip'] = info['shipping_address_zip']
-        country = order['address']['country'] = info['shipping_address_country']
-        order['stripe'] = {}
-        order['stripe']['id'] = charge['id']
-        order['stripe']['customer'] = charge['customer']
-        order['total'] = charge['amount']
-        order['ip'] = info['client_ip']
-        order['star_id'] = info['star_id']
-
-        #insert into database
-        #db.orders.insert_one(order)
-
-        #Get sarah to send a notification
-        msg = '*Name:* ' + order['name'] + '\n*Email:* ' + order['email']
-        msg += '\n' + str(order['total'])
-        msg += '\n*Address*\n' + street1
-        msg += '\n' + city + ' ' + state + ', ' + zipcode
-        msg += '\n' + country
-        msg += '\n'
-        sarah.send("sample request","SAMPLE REQUEST",msg)
-
-    return '';
 
 #================PROCESS A STOCKING FEE====================#
 @app.route('/sample-charge', methods=['GET', 'POST'])
@@ -978,31 +847,6 @@ def partnersForm():
     #sarah.notify(slack_msg)
 
     return '';
-
-
-#=============EMAIL UPDATER=============
-@app.route("/email-batch-updater/admin")
-def emailBatchUpdater():
-
-    count = db.stars.find({'email':{'$size': 0},'category':'beauty'}).count()
-
-    stars = db.stars.find({'email':{'$size': 0},'category':'beauty'}).limit(30).skip( int(round( random.random() * count )) ) #find the star
-
-    return render_template('email-batch-updater.html', stars = stars, count = count)
-
-
-@app.route('/batchUpdateEmail', methods=['GET', 'POST'])
-def update():
-
-    if request.method == 'POST':
-        name = request.form
-        for v in request.form:
-            email = request.form[v]
-            email = parseaddr(email)[1]
-            if email != '':
-                db.stars.update_one({'id':v},{"$set":{"email.0":email}})
-
-    return redirect('/email-batch-updater/admin')
 
 
 @app.route('/instagram-validate', methods=['GET', 'POST'])

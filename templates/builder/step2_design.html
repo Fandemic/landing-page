@@ -37,7 +37,7 @@
                     </div>
                   </div>
 
-                <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Follower Friendly
+                <h5 class="title" style="font-size:24px;bottom:15px;color:#999;">Follower Friendly
                 <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 0 a}</span>--></h5>
               </div>
             </div>
@@ -49,7 +49,7 @@
         data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Helping Hand"
         class="thumbnail" style="height:100%;width:100%;padding:10px;">
           <div class="content" style="cursor:pointer;width:100%;height:100%;"
-               ng-click="togglePrice({profit:0,charity:4})">
+               ng-click="togglePrice({profit:0,charity:1})">
 
                 <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/donation.svg" alt="">
 
@@ -58,15 +58,15 @@
                 <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
 
                   <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
-                    $4 for <strong>charity per sale</strong>
+                    $1 for <strong>charity per sale</strong>
                   </div>
                 </div>
 
-                <span ng-if="box.charity==4 && box.profit==0">
+                <span ng-if="box.charity==1 && box.profit==0">
                   <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
                 </span>
 
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Helping Hand
+              <h5 class="title" style="font-size:24px;bottom:15px;color:#999;">Helping Hand
               <!--<br> <span class="money" >Retail: ${a box.cost + 4 a}</span>--></h5>
             </div>
           </div>
@@ -77,21 +77,21 @@
         <div
         data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Piggy Bank"
         class="thumbnail" style="height:100%;width:100%;padding:10px;">
-          <div class="content" ng-click="togglePrice({profit:4,charity:0})"
+          <div class="content" ng-click="togglePrice({profit:3,charity:0})"
                style="cursor:pointer;width:100%;height:100%;">
                 <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/piggy-bank.svg" alt="">
 
-                <span ng-if="box.charity==0 && box.profit==4">
+                <span ng-if="box.charity==0 && box.profit==3">
                   <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
                 </span>
 
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Piggy Bank
+              <h5 class="title" style="font-size:24px;bottom:15px;color:#999;">Piggy Bank
               <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 4 a}</span>--></h5>
 
               <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
 
                 <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
-                  $4 for <strong>you per sale</strong>
+                  $3 for <strong>you per sale</strong>
                 </div>
               </div>
 
@@ -106,24 +106,24 @@
         <div
         data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Versatile"
         class="thumbnail" style="height:100%;width:100%;padding:10px;">
-          <div class="content" ng-click="togglePrice({profit:4,charity:4})" style="cursor:pointer;width:100%;height:100%;">
+          <div class="content" ng-click="togglePrice({profit:3,charity:2})" style="cursor:pointer;width:100%;height:100%;">
                 <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/versatile.svg" alt="">
 
-                <span ng-if="box.charity==4 && box.profit==4">
+                <span ng-if="box.charity==2 && box.profit==3">
                   <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
                 </span>
 
                 <!-- split bar -->
                 <div class="progress">
-                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:50%">
-                    $4 for <strong>charity</strong> per sale
+                  <div class="progress-bar progress-bar-primary" role="progressbar" style="width:40%">
+                    $2 for <strong>charity</strong> per sale
                   </div>
-                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:50%">
-                    $4 for <strong>you</strong> per sale
+                  <div class="progress-bar progress-bar-success" role="progressbar" style="width:60%">
+                    $3 for <strong>you</strong> per sale
                   </div>
                 </div>
 
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Versatile
+              <h5 class="title" style="font-size:24px;bottom:15px;color:#999;">Versatile
               <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span>--></h5>
             </div>
           </div>
@@ -134,21 +134,21 @@
         <div
         data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Angel"
         class="thumbnail" style="height:100%;width:100%;padding:10px;">
-          <div class="content" ng-click="togglePrice({profit:0,charity:8})" style="cursor:pointer;width:100%;height:100%;">
+          <div class="content" ng-click="togglePrice({profit:0,charity:4})" style="cursor:pointer;width:100%;height:100%;">
                 <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/angel.svg" alt="">
 
-                <span ng-if="box.charity==8 && box.profit==0">
+                <span ng-if="box.charity==4 && box.profit==0">
                   <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
                 </span>
 
                 <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
 
                   <div class="progress-bar progress-bar-primary" role="progressbar" style="width:100%">
-                    $8 for <strong>charity</strong> per sale
+                    $4 for <strong>charity</strong> per sale
                   </div>
                 </div>
 
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Angel
+              <h5 class="title" style="font-size:24px;bottom:15px;color:#999;">Angel
               <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span>--></h5>
             </div>
           </div>
@@ -159,21 +159,21 @@
         <div
         data-ga-click-event-category="Step 4" data-ga-click-event-action="Pricing" data-ga-click-event-label="Money Maker"
         class="thumbnail" style="height:100%;width:100%;padding:10px;">
-          <div class="content" ng-click="togglePrice({profit:8,charity:0})" style="cursor:pointer;width:100%;height:100%;">
+          <div class="content" ng-click="togglePrice({profit:5,charity:0})" style="cursor:pointer;width:100%;height:100%;">
                 <img class="product-img" style="width:100%;padding:40px;"  src="../static/img/money-maker.svg" alt="">
 
-                <span ng-if="box.charity==0 && box.profit==8">
+                <span ng-if="box.charity==0 && box.profit==5">
                   <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
                 </span>
 
                 <div class="progress" style="position:absolute;top:0px;left:0px;width:100%;opacity:.7;">
 
                   <div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
-                    $8 for <strong>you</strong> per sale
+                    $5 for <strong>you</strong> per sale
                   </div>
                 </div>
 
-              <h5 class="title" style="font-size:18px;bottom:15px;color:#999;">Money Maker
+              <h5 class="title" style="font-size:24px;bottom:15px;color:#999;">Money Maker
                 <!--<br> <span class="money" style="font-size:14px;">Retail: ${a box.cost + 8 a}</span>--></h5>
 
             </div>
