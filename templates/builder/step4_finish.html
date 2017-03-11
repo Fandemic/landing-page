@@ -7,14 +7,14 @@
     <div class="col-md-8" style="padding-left:40px;padding-right:40px;">
 
 
-      <h3 class="subtitle">Looking good! Lets finish the signup process.</h3>
+      <h3 class="subtitle" style="font-family: 'Caveat', cursive;font-size:34px;font-weight:400;">Looking good! Time to launch your official store.</h3>
       <hr>
 
         <div class="row">
 
-          <div class="col-md-6">
+          <div class="col-md-12">
           <!-- Choose your box design -->
-          <h4 style="color:#8d8d8d;">Enter Your Name</h4>
+          <h4 style="color:#8d8d8d;">Name</h4>
           <!--<i class="light" style="font-weight:300;"><a style="font-weight:100;" href="#" id="viewExample_4" passed-step="Name" data-toggle="modal" data-target="#view-example">View Example</a></i>-->
 
 
@@ -24,16 +24,22 @@
           </div>
           <input
             data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
-            id="your-box-input" ng-value="box.box_name" ng-model="box.box_name" type="text" class="form-control form-control-lg" style="padding-left:65px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+            id="your-box-input"
+            ng-model="box.star.name"
+            ng-change="validate_name(box.star.name)"
+            ng-model-options="{debounce: 750}"
+            type="text" class="form-control form-control-lg" style="padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
 
 
+            <img class="validation ng-hide" ng-show="validation.name=='valid'" src="/static/img/success2.svg">
+            <img class="validation ng-hide" ng-show="validation.name=='invalid'" src="/static/img/close.svg">
             </div>
             </div>
 
 
-            <div class="col-md-6">
+            <div class="col-md-12" style="margin-top:20px;">
               <!-- Choose your box design -->
-              <h4 style="color:#8d8d8d;">Enter your email
+              <h4 style="color:#8d8d8d;">Email
 
               </h4>
 
@@ -47,14 +53,21 @@
                 <!--<label class="light" style="font-weight:300;">Box Name</label>-->
                 <input
                 data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
-                id="your-box-input"  ng-model="box.social_media.instagram" type="text" class="form-control form-control-lg" style="padding-left:65px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+                id="your-box-input"
+                ng-model="box.star.email"
+                ng-change="validate_email(box.star.email)"
+                ng-model-options="{debounce: 750}"
+                type="email" class="form-control form-control-lg" style="padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+
+                <img class="validation ng-hide" ng-show="validation.email=='valid'" src="/static/img/success2.svg">
+                <img class="validation ng-hide" ng-show="validation.email=='invalid'" src="/static/img/close.svg">
 
                 </div>
               </div>
 
-            <div class="col-md-12" style="margin-top:30px;">
+            <div class="col-md-6" style="margin-top:30px;">
               <!-- Choose your box design -->
-              <h4 style="color:#8d8d8d;">Enter your Instagram username
+              <h4 style="color:#8d8d8d;">Instagram Username
               </h4>
 
 
@@ -67,16 +80,24 @@
                 <!--<label class="light" style="font-weight:300;">Box Name</label>-->
                 <input
                 data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
-                id="your-box-input"  ng-model="box.social_media.instagram" type="text" class="form-control form-control-lg" style="padding-left:65px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+                id="your-box-input"
+                ng-model="box.star.instagram"
+                ng-change="validate_instagram(box.star.instagram)"
+                ng-model-options="{debounce: 750}"
+                type="text" class="form-control form-control-lg" style="padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+
+                <img class="validation ng-hide" ng-show="validation.instagram=='valid'" src="/static/img/success2.svg">
+                <img class="validation ng-hide" ng-show="validation.instagram=='invalid'" src="/static/img/close.svg">
+                <img class="validation ng-hide" ng-show="validation.instagram=='loading'" src="/static/img/loader.gif">
 
                 </div>
               </div>
 
 
 
-                <div class="col-md-12" style="margin-top:30px;">
+                <div class="col-md-6" style="margin-top:30px;">
                   <!-- Choose your box design -->
-                  <h4 style="color:#8d8d8d;">Create a password
+                  <h4 style="color:#8d8d8d;">Password
                   </h4>
 
 
@@ -89,7 +110,14 @@
                     <!--<label class="light" style="font-weight:300;">Box Name</label>-->
                     <input
                     data-ga-click-event-category="Step 3" data-ga-click-event-action="Product Label Text" data-ga-click-event-label="Box Name"
-                    id="your-box-input"  ng-model="box.social_media.instagram" type="text" class="form-control form-control-lg" style="padding-left:65px;font-family: 'Caveat', cursive;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+                    id="your-box-input"
+                    ng-model="box.star.password"
+                    ng-change="validate_password(box.star.password)"
+                    ng-model-options="{debounce: 750}"
+                    type="password" class="form-control form-control-lg" style="padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
+
+                    <img class="validation ng-hide" ng-show="validation.password=='valid'" src="/static/img/success2.svg">
+                    <img class="validation ng-hide" ng-show="validation.password=='invalid'" src="/static/img/close.svg">
 
                     </div>
                   </div>
@@ -97,16 +125,17 @@
 
           </div>
 
+          <button
+          data-ga-click-event-category="Step 4" data-ga-click-event-action="Next Step 4" data-ga-click-event-label="Step 4: Finish"
+          id="finish-last-step" style="margin-top:40px;" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+                      {% if cat == 'beauty' %}btn-beauty{% endif %}">Finished, Lets Get Started!</button>
 
       </div>
 
       <!--START OF RIGHT SIDE SUMMARY PANEL -->
       <div class="col-md-4">
         {% include('builder/summary.html') %}
-        <button
-        data-ga-click-event-category="Step 4" data-ga-click-event-action="Next Step 4" data-ga-click-event-label="Step 4: Finish"
-        id="finish-last-step" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
-                    {% if cat == 'beauty' %}btn-beauty{% endif %}">Finish</button>
+
       </div>
 
 

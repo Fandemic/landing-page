@@ -41,7 +41,14 @@ app.controller("builder", function($scope) {
       confirmation_code: randomString(12),
       logo: '',
       box_img: ''
-    }
+    };
+
+    $scope.validation = {
+      name:'',
+      email:'',
+      instagram:'',
+      password: ''
+    };
 
     $scope.step = 1;
 
@@ -364,7 +371,7 @@ app.controller("builder", function($scope) {
             $('#crumb4').addClass('current');
             $("#next5").addClass("on");
             $("html, body").animate({ scrollTop: 76 }, "slow");
-          
+
         }
 
         //NAVIGATION
@@ -499,30 +506,25 @@ app.controller("builder", function($scope) {
 
 function testInstagram(username){
 
-  return $.ajax({
+  $.ajax({
     type: 'GET',
     url: '/instagram-validate',
     data: {username: username},
-    async: false,
    error: function(xhr) {
-      return false;
+     $scope.$apply(function () {
+      $scope.validation.instagram = 'invalid';
+    });
    },
    success: function(data) {
     if (data == 'success'){
-      $('#launch-store-modal').modal('show');
+      $scope.$apply(function () {
+      $scope.validation.instagram = 'valid';
+    });
     }
     else if (data == 'failed'){
-      BootstrapDialog.show({
-       title: 'Alert!',
-         message: 'This Instagram username does not exist! This field is required to help verify your identity. &#128516;',
-         buttons: [{
-           cssClass: 'btn-success',
-           label: 'OK',
-             action: function(dialog) {
-               dialog.close();
-             }
-         }]
-      });
+      $scope.$apply(function () {
+      $scope.validation.instagram = 'invalid';
+    });
     }
   }
 });
@@ -587,6 +589,51 @@ $scope.next_btn5 = function(){
 //
 };
 
+
+$scope.validate_name = function(name){
+
+  if ((name.length > 1) && (/^[A-Za-z\s]+$/.test(name))){
+    $scope.validation.name = 'valid';
+  }
+  else{
+    $scope.validation.name = 'invalid';
+  }
+
+};
+
+$scope.validate_email = function(email){
+
+  if (validateEmail(email)){
+    $scope.validation.email = 'valid';
+  }
+  else{
+    $scope.validation.email = 'invalid';
+  }
+
+};
+
+
+$scope.validate_instagram = function(instagram){
+
+  $scope.$apply(function () {
+             $scope.validation.instagram = 'loading';
+         });
+
+  testInstagram(instagram);
+
+};
+
+
+$scope.validate_password = function(password){
+
+  if (password.length >= 6){
+    $scope.validation.password = 'valid';
+  }
+  else{
+    $scope.validation.password = 'invalid';
+  }
+
+};
 
 }); //scope
 
