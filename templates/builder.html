@@ -29,7 +29,6 @@
   <link href="https://fonts.googleapis.com/css?family=Caveat|Josefin+Sans:300,400,600,800|Sue+Ellen+Francisco" rel="stylesheet">
 
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -52,6 +51,13 @@
     {% include 'analytics.html' %}
 
 </head>
+
+<style>
+.light {
+    color: #8d8d8d;
+    font-size: 14px;
+}
+</style>
 
 <script>
 $(window).load(function() {
@@ -83,9 +89,7 @@ $(window).load(function() {
 
           {% include('builder/step5_confirm.html') %}
 
-          {% include 'launch-store-modal.html' %}
 
-          {% include 'builder/box-designer.html' %}
 
         </div>
 
@@ -168,7 +172,7 @@ $(window).load(function() {
 
 </html>
 
-{% include 'howfandemicworks-modal.html' %}
+
 {% include 'builder/faq-modal.html' %}
 
 {% if box_items|length != 0 %}

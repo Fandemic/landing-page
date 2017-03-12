@@ -127,7 +127,7 @@
 
           <button
           data-ga-click-event-category="Step 4" data-ga-click-event-action="Next Step 4" data-ga-click-event-label="Step 4: Finish"
-          id="finish-last-step" style="margin-top:40px;" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
+          id="finish-last-step" style="margin-top:40px;border-radius:2px" ng-click="finish_last_step()" class="btn btn-primary btn-lg btn btn-primary btn-lg btn-nav
                       {% if cat == 'beauty' %}btn-beauty{% endif %}">
                       <img id="loader" width="20px" src="/static/img/loader.gif">
                       Finished, Lets Get Started!
@@ -164,19 +164,6 @@ var range_all_sliders = {
 	'max': [ 1000 ]
 };
 
-noUiSlider.create(slider, {
-	start: 25,
-  connect: [true, false],
-  tooltips: wNumb({ decimals: 0 }),
-  range: range_all_sliders,
-  pips: {
-		mode: 'range',
-		density: 100
-	},
-  format: wNumb({
-		decimals: 0
-	})
-});
 
 //angular update goal function
 function change(goal) {
@@ -203,7 +190,7 @@ $('#goal_qty').on('blur', function() {
     else if (goal > 1000){
       goal = 1000;
     }
-    slider.noUiSlider.set(goal);
+
     $('#goal_qty').val(goal);
     change(goal);
 });
@@ -219,28 +206,13 @@ $('#goal_qty').keyup(function(e){
       else if (goal > 1000){
         goal = 1000;
       }
-      slider.noUiSlider.set(goal);
+
       $('#goal_qty').val(goal);
       change(goal);
     }
 });
 
-slider.noUiSlider.on('slide', function(){
-	change(slider.noUiSlider.get());
-  $('#goal_qty').val(slider.noUiSlider.get());
-});
 
-//console.log(slider.noUiSlider.get());
-
-$('.noUi-tooltip').hide();
-
-$( ".noUi-handle" ).hover(
-  function() {
-    $('.noUi-tooltip').show();
-  }, function() {
-    $('.noUi-tooltip').hide();
-  }
-);
 
 
 //RETAIL PRICE JS
@@ -310,13 +282,3 @@ function isNumber(n) {
 
 
 </script>
-
-<style>
-.noUi-handle:hover {
-  cursor: pointer;
-}
-#mceu_11-body{
-  display: none;
-}
-
-</style>

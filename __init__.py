@@ -198,66 +198,6 @@ def blogPosterSubmission():
     db.testblog.insert_one(blogPost)
     return ''
 
-@app.route('/email-poster', methods=['GET', 'POST'])
-def emailPoster():
-    if not session.get('logged_in_email'):
-        return render_template('poster-login.html')
-    else:
-        emailCategories = db.leads.distinct('category')
-        emails = db.emails.find()
-        return render_template('email-poster.html', emails=emails, emailCategories = emailCategories)
-
-@app.route('/email-post-submit-form', methods=['GET', 'POST'])
-def emailPosterSubmission():
-    emailPost = {}
-
-    emailPost['category'] = request.form['category']
-    emailPost['order'] = int(request.form['order'])
-    emailPost['subject'] = request.form['subject']
-    emailPost['body'] = request.form['body']
-
-    db.emails.insert_one(emailPost)
-
-    sarah = Slack()
-    sarah.notify(session['username'] + ' has added an email to the ' + emailPost['category'] + 'category!')
-
-    return ''
-
-@app.route('/email-update-form', methods=['GET', 'POST'])
-def emailPosterUpdate():
-    emailPost = {}
-
-    ID = bson.ObjectId(request.form['id'])
-    subject = request.form['subject']
-    body = request.form['body']
-
-    emailID = db.emails.find_one({"_id":ID})
-    db.emails.update_one({
-                          '_id': ID
-                        },{
-                          '$set': {
-                            'subject': subject,
-                            'body' : body
-                          }
-                        }, upsert=False);
-
-    sarah = Slack()
-    sarah.notify(session['username'] + ' has updated one of my emails in the ' + emailID['category'] + 'category!')
-
-    return ''
-
-@app.route('/email-delete-form', methods=['GET', 'POST'])
-def emailPosterDelete():
-
-    ID = bson.ObjectId(request.form['id'])
-
-    db.emails.remove({'_id': ID},{'justOne': True,});
-
-    sarah = Slack()
-    sarah.notify(session['username'] + ' has deleted one of my emails!')
-
-    return ''
-
 #-------------------END Email POST SUBMISSION------------------------
 
 @app.route('/blog/<url>')
@@ -335,51 +275,6 @@ def store(template,starID):
     return render_template(template, star = star,
                                      braintree=braintree.ClientToken.generate())
 
-#================= MOCK STORES ========================
-@app.route('/<starID>/activate/<key>')
-def activate_store(starID,key):
-
-    star = db.stars.find_one({'id':starID.lower()})
-
-    if star == None: return render_template("404.html")
-
-    currentTime = int(time.time())
-    end_time = currentTime + 604800;
-
-    if star['campaigns'][0]['status'] != 'live':
-
-        #set up the star's store in the database
-        db.stars.update_one({
-            'id':starID.lower()
-        },
-        {
-        '$set': {
-            'campaigns.0.status': 'live',
-            'campaigns.0.num_orders': 0,
-            'campaigns.0.end_time':end_time
-        }
-        }, upsert=False)
-
-        #send an email to brandon and ethan
-        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
-        subject = star['name'] + " Has Activated Their Store!"
-        html =  """
-                """+star['name']+""" has activated their store!
-                The star's ID is """ + star['id'] + """
-                """
-        email.send(toaddr,subject,html)
-
-
-        #send an email to the star
-        toaddr = [star['email'][0]]
-        email.sendActivateStoreEmail(toaddr,star['id'],star['name'])
-
-    else:
-        return render_template("404.html")
-
-
-    return redirect("http://fandemic.co/"+starID, code=302)
-#----------------------------------------------------
 
 #================PROCESS AN ORDER====================#
 @app.route('/charge', methods=['GET', 'POST'])
@@ -595,15 +490,12 @@ def launchStoreRequest():
         client['campaigns'][0]['id'] = info['box_name'].replace(' ', '-').lower()
         client['campaigns'][0]['status'] = 'pending'
         client['campaigns'][0]['index'] = 1
-        client['campaigns'][0]['box_name'] = info['box_name']
-        client['campaigns'][0]['brand_name'] = info['brand_name']
         client['campaigns'][0]['end_time'] = 1477267200
         client['campaigns'][0]['cost'] = info['cost']
         client['campaigns'][0]['price'] = info['price']
         client['campaigns'][0]['profit'] = info['profit']
         client['campaigns'][0]['description'] = info['desc']
         client['campaigns'][0]['campaign_video'] = '0'
-        client['campaigns'][0]['style'] = info['style']
         client['campaigns'][0]['products'] = info['products']
         client['campaigns'][0]['charity'] = {}
         client['campaigns'][0]['charity']['amount'] = info['charity']
@@ -613,7 +505,7 @@ def launchStoreRequest():
         db.stars.insert_one(client)
 
         #send the email to fandemic team
-        toaddr = ['brandon@fandemic.co']
+        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
         subject = "New Launch Store Request - "+info['star']['name']
 
         #build the trello string
@@ -667,9 +559,6 @@ def launchStoreRequest():
         email_string += '<strong>Charity:</strong> ' + str(info['charity']) + '<br>'
 
         email_string += '<strong>Price:</strong> ' + str(info['price']) + '<br>'
-        email_string += '<strong>Profit:</strong> ' + str(float(info['price']) - float(info['cost']))  + '<br>'
-        email_string += '<strong>Box Name:</strong> ' + info['box_name'] + '<br>'
-        email_string += '<strong>Brand Name:</strong> ' + info['brand_name'] + '<br>'
 
         email_string += '<br><h3>PRODUCTS</h3>'
         email_string += '<hr>'

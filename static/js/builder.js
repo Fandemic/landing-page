@@ -400,25 +400,7 @@ app.controller("builder", function($scope) {
 
 
 
-        tinymce.init({
-          selector: 'textarea',
-          height: 180,
-          menubar: false,
-          plugins: [
-            'advlist autolink lists link image charmap print preview anchor',
-            'searchreplace visualblocks code fullscreen wordcount',
-            'insertdatetime media table contextmenu paste code'
-          ],
-          toolbar: 'bold italic underline',
-          content_css: '//www.tinymce.com/css/codepen.min.css',
-          setup:function(ed) {
-              ed.on('change', function(e) {
-                $scope.$apply(function () {
-                $scope.box.desc = tinymce.activeEditor.getContent();
-                });
-              });
-          }
-        });
+
 
   $scope.finish_last_step = function(){
 
@@ -732,9 +714,7 @@ onChange: function(val) {
   } );
 })();
 
-$(document).ready(function(){
-  $('div.zoomable').zoom({url: this.src});
-});
+
 
 
 

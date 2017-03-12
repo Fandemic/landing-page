@@ -1617,7 +1617,7 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {
-  border-color: rgba(255,255,255, 0.5);
+  border-color: #25CB68;
   outline: 0;
   outline: thin dotted \9;
   /* IE6-9 */
