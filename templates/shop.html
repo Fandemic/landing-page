@@ -217,9 +217,9 @@ h3{
 
 
               <h5>{{ p.name }}<br><!--<span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span>--></h5>
-                <span class="money" style="text-decoration:line-through">$49.99</span> <span class="money">${{p.cost|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}}.00</span>
+                <span class="money" style="text-decoration:line-through">$20</span> <span class="money">${{p.cost|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}}</span>
                 <br><br>
-              <button ng-click="toggle_product({name:'{{p.name}}',retail_price:19.99,price:{{p.cost|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}},item_num:'{{p.item_num}}' });" class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+              <button ng-click="toggle_product({name:'{{p.name}}',retail_price:20.00,price:{{p.cost|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}},item_num:'{{p.item_num}}' });" class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
               <button class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"  data-toggle="modal" data-target="#{{ p.item_num|replace(' ', '-') }}-variation">View Details</button>
             </div>
 
