@@ -661,12 +661,12 @@ def partnersForm():
             <br>
             Thanks so much for submitting a partnership request to be added to Fandemic's Beauty Builder.
             <br>
-            You will be able to access your
+            I'll send you a link to access your partners' dashbaord so you can get started adding products!
             """
 
     email = Mailer()
-    #email.send(toaddr,subject,html)
-    #email.send(toaddr_comp,subject_comp,html_comp)
+    email.send(toaddr,subject,html)
+    email.send(toaddr_comp,subject_comp,html_comp)
 
 
     sarah = Slack()
@@ -677,7 +677,7 @@ def partnersForm():
     slack_msg += '\n Email:* ' + str(companyemail)
 
 
-    #sarah.notify(slack_msg)
+    sarah.notify(slack_msg)
 
     return '';
 
