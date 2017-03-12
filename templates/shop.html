@@ -151,7 +151,7 @@ h3{
         </div>
 
 
-        <h4 style="font-family: 'Caveat', cursive;font-size:28px;color:#1d1d1d;">{{star.name}}</h4>
+        <h4 style="font-family: 'Caveat', cursive;font-size:28px;color:#1d1d1d;">{{star.id}}</h4>
 
         {% if star.url %}
         <div id="social-media">
@@ -217,9 +217,9 @@ h3{
 
 
               <h5>{{ p.name }}<br><!--<span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span>--></h5>
-                <span class="money" style="text-decoration:line-through">$49.99</span> <span class="money">$29.99</span>
+                <span class="money" style="text-decoration:line-through">$49.99</span> <span class="money">${{p.cost|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}}.00</span>
                 <br><br>
-              <button ng-click="toggle_product({name:'{{p.name}}',price:24.99,item_num:'{{p.item_num}}' });" class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+              <button ng-click="toggle_product({name:'{{p.name}}',retail_price:19.99,price:{{p.cost|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}},item_num:'{{p.item_num}}' });" class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
               <button class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"  data-toggle="modal" data-target="#{{ p.item_num|replace(' ', '-') }}-variation">View Details</button>
             </div>
 
@@ -248,23 +248,36 @@ h3{
         <a href="/builder/beauty" target="_blank"><button class="btn" style="font-family: 'Caveat', cursive !important;position:absolute;border-radius:4px;border: 1px solid #000; background-color:#fff;color:#000;top:-60px;right:0px;">Design Your Own ></button></a>
         -->
 
-        <div class="panel-body" style="padding-bottom:0px;padding-left:20px;padding-right:20px;float:left;width:100%;max-height:calc(100% - 180px);overflow-y:auto;">
+        <div class="panel-body" style="padding-bottom:0px;padding-left:20px;padding-right:20px;float:left;width:100%;" ng-if="data.savings != 0">
+        <span class="money">Total: {a data.total_price | currency a}</span><br>
+        <span style="font-weight:400;color:#E35A99;margin-top:20px;"><i class="fa fa-tag" aria-hidden="true"></i> You save <strong>{a data.savings | currency a}</strong> on this order!</span>
+        <hr style="margin-bottom:0px;">
+        </div>
+
+        <div class="panel-body" style="padding-bottom:0px;padding-left:20px;padding-right:20px;float:left;width:100%;max-height:calc(100% - 230px);overflow-y:auto;">
+
+          <div ng-if="data.total_price == 0" style="text-align:center;">
+                  <br><br>
+                  <img width="35%" src="../static/img/shopping-cart.svg">
+                  <h3 style="color:#adadad !important;">Your Cart is Empty!<h3>
+                  <h4 style="color:#adadad !important;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Try adding a product</h4>
+          </div>
 
           <div ng-repeat="p in data.cart">
             <div style="margin-bottom:5px;">
 
               <div class="row">
                 <div class="col-md-2">
-                  <img style="width:40px;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
+                  <img style="width:40px;margin: 0 auto;margin-top:-7px;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
                 </div>
-                <div class="col-md-6" style="text-align:left;">
+                <div class="col-md-6" style="text-align:left;font-size:14px;">
                   {a p.name a}
                 </div>
                 <div class="col-md-2" style="text-align:left;">
                   {a p.price | currency a}
                 </div>
                 <div class="col-md-2" style="text-align:right;">
-                  <span class="pull-right" ng-click="delete_product(p)"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                  <span class="pull-right" ng-click="delete_product(p)" style="cursor:pointer;color:#E86256;"><i class="fa fa-trash" aria-hidden="true"></i></span>
                 </div>
               </div>
 
@@ -274,7 +287,6 @@ h3{
           </div>
         </div>
 
-        <span style="font-weight:400;color:green;margin-top:10px;">You will save $4.00 on this order!</span>
 
 
 
@@ -285,7 +297,7 @@ h3{
       <div style="position: absolute;
     bottom: 20px;
     left: 21px;width:90%;">
-      <span class="money">Total: {a data.total_price | currency a}</span>
+
       <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 80%;">Checkout</button>
     </div>
 

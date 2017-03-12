@@ -24,6 +24,8 @@ app.controller("shop", function($scope) {
   $scope.data.cart = [];
   $scope.data.total_price = 0;
 
+  $scope.data.savings = 0;
+
   $scope.data.shipping_method = {};
 
   $scope.rates = [];
@@ -51,7 +53,8 @@ app.controller("shop", function($scope) {
   $scope.toggle_product = function(product){
     $scope.data.cart.push(product);
     $scope.data.total_price += product.price;
-     $.notify("Product Added To Box", { position:"bottom left",className:"success" });
+    $scope.data.savings += (product.retail_price - product.price)
+    $.notify("Product Added To Box", { position:"bottom left",className:"success" });
   }
 
   $scope.delete_product = function(product){
@@ -65,6 +68,7 @@ app.controller("shop", function($scope) {
     if (index >= 0){
        $scope.data.cart.splice(index, 1);
        $scope.data.total_price -= product.price;
+       $scope.data.savings -= (product.retail_price - product.price)
        $.notify("Product Removed From Box", { position:"bottom left",className:"success" });
     }
 
