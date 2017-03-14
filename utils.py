@@ -1,16 +1,10 @@
 import urllib2
 import json
 from pymongo import MongoClient, GEO2D
+from config import Config
 
-################# SET THE MODE (live or production)
-MODE = 'test';
-####################################################
-
-if MODE == 'test':
-    db = MongoClient('45.79.159.210', 27018).fandemic_test
-
-elif MODE == 'live':
-    db = MongoClient('45.79.159.210', 27018).fandemic
+c = Config()
+db = c.dbConfig()
 
 
 class Utils:

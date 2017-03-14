@@ -23,36 +23,20 @@ from cdn import CDN
 import braintree
 from flask_compress import Compress
 from password import hash_password, verify_password
+from config import Config
 
-
-#UPLOAD_FOLDER = 'static/img/test/'
-#ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd','svg'])
+c = Config()
+db = c.dbConfig()
 
 app = Flask(__name__)
-app.secret_key = 'super secret key'
-#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key = 'vngf8765ghuu767g'
+
 Mobility(app)
 Compress(app)
-################# SET THE MODE (live or production)
-MODE = 'test';
-####################################################
 
 salt = 'dSGSjghjEGFCugbEgbv'
 
-#get the stars products
-if MODE == 'test':
-    db = MongoClient('45.79.159.210', 27018).fandemic_test
-    braintree.Configuration.configure(braintree.Environment.Sandbox,
-                                      merchant_id="2hf4g4nnyr988sbq",
-                                      public_key="k7kxgfrgmwq95qrr",
-                                      private_key="c33bb5198238ee8c544f5e2ff894a63b")
-elif MODE == 'live':
-    #BRAINTREE LIVE MODE
-    db = MongoClient('45.79.159.210', 27018).fandemic
-    braintree.Configuration.configure(braintree.Environment.Production,
-                                      merchant_id="xhfrd2njsj3hpjqg",
-                                      public_key="24hn86zpmj3kg6zd",
-                                      private_key="bf70efac06af024e582747b76b9a621a")
+
 
 email = Mailer();
 
