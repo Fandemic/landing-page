@@ -1,5 +1,16 @@
 import urllib2
 import json
+from pymongo import MongoClient, GEO2D
+
+################# SET THE MODE (live or production)
+MODE = 'test';
+####################################################
+
+if MODE == 'test':
+    db = MongoClient('45.79.159.210', 27018).fandemic_test
+
+elif MODE == 'live':
+    db = MongoClient('45.79.159.210', 27018).fandemic
 
 
 class Utils:
@@ -30,4 +41,10 @@ class Utils:
             return False
         else:
             # 200
+            return True
+
+    def checkIDExists(self,key,id):
+        if (db.profiles.find({key:id}).count() == 0):
+            return False
+        else:
             return True

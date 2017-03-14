@@ -33,8 +33,6 @@ app.secret_key = 'super secret key'
 #app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
 Compress(app)
-#db = MongoClient('45.79.159.210', 27018).fandemic_test
-
 ################# SET THE MODE (live or production)
 MODE = 'test';
 ####################################################
@@ -643,8 +641,6 @@ def partnersForm():
     userProfile['bio']['address']['country'] = ''
 
 
-
-
     db.profiles.insert_one(userProfile)
 
     toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
@@ -695,6 +691,17 @@ def instagramValidate():
     else:
         return 'failed'
 
+@app.route('/partners-form-validate', methods=['GET', 'POST'])
+def partnersFormValidate():
+    username = str(request.form['username'])
+    company_id = str(request.form['companyname']).replace(" ","-").lower()
+    u = Utils()
+    if (u.checkIDExists('bio.company_id',company_id)):
+        return 'company'
+    elif (u.checkIDExists('username',username)):
+        return 'username'
+    else:
+        return 'success'
 
 
 @app.errorhandler(404)
