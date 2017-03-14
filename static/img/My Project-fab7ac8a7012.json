@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cosmic-howl-161404",
+  "private_key_id": "fab7ac8a70124498c9a1e7601856d184305b05f8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDG8Qb6zL5t+qh4\nUJlAC3fvOMI733jDE+O8BXzmP2QghO9RmTcTyWBzylEhBmV4vRlJ5gArKnaMA+kx\n+XaREaLHIjUZvs3V8jUPU5FEmVFOQ22ufWZ6XWf+fpsg+INxshea4/Iw6AiASg1P\nosWEYM4lcz/lNGRtISNoB2JaXX0xayRCovo1wQABma8j1m/d32S9GoKbiue+mJth\nU6JGjZ0kZMoHdXExSn5GPgWXppyiW6G/it5touV1ypxLz5eCAS1KywkPS+AmbXYe\n7GlEnDtRaEIQPMDXNCsCyqa8GczSOLFgb2YH53coSRpglNYvr++hIB4XsQMRKfmB\ns1N8BYRBAgMBAAECggEAR51sjcw2oRCipO0evddjDVK5WSRRLKh0SrMPCzO2r54r\nKIynLxBHEGe8XM8YqCYqfFe3p9JZan3d7IeJDx/yIQ1HYEU3g9T1FNdYbAFlK29K\nhI3P3izRyuN4pJ3Rc5RQuwljngdpSAVgVVKbF9RhYUnjrnb1z/Ml88T0uuL8tlTf\nzQX37FNcxs8+SBNsQO5rq7VQ/pzuVWiclfX4wVaFxztjUkQbkiqALMLXad6sgQAh\n+84mgxYYI5TA2sxtCka8oKw54I5mqh4+2mjFRiMvXftvKVBJE6aMbNdvqB4YKDqb\nxtVJtm08TTxhT05NRgIridReVDxX892+o7Blx9RjgQKBgQD+TlJP/FAEc+VdlGUL\nNfY38sehJYbM6NyYDB2eQ5SDT4vHV9P0roEmLBP/elb86VYK04u+9yTMvO4TU4Uo\n+lfKrNwPXMoPNrHW4zBixqjq1zjd/2gJNxRUuqkuYIrCXw8I8YzH7CCR5SEnyWdI\nnMftFwpE8m8Gx6XSe6i/5L5u/QKBgQDIREpcayW1Cn4B9rot1QXFo1X0bfcd2Qtr\n9As7k7EPF2roqzWxZXdIvrixVnPBD5tjv6K7nnYpdUVaL0U5lyjVNhm+nX8L9gRF\nSsGr4AosF3PqDCY0gET9kcotnq/DzjII8v9COWPnUaVQ00EJDnEQjx8MWzlYkB3z\ncYV7dJ4HlQKBgFEPchlg2bixoJj1pkeuia9Hye5J4fALAdXNdtttuzcn8ew2yK8j\nuLMMNcunmXbAgdatm8vhR2+jgVfTtYxcUAOgmfyjnRzAWGugu1mg7VL+C3hn4yec\n0PQ5E5he2ZwfZNF6/V70m2Ul3i2qeyugHfIq9/EGPfGxTeAL3rxcE3+ZAoGAQ9UN\nstv/+6BAKf4d9aQvvk+ir5YHm66GddxFabqOwGPYLFLBbwLFMniXKkn0DzJwGYsx\nXYdA0q4L/Y4BTo5qoD0g3zWNcMm1jJrTmpnaGDEha+cNkb7Yn2KgLm+PbS0MOYfE\n+fNiaVl4OzYy0xR3K3qus4q6k8rMukZ7ReOsGzkCgYEA1uW27wAVIuUDXr8kvIc9\n8l91D+0js0U6xUIJa/FdXGcZs8SviS2G4EpVeU3QbJ7YPvJ2JcXbp+Jz4YjsB62I\nl01mh2ccpuVCaw8AIul96IXVMPu6Sgu9UXGuVLk1Es90Izty47fjCVaBtsZUyhLr\nzmpp4riYBuNRE2K9lX7chgM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "wordpress@cosmic-howl-161404.iam.gserviceaccount.com",
+  "client_id": "104991376661687123316",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/wordpress%40cosmic-howl-161404.iam.gserviceaccount.com"
+}

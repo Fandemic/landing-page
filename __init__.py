@@ -25,29 +25,32 @@ from flask_compress import Compress
 from password import hash_password, verify_password
 
 
-UPLOAD_FOLDER = 'static/img/test/'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd','svg'])
+#UPLOAD_FOLDER = 'static/img/test/'
+#ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd','svg'])
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 Mobility(app)
 Compress(app)
-db = MongoClient('45.79.159.210', 27018).fandemic
+#db = MongoClient('45.79.159.210', 27018).fandemic_test
 
-mode = 'live';
+################# SET THE MODE (live or production)
+MODE = 'test';
+####################################################
 
 salt = 'dSGSjghjEGFCugbEgbv'
 
 #get the stars products
-if mode == 'test':
-    #BRAINTREE TEST MODE
+if MODE == 'test':
+    db = MongoClient('45.79.159.210', 27018).fandemic_test
     braintree.Configuration.configure(braintree.Environment.Sandbox,
                                       merchant_id="2hf4g4nnyr988sbq",
                                       public_key="k7kxgfrgmwq95qrr",
                                       private_key="c33bb5198238ee8c544f5e2ff894a63b")
-elif mode == 'live':
+elif MODE == 'live':
     #BRAINTREE LIVE MODE
+    db = MongoClient('45.79.159.210', 27018).fandemic
     braintree.Configuration.configure(braintree.Environment.Production,
                                       merchant_id="xhfrd2njsj3hpjqg",
                                       public_key="24hn86zpmj3kg6zd",
