@@ -29,14 +29,9 @@ c = Config()
 db = c.dbConfig()
 
 app = Flask(__name__)
-app.secret_key = 'vngf8765ghuu767g'
 
 Mobility(app)
 Compress(app)
-
-salt = 'dSGSjghjEGFCugbEgbv'
-
-
 
 email = Mailer();
 
@@ -647,20 +642,26 @@ def partnersForm():
             I'll send you a link to access your partners' dashbaord so you can get started adding products!
             """
 
-    email = Mailer()
-    email.send(toaddr,subject,html)
-    email.send(toaddr_comp,subject_comp,html_comp)
+
+    c = Config()
+    notif = c.notifConfig()
+
+    if notif == True:
+
+        email = Mailer()
+        email.send(toaddr,subject,html)
+        email.send(toaddr_comp,subject_comp,html_comp)
 
 
-    sarah = Slack()
+        sarah = Slack()
 
-    slack_msg = '*Company Name:* ' + companyname
-    slack_msg += '\n Company Website:* ' + companywebsite
-    slack_msg += '\n Name:* ' + name
-    slack_msg += '\n Email:* ' + str(companyemail)
+        slack_msg = '*Company Name:* ' + companyname
+        slack_msg += '\n Company Website:* ' + companywebsite
+        slack_msg += '\n Name:* ' + name
+        slack_msg += '\n Email:* ' + str(companyemail)
 
 
-    sarah.notify(slack_msg)
+        sarah.notify(slack_msg)
 
     return redirect("/partners", code=302)
 
@@ -691,6 +692,10 @@ def partnersFormValidate():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
+app.secret_key = 'vngf8765ghuu767g'
+salt = 'dSGSjghjEGFCugbEgbv'
+
 
 if __name__ == '__main__':
 

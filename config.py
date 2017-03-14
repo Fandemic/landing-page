@@ -29,3 +29,11 @@ class Config:
                                               private_key="bf70efac06af024e582747b76b9a621a")
 
         return db
+
+    def notifConfig(self):
+
+        if MODE == 'test':
+            return False
+
+        if MODE == 'live':
+            return True
