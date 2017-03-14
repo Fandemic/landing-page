@@ -237,19 +237,19 @@ p {
             <form id="partners-form" action="/partner-submit-form" method="post" role="form">
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-                <input id="name" name="name" class="form-control" type="text" placeholder="Your Name">
+                <input id="name" name="name" class="form-control" type="text" placeholder="Your Name" required>
               </div>
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-building"></i></span>
-                <input id="companyname" name="companyname" class="form-control" type="text" placeholder="Company Name">
+                <input id="companyname" name="companyname" class="form-control" type="text" placeholder="Company Name" required>
               </div>
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-desktop"></i></span>
-                <input id="companywebsite" name="companywebsite" class="form-control" type="text" placeholder="Company Website">
+                <input id="companywebsite" name="companywebsite" class="form-control" type="text" placeholder="Company Website" required>
               </div>
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope"></i></span>
-                <input id="email" name="email" class="form-control" type="text" placeholder="Email">
+                <input id="email" name="email" class="form-control" type="text" placeholder="Email" required>
               </div>
               <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
@@ -259,40 +259,21 @@ p {
                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-key"></i></span>
                 <input id="password" name="password" class="form-control" type="password" placeholder="Password" required>
               </div>
+              <div class="row">
+              <input type="submit" class="btn btn-primary btn-nav btn-beauty" style="width:100%;background: #e96443;background: -webkit-linear-gradient(to left, #e96443 , #e258b0);background: linear-gradient(to left, #e96443 , #e258b0);">
+              </div>
           </form>
 
           </div>
         </div>
         <br>
 
-        <button class="btn btn-primary btn-nav btn-beauty" style="width:100%;background: #e96443;
-        background: -webkit-linear-gradient(to left, #e96443 , #e258b0);
-        background: linear-gradient(to left, #e96443 , #e258b0);" id="partners-form-submit">Submit</button>
+
       </div>
     </div>
   </div>
 </div>
 
 <script>
-
-
-// this is the id of the form
-$("#partners-form-submit").click(function(e) {
-    $.ajax({
-      url: "/partner-submit-form",
-      data: $('form').serialize(),
-      type: 'POST',
-      success: function(response) {
-          console.log(response);
-          $('#partners-form-submit').replaceWith('<p style="text-align:center">Awesome! We will get back to you ASAP!</p>')
-          // setTimeout(function() { $('#partner-form').modal('hide'); }, 2000);
-      },
-      error: function(error) {
-          console.log(error);
-          $('#partners-form-submit').replaceWith('<p style="text-align:center">Awesome! We will get back to you ASAP!</p>')
-      }
-    });
-
-});
 
 </script>

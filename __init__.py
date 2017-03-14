@@ -625,7 +625,7 @@ def partnersForm():
     userProfile['system'] = 'partners'
 
     userProfile['bio'] = {}
-    userProfile['bio']['company_id'] = companyname.replace(" ","")
+    userProfile['bio']['company_id'] = companyname.replace(" ","-").lower()
     userProfile['bio']['company_name'] = companyname
     userProfile['bio']['short_story'] = ''
     userProfile['bio']['contact_name'] = name
@@ -668,8 +668,8 @@ def partnersForm():
             """
 
     email = Mailer()
-    email.send(toaddr,subject,html)
-    email.send(toaddr_comp,subject_comp,html_comp)
+    #email.send(toaddr,subject,html)
+    #email.send(toaddr_comp,subject_comp,html_comp)
 
 
     sarah = Slack()
@@ -680,9 +680,9 @@ def partnersForm():
     slack_msg += '\n Email:* ' + str(companyemail)
 
 
-    sarah.notify(slack_msg)
+    #sarah.notify(slack_msg)
 
-    return '';
+    return redirect("/partners", code=302)
 
 
 @app.route('/instagram-validate', methods=['GET', 'POST'])
