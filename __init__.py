@@ -283,20 +283,21 @@ def store(template,starID):
 @app.route('/charge', methods=['GET', 'POST'])
 def charge():
 
+    email = Mailer()
     sarah = Slack()
 
     #get the ajaxed info
     if request.method == "POST":
 
+        #get the post data
         data = request.get_json()
 
         customer = data['customer'];
         shipping_rate = float(data['shipping_method']['rate'])
 
-
         #process the transaction
         result = braintree.Transaction.sale({
-            "amount": str(data['price']+shipping_rate),
+            "amount": str(data['total_price']+shipping_rate),
             "payment_method_nonce": data['nonce'],
             "order_id": data['order_id'],
             "options": {
@@ -306,71 +307,37 @@ def charge():
         });
 
 
-        print data
-
-        print '-------------------------------------------'
-
-        #print result for testing
-        print result
-
+        #The transaction was a success, keep processing the data
         if result.is_success:
 
+            #generate shipping labels
+            company = {}
+            company['name'] = "Brandons Cosmetics"
+            company['street'] = "11823 Maren Ct."
+            company['city'] = "Reisterstown"
+            company['state'] = "Maryland"
+            company['zip'] = "21136"
+            company['country'] = "US"
+            shipping = Shipping()
+            data['shipping_info'] = shipping.purchase_shipping_label(company=company,customer=customer)
+
+            #additional data parsing
+            data['type'] = 'ORDER' #can also be SAMPLE
+            #data['braintree_id'] = result.transaction.id
+            #data['order_date'] = int(time.time())
+            data['shipped'] = False
+            data['received'] = False
 
             #submit transaction to orders collection
-            result = db.orders.insert_one(data);
+            db.orders.insert_one(data);
 
-            #increment star's order qty by 1
-            db.stars.update_one({
-                  'id': data['star_id'],
-                  'campaigns.0.id': data['campaign_id']
-                },{
-                  '$inc': { 'campaigns.0.num_orders': 1 }
-                })
+            #send the email confirmation to customer
+            email.sendOrderConfirmation(customer,data)
 
-            #send an email to the person who ordered
-            toaddr = [customer['email']]
-            subject = "Order Confirmation - Fandemic"
-            html =  """
-                    Hey """+ customer['name'] +""",<br><br>
-                    Your order has been processed successfully!<br><br>
+            #send order alert to the team
+            sarah.sendOrderConfirmation(customer,data)
 
-                    <h3>Order Details</h3>
-                    <p>Total Price: $"""+ str(data['price']+shipping_rate) +"""($"""+ str(data['price']) +""" box + $"""+ data['shipping_method']['rate'] +""" shipping)</p>
-                    <p>Order ID: """+ data['order_id'] +"""</p>
-                    <p>Star ID: """+ data['star_id'] +"""</p>
-                    <p>Campaign ID: """+ data['campaign_id'] +"""</p>
-                    <hr>
-                    <h3>Shipping Information</h3>
-                    <p>"""+ customer['name'] +"""</p>
-                    <p>"""+ customer['addr'] +"""</p>
-                    <p>"""+ customer['city'] +""" """+ customer['state'] +""", """+ customer['zip'] +"""</p>
-                    <p>"""+ customer['country'] +"""</p>
-                    """
-            email.send(toaddr,subject,html)
-
-
-
-            #slack notification of transaction
-            msg= ''
-            msg += '\n*star ID:* ' + data['star_id']
-            msg += '\n*campaign ID:* ' + data['campaign_id']
-            msg += '\n*name:* ' + customer['name']
-            msg += '\n*email:* ' + customer['email']
-            msg += '\n*addr:* ' + customer['addr']
-            msg += '\n*city:* ' + customer['city']
-            msg += '\n*state:* ' + customer['state']
-            msg += '\n*zip:* ' + customer['zip']
-            msg += '\n*shipping service:* ' + data['shipping_method']['service']
-            msg += '\n*shipping rate:* $' + str(data['shipping_method']['rate'])
-            msg += '\n*box price:* $' + str(data['price'])
-            msg += '\n*total price:* $' + str(data['price']+shipping_rate)
-
-
-
-            sarah.send("order from " + data['star_id'] + "'s store","Order ID: "+data['order_id'],msg)
-
-
-            return '';
+            return 'OK';
 
 
 #================PROCESS A STOCKING FEE====================#
@@ -382,10 +349,13 @@ def sampleCharge():
 
         info = request.get_json()
 
-        #SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
-        #PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
-        SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
-        PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
+
+        if MODE == 'test':
+            SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
+            PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
+        if MODE == 'live':
+            SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
+            PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
 
         #initialize the stripe data
         stripe_keys = {
@@ -405,7 +375,7 @@ def sampleCharge():
             customer=customer.id,
             amount=info['amount'],
             currency='usd',
-            description= 'Someone ordered a sample',
+            description= 'Someone ordered a sample for review',
             metadata={},
             receipt_email=info['email']
         )
@@ -415,10 +385,11 @@ def sampleCharge():
         subject = "Sample Order Confirmation"
         html =  """
                 Hey """+ info['star']['name'] +""",<br><br>
-                I saw you customized your <strong>"""+ info['box_name'] +"""</strong> box and
-                that you want to sample it for yourself before you start selling it!<br><br>
-                I am reaching out just to tell you that your sample will be shipped within 24 hours
+                I saw see you ordered some products for review!<br><br>
+                I am reaching out just to tell you that your products will be shipped within 24 hours
                 and should be at your doorstep in 5 business days or less.<br><br>
+                You have received these products at an extremely discounted rate and are expected to review them
+                prior to selling them on your <a href='https://fandemic.co/"""+info['star']['id']+"""'>Official """ + info['star']['id'] + """ Fandemic Store</a>
                 If you have any questions or concerns please don't hesitate to reach out to me!<br><br>
                 - Sarah :)
                 """
@@ -591,7 +562,7 @@ def launchStoreRequest():
 
         #send an activate store email to the user
         toaddr = [info['star']['email']]
-        email.sendActivate(toaddr,info['star']['id'],info['box_name'])
+        #email.sendActivate(toaddr,info['star']['id'],info['box_name'])
 
         if info['logo'] != '':
             #submit logo to cloudinary_url

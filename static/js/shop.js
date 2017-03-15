@@ -8,13 +8,13 @@ app.config(['$interpolateProvider', function($interpolateProvider) {
 app.controller("shop", function($scope) {
 
 
+
   $scope.data = {};
 
   //initialize the customers
   $scope.data.customer = {
-    email:'',
     name:'',
-    addr:'',
+    email:'',
     city:'',
     state:'',
     zip:'',
@@ -34,11 +34,9 @@ app.controller("shop", function($scope) {
 
   $scope.data.end_time = end_time;
 
-  $scope.data.order_id = randomString(10);
-
   $scope.data.star_id = star_id;
 
-  $scope.data.campaign_id = campaign_id;
+  $scope.data.order_id = randomString(10);
 
   $scope.view_mode = 'box';
 
@@ -161,7 +159,7 @@ app.controller("shop", function($scope) {
       $('#name').notify("oops! you forgot your NAME", { position:"top center" });
       return false;
     }
-    else if (!c.addr){
+    else if (!c.street){
       $('#submit').notify("oops! you forgot your ADDRESS", { position:"top center" });
       $('#addr').notify("oops! you forgot your ADDRESS", { position:"top center" });
       return false;
@@ -204,7 +202,7 @@ app.controller("shop", function($scope) {
 
       }
 
-      else if (c.addr && c.city && c.state && c.zip && c.country){
+      else if (c.street && c.city && c.state && c.zip && c.country){
 
         $('#shipping').notify("updating shipping methods...", { position:"top center",className:"info" });
         $.ajax({

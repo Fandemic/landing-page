@@ -5,10 +5,11 @@ class Shipping:
     def __init__(self):
 
         #establish mode
-        if MODE is 'test':
-            easypost.api_key = 'UkcBy5FU81KSXBEHqAicwA'
-        if MODE is 'live':
-            easypost.api_key = 'rqNWHlFPA9OAjCBkUMnexg'
+        easypost.api_key = 'UkcBy5FU81KSXBEHqAicwA'
+        #if MODE == 'test':
+        #    easypost.api_key = 'UkcBy5FU81KSXBEHqAicwA'
+        #if MODE == 'live':
+        #    easypost.api_key = 'rqNWHlFPA9OAjCBkUMnexg'
 
         self.from_address = easypost.Address.create(
           verify=["delivery"],
@@ -22,70 +23,36 @@ class Shipping:
           phone = "443-536-4110"
         )
 
+        # create parcel
+        try:
+          self.parcel = easypost.Parcel.create(
+            length = 6,
+            width = 6,
+            height = 6,
+            weight = 15
+          )
+        except easypost.Error as e:
+          raise e
+
     #get the shipping rate based on address
     def get_rates(self,customer):
         # create and verify addresses
         to_address = easypost.Address.create(
           verify=["delivery"],
           name = customer['name'],
-          street1 = customer['addr'],
+          street1 = customer['street'],
           street2 = "",
           city = customer['city'],
           state = customer['state'],
           zip = customer['zip'],
-          country = customer['country'],
-          phone = "555-555-5555"
-        )
-
-
-        # create parcel
-        try:
-          parcel = easypost.Parcel.create(
-            predefined_package = "Parcel",
-            weight = 24
-          )
-        except easypost.Error as e:
-          print e.message
-          if e.param != None:
-            print 'Specifically an invalid param: ' + e.param
-
-        try:
-          parcel = easypost.Parcel.create(
-            length = 8,
-            width = 6,
-            height = 2,
-            weight = 24
-          )
-        except easypost.Error as e:
-          raise e
-
-        # create customs_info form for intl shipping
-        customs_item = easypost.CustomsItem.create(
-          description = "EasyPost t-shirts",
-          hs_tariff_number = 123456,
-          origin_country = "US",
-          quantity = 2,
-          value = 96.27,
-          weight = 24
-        )
-        customs_info = easypost.CustomsInfo.create(
-          customs_certify = 1,
-          customs_signer = "Hector Hammerfall",
-          contents_type = "gift",
-          contents_explanation = "a box with beauty products",
-          eel_pfc = "NOEEI 30.37(a)",
-          non_delivery_option = "return",
-          restriction_type = "none",
-          restriction_comments = "",
-          customs_items = [customs_item]
+          country =customer['country']
         )
 
         # create shipment
         shipment = easypost.Shipment.create(
           to_address = to_address,
           from_address = self.from_address,
-          parcel = parcel,
-          customs_info = customs_info
+          parcel = self.parcel
         )
 
         rates = []
@@ -98,14 +65,73 @@ class Shipping:
 
         return rates
 
-        # buy postage label with one of the rate objects
-        #shipment.buy(rate = shipment.rates[0])
-        # alternatively: shipment.buy(rate = shipment.lowest_rate())
 
-        #print shipment.tracking_code
-        #print shipment.postage_label.label_url
+
+
+    #Purchase a sample label and return the label URL
+    #returns a dictionary with the label_url and shipment ID
+    def purchase_shipping_label(self,company,customer):
+
+        #address of the company
+        from_address = easypost.Address.create(
+          verify=["delivery"],
+          name = company['name'],
+          street1 = company['street'],
+          street2 = "",
+          city = company['city'],
+          state = company['state'],
+          zip = company['zip'],
+          country = company['country']
+        )
+
+        #address of the client
+        to_address = easypost.Address.create(
+          verify=["delivery"],
+          name = customer['name'],
+          street1 = customer['street'],
+          street2 = "",
+          city = customer['city'],
+          state = customer['state'],
+          zip = customer['zip'],
+          country = customer['country']
+        )
+
+        #return address
+        return_address = easypost.Address.create(
+          verify=["delivery"],
+          name = 'Fandemic Inc.',
+          street1 = '10420 McKinley Dr',
+          street2 = "",
+          city = 'Tampa',
+          state = 'FL',
+          zip = '33612',
+          country = 'US',
+          phone = "443-536-4110"
+        )
+
+
+        # create shipment
+        shipment = easypost.Shipment.create(
+          to_address = to_address,
+          from_address = from_address,
+          return_address = return_address,
+          parcel = self.parcel
+        )
+
+        # alternatively:
+        shipment.buy(rate = shipment.lowest_rate())
 
         # Insure the shipment for the value
-        #shipment.insure(amount=100)
+        shipment.insure(amount=50)
 
-        #print shipment.insurance
+        print shipment.tracking_code
+        print shipment.postage_label.label_url
+        print shipment.tracker.id
+
+        info = {}
+        info['tracking_code'] = shipment.tracking_code
+        info['label_url'] = shipment.postage_label.label_url
+        info['tracker_url'] = shipment.tracker.public_url
+        info['tracker_id'] = shipment.tracker.id
+
+        return info

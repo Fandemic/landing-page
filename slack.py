@@ -40,3 +40,28 @@ class Slack:
         attachments.append(attachment)
 
         self.slack.notify(attachments=attachments)
+
+
+    def sendOrderConfirmation(self,customer,data):
+        #slack notification of transaction
+        msg= ''
+        msg += '\n*order ID:* ' + data['order_id']
+        msg += '\n*star ID:* ' + data['star_id']
+        msg += '\n*name:* ' + customer['name']
+        msg += '\n*email:* ' + customer['email']
+        msg += '\n*street:* ' + customer['street']
+        msg += '\n*city:* ' + customer['city']
+        msg += '\n*state:* ' + customer['state']
+        msg += '\n*zip:* ' + customer['zip']
+        msg += '\n*country:* ' + customer['country']
+        msg += '\n*Shipping Service:* ' + data['shipping_method']['service']
+        msg += '\n*Shipping Rate:* $' + str(data['shipping_method']['rate'])
+        msg += '\n*Shipping Label:* ' + data['shipping_info']['label_url']
+        msg += '\n*Price:* $' + str(data['price'])
+        msg += '\n*Total Price:* $' + str(data['price']+float(data['shipping_method']['rate']))
+
+        msg += '\n*Cart:*'
+        for item in data['cart']:
+            msg += '\n  ' + str(item)
+
+        self.send("order from " + data['star_id'] + "'s store","Order ID: "+data['order_id'],msg)

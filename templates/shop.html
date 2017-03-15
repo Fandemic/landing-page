@@ -411,7 +411,7 @@ h3{
             <div class='row'>
               <div class='col-xs-12'>
                 <label class='control-label'>Shipping Address</label>
-                <input data-category="Shop" data-action="Shipping Address form" data-label="Address Input Form" id="addr" class='form-control' size='200' type='text' ng-model="data.customer.addr" ng-model-options="{ debounce: 1500 }">
+                <input data-category="Shop" data-action="Shipping Address form" data-label="Address Input Form" id="addr" class='form-control' size='200' type='text' ng-model="data.customer.street" ng-model-options="{ debounce: 1500 }">
               </div>
             </div>
             <br>
@@ -762,7 +762,7 @@ h3{
         <p><span ng-bind="data.customer.email"></span></p>
 
         <p>
-          <span ng-bind="data.customer.addr"></span>
+          <span ng-bind="data.customer.street"></span>
           <br>
           <span ng-bind="data.customer.city"></span> <span ng-bind="data.customer.state"></span>, <span ng-bind="data.customer.zip"></span>
           <br>
