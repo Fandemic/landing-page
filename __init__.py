@@ -588,7 +588,6 @@ def launchStoreRequest():
 def partnersForm():
     companyname =  request.form['companyname']
     companywebsite = request.form['companywebsite']
-    name = request.form['name']
     companyemail = request.form['email']
     username = request.form['username']
     password = request.form['password']
@@ -605,7 +604,7 @@ def partnersForm():
     userProfile['bio']['company_id'] = companyname.replace(" ","-").lower()
     userProfile['bio']['company_name'] = companyname
     userProfile['bio']['short_story'] = ''
-    userProfile['bio']['contact_name'] = name
+    userProfile['bio']['contact_name'] = ''
     userProfile['bio']['website'] = companywebsite
     userProfile['bio']['email'] = companyemail
     userProfile['bio']['phone'] = ''
