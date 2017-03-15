@@ -23,38 +23,15 @@ from cdn import CDN
 import braintree
 from flask_compress import Compress
 from password import hash_password, verify_password
+from config import Config
 
-
-#UPLOAD_FOLDER = 'static/img/test/'
-#ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'ai', 'psd','svg'])
+c = Config()
+db = c.dbConfig()
 
 app = Flask(__name__)
-app.secret_key = 'super secret key'
-#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 Mobility(app)
 Compress(app)
-#db = MongoClient('45.79.159.210', 27018).fandemic_test
-
-################# SET THE MODE (live or production)
-MODE = 'test';
-####################################################
-
-salt = 'dSGSjghjEGFCugbEgbv'
-
-#get the stars products
-if MODE == 'test':
-    db = MongoClient('45.79.159.210', 27018).fandemic_test
-    braintree.Configuration.configure(braintree.Environment.Sandbox,
-                                      merchant_id="2hf4g4nnyr988sbq",
-                                      public_key="k7kxgfrgmwq95qrr",
-                                      private_key="c33bb5198238ee8c544f5e2ff894a63b")
-elif MODE == 'live':
-    #BRAINTREE LIVE MODE
-    db = MongoClient('45.79.159.210', 27018).fandemic
-    braintree.Configuration.configure(braintree.Environment.Production,
-                                      merchant_id="xhfrd2njsj3hpjqg",
-                                      public_key="24hn86zpmj3kg6zd",
-                                      private_key="bf70efac06af024e582747b76b9a621a")
 
 email = Mailer();
 
@@ -614,8 +591,6 @@ def partnersForm():
     userProfile['bio']['address']['country'] = ''
 
 
-
-
     db.profiles.insert_one(userProfile)
 
     toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
@@ -638,20 +613,26 @@ def partnersForm():
             I'll send you a link to access your partners' dashbaord so you can get started adding products!
             """
 
-    email = Mailer()
-    #email.send(toaddr,subject,html)
-    #email.send(toaddr_comp,subject_comp,html_comp)
+
+    c = Config()
+    notif = c.notifConfig()
+
+    if notif == True:
+
+        email = Mailer()
+        email.send(toaddr,subject,html)
+        email.send(toaddr_comp,subject_comp,html_comp)
 
 
-    sarah = Slack()
+        sarah = Slack()
 
-    slack_msg = '*Company Name:* ' + companyname
-    slack_msg += '\n Company Website:* ' + companywebsite
-    slack_msg += '\n Name:* ' + name
-    slack_msg += '\n Email:* ' + str(companyemail)
+        slack_msg = '*Company Name:* ' + companyname
+        slack_msg += '\n Company Website:* ' + companywebsite
+        slack_msg += '\n Name:* ' + name
+        slack_msg += '\n Email:* ' + str(companyemail)
 
 
-    #sarah.notify(slack_msg)
+        sarah.notify(slack_msg)
 
     return redirect("/partners", code=302)
 
@@ -666,11 +647,26 @@ def instagramValidate():
     else:
         return 'failed'
 
+@app.route('/partners-form-validate', methods=['GET', 'POST'])
+def partnersFormValidate():
+    username = str(request.form['username'])
+    company_id = str(request.form['companyname']).replace(" ","-").lower()
+    u = Utils()
+    if (u.checkIDExists('bio.company_id',company_id)):
+        return 'company'
+    elif (u.checkIDExists('username',username)):
+        return 'username'
+    else:
+        return 'success'
 
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
+app.secret_key = 'vngf8765ghuu767g'
+salt = 'dSGSjghjEGFCugbEgbv'
+
 
 if __name__ == '__main__':
 

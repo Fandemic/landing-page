@@ -1,5 +1,10 @@
 import urllib2
 import json
+from pymongo import MongoClient, GEO2D
+from config import Config
+
+c = Config()
+db = c.dbConfig()
 
 
 class Utils:
@@ -30,4 +35,10 @@ class Utils:
             return False
         else:
             # 200
+            return True
+
+    def checkIDExists(self,key,id):
+        if (db.profiles.find({key:id}).count() == 0):
+            return False
+        else:
             return True

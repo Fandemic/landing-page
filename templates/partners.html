@@ -91,6 +91,9 @@ p {
       padding: 5em;
     }
   }
+  #error{
+    color:red;
+  }
 </style>
 
 <body>
@@ -260,6 +263,7 @@ p {
                 <input id="password" name="password" class="form-control" type="password" placeholder="Password" required>
               </div>
               <div class="row">
+                <span id="error"></span>
               <input type="submit" class="btn btn-primary btn-nav btn-beauty" style="width:100%;background: #e96443;background: -webkit-linear-gradient(to left, #e96443 , #e258b0);background: linear-gradient(to left, #e96443 , #e258b0);">
               </div>
           </form>
@@ -275,5 +279,26 @@ p {
 </div>
 
 <script>
+$("form").submit(function(e) {
+  var form = this;
+  e.preventDefault();
+  var formData = $('form').serializeArray();
+  $.ajax({
+      url: "/partners-form-validate",
+      data: formData,
+      type: 'POST',
+      success: function(response) {
+        if (response == 'username'){
+          $('#error').text("Username already exists!")
+        }
+        else if (response == 'company') {
+          $('#error').text("Company already exists!")
+        }
+        else {
+          form.submit();
+        }
+      }
+  });
+});
 
 </script>
