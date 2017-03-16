@@ -621,24 +621,16 @@ def partnersForm():
 
     db.profiles.insert_one(userProfile)
 
-    toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
-    subject = "Partner Submit Form"
-    html =  """
-            Company Name: """ + companyname + """<br>
-            Company Website: """ + companywebsite + """<br>
-            Name: """ + name + """<br>
-            Email: <a href="mailto:""" + companyemail + """"> """ + companyemail + """ </a><br>
-            CompanyID: """ + companyname.replace(" ","") + """"
-
-            """
     toaddr_comp = [companyemail]
-    subject_comp = "Thanks for your Partner request!"
+    subject_comp = "Thank you for letting us work with " + companyname + "!"
     html_comp =  """
-            Hey """ + name + """
+            Hey There!
             <br>
-            Thanks so much for submitting a partnership request to be added to Fandemic's Beauty Builder.
+            My name is Sarah and I'll be your advisor while you experience our partners platform for """+companyname+"""!
             <br>
-            I'll send you a link to access your partners' dashbaord so you can get started adding products!
+            When you get a chance, please sign in using the username and password you provided, begin filling out your profile, and upload all your best products/variations.
+            <br>
+            Please, let me know if you have ANY questions at all (there are no silly questions)!
             """
 
 
@@ -649,15 +641,14 @@ def partnersForm():
 
         email = Mailer()
         email.send(toaddr,subject,html)
-        email.send(toaddr_comp,subject_comp,html_comp)
-
 
         sarah = Slack()
 
         slack_msg = '*Company Name:* ' + companyname
         slack_msg += '\n Company Website:* ' + companywebsite
-        slack_msg += '\n Name:* ' + name
-        slack_msg += '\n Email:* ' + str(companyemail)
+        slack_msg += '\n Company ID:* ' + companyname.replace(" ","-").lower()
+        slack_msg += '\n Username:* ' + username
+        slack_msg += '\n Email:* ' + companyemail
 
 
         sarah.notify(slack_msg)
