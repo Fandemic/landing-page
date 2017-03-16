@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-default stuck">
   <div class="container">
     <div class="navbar-header">
@@ -16,12 +18,14 @@
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
       <ul class="nav navbar-nav nav-left" style="padding-left:1em;">
         <li><a style="font-weight:600;font-size:18px;" href="/about">About</a></li>
-        <li><a style="font-weight:600;font-size:18px;" href="/partners">Partners</a></li>
         <li><a style="font-weight:600;font-size:18px;" href="/blog">Blog</a></li>
         <li><a style="font-weight:600;font-size:18px;" href="/faq">FAQ</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/builder"  class="btn">Launch a Store</a></li>
+        <li class="influencers"><a href="/builder" class="btn">For Influencers</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="partners"><a href="/partners"  class="btn">For Partners</a></li>
       </ul>
     </div>
   </div>
@@ -34,4 +38,24 @@ h1, h2, h3, h4 {
 p {
   font-family: 'Josefin Sans', sans-serif !important;
 }
+.navbar-right .partners {
+  margin-right:1em;
+}
+.navbar-right .influencers {
+  background-color:#e22b8c !important;
+}
+.navbar-right .influencers a{
+  color: white !important;
+  border-color: transparent !important;
+}
+
+.navbar-default.stuck .navbar-nav .influencers .btn:hover, .navbar-default.stuck .navbar-nav .influencers .btn:focus {
+    background: white !important;
+    color: #e22b8c !important
+  }
+
+.navbar-default.stuck .navbar-nav .influencers .btn {
+  border-color: #CA1488 !important;
+}
+
 </style>
