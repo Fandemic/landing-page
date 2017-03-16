@@ -87,19 +87,19 @@ def catalog(template,cat=None,cat2=None,cat3=None):
     else:
 
         if cat2 is None:
-            items = db.items.find({"category":cat}) #find the star
+            items = db.staging_items.find({"category":cat}) #find the star
 
         else:
 
             if cat3 is None:
-                items = db.items.find({"category":cat,"sub-category":cat2}) #find the star
+                items = db.staging_items.find({"category":cat,"sub-category":cat2}) #find the star
 
             else:
-                items = db.items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3}) #find the star
+                items = db.staging_items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3}) #find the star
 
     items = list(items);
     for item in items:
-        item['price'] = int(math.ceil(math.ceil( item['price']) ))
+        item['price'] = int(math.ceil(math.ceil( float(item['retail_price'])) ))
 
     return render_template(template, items=list(items), box_items=list(box_items),styles=styles,packaging=list(packaging),cat=cat,cat2=cat2,cat3=cat3,stars=stars)
 

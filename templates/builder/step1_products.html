@@ -27,7 +27,7 @@
       </div>
 
       <ul class="nav nav-tabs">
-        {% for group in items | groupby('sub-category')%}
+        {% for group in items | groupby('category')%}
         <li {% if group.grouper == 'lips' %}class="active"{% endif %}><a
           data-ga-click-event-category="Step 1" data-ga-click-event-action="Category tabs" data-ga-click-event-label="{{group.grouper}}"
           data-toggle="tab" href="#{{group.grouper}}">
@@ -38,7 +38,7 @@
       </ul>
 
     <div class="tab-content">
-    {% for group in items | groupby('sub-category')%}
+    {% for group in items | groupby('category')%}
     <div id="{{group.grouper}}" class="tab-pane fade {% if group.grouper == 'lips' %}in active{% endif %}" >
 
 
@@ -176,13 +176,9 @@
                 <div class="col-md-12">
                   <p style="color:green;font-weight:600;">Production Cost: ${{item.price|round|int}}</p>
                 </div>
-                <!-- <div class="col-md-4">
-                  <img style="margin-top:-2em;width:6em" src="../../static/img/partners/{{item.company.logo_url}}">
-                </div> -->
+                
               </div>
-              {% if item.company.customizable == True %}
-              <i class="light">*each beauty item will be printed with your custom name or logo</i>
-              {% endif %}
+
               <br><br>
 
 
