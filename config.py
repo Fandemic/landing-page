@@ -5,10 +5,9 @@ import socket
 server = socket.gethostname()
 
 if server == 'livloo':
-    MODE == 'live'
+    MODE = 'live'
 else:
-    MODE == 'test'
-
+    MODE = 'test'
 
 class Config:
 
