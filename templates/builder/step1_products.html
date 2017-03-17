@@ -75,13 +75,19 @@
                   </span>
                   <!--<img src="../static/img/selectmark.svg" class="selectmark" style="display:none;">-->
 
+
+                <img height="30px" style="right:5px;top:5px;position:absolute;"
+                     src="http://res.cloudinary.com/fandemic/image/upload/brands/{{item.company_id}}/logo.png">
+
                 <h5 class="title">{{item.name}}</h5>
+
+
 
               </div>
 
                 <!--<span class="cost">+${{item.price|round|int}}</span>-->
                 {% if item.variation|length > 0 %}
-                <img class="color-palette" src="/static/img/color-palette.svg">
+                <!--<img class="color-palette" src="/static/img/color-palette.svg">-->
                 {% endif %}
                 <div class="group" style="width: 100%; position: absolute;bottom:0px;">
                   <a
@@ -112,6 +118,12 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+
+          <div style="text-align:center;width:100%;margin-bottom:15px;">
+            <img height="40px" style="text-align:center;margin: 0 auto;"
+               src="http://res.cloudinary.com/fandemic/image/upload/brands/{{item.company_id}}/logo.png">
+          </div>
+
 
             <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {{ item.name }} Color!</h3><hr>
 
@@ -154,6 +166,9 @@
             <span aria-hidden="true">&times;</span>
           </button>
 
+          <img height="60px" style="position:absolute;bottom:25px;left:25px;"
+               src="http://res.cloudinary.com/fandemic/image/upload/brands/{{item.company_id}}/logo.png">
+
           <div class="row" >
 
             <div class="col-md-4">
@@ -167,7 +182,8 @@
             </div>
 
             <div class="col-md-8">
-              <h2 class="modal-title" id="myModalLabel">{{item.name}}</h2>
+              <h2 class="modal-title" id="myModalLabel">{{item.name}}
+              </h2>
               <hr>
 
               <p>{{item.description}}</p>
@@ -176,7 +192,7 @@
                 <div class="col-md-12">
                   <p style="color:green;font-weight:600;">Production Cost: ${{item.price|round|int}}</p>
                 </div>
-                
+
               </div>
 
               <br><br>

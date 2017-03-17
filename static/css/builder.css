@@ -97,7 +97,6 @@
 footer {
   background-color: rgba(0, 0, 0, 0.03);
     padding: 20px 0 10px !important;
-    margin: -36px;
     margin-top: 40px;
 }
 
@@ -141,7 +140,7 @@ footer {
 .footer {
   background-color: #F1F1F1;
   padding: 50px 0 15px;
-  margin:-36px;
+  width: 100%;
 }
 .footer a, .footer h2, .footer .h2, .footer h3, .footer .h3, .footer h4, .footer .h4 {
   color: ##66595C
@@ -527,11 +526,11 @@ a:focus {
 
       pointer-events: all;
       cursor: pointer;
-      background: #D2AFC9 !important ;
+      background: rgba(226, 88, 176, 0.37) !important;
     }
 
     .beauty ul li .touched:after{
-      border-left-color: #D2AFC9 !important ;
+      border-left-color: #F1BEDF !important ;
     }
 
     #crumbs .current{
@@ -539,7 +538,7 @@ a:focus {
     }
 
     .beauty .current {
-			background: #ba82aa !important;
+			background: linear-gradient(to left, #e96443 , #e258b0) !important;
 		}
 
 
@@ -559,7 +558,7 @@ a:focus {
 
 
       .beauty .current:after{
-  			border-left-color: #ba82aa !important;
+  			border-left-color: #e96443 !important;
   		}
 
       #crumbs .current:after{
@@ -615,8 +614,8 @@ a:focus {
 				}
 
         .beautify{
-          color: #7F3960 !important;
-          border-color: #7F3960 !important;
+          color: #E259A5 !important;
+          border-color: #E259A5 !important;
           font-size: 12px !important;
         }
 

@@ -35,6 +35,8 @@ Compress(app)
 
 email = Mailer();
 
+MODE = 'test'
+
 #================INDEX=====================
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -244,11 +246,19 @@ def store(template,starID):
 
     currentTime = int(time.time())
 
-
     #pull default descriptions for products
     c = 0
     for product in star['campaigns'][0]['products']:
-        star['campaigns'][0]['products'][c]['description'] = db.items.find_one({'name':product['name']})['description'].replace("'","\\'") #find the star
+
+        #match the product info to the users products
+        product_info = db.staging_items.find_one({'name':product['name']})
+        star['campaigns'][0]['products'][c]['description'] = product_info['description'].replace("'","\\'") #find the star
+        star['campaigns'][0]['products'][c]['company_id'] = product_info['company_id']
+
+        #match the company info to the users products
+        company = db.staging_items.find_one({'name':product['name']})
+        star['campaigns'][0]['products'][c]['company'] = company
+
         c += 1
 
 

@@ -17,7 +17,7 @@
              <div class="col-xs-12" style="" ng-repeat="product in box.products">
 
                   <div>
-                    <img width="60px" src="/static/img/beauty-items/{a product.item_num a}.png" style="float:left;padding-right:10px;">
+                    <img width="60px" src="https://res.cloudinary.com/fandemic/w_120,h_120,c_pad/products/{a product.item_num a}.png" style="float:left;padding-right:10px;">
                     <p class="light" style="margin-top:5px;"><strong>{a product.name a}</strong> (${a 1*product.cost + 1*box.profit + 1*box.charity a})
                       <br> <span style="font-size:.8em">{a product.variation a}</span>
                       <span ng-if="box.charity!= 0" style="color:#CFA7C3;font-weight:600;">
