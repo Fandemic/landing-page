@@ -1,10 +1,14 @@
 from pymongo import MongoClient, GEO2D
 import braintree
+import socket
 
+server = socket.gethostname()
 
-################# SET THE MODE (live or production)
-MODE = 'test';
-####################################################
+if server == 'livloo':
+    MODE == 'live'
+else:
+    MODE == 'test'
+
 
 class Config:
 
@@ -37,3 +41,10 @@ class Config:
 
         if MODE == 'live':
             return True
+
+    def configMode(self):
+        if MODE == 'test':
+            return 'test'
+
+        if MODE == 'live':
+            return 'live'

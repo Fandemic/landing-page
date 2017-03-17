@@ -27,15 +27,16 @@ from config import Config
 
 c = Config()
 db = c.dbConfig()
+MODE = c.configMode()
+
+email = Mailer();
 
 app = Flask(__name__)
 
 Mobility(app)
 Compress(app)
 
-email = Mailer();
 
-MODE = 'test'
 
 #================INDEX=====================
 @app.route('/', methods=['GET', 'POST'])
@@ -614,11 +615,7 @@ def partnersForm():
             Please, let me know if you have ANY questions at all (there are no silly questions)!
             """
 
-
-    c = Config()
-    notif = c.notifConfig()
-
-    if notif == True:
+    if MODE == 'live':
 
         email = Mailer()
         email.send(toaddr,subject,html)
