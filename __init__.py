@@ -9,8 +9,8 @@ from collections import Counter
 from jinja2 import Template
 import json
 import bson
-from flask.ext.mobility import Mobility
-from flask.ext.mobility.decorators import mobile_template
+from flask_mobility import Mobility
+from flask_mobility.decorators import mobile_template
 import stripe
 import os
 from slack import Slack
