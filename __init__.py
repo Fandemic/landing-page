@@ -251,7 +251,7 @@ def store(template,starID):
     for product in star['campaigns'][0]['products']:
 
         #match the product info to the users products
-        product_info = db.staging_items.find_one({'name':product['name']})
+        product_info = db.items.find_one({'name':product['name']})
         star['campaigns'][0]['products'][c]['description'] = product_info['description'].replace("'","\\'") #find the star
         star['campaigns'][0]['products'][c]['company_id'] = product_info['company_id']
 
