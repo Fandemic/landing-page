@@ -135,16 +135,16 @@ def productSearch():
     items = []
 
     if filters['category'] == 'All Products' and filters['brand']['id'] == 'All Brands':
-        items = list(db.staging_items.find({"category":"beauty"},{'_id': False}))
+        items = list(db.items.find({"category":"beauty"},{'_id': False}))
 
     elif filters['category'] == 'All Products':
-        items = list(db.staging_items.find({"category":"beauty","company_id":filters['brand']['id']},{'_id': False}))
+        items = list(db.items.find({"category":"beauty","company_id":filters['brand']['id']},{'_id': False}))
 
     elif filters['brand']['id'] == 'All Brands':
-        items = list(db.staging_items.find({"category":"beauty","sub-category":filters['category']},{'_id': False}))
+        items = list(db.items.find({"category":"beauty","sub-category":filters['category']},{'_id': False}))
 
     else:
-        items = list(db.staging_items.find({"category":"beauty","sub-category":filters['category'],"company_id":filters['brand']['id']},{'_id': False}))
+        items = list(db.items.find({"category":"beauty","sub-category":filters['category'],"company_id":filters['brand']['id']},{'_id': False}))
 
 
 
