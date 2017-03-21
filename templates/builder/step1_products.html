@@ -87,7 +87,7 @@
         <div class="dropdown-container">
           <span class="dropdown-title">Filter by Brand:</span>
           <div class="dropdown-select">
-            <img ng-show="filter.brand.name!='All Brands'" height="40px" src="http://res.cloudinary.com/fandemic/image/upload/brands/{a filter.brand.id a}/logo.png">
+            <img ng-show="filter.brand.name!='All Brands'" height="40px" src="https://res.cloudinary.com/fandemic/image/upload/brands/{a filter.brand.id a}/logo.png">
             <strong class="item-name">{a filter.brand.name a}</strong>
             <img class="arrow" height="30px" src="/static/img/arrow-down.png">
           </div>
@@ -97,7 +97,7 @@
             </div>
             {% for brand in brands %}
             <div class="dropdown-item" ng-click="filter.brand={name:&quot;{{brand.username}}&quot;,id:&quot;{{brand.bio.company_id}}&quot;}">
-              <img height="40px" src="http://res.cloudinary.com/fandemic/image/upload/brands/{{brand.bio.company_id}}/logo.png">
+              <img height="40px" src="https://res.cloudinary.com/fandemic/image/upload/brands/{{brand.bio.company_id}}/logo.png">
               <strong class="item-name">{{ brand.username }}</strong>
             </div>
             {% endfor %}
@@ -160,7 +160,7 @@
 
 
                 <img height="30px" style="right:5px;top:5px;position:absolute;"
-                     src="http://res.cloudinary.com/fandemic/image/upload/brands/{a item.company_id a}/logo.png">
+                     src="https://res.cloudinary.com/fandemic/image/upload/brands/{a item.company_id a}/logo.png">
 
                 <h5 class="title">{a item.name a}</h5>
 
@@ -198,7 +198,7 @@
 
           <div style="text-align:center;width:100%;margin-bottom:15px;">
             <img height="40px" style="text-align:center;margin: 0 auto;"
-               src="http://res.cloudinary.com/fandemic/image/upload/brands/{a item.company_id a}/logo.png">
+               src="https://res.cloudinary.com/fandemic/image/upload/brands/{a item.company_id a}/logo.png">
           </div>
 
 
@@ -245,7 +245,7 @@
           </button>
 
           <img height="60px" style="position:absolute;bottom:25px;left:25px;"
-               src="http://res.cloudinary.com/fandemic/image/upload/brands/{a item.company_id a}/logo.png">
+               src="https://res.cloudinary.com/fandemic/image/upload/brands/{a item.company_id a}/logo.png">
 
           <div class="row" >
 
