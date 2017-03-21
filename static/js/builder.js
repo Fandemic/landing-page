@@ -15,7 +15,7 @@ app.controller("builder", function($scope) {
       font2: "font-family: 'Arvo'",
       font_color: '',
       description: null,
-      cost: 0,
+      cost: 0.00,
       price: 50,
       profit: 0,
       charity: 0,
@@ -51,6 +51,16 @@ app.controller("builder", function($scope) {
       password: ''
     };
 
+    $scope.filter = {
+      brand:{
+        name:'All Brands',
+        id:'All Brands'
+      },
+      category:'All Products'
+    }
+
+    $scope.items = [];
+
     $scope.step = 1;
 
     /*$("#slider").ionRangeSlider({
@@ -64,6 +74,28 @@ app.controller("builder", function($scope) {
    });
    $scope.slider = $("#slider").data("ionRangeSlider");
    */
+
+   //filter products
+   $scope.$watch('filter', function () {
+
+       $.ajax({
+          url: '/product-search',
+          data: JSON.stringify($scope.filter, null, '\t'),
+          type: 'POST',
+          contentType: 'application/json;charset=UTF-8',
+          success: function(response) {
+              data = JSON.parse(response);
+              $scope.items = data;
+              $scope.$apply();
+              $scope.$digest();
+
+          },
+          error: function(error) {
+              console.log(error);
+          }
+      });
+
+    }, true);
 
     //launch the users store form
     $scope.launch_store = function(){
@@ -123,10 +155,24 @@ app.controller("builder", function($scope) {
 
     }
 
+    $scope.check_product = function(item){
+
+      if (item.variation.length > 0){
+        $('#'+item.item_num+'-variation').modal('show');
+        return ''
+      }
+      else{
+        $scope.toggle_product({name:item.name,item_num:item.item_num,price:item.retail_price});
+      }
+
+    }
+
     //Takes a product object and adds it to the box
     $scope.toggle_product = function(product){
 
       index = -1;
+
+
 
       for (i in $scope.box.products){
         if (product.variation){
@@ -141,8 +187,7 @@ app.controller("builder", function($scope) {
 
       if (index >= 0){
          $scope.box.products.splice(index, 1);
-         $scope.box.cost -= parseInt(product.cost);
-         $scope.box.price = $scope.box.cost + 8;
+         $scope.box.cost  =  $scope.box.cost - parseFloat(product['price']);
          $.notify("Product Removed From Box", { position:"top right",className:"error" });
       }
 
@@ -152,8 +197,8 @@ app.controller("builder", function($scope) {
 
       else{
         $scope.box.products.push(product);
-        $scope.box.cost += parseInt(product.cost);
-        $scope.box.price = $scope.box.cost + 8;
+        $scope.box.cost =  $scope.box.cost + parseFloat(product['price']);
+        alert($scope.box.cost);
         $.notify("Product Added to Box", { position:"top right",className:"success" });
       }
 

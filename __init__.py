@@ -13,15 +13,18 @@ from flask_mobility import Mobility
 from flask_mobility.decorators import mobile_template
 import stripe
 import os
-from slack import Slack
-from trello import Trello
-from utils import Utils
 from werkzeug.utils import secure_filename
-from mailer import Mailer
-from shipping import Shipping
-from cdn import CDN
 import braintree
 from flask_compress import Compress
+
+from objects.mailer import Mailer
+from objects.shipping import Shipping
+from objects.slack import Slack
+from objects.trello import Trello
+from objects.star import Star
+from objects.partner import Partner
+from objects.cdn import CDN
+
 from password import hash_password, verify_password
 from config import Config
 
@@ -29,13 +32,27 @@ c = Config()
 db = c.dbConfig()
 MODE = c.configMode()
 
-email = Mailer();
+#get the stars products
+if MODE == 'test':
+    db = MongoClient('45.79.159.210', 27018).fandemic_test
+    braintree.Configuration.configure(braintree.Environment.Sandbox,
+                                      merchant_id="2hf4g4nnyr988sbq",
+                                      public_key="k7kxgfrgmwq95qrr",
+                                      private_key="c33bb5198238ee8c544f5e2ff894a63b")
+elif MODE == 'live':
+    #BRAINTREE LIVE MODE
+    db = MongoClient('45.79.159.210', 27018).fandemic
+    braintree.Configuration.configure(braintree.Environment.Production,
+                                      merchant_id="xhfrd2njsj3hpjqg",
+                                      public_key="24hn86zpmj3kg6zd",
+                                      private_key="bf70efac06af024e582747b76b9a621a")
+
+email = Mailer()
 
 app = Flask(__name__)
 
 Mobility(app)
 Compress(app)
-
 
 
 #================INDEX=====================
@@ -90,22 +107,48 @@ def catalog(template,cat=None,cat2=None,cat3=None):
     else:
 
         if cat2 is None:
-            items = db.staging_items.find({"category":cat}) #find the star
+            items = db.staging_items.find({"category":cat},{'_id': False}) #find the star
 
         else:
 
             if cat3 is None:
-                items = db.staging_items.find({"category":cat,"sub-category":cat2}) #find the star
+                items = db.staging_items.find({"category":cat,"sub-category":cat2},{'_id': False}) #find the star
 
             else:
-                items = db.staging_items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3}) #find the star
+                items = db.staging_items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3},{'_id': False}) #find the star
 
     items = list(items);
     for item in items:
         item['price'] = int(math.ceil(math.ceil( float(item['retail_price'])) ))
 
-    return render_template(template, items=list(items), box_items=list(box_items),styles=styles,packaging=list(packaging),cat=cat,cat2=cat2,cat3=cat3,stars=stars)
+    brands = list(db.profiles.find({"system":"partners","bio": { "$exists": True }}))
 
+    return render_template(template, items=list(items), items_string=json.dumps(items), brands=brands, box_items=list(box_items),styles=styles,packaging=list(packaging),cat=cat,cat2=cat2,cat3=cat3,stars=stars)
+
+
+#Product search for the builder
+@app.route("/product-search", methods=['GET', 'POST'])
+def productSearch():
+
+    filters = request.get_json()
+
+    items = []
+
+    if filters['category'] == 'All Products' and filters['brand']['id'] == 'All Brands':
+        items = list(db.staging_items.find({"category":"beauty"},{'_id': False}))
+
+    elif filters['category'] == 'All Products':
+        items = list(db.staging_items.find({"category":"beauty","company_id":filters['brand']['id']},{'_id': False}))
+
+    elif filters['brand']['id'] == 'All Brands':
+        items = list(db.staging_items.find({"category":"beauty","sub-category":filters['category']},{'_id': False}))
+
+    else:
+        items = list(db.staging_items.find({"category":"beauty","sub-category":filters['category'],"company_id":filters['brand']['id']},{'_id': False}))
+
+
+
+    return json.dumps(items)
 
 
 @app.route("/shipping-rates", methods=['GET', 'POST'])
@@ -252,7 +295,7 @@ def store(template,starID):
     for product in star['campaigns'][0]['products']:
 
         #match the product info to the users products
-        product_info = db.items.find_one({'name':product['name']})
+        product_info = db.staging_items.find_one({'name':product['name']})
         star['campaigns'][0]['products'][c]['description'] = product_info['description'].replace("'","\\'") #find the star
         star['campaigns'][0]['products'][c]['company_id'] = product_info['company_id']
 
@@ -271,16 +314,19 @@ def store(template,starID):
 @app.route('/charge', methods=['GET', 'POST'])
 def charge():
 
-    email = Mailer()
-    sarah = Slack()
-
     #get the ajaxed info
     if request.method == "POST":
+
+        #setup the classes
+        email = Mailer()
+        sarah = Slack()
+        star = Star()
+        partner = Partner()
+        shipping = Shipping()
 
         #get the post data
         data = request.get_json()
 
-        customer = data['customer'];
         shipping_rate = float(data['shipping_method']['rate'])
 
         #process the transaction
@@ -295,35 +341,21 @@ def charge():
         });
 
 
-        #The transaction was a success, keep processing the data
+        #The transaction was a success, process the data
         if result.is_success:
 
-            #generate shipping labels
-            company = {}
-            company['name'] = "Brandons Cosmetics"
-            company['street'] = "11823 Maren Ct."
-            company['city'] = "Reisterstown"
-            company['state'] = "Maryland"
-            company['zip'] = "21136"
-            company['country'] = "US"
-            shipping = Shipping()
-            data['shipping_info'] = shipping.purchase_shipping_label(company=company,customer=customer)
+            #process order
+            partner.process_order(data,result)
 
-            #additional data parsing
-            data['type'] = 'ORDER' #can also be SAMPLE
-            #data['braintree_id'] = result.transaction.id
-            #data['order_date'] = int(time.time())
-            data['shipped'] = False
-            data['received'] = False
 
             #submit transaction to orders collection
-            db.orders.insert_one(data);
+            #db.orders.insert_one(data);
 
             #send the email confirmation to customer
-            email.sendOrderConfirmation(customer,data)
+            #email.sendOrderConfirmation(customer,data)
 
             #send order alert to the team
-            sarah.sendOrderConfirmation(customer,data)
+            #sarah.sendOrderConfirmation(customer,data)
 
             return 'OK';
 
@@ -414,153 +446,28 @@ def launchStoreRequest():
     #get the ajaxed info
     if request.method == "POST":
 
-        trello = Trello()
+        #create objects
+        star = Star()
+        slack = Slack()
+        email = Mailer()
 
+        #grab the info from ajax request
         info = request.get_json()
 
         #create the star ID using the instagram
-        info['star']['id'] = info['star']['instagram']
+        info['star']['id'] = star.getID(info['star']['instagram'])
 
-        #check if the name exists
-        exist = True
-        c = 1
-        while exist:
-            if (db.stars.find({'id':info['star']['id']}).count() <= 0):
-                exist = False
-            else:
-                info['star']['id'] = info['star']['instagram'] + str(c)
-                c = c + 1
+        #hash the password
+        info['star']['password'] = hash_password(info['star']['password'], salt)
 
-        #Get img url from instagram
-        u = Utils()
-        profile_img_url = u.getInstagramImageFromUsername(info['star']['instagram'])
+        star.createProfile(info) #create a star profile
+        star.createStore(info) #create a new store for the star
 
-        client = {}
-        client['id'] = info['star']['id']
-        client['name'] = info['star']['name']
-        client['email'] = [info['star']['email']]
-        client['phone'] = info['star']['phone']
-        client['password'] = info['star']['password']
-        client['img'] = {}
-        client['img']['profile'] = profile_img_url
-        client['url'] = {}
-        client['url']['instagram'] = 'https://instagram.com/'+info['social_media']['instagram']
-        client['url']['twitter'] = 'https://twitter.com/'+info['social_media']['twitter']
-        client['url']['facebook'] = info['social_media']['facebook']
-        client['url']['youtube'] = info['social_media']['youtube']
-        client['campaigns'] = [{}]
-        client['campaigns'][0]['id'] = info['box_name'].replace(' ', '-').lower()
-        client['campaigns'][0]['status'] = 'pending'
-        client['campaigns'][0]['index'] = 1
-        client['campaigns'][0]['end_time'] = 1477267200
-        client['campaigns'][0]['cost'] = info['cost']
-        client['campaigns'][0]['price'] = info['price']
-        client['campaigns'][0]['profit'] = info['profit']
-        client['campaigns'][0]['description'] = info['desc']
-        client['campaigns'][0]['campaign_video'] = '0'
-        client['campaigns'][0]['products'] = info['products']
-        client['campaigns'][0]['charity'] = {}
-        client['campaigns'][0]['charity']['amount'] = info['charity']
-        client['campaigns'][0]['charity']['name'] = 'No Charity Setup'
-        client['campaigns'][0]['charity']['URL'] = '#'
+        #send alert to Fandemic team via slack
+        slack.sendStoreCreatedAlert(info)
 
-        db.stars.insert_one(client)
-
-        #send the email to fandemic team
-        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
-        subject = "New Launch Store Request - "+info['star']['name']
-
-        #build the trello string
-        trello_string = ''
-        trello_string += '**Store URL:** ' + 'https://fandemic.co/' + info['star']['id'] + '\n'
-        trello_string += '**Confirmation Code:** ' + info['confirmation_code'] + '\n'
-        trello_string += 'STAR\n'
-        trello_string += '-----------------------------\n'
-        trello_string += '**Name:** ' + info['star']['name'] + '\n'
-        trello_string += '**ID:** ' + info['star']['id'] + '\n'
-        trello_string += '**Email:** ' + info['star']['email'] + '\n'
-        trello_string += '**Phone:** ' + info['star']['phone'] + '\n'
-        trello_string += '**Exists:** ' + str(info['star']['exists']) + '\n'
-        trello_string += 'BOX\n'
-        trello_string += '-----------------------------\n'
-        trello_string += '**Goal:** ' + str(info['goal']) + '\n'
-        trello_string += '**Cost:** ' + str(info['cost']) + '\n'
-        trello_string += '**Price:** ' + str(info['price']) + '\n'
-
-        trello_string += '**Profit:** ' + str(info['profit']) + '\n'
-        trello_string += '**Charity:** ' + str(info['charity']) + '\n'
-
-        trello_string += '**Profit:** ' + str(float(info['price']) - float(info['cost']))  + '\n'
-        trello_string += '**Box Name:** ' + info['box_name'] + '\n'
-        trello_string += '**Brand Name:** ' + info['brand_name'] + '\n'
-        trello_string += 'PRODUCTS\n'
-        trello_string += '-----------------------------\n'
-        for p in info['products']:
-            trello_string += p['item_num'] + ' | ' + p['name'] + ' | ' + p['cost']
-            if 'variation' in p:
-                trello_string += ' | ' + p['variation']
-            trello_string += '\n~~~~~~~~~~~~~~~~~~~~\n'
-
-        #build the trello string
-        email_string = ''
-        email_string += '<strong>Store URL:</strong> ' + 'https://fandemic.co/' + info['star']['id'] + '<br>'
-        email_string += '<strong>Confirmation Code:</strong> ' + info['confirmation_code'] + '<br>'
-        email_string += '<br><h3>STAR</h3>'
-        email_string += '<hr>'
-        email_string += '<strong>Name:</strong> ' + info['star']['name'] + '<br>'
-        email_string += '<strong>ID:</strong> ' + info['star']['id'] + '<br>'
-        email_string += '<strong>Email:</strong> ' + info['star']['email'] + '<br>'
-        email_string += '<strong>Phone:</strong> ' + info['star']['phone'] + '<br>'
-        email_string += '<strong>Exists:</strong> ' + str(info['star']['exists']) + '<br>'
-        email_string += '<br><h3>BOX</h3>'
-        email_string += '<hr>'
-        email_string += '<strong>Goal:</strong> ' + str(info['goal']) + '<br>'
-        email_string += '<strong>Cost:</strong> ' + str(info['cost']) + '<br>'
-
-        email_string += '<strong>Profit:</strong> ' + str(info['profit']) + '<br>'
-        email_string += '<strong>Charity:</strong> ' + str(info['charity']) + '<br>'
-
-        email_string += '<strong>Price:</strong> ' + str(info['price']) + '<br>'
-
-        email_string += '<br><h3>PRODUCTS</h3>'
-        email_string += '<hr>'
-        for p in info['products']:
-            email_string += p['item_num'] + ' | ' + p['name'] + ' | ' + p['cost']
-            if 'variation' in p:
-                email_string += ' | ' + p['variation']
-            email_string += '<br>'
-
-
-        html = """
-                <html>
-                  <head></head>
-                  <body>
-                    <div>
-                        <h3>New store request from """+info['star']['name']+"""!</h3>
-                        """+email_string+"""
-                    </div>
-                  </body>
-                </html>
-                """
-        email.send(toaddr,subject,html)
-
-        #add a email card with the store request
-        trello.addCard_CR(info['star']['name'],trello_string)
-
-
-        #send an activate store email to the user
-        toaddr = [info['star']['email']]
-        #email.sendActivate(toaddr,info['star']['id'],info['box_name'])
-
-        if info['logo'] != '':
-            #submit logo to cloudinary_url
-            cdn = CDN();
-            cdn.uploadLogo(info['logo'],info['star']['id']);
-
-        if info['box_img'] != '':
-            #submit box to cloudinary_url
-            cdn = CDN();
-            cdn.uploadBox(info['box_img'],info['star']['id']);
+        #send confirmation to star via email
+        email.sendStoreConfirmation(info)
 
     return '';
 
@@ -603,9 +510,9 @@ def partnersForm():
 
     db.profiles.insert_one(userProfile)
 
-    toaddr_comp = [companyemail]
-    subject_comp = "Thank you for letting us work with " + companyname + "!"
-    html_comp =  """
+    toaddr = [companyemail]
+    subject = "Thank you for letting us work with " + companyname + "!"
+    html =  """
             Hey There!
             <br>
             My name is Sarah and I'll be your advisor while you experience our partners platform for """+companyname+"""!
@@ -615,21 +522,12 @@ def partnersForm():
             Please, let me know if you have ANY questions at all (there are no silly questions)!
             """
 
-    if MODE == 'live':
+    email = Mailer()
+    email.send(toaddr,subject,html)
 
-        email = Mailer()
-        email.send(toaddr,subject,html)
+    slack = Slack()
 
-        sarah = Slack()
-
-        slack_msg = '*Company Name:* ' + companyname
-        slack_msg += '\n Company Website:* ' + companywebsite
-        slack_msg += '\n Company ID:* ' + companyname.replace(" ","-").lower()
-        slack_msg += '\n Username:* ' + username
-        slack_msg += '\n Email:* ' + companyemail
-
-
-        sarah.notify(slack_msg)
+    slack.sendPartnerSignupAlert(userProfile)
 
     return redirect("/partners", code=302)
 
@@ -637,7 +535,7 @@ def partnersForm():
 @app.route('/instagram-validate', methods=['GET', 'POST'])
 def instagramValidate():
     username = request.args.get('username')
-    u = Utils()
+    u = Star()
     exists = u.instagramUsernameExists(username)
     if exists == True:
         return 'success'
@@ -648,7 +546,7 @@ def instagramValidate():
 def partnersFormValidate():
     username = str(request.form['username'])
     company_id = str(request.form['companyname']).replace(" ","-").lower()
-    u = Utils()
+    u = Star()
     if (u.checkIDExists('bio.company_id',company_id)):
         return 'company'
     elif (u.checkIDExists('username',username)):

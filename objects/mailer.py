@@ -24,6 +24,21 @@ class Mailer:
         except UnicodeEncodeError:
             pass
 
+    def sendStoreConfirmation(self,info):
+        #send an email to the person who ordered
+        toaddr = [info['star']['email']]
+        subject = "Store Created Confirmation: " + info['star']['id']
+        html =  """
+                Hey """+ info['star']['name'] +""",<br><br>
+                <p>Your store has been created successfully!
+                <br>You can start selling your products right away :)<br><br>
+                <p><strong>Your Store URL:</strong>
+                <a href="https://fandemic.co/"""+ info['star']['id'] +"""">https://fandemic.co/"""+ info['star']['id'] +"""</a></p>
+                <br><br>
+                <a href="http://admin.fandemic.co">Login</a> here to manage you store.
+                """
+        self.send(toaddr,subject,html)
+
 
     def sendOrderConfirmation(self,customer,data):
         #send an email to the person who ordered

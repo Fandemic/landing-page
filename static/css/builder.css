@@ -473,7 +473,7 @@ a:focus {
 }
 
 .progress-bar-success{
-  background-color: #25CB68;
+  background: linear-gradient(to left, #e96443 , #e258b0) !important;
 }
 
 /*progress bar*/
@@ -672,6 +672,8 @@ a:focus {
          margin-bottom: 10px;
          margin-top: 0px;
          font-weight:600;
+         font-size:35px;
+         font-family: 'Caveat', cursive;
 
        }
 

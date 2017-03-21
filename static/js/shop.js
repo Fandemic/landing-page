@@ -30,8 +30,6 @@ app.controller("shop", function($scope) {
 
   $scope.rates = [];
 
-  $scope.data.price = price;
-
   $scope.data.end_time = end_time;
 
   $scope.data.star_id = star_id;

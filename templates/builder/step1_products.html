@@ -1,4 +1,4 @@
-<div id="step2" class="steps container" style="min-height:800px;padding-bottom:50px;margin-top:30px;">
+<div id="step2" class="steps container" style="min-height:800px;padding-bottom:50px;margin-top:30px;" ng-cloak>
 
 
 
@@ -7,7 +7,7 @@
     <div class="col-md-8">
 
       <div class="explain-step">
-        <h3 class="subtitle">Which products do you want in your store?</h3>
+        <h3 class="subtitle">Which products do you want to sell?</h3>
         <!--<i class="light" style="font-weight:300;"><a style="font-weight:100;" href="#" id="viewExample_1" passed-step="Products" data-toggle="modal" data-target="#view-example">View Example</a></i>-->
 
         <!--<i class="light" style="font-weight:300;">
@@ -24,52 +24,135 @@
                          <!-- <img width="20px;" src="/static/img/vegan.svg"> = this product is vegan -->
         </i>
 
+
+        <style>
+        .dropdown-title{
+          line-height: 15px;
+          color: #999999;
+        }
+        .dropdown-container{
+          width: 250px;
+          position: relative;
+          margin-top:5px;
+          margin-right: 10px;
+          display: inline-block;
+
+        }
+        .dropdown-select{
+          width: 250px;
+          height: 60px;
+          background-color: #fff;
+          border: 1px solid #a9a9a9;
+          padding:10px;
+          cursor: pointer;
+          overflow: hidden;
+        }
+        .dropdown{
+          position:absolute;
+          margin-top:5px;
+          width: 250px;
+          max-height: 300px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          display: inline-block;
+          background-color: #fff;
+          -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.15);
+          box-shadow: 0 1px 1px rgba(0,0,0,.15);
+          border: 1px solid #ddd;
+          z-index:2;
+        }
+        .dropdown-item{
+          border-bottom: 1px solid #f1f1f1;
+          padding: 10px 10px;
+          cursor: pointer;
+        }
+        .dropdown-item:hover{
+          background: #f1f1f1;
+        }
+        .item-name{
+          margin-left:15px;
+          line-height: 40px;
+        }
+        .arrow{
+          position:absolute;
+          right: 15px;
+          top:40px;
+        }
+        </style>
+
+
+
+
+        <!-- dropdown starts here -->
+        <div class="dropdown-container">
+          <span class="dropdown-title">Filter by Brand:</span>
+          <div class="dropdown-select">
+            <img ng-show="filter.brand.name!='All Brands'" height="40px" src="http://res.cloudinary.com/fandemic/image/upload/brands/{a filter.brand.id a}/logo.png">
+            <strong class="item-name">{a filter.brand.name a}</strong>
+            <img class="arrow" height="30px" src="/static/img/arrow-down.png">
+          </div>
+          <div class="dropdown" style="display:none;">
+            <div class="dropdown-item" ng-click="filter.brand={name:&quot;All Brands&quot;,id:&quot;All Brands&quot;}">
+              <strong class="item-name">All Brands</strong>
+            </div>
+            {% for brand in brands %}
+            <div class="dropdown-item" ng-click="filter.brand={name:&quot;{{brand.username}}&quot;,id:&quot;{{brand.bio.company_id}}&quot;}">
+              <img height="40px" src="http://res.cloudinary.com/fandemic/image/upload/brands/{{brand.bio.company_id}}/logo.png">
+              <strong class="item-name">{{ brand.username }}</strong>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- dropdown ends here -->
+
+        <!-- dropdown starts here -->
+        <div class="dropdown-container">
+          <span class="dropdown-title">Filter by Category:</span>
+          <div class="dropdown-select">
+            <img ng-show="filter.category!='All Products'" height="40px" src="/static/img/{a filter.category a}.svg">
+            <strong class="item-name">{a filter.category a}</strong>
+            <img class="arrow" height="30px" src="/static/img/arrow-down.png">
+          </div>
+          <div class="dropdown" style="display:none;">
+            <div class="dropdown-item" ng-click="filter.category='All Products'">
+              <strong class="item-name">All Products</strong>
+            </div>
+            {% for group in items | groupby('category')%}
+            <div class="dropdown-item" ng-click="filter.category='{{group.grouper}}'">
+              <img height="40px" src="/static/img/{{group.grouper}}.svg">
+              <strong class="item-name">{{group.grouper | upper}}</strong>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- dropdown ends here -->
+
       </div>
 
-      <ul class="nav nav-tabs">
-        {% for group in items | groupby('category')%}
-        <li {% if group.grouper == 'lips' %}class="active"{% endif %}><a
-          data-ga-click-event-category="Step 1" data-ga-click-event-action="Category tabs" data-ga-click-event-label="{{group.grouper}}"
-          data-toggle="tab" href="#{{group.grouper}}">
-          <img width="30px" src="/static/img/{{group.grouper}}.svg">
-          <span style="color:#7F3960 !important;">{{group.grouper | upper}}</span>
-        </a></li>
-        {% endfor %}
-      </ul>
 
-    <div class="tab-content">
-    {% for group in items | groupby('category')%}
-    <div id="{{group.grouper}}" class="tab-pane fade {% if group.grouper == 'lips' %}in active{% endif %}" >
-
-
-    {% for item in group.list %}
+    <!--LOOP THROUGH ITEMS -->
+    <div ng-repeat="item in items">
 
     <div class="item-box" style="float:left;width:220px;height:285px;margin:5px;position:relative;">
-      {% if item.popular == True %}
-      <div class="popular-product-label"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
-      {% endif %}
+
+      <div ng-if="item.popular">
+        <div class="popular-product-label"><i class="fa fa-star" aria-hidden="true"></i> Most Popular!</div>
+      </div>
+
           <div class="thumbnail" style="height:100%;width:100%">
 
 
 
             <div class="content clickable"
-                {% if item.variation|length > 0 %}
-                 data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}-variation"
-                 data-ga-click-event-category="Step 1" data-ga-click-event-action="Product Add" data-ga-click-event-label="{{item.name}}"
-                {% endif %}
-                {% if item.variation|length == 0 %}
-                 ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}',cost:'{{item.price}}' })"
-                 data-ga-click-event-category="Step 1" data-ga-click-event-action="Product Add" data-ga-click-event-label="{{item.name}}"
-                {% endif %}
-                style="cursor:pointer;width:100%;height:100%;"
-                >
+                 ng-click="check_product(item)"
+                 style="cursor:pointer;width:100%;height:100%;">
 
 
-                  <img class="product-img img-responsive"  style="{% if item.popular == True %}width:90% !important;{% endif %} width:100%;padding:10px;" src="https://res.cloudinary.com/fandemic/w_300,h_300,c_pad/products/{{item.item_num}}.png" alt="">
+                  <img class="product-img img-responsive"  style="width:100%;padding:10px;" src="https://res.cloudinary.com/fandemic/w_300,h_300,c_pad/products/{a item.item_num a}.png" alt="">
 
 
                   <span ng-repeat="p in box.products">
-                    <span ng-if="p.name =='{{item.name}}'">
+                    <span ng-if="p.name == item.name">
                       <img src="../static/img/selectmark.svg" class="selectmark" style="display:block;">
                     </span>
                   </span>
@@ -77,38 +160,32 @@
 
 
                 <img height="30px" style="right:5px;top:5px;position:absolute;"
-                     src="http://res.cloudinary.com/fandemic/image/upload/brands/{{item.company_id}}/logo.png">
+                     src="http://res.cloudinary.com/fandemic/image/upload/brands/{a item.company_id a}/logo.png">
 
-                <h5 class="title">{{item.name}}</h5>
+                <h5 class="title">{a item.name a}</h5>
 
 
 
               </div>
 
-                <!--<span class="cost">+${{item.price|round|int}}</span>-->
-                {% if item.variation|length > 0 %}
-                <!--<img class="color-palette" src="/static/img/color-palette.svg">-->
-                {% endif %}
+
                 <div class="group" style="width: 100%; position: absolute;bottom:0px;">
                   <a
-                  data-ga-click-event-category="Step 1" data-ga-click-event-action="View Product Details" data-ga-click-event-label="{{item.name}}"
-                  class="btn btn-details" style="background:#ddd;color:#9d9d9d;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}">VIEW DETAILS</a>
+                  data-ga-click-event-category="Step 1" data-ga-click-event-action="View Product Details" data-ga-click-event-label="{a item.name a}"
+                  class="btn btn-details" style="background:#ddd;color:#9d9d9d;width:100%;border-radius:0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" data-toggle="modal" data-target="#{a item.item_num a}">VIEW DETAILS</a>
 
                 </div>
             </div>
         </div>
+      </div>
+      <!-- END LOOP THROUGH ITEMS -->
 
 
-
-
-      {% endfor %}
-    </div>
-
-    {% for item in group.list %}
+    <div ng-repeat="item in items">
 
     <!-- variations modal -->
-    {% if item.variation|length > 0 %}
-    <div class="variations-modal modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}-variation" style="padding-right: 15px;">
+    <div ng-if="item.variation.length > 0">
+    <div class="variations-modal modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{a item.item_num a}-variation" style="padding-right: 15px;">
 
 <div class="modal-dialog modal-lg">
   <div class="modal-content" style="padding:30px;padding-bottom:16px;min-width:1000px;max-height:100%;overflow-y:auto;">
@@ -121,30 +198,31 @@
 
           <div style="text-align:center;width:100%;margin-bottom:15px;">
             <img height="40px" style="text-align:center;margin: 0 auto;"
-               src="http://res.cloudinary.com/fandemic/image/upload/brands/{{item.company_id}}/logo.png">
+               src="http://res.cloudinary.com/fandemic/image/upload/brands/{a item.company_id a}/logo.png">
           </div>
 
 
-            <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {{ item.name }} Color!</h3><hr>
+            <h3 class="subtitle" style="text-align:center;margin-bottom:5px;color:#adadad;font-weight:200;">Choose a {a item.name a} Color!</h3><hr>
 
               <div  style="text-align:center;">
 
 
-              {% for v in item.variation %}
+              <div ng-repeat="v in item.variation">
 
 
               <div
-              data-ga-click-event-category="Step 1" data-ga-click-event-action="Variation Selected" data-ga-click-event-label="{{v.name}}"
+              data-ga-click-event-category="Step 1" data-ga-click-event-action="Variation Selected" data-ga-click-event-label="{a v.name a}"
               class="col-md-3 clickable"
                     style="display:inline-block;padding:0px 25px;text-align:center;margin-bottom:15px;"
-                    ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}-{{v.item_num}}',cost:'{{item.price}}',variation:'{{v.name}}' })"
+                    ng-click="toggle_product({name:item.name,item_num:item.item_num+'-'+v.item_num,price:item.retail_price,variation:v.name })"
                     data-dismiss="modal">
-                <img class="img-responsive lazy_load" src="/static/img/loader.gif" data-src="https://res.cloudinary.com/fandemic/w_200,h_200,c_pad/products/{{item.item_num}}-{{v.item_num}}.png">
-                <p class="light">{{v.name}}</p>
+                <img class="img-responsive" src="https://res.cloudinary.com/fandemic/w_200,h_200,c_pad/products/{a item.item_num a}-{a v.item_num a}.png">
+                <p class="light">{a v.name a}</p>
 
               </div>
 
-              {% endfor %}
+              </div>
+            </div>
 
             </div>
 
@@ -153,12 +231,12 @@
     </div>
   </div>
   </div>
-    {% endif %}
+
 
 
 
     <!--DETAILS MODAL-->
-    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{{ item.item_num|replace(' ', '-') }}">
+    <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="{a item.item_num a}">
 
       <div class="modal-dialog" style="width:80% !important;">
         <div class="modal-content" style="padding:30px;padding-bottom:16px;">
@@ -167,7 +245,7 @@
           </button>
 
           <img height="60px" style="position:absolute;bottom:25px;left:25px;"
-               src="http://res.cloudinary.com/fandemic/image/upload/brands/{{item.company_id}}/logo.png">
+               src="http://res.cloudinary.com/fandemic/image/upload/brands/{a item.company_id a}/logo.png">
 
           <div class="row" >
 
@@ -175,22 +253,22 @@
 
 
 
-                  <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="https://res.cloudinary.com/fandemic/w_300,h_300,c_pad/products/{{item.item_num}}.png" alt="">
+                  <img class="product-img img-responsive" style="width:100%;padding:10px;"  src="https://res.cloudinary.com/fandemic/w_300,h_300,c_pad/products/{a item.item_num a}.png" alt="">
 
 
 
             </div>
 
             <div class="col-md-8">
-              <h2 class="modal-title" id="myModalLabel">{{item.name}}
+              <h2 class="modal-title" id="myModalLabel">{a item.name a}
               </h2>
               <hr>
 
-              <p>{{item.description}}</p>
+              <p>{a item.description a}</p>
               <br>
               <div class="row">
                 <div class="col-md-12">
-                  <p style="color:green;font-weight:600;">Production Cost: ${{item.price|round|int}}</p>
+                  <p style="color:green;font-weight:600;">Production Cost: ${a item.retail_price a}</p>
                 </div>
 
               </div>
@@ -207,31 +285,25 @@
           <div class="row" style="margin-top:30px;">
 
             <a class="btn btn-submit pull-right"
-            {% if item.variation|length > 0 %}
-             data-dismiss="modal" data-toggle="modal" data-target="#{{ item.item_num|replace(' ', '-') }}-variation"
-             data-ga-click-event-category="Step 1" data-ga-click-event-action="Product Add" data-ga-click-event-label="{{item.name}}"
-            {% endif %}
-            {% if item.variation|length == 0 %}
-             data-dismiss="modal" ng-click="toggle_product({name:'{{item.name}}',item_num:'{{item.item_num}}',cost:'{{item.price}}' })"
-             data-ga-click-event-category="Step 1" data-ga-click-event-action="Product Add" data-ga-click-event-label="{{item.name}}"
-            {% endif %}
-
-
-            >Add Product</a>
+               data-dismiss="modal"
+               ng-click="check_product(item)">
+               Add Product
+            </a>
           </div>
 
 
         </div>
       </div>
     </div>
-    {% endfor %}
+
+
+  </div>
 
 
 
 
-      {% endfor %}
-    <!-- /.row -->
-</div>
+
+
 
 
 
