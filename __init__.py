@@ -320,7 +320,7 @@ def charge():
         #setup the classes
         email = Mailer()
         sarah = Slack()
-        star = Star()
+        star = Star(c)
         partner = Partner()
         shipping = Shipping()
 
@@ -433,7 +433,7 @@ def launchStoreRequest():
     if request.method == "POST":
 
         #create objects
-        star = Star()
+        star = Star(c)
         slack = Slack()
         email = Mailer()
 
@@ -525,7 +525,7 @@ def partnersForm():
 @app.route('/instagram-validate', methods=['GET', 'POST'])
 def instagramValidate():
     username = request.args.get('username')
-    u = Star()
+    u = Star(c)
     exists = u.instagramUsernameExists(username)
     if exists == True:
         return 'success'
@@ -536,7 +536,7 @@ def instagramValidate():
 def partnersFormValidate():
     username = str(request.form['username'])
     company_id = str(request.form['companyname']).replace(" ","-").lower()
-    u = Star()
+    u = Star(c)
     if (u.checkIDExists('bio.company_id',company_id)):
         return 'company'
     elif (u.checkIDExists('username',username)):

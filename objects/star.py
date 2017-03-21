@@ -1,16 +1,11 @@
 import urllib2
 import json
-from pymongo import MongoClient, GEO2D
-from config import Config
-
-c = Config()
-db = c.dbConfig()
 
 
 class Star:
 
-    def __init__(self):
-        pass
+    def __init__(self,config):
+        self.db = config.dbConfig()
 
 
     #send a basic message
@@ -46,7 +41,7 @@ class Star:
         ID = instagram
         c = 1
         while exist:
-            if (db.stars.find({'id':ID}).count() <= 0):
+            if (self.db.stars.find({'id':ID}).count() <= 0):
                 exist = False
             else:
                 ID = instagram + str(c)
@@ -75,7 +70,7 @@ class Star:
         profile['bio']['address']['state'] = ''
         profile['bio']['address']['zip'] = ''
         profile['bio']['address']['country'] = 'US'
-        db.profiles.insert_one(profile)
+        self.db.profiles.insert_one(profile)
 
 
     #creates a store for a star given the proper info variable
@@ -100,11 +95,11 @@ class Star:
         star['campaigns'][0]['profit'] = info['profit']
         star['campaigns'][0]['charity'] = info['charity']
         star['campaigns'][0]['products'] = info['products']
-        db.stars.insert_one(star)
+        self.db.stars.insert_one(star)
 
     #this is for partners
     def checkIDExists(self,key,id):
-        if (db.profiles.find({key:id}).count() == 0):
+        if (self.db.profiles.find({key:id}).count() == 0):
             return False
         else:
             return True
