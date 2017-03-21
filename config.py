@@ -1,7 +1,7 @@
 from pymongo import MongoClient, GEO2D
 import braintree
 import socket
-
+#get server name
 server = socket.gethostname()
 
 if server == 'livloo':
