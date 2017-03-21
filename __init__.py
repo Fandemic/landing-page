@@ -321,7 +321,7 @@ def charge():
         email = Mailer()
         sarah = Slack()
         star = Star(c)
-        partner = Partner()
+        partner = Partner(c)
         shipping = Shipping()
 
         #get the post data

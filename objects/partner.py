@@ -2,19 +2,15 @@ import urllib2
 import json
 import time
 from pymongo import MongoClient, GEO2D
-from config import Config
 from mailer import Mailer
 from shipping import Shipping
 from slack import Slack
 
-c = Config()
-db = c.dbConfig()
-
 
 class Partner:
 
-    def __init__(self):
-        pass
+    def __init__(self,config):
+        self.db = config.dbConfig()
 
 
     #process the order for brands
@@ -34,7 +30,7 @@ class Partner:
                 brands[ID]['products'].append(item)
             else:
                 brands[ID] = {}
-                brands[ID]['company'] = db.profiles.find_one({'system':'partners','bio.company_id':ID})
+                brands[ID]['company'] = self.db.profiles.find_one({'system':'partners','bio.company_id':ID})
                 brands[ID]['products'] = []
                 brands[ID]['products'].append(item)
 
@@ -96,7 +92,7 @@ class Partner:
             orders.append(order)
 
         #insert all orders at once
-        db.orders.insert_many(orders);
+        self.db.orders.insert_many(orders);
 
         #send slack alert to Fandemic team
         slack.sendOrderConfirmation(orders,customer,data)
