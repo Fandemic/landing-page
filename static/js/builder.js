@@ -198,7 +198,6 @@ app.controller("builder", function($scope) {
       else{
         $scope.box.products.push(product);
         $scope.box.cost =  $scope.box.cost + parseFloat(product['price']);
-        alert($scope.box.cost);
         $.notify("Product Added to Box", { position:"top right",className:"success" });
       }
 

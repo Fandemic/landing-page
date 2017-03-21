@@ -369,6 +369,7 @@ def sampleCharge():
 
         info = request.get_json()
 
+        slack = Slack()
 
         if MODE == 'test':
             SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
@@ -415,26 +416,11 @@ def sampleCharge():
                 """
         email.send(toaddr,subject,html)
 
-        #send the email
-        toaddr = ['brandon@fandemic.co','ethan@fandemic.co']
-        subject = "New Sample Order!"
-
-        string = ''
+        string = '*Sample Order Placed*\n'
         for k, v in info.iteritems():
-            string += '<strong>'+k+'</strong>: ' + str(v) + '<br>'
+            string += '*'+k+'*: ' + str(v) + '\n'
 
-        html = """
-                <html>
-                  <head></head>
-                  <body>
-                    <div>
-                        <h3>Fandemic received a sample order!</h3>
-                        """+string+"""
-                    </div>
-                  </body>
-                </html>
-                """
-        email.send(toaddr,subject,html)
+        slack.slack_orders.notify(text=string)
 
     return '';
 

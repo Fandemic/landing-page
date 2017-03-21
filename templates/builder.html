@@ -211,6 +211,30 @@ $('.variations-modal').on("show.bs.modal", function () {
   </div>
 </div>
 
+
+<!-- sample order success modal -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="sample-order-modal-success">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="padding:30px">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <h2 class="modal-title"><img src="../static/img/success.svg" style="width:10%"> Order Successful!</h2>
+      <br>
+      <p class="light"> You should receive confirmation email shortly!</p>
+      <br>
+      <p>Your confirmation code is: <span ng-bind="box.confirmation_code"></span></p>
+      <br>
+      <i>Questions? Please email <strong>sarah@fandemic.co</strong> :)</i>
+
+      <hr>
+      <button data-dismiss="modal" class="btn btn-primary btn-submit" style="width" >Awesome!</button>
+    </div>
+  </div>
+</div>
+
+
 <script>
 $('#viewExample_1, #viewExample_2, #viewExample_3, #viewExample_4, #viewExample_5, #viewExample_6').on('click', function(e) {
   var modalContent = $(this).attr("passed-step");
