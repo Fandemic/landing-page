@@ -66,7 +66,7 @@
 
 
 
-          <h1 style="font-weight:400;font-size:60px;font-family: 'Caveat', cursive;"><span data-words="Promote|Earn From|Share"></span> Your Beauty Store</h1>
+          <h1 style="font-weight:500;font-size:60px;font-family: 'Caveat', cursive;">Launch<!--<span data-words="Create|Share|Earn From"></span>--> a Cosmetic Store</h1>
           <!-- <div class="play-btn">
             <a href="https://vimeo.com/160944827" class="play litebox-hero">
               <img src="../static/img/play-btn.png" alt="play">
@@ -74,7 +74,7 @@
           </div> -->
           <div class="cta-btn" style="margin-top:2em">
             <a data-category="Homepage" data-action="Create box button" data-label="Create your own box button"
-            href="/builder" class="btn" style="font-size:22px;background-color:#ca1488;">Claim My Store</a>
+            href="/builder" class="btn" style="font-size:23px;background-color:#CA1488;border-radius:0px;">GET STARTED</a>
             <p style="padding-bottom:2em;font-weight:200;opacity:.6;"><span class="total-number-1">0</span> stores already created!</p>
           </div>
           <img id="mobile-box" src="../static/img/home/lanie_box.png" style="width:70%;display:none">
@@ -97,30 +97,30 @@
   <section class="benefits section-spacing text-center" id="works" style="background-color:white;">
     <div class="container">
       <header class="section-header">
-        <h1>How Does <!--<img height="25px" style="margin-top:14px;opacity:.8;height:35px;" src="../static/img/logo-pink.png">--> it Work?</h1>
-        <h3 style="color:#1d1d1d;">Instantly launch Your Own Makeup Line</h3>
+        <h1 style="font-size:42px;font-weight:400;">How Does <!--<img height="25px" style="margin-top:14px;opacity:.8;height:35px;" src="../static/img/logo-pink.png">--> it Work?</h1>
+        <h3 style="color:#1d1d1d;font-family: 'Josefin Sans', sans-serif !important;">Sell and review brands you love!</h3>
       </header>
       <hr class="visible-xs">
       <div class="row">
         <div class="col-sm-4">
           <a data-category="Homepage" data-action="Create box button" data-label="Create your own box button" href="/builder/beauty">
-          <img width="120px" style="padding:20px;" src="../static/img/home/box.svg" alt="benefits of product">
-          <h4 style="font-size: 30px;font-family: 'Caveat', cursive;color:#898989;">Design Your Beauty Kit</h4>
+          <img width="120px" style="padding:20px;" src="../static/img/home/step1.svg" alt="benefits of product">
+          <h4 style="font-size: 22px;font-family: 'Josefin Sans', sans-serif !important;font-weight:400;">Choose Your Products</h4>
           <!--<p>Select Items, create a brand, and design packaging!</p>-->
           <span class="arrow-icon">&nbsp;</span>
          </a>
         </div>
         <hr class="visible-xs">
         <div class="col-sm-4">
-          <img width="120px" src="../static/img/home/promotion.png" alt="benefits of product">
-          <h4 style="font-size: 30px;font-family: 'Caveat', cursive;color:#1d1d1d;color:#898989;">Promote Your Store</h4>
+          <img width="120px" style="padding:20px;" src="../static/img/home/step2.svg" alt="benefits of product">
+          <h4 style="font-size: 25px;font-family: 'Josefin Sans', sans-serif !important;font-weight:400;">Promote Your Store</h4>
           <!--<p>You have 7 days to <strong>pre-sell</strong> your kits, if you sell more than 25 you get paid!-->
           <span class="arrow-icon">&nbsp;</span>
         </div>
         <hr class="visible-xs">
         <div class="col-sm-4">
-          <img width="120px" style="padding:20px;" src="../static/img/home/money.svg" alt="benefits of product">
-          <h4 style="font-size: 30px;font-family: 'Caveat', cursive;color:#1d1d1d;color:#898989;">Make Money</h4>
+          <img width="120px" style="padding:20px;" src="../static/img/home/step3.svg" alt="benefits of product">
+          <h4 style="font-size: 25px;font-family: 'Josefin Sans', sans-serif !important;font-weight:400;">Make Money</h4>
           <!--<p></p>-->
 
           <!--<span class="arrow-icon">&nbsp;</span>-->
@@ -192,21 +192,8 @@
 
 
 
-           {% if star.image.box %}
-           <img  src="https://res.cloudinary.com/fandemic/w_200,c_scale/stars/{{star.id}}/box.png" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
-           {% else %}
-           <img  src="https://res.cloudinary.com/fandemic/w_200,c_scale/stars/{{star.id}}/box.png" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
-           {% endif %}
-
-        {% elif star.campaigns[0].style.name == 'Plain White' %}
-        <img width="200px" height="200px" src="/static/img/user.png" style="width:100px;height:100px;position:absolute;top:15px;left:15px;border-radius:50%;">
-        <img  src="/static/img/packaging/plain-white.png" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
-        {% elif star.campaigns[0].style.name == 'Solid Color' %}
-        <img width="200px" height="200px" src="/static/img/user.png" style="width:100px;height:100px;position:absolute;top:15px;left:15px;border-radius:50%;">
-        <img  src="/static/img/packaging/{{star.campaigns[0].style.img}}" style="width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
         {% else %}
         <img width="200px" height="200px" src="/static/img/user.png" style="width:100px;height:100px;position:absolute;top:15px;left:15px;border-radius:50%;">
-        <img  src="https://res.cloudinary.com/fandemic/image/upload/e_trim/w_200,h_200,c_pad/stars/{{star.id}}/box.png" style="padding:10px;width:150px;height:150px;position:absolute;bottom:-30px;right:0px;">
         {% endif %}
 
          {% if star.campaigns.0.status != 'live' %}

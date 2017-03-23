@@ -22,6 +22,8 @@
   <link href="../static/css/landing-page/main.css" rel="stylesheet">
   <link href="../static/css/landing-page/lightslider.css" rel="stylesheet">
   <link href="../static/css/bootstrap/bootstrap-blog.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Caveat|Source+Sans+Pro|Montserrat|Sue+Ellen+Francisco|Josefin+Sans' rel='stylesheet' type='text/css'>
+
 </head>
 
 <style>
@@ -49,9 +51,7 @@
 
   }
 
-  .row {
-    margin-bottom: 2em;
-  }
+
   .about-page {
     padding:1.2em;
   }
@@ -97,7 +97,7 @@
   }
 
   .team-details img {
-    width: 70%;
+    width: 50%;
     border-radius: 50%;
   }
 
@@ -135,13 +135,56 @@
       padding: 5em;
     }
   }
-  .col-md-6 {
-    padding-left: 5em;
-    padding-right: 5em;
-  }
+
 
   .white-font{
     color:rgb(255, 255, 255);
+  }
+  .title-section{
+    height:100px;
+    background: linear-gradient(to left, #e96443 , #e258b0);
+    position: relative;
+    z-index: -1;
+  }
+  .title-section .title{
+    color: #fff;
+    font-size: 25px;
+    padding: 35px 0px;
+    font-family: 'Josefin Sans', sans-serif !important;
+    position:fixed;
+    font-weight: 500;
+    z-index:0;
+
+  }
+  .overlay{
+  background-image: url('../static/img/makeup_pattern.png');
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+  }
+
+  .number-container{
+    text-align: center;
+    padding-right:6px;
+    border-radius: 50%;
+    color: #fff;
+    height:50px;
+    width: 50px;
+    margin-bottom: 15px;
+    border:2px solid #1d1d1d;
+    float: left;
+    margin-right: 20px;
+  }
+  .number{
+    font-size: 30px;
+    font-weight: 500;
+    font-family: 'Caveat', cursive !important;
+  }
+  p{
+    margin: 20px 0;
+  }
+  .sidedock{
+    display: none !important;
   }
 </style>
 
@@ -153,31 +196,56 @@
     {% include 'header-nav.html' %}
   </div>
 
+  <section class="title-section">
+    <div class="overlay">
+      <div class="container">
+        <div class="title">About Us</div>
+      </div>
+    </div>
+  </section>
 
   <!-- Page Header -->
   <!-- Set your background image for this header on the line below. -->
 
   <!-- Main Content -->
-  <div style="color:#4c4c4c" class="about-page">
+  <div style="color:#4c4c4c" class="">
     <br>
 
-    <div class="row">
-      <div class="col-md-6">
-        <h1 class="title left">Selling beauty products is intense.</h1>
-        <br>
-        <p>
-          You have to find the best manufacturers, design a secure store, and ship everything yourself.
-          <br>
-          Can you do all that while still keeping up with all your social media postings? After all, that is how you got here.
-          <br><br>
-          Make your <a href="/beauty">beauty kit</a> and you'll be ready to accept payments right away.
-        </p>
-      </div>
-      <div class="col-md-6">
-        <img src="../static/img/blog/sarahbox.png">
+    <div class="container">
+      <br>
+      <h1 class="title center" style="text-align:center;">We make selling beauty products super easy!</h1>
+      <hr>
+      <div class="row">
+        <div class="col-md-6" style="padding-top:20px;">
+
+          <div class="" style="padding-left:50px;">
+
+            <div class="number-container" style="border-color:#E258B0;">
+              <div class="number" style="color:#E258B0;">1</div>
+            </div>
+              <p><strong>Create a Store</strong><br> You have to find the best manufacturers, design a secure store, and ship everything yourself.</p>
+            <hr>
+
+            <div class="number-container" style="border-color:#E55E79;">
+              <div class="number" style="color:#E55E79;">2</div>
+            </div>
+            <p><strong>Promote Your Store</strong><br>Send a link to friends, family, instagram, twitter, facebook and more to promote your new store!</p>
+            <hr>
+
+            <div class="number-container" style="border-color:#E96444;">
+              <div style="color:#E96444;" class="number">3</div>
+            </div>
+            <p><strong>Make Monies</strong><br>Set your own price. We have had influencers make up to $1000 per week selling products on Fandemic.</p>
+          </div>
+
+        </div>
+        <div class="col-md-6" style="padding:50px !important;">
+          <p style="margin:0px;font-size:14px;font-weight:400;color:#999999;"><strong>Video walthough for the lazy folk</strong></p>
+          <iframe src="https://player.vimeo.com/video/203917137?title=0&byline=0&portrait=0" width="100%" height="290px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>        </div>
       </div>
     </div>
 
+    <!--
     <div class="row story-background">
       <div class="col-md-6">
       </div>
@@ -186,23 +254,24 @@
         <p class="white-font">
           Two technology and design gurus (Brandon & Ethan) had the idea of reinventing the way influencers give back to their fans.
           <br>
-          They wanted to empower anybody with a social media following to create their own beauty line.
+          They wanted to empower anybody with a social media following to create their own beauty store.
           <br><br>
-          Fandemic Inc is a web and mobile platform that influencers use to create tailored boxes based on their interests in order to sell to their fans with zero risk.
-          Fandemic's unique approach of allowing influencers to "pre-sell" their products distributes the financial overhead of starting a business onto the influencers' most loyal fans via a 7 day "campaign".
-          <br>
+          Fandemic is a web and mobile platform that influencers use to sell beauty products to their fans with zero risk.
+          <br>Our Founders wanted to make starting your own online store extremely easy!<br>
           Manufacturers register to include their products within the box creator wizard in order to grow their business.
           <br><br>
           Fandemic effectively connects influencers to brands in order to sell tailored merchandise with zero risk.
         </p>
       </div>
     </div>
+  -->
 
-    <div class="row" style="text-align:center;background: #f7f8f9;padding: 1.2em;">
-          <h1 class="title">We do all the hard stuff!</h1>
-          <p>Let us take care of production, technology and shipping</p>
+    <div class="row" style="text-align:center;background: #f7f8f9;padding: 4em 1.2em;">
+          <img width="130px" src="/static/img/home/online-shop.svg">
+          <h1 class="title">Easiest Way to Make Money Online</h1>
+          <p>Why wait? Lets start making you money today!</p>
         <div class="row">
-          <div class="col-md-12"> <a href="/builder" class="btn">Build a Box</a>
+          <div class="col-md-12"> <a href="/builder" class="btn" style="background: linear-gradient(to left, #e96443 , #e258b0);">Get Started</a>
             <p style="font-size:10px;">Have a question? <a href="mailto:sarah@fandemic.co"> Shoot us an email </a></p>
           </div>
         </div>
@@ -265,11 +334,12 @@
 
   </div>
 
-  <section class="team text-center" id="team" style="padding-bottom: 3em;">
-    <div class="container" style="  background: url('/static/img/about_bg.png');">
+  <section class="team text-center" id="team" >
+    <div style="  background: #E55E7A;">
+      <div class="overlay" style="padding: 4em 6em !important;">
+
       <header class="section-header">
-        <h1 class="title">The Crew</h1>
-        <h3>Who even are we?</h3>
+        <h1 class="title">Meet The Founders</h1>
       </header>
       <div class="row">
         <div class="col-sm-4">
@@ -279,8 +349,7 @@
             </figure>
             <div class="team-info">
               <h4>Brandon Walsh</h4>
-              <h5>Technical Lead</h5>
-              <hr>
+
               <p>A development expert, Brandon leads the design & development team for the Fandemic platform!</p>
             </div>
           </div>
@@ -293,8 +362,7 @@
             </figure>
             <div class="team-info">
               <h4>Sarah Sharpe</h4>
-              <h5>Marketing Guru</h5>
-              <hr>
+
               <p>A communications expert, Sarah is on the ball with Fandemic's client communications to keep you informed!</p>
             </div>
 
@@ -307,14 +375,14 @@
             </figure>
             <div class="team-info">
               <h4>Ethan Steininger</h4>
-              <h5>Business Lead</h5>
-              <hr>
+
               <p>A business expert, Ethan leads the product and marketing team for the Fandemic platform!</p>
             </div>
           </div>
         </div>
 
       </div>
+    </div>
     </div>
   </section>
 

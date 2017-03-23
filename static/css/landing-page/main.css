@@ -91,6 +91,8 @@ b, strong {
   padding: 0 0 4.5em;
   position: relative;
   color: #fff;
+  background: linear-gradient(to left, #e96443 , #e258b0);
+  background-image: url(../../img/makeup100.png) center center no-repeat scroll;
   /*height:40em;*/
 }
 .hero-section::before, .video-tour::before, .pricing::before, .twitter-feed::before {
@@ -1235,7 +1237,7 @@ blockquote cite {
 
 
 .product-photo {
-  height: 250px;
+  height: 215px;
   display: inline-block;
   opacity:1;
   width:400px;
