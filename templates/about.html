@@ -10,7 +10,7 @@
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Fandemic's Story</title>
   <meta name="description" content="A fundraising platform for social media stars and organizations">
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
@@ -23,7 +23,7 @@
   <link href="../static/css/landing-page/lightslider.css" rel="stylesheet">
   <link href="../static/css/bootstrap/bootstrap-blog.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Caveat|Source+Sans+Pro|Montserrat|Sue+Ellen+Francisco|Josefin+Sans' rel='stylesheet' type='text/css'>
-
+  <script src="../static/js/jquery-1.12.2.min.js"></script>
 </head>
 
 <style>
@@ -97,9 +97,10 @@
   }
 
   .team-details img {
+    border: 3px solid #fff;
     width: 50%;
     border-radius: 50%;
-  }
+}
 
   .team .container {
     background-color: #4D9BD3;
@@ -130,11 +131,7 @@
     font-weight: 600;
   }
 
-  @media only screen and (max-device-width: 960px) {
-    .container.about {
-      padding: 5em;
-    }
-  }
+
 
 
   .white-font{
@@ -163,6 +160,17 @@
   background-attachment: fixed;
   }
 
+  .team .overlay{
+    padding: 4em 6em !important;
+  }
+
+  .steps{
+    padding-left:50px;
+  }
+
+
+
+
   .number-container{
     text-align: center;
     padding-right:6px;
@@ -185,6 +193,29 @@
   }
   .sidedock{
     display: none !important;
+  }
+
+  .team-info h4{
+    font-family: 'Josefin Sans', sans-serif !important;
+    font-weight: 600;
+  }
+
+  @media only screen and (max-device-width: 960px) {
+    .container.about {
+      padding: 5em;
+    }
+    .num-text{
+        margin-left: 70px;
+    }
+    .team .overlay{
+      padding: 4em .5em !important;
+    }
+    h1.title {
+      font-size: 32px;
+    }
+    .steps{
+      padding-left:0px;
+    }
   }
 </style>
 
@@ -213,63 +244,84 @@
 
     <div class="container">
       <br>
-      <h1 class="title center" style="text-align:center;">We make selling beauty products super easy!</h1>
+      <h1 class="title center" style="text-align:center;">Selling beauty products is easy!</h1>
       <hr>
       <div class="row">
         <div class="col-md-6" style="padding-top:20px;">
 
-          <div class="" style="padding-left:50px;">
+          <div class="steps">
 
             <div class="number-container" style="border-color:#E258B0;">
               <div class="number" style="color:#E258B0;">1</div>
             </div>
-              <p><strong>Create a Store</strong><br> You have to find the best manufacturers, design a secure store, and ship everything yourself.</p>
+              <p class="num-text"><strong>Choose Your Products</strong><br> You have to find the best manufacturers, design a secure store, and ship everything yourself.</p>
             <hr>
 
             <div class="number-container" style="border-color:#E55E79;">
               <div class="number" style="color:#E55E79;">2</div>
             </div>
-            <p><strong>Promote Your Store</strong><br>Send a link to friends, family, instagram, twitter, facebook and more to promote your new store!</p>
+            <p class="num-text"><strong>Promote Your Store</strong><br>Send a link to friends, family, instagram, twitter, facebook and more to promote your new store!</p>
             <hr>
 
             <div class="number-container" style="border-color:#E96444;">
               <div style="color:#E96444;" class="number">3</div>
             </div>
-            <p><strong>Make Monies</strong><br>Set your own price. We have had influencers make up to $1000 per week selling products on Fandemic.</p>
+            <p class="num-text"><strong>Make Monies</strong><br>Set your own price. We have had influencers make up to $1000 per week selling products on Fandemic.</p>
           </div>
 
         </div>
-        <div class="col-md-6" style="padding:50px !important;">
-          <p style="margin:0px;font-size:14px;font-weight:400;color:#999999;"><strong>Video walthough for the lazy folk</strong></p>
-          <iframe src="https://player.vimeo.com/video/203917137?title=0&byline=0&portrait=0" width="100%" height="290px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>        </div>
+        <div class="col-md-6 hidden-xs" style="padding:50px !important;">
+          <div id="slideshow">
+             <div>
+               <img src="/static/img/about/laptop1.png">
+             </div>
+             <div>
+               <img src="/static/img/about/laptop1.png">
+             </div>
+             <div>
+               <img src="/static/img/about/laptop1.png">
+             </div>
+          </div>
       </div>
     </div>
+  </div>
 
-    <!--
-    <div class="row story-background">
-      <div class="col-md-6">
-      </div>
-      <div style="text-shadow: 2px 2px rgb(60, 60, 60);" class="col-md-6">
-        <h1 class="white-font title right">Our Story</h1>
-        <p class="white-font">
-          Two technology and design gurus (Brandon & Ethan) had the idea of reinventing the way influencers give back to their fans.
-          <br>
-          They wanted to empower anybody with a social media following to create their own beauty store.
-          <br><br>
-          Fandemic is a web and mobile platform that influencers use to sell beauty products to their fans with zero risk.
-          <br>Our Founders wanted to make starting your own online store extremely easy!<br>
-          Manufacturers register to include their products within the box creator wizard in order to grow their business.
-          <br><br>
-          Fandemic effectively connects influencers to brands in order to sell tailored merchandise with zero risk.
-        </p>
-      </div>
-    </div>
-  -->
+    <style>
+    #slideshow {
+    margin: 0px auto;
+    position: relative;
+    width: 100%;
+    height: 350px;
+    padding: 10px;
+}
+
+#slideshow > div {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+}
+    </style>
+
+
+    <script>
+    $("#slideshow > div:gt(0)").hide();
+
+setInterval(function() {
+$('#slideshow > div:first')
+  .fadeOut(1000)
+  .next()
+  .fadeIn(1000)
+  .end()
+  .appendTo('#slideshow');
+},  8000);
+    </script>
 
     <div class="row" style="text-align:center;background: #f7f8f9;padding: 4em 1.2em;">
-          <img width="130px" src="/static/img/home/online-shop.svg">
-          <h1 class="title">Easiest Way to Make Money Online</h1>
-          <p>Why wait? Lets start making you money today!</p>
+          <img width="100px" src="/static/img/home/step2.svg">
+          <h1 class="title">Want to open you own store?</h1>
+          <p>Why wait? Lets start selling products today!</p>
         <div class="row">
           <div class="col-md-12"> <a href="/builder" class="btn" style="background: linear-gradient(to left, #e96443 , #e258b0);">Get Started</a>
             <p style="font-size:10px;">Have a question? <a href="mailto:sarah@fandemic.co"> Shoot us an email </a></p>
@@ -278,65 +330,12 @@
     </div>
 
 
-    <!-- <div class="row">
-      <div class="col-md-6">
-        <img src="../static/img/blog/caciboxes.png">
-      </div>
-      <div class="col-md-6">
-        <h1 class="title right">What we
-          <strong>DON'T</strong> like:</h1>
-        <p>
-          <div style="text-align:center;">Creating your own beauty business <strong>SHOULD NOT</strong> involve:</div>
-          <hr>
-          <ul class="list-group">
-            <li class="list-group-item justify-content-between">
-              Researching and contacting the best manufacturers <span class="badge badge-default badge-pill">30 days</span>
-            </li>
-            <li class="list-group-item justify-content-between">
-              Building a store website that looks great on any device <span class="badge badge-default badge-pill">30 days</span>
-            </li>
-            <li class="list-group-item justify-content-between">
-              Accepting payments securely and automating the taxes <span class="badge badge-default badge-pill">2 days</span>
-            </li>
-            <li class="list-group-item justify-content-between">
-              Boxing and shipping each order yourself <span class="badge badge-default badge-pill">4 days</span>
-            </li>
-          </ul>
-        </p>
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-md-6">
-        <h1 class="title left">What we <strong>DO</strong> like:</h1>
-        <p>
-          <div style="text-align:center;">Creating you own beauty business should be a breeze</div>
-          <hr>
-          <ul class="list-group">
-            <li class="list-group-item justify-content-between">
-              Build your kit <span class="badge badge-default badge-pill">5 minutes</span>
-            </li>
-            <li class="list-group-item justify-content-between">
-              Promote your store <span class="badge badge-default badge-pill">7 Days</span>
-            </li>
-            <li class="list-group-item justify-content-between">
-              Fans receive their kits <span class="badge badge-default badge-pill">14 Days</span>
-            </li>
-          </ul>
-        </p>
-      </div>
-      <div class="col-md-6">
-        <img src="../static/img/blog/gerribox.png">
-      </div>
-    </div> -->
-
-
 
   </div>
 
   <section class="team text-center" id="team" >
-    <div style="  background: #E55E7A;">
-      <div class="overlay" style="padding: 4em 6em !important;">
+    <div style="background: linear-gradient(to left, #ED8369 , #E87BC0);">
+      <div class="overlay">
 
       <header class="section-header">
         <h1 class="title">Meet The Founders</h1>
@@ -348,9 +347,9 @@
               <img src="../static/img/brandon2.jpg" alt="Team Member">
             </figure>
             <div class="team-info">
-              <h4>Brandon Walsh</h4>
+              <h4 >Brandon Walsh</h4>
 
-              <p>A development expert, Brandon leads the design & development team for the Fandemic platform!</p>
+              <p>A development expert.<br> Brandon leads the design & development team for the Fandemic platform!</p>
             </div>
           </div>
         </div>
@@ -363,7 +362,7 @@
             <div class="team-info">
               <h4>Sarah Sharpe</h4>
 
-              <p>A communications expert, Sarah is on the ball with Fandemic's client communications to keep you informed!</p>
+              <p>A communications expert.<br>Sarah is on the ball with Fandemic's client communications to keep you informed!</p>
             </div>
 
           </div>
@@ -376,7 +375,7 @@
             <div class="team-info">
               <h4>Ethan Steininger</h4>
 
-              <p>A business expert, Ethan leads the product and marketing team for the Fandemic platform!</p>
+              <p>A business expert.<br>Ethan leads the product and marketing team for the Fandemic platform!</p>
             </div>
           </div>
         </div>
@@ -390,7 +389,7 @@
 
 </body>
 
-<script src="../static/js/jquery-1.12.2.min.js"></script>
+
 <script src="../static/js/bootstrap.min.js"></script>
 <!-- <script src="../static/js/landing-page/waypoints.min.js"></script> -->
 <script src="../static/js/landing-page/jquery.animateNumber.min.js"></script>
