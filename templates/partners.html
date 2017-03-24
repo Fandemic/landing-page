@@ -9,7 +9,7 @@
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Fandemic's Partners</title>
   <meta name="description" content="A fundraising platform for social media stars and organizations">
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon">
@@ -88,7 +88,7 @@ p {
 
   @media only screen and (max-device-width: 960px) {
     .container.partners {
-      padding: 5em;
+      padding: 1em;
     }
   }
   #error{
@@ -96,7 +96,7 @@ p {
   }
 </style>
 
-<body>
+<body style="padding-right:0px !important;">
 
   <!--navigation-->
 
@@ -105,28 +105,37 @@ p {
   </div>
 
 
+  <section class="title-section">
+    <div class="overlayy">
+      <div class="container">
+        <div class="title">Partners</div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- Page Header -->
   <!-- Set your background image for this header on the line below. -->
   <div class="container partners" style="padding-bottom: 60px;">
     <div class="row">
-      <h2 class="title" style="font-family: 'Caveat', cursive !important;font-size:40px;">The only marketing tool you need...</h2>
+      <h2 class="title" style="font-family: 'Caveat', cursive !important;font-size:40px;">The only marketing<br class="visible-xs"> tool you need...</h2>
       <hr>
       <div class="padding" style="padding-top:5px;">
         <div class="col-md-6">
           <div class="card">
-            <p class="card-text" style="font-size: 32px;font-weight:600; ">Wait what...?</p>
+            <p class="" style="font-size: 32px;font-weight:600;text-align:center;">Wait what...?</p>
               <img class="pull-left" width="60px" style="margin-left:20px;margin-right:10px;" src="/static/img/lipstick.svg">
-              <p class="card-text" style="font-size: 20px; text-align:left">Add some of your best cosmetic products to our catalogue and let the top influencers discover you!</p>
+              <p class="card-text card-text2" style="font-size: 20px; text-align:left">Add some of your best cosmetic products to our catalogue and let the top influencers discover you!</p>
 
               <img class="pull-left" width="80px" src="/static/img/growth.svg" style="margin-right:10px;">
-              <p class="card-text" style="font-size: 20px; text-align:left">Grow your brand without spending a dime on marketing!</p>
+              <p class="card-text card-text2" style="font-size: 20px; text-align:left">Grow your brand without spending a dime on marketing.<br>Let influencers sell & promote your products for you!</p>
           </div>
 
           <br><br>
-          <a  style="margin-left: 30%;" data-toggle="modal" data-target="#partner-form" class="btn btn-hollow">Get Started</a>
+          <a  data-toggle="modal" data-target="#partner-form" class="btn btn-hollow get-started-btn">Get Started</a>
 
         </div>
-        <div class="col-md-6" style="padding-top:30px;">
+        <div class="col-md-6 hidden-xs" style="padding-top:30px;">
           <iframe src="https://player.vimeo.com/video/203917137" width="100%" height="350px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
     </div>
@@ -192,7 +201,7 @@ p {
     <p class="card-text" style="font-size: 32px;font-weight:600; ">Existing Partners</p>
     <hr>
     <div class="col-md-4" style="text-align: center;">
-      <img class="brand-logo-image" src="../static/img/partners/logo-pink.png">
+      <img class="brand-logo-image" style="margin-top:33px;" src="../static/img/partners/tat2u.png">
     </div>
     <div class="col-md-4" style="text-align: center;">
       <img class="brand-logo-image" src="../static/img/partners/ladyburd.png">
