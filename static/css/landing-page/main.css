@@ -91,8 +91,7 @@ b, strong {
   padding: 0 0 4.5em;
   position: relative;
   color: #fff;
-  background: linear-gradient(to left, #e96443 , #e258b0);
-  background-image: url(../../img/makeup100.png) center center no-repeat scroll;
+  /*background: linear-gradient(to left, #e96443 , #e258b0);*/
   /*height:40em;*/
 }
 .hero-section::before, .video-tour::before, .pricing::before, .twitter-feed::before {
