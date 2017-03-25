@@ -511,15 +511,16 @@ def partnersForm():
             <br>
             Sarah
             """
+    if MODE == 'live':
+        email = Mailer()
+        email.send(toaddr,subject,html)
 
-    email = Mailer()
-    email.send(toaddr,subject,html)
+        slack = Slack()
 
-    slack = Slack()
+        slack.sendPartnerSignupAlert(userProfile)
 
-    slack.sendPartnerSignupAlert(userProfile)
-
-    return redirect("/partners", code=302)
+    #return redirect("/partners", code=302)
+    return ''
 
 
 @app.route('/instagram-validate', methods=['GET', 'POST'])

@@ -94,6 +94,14 @@ p {
   #error{
     color:red;
   }
+  #success{
+    color:green;
+  }
+  #loadingmessage{
+    width: 3em;
+    margin-left: 45%;
+    padding-bottom: 1em;
+  }
 </style>
 
 <body style="padding-right:0px !important;">
@@ -269,6 +277,10 @@ p {
               </div>
               <div class="row">
                 <span id="error"></span>
+                <span id="success"></span>
+                <div id='loadingmessage' style='display:none'>
+                  <img src='../static/img/loader.gif'/>
+                </div>
               <input type="submit" class="btn btn-primary btn-nav btn-beauty" style="width:100%;background: #e96443;background: -webkit-linear-gradient(to left, #e96443 , #e258b0);background: linear-gradient(to left, #e96443 , #e258b0);">
               </div>
           </form>
@@ -300,7 +312,28 @@ $("form").submit(function(e) {
           $('#error').text("Company already exists!")
         }
         else {
-          form.submit();
+          $('#loadingmessage').show();  // show the loading message.
+          $.ajax({
+            url: '/partner-submit-form',
+              type: 'POST',
+              data: formData,
+              success: function(result) {
+                $('#loadingmessage').hide();
+                $('#success').text("Awesome!");
+                console.log(result);
+                setTimeout(function(){
+                  $("form").trigger('reset');
+                  $('#partner-form').modal('hide');
+                  $('body').removeClass('modal-open');
+                  $('.modal-backdrop').remove();
+                }, 3000);
+              },
+              error: function(result){
+                console.log(result);
+                $('#loadingmessage').hide();
+                $('#error').text("There was an error with your submission!")
+              }
+          });
         }
       }
   });
