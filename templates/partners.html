@@ -319,6 +319,7 @@ $("form").submit(function(e) {
               data: formData,
               success: function(result) {
                 $('#loadingmessage').hide();
+                $('#error').text("")                
                 $('#success').text("Awesome!");
                 console.log(result);
                 setTimeout(function(){
