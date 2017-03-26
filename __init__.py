@@ -82,8 +82,7 @@ def toString(l):
 @app.route('/builder/<cat>')
 @app.route('/builder/<cat>/<cat2>')
 @app.route('/builder/<cat>/<cat2>/<cat3>')
-@mobile_template('{mobile/}builder.html')
-def catalog(template,cat=None,cat2=None,cat3=None):
+def catalog(cat=None,cat2=None,cat3=None):
 
     #Get the current stars store info
     storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
@@ -123,7 +122,7 @@ def catalog(template,cat=None,cat2=None,cat3=None):
 
     brands = list(db.profiles.find({"system":"partners","bio": { "$exists": True }}))
 
-    return render_template(template, items=list(items), items_string=json.dumps(items), brands=brands, box_items=list(box_items),styles=styles,packaging=list(packaging),cat=cat,cat2=cat2,cat3=cat3,stars=stars)
+    return render_template('builder.html', items=list(items), items_string=json.dumps(items), brands=brands, box_items=list(box_items),styles=styles,packaging=list(packaging),cat=cat,cat2=cat2,cat3=cat3,stars=stars)
 
 
 #Product search for the builder

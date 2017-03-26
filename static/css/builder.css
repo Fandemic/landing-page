@@ -369,7 +369,7 @@ a:focus {
   .thumbnail{
   	border: 0px;
   	padding: 0px;
-    border-radius: 4px;
+    border-radius: 2px;
     position:relative;
     background-color: #fff;
     box-shadow: 0px 0px 3px rgba(0,0,0,0.24);
@@ -671,7 +671,7 @@ a:focus {
          text-align: left;
          margin-bottom: 10px;
          margin-top: 0px;
-         font-weight:600;
+         font-weight:400;
          font-size:35px;
          font-family: 'Caveat', cursive;
 
@@ -779,26 +779,26 @@ a:focus {
   #crumbs ul li a {
     display: block;
     float: left;
-    height: 30px;
+    height: 29px;
     background: #A6CCE8;
     text-align: center;
     padding: 10px 10px 0 20px;
     position: relative;
     margin: 0 0 0 0;
     cursor: pointer;
-    font-size: 2vw;
+    font-size: 2.5vw;
     text-decoration: none;
     color: #fff;
     transition:none;
-    width: 32% !important;
+    width: 33.33% !important;
   }
 
   #crumbs ul li a:after {
     content: "";
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-      border-left: 15px solid #A6CCE8;
-    position: absolute; right: -15px; top: 0;
+      border-left: 15px solid #E1E1E1;
+    position: absolute; right: -14px; top: 0;
     z-index: 1;
   }
 
@@ -922,7 +922,7 @@ box-shadow: 2px 6px 35px 3px rgba(0,0,0,0.41);
 }
 
 .item-box{
-  height:230px;width:210px;padding:10px;outline: 0 !important;
+  height:auto;width:100%;padding-bottom:30px;outline: 0 !important;
   display: inline-block;
 }
 
@@ -1626,4 +1626,43 @@ input[type="color"]:focus,
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,255,255,.4);
   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,255,255,.4);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,255,255,.4);
+}
+
+
+/*MOBILE GOES HERE*/
+@media only screen and (max-width: 900px) {
+
+  .explain-step {
+    margin-bottom: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+   }
+
+   .dropdown-container {
+      width: 100% !important;
+   }
+
+   .dropdown-select {
+     width: 100% !important;
+   }
+
+   .dropdown {
+    width: 100% !important;
+   }
+
+   .subtitle{
+         font-size: 27px !important;
+   }
+
+   .final-step{
+     padding-left:15px !important;
+     padding-right:15px !important;
+   }
+
+   .btn-nav {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+
 }
