@@ -35,7 +35,8 @@ class Mailer:
                 <p><strong>Your Store URL:</strong>
                 <a href="https://fandemic.co/"""+ info['star']['id'] +"""">https://fandemic.co/"""+ info['star']['id'] +"""</a></p>
                 <br><br>
-                <a href="http://admin.fandemic.co">Login</a> here to manage you store.
+                <a href="http://admin.fandemic.co">Login Here</a><br>
+                Using the username: """ + info['star']['id'] + """
                 """
         self.send(toaddr,subject,html)
 
