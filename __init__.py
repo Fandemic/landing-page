@@ -175,55 +175,6 @@ def blogHome():
     return render_template('blog.html', star_names=star_names, posts = posts)
 #-------------------------------------------
 
-#------------BLOG POST and EMAIL POST SUBMISSION & DELETION-------------------------------
-
-@app.route('/poster-login', methods=['POST'])
-def do_admin_login():
-    username = str(request.form['username'])
-    credential = db.credentials.find_one({'username':username})
-
-    if credential != None:
-        if credential['system'] == 'blog' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
-            session['logged_in_blog'] = True
-            session['username'] = credential['username']
-            return blogPoster()
-        elif credential['system'] == 'email' and request.form['password'] == credential['password'] and request.form['username'] == credential['username']:
-            session['logged_in_email'] = True
-            session['username'] = credential['username']
-            return emailPoster()
-        else:
-            return 'Wrong Username or Password'
-    else:
-        return 'Wrong Username or Password!'
-
-@app.route("/logout-sessions")
-def logout():
-    session['logged_in_blog'] = False
-    session['logged_in_email'] = False
-    return 'done!'
-
-@app.route('/blog-poster')
-def blogPoster():
-    credential = db.credentials.find_one({'username':session['username']})
-    if not session.get('logged_in_blog'):
-        return render_template('poster-login.html')
-    else:
-        return render_template('blog-poster.html', credential=credential)
-
-@app.route('/blog-post-submit-form', methods=['GET', 'POST'])
-def blogPosterSubmission():
-    blogPost = {}
-    blogPost['content'] = request.form['content']
-    blogPost['author'] = request.form['author']
-    blogPost['url'] = request.form['url']
-    blogPost['title'] = request.form['title']
-    blogPost['summary'] = request.form['summary']
-    blogPost['date'] = time.strftime("%B %d, %Y")
-
-    db.testblog.insert_one(blogPost)
-    return ''
-
-#-------------------END Email POST SUBMISSION------------------------
 
 @app.route('/blog/<url>')
 def blogPost(url):
