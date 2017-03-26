@@ -279,8 +279,7 @@ def privacy():
 
 #=================MOCK STORES=====================
 @app.route('/<starID>')
-@mobile_template('{mobile/}shop.html')
-def store(template,starID):
+def store(starID):
 
     star = db.stars.find_one({'id':starID.lower()}) #find the star
     #print star
@@ -305,7 +304,7 @@ def store(template,starID):
         c += 1
 
 
-    return render_template(template, star = star,
+    return render_template('shop.html', star = star,
                                      braintree=braintree.ClientToken.generate())
 
 
