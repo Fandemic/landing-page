@@ -443,7 +443,12 @@ h2{
       {% if blogs|length > 0 %}
 
         {% for blog in blogs %}
-            hello
+            {{blog.post.title}}
+            <br>
+            {{blog.post.content | safe}}
+
+            <i>{{blog.post.time | ctime}}</i>
+            <hr>
         {% endfor %}
       {% else %}
       No Blogs Found!

@@ -28,6 +28,8 @@ from objects.cdn import CDN
 from password import hash_password, verify_password
 from config import Config
 
+import datetime
+
 c = Config()
 db = c.dbConfig()
 MODE = c.configMode()
@@ -227,6 +229,11 @@ def privacy():
     return render_template('privacy.html', star_names=star_names)
 
 
+@app.template_filter('ctime')
+def timectime(s):
+    return datetime.datetime.fromtimestamp(
+        int(s)
+    ).strftime('%B %d, %Y')
 
 #=================MOCK STORES=====================
 @app.route('/<starID>')
@@ -240,7 +247,7 @@ def store(starID):
     currentTime = int(time.time())
 
     #get blog posts
-    blogs = db.blogs.find({'star_id':starID.lower()})
+    blogs = db.blog.find({'username':starID.lower()})
 
     #pull default descriptions for products
     c = 0
