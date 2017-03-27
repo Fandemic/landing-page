@@ -53,7 +53,7 @@ class Star:
     def createProfile(self,info):
         profile = {}
         profile['username'] = info['star']['id']
-        profile['password'] = info['star']['password']
+        profile['hashed_pw'] = info['star']['password']
         profile['system'] = 'influencers'
         profile['bio'] = {}
         profile['bio']['star_id'] = info['star']['id']
