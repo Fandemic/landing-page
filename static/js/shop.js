@@ -45,6 +45,8 @@ app.controller("shop", function($scope) {
     description: ''
   }
 
+  $scope.page = 'store';
+
   //name, price, img_url
   $scope.toggle_product = function(product){
     $scope.data.cart.push(product);

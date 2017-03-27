@@ -288,6 +288,9 @@ def store(starID):
 
     currentTime = int(time.time())
 
+    #get blog posts
+    blogs = db.blogs.find({'star_id':starID.lower()})
+
     #pull default descriptions for products
     c = 0
     for product in star['campaigns'][0]['products']:
@@ -304,7 +307,7 @@ def store(starID):
         c += 1
 
 
-    return render_template('shop.html', star = star,
+    return render_template('shop.html', star = star, blogs = list(blogs),
                                      braintree=braintree.ClientToken.generate())
 
 

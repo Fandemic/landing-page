@@ -227,7 +227,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
 .main-content{
-  margin-top:100px;
+  margin-top:0px;
 }
 
 .left-panel{
@@ -240,6 +240,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
     animation: fadeInDown 1s both;
     position: fixed;
     width: 23%;
+    margin-top:20px;
 }
 
 .left-panel-bottom{
