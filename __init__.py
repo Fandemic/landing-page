@@ -453,9 +453,9 @@ def partnersForm():
     html =  """
             Hey There!
             <br><br>
-            My name is Sarah and I'll be your advisor while you experience our partners platform for """+companyname+"""!
+            My name is Sarah and I'll be your advisor to help walk you through the Fandemic experience for """+companyname+"""!
             <br><br>
-            When you get a chance, please <a href="http://admin.fandemic.co">sign in here</a> using the username and password you provided, begin filling out your profile, and upload all your best products/variations.
+            When you get a chance, please <a href="http://admin.fandemic.co"> sign in here </a> using the username ("""+username+""") and password you provided, begin filling out your profile, and upload all your best products/variations.
             <br><br>
             Please, let me know if you have ANY questions at all (there are no silly questions)!
             <br><br>
