@@ -311,6 +311,9 @@ $("form").submit(function(e) {
         else if (response == 'company') {
           $('#error').text("Company already exists!")
         }
+        else if (response == 'email') {
+          $('#error').text("Email already exists!")
+        }
         else {
           $('#loadingmessage').show();  // show the loading message.
           $.ajax({
@@ -319,8 +322,8 @@ $("form").submit(function(e) {
               data: formData,
               success: function(result) {
                 $('#loadingmessage').hide();
-                $('#error').text("")                
-                $('#success').text("Awesome!");
+                $('#error').text("")
+                $('#success').text("Great! Check your email!");
                 console.log(result);
                 setTimeout(function(){
                   $("form").trigger('reset');
