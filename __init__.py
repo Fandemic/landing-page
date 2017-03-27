@@ -488,12 +488,15 @@ def instagramValidate():
 @app.route('/partners-form-validate', methods=['GET', 'POST'])
 def partnersFormValidate():
     username = str(request.form['username'])
+    email = str(request.form['email'])
     company_id = str(request.form['companyname']).replace(" ","-").lower()
     u = Star(c)
     if (u.checkIDExists('bio.company_id',company_id)):
         return 'company'
     elif (u.checkIDExists('username',username)):
         return 'username'
+    elif (u.checkIDExists('bio.email',email)):
+        return 'email'
     else:
         return 'success'
 
