@@ -80,51 +80,42 @@ def toString(l):
     return ",".join(l)
 
 
+#Store Builder
 @app.route('/builder')
 @app.route('/builder/<cat>')
-@app.route('/builder/<cat>/<cat2>')
-@app.route('/builder/<cat>/<cat2>/<cat3>')
-def catalog(cat=None,cat2=None,cat3=None):
+def builder(cat=None):
 
     #Get the current stars store info
     storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
     stars = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(6)
 
-    #get the box styles and packaging material
-    styles = db.design.find({"category":"box"})
-    packaging = db.packaging.find({"category":"packaging"})
-
-    box_items = []
-
-    if request.cookies.get('box') is not None:
-        box = toList(request.cookies.get('box'))
-        box_items = db.items.find({"sku":{ "$in": box }})
-
+    #redirect if the category does not exist
     if cat is None:
-
-        #items = db.items.find() #find the
         return redirect("/builder/beauty", code=302)
 
-    else:
 
-        if cat2 is None:
-            items = db.staging_items.find({"category":cat},{'_id': False}) #find the star
+    approved_brands = []
 
-        else:
 
-            if cat3 is None:
-                items = db.staging_items.find({"category":cat,"sub-category":cat2},{'_id': False}) #find the star
+    brands = list(db.profiles.find({"system":"partners",
+                                    "bio": { "$exists": True },
+                                    "bio.approved":True}))
 
-            else:
-                items = db.staging_items.find({"category":cat,"sub-category":cat2,"sub-sub-category":cat3},{'_id': False}) #find the star
+    for brand in brands:
+        approved_brands.append(brand['bio']['company_id'])
 
-    items = list(items);
-    for item in items:
-        item['price'] = int(math.ceil(math.ceil( float(item['retail_price'])) ))
 
-    brands = list(db.profiles.find({"system":"partners","bio": { "$exists": True }}))
+    #Get Categories
+    items = list(db.staging_items.find({"category":"beauty",
+                                             "sub_category": { "$exists": True },
+                                             "company_id":{ "$in": approved_brands }
+                                             },
+                                             {'_id': False}))
 
-    return render_template('builder.html', items=list(items), items_string=json.dumps(items), brands=brands, box_items=list(box_items),styles=styles,packaging=list(packaging),cat=cat,cat2=cat2,cat3=cat3,stars=stars)
+    cats = {item['sub_category'] for item in items}
+
+
+    return render_template('builder.html', brands=brands,cat=cat,stars=stars,cats=cats)
 
 
 #Product search for the builder
@@ -134,19 +125,43 @@ def productSearch():
     filters = request.get_json()
 
     items = []
+    approved_brands = []
+
+    #filter based on approved brands
+    if filters['brand']['id'] == 'All Brands':
+        brands = list(db.profiles.find({"system":"partners",
+                                        "bio": { "$exists": True },
+                                        "bio.approved":True}))
+        for brand in brands:
+            approved_brands.append(brand['bio']['company_id'])
+
 
     if filters['category'] == 'All Products' and filters['brand']['id'] == 'All Brands':
-        items = list(db.staging_items.find({"category":"beauty"},{'_id': False}))
+
+        items = list(db.staging_items.find({"category":"beauty",
+                                            "company_id":{ "$in": approved_brands }
+                                            },
+                                            {'_id': False}))
 
     elif filters['category'] == 'All Products':
-        items = list(db.staging_items.find({"category":"beauty","company_id":filters['brand']['id']},{'_id': False}))
+        items = list(db.staging_items.find({"category":"beauty",
+                                            "company_id":filters['brand']['id']
+                                            },
+                                            {'_id': False}))
 
     elif filters['brand']['id'] == 'All Brands':
-        items = list(db.staging_items.find({"category":"beauty","sub-category":filters['category']},{'_id': False}))
+        items = list(db.staging_items.find({"category":"beauty",
+                                            "sub_category":filters['category'],
+                                            "company_id":{ "$in": approved_brands }
+                                            },
+                                            {'_id': False}))
 
     else:
-        items = list(db.staging_items.find({"category":"beauty","sub-category":filters['category'],"company_id":filters['brand']['id']},{'_id': False}))
-
+        items = list(db.staging_items.find({"category":"beauty",
+                                            "sub_category":filters['category'],
+                                            "company_id":filters['brand']['id']
+                                            },
+                                            {'_id': False}))
 
 
     return json.dumps(items)

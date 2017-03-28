@@ -96,12 +96,12 @@
               <strong class="item-name">All Brands</strong>
             </div>
             {% for brand in brands %}
-              {% if brand.bio.approved == True %}
+
               <div class="dropdown-item" ng-click="filter.brand={name:&quot;{{brand.username}}&quot;,id:&quot;{{brand.bio.company_id}}&quot;}">
                 <img height="40px" src="https://res.cloudinary.com/fandemic/image/upload/brands/{{brand.bio.company_id}}/logo.png">
                 <strong class="item-name">{{ brand.username }}</strong>
               </div>
-              {% endif %}
+
             {% endfor %}
           </div>
         </div>
@@ -119,10 +119,10 @@
             <div class="dropdown-item" ng-click="filter.category='All Products'">
               <strong class="item-name">All Products</strong>
             </div>
-            {% for group in items | groupby('category')%}
-            <div class="dropdown-item" ng-click="filter.category='{{group.grouper}}'">
-              <img height="40px" src="/static/img/{{group.grouper}}.svg">
-              <strong class="item-name">{{group.grouper | upper}}</strong>
+            {% for cat in cats %}
+            <div class="dropdown-item" ng-click="filter.category='{{cat}}'">
+              <img height="40px" src="/static/img/{{cat}}.svg">
+              <strong class="item-name">{{cat | upper}}</strong>
             </div>
             {% endfor %}
           </div>
