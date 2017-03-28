@@ -102,6 +102,22 @@ p {
     margin-left: 45%;
     padding-bottom: 1em;
   }
+  .checkbox.terms{
+    -webkit-transform: scale(1.5);
+  }
+
+  .hidden-terms {
+  		display: none;
+  }
+  .unhidden-terms {
+      height: 9em;
+      overflow: auto;
+      margin-top: 1em;
+      margin-bottom: 1em;
+  }
+  .unhidden-terms li {
+    padding-bottom: 1em;
+  }
 </style>
 
 <body style="padding-right:0px !important;">
@@ -275,6 +291,32 @@ p {
                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-key"></i></span>
                 <input id="password" name="password" class="form-control" type="password" placeholder="Password" required>
               </div>
+              <div class="input-group input-group-lg" style="padding: 1em;text-align: center;">
+                  <div class="col-md-11">
+                  I agree with the partner <a id="terms-toggle" href="#">terms and conditions</a>
+                </div>
+                <div class="col-md-1">
+                  <input type="checkbox" class="checkbox terms" required/>
+                </div>
+              </div>
+                <div id="terms-view" class="hidden-terms">
+                    <li>
+                      I agree to send all products to the customer within 5 business days of the order notification via my Fandemic partner dashboard.
+                    </li>
+                    <li>
+                      I agree to allow one sample per influencer, this differs from a customer where the influencer creates the store. Distinction will be made on the orders section of the partners dashboard.
+                    </li>
+                    <li>
+                      I agree to handle all customer service communication that involves my company's products which may or may not include refund requests.
+                    </li>
+                    <li>
+                      I agree to honestly indicate via the products page within the partners dashboard, what each products' approval is (i.e. PETA, Vegan, Organic, etc.)
+                    </li>
+                    <li>
+                      All of my company's products are legally approved for sale in the United States of America and United Kingdom
+                    </li>
+                </div>
+              <div>
               <div class="row">
                 <span id="error"></span>
                 <span id="success"></span>
@@ -296,6 +338,12 @@ p {
 </div>
 
 <script>
+$( "#terms-toggle" ).click(function() {
+	$('#terms-view').toggleClass('hidden-terms')
+  $('#terms-view').toggleClass('unhidden-terms')
+
+});
+
 $("form").submit(function(e) {
   var form = this;
   e.preventDefault();
