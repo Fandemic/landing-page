@@ -77,6 +77,7 @@ p,a{
 h3{
   font-family: 'Josefin Sans', sans-serif !important;
   font-weight:600 !important;
+  font-size: 18px;
 }
 
 .btn-main:hover{
@@ -84,7 +85,7 @@ h3{
   color:#fff !important;
 }
 
-h1,h3,h4,h5,h6,.btn,.money{
+span,h1,h3,h4,h5,h6,.btn,.money{
   font-family: 'Josefin Sans', sans-serif !important;
 
 }
@@ -103,7 +104,18 @@ h2{
   font-weight: 600;
 }
 
+.mobile-nav-container{
+  display: none;
+}
+
+.information{
+  display: none;
+}
+
 @media only screen and (max-width: 900px) {
+  .main-content{
+        padding: 90px 10px 70px 10px;
+  }
   .menu{
     position:fixed;
     top:0px;
@@ -131,7 +143,7 @@ h2{
   }
   .left-panel{
     position:fixed;
-    top:40px;
+    top:0px;
     left: 0px;
     width: 100%;
     height: 70px;
@@ -139,18 +151,16 @@ h2{
     margin:0px;
   }
 
-  .star-name,.profile-img{
-    display: inline !important;
-  }
+
 
   .star-name{
-    font-size:24px !important;
+    font-size:22px !important;
     margin-left: 10px;
-    float: left;
+    margin: 0px;
   }
 
   .profile-img{
-    width:60px;
+    width:40px;
   }
 
   #social-media{
@@ -160,11 +170,9 @@ h2{
 
 
   .profile-img-container {
-    margin: 0px !important;
+    margin: 0 auto !important;
     padding: 0px !important;
     width: 70px;
-    display: inline;
-    float: left;
 
   }
 
@@ -183,12 +191,108 @@ h2{
     width: 100% !important;
     border-radius: 0px;
     padding-bottom: 20px;
-    top: 110px !important;
-    height: calc(100% - 110px) !important;
+    top: 70px !important;
+    height: calc(100% - 150px) !important;
     text-align: center;
     display:none;
   }
+
+  .mobile-nav-container{
+    display: inherit;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+
+    z-index:999999999;
+    box-shadow: 0 1px 12px 0px rgba(51, 51, 51, 0.23);
+-webkit-animation: fadeInDown 1s both;
+
+  }
+
+  .mobile-nav{
+    padding:15px 0px;
+    width: inherit;
+    height: inherit;
+
+  }
+
+  .mobile-nav .mobile-item{
+    width:33%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #e9e9e9;
+
+  }
+
+  .mobile-nav .mobile-item img{
+    width: 25%;
+    margin: 0 auto;
+  }
+
+  .mobile-nav .mobile-item span{
+    font-weight: 400 !important;
+    color: #999999;
+    font-size:16px;
+    font-family: 'Josefin Sans', sans-serif !important;
+  }
+
+  .border{
+    background: linear-gradient(to left, #e96443 , #e258b0);
+    width: 100%;
+    height:1px;
+    opacity: .5;
+  }
+  .menu{
+    display: none;
+  }
+  .information{
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    width: 30px;
+    display: block;
+  }
+
+  .product{
+      border-bottom: 1px solid #d9d9d9;
+  }
+
+.close{
+    top: 20px !important;
+    left: 20px;
+    z-index: 999999999;
+    font-size: 30px;
+    position: absolute;
+    color: #1d1d1d;
+    opacity: 1;
+  }
+
+  .modal-dialog{
+    margin: 0px !important;
+    width:100%;
+    min-height: 100%;
+  }
+
+  .modal-content{
+    border-radius: 0px;
+    padding-top: 60px;
+  }
+
+  .modal {
+    position: fixed;
+    top: -1px;
+    right: 0;
+    bottom: 0;
+    left: -1px;
+  }
+
+
 }
+
 
 
 </style>
@@ -199,39 +303,40 @@ h2{
 <script> $('#loading').hide();</script>
 
 
-<!--<nav class="navbar navbar-default stuck">
-  <div class="container-fluid" style="padding: 0px 40px;">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">
-        <img class="logo-nav" alt="logo" src="../static/img/fandemic_logo_pink.png" style="padding-top:0px;margin-top:-4px;" width="160px">
 
+<!--Mobile Navigation-->
+<section class="mobile-nav-container">
+<div class="border">
+</div>
 
-      </a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-      <ul class="nav navbar-nav nav-left" style="padding-left:1em;">
-        <li><a style="font-weight:600;font-size:18px;" href="/about">About</a></li>
-        <li><a style="font-weight:600;font-size:18px;" href="/partners">Partners</a></li>
-        <li><a style="font-weight:600;font-size:18px;" href="/blog">Blog</a></li>
-        <li><a style="font-weight:600;font-size:18px;" href="/faq">FAQ</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/builder" class="btn">Launch a Store</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>-->
+<div class="mobile-nav">
+
+<div ng-click="page='store'" id="store-indicator" class="mobile-item">
+<img src="/static/img/store/store.svg">
+<br>
+<span style="color:#E258AA;">Store</span>
+</div>
+
+<div ng-click="page='blog'" id="blog-indicator" class="mobile-item">
+<img src="/static/img/store/posts.svg">
+<br>
+<span style="color:#E65E77;">Posts</span>
+</div>
+
+<div ng-click="page='store'" id="cart-indicator" class="mobile-item" style="border-right:none;">
+<img src="/static/img/store/cart.svg">
+<br>
+<span style="color:#E86347;" ng-cloak>Cart({a data.cart.length a})</span>
+</div>
+
+</div>
+
+</section>
 
 
 <!-- SIDE PANEL -->
 
-<div class="main-content container-fluid">
+<div class="main-content container">
   <div class="row">
     <div class="col-md-3">
       <div class="left-panel" style="background-color:#fff;">
@@ -241,12 +346,15 @@ h2{
           <a class="store" href="" ng-click="page='store'">STORE</a> <a class="blog" href="" ng-click="page='blog'">BLOG</a>
         </div>
 
-        <div class="cart-indicator" ng-cloak>
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>({a data.cart.length a})
-        </div>
+
+          <img ng-click="page='info'" class="information" src="/static/img/store/information.svg">
+
+
 
         <button type="button" class="btn btn-primary btn-xs btn-toggle" data-toggle="offcanvas"><i class="fa fa-shopping-cart" style="font-size: 25px;"></i> $<span id="total-cost">0.00</span></button>
         <div class="profile-img-container" style="margin-top:1em;padding:20px;">
+
+
 
 
           {% if star.img %}
@@ -284,6 +392,7 @@ h2{
       </div>
 
 
+
       <!--
       <div class="left-panel-bottom">
         <div>
@@ -307,11 +416,42 @@ h2{
     </div>
 
 
+    <section ng-hide="page!='info'" id="info" ng-cloak>
+        <div class="col-md-6">
+
+
+          <h2>About Me</h2>
+
+
+          <p>{{star.name}}</p>
+          {% if star.url %}
+          <div id="social-media" style="display:block !important;">
+            <a  style="color:#1d1d1d;" class="link" target="_blank" href="{{star.url.youtube}}"><i class="fa fa-youtube"></i></a>
+            <a  style="color:#1d1d1d;" class="link" target="_blank" href="{{star.url.instagram}}"><i class="fa fa-instagram"></i></a>
+            <a  style="color:#1d1d1d;" class="link" target="_blank" href="{{star.url.facebook}}"><i class="fa fa-facebook"></i></a>
+            <a  style="color:#1d1d1d;" class="link" target="_blank" href="{{star.url.twitter}}"><i class="fa fa-twitter"></i></a>
+          </div>
+          {% else %}
+          <div id="social-media" style="display:block !important;">
+            <a data-toggle="modal" data-target='#no-social-media-profiles' style="color:#1d1d1d;" class="link no-social-link" target="_blank" href=""><i class="fa fa-youtube"></i></a>
+            <a data-toggle="modal" data-target='#no-social-media-profiles'  style="color:#1d1d1d;"  class="link no-social-link" target="_blank" href=""><i class="fa fa-instagram"></i></a>
+            <a data-toggle="modal" data-target='#no-social-media-profiles'  style="color:#1d1d1d;"  class="link no-social-link" target="_blank" href=""><i class="fa fa-facebook"></i></a>
+            <a data-toggle="modal" data-target='#no-social-media-profiles'  style="color:#1d1d1d;"  class="link no-social-link" target="_blank" href=""><i class="fa fa-twitter"></i></a>
+          </div>
+          {% endif %}
+
+          <hr>
+          <h2>What is this?</h2>
+
+          <p>{{star.name}} official store and blog of course!</p>
+
+      </div>
+    </section>
+
+
     <div ng-hide="page!='store'" id="store">
     <div class="col-md-6">
-      <br>
-      <h2>My Favorite Products</h2>
-      <hr>
+
       <div class="items-listing" style="padding: 0px 30px;">
 
         {% for p in star.campaigns[0].products %}
@@ -323,7 +463,7 @@ h2{
         {% if countt == 1 %}
           <div class="row">
         {% endif %}
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="text-align:center;padding:20px 0px 30px 0px;
+          <div class="product col-lg-4 col-md-4 col-sm-4 col-xs-12" style="text-align:center;padding:20px 0px 30px 0px;
 
         ">
 
@@ -338,15 +478,16 @@ h2{
                 <span class="money" style="text-decoration:line-through">$20</span> <span class="money">${{p.price|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}}</span>
                 <br>
 
-              <!--<button class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"  data-toggle="modal" data-target="#{{ p.item_num|replace(' ', '-') }}-variation">View Details</button>-->
             </div>
+            <button class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"  data-toggle="modal" data-target="#{{ p.item_num|replace(' ', '-') }}-variation">Details</button>
+
             <button ng-click="toggle_product({name:'{{p.name}}',
                                               variation:'{{p.variation}}',
                                               retail_price:20.00,
                                               price:{{p.price|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}},
                                               item_num:'{{p.item_num}}',
                                               company_id:'{{p.company_id}}'});"
-                    class="btn btn-main" style="font-size:14px;font-weight:800 !important;border:1px solid #1d1d1d;background-color:transparent;"><i class="fa fa-cart-plus" aria-hidden="true"></i> ADD TO CART</button>
+                    class="btn btn-main" style="font-size:14px;font-weight:800 !important;border:1px solid #1d1d1d;background-color:transparent;"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
           </div>
 
@@ -435,23 +576,24 @@ h2{
 
 
   <div ng-hide="page!='blog'" id="blog">
+
     <div class="col-md-9">
-      <br>
-      <h2>My Blog</h2>
-      <hr>
+
 
       {% if blogs|length > 0 %}
 
         {% for blog in blogs %}
+          <p>
             {{blog.post.title}}
             <br>
             {{blog.post.content | safe}}
 
             <i>{{blog.post.time | ctime}}</i>
+          </p>
             <hr>
         {% endfor %}
       {% else %}
-      No Blogs Found!
+      <p>No Blogs Found!</p>
       {% endif %}
 
     </div>
@@ -474,10 +616,10 @@ h2{
 
 
 {% for p in star.campaigns[0].products %}
-<div id="{{ p.item_num|replace(' ', '-') }}-variation" class="modal fade" role="dialog">
+<div id="{{ p.item_num|replace(' ', '-') }}-variation" class="modal" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <button type="button" class="close" style="top:50px !important;" data-dismiss="modal">&times;</button>
+      <button type="button" class="close"  data-dismiss="modal"><i class="fa fa-chevron-left" aria-hidden="true"></i> <span>Back</span></button>
 
       <div class="row">
         <div class="col-md-4">
@@ -982,7 +1124,13 @@ $( "li" ).each(function() {
 {% endif %}
 
 <script>
-    $('.cart-indicator').on('click', function(e) {
+    $('#cart-indicator').on('click', function(e) {
       $('.cart').toggle("fast");
+    });
+    $('#blog-indicator').on('click', function(e) {
+      $('.cart').hide("fast");
+    });
+    $('#store-indicator').on('click', function(e) {
+      $('.cart').hide("fast");
     });
 </script>
