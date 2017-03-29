@@ -141,6 +141,15 @@ h2{
     background-color: #E96443;
     padding-top: 8px;
   }
+
+  .btn-main{
+      font-size: 20px !important;
+      margin-right: 7px;
+      color: #000;
+      border-color: #000;
+      font-weight: 400 !important;
+  }
+
   .left-panel{
     position:fixed;
     top:0px;
@@ -258,7 +267,7 @@ h2{
   }
 
   .product{
-      border-bottom: 1px solid #d9d9d9;
+      border-bottom: 1px solid #eaeaea;
   }
 
 .close{
@@ -280,6 +289,7 @@ h2{
   .modal-content{
     border-radius: 0px;
     padding-top: 60px;
+    padding-bottom: 70px;
   }
 
   .modal {
@@ -288,6 +298,19 @@ h2{
     right: 0;
     bottom: 0;
     left: -1px;
+  }
+
+  .admin-login{
+    position: absolute;
+    right:15px;
+    top:22px;
+    color:#D8D8D8;
+  }
+
+  .checkout-section{
+    padding-top: 40px !important;
+    padding-bottom: 100px !important;
+    border: none !important;
   }
 
 
@@ -348,6 +371,9 @@ h2{
 
 
           <img ng-click="page='info'" class="information" src="/static/img/store/information.svg">
+
+
+          <a href="http://admin.fandemic.co" class="admin-login">Login</a>
 
 
 
@@ -475,15 +501,16 @@ h2{
 
 
               <h3>{{ p.name }}<br><!--<span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span>--></h3>
-                <span class="money" style="text-decoration:line-through">$20</span> <span class="money">${{p.price|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}}</span>
+                <span class="money" style="text-decoration:line-through">${{p.retail_price|int}}</span> <span class="money">${{p.price|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}}</span>
                 <br>
 
             </div>
+            <br>
             <button class="btn btn-main" style="font-size:14px;font-weight:700;border:1px solid #1d1d1d;background-color:transparent;"  data-toggle="modal" data-target="#{{ p.item_num|replace(' ', '-') }}-variation">Details</button>
 
             <button ng-click="toggle_product({name:'{{p.name}}',
                                               variation:'{{p.variation}}',
-                                              retail_price:20.00,
+                                              retail_price:{{p.retail_price|int}},
                                               price:{{p.price|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}},
                                               item_num:'{{p.item_num}}',
                                               company_id:'{{p.company_id}}'});"
@@ -514,19 +541,16 @@ h2{
         <a href="/builder/beauty" target="_blank"><button class="btn" style="font-family: 'Caveat', cursive !important;position:absolute;border-radius:4px;border: 1px solid #000; background-color:#fff;color:#000;top:-60px;right:0px;">Design Your Own ></button></a>
         -->
 
-        <div class="panel-body" style="padding-bottom:0px;padding-left:20px;padding-right:20px;float:left;width:100%;" ng-if="data.savings != 0" ng-cloak>
-        <span class="money">Sub Total: {a data.total_price | currency a}</span><br>
-        <span style="font-weight:400;color:#E35A99;margin-top:20px;"><i class="fa fa-tag" aria-hidden="true"></i> You save <strong>{a data.savings | currency a}</strong> on this order!</span>
-        <hr style="margin-bottom:0px;">
-        </div>
 
-        <div class="panel-body" style="padding-bottom:0px;padding-left:20px;padding-right:20px;float:left;width:100%;max-height:calc(100% - 230px);overflow-y:auto;">
+
+        <div class="panel-body" style="padding-bottom:0px;padding-top:30px;padding-left:20px;padding-right:20px;float:left;width:100%;max-height:calc(100% - 200px);overflow-y:auto;">
 
           <div ng-if="data.total_price == 0" style="text-align:center;">
                   <br><br>
                   <img width="35%" src="../static/img/shopping-cart.svg">
                   <h3 style="color:#adadad !important;">Your Cart is Empty!<h3>
-                  <h4 style="color:#adadad !important;"><i class="fa fa-arrow-left" aria-hidden="true"></i> Try adding a product</h4>
+                  <h4 class="hidden-xs" style="color:#adadad !important;"><i class="fa fa-arrow-left hidden-xs" aria-hidden="true"></i> Try adding a product</h4>
+                  <a onClick="$('.cart').hide();" class="visible-xs" style="font-size:20px;" id="store-indicator2" >Go Back To Store</a>
           </div>
 
           <div ng-repeat="p in data.cart" ng-cloak>
@@ -536,13 +560,14 @@ h2{
                 <div class="col-xs-2">
                   <img style="width:40px;margin: 0 auto;margin-top:-7px;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
                 </div>
-                <div class="col-xs-6" style="text-align:left;font-size:14px;">
-                  {a p.name a}
+                <div class="col-xs-5" style="text-align:left;font-size:15px;">
+                  <span>{a p.name a}</span>
                 </div>
-                <div class="col-xs-2" style="text-align:left;">
-                  {a p.price | currency a}
+                <div class="col-xs-4" style="text-align:left;padding:0px;font-size:15px;">
+                  <strike>{a p.retail_price | currency a}</strike>
+                  <span>{a p.price | currency a}</span>
                 </div>
-                <div class="col-xs-2" style="text-align:right;">
+                <div class="col-xs-1" style="text-align:right;">
                   <span class="pull-right" ng-click="delete_product(p)" style="cursor:pointer;color:#E86256;"><i class="fa fa-trash" aria-hidden="true"></i></span>
                 </div>
               </div>
@@ -551,6 +576,14 @@ h2{
             <br>
           </div>
           </div>
+        </div>
+
+
+        <div class="panel-body" style="padding-bottom:0px;padding-left:20px;padding-right:20px;float:left;width:100%;" ng-if="data.savings != 0" ng-cloak>
+        <hr style="margin-top:0px;">
+        <span class="money" style="font-size:20px;">Sub Total: {a data.total_price | currency a}</span><br>
+        <span style="font-weight:400;color:#E35A99;margin-top:20px;"><i class="fa fa-tag" aria-hidden="true"></i> You save <strong>{a data.savings | currency a}</strong> on this order!</span>
+
         </div>
 
 
@@ -584,16 +617,23 @@ h2{
 
         {% for blog in blogs %}
           <p>
-            {{blog.post.title}}
+            <strong>{{blog.post.title}}</strong>
             <br>
             {{blog.post.content | safe}}
-
-            <i>{{blog.post.time | ctime}}</i>
+            <br>
+            {{blog.post.time | ctime}}
           </p>
             <hr>
         {% endfor %}
       {% else %}
-      <p>No Blogs Found!</p>
+      <div style="text-align:center;">
+              <br><br>
+              <img width="35%" src="../static/img/store/posts2.svg">
+              <h3 style="color:#adadad !important;">No Posts Exist!<h3>
+              <p style="color:#adadad !important;">Are you {{star.name}}?<br>Login to create your first post.</p>
+              <br>
+              <a href="http://admin.fandemic.co" style="font-size:22px;">Login</a>
+      </div>
       {% endif %}
 
     </div>
@@ -627,10 +667,18 @@ h2{
         </div>
         <div class="col-md-8">
           <h2>{{p.name}}</h2>
+
+          <h3>Description</h3>
+          <hr>
           <p>{{p.description}}</p>
+
+          <h3>Ingredients</h3>
+          <hr>
+          <p>{{p.ingredients}}</p>
+          <br><br>
         </div>
       </div>
-      <img style="height:60px;float:right;" src="http://res.cloudinary.com/fandemic/image/upload/brands/{{p.company_id}}/logo.png">
+      <img style="height:60px;position:absolute;right:15px;top:15px;" src="http://res.cloudinary.com/fandemic/image/upload/brands/{{p.company_id}}/logo.png">
 
     </div>
   </div>
@@ -656,29 +704,29 @@ h2{
           <div class="col-md-7" style="padding: 5px 50px;">
 
             <div class='row'>
-              <div class='col-xs-6'>
+              <div class='col-sm-6'>
                 <label class='control-label'>Email</label>
                 <input data-category="Shop" data-action="Email form" data-label="Email Input Form" id="email" class='form-control' size='30' type='text' ng-model="data.customer.email">
               </div>
-              <div class='col-xs-6'>
+              <div class='col-sm-6'>
                 <label class='control-label'>Full Name</label>
                 <input data-category="Shop" data-action="Full Name form" data-label="Full Name Input Form" id="name" class='form-control' size='30' type='text' ng-model="data.customer.name">
               </div>
             </div>
             <br>
             <div class='row'>
-              <div class='col-xs-12'>
+              <div class='col-sm-12'>
                 <label class='control-label'>Shipping Address</label>
                 <input data-category="Shop" data-action="Shipping Address form" data-label="Address Input Form" id="addr" class='form-control' size='200' type='text' ng-model="data.customer.street" ng-model-options="{ debounce: 1500 }">
               </div>
             </div>
             <br>
             <div class='row'>
-              <div class='col-xs-6'>
+              <div class='col-sm-6'>
                 <label class='control-label'>City</label>
                 <input data-category="Shop" data-action="City form" data-label="City Input Form" id="city" class='form-control' size='30' type='text' ng-model="data.customer.city" ng-model-options="{ debounce: 1500 }">
               </div>
-              <div class='col-xs-6'>
+              <div class='col-sm-6'>
                 <label class='control-label'>State</label>
                 <input data-category="Shop" data-action="State form" data-label="State Input Form" id="state" class='form-control' size='30' type='text' ng-model="data.customer.state">
               </div>
@@ -687,11 +735,11 @@ h2{
             <br>
             <div class='row'>
 
-              <div class='col-xs-6'>
+              <div class='col-sm-6'>
                 <label class='control-label'>Zip</label>
                 <input data-category="Shop" data-action="Zip form" data-label="Zip Input Form" id="zip" class='form-control' size='30' type='text' ng-model="data.customer.zip" ng-model-options="{ debounce: 1500 }">
               </div>
-              <div class='col-xs-6'>
+              <div class='col-sm-6'>
                 <label class='control-label'>Country</label>
                 <div class="form-group" style="text-align:left;">
                   <select data-category="Shop" data-action="Country form" data-label="Country Input Form" id="country" class="form-control" ng-model="data.customer.country">
@@ -958,7 +1006,7 @@ h2{
 
 
           </div>
-          <div class="col-md-5" style="text-align:center;padding: 5px 50px;border-left: 1px solid #e1e1e1;">
+          <div class="col-md-5 checkout-section" style="text-align:center;padding: 5px 50px;border-left: 1px solid #e1e1e1;">
             <h4 class="modal-title">Checkout</h4>
             <p>{a total_price() | currency a} USD</0>
 
@@ -1126,11 +1174,18 @@ $( "li" ).each(function() {
 <script>
     $('#cart-indicator').on('click', function(e) {
       $('.cart').toggle("fast");
+      $('.modal').modal('hide');
     });
     $('#blog-indicator').on('click', function(e) {
       $('.cart').hide("fast");
+      $('.modal').modal('hide');
     });
     $('#store-indicator').on('click', function(e) {
       $('.cart').hide("fast");
+      $('.modal').modal('hide');
+    });
+    $('#store-indicator2').on('click', function(e) {
+      $('.cart').hide("fast");
+      $('.modal').modal('hide');
     });
 </script>

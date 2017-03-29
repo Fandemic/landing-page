@@ -271,7 +271,15 @@ def store(starID):
         #match the product info to the users products
         product_info = db.staging_items.find_one({'name':product['name']})
         star['campaigns'][0]['products'][c]['description'] = product_info['description'].replace("'","\\'") #find the star
+
+        try:
+            star['campaigns'][0]['products'][c]['ingredients'] = product_info['ingredients']
+        except KeyError:
+            star['campaigns'][0]['products'][c]['ingredients'] = 'not listed'
+
         star['campaigns'][0]['products'][c]['company_id'] = product_info['company_id']
+        star['campaigns'][0]['products'][c]['retail_price'] = product_info['retail_price']
+        star['campaigns'][0]['products'][c]['price'] = product_info['partner_price']
 
         #match the company info to the users products
         company = db.staging_items.find_one({'name':product['name']})
