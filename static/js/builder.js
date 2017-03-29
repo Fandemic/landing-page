@@ -162,7 +162,7 @@ app.controller("builder", function($scope) {
         return ''
       }
       else{
-        $scope.toggle_product({name:item.name,item_num:item.item_num,price:item.retail_price});
+        $scope.toggle_product({name:item.name,item_num:item.item_num,price:item.partner_price});
       }
 
     }
