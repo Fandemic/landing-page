@@ -34,6 +34,8 @@ c = Config()
 db = c.dbConfig()
 MODE = c.configMode()
 
+
+
 #get the stars products
 if MODE == 'test':
     db = MongoClient('45.79.159.210', 27018).fandemic_test
@@ -56,6 +58,8 @@ app = Flask(__name__)
 Mobility(app)
 Compress(app)
 
+#autoreload templates
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 #================INDEX=====================
 @app.route('/', methods=['GET', 'POST'])
@@ -242,7 +246,6 @@ def benefits():
 def privacy():
     star_names = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(5)
     return render_template('privacy.html', star_names=star_names)
-
 
 @app.template_filter('ctime')
 def timectime(s):
@@ -540,5 +543,4 @@ salt = 'dSGSjghjEGFCugbEgbv'
 
 
 if __name__ == '__main__':
-
     app.run(debug=True)
