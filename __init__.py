@@ -232,7 +232,7 @@ def about():
 @app.route('/partners')
 def partners():
     unixTimestamp = int(time.time())
-    companies = db.profiles.find({"system":"partners"})
+    companies = db.profiles.find({"system":"partners", "bio.approved":True})
 
     star_names = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(5)
     return render_template('partners.html', star_names=star_names, unixTimestamp=unixTimestamp,companies=companies)
