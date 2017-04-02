@@ -21,6 +21,9 @@ class Partner:
         customer = data['customer'];
         cart = data['cart'];
 
+        #get the stars profit per item
+        influencer_profit = self.db.stars.find_one({"id":data['star_id']})['campaigns'][0]['profit']
+
         #group the cart into separate brand orders
         #pull the data via profiles section
         brands = {}
@@ -85,6 +88,7 @@ class Partner:
                     "product_name": product['name'],
                     "variation": product['variation'],
                     "price": product['price'],
+                    "influencer_profit": influencer_profit,
                     "qty": 1
                 })
 

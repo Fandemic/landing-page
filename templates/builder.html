@@ -64,6 +64,13 @@
 
 <body ng-controller="builder" style="background-color:#F1F1F1">
 
+  <section style="cursor:pointer;z-index:100;position:fixed;top:0px;left:0px;width:100%;height:30px;text-align:center;background: linear-gradient(to left, #e96443 , #e258b0);color:#fff;"
+           data-toggle="modal" data-target="#coin-modal">
+    <img height="20px" src="/static/img/builder/coin.svg">
+    <span style="font-size:12px;">Get a free Fandemic coin upon launching your store! <i class="fa fa-question-circle" aria-hidden="true"></i></span>
+
+  </section>
+
   {% include('builder/nav.html') %}
 
 
@@ -233,6 +240,33 @@ $('.variations-modal').on("show.bs.modal", function () {
     </div>
   </div>
 </div>
+
+
+<!--coin info modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="coin-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">What are Fandemic Coins?</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            <img width="100px" src="/static/img/builder/coin.svg">
+          </div>
+          <div class="col-md-8">
+            <p>Use a fandemic coin to order a <strong>free product</strong> on any influencer's Fandemic store.<br>
+               If you review the product you get the coin back!</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ok, awesome!</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <script>
