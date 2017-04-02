@@ -57,6 +57,13 @@
   }
 }
 
+@media screen and (min-width: 894px) {
+  .no-posts{
+    margin-top:-25em;
+  }
+}
+
+
 .modal-dialog {
   display: inline-block;
   text-align: left;
@@ -422,7 +429,6 @@ cursor: pointer;
     margin-top: 0px !important;
   }
 
-
 }
 </style>
 
@@ -739,7 +745,7 @@ cursor: pointer;
             <hr>
         {% endfor %}
       {% else %}
-      <div style="text-align:center;" ng-cloak>
+      <div class="no-posts" style="text-align:center;" ng-cloak>
               <br><br>
               <img class="visible-xs" width="35%" style="margin: 0 auto;" src="../static/img/store/posts2.svg">
               <img class="hidden-xs" width="20%" src="../static/img/store/posts2.svg">
