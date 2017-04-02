@@ -105,11 +105,92 @@ h2{
 }
 
 .mobile-nav-container{
-  display: none;
+  display: inherit;
+  position: inherit;
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+
+  z-index:999999999;
+  box-shadow: 0 1px 12px 0px rgba(51, 51, 51, 0.23);
+-webkit-animation: fadeInDown 1s both;
+
+}
+
+.mobile-nav{
+  padding:15px 0px;
+  width: inherit;
+  height: inherit;
+
+}
+
+.mobile-nav .mobile-item{
+  width:33%;
+  height: 100%;
+  float: left;
+  text-align: center;
+  border-right: 1px solid #e9e9e9;
+
+}
+
+.mobile-nav .mobile-item img{
+  width: 25%;
+  margin: 0 auto;
+}
+
+.mobile-nav .mobile-item span{
+  font-weight: 400 !important;
+  color: #999999;
+  font-size:16px;
+
+  font-family: 'Josefin Sans', sans-serif !important;
+}
+
+.border{
+  background: linear-gradient(to left, #e96443 , #e258b0);
+  width: 100%;
+  height:1px;
+  opacity: .5;
 }
 
 .information{
   display: none;
+}
+
+.left-panel{
+position:relative;
+width: 100%;
+}
+
+.mobile-item{
+cursor: pointer;
+}
+
+.star-name{
+  background: linear-gradient(to left, #e96443 , #e258b0);
+	background: linear-gradient(to left, #e96443 , #e258b0);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  font-size: 28px !important;;
+}
+
+#social-media .link{
+  color: #E8E8E8 !important;
+}
+#social-media .link:hover{
+  color: #000 !important;
+}
+
+.main-content-row{
+  margin-top: 50px !important;
+}
+
+.main-content .col-sm-6{
+
+}
+
+.main-content #blog .col-sm-9{
+  padding: 0px 50px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -315,9 +396,6 @@ h2{
 
 
 }
-
-
-
 </style>
 
 
@@ -327,53 +405,56 @@ h2{
 
 
 
-<!--Mobile Navigation-->
-<section class="mobile-nav-container">
-<div class="border">
-</div>
 
-<div class="mobile-nav">
-
-<div ng-click="page='store'" id="store-indicator" class="mobile-item">
-<img src="/static/img/store/store.svg">
-<br>
-<span style="color:#E258AA;">Store</span>
-</div>
-
-<div ng-click="page='blog'" id="blog-indicator" class="mobile-item">
-<img src="/static/img/store/posts.svg">
-<br>
-<span style="color:#E65E77;">Posts</span>
-</div>
-
-<div ng-click="page='store'" id="cart-indicator" class="mobile-item" style="border-right:none;">
-<img src="/static/img/store/cart.svg">
-<br>
-<span style="color:#E86347;" ng-cloak>Cart({a data.cart.length a})</span>
-</div>
-
-</div>
-
-</section>
 
 
 <!-- SIDE PANEL -->
 
 <div class="main-content container">
-  <div class="row">
-    <div class="col-md-3">
+  <div class="main-content-row row">
+    <div class="col-sm-3">
+
+
+
+      <!--Mobile Navigation-->
+      <section class="mobile-nav-container">
+      <div class="border">
+      </div>
+
+      <div class="mobile-nav">
+
+      <div ng-click="page='store'" id="store-indicator" class="mobile-item">
+      <img src="/static/img/store/store.svg">
+      <br>
+      <span style="color:#E258AA;">Store</span>
+      </div>
+
+      <div ng-click="page='blog'" id="blog-indicator" class="mobile-item">
+      <img src="/static/img/store/posts.svg">
+      <br>
+      <span style="color:#E65E77;">Posts</span>
+      </div>
+
+      <div ng-click="page='store'" id="cart-indicator" class="mobile-item" style="border-right:none;">
+      <img src="/static/img/store/cart.svg">
+      <br>
+      <span style="color:#E86347;" ng-cloak>Cart({a data.cart.length a})</span>
+      </div>
+
+      </div>
+
+      </section>
+
+
       <div class="left-panel" style="background-color:#fff;">
 
-
-        <div class="menu">
-          <a class="store" href="" ng-click="page='store'">STORE</a> <a class="blog" href="" ng-click="page='blog'">BLOG</a>
-        </div>
+          <div class="hidden-xs border"></div>
 
 
           <img ng-click="page='info'" class="information" src="/static/img/store/information.svg">
 
 
-          <a href="http://admin.fandemic.co" class="admin-login">Login</a>
+          <a href="http://admin.fandemic.co" class="visible-xs admin-login">Login</a>
 
 
 
@@ -417,6 +498,10 @@ h2{
 
       </div>
 
+      <div style="text-align:center;width:100%;">
+      <a style="color:#e8e8e8;font-weight:400;font-size:14px;margin-top:15px;" href="http://admin.fandemic.co">Admin Login</a>
+    </div>
+
 
 
       <!--
@@ -443,7 +528,7 @@ h2{
 
 
     <section ng-hide="page!='info'" id="info" ng-cloak>
-        <div class="col-md-6">
+        <div class="col-sm-6">
 
 
           <h2>About Me</h2>
@@ -476,20 +561,20 @@ h2{
 
 
     <div ng-hide="page!='store'" id="store">
-    <div class="col-md-6">
+    <div class="col-sm-6">
 
       <div class="items-listing" style="padding: 0px 30px;">
 
         {% for p in star.campaigns[0].products %}
 
         {% set countt = loop.index %}
-        {% if countt % 3 == 1 %}
+        {% if countt % 2 == 1 %}
         <div class="row">
         {% endif %}
         {% if countt == 1 %}
           <div class="row">
         {% endif %}
-          <div class="product col-lg-4 col-md-4 col-sm-4 col-xs-12" style="text-align:center;padding:20px 0px 30px 0px;
+          <div class="product col-lg-6 col-sm-6 col-sm-6 col-xs-12" style="text-align:center;padding:20px 0px 30px 0px;
 
         ">
 
@@ -520,7 +605,7 @@ h2{
 
 
 
-          {% if countt % 3 == 0 %}
+          {% if countt % 2 == 0 %}
           </div>
           {% endif %}
           {% if star.campaigns[0].products|length == countt %}
@@ -531,10 +616,10 @@ h2{
 
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <div  class="panel panel-default panel-summary cart" style="position:fixed;right:0px;width:25%;border-radius: 0px;padding-bottom:20px;top:0px;height:calc(100% - 0px);text-align:center;" >
         <div class="panel-heading" style="border-radius:0px;text-align:center;font-size:20px;border-bottom: 1px solid #fff;font-weight:600;">
-          <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:400;margin:2px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</h4>
+          <h4 style="font-family: 'Josefin Sans', sans-serif !important;font-weight:400;margin:2px;">Cart</h4>
         </div>
 
         <!--
@@ -554,13 +639,13 @@ h2{
           </div>
 
           <div ng-repeat="p in data.cart" ng-cloak>
-            <div style="margin-bottom:5px;">
+            <div style="margin-bottom:15px;">
 
               <div class="row">
-                <div class="col-xs-2">
-                  <img style="width:40px;margin: 0 auto;margin-top:-7px;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
+                <div class="col-xs-2" style>
+                  <img style="width:40px;margin: 0 auto;margin-top:-7px;max-height:40px;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
                 </div>
-                <div class="col-xs-5" style="text-align:left;font-size:15px;">
+                <div class="col-xs-4" style="text-align:left;font-size:15px;">
                   <span>{a p.name a}</span>
                 </div>
                 <div class="col-xs-4" style="text-align:left;padding:0px;font-size:15px;">
@@ -573,7 +658,7 @@ h2{
               </div>
 
 
-            <br>
+
           </div>
           </div>
         </div>
@@ -610,7 +695,7 @@ h2{
 
   <div ng-hide="page!='blog'" id="blog">
 
-    <div class="col-md-9">
+    <div class="col-sm-9">
 
 
       {% if blogs|length > 0 %}
@@ -662,10 +747,10 @@ h2{
       <button type="button" class="close"  data-dismiss="modal"><i class="fa fa-chevron-left" aria-hidden="true"></i> <span>Back</span></button>
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <img class="img-responsive" style="width:90%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/products/{{p.item_num}}.png">
         </div>
-        <div class="col-md-8">
+        <div class="col-sm-8">
           <h2>{{p.name}}</h2>
 
           <h3>Description</h3>
@@ -701,7 +786,7 @@ h2{
 
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-7" style="padding: 5px 50px;">
+          <div class="col-sm-7" style="padding: 5px 50px;">
 
             <div class='row'>
               <div class='col-sm-6'>
@@ -1006,7 +1091,7 @@ h2{
 
 
           </div>
-          <div class="col-md-5 checkout-section" style="text-align:center;padding: 5px 50px;border-left: 1px solid #e1e1e1;">
+          <div class="col-sm-5 checkout-section" style="text-align:center;padding: 5px 50px;border-left: 1px solid #e1e1e1;">
             <h4 class="modal-title">Checkout</h4>
             <p>{a total_price() | currency a} USD</0>
 
