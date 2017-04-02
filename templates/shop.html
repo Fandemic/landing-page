@@ -74,10 +74,18 @@
 p,a{
   font-family: 'Josefin Sans', sans-serif !important;
 }
+p{
+  font-weight: 400;
+}
 h3{
   font-family: 'Josefin Sans', sans-serif !important;
   font-weight:600 !important;
   font-size: 18px;
+}
+
+.product h3{
+  font-weight: 400 !important;
+  font-size: 16px;
 }
 
 .btn-main:hover{
@@ -111,8 +119,8 @@ h2{
   height: 80px;
   background-color: #fff;
 
-  z-index:999999999;
-  box-shadow: 0 1px 12px 0px rgba(51, 51, 51, 0.23);
+  z-index:9;
+  box-shadow: 0 1px 3px 0px rgba(51, 51, 51, 0.20);
 -webkit-animation: fadeInDown 1s both;
 
 }
@@ -160,6 +168,7 @@ h2{
 .left-panel{
 position:relative;
 width: 100%;
+box-shadow: 0 1px 3px 0px rgba(51, 51, 51, 0.20);
 }
 
 .mobile-item{
@@ -192,6 +201,16 @@ cursor: pointer;
 .main-content #blog .col-sm-9{
   padding: 0px 50px;
 }
+
+.close{
+    top: 20px !important;
+    left: 20px;
+    z-index: 999999999;
+    font-size: 20px;
+    position: absolute;
+    color: #1d1d1d;
+    opacity: 1;
+  }
 
 @media only screen and (max-width: 900px) {
   .main-content{
@@ -498,8 +517,8 @@ cursor: pointer;
 
       </div>
 
-      <div style="text-align:center;width:100%;">
-      <a style="color:#e8e8e8;font-weight:400;font-size:14px;margin-top:15px;" href="http://admin.fandemic.co">Admin Login</a>
+      <div style="text-align:center;width:100%;margin-top:10px;">
+      <a style="color:#e8e8e8;font-weight:400;font-size:14px;" href="http://admin.fandemic.co">Admin Login</a>
     </div>
 
 
@@ -753,15 +772,15 @@ cursor: pointer;
         </div>
         <div class="col-sm-8">
           <h2>{{p.name}}</h2>
-
-          <h3>Description</h3>
           <hr>
+          <h3>Description</h3>
+
           <p>{{p.description}}</p>
 
           <h3>Ingredients</h3>
-          <hr>
+
           <p>{{p.ingredients}}</p>
-          <br><br>
+          
         </div>
       </div>
       <img style="height:60px;position:absolute;right:15px;top:15px;" src="http://res.cloudinary.com/fandemic/image/upload/brands/{{p.company_id}}/logo.png">
