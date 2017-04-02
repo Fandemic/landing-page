@@ -191,7 +191,7 @@ def terms():
 
 @app.route('/blog')
 def blogHome():
-    posts = db.blog.find({})
+    posts = db.blog.find()
     star_names = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(5)
     return render_template('blog.html', star_names=star_names, posts = posts)
 #-------------------------------------------
@@ -231,8 +231,11 @@ def about():
 
 @app.route('/partners')
 def partners():
+    unixTimestamp = int(time.time())
+    companies = db.profiles.find({"system":"partners"})
+
     star_names = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(5)
-    return render_template('partners.html', star_names=star_names)
+    return render_template('partners.html', star_names=star_names, unixTimestamp=unixTimestamp,companies=companies)
 #-------------------------------------------
 
 @app.route('/benefits')

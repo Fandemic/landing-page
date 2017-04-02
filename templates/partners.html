@@ -121,6 +121,9 @@ p {
   .example-circle {
 
   }
+  .existing-brands {
+    color: #adadad;
+  }
 </style>
 
 <body style="padding-right:0px !important;">
@@ -234,19 +237,25 @@ p {
 
   </div>
 
-  <div class="row">
-    <br>
-    <p class="card-text" style="font-size: 32px;font-weight:600; ">Existing Partners</p>
-    <hr>
-    <div class="col-md-4" style="text-align: center;">
-      <img class="brand-logo-image" style="margin-top:33px;" src="../static/img/partners/tat2u.png">
-    </div>
-    <div class="col-md-4" style="text-align: center;">
-      <img class="brand-logo-image" src="../static/img/partners/ladyburd.png">
-    </div>
-    <div class="col-md-4" style="text-align: center;">
-      <img class="brand-logo-image" src="../static/img/partners/monave.png">
-    </div>
+  <section class="existing-brands">
+    <header class="campaigns-header">
+      <h2 style="font-weight:300;color:#adadad;"> <i class="fa fa-fire" aria-hidden="true"></i> Top Brands</h2>
+    </header>
+    <div class="gallery">
+      {% for c in companies %}
+      <div class="product-photo" style="height: 150px;padding:20px;position:relative;">
+        <a href="#">
+          <img style="height:100px" src="https://res.cloudinary.com/fandemic/image/upload/v{{unixTimestamp}}/brands/{{c.bio.company_id}}/logo.png">
+        </a>
+        </div>
+      {% endfor %}
+      <div class="product-photo" style="height: 150px;padding:20px;position:relative;">
+        <a href="#">
+          <img style="height:100px" src="https://fandemic.co/static/img/partners/monave.png">
+        </a>
+        </div>
+      </div>
+  </div>
   </div>
 
 </body>
