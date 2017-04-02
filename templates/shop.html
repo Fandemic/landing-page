@@ -418,6 +418,10 @@ cursor: pointer;
     border: none !important;
   }
 
+  .main-content-row {
+    margin-top: 0px !important;
+  }
+
 
 }
 </style>
@@ -522,7 +526,7 @@ cursor: pointer;
 
       </div>
 
-      <div style="text-align:center;width:100%;margin-top:10px;">
+      <div class="hidden-xs" style="text-align:center;width:100%;margin-top:10px;">
       <a style="color:#e8e8e8;font-weight:400;font-size:14px;" href="http://admin.fandemic.co">Admin Login</a>
     </div>
 
@@ -737,7 +741,7 @@ cursor: pointer;
       {% else %}
       <div style="text-align:center;" ng-cloak>
               <br><br>
-              <img class="visible-xs" width="35%" src="../static/img/store/posts2.svg">
+              <img class="visible-xs" width="35%" style="margin: 0 auto;" src="../static/img/store/posts2.svg">
               <img class="hidden-xs" width="20%" src="../static/img/store/posts2.svg">
               <h3 style="color:#adadad !important;">No Posts Exist!<h3>
               <p style="color:#adadad !important;">Are you {{star.name}}?<br>Login to create your first post.</p>

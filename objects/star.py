@@ -1,5 +1,6 @@
 import urllib2
 import json
+from mailer import Mailer
 
 
 class Star:
@@ -103,3 +104,18 @@ class Star:
             return False
         else:
             return True
+
+
+    #gift a coin to a star
+    def giftCoin(self):
+
+        #create the coin's random ID
+        ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
+
+        #create the coin json
+        coin = {
+            'id':''
+
+        }
+
+        #submit the unique coin to the database
