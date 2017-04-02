@@ -98,6 +98,11 @@ span,h1,h3,h4,h5,h6,.btn,.money{
 
 }
 
+.cart span{
+  font-weight: 400;
+  font-size: 12px;
+}
+
 .money{
   font-size:16px;
 }
@@ -668,8 +673,8 @@ cursor: pointer;
                   <span>{a p.name a}</span>
                 </div>
                 <div class="col-xs-4" style="text-align:left;padding:0px;font-size:15px;">
-                  <strike>{a p.retail_price | currency a}</strike>
-                  <span>{a p.price | currency a}</span>
+                  <span class="money" style="font-size:12px;"><strike>{a p.retail_price | currency a}</strike>
+                  {a p.price | currency a}</span>
                 </div>
                 <div class="col-xs-1" style="text-align:right;">
                   <span class="pull-right" ng-click="delete_product(p)" style="cursor:pointer;color:#E86256;"><i class="fa fa-trash" aria-hidden="true"></i></span>
@@ -780,7 +785,7 @@ cursor: pointer;
           <h3>Ingredients</h3>
 
           <p>{{p.ingredients}}</p>
-          
+
         </div>
       </div>
       <img style="height:60px;position:absolute;right:15px;top:15px;" src="http://res.cloudinary.com/fandemic/image/upload/brands/{{p.company_id}}/logo.png">
