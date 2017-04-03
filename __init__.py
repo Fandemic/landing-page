@@ -436,6 +436,7 @@ def launchStoreRequest():
 
         star.createProfile(info) #create a star profile
         star.createStore(info) #create a new store for the star
+        star.giftCoin(info['star']['email']) #gift a coin
 
         #send alert to Fandemic team via slack
         slack.sendStoreCreatedAlert(info)

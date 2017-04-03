@@ -1,5 +1,8 @@
 import urllib2
 import json
+import time
+import random
+import string
 from mailer import Mailer
 
 
@@ -107,15 +110,23 @@ class Star:
 
 
     #gift a coin to a star
-    def giftCoin(self):
+    def giftCoin(self,email):
 
-        #create the coin's random ID
-        ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
+        #generate coin ID
+        coin_id = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(12))
 
-        #create the coin json
+        #create the coin
         coin = {
-            'id':''
-
+            'id': coin_id,
+            'timestamp': int(time.time()),
+            'email': email,
+            'sharable': True,
+            'used': False
         }
 
         #submit the unique coin to the database
+        self.db.coins.insert_one(coin)
+
+        #send coin via email
+        mailer = Mailer()
+        mailer.sendCoinEmail(email,coin_id)

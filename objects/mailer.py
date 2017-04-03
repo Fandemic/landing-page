@@ -60,3 +60,25 @@ class Mailer:
                 <p>"""+ customer['country'] +"""</p>
                 """
         self.send(toaddr,subject,html)
+
+
+    def sendCoinEmail(self,email,coin_id):
+        #send an email to the person who ordered
+        toaddr = [email]
+        subject = "You have been gifted a Fandemic Coin!"
+        html =  """
+                Hi love,
+                <br><br>
+                <div style="text-align:center;">
+                    <p>Our #1 goal is to make our influencers happy and help spread the love.
+                       Your <strong>coin code</strong> is below and can me used on any Fandemic store including your own!
+                    </p>
+                    <img width="100px" src="https://fandemic.co/static/img/builder/coin.svg">
+                    <br>
+                    <h3>Coin Code: <strong>"""+coin_id+"""</strong></h3>
+
+                    <p>This coin code can only be used once. <br> If you review a product using your Fandemic account you can get another coin!
+                    </p>
+                </div>
+                """
+        self.send(toaddr,subject,html)
