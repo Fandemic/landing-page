@@ -338,11 +338,11 @@ app.controller("builder", function($scope) {
       //check for at least 1 item
       if ($scope.box.products.length == 0){
         BootstrapDialog.show({
-         title: 'Alert!',
-           message: 'Please add <strong>at least one</strong> beauty product to your box &#128516;',
+         title: 'OOPS',
+           message: 'Please add <strong>at least one</strong> product to your store &#128516;',
            buttons: [{
              cssClass: 'btn-success',
-             label: 'OK',
+             label: 'ok, got it!',
                action: function(dialog) {
                  dialog.close();
                }

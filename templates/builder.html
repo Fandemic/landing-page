@@ -57,6 +57,56 @@
     color: #8d8d8d;
     font-size: 14px;
 }
+
+.bootstrap-dialog.type-primary .modal-header {
+    background: linear-gradient(to left, #e96443 , #e258b0) !important;
+}
+.btn-success {
+    color: #fff;
+    font-size: 18px;
+    background-color: #E258B0;
+    border-color: #E258B0;
+}
+
+
+
+@media only screen and (max-width: 900px) {
+  .modal-dialog {
+    vertical-align: top !important;
+  }
+
+  .modal-content{
+    width: 100%;
+    border: none;
+  }
+
+  .bootstrap-dialog .modal-header {
+    border-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+  }
+
+  .modal-dialog, .modal-content, .modal-header{
+    border-radius: 0px;
+  }
+
+  .modal-footer .btn{
+    width: 100% !important;
+    border-radius: 0px;
+  }
+
+  .next-btn{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 999;
+    border-radius: 0px;
+  }
+
+  .subtitle {
+    font-size: 19px !important;
+}
+}
 </style>
 
 
@@ -78,7 +128,7 @@
 
         {% include('builder/crumbs.html') %}
 
-        <div class="builder-container" style="min-height:560px;">
+        <div class="builder-container" style="min-height:560px;margin-top:10px;">
 
           {% include('builder/step1_products.html') %}
 

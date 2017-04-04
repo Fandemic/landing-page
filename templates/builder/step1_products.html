@@ -1,13 +1,18 @@
-<div id="step2" class="steps container" style="min-height:800px;padding-bottom:50px;margin-top:30px;" ng-cloak>
+<div id="step2" class="steps container" style="min-height:800px;padding-bottom:50px;margin-top:10px;" ng-cloak>
 
 
 
   <div class="row">
 
+
+
+
+
     <div class="col-md-8">
 
       <div class="explain-step">
-        <h3 class="subtitle">Which products do you want to add to your store?</h3>
+        <h3 class="subtitle" ><strong>Step 1:</strong> select products that interest you</h3>
+
         <!--<i class="light" style="font-weight:300;"><a style="font-weight:100;" href="#" id="viewExample_1" passed-step="Products" data-toggle="modal" data-target="#view-example">View Example</a></i>-->
 
         <!--<i class="light" style="font-weight:300;">
@@ -28,7 +33,9 @@
         <style>
         .dropdown-title{
           line-height: 15px;
-          color: #999999;
+          color: #cccccc;
+          font-weight: 400;
+          font-size:12px;
         }
         .dropdown-container{
           width: 250px;
@@ -78,6 +85,58 @@
           right: 15px;
           top:40px;
         }
+        .item-box-container{
+          padding: 10px;
+        }
+
+        .thumbnail {
+          box-shadow: none;
+          border: 1px solid #d9d9d9;
+          border-radius: 2px;
+        }
+
+        @media only screen and (min-width: 900px) {
+          .item-row{
+            padding-right: 80px !important;
+          }
+          .next-btn{
+            margin-bottom: 15px;
+
+          }
+
+          .explain-step {
+    margin-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 80px;
+}
+
+        }
+
+        @media only screen and (max-width: 900px) {
+          .explain-step {
+              margin-bottom: 0px;
+              padding-left: 0px;
+              padding-right: 0px;
+          }
+
+
+
+          .item-box {
+    height: auto;
+    width: 100%;
+    padding-bottom: 0px;
+    margin-bottom: -5px !important;
+        }
+
+        .dropdown-title{
+          font-size:10px;
+        }
+
+        .navbar-collapse{
+          width: 100% !important;
+        }
+
+      }
         </style>
 
 
@@ -133,10 +192,10 @@
 
 
     <!--LOOP THROUGH ITEMS -->
-    <div class="row" style="padding-right: 10px;">
+    <div class="item-row row" style="padding-right: 10px;">
     <div ng-repeat="item in items">
 
-    <div class="col-md-4 col-xs-6">
+    <div class="item-box-container col-md-4 col-xs-6">
     <div class="item-box" style="float:left;width:100%;height:auto;margin:5px;position:relative;">
 
       <div ng-if="item.popular">
@@ -326,6 +385,8 @@
 
 <div class="col-md-4">
 
+
+
   {% include('builder/summary.html') %}
 
   <button
@@ -335,6 +396,8 @@
                   next-btn">
     Next Step <i class="fa fa-arrow-right" aria-hidden="true"></i></i>
   </button>
+
+
 
 
 
