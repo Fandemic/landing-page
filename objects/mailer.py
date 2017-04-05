@@ -21,7 +21,7 @@ class Mailer:
             text = msg.as_string()
             server.sendmail(fromaddr, toaddr, text)
             server.quit()
-        except UnicodeEncodeError:
+        except:
             pass
 
     def sendStoreConfirmation(self,info):
