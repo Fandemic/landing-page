@@ -104,7 +104,18 @@
   }
 
   .subtitle {
-    font-size: 19px !important;
+    font-size: 23px !important;
+    text-align: center !important;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.panel-summary{
+  margin-top: 30px;
+}
+
+.navbar-default .navbar-collapse{
+  width:115% !important;
 }
 }
 </style>
@@ -114,7 +125,7 @@
 
 <body ng-controller="builder" style="background-color:#F1F1F1">
 
-  <section style="cursor:pointer;z-index:100;position:fixed;top:0px;left:0px;width:100%;height:30px;text-align:center;background: linear-gradient(to left, #e96443 , #e258b0);color:#fff;"
+  <section id="coin-alert" style="cursor:pointer;z-index:100;position:fixed;top:0px;left:0px;width:100%;height:30px;text-align:center;background: linear-gradient(to left, #e96443 , #e258b0);color:#fff;"
            data-toggle="modal" data-target="#coin-modal">
     <img height="20px" src="/static/img/builder/coin.svg">
     <span style="font-size:12px;">Get a free coin after signing up! <i class="fa fa-question-circle" aria-hidden="true"></i></span>

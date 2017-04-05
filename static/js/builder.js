@@ -130,6 +130,9 @@ app.controller("builder", function($scope) {
             $('#step6').fadeIn('fast', function() {
 
             });
+            $("#coin-alert").hide();
+            $("html, body").animate({ scrollTop: 0 }, "fast");
+
           },
           error: function(error) {
             alert("Submission Error: " + str(error));
