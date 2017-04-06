@@ -42,6 +42,12 @@ class Mailer:
 
 
     def sendOrderConfirmation(self,customer,data):
+
+        try:
+            shipping_rate = data['shipping_method']['rate']
+        except:
+            shipping_rate = 0
+
         #send an email to the person who ordered
         toaddr = [customer['email']]
         subject = "Fandemic Order Confirmation - " + data['star_id']
@@ -49,7 +55,7 @@ class Mailer:
                 Hey """+ customer['name'] +""",<br><br>
                 Your order has been processed successfully!<br><br>
                 <h3>Order Details</h3>
-                <p>Total Price: $"""+ str(data['total_price']+float(data['shipping_method']['rate'])) +"""($"""+ str(data['total_price']) +""" sub-total + $"""+ data['shipping_method']['rate'] +""" shipping)</p>
+                <p>Total Price: $"""+ str(data['total_price']+float(shipping_rate)) +"""($"""+ str(data['total_price']) +""" sub-total + $"""+ str(shipping_rate) +""" shipping)</p>
                 <p>Order ID: """+ data['order_id'] +"""</p>
                 <p>Star ID: """+ data['star_id'] +"""</p>
                 <hr>
@@ -57,7 +63,7 @@ class Mailer:
                 <p>"""+ customer['name'] +"""</p>
                 <p>"""+ customer['street'] +"""</p>
                 <p>"""+ customer['city'] +""" """+ customer['state'] +""", """+ customer['zip'] +"""</p>
-                <p>"""+ customer['country'] +"""</p>
+                <p>United States</p>
                 """
         self.send(toaddr,subject,html)
 

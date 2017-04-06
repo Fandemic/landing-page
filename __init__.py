@@ -305,17 +305,17 @@ def charge():
     #get the ajaxed info
     if request.method == "POST":
 
-        #setup the classes
-        email = Mailer()
-        sarah = Slack()
-        star = Star(c)
+        #parter object
         partner = Partner(c)
-        shipping = Shipping()
+        email = Mailer()
 
         #get the post data
         data = request.get_json()
 
-        shipping_rate = float(data['shipping_method']['rate'])
+        try:
+            shipping_rate = float(data['shipping_method']['rate'])
+        except:
+            shipping_rate =  float(0.00)
 
         #process the transaction
         result = braintree.Transaction.sale({
@@ -325,92 +325,41 @@ def charge():
             "options": {
               "submit_for_settlement": True
             }
-
         });
-
 
         #The transaction was a success, process the data
         if result.is_success:
 
             #process order
-            partner.process_order(data,result)
+            if partner.process_order(data,result):
+                email.sendOrderConfirmation(data['customer'],data) #send confirmation to purchasee
 
 
-            #submit transaction to orders collection
-            #db.orders.insert_one(data);
 
-            #send the email confirmation to customer
-            #email.sendOrderConfirmation(customer,data)
-
-            #send order alert to the team
-            #sarah.sendOrderConfirmation(customer,data)
 
             return 'OK';
 
 
-#================PROCESS A STOCKING FEE====================#
-@app.route('/sample-charge', methods=['GET', 'POST'])
-def sampleCharge():
+#================FREE ORDER (customer used a coin)====================#
+@app.route('/free-order', methods=['GET', 'POST'])
+def freeOrder():
 
     #get the ajaxed info
     if request.method == "POST":
 
-        info = request.get_json()
+        partner = Partner(c)
+        star = Star(c)
+        email = Mailer()
 
-        slack = Slack()
+        #get the post data
+        data = request.get_json()
 
-        if MODE == 'test':
-            SECRET_KEY = 'sk_test_BSCdbwIufwN4xI0AKXBk3XNB'
-            PUBLISHABLE_KEY = 'pk_test_z1mq9KQ3GyakW5OdduPIX94u'
-        if MODE == 'live':
-            SECRET_KEY = 'sk_live_tcrVqjaEdr9Jue13huqL7lk2'
-            PUBLISHABLE_KEY = 'pk_live_kyvM71oajfwVWnxBoy7SfqOp'
+        #process order
+        if partner.process_order(data):
+            star.useCoin(data['coin']['code'])
+            email.sendOrderConfirmation(data['customer'],data)
 
-        #initialize the stripe data
-        stripe_keys = {
-            'secret_key': SECRET_KEY,
-            'publishable_key': PUBLISHABLE_KEY
-        }
-
-        stripe.api_key = stripe_keys['secret_key']
-
-
-        customer = stripe.Customer.create(
-            email=info['email'],
-            card=info['id']
-        )
-
-        charge = stripe.Charge.create(
-            customer=customer.id,
-            amount=info['amount'],
-            currency='usd',
-            description= 'Someone ordered a sample for review',
-            metadata={},
-            receipt_email=info['email']
-        )
-
-        #send the confirmation email to client
-        toaddr = [info['email']]
-        subject = "Sample Order Confirmation"
-        html =  """
-                Hey """+ info['star']['name'] +""",<br><br>
-                I saw see you ordered some products for review!<br><br>
-                I am reaching out just to tell you that your products will be shipped within 24 hours
-                and should be at your doorstep in 5 business days or less.<br><br>
-                You have received these products at an extremely discounted rate and are expected to review them
-                prior to selling them on your <a href='https://fandemic.co/"""+info['star']['id']+"""'>Official """ + info['star']['id'] + """ Fandemic Store</a>
-                If you have any questions or concerns please don't hesitate to reach out to me!<br><br>
-                - Sarah :)
-                """
-        email.send(toaddr,subject,html)
-
-        string = '*Sample Order Placed*\n'
-        for k, v in info.iteritems():
-            string += '*'+k+'*: ' + str(v) + '\n'
-
-        slack.slack_orders.notify(text=string)
-
-    return '';
+        return 'OK';
 
 
 #================Launch a Store====================#

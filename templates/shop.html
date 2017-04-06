@@ -920,7 +920,7 @@ cursor: pointer;
                 <label class='control-label'>Country</label>
                 <div class="form-group" style="text-align:left;">
                   <select data-category="Shop" data-action="Country form" data-label="Country Input Form" id="country" class="form-control" ng-model="data.customer.country">
-                    <option value="AF">Afghanistan</option>
+                    <!--<option value="AF">Afghanistan</option>
                   	<option value="AX">Åland Islands</option>
                   	<option value="AL">Albania</option>
                   	<option value="DZ">Algeria</option>
@@ -1154,9 +1154,9 @@ cursor: pointer;
                   	<option value="UG">Uganda</option>
                   	<option value="UA">Ukraine</option>
                   	<option value="AE">United Arab Emirates</option>
-                  	<option value="GB">United Kingdom</option>
+                  	<option value="GB">United Kingdom</option>-->
                   	<option value="US" selected>United States</option>
-                  	<option value="UM">United States Minor Outlying Islands</option>
+                  	<!--<option value="UM">United States Minor Outlying Islands</option>
                   	<option value="UY">Uruguay</option>
                   	<option value="UZ">Uzbekistan</option>
                   	<option value="VU">Vanuatu</option>
@@ -1168,7 +1168,7 @@ cursor: pointer;
                   	<option value="EH">Western Sahara</option>
                   	<option value="YE">Yemen</option>
                   	<option value="ZM">Zambia</option>
-                  	<option value="ZW">Zimbabwe</option>
+                  	<option value="ZW">Zimbabwe</option>-->
                   </select>
                 </div>
               </div>
@@ -1220,7 +1220,7 @@ cursor: pointer;
               </div>
 
               <div ng-show="data.total_price == 0">
-                <button ng-click="placeFreeOrder()" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">
+                <button ng-click="process_free_order()" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">
                   ORDER NOW
                 </button>
               </div>

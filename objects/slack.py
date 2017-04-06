@@ -102,11 +102,21 @@ class Slack:
         msg += '\n*state:* ' + customer['state']
         msg += '\n*zip:* ' + customer['zip']
         msg += '\n*country:* ' + customer['country']
-        msg += '\n*Shipping Service:* ' + data['shipping_method']['service']
-        msg += '\n*Shipping Rate:* $' + str(data['shipping_method']['rate'])
+
+        try:
+            msg += '\n*Shipping Service:* ' + data['shipping_method']['service']
+            msg += '\n*Shipping Rate:* $' + str(data['shipping_method']['rate'])
+        except:
+            msg += '\n*Shipping Service: FREE SHIPPING*'
+
+
         #msg += '\n*Shipping Label:* ' + data['shipping_info']['label_url']
         msg += '\n*Price:* $' + str(data['total_price'])
-        msg += '\n*Total Price:* $' + str(data['total_price']+float(data['shipping_method']['rate']))
+
+        try:
+            msg += '\n*Total Price:* $' + str(data['total_price']+float(data['shipping_method']['rate']))
+        except:
+            msg += '\n*Total Price:* $' + str(data['total_price'])
 
         msg += '\n*Cart:*'
         for order in orders:

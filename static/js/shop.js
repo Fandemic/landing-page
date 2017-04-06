@@ -64,6 +64,7 @@ app.controller("shop", function($scope) {
     $.notify("Product Added To Box", { position:"bottom left",className:"success" });
   }
 
+
   $scope.delete_product = function(product){
 
     for (i in $scope.data.cart){
@@ -86,7 +87,7 @@ app.controller("shop", function($scope) {
   $scope.estimated_arrival = function(){
 
     date = undefined;
-    end_time = $scope.data.end_time;
+    end_time = Math.round((new Date()).getTime() / 1000);
     production_time = 2 * 86400; //two week production time
     time_padding = 4 * 86400; //used when a shipping method is not present
 
@@ -99,6 +100,7 @@ app.controller("shop", function($scope) {
     return moment(date).format("MMM Do YYYY");
   }
 
+
   $scope.total_price_str = function(){
 
     if ($scope.data.shipping_method['rate']){
@@ -109,6 +111,7 @@ app.controller("shop", function($scope) {
     }
 
   };
+
 
   $scope.total_price = function(){
 
@@ -148,6 +151,35 @@ app.controller("shop", function($scope) {
     }
 
   }
+
+
+
+
+  $scope.process_free_order = function(){
+
+    if ($scope.validate_checkout_form()){
+
+        $.ajax({
+           url: '/free-order',
+           data: angular.toJson($scope.data, null, '\t'),
+           type: 'POST',
+           contentType: 'application/json;charset=UTF-8',
+           success: function(response) {
+             $("#payment-modal").modal("hide");
+             $("#payment-success-modal").modal("show");
+
+             //facebook event tracking
+             fbq('track', 'Purchase', {value: 0.00, currency:'USD'});
+
+           },
+           error: function(error) {
+             alert("Order Error: please try again later");
+           }
+       });
+    }
+  }
+
+
 
   $scope.validate_checkout_form = function(){
 
@@ -193,7 +225,7 @@ app.controller("shop", function($scope) {
       $('#country').notify("oops! you forgot your COUNTRY", { position:"top center" });
       return false;
     }
-    else if (!$scope.data.shipping_method.rate){
+    else if (!$scope.data.shipping_method.rate && !$scope.data.coin.exists){
       $('#submit').notify("a shipping method must be chosen", { position:"top center" });
       $('#shipping').notify("a shipping method must be chosen", { position:"top center" });
       return false;
@@ -207,44 +239,51 @@ app.controller("shop", function($scope) {
   //watch for the customer variable to change!
   $scope.$watch('data.customer', function(c, oldValue){
 
-      if ((c.name !== oldValue.name) || (c.email !== oldValue.email)){
 
-      }
+      if (!$scope.data.coin.exists){
+          if ((c.name !== oldValue.name) || (c.email !== oldValue.email)){
 
-      else if (c.street && c.city && c.state && c.zip && c.country){
+          }
 
-        $('#shipping').notify("updating shipping methods...", { position:"top center",className:"info" });
-        $.ajax({
-           url: '/shipping-rates',
-           data: JSON.stringify(c, null, '\t'),
-           type: 'POST',
-           contentType: 'application/json;charset=UTF-8',
-           success: function(response) {
+          else if (c.street && c.city && c.state && c.zip && c.country){
 
-             data = JSON.parse(response);
+            $('#shipping').notify("updating shipping methods...", { position:"top center",className:"info" });
+            $.ajax({
+               url: '/shipping-rates',
+               data: JSON.stringify(c, null, '\t'),
+               type: 'POST',
+               contentType: 'application/json;charset=UTF-8',
+               success: function(response) {
+
+                 data = JSON.parse(response);
 
 
-             if (data.length > 0){
+                 if (data.length > 0){
 
-               $('#shipping').notify("shipping methods updated", { position:"top center",className:"success" });
-               $scope.rates = data;
-               $scope.data.shipping_method = data[0];
-               $scope.$digest();
-             }
-             else{
-               $('#shipping').notify("Your address is invalid", { position:"top center"});
-               $scope.rates = [];
-               $scope.data.shipping_method = {};
-               $scope.$digest();
-             }
+                   $('#shipping').notify("shipping methods updated", { position:"top center",className:"success" });
+                   $scope.rates = data;
+                   $scope.data.shipping_method = data[0];
+                   $scope.$digest();
+                 }
+                 else{
+                   $('#shipping').notify("Your address is invalid", { position:"top center"});
+                   $scope.rates = [];
+                   $scope.data.shipping_method = {};
+                   $scope.$digest();
+                 }
 
-           },
-           error: function(error) {
-             $('#shipping').notify("no shipping methods found", { position:"top center" });
-           }
-       });
+               },
+               error: function(error) {
+                 $('#shipping').notify("no shipping methods found", { position:"top center" });
+               }
+           });
 
-      }
+          }
+
+        }
+        else{
+          $scope.data.shipping_method = 'free';
+        }
 
         },true);
 
@@ -272,8 +311,8 @@ app.controller("shop", function($scope) {
                  else{
                    //alert(response);
                    $scope.data.coin.exists = false;
-                   //$scope.$apply();
-                   //$scope.$digest();
+                   $scope.$apply();
+                   $scope.$digest();
                  }
 
 

@@ -110,8 +110,14 @@ class Star:
 
 
     #does coin code exist and is not used?
+    def useCoin(self,coin_code):
+        self.db.coins.update_one({'id':coin_code},{'$set': {'used':True}})
+        return True
+
+
+    #does coin code exist and is not used?
     def coinCodeExists(self,coin_code):
-        count = self.db.coins.find({'id':coin_code,'used':False}).count();
+        count = self.db.coins.find({'id':coin_code,'used':False}).count()
         if count > 0: return True
         else: return False
 

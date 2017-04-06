@@ -14,12 +14,17 @@ class Partner:
 
 
     #process the order for brands
-    def process_order(self,data,braintree_result):
+    def process_order(self,data,braintree_result=None):
 
         shipping = Shipping()
         slack = Slack()
         customer = data['customer'];
         cart = data['cart'];
+
+        try:
+            braintree_id = braintree_result.transaction.id
+        except AttributeError:
+            braintree_id = None;
 
         #get the stars profit per item
         influencer_profit = self.db.stars.find_one({"id":data['star_id']})['campaigns'][0]['profit']
@@ -56,7 +61,7 @@ class Partner:
             	"order_id": data['order_id'],
             	"star_id": data['star_id'],
             	"company_id": company_id,
-            	"braintree_id": braintree_result.transaction.id,
+            	"braintree_id": braintree_id,
             	"type": "order",
             	"customer": {
             		"name": customer['name'],
@@ -102,4 +107,4 @@ class Partner:
         slack.sendOrderConfirmation(orders,customer,data)
 
         #return success
-        return 'success'
+        return True
