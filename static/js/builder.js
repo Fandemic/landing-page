@@ -100,6 +100,11 @@ app.controller("builder", function($scope) {
     //launch the users store form
     $scope.launch_store = function(){
 
+        //lowercase front end check
+        $scope.box.star.id = $scope.box.star.id.toLowerCase();
+        $scope.box.star.instagram = $scope.box.star.instagram.toLowerCase();
+        $scope.box.social_media.instagram = $scope.box.social_media.instagram.toLowerCase();
+
         var box = $scope.box;
         $("#finish-last-step").prop("disabled",true);
 

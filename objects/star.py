@@ -56,7 +56,7 @@ class Star:
     #create a profile for the star
     def createProfile(self,info):
         profile = {}
-        profile['username'] = info['star']['id']
+        profile['username'] = info['star']['id'].lower()
         profile['hashed_pw'] = info['star']['password']
         profile['system'] = 'influencers'
         profile['bio'] = {}

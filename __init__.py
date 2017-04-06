@@ -429,7 +429,7 @@ def launchStoreRequest():
         info = request.get_json()
 
         #create the star ID using the instagram
-        info['star']['id'] = star.getID(info['star']['instagram'])
+        info['star']['id'] = star.getID(info['star']['instagram'].lower())
 
         #hash the password
         info['star']['password'] = hash_password(info['star']['password'], salt)
