@@ -109,6 +109,12 @@ class Star:
             return True
 
 
+    #does coin code exist and is not used?
+    def coinCodeExists(self,coin_code):
+        count = self.db.coins.find({'id':coin_code,'used':False}).count();
+        if count > 0: return True
+        else: return False
+
     #gift a coin to a star
     def giftCoin(self,email):
 

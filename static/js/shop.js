@@ -21,6 +21,12 @@ app.controller("shop", function($scope) {
     country:'US'
   };
 
+  $scope.data.coin = {
+    code:'',
+    status:'',
+    exists:null
+  }
+
   $scope.data.cart = [];
   $scope.data.total_price = 0;
 
@@ -49,7 +55,10 @@ app.controller("shop", function($scope) {
 
   //name, price, img_url
   $scope.toggle_product = function(product){
+
     $scope.data.cart.push(product);
+
+
     $scope.data.total_price += product.price;
     $scope.data.savings += (product.retail_price - product.price)
     $.notify("Product Added To Box", { position:"bottom left",className:"success" });
@@ -239,6 +248,68 @@ app.controller("shop", function($scope) {
 
         },true);
 
+
+      //watch for the customer variable to change!
+      $scope.validateCoinCode = function(coin_code){
+
+        coin_code = coin_code.trim();
+        code_len = coin_code.length
+
+        if (code_len == 12){
+
+          $.ajax({
+             url: '/coin-validate',
+             data: {code:coin_code},
+             type: 'GET',
+             contentType: 'application/json;charset=UTF-8',
+             success: function(response) {
+                 if (response == 'success'){
+                   //alert(response);
+                   $scope.data.coin.exists = true;
+                   $scope.$apply();
+                   $scope.$digest();
+                 }
+                 else{
+                   //alert(response);
+                   $scope.data.coin.exists = false;
+                   //$scope.$apply();
+                   //$scope.$digest();
+                 }
+
+
+             },
+             error: function(error) {
+                 console.log(error);
+             }
+         });
+
+        }
+        else{
+          $scope.data.coin.exists = false;
+          //$scope.$apply();
+          //$scope.$digest();
+        }
+
+      }
+
+
+      $scope.$watch('data.coin.exists', function(c, oldValue){
+        //alert('coin status changed');
+        if ($scope.data.cart.length == 1){
+          $scope.data.total_price = 0;
+          $scope.data.savings = $scope.data.cart[0].retail_price;
+
+          $scope.$apply();
+          $scope.$digest();
+        }
+        if ($scope.data.cart.length > 0){
+          $scope.data.total_price -= $scope.data.cart[0].price;
+          $scope.data.savings += $scope.data.cart[0].price;
+
+          $scope.$apply();
+          $scope.$digest();
+        }
+      });
 
       //HELPER FUNCTIONS
       function validateEmail(email) {

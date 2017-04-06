@@ -635,6 +635,18 @@ cursor: pointer;
                                               company_id:'{{p.company_id}}'});"
                     class="btn btn-main" style="font-size:14px;font-weight:800 !important;border:1px solid #1d1d1d;background-color:transparent;"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
 
+              <!-- get product for free button -->
+              <!--<div ng-show="data.coin.exists==true" ng-cloak>
+                <br>
+                <button class="btn btn-success"
+                        data-toggle="modal" data-target="#payment-modal"
+                        style="font-weight:400;font-size:16px;">
+                  <img width="20px" style="" src="/static/img/builder/coin.svg">
+                  Use Coin (free)
+                </button>
+              </div>-->
+              <!-- get product for free button ends here -->
+
           </div>
 
 
@@ -664,7 +676,13 @@ cursor: pointer;
 
         <div class="panel-body" style="padding-bottom:0px;padding-top:30px;padding-left:20px;padding-right:20px;float:left;width:100%;max-height:calc(100% - 234px);overflow-y:auto;">
 
-          <div ng-if="data.total_price == 0" style="text-align:center;">
+
+          <h3 class="money" style="margin-top:0px;" ng-if="data.coin.exists==true" ng-cloak>
+            Free Shipping Activated
+            <br><br>
+          </h3>
+
+          <div ng-if="data.cart.length == 0" style="text-align:center;">
                   <br><br>
                   <img width="30%" src="../static/img/shopping-cart.svg">
                   <h3 style="color:#adadad !important;">Your Cart is Empty!<h3>
@@ -674,48 +692,74 @@ cursor: pointer;
 
           <div style="text-align:center;width:100%;position:absolute;top:44px;left:0px;">
               <img width="20px" style="position:absolute;top:7px;left:5px;" src="/static/img/builder/coin.svg">
-              <input style="border-radius:0px;border-left:0px;border-right:0px;font-weight:600;padding-left:34px;text-transform:uppercase;" placeholder="Enter your coin code here" class='coin-input form-control' size='30' type='text' ng-model="data.coin">
+              <input style="border-radius:0px;border-left:0px;border-right:0px;font-weight:600;padding-left:34px;text-transform:uppercase;"
+                     placeholder="Enter your coin code here" class='coin-input form-control' size='30' type='text'
+                     maxlength="12"
+                     ng-model="data.coin.code"
+                     ng-change="validateCoinCode(data.coin.code)">
+
+
+              <img class="validation ng-hide" ng-show="data.coin.exists==true" src="/static/img/success2.svg">
+              <img class="validation ng-hide" ng-show="data.coin.exists==false" src="/static/img/close.svg">
+
               <style>
+                .validation{
+                  height: 20px;
+                  position: absolute;
+                  top: 7px;
+                  right: 10px;
+                }
                 input.coin-input::-webkit-input-placeholder { font-size: 10pt; color: #cdcdcd; text-transform:none;font-weight:400; }
                 input.coin-input::-moz-placeholder { font-size: 10pt; color: #cdcdcd; text-transform:none;font-weight:400;}
                 input.coin-input:-ms-input-placeholder { font-size: 10pt; color: #cdcdcd; text-transform:none;font-weight:400;}
                 input.coin-input:-moz-placeholder { font-size: 10pt; color: #cdcdcd; text-transform:none;font-weight:400;}
+
+                .strike{
+                  text-decoration: line-through;
+                }
               </style>
           </div>
 
-          <div ng-repeat="p in data.cart" ng-cloak>
 
-            <div style="margin-bottom:15px;">
 
-              <div class="row">
-                <div class="col-xs-2" style>
-                  <img style="width:40px;margin: 0 auto;margin-top:-7px;max-height:40px;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
+            <div ng-repeat="p in data.cart" ng-cloak>
+
+              <div style="margin-bottom:15px;">
+
+                <div class="row">
+                  <div class="col-xs-2" style>
+                    <img style="width:40px;margin: 0 auto;margin-top:-7px;max-height:40px;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
+                  </div>
+                  <div class="col-xs-4" style="text-align:left;font-size:15px;">
+                    <span>{a p.name a}</span>
+                  </div>
+                  <div class="col-xs-4" style="text-align:left;padding:0px;font-size:15px;">
+                    <span class="money" style="font-size:12px;"><strike>{a p.retail_price | currency a}</strike>
+                      <span ng-class="{'strike': data.coin.exists}">{a p.price | currency a}</span>
+                      <span ng-if="data.coin.exists==true && $index==0" ng-cloak>
+                      <strong>FREE</strong>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="col-xs-1" style="text-align:right;">
+                    <span class="pull-right" ng-click="delete_product(p)" style="cursor:pointer;color:#E86256;"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                  </div>
                 </div>
-                <div class="col-xs-4" style="text-align:left;font-size:15px;">
-                  <span>{a p.name a}</span>
-                </div>
-                <div class="col-xs-4" style="text-align:left;padding:0px;font-size:15px;">
-                  <span class="money" style="font-size:12px;"><strike>{a p.retail_price | currency a}</strike>
-                  {a p.price | currency a}</span>
-                </div>
-                <div class="col-xs-1" style="text-align:right;">
-                  <span class="pull-right" ng-click="delete_product(p)" style="cursor:pointer;color:#E86256;"><i class="fa fa-trash" aria-hidden="true"></i></span>
-                </div>
-              </div>
 
 
 
-          </div>
-          </div>
+            </div>
+            </div>
 
         </div>
 
-
+        <div ng-if="data.cart.length != 0">
         <div class="panel-body" style="padding-bottom:0px;padding-top:0px;padding-left:20px;padding-right:20px;float:left;width:100%;margin-top:0px;" ng-if="data.savings != 0" ng-cloak>
           <hr style="margin-top:0px;">
         <span class="money" style="font-size:20px;">Sub Total: {a data.total_price | currency a}</span><br>
         <span style="font-weight:400;color:#E35A99;margin-top:20px;"><i class="fa fa-tag" aria-hidden="true"></i> You save <strong>{a data.savings | currency a}</strong> on this order!</span>
 
+        </div>
         </div>
 
 
@@ -729,7 +773,7 @@ cursor: pointer;
     bottom: 20px;
     left: 21px;width:90%;">
 
-      <button  onClick="fbq('track', 'InitiateCheckout');" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 80%;">Checkout</button>
+      <button  onClick="fbq('track', 'InitiateCheckout');" ng-disabled="data.cart.length == 0" data-toggle="modal" data-target="#payment-modal" class="btn btn-primary btn-lg btn-nav btn-beauty next-btn pre-order-now" style="border-radius:1px;font-weight:600;margin-bottom20px;font-size:26px; border: #7BDC87 !important; width: 80%;">Checkout</button>
     </div>
 
 
@@ -1133,25 +1177,33 @@ cursor: pointer;
 
             <hr>
 
-
-              <div id="dropin-container"></div>
+              <div ng-show="data.total_price != 0">
+                <div id="dropin-container"></div>
+              </div>
 
 
 
           </div>
           <div class="col-sm-5 checkout-section" style="text-align:center;padding: 5px 50px;border-left: 1px solid #e1e1e1;">
             <h4 class="modal-title">Checkout</h4>
-            <p>{a total_price() | currency a} USD</0>
+            <p class="money">{a total_price() | currency a} USD</0>
 
 
               <hr>
 
-              <div class="form-group" style="text-align:left;">
-                <label for="sel1">Shipping Method:</label>
-                <select data-category="Shop" data-action="Shipping method form" data-label="Shipping method Input Form"
-                        class="form-control" id="shipping" ng-model="data.shipping_method"
-                        ng-options="rate as (rate.service + '('+ rate.delivery_days  + ' days) +$' + rate.rate) for rate in rates">
-                </select>
+              <div ng-hide="data.coin.exists">
+                <div class="form-group" style="text-align:left;">
+                  <label for="sel1">Shipping Method:</label>
+                  <select data-category="Shop" data-action="Shipping method form" data-label="Shipping method Input Form"
+                          class="form-control" id="shipping" ng-model="data.shipping_method"
+                          ng-options="rate as (rate.service + '('+ rate.delivery_days  + ' days) +$' + rate.rate) for rate in rates">
+                  </select>
+                </div>
+              </div>
+
+              <div class="money" ng-show="data.coin.exists">
+                Free Shipping Activated
+                <br>
               </div>
 
 
@@ -1161,7 +1213,17 @@ cursor: pointer;
 
               <hr>
 
-              <button data-category="Shop" data-action="Order Submission" data-label="Order Submitted" id="submit" type="submit" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">PAY NOW {a total_price_str() a}</button>
+              <div ng-show="data.total_price != 0">
+                <button data-category="Shop" data-action="Order Submission" data-label="Order Submitted" id="submit" type="submit" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">
+                  PAY NOW {a total_price_str() a}
+                </button>
+              </div>
+
+              <div ng-show="data.total_price == 0">
+                <button ng-click="placeFreeOrder()" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">
+                  ORDER NOW
+                </button>
+              </div>
 
 
           </div>

@@ -522,6 +522,16 @@ def instagramValidate():
     else:
         return 'failed'
 
+@app.route('/coin-validate', methods=['GET', 'POST'])
+def coinValidate():
+    code = request.args.get('code').upper()
+    star = Star(c)
+    exists = star.coinCodeExists(code)
+    if exists == True:
+        return 'success'
+    else:
+        return 'failed'
+
 @app.route('/partners-form-validate', methods=['GET', 'POST'])
 def partnersFormValidate():
     username = str(request.form['username'])
