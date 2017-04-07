@@ -196,7 +196,7 @@ app.controller("builder", function($scope) {
       if (index >= 0){
          $scope.box.products.splice(index, 1);
          $scope.box.cost  =  $scope.box.cost - parseFloat(product['price']);
-         $.notify("Product Removed From Box", { position:"top right",className:"error" });
+         $.notify("Product Removed", { position:"top right",className:"error" });
       }
 
       else if ($scope.box.products.length >= 6){
@@ -206,7 +206,7 @@ app.controller("builder", function($scope) {
       else{
         $scope.box.products.push(product);
         $scope.box.cost =  $scope.box.cost + parseFloat(product['price']);
-        $.notify("Product Added to Box", { position:"top right",className:"success" });
+        $.notify("Product Added", { position:"top right",className:"success" });
       }
 
       //$scope.updateSlider();
