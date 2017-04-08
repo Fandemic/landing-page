@@ -61,7 +61,7 @@ app.controller("shop", function($scope) {
 
     $scope.data.total_price += product.price;
     $scope.data.savings += (product.retail_price - product.price)
-    $.notify("Product Added To Box", { position:"bottom left",className:"success" });
+    //$.notify("Product Added To Box", { position:"bottom left",className:"success" });
   }
 
 
@@ -77,7 +77,7 @@ app.controller("shop", function($scope) {
        $scope.data.cart.splice(index, 1);
        $scope.data.total_price -= product.price;
        $scope.data.savings -= (product.retail_price - product.price)
-       $.notify("Product Removed From Box", { position:"bottom left",className:"success" });
+       //$.notify("Product Removed From Box", { position:"bottom left",className:"success" });
     }
 
   }
