@@ -17,7 +17,7 @@
 }
 
 .popular-product-label {
-    background-color: #D2AFC9;
+    background: linear-gradient(to left, #e96443 , #e258b0);
     right: -66px;
     top: 70px;
     position: absolute;
@@ -262,27 +262,27 @@ a:focus {
 }
 
 .btn-submit {
-  padding: 1em 3em;
+  padding: .5em 2em;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   text-decoration: none;
-  background-color: #7BDC87;
+  background-color: #E258AA;
   line-height: 1.5;
   border: none;
-  border-radius: 4px;
-  font-weight: 600;
+  border-radius: 2px;
+  font-weight: 400;
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
 }
 .btn-submit:hover {
   color: #fff;
-  background-color: #4D9BD3;
+  background-color: #E258AA;
 }
 .btn-submit:active, .btn-submit:focus, .btn-submit:active:hover, .btn-submit:active:focus {
   color: #fff;
   outline: none;
-  background-color: #4D9BD3;
+  background-color: #E258AA;
 }
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
@@ -1252,14 +1252,17 @@ margin-left: auto;margin-right: auto;right: 150px;
 }
 
 .close {
-    float: right;
-    font-size: 21px;
+    position: absolute;
+    top:20px;
+    left:20px;
+    z-index:999999;
+    font-size: 40px;
     font-weight: 700;
     line-height: .5;
     color: #000;
     text-shadow: 0 1px 0 #fff;
     filter: alpha(opacity=20);
-    opacity: .3;
+    opacity: .5;
 }
 
 .flickity-prev-next-button.next {
