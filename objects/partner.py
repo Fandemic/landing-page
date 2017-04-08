@@ -48,10 +48,10 @@ class Partner:
         for company_id, value in brands.iteritems():
             company = {}
             company['name'] = company_id
-            company['street'] = "11823 Maren Ct."
-            company['city'] = "Reisterstown"
-            company['state'] = "Maryland"
-            company['zip'] = "21136"
+            company['street'] = value['company']['bio']['address']['street']
+            company['city'] = value['company']['bio']['address']['city']
+            company['state'] = value['company']['bio']['address']['state']
+            company['zip'] = value['company']['bio']['address']['zip']
             company['country'] = "US"
 
             shipping_info = shipping.purchase_shipping_label(company=company,customer=customer)
