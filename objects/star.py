@@ -60,7 +60,7 @@ class Star:
         profile['hashed_pw'] = info['star']['password']
         profile['system'] = 'influencers'
         profile['bio'] = {}
-        profile['bio']['star_id'] = info['star']['id']
+        profile['bio']['star_id'] = info['star']['id'].lower()
         profile['bio']['star_name'] = info['star']['name']
         profile['bio']['contact_name'] = ''
         profile['bio']['website'] = ''

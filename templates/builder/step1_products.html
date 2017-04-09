@@ -5,7 +5,7 @@
   <div class="row">
 
 
-    <h3 class="subtitle" ><strong>Step 1:</strong> select products that interest you</h3>
+    <h3 class="subtitle" >Select 6 products that interest you</h3>
     <hr>
 
 
@@ -378,7 +378,13 @@
 
 <div class="col-md-4">
 
-
+  <button
+  data-ga-click-event-category="Step 1" data-ga-click-event-action="Next Step 1" data-ga-click-event-label="Step 1: Products -> Step 2: Packaging"
+  ng-click="step_2()" class="btn btn-primary btn-lg btn-nav
+                  {% if cat == 'beauty' %}btn-beauty{% endif %}
+                  next-btn">
+    Next <i class="fa fa-arrow-right" aria-hidden="true"></i></i>
+  </button>
 
   {% include('builder/summary.html') %}
 
@@ -387,7 +393,7 @@
   ng-click="step_2()" class="btn btn-primary btn-lg btn-nav
                   {% if cat == 'beauty' %}btn-beauty{% endif %}
                   next-btn">
-    Next Step <i class="fa fa-arrow-right" aria-hidden="true"></i></i>
+    Next <i class="fa fa-arrow-right" aria-hidden="true"></i></i>
   </button>
 
 

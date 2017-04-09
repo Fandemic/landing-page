@@ -17,7 +17,7 @@ app.controller("builder", function($scope) {
       description: null,
       cost: 0.00,
       price: 50,
-      profit: 0,
+      profit: 3,
       charity: 0,
       goal: 25,
       products: [],
@@ -366,13 +366,13 @@ app.controller("builder", function($scope) {
         });
 
         $('.steps').hide();
-        $('#step3').fadeIn('fast', function() {
+        $('#step5').fadeIn('fast', function() {
           $(".carousel").flickity('resize');
         });
           $('#crumb2').removeClass( "current");
           $('#crumb2').addClass( "touched");
-          $('#crumb3').addClass('current');
-          $("#next4").addClass("on");
+          $('#crumb4').addClass('current');
+          $("#next5").addClass("on");
           $("html, body").animate({ scrollTop: 76 }, "slow");
 
         }
