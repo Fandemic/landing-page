@@ -409,7 +409,7 @@ def partnersForm():
 
     #build dictionary
     userProfile = {}
-    userProfile['username'] = username
+    userProfile['username'] = username.lower()
     userProfile['hashed_pw'] = hashed
     userProfile['system'] = 'partners'
 
