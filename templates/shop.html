@@ -654,12 +654,10 @@ cursor: pointer;
 
 
 
-          {% if countt % 2 == 0 %}
+          {% if countt % 2 == 0 or star.campaigns[0].products|length == countt %}
           </div>
           {% endif %}
-          {% if star.campaigns[0].products|length == countt %}
-        </div>
-        {% endif %}
+
 
         {% endfor %}
 
