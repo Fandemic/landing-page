@@ -317,23 +317,27 @@ $('.variations-modal').on("show.bs.modal", function () {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">What are Fandemic Coins?</h4>
+        <h4 style="text-align: center;" class="modal-title">What are Fandemic Coins?</h4>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="text-align:center">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4" style="border-right: 1px solid #e5e5e5;">
             <img width="100px" src="/static/img/builder/coin.svg">
           </div>
           <div class="col-md-8">
-            <p>Use a fandemic coin to order a <strong>free product</strong> on any Fandemic store.<br>
-               If you review the product you get the coin back!</p>
-            <span class="light">*Must have over 5k Instagram followers.</span>
+            <p style="margin-top: 9%;">Use a coin to order a <strong>free</strong> product.<br>
+               Review the product to get a <strong>new</strong> coin</p>
           </div>
         </div>
+        <br>
+        <p>Create a store to receive your first coin!</p>
+        <span class="light" style="font-size:11px">*Must have 5k or more Instagram followers to participate.</span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">ok, awesome!</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">I want one!</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -341,6 +345,13 @@ $('.variations-modal').on("show.bs.modal", function () {
 
 
 <script>
+//launch coin modal on page load
+$(window).load(function(){
+  //  setTimeout(function(){
+  $('#coin-modal').modal('show');
+  //  }, 800);
+});
+
 $('#viewExample_1, #viewExample_2, #viewExample_3, #viewExample_4, #viewExample_5, #viewExample_6').on('click', function(e) {
   var modalContent = $(this).attr("passed-step");
   var newImageSource = '<img style="width:61em" src="../static/img/examples/' + modalContent + '.png">';
