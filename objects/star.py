@@ -89,10 +89,10 @@ class Star:
         star['img'] = {}
         star['img']['profile'] = profile_img_url
         star['url'] = {}
-        star['url']['instagram'] = 'https://instagram.com/'+info['social_media']['instagram']
-        star['url']['twitter'] = 'https://twitter.com/'+info['social_media']['twitter']
-        star['url']['facebook'] = info['social_media']['facebook']
-        star['url']['youtube'] = info['social_media']['youtube']
+        star['url']['instagram'] = 'https://instagram.com/'+info['star']['id']
+        star['url']['twitter'] = 'https://twitter.com/'
+        star['url']['facebook'] = 'https://facebook.com/'
+        star['url']['youtube'] = 'https://youtube.com/'
         star['campaigns'] = [{}]
         star['campaigns'][0]['id'] = info['box_name'].replace(' ', '-').lower()
         star['campaigns'][0]['end_time'] = 1477267200
