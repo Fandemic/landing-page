@@ -790,7 +790,7 @@ a:focus {
     text-decoration: none;
     color: #fff;
     transition:none;
-    width: 33.33% !important;
+    width: 50% !important;
   }
 
   #crumbs ul li a:after {
@@ -1654,7 +1654,7 @@ input[type="color"]:focus,
    }
 
    .subtitle{
-         font-size: 27px !important;
+         font-size: 30px !important;
    }
 
    .final-step{
