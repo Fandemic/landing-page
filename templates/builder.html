@@ -113,7 +113,7 @@
   }
 
   .subtitle {
-    font-size: 28px !important;
+    font-size: 22px !important;
     text-align: center !important;
     margin-top:10px;
     margin-bottom:10px;
@@ -127,19 +127,34 @@
   width:115% !important;
 }
 }
+.title{
+  font-family: 'Josefin Sans', sans-serif !important;
+  color: #A39D9D !important;
+}
+.subtitle{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size:28px;
+  text-align: center;
+}
+p,span,button,h1,h2,h3,h4,h5,h6{
+  font-family: 'Josefin Sans', sans-serif;
+}
+.btn{
+  border-radius: 2px !important;
+}
 </style>
 
 
 <img width="150px" id="big-loader" src="/static/img/loader.gif" style="position:fixed;z-index:99999;top:40%;left:45%;display:none;">
 
-<body ng-controller="builder" style="background-color:#F1F1F1;margin-top:30px;">
+<body ng-controller="builder" style="background-color:#F1F1F1;">
 
-  <section id="coin-alert" style="cursor:pointer;z-index:1000;position:fixed;top:0px;left:0px;width:100%;height:30px;text-align:center;background: linear-gradient(to left, #e96443 , #e258b0);color:#fff;"
+  <!--<section id="coin-alert" style="cursor:pointer;z-index:1000;position:fixed;top:0px;left:0px;width:100%;height:30px;text-align:center;background: linear-gradient(to left, #e96443 , #e258b0);color:#fff;"
            data-toggle="modal" data-target="#coin-modal">
     <img height="20px" src="/static/img/builder/coin.svg">
     <span style="font-size:12px;">Get a free coin after signing up! <i class="fa fa-question-circle" aria-hidden="true"></i></span>
 
-  </section>
+  </section>-->
 
   {% include('builder/nav.html') %}
 
@@ -317,27 +332,27 @@ $('.variations-modal').on("show.bs.modal", function () {
   <div class="modal-dialog" role="document" style="height:auto;">
     <div class="modal-content" style="height:auto;">
       <div class="modal-header" style="color:white;background: linear-gradient(to left, #e96443 , #e258b0);">
-        <h4 style="text-align: center;color:white;" class="modal-title">What are Fandemic Coins?</h4>
+        <h4 style="text-align: center;color:white;font-family: caveat;font-size:28px;font-weight:400;" class="modal-title">Introducing Fandemic Coins!</h4>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
       </div>
       <div class="modal-body" style="text-align:center;padding-top:40px;">
         <div class="row">
-          <div class="col-md-3" >
-            <img width="80px" src="/static/img/builder/coin.svg">
+          <div class="col-md-12" >
+            <img width="50px" src="/static/img/builder/coin.svg">
           </div>
-          <div class="col-md-9">
-            <p style="margin-top: 15px;">Use a coin to order a <strong>free</strong> product.<br>
-               Review the product to get a <strong>new</strong> coin</p>
+          <div class="col-md-12">
+            <p style="margin-top: 15px;font-size:20px;">Use a coin to order a <strong>free</strong> product.<br>
+               Review the product to get a new coin</p>
           </div>
         </div>
         <br>
-        <p style="font-size:16px">Your coin will be sent via email after you sign up!</p>
-        <span class="light" style="font-size:11px">*Must have 5k or more Instagram followers to participate.</span>
+        <p style="font-size:17px">Your coin will be sent via <strong>email</strong> after you sign up!</p>
+        <span class="light" style="font-size:13px">*Must have 5k or more Instagram followers to participate.</span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-beauty" data-dismiss="modal" style="width:100%;font-size:22px;">I want one! (close window)</button>
+        <button type="button" class="btn btn-primary btn-beauty" data-dismiss="modal" style="width:100%;font-size:18px;font-weight:600;">Close Window</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
