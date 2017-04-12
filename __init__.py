@@ -84,10 +84,15 @@ def toString(l):
     return ",".join(l)
 
 
-#Store Builder
 @app.route('/builder')
 @app.route('/builder/<cat>')
 def builder(cat=None):
+    return redirect("/get-started", code=302)
+
+
+#Store Builder
+@app.route('/get-started')
+def getStarted(cat='beauty'):
 
     #Get the current stars store info
     storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
@@ -222,15 +227,22 @@ def faq():
     star_names = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(5)
     return render_template('faq.html', star_names=star_names)
 #-------------------------------------------
-
 @app.route('/about')
 def about():
+    return redirect("/influencers", code=302)
+
+@app.route('/influencers')
+def influencers():
     star_names = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(5)
     return render_template('about.html', star_names=star_names)
 #-------------------------------------------
 
 @app.route('/partners')
 def partners():
+    return redirect("/brands", code=302)
+
+@app.route('/brands')
+def brands():
     unixTimestamp = int(time.time())
     companies = db.profiles.find({"system":"partners", "bio.approved":True})
 
@@ -385,7 +397,7 @@ def launchStoreRequest():
 
         star.createProfile(info) #create a star profile
         star.createStore(info) #create a new store for the star
-        star.giftCoin(info['star']['email']) #gift a coin
+        #star.giftCoin(info['star']['email']) #gift a coin
 
         #send alert to Fandemic team via slack
         slack.sendStoreCreatedAlert(info)
