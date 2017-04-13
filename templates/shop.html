@@ -616,14 +616,18 @@ cursor: pointer;
 
               <!--<img style="height:30px;position:margin:0 auto;" src="http://res.cloudinary.com/fandemic/e_make_transparent/brands/{{p.company_id}}/logo.png">-->
               <img class="img-responsive" style="width:60%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/e_make_transparent,w_300,h_300,c_pad/products/{{p.item_base_num}}.png">
+
+              <!--
               <div style="position:absolute;width:60px;top:20px;right:20px;background:#fff;border: 1px solid #a9a9a9;border-radius:50%;">
                 <img class="img-responsive" style="width:60px;padding:5px;" src="https://res.cloudinary.com/fandemic/e_make_transparent,w_300,h_300,c_pad/products/{{p.item_num}}.png">
-
-
               </div>
+                  -->
 
+              <h3>{{ p.name }}
 
-              <h3>{{ p.name }} ({{p.variation}})<br><!--<span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span>--></h3>
+                {% if p.variation != '' %}
+                ({{p.variation}})
+                {% endif %}<br><!--<span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span>--></h3>
                 <span class="money" style="text-decoration:line-through">${{p.retail_price|int}}</span> <span class="money">${{p.price|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}}</span>
                 <br>
 
