@@ -31,6 +31,11 @@
    1.General
    ========================================================================== */
 
+@font-face {
+ font-family: willow;
+ src: url('/static/fonts/willow_bloom.otf');
+}
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   line-height: 1.5;
@@ -1237,7 +1242,7 @@ blockquote cite {
   height: 215px;
   display: inline-block;
   opacity:1;
-  width:400px;
+  width:275px;
 }
 
 .product-photo:hover{
@@ -1458,5 +1463,52 @@ color: #fff;
 
   background-color: rgba(231, 45, 158, 0.5);
 
+
+}
+
+.users img{
+  opacity: .8;
+}
+
+.users img:hover{
+  opacity: 1;
+}
+
+.text-block{
+  width:100%;text-align:left;color:#727272;font-size:20px;padding:40px 300px;margin-top:220px;
+}
+
+@media only screen and (max-width: 900px) {
+
+  .hero-section {
+    background: url('../../img/home/fandemic_bg.jpg') center -50px no-repeat scroll;
+        background-size: contain;
+  }
+
+  .text-block{
+
+    font-size: 17px;
+    padding: 0px 20px;
+    margin-top: 120px;
+  }
+
+  .block{
+        margin-bottom: 30px;
+        padding:0px;
+        height: 225px;
+  }
+
+  .users img {
+    opacity: .8;
+    margin-bottom: 30px;
+}
+
+.users{
+  margin-bottom: 00px !important;
+}
+
+.campaigns-header{
+  margin-top: 170px !important;
+}
 
 }
