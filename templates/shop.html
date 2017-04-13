@@ -625,7 +625,7 @@ cursor: pointer;
 
               <h3>{{ p.name }}
 
-                {% if p.variation != '' %}
+                {% if p.variation %}
                 ({{p.variation}})
                 {% endif %}<br><!--<span style="margin-top:3px;color:#8d8d8d;font-size:14px;font-weight:400;text-align:center;">{{ p.variation }}<span>--></h3>
                 <span class="money" style="text-decoration:line-through">${{p.retail_price|int}}</span> <span class="money">${{p.price|int + star.campaigns[0].profit|int + star.campaigns[0].charity|int}}</span>
