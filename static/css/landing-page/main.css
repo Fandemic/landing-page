@@ -86,13 +86,13 @@ b, strong {
    ========================================================================== */
 
 .hero-section {
-  background: url(../../img/home/lanie_banner.png) center center no-repeat scroll;
-  background-size: cover;
+  background: url(../../img/home/fandemic_bg.jpg) center -200px no-repeat scroll;
+  background-size: contain;
   padding: 0 0 4.5em;
   position: relative;
   color: #fff;
   /*background: linear-gradient(to left, #e96443 , #e258b0);*/
-  /*height:40em;*/
+  height:50em;
 }
 .hero-section::before, .video-tour::before, .pricing::before, .twitter-feed::before {
   content: '';
@@ -1252,12 +1252,13 @@ blockquote cite {
   .thumbnail{
   	border: 0px;
   	padding: 0px;
-    border-radius: 4px;
+    border-radius: 0px;
     position:relative;
     background-color: #fff;
-    box-shadow: 0px 0px 3px rgba(0,0,0,0.24);
+    /*box-shadow: 0px 0px 3px rgba(0,0,0,0.24);*/
     transition: all 0.2s ease-in-out;
     margin-bottom: 0px;
+    border: 1px solid #000;
 
   }
 
@@ -1415,4 +1416,47 @@ background-attachment: fixed;
 .cta-btn .btn:hover{
   color:#fff !important;
   background-color: #CA1488 !important;
+}
+
+.block{
+  width:100%;
+  height:275px;
+  margin: 0 auto;
+  border: 2px solid #000;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align:center;
+
+}
+
+
+.influencer-block{
+  background-image: url('/static/img/home/influencer_bg.jpg');
+  background-size: contain;
+
+}
+
+.brand-block{
+  background-image: url('/static/img/home/brand_bg.jpg');
+  background-position: center center;
+}
+
+.block-title{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+background-color: rgba(0, 0, 0, 0.3);
+padding: 10px 20px;
+text-transform: uppercase;
+font-size: 25px;
+color: #fff;
+}
+
+
+
+.hover .block-title{
+
+  background-color: rgba(231, 45, 158, 0.5);
+
+
 }
