@@ -75,13 +75,13 @@ class Shipping:
         #address of the company
         from_address = easypost.Address.create(
           verify=["delivery"],
-          name = company['name'],
-          street1 = company['street'],
+          name = 'Brandon',
+          street1 = '11823 Maren Ct.',
           street2 = "",
-          city = company['city'],
-          state = company['state'],
-          zip = company['zip'],
-          country = company['country']
+          city = 'Reisterstown',
+          state = 'MD',
+          zip = '21136',
+          country = 'US'
         )
 
         #address of the client
