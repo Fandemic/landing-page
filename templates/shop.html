@@ -26,7 +26,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
   <script src="https://js.braintreegateway.com/js/braintree-2.29.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-  <script src="../static/js/shop.js"></script>
+  <script src="../static/js/shop.js?v=1.1"></script>
 
 
 
@@ -1229,8 +1229,9 @@ cursor: pointer;
               <hr>
 
               <div ng-show="data.total_price != 0">
-                <button data-category="Shop" data-action="Order Submission" data-label="Order Submitted" id="submit" type="submit" class="btn btn-success btn-lg" style="width:100%;font-weight:800;">
+                <button data-category="Shop" data-action="Order Submission" data-label="Order Submitted" id="submit" type="submit" class="btn btn-success btn-lg" style="width:100%;font-weight:800;background:#25CB68;">
                   PAY NOW {a total_price_str() a}
+                  <img id="loader" width="20px" src="/static/img/loader.gif" style="display:none;">
                 </button>
               </div>
 

@@ -130,6 +130,8 @@ app.controller("shop", function($scope) {
 
     if ($scope.validate_checkout_form()){
 
+        $('#loader').show();
+
         $.ajax({
            url: '/charge',
            data: angular.toJson($scope.data, null, '\t'),
@@ -137,7 +139,9 @@ app.controller("shop", function($scope) {
            contentType: 'application/json;charset=UTF-8',
            success: function(response) {
              $("#payment-modal").modal("hide");
+             $('#loader').hide();
              $("#payment-success-modal").modal("show");
+
 
              //facebook event tracking
              fbq('track', 'Purchase', {value: $scope.data.price, currency:'USD'});
@@ -145,6 +149,7 @@ app.controller("shop", function($scope) {
            },
            error: function(error) {
              alert("Payment Error: please try again later");
+             $('#loader').hide();
            }
        });
 
