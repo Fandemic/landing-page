@@ -289,19 +289,23 @@ def store(starID):
         #Get the item num and variation num
         item = product['item_num'].rsplit('-', 1)
 
+
         try:
             star['campaigns'][0]['products'][c]['item_base_num'] = item[0]
             #star['campaigns'][0]['products'][c]['variation_num'] = item[1]
 
             #match the product info to the users products
             product_info = db.staging_items.find_one({'item_num':item[0]})
+
+            star['campaigns'][0]['products'][c]['description'] = product_info['description'].replace("'","\\'") #find the star
         except:
-            #match the product info to the users products
+            #lady burd exception...
             star['campaigns'][0]['products'][c]['item_base_num'] = product['item_num']
             product_info = db.staging_items.find_one({'item_num':product['item_num']})
 
+            star['campaigns'][0]['products'][c]['description'] = product_info['description'].replace("'","\\'") #find the star
 
-        star['campaigns'][0]['products'][c]['description'] = product_info['description'].replace("'","\\'") #find the star
+
 
         try:
             star['campaigns'][0]['products'][c]['ingredients'] = product_info['ingredients']
