@@ -785,16 +785,3 @@ $(document).ready(function() {
 
 
    });
-
-   //Message on leave
-   window.onbeforeunload = function (e) {
-  var message = "You have not finished building your beauty box. Are you sure you want to leave the builder?",
-  e = e || window.event;
-  // For IE and Firefox
-  if (e) {
-    e.returnValue = message;
-  }
-
-  // For Safari
-  return message;
-};
