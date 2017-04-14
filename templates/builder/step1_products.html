@@ -163,7 +163,7 @@
             </div>
             {% for brand in brands %}
 
-              <div class="dropdown-item" ng-click="filter.brand={name:&quot;{{brand.username}}&quot;,id:&quot;{{brand.bio.company_id}}&quot;}">
+              <div class="dropdown-item" ng-click="filter.brand={name:&quot;{{brand.bio.company_name}}&quot;,id:&quot;{{brand.bio.company_id}}&quot;}">
                 <img width="40px" src="https://res.cloudinary.com/fandemic/image/upload/brands/{{brand.bio.company_id}}/logo.png">
                 <strong class="item-name">{{ brand.bio.company_name }}</strong>
               </div>
