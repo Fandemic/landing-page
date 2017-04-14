@@ -68,6 +68,7 @@ class Star:
         profile['bio']['email'] = info['star']['email']
         profile['bio']['phone'] = ''
         profile['bio']['short_story'] = ''
+        profile['bio']['product_requested'] = False
         profile['bio']['address'] = {}
         profile['bio']['address']['street'] = ''
         profile['bio']['address']['city'] = ''
