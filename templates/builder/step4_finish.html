@@ -30,7 +30,7 @@
             ng-model="box.star.name"
             ng-change="validate_name(box.star.name)"
             ng-model-options="{debounce: 750}"
-            type="text" class="form-control form-control-lg" style="font-family: 'Caveat', cursive;padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:600;border-radius:2px;">
+            type="text" class="form-control form-control-lg" style="font-family: 'Caveat', cursive;padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
 
 
             <img class="validation ng-hide" ng-show="validation.name=='valid'" src="/static/img/success2.svg">
@@ -59,11 +59,13 @@
                 ng-model="box.star.email"
                 ng-change="validate_email(box.star.email)"
                 ng-model-options="{debounce: 750}"
-                type="email" class="form-control form-control-lg" style="font-family: 'Caveat', cursive;padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:600;border-radius:2px;">
+                type="email" class="form-control form-control-lg" style="font-family: 'Caveat', cursive;padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
                 <p style="color:#8d8d8d;font-size: 13px;">No worries, our company has a strict no spam policy!</p>
 
                 <img class="validation ng-hide" ng-show="validation.email=='valid'" src="/static/img/success2.svg">
                 <img class="validation ng-hide" ng-show="validation.email=='invalid'" src="/static/img/close.svg">
+                <img class="validation ng-hide" ng-show="validation.email=='invalid-taken'" src="/static/img/taken.svg">
+                <img class="validation ng-hide" ng-show="validation.email=='loading'" src="/static/img/loader.gif">
 
                 </div>
               </div>
@@ -87,11 +89,12 @@
                 ng-model="box.star.instagram"
                 ng-change="validate_instagram(box.star.instagram)"
                 ng-model-options="{debounce: 750}"
-                type="text" class="form-control form-control-lg" style="font-family: 'Caveat', cursive;padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:600;border-radius:2px;">
+                type="text" class="form-control form-control-lg" style="font-family: 'Caveat', cursive;padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
                 <p style="color:#8d8d8d;font-size: 13px;">This is just to prove you're real</p>
 
                 <img class="validation ng-hide" ng-show="validation.instagram=='valid'" src="/static/img/success2.svg">
                 <img class="validation ng-hide" ng-show="validation.instagram=='invalid'" src="/static/img/close.svg">
+                <img ng-show="validation.instagram=='invalid-taken'" src="/static/img/taken.svg">
                 <img class="validation ng-hide" ng-show="validation.instagram=='loading'" src="/static/img/loader.gif">
 
                 </div>
@@ -118,7 +121,7 @@
                     ng-model="box.star.password"
                     ng-change="validate_password(box.star.password)"
                     ng-model-options="{debounce: 750}"
-                    type="password" class="form-control form-control-lg" style="font-family: 'Caveat', cursive;padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:600;border-radius:2px;">
+                    type="password" class="form-control form-control-lg" style="font-family: 'Caveat', cursive;padding-left:65px;width:100%;font-size:26px;height:60px;font-weight:400;border-radius:2px;">
                     <p style="color:#8d8d8d;font-size: 13px;">This <strong>is not</strong> your instagram password</p>
 
                     <img class="validation ng-hide" ng-show="validation.password=='valid'" src="/static/img/success2.svg">
@@ -264,6 +267,12 @@ $('#retail_price').keyup(function(e){
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 
 // $('#finish-last-step').click(function(){
 //   if ($("#box-description-textarea").val() == null){

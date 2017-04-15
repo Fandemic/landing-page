@@ -459,7 +459,7 @@ app.controller("builder", function($scope) {
     if ($scope.validation.name != 'valid'){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please enter your name! &#128516;',
+         message: 'Please enter your name!',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -469,10 +469,10 @@ app.controller("builder", function($scope) {
          }]
       });
     }
-    else if ($scope.validation.instagram != 'valid'){
+    else if ($scope.validation.instagram == 'invalid'){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please enter your Instagram Username! This field is required to help verify your identity. &#128516;',
+         message: 'Please enter your valid Instagram Username! This field is required to help verify your identity.',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -482,10 +482,36 @@ app.controller("builder", function($scope) {
          }]
       });
     }
-    else if ($scope.validation.email != 'valid'){
+    else if ($scope.validation.instagram == 'invalid-taken'){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please enter your email address! &#128516;',
+         message: 'This instagram account ('+$scope.box.star.instagram+') is already in use! Please contact sarah@fandemic.co if this is your acount.',
+         buttons: [{
+           cssClass: 'btn-success',
+           label: 'OK',
+             action: function(dialog) {
+               dialog.close();
+             }
+         }]
+      });
+    }
+    else if ($scope.validation.email == 'invalid'){
+      BootstrapDialog.show({
+       title: 'Alert!',
+         message: 'Please enter a valid email address.',
+         buttons: [{
+           cssClass: 'btn-success',
+           label: 'OK',
+             action: function(dialog) {
+               dialog.close();
+             }
+         }]
+      });
+    }
+    else if ($scope.validation.email == 'invalid-taken'){
+      BootstrapDialog.show({
+       title: 'Alert!',
+         message: 'This email address is already in use.',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -498,7 +524,7 @@ app.controller("builder", function($scope) {
     else if ($scope.validation.password != 'valid'){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please enter password with at least 6 characters! &#128516;',
+         message: 'Please enter password with at least 6 characters!;',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -516,33 +542,7 @@ app.controller("builder", function($scope) {
   }
 
 
-function testInstagram(username){
 
-  $.ajax({
-    type: 'GET',
-    url: '/instagram-validate',
-    data: {username: username},
-   error: function(xhr) {
-     $scope.$apply(function () {
-      $scope.validation.instagram = 'invalid';
-    });
-   },
-   success: function(data) {
-    if (data == 'success'){
-      $scope.$apply(function () {
-      $scope.validation.instagram = 'valid';
-    });
-    }
-    else if (data == 'failed'){
-      $scope.$apply(function () {
-      $scope.validation.instagram = 'invalid';
-    });
-    }
-  }
-});
-
-
-}
 
 
 
@@ -551,7 +551,7 @@ $scope.next_btn5 = function(){
     if ($("#your-brand-input").val()  == ''){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please enter a brand name for your store! &#128516;',
+         message: 'Please enter a brand name for your store!',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -564,7 +564,7 @@ $scope.next_btn5 = function(){
     else if ($("#your-box-input").val()  == ''){
       BootstrapDialog.show({
        title: 'Alert!',
-         message: 'Please name your box! &#128516;',
+         message: 'Please name your box!',
          buttons: [{
            cssClass: 'btn-success',
            label: 'OK',
@@ -602,6 +602,40 @@ $scope.next_btn5 = function(){
 };
 
 
+function testInstagram(username){
+
+  $.ajax({
+    type: 'GET',
+    url: '/instagram-validate',
+    data: {username: username},
+   error: function(xhr) {
+     $scope.$apply(function () {
+      $scope.validation.instagram = 'invalid';
+    });
+   },
+   success: function(data) {
+    if (data == 'success'){
+      $scope.$apply(function () {
+      $scope.validation.instagram = 'valid';
+    });
+    }
+    else if (data == 'failed-exist'){
+      $scope.$apply(function () {
+      $scope.validation.instagram = 'invalid';
+    });
+    }
+    else if (data == 'failed-available'){
+      $scope.$apply(function () {
+      $scope.validation.instagram = 'invalid-taken';
+    });
+    }
+  }
+});
+
+
+}
+
+
 $scope.validate_name = function(name){
 
   if ((name.length > 1) && (/^[A-Za-z\s]+$/.test(name))){
@@ -615,8 +649,36 @@ $scope.validate_name = function(name){
 
 $scope.validate_email = function(email){
 
+  $scope.$apply(function () {
+    $scope.validation.email = 'loading';
+  });
+
   if (validateEmail(email)){
-    $scope.validation.email = 'valid';
+          //check if the email exists
+          $.ajax({
+            type: 'GET',
+            url: '/influencer-email-exists',
+            data: {email: email},
+           error: function(xhr) {
+             $scope.$apply(function () {
+              $scope.validation.email = 'invalid';
+            });
+           },
+           success: function(data) {
+            if (data == 'success'){
+              $scope.$apply(function () {
+              $scope.validation.email = 'valid';
+            });
+            }
+            else if (data == 'failed'){
+              $scope.$apply(function () {
+              $scope.validation.email = 'invalid-taken';
+            });
+            }
+          }
+        });
+
+
   }
   else{
     $scope.validation.email = 'invalid';

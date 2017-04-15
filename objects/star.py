@@ -37,6 +37,14 @@ class Star:
             return True
 
 
+    def instagramUsernameAvailable(self,username):
+
+        if (self.db.profiles.find({'username':username}).count() <= 0):
+            return True
+        else:
+            return False
+
+
     #return a useable store ID
     def getID(self,instagram):
 

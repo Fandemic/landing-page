@@ -96,7 +96,7 @@ def getStarted(cat='beauty'):
 
     #Get the current stars store info
     storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
-    stars = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(6)
+    #stars = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(6)
 
     #redirect if the category does not exist
     if cat is None:
@@ -124,7 +124,7 @@ def getStarted(cat='beauty'):
     cats = {item['sub_category'] for item in items}
 
 
-    return render_template('builder.html', brands=brands,cat=cat,stars=stars,cats=cats)
+    return render_template('builder.html', brands=brands,cat=cat,cats=cats)
 
 
 #Product search for the builder
@@ -492,13 +492,30 @@ def partnersForm():
 
 @app.route('/instagram-validate', methods=['GET', 'POST'])
 def instagramValidate():
-    username = request.args.get('username')
+
+    username = request.args.get('username').lower()
     u = Star(c)
+
     exists = u.instagramUsernameExists(username)
-    if exists == True:
+    available = u.instagramUsernameAvailable(username)
+
+    if not exists:
+        return 'failed-exist'
+    if not available:
+        return 'failed-available'
+    else:
+        return 'success'
+
+@app.route('/influencer-email-exists', methods=['GET', 'POST'])
+def emailValidate():
+
+    email = request.args.get('email').lower()
+
+    if (db.profiles.find({'bio.email':email,'system':'influencers'}).count() <= 0):
         return 'success'
     else:
         return 'failed'
+
 
 @app.route('/coin-validate', methods=['GET', 'POST'])
 def coinValidate():
