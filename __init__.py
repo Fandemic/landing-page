@@ -18,6 +18,7 @@ import braintree
 from flask_compress import Compress
 
 from objects.mailer import Mailer
+from objects.util import Util
 from objects.shipping import Shipping
 from objects.slack import Slack
 from objects.trello import Trello
@@ -33,8 +34,6 @@ import datetime
 c = Config()
 db = c.dbConfig()
 MODE = c.configMode()
-
-
 
 #get the stars products
 if MODE == 'test':
@@ -322,8 +321,10 @@ def store(starID):
 
         c += 1
 
+    util = Util()
+    promotionalUrl = util.getPromotionalUrl(star['id'])['id']
 
-    return render_template('shop.html', star = star, blogs = list(blogs),
+    return render_template('shop.html', promotionalUrl=promotionalUrl, star = star, blogs = list(blogs),
                                      braintree=braintree.ClientToken.generate())
 
 
