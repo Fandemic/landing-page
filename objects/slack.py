@@ -122,6 +122,8 @@ class Slack:
         for order in orders:
             msg += '\n*Company ID:* ' + order['company_id']
             msg += '\n*Shipping Label:* ' + order['label_url']
+            msg += '\n*Tracker URL:* ' + order['tracker_url']
+            msg += '\n*Tracking Code:* ' + order['tracking_code']
             for product in order['products']:
                 msg += '\n*Product Details:*' + str(product)
 

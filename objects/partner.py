@@ -79,6 +79,8 @@ class Partner:
             	"shipped": False,
             	"received": False,
             	"label_url": shipping_info['label_url'],
+                "tracker_url": shipping_info['tracker_url'],
+                "tracking_code":shipping_info['tracking_code'],
             	"total_price": data['total_price'],
             	"sub_price": data['total_price']
             }
