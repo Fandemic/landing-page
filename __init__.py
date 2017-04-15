@@ -182,7 +182,7 @@ def getShippingRates():
     customer = request.get_json()
     print customer
 
-    shipment = Shipping()
+    shipment = Shipping(c)
 
     return json.dumps(shipment.get_rates(customer))
 

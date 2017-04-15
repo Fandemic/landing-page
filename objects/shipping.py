@@ -2,14 +2,14 @@ import easypost
 
 class Shipping:
 
-    def __init__(self):
+    def __init__(self,config):
 
-        #establish mode
-        easypost.api_key = 'UkcBy5FU81KSXBEHqAicwA'
-        #if MODE == 'test':
-        #    easypost.api_key = 'UkcBy5FU81KSXBEHqAicwA'
-        #if MODE == 'live':
-        #    easypost.api_key = 'rqNWHlFPA9OAjCBkUMnexg'
+        MODE = config.configMode()
+
+        if MODE == 'test':
+            easypost.api_key = 'UkcBy5FU81KSXBEHqAicwA'
+        if MODE == 'live':
+            easypost.api_key = 'rqNWHlFPA9OAjCBkUMnexg'
 
         self.from_address = easypost.Address.create(
           verify=["delivery"],

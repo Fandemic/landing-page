@@ -10,13 +10,14 @@ from slack import Slack
 class Partner:
 
     def __init__(self,config):
+        self.config = config
         self.db = config.dbConfig()
 
 
     #process the order for brands
     def process_order(self,data,braintree_result=None):
 
-        shipping = Shipping()
+        shipping = Shipping(self.config)
         slack = Slack()
         customer = data['customer'];
         cart = data['cart'];
