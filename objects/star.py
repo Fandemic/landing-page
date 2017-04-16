@@ -85,6 +85,8 @@ class Star:
         profile['bio']['address']['country'] = 'US'
         self.db.profiles.insert_one(profile)
 
+        return profile
+
 
     #creates a store for a star given the proper info variable
     def createStore(self,info):
@@ -109,6 +111,8 @@ class Star:
         star['campaigns'][0]['charity'] = info['charity']
         star['campaigns'][0]['products'] = info['products']
         self.db.stars.insert_one(star)
+
+        return star
 
     #this is for partners
     def checkIDExists(self,key,id):

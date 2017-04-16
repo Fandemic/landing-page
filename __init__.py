@@ -30,6 +30,11 @@ from config import Config
 
 import datetime
 
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 c = Config()
 db = c.dbConfig()
 MODE = c.configMode()
@@ -413,14 +418,14 @@ def launchStoreRequest():
         info['star']['password'] = hash_password(info['star']['password'], salt)
 
         star.createProfile(info) #create a star profile
-        star.createStore(info) #create a new store for the star
+        star_info = star.createStore(info) #create a new store for the star
         #star.giftCoin(info['star']['email']) #gift a coin
 
         #send alert to Fandemic team via slack
         slack.sendStoreCreatedAlert(info)
 
         #send confirmation to star via email
-        email.sendStoreConfirmation(info)
+        email.sendStoreConfirmation(info,star_info['img']['profile'])
 
     return '';
 
