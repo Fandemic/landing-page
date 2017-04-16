@@ -200,7 +200,7 @@ app.controller("builder", function($scope) {
       }
 
       else if ($scope.box.products.length >= 6){
-        alert('We only allow 6 items total per box!');
+        alert('We only allow 6 starter items!');
       }
 
       else{
