@@ -623,7 +623,7 @@ cursor: pointer;
             <div style="cursor:pointer;" data-toggle="modal" data-target="#{{ p.item_num|replace(' ', '-') }}-variation">
 
               <!--<img style="height:30px;position:margin:0 auto;" src="http://res.cloudinary.com/fandemic/e_make_transparent/brands/{{p.company_id}}/logo.png">-->
-              <img class="img-responsive" style="width:60%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/e_make_transparent,w_300,h_300,c_pad/products/{{p.item_base_num}}.png">
+              <img class="img-responsive" style="width:60%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/e_make_transparent,w_300,h_300,c_pad/v{{unixTimestamp}}/products/{{p.item_base_num}}.png">
 
               <!--
               <div style="position:absolute;width:60px;top:20px;right:20px;background:#fff;border: 1px solid #a9a9a9;border-radius:50%;">
@@ -745,7 +745,7 @@ cursor: pointer;
 
                 <div class="row">
                   <div class="col-xs-2" style>
-                    <img style="width:40px;margin: 0 auto;margin-top:-7px;max-height:40px;" src="https://res.cloudinary.com/fandemic/products/{a p.item_num a}.png">
+                    <img style="width:40px;margin: 0 auto;margin-top:-7px;max-height:40px;" src="https://res.cloudinary.com/fandemic/v{{unixTimestamp}}/products/{a p.item_num a}.png">
                   </div>
                   <div class="col-xs-4" style="text-align:left;font-size:15px;">
                     <span>{a p.name a}</span>
@@ -863,7 +863,7 @@ cursor: pointer;
 
       <div class="row">
         <div class="col-sm-4">
-          <img class="img-responsive" style="width:90%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/products/{{p.item_num}}.png">
+          <img class="img-responsive" style="width:90%;margin: 0 auto;" src="https://res.cloudinary.com/fandemic/v{{unixTimestamp}}/products/{{p.item_num}}.png">
         </div>
         <div class="col-sm-8">
           <h2>{{p.name}}</h2>

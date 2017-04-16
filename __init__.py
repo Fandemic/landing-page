@@ -98,6 +98,8 @@ def builder(cat=None):
 @app.route('/get-started')
 def getStarted(cat='beauty'):
 
+    unixTimestamp = int(time.time())
+
     #Get the current stars store info
     storeCountPending = db.stars.count({"$or":[ {"campaigns.0.status":"pending"}, {"campaigns.0.status":"live"}]})
     #stars = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(6)
@@ -128,7 +130,7 @@ def getStarted(cat='beauty'):
     cats = {item['sub_category'] for item in items}
 
 
-    return render_template('builder.html', brands=brands,cat=cat,cats=cats)
+    return render_template('builder.html', brands=brands,cat=cat,cats=cats, unixTimestamp = unixTimestamp)
 
 
 #Product search for the builder
@@ -276,6 +278,8 @@ def timectime(s):
 @app.route('/<starID>')
 def store(starID):
 
+    unixTimestamp = int(time.time())
+
     star = db.stars.find_one({'id':starID.lower()}) #find the star
     #print star
 
@@ -330,7 +334,7 @@ def store(starID):
     promotionalUrl = util.getPromotionalUrl(star['id'])['id']
 
     return render_template('shop.html', promotionalUrl=promotionalUrl, star = star, blogs = list(blogs),
-                                     braintree=braintree.ClientToken.generate())
+                                     braintree=braintree.ClientToken.generate(), unixTimestamp = unixTimestamp)
 
 
 #================PROCESS AN ORDER====================#
