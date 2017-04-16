@@ -429,6 +429,10 @@ cursor: pointer;
     margin-top: 0px !important;
   }
 
+  .promotional-link {
+    display:none;
+  }
+
 }
 </style>
 
@@ -466,13 +470,13 @@ cursor: pointer;
       <div ng-click="page='blog'" id="blog-indicator" class="mobile-item">
       <img src="/static/img/store/posts.svg">
       <br>
-      <span style="color:#E65E77;">Posts ({{blogs|length}})</span>
+      <span style="color:#E65E77;">Reviews ({{blogs|length}})</span>
       </div>
 
       <div ng-click="page='store'" id="cart-indicator" class="mobile-item" style="border-right:none;">
       <img src="/static/img/store/cart.svg">
       <br>
-      <span style="color:#E86347;" ng-cloak>Cart({a data.cart.length a})</span>
+      <span style="color:#E86347;" ng-cloak>Cart ({a data.cart.length a})</span>
       </div>
 
       </div>
@@ -529,11 +533,15 @@ cursor: pointer;
         </div>
         {% endif %}
 
+        <div class = "promotional-link" style="margin-bottom:-10px;">
+          <p style="color: #b5b5b5;font-weight:400;font-size:14px;margin-bottom:-1px;padding-top:5px">Promotional Link:</p>
+          <input style="color: #b5b5b5;" value='{{promotionalUrl}}'>
+        </div>
 
       </div>
 
       <div class="hidden-xs" style="text-align:center;width:100%;margin-top:10px;">
-      <a style="color:#e8e8e8;font-weight:400;font-size:14px;" href="http://admin.fandemic.co">Admin Login</a>
+      <a style="color:#bdbcbc;font-weight:400;font-size:14px;" href="http://admin.fandemic.co">Admin Login</a>
     </div>
 
 
@@ -815,8 +823,8 @@ cursor: pointer;
               <br><br>
               <img class="visible-xs" width="35%" style="margin: 0 auto;" src="../static/img/store/posts2.svg">
               <img class="hidden-xs" width="20%" src="../static/img/store/posts2.svg">
-              <h3 style="color:#adadad !important;">No Posts Exist!<h3>
-              <p style="color:#adadad !important;">Are you {{star.name}}?<br>Login to create your first post.</p>
+              <h3 style="color:#adadad !important;">No Reviews Yet!<h3>
+              <p style="color:#adadad !important;">Are you {{star.name}}?<br>Login to make your first product review.</p>
               <br>
               <a href="http://admin.fandemic.co" style="font-size:22px;">Login</a>
       </div>
