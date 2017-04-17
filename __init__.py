@@ -322,7 +322,7 @@ def store(starID):
 
         star['campaigns'][0]['products'][c]['company_id'] = product_info['company_id']
         star['campaigns'][0]['products'][c]['retail_price'] = product_info['retail_price']
-        star['campaigns'][0]['products'][c]['price'] = product_info['partner_price']
+        star['campaigns'][0]['products'][c]['price'] = product_info['partner_price'] + 3 #ADD FANDEMIC FEE
 
         #match the company info to the users products
         company = db.staging_items.find_one({'name':product['name']})

@@ -58,9 +58,8 @@ app.controller("shop", function($scope) {
 
     $scope.data.cart.push(product);
 
-
     $scope.data.total_price += product.price;
-    $scope.data.savings += (product.retail_price - product.price)
+    $scope.data.savings += (product.retail_price - product.price);
     //$.notify("Product Added To Box", { position:"bottom left",className:"success" });
   }
 
