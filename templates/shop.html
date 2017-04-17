@@ -541,7 +541,7 @@ cursor: pointer;
       </div>
 
       <div class="hidden-xs" style="text-align:center;width:100%;margin-top:10px;">
-      <a style="color:#bdbcbc;font-weight:400;font-size:14px;" href="http://admin.fandemic.co">Admin Login</a>
+      <a style="color:#bdbcbc;font-weight:400;font-size:14px;" href="http://admin.fandemic.co?username={{star.id}}">Admin Login</a>
     </div>
 
 
@@ -826,7 +826,7 @@ cursor: pointer;
               <h3 style="color:#adadad !important;">No Reviews Yet!<h3>
               <p style="color:#adadad !important;">Are you {{star.name}}?<br>Login to make your first product review.</p>
               <br>
-              <a href="http://admin.fandemic.co" style="font-size:22px;">Login</a>
+              <a href="http://admin.fandemic.co?username={{star.id}}" style="font-size:22px;">Login</a>
       </div>
       {% endif %}
 
