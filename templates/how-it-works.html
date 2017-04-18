@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+
+{% include 'header.html' %}
+<link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display|Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Caveat|Source+Sans+Pro|Montserrat|Sue+Ellen+Francisco|Josefin+Sans' rel='stylesheet' type='text/css'>
+
+
+<style>
+.team-details p{
+  color:#4c4c4c;
+}
+.team-details img{
+  width: 10em;
+  border-radius: 5em;
+}
+[data-words]{
+  vertical-align: top;
+  position: static;
+}
+[data-words] > span{
+  position: absolute;
+  color: #fff;
+}
+.benefits p{
+  padding-left: 3em;
+  padding-right: 3em;
+}
+a{
+  color: #E72D9E;
+}
+.iphone-text{
+  margin-top:180px;
+}
+@media only screen and (max-width: 900px) {
+  .iphone-text{
+    margin-top:0px;
+  }
+}
+</style>
+<body style="background-color:#fff;">
+
+  <!--hero section-->
+
+  <header class="" style="width:100%;background: url('/static/img/how-it-works/header-bg-4.jpg');background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;margin-top:-40px;">
+
+    <!--navigation-->
+    {% include 'header-nav.html' %}
+
+    <!--navigation end-->
+
+    <!--welcome message-->
+
+    <section class="container text-center welcome-message" style="position:relative;">
+
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <!--explainer paragraph -->
+          <section class="container text-block" style="margin-top:5px;margin-bottom:5px;text-align:center;">
+          <span style="font-weight:400 !important;font-size:16px;">
+          We're making it easier than ever for brands to connect with influencers, and influencers to connect with their followers.
+          With Fandemic, influencers are able to create virtual storefronts filled with their favorite products, and they'll make
+          money off of each purchase made in their store.
+          </span>
+          <br><br><br>
+          <strong>Here's how it Works</strong>
+          <br>
+          <img width="40px" src="/static/img/how-it-works/down-arrow.svg">
+          <br class="visible-xs"><br class="visible-xs">
+          <br class="visible-xs"><br class="visible-xs">
+          </section>
+
+
+          <section class="container text-block" style="margin-top:-40px;">
+            <span style="float:left;font-family:willow;font-size:60px;font-weight:400;line-height: 20px;position:relative;bottom: 0px;margin-right:20px;">1</span>
+            <span>Create your storefront <a href="/get-started">here</a> using your instagram handle.</span>
+            <br><br><br>
+            <span style="float:left;font-family:willow;font-size:60px;font-weight:400;line-height: 20px;position:relative;bottom: 0px;margin-right:20px;">2</span>
+            Add your favorite products to your storefront. After you create your account, you'll be able to receive <i>free</i> products to try out,
+            and all you have to do is review the product on <a href="get-started">Fandemic</a> and share about how you liked the product on social media.
+            <br><br><br>
+            <span style="float:left;font-family:willow;font-size:60px;font-weight:400;line-height: 20px;position:relative;bottom: 0px;margin-right:20px;">3</span>
+            Share about your store with your followers! Have your storefront URL linked in your instagram, Youtube, Facebook, or Twitter page so your
+            followers can easily find it.
+            <br><br><br>
+            <span style="float:left;font-family:willow;font-size:60px;font-weight:400;line-height: 20px;position:relative;bottom: 0px;margin-right:20px;">4</span>
+            Make $$$. You'll earn a portion of each sale made through your online store. Connect your store with <a href="https://venmo.com" target="_blank">Venmo</a>
+            and start getting paid right away. We take care of the sales and shipping, so all you have to do is keep bragging about the products you love.
+          </section>
+          <br>
+
+          <!--
+          <hr>
+          <br>
+          <img width="100px" style="margin-right:20px;" src="/static/img/how-it-works/present2.svg"><br><br>
+          <span style="color:#a9a9a9;"><br class="visible-xs"><br class="visible-xs">Have over 5000 instagram followers? <br class="visible-xs"> You're eligible for a free product!<br> <a href="/get-started" style="color:#E72D9E;font-weight:600;font-size:22px;">Get Started Here</a></span>
+        -->
+
+
+
+
+      </div>
+    </div>
+
+
+
+
+    <!--welcome message end-->
+
+  </header>
+
+  <section class="" style="width:100%;text-align:left;color:#727272;font-size:20px;
+                                          padding-top:40px;min-height:200px;background-color:#E72D9E;
+                                          background: url('/static/img/how-it-works/bg.jpg');
+                                          background-attachment: fixed;
+                                          background-position: center;
+                                          background-repeat: no-repeat;
+                                          background-size: cover;">
+
+    <div class="container">
+    <div class="row">
+
+      <div class="col-md-4" style="text-align:center;">
+
+        <div class="iphone-text" >
+          <h1 style="color:#fff;text-align:center;">Your Store</h1>
+          <p style="color:#fff;">Direct your followers to your promotional link so they can see your store and product reviews!</p>
+          <br>
+          <button class="btn" style="background:transparent;border:1px solid #fff;color: #fff;">Claim My Store</button>
+          <br class="visible-xs"><br class="visible-xs">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <img style="width:100%;" src="/static/img/how-it-works/iphone1.png">
+      </div>
+    </div>
+    </div>
+
+  </section>
+
+  <!--hero section end-->
+
+  <section class="container" style="text-align:center;">
+
+    <br><br>
+    <img width="100px" style="margin-right:20px;" src="/static/img/how-it-works/present2.svg"><br class="hidden-xs"><br class="hidden-xs">
+    <span style="color:#a9a9a9;"><br class="visible-xs"><br class="visible-xs">Have over 5000 instagram followers? <br class="visible-xs"> You're eligible for a free product!<br> <a href="/get-started" style="color:#E72D9E;font-weight:600;font-size:22px;">Get Started Here</a></span>
+    <br><br><br>
+  </section>
+
+
+
+
+</body>
+
+{% include 'footer.html' %}
+
+
+
+<script>
+
+/* ==========================================================================
+   Number animation
+   ========================================================================== */
+
+$('.welcome-message').waypoint(function() {
+
+  var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
+
+  $('.total-number-1').animateNumber({
+    number: {{storeCount}}+1241, //change value here
+    numberStep: comma_separator_number_step
+  }, 6000);
+
+}, {
+  offset: '80%'
+
+});
+
+  $("a[href='#home']").click(function() {
+    $("html, body").animate({
+      scrollTop: 0
+    }, "slow");
+    return false;
+  });
+
+$(document).ready(function() {
+    if (window.location.href.indexOf("#video") != -1){
+       $('.litebox-hero').click()
+     }
+
+var autoplaySlider = $('#content-slider').lightSlider({
+    auto:false,
+    loop:true,
+    pauseOnHover: true,
+    onBeforeSlide: function (el) {
+        $('#current').text(el.getCurrentSlideCount());
+    }
+});
+});
+
+
+$(function() { // DOM ready
+
+  $("[data-words]").attr("data-words", function(i, d){
+    var $self  = $(this),
+        $words = d.split("|"),
+        tot    = $words.length,
+        c      = 0;
+
+    // CREATE SPANS INSIDE SPAN
+    for(var i=0; i<tot; i++) $self.append($('<span/>',{text:$words[i]}));
+
+    // COLLECT WORDS AND HIDE
+    $words = $self.find("span").hide();
+
+    // ANIMATE AND LOOP
+    (function loop(){
+      $self.animate({ width: $words.eq( c ).width() });
+      $words.stop().fadeOut().eq(c).fadeIn().delay(1000).show(0, loop);
+      c = ++c % tot;
+    }());
+
+  });
+});
+
+
+$('.block').hover(function () {
+    $(this).addClass('hover');
+}, function () {
+    $(this).removeClass('hover');
+});
+
+</script>

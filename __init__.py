@@ -228,6 +228,10 @@ def blogPost(url):
     return render_template('blog-posts.html',star_names=star_names, content = content, title = title, author = author, date = date)
 #-------------------------------------------
 
+@app.route('/how-it-works')
+def how_it_works():
+    return render_template('how-it-works.html')
+
 @app.route('/faq')
 def faq():
     star_names = db.stars.find({"campaigns.0.status":"live"}).sort('campaigns.0.status', 1).limit(5)
