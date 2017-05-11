@@ -42,11 +42,28 @@
             <div class="col-md-12" style="text-align:center;padding-bottom:30px;margin-bottom:30px;border-bottom: 1px solid #eee;">
               <!--<img style="width:120px; margin: 0 auto;" src="/static/img/builder/login.svg">-->
               <br>
+
+
+              <form id="login" action="https://admin.fandemic.co/login" method="POST" role="form">
+              		<input type="hidden" ng-value="box.star.instagram" name="username">
+              		<input type="hidden" ng-value="box.star.password" name="password">
+
+                  <input type="submit" class="btn btn-primary" style="color: #E258AF;
+        background-color: transparent;
+        border-color: #E258AF;
+        font-size: 20px;
+        padding: 10px 25px;" value="Login to My Account">
+              </form>
+
+
               <a href="http://admin.fandemic.co/?username={a box.star.instagram a}" class="btn btn-primary" style="color: #E258AF;
     background-color: transparent;
     border-color: #E258AF;
     font-size: 20px;
     padding: 10px 25px;">Login to My Account</a>
+
+
+
             </div>
 
           </div>
